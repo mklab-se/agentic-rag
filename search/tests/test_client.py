@@ -13,6 +13,7 @@ def test_put_sends_bearer_and_api_version():
     c = SearchRestClient("https://s.search.windows.net", lambda: "tok")
     assert c.put("/indexes/i", {"name": "i"}) == {"name": "i"}
     assert route.calls.last.request.headers["Authorization"] == "Bearer tok"
+    assert route.calls.last.request.headers["Prefer"] == "return=representation"
 
 
 @respx.mock

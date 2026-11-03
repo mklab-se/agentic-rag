@@ -1,0 +1,7 @@
+[
+  {"question": "What is the towing capacity of the Voltrieve Fjord?", "expect_title_contains": "fjord-specifications", "expect_doc_type": "spec"},
+  {"question": "How fast can the Voltrieve Atlas charge?", "expect_title_contains": "atlas-specifications", "expect_doc_type": "spec"},
+  {"question": "Can the Voltrieve Spark tow a trailer?", "expect_title_contains": "spark-specifications", "expect_doc_type": "spec"},
+  {"question": "What does the Voltrieve Atlas cost in Sweden?", "expect_title_contains": "buyers-guide", "expect_doc_type": "guide"},
+  {"question": "Why would I enjoy driving a Voltrieve Lumen?", "expect_title_contains": "lumen-brochure", "expect_doc_type": "brochure"}
+]

@@ -26,7 +26,7 @@ class SearchRestClient:
         self._api_version = api_version
 
     def put(self, path: str, body: dict) -> dict:
-        _, payload = self._request("PUT", path, body)
+        _, payload = self._request("PUT", path, body, {"Prefer": "return=representation"})
         return payload
 
     def post(self, path: str, body: dict | None = None) -> tuple[int, dict]:
@@ -36,12 +36,18 @@ class SearchRestClient:
         _, payload = self._request("GET", path, None)
         return payload
 
-    def _request(self, method: str, path: str, body: dict | None) -> tuple[int, dict]:
+    def _request(
+        self,
+        method: str,
+        path: str,
+        body: dict | None,
+        extra_headers: dict[str, str] | None = None,
+    ) -> tuple[int, dict]:
         response = httpx.request(
             method,
             f"{self._endpoint}{path}",
             params={"api-version": self._api_version},
-            headers={"Authorization": f"Bearer {self._token_provider()}"},
+            headers={"Authorization": f"Bearer {self._token_provider()}", **(extra_headers or {})},
             json=body,
             timeout=60.0,
         )
