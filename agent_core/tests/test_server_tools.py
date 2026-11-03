@@ -41,7 +41,7 @@ def booker():
 @respx.mock
 async def test_booking_requester_comes_from_user_not_model(tools, booker, events):
     route = respx.post(f"{BASE}/test-drives").respond(201, json={"booking_id": "B1"})
-    args = {"model": "V1", "city": "Oslo", "date": "2999-01-01", "requester": "mallory"}
+    args = {"model": "atlas", "city": "Stockholm", "date": "2999-01-01", "requester": "mallory"}
     out = await tools[0].execute("book_test_drive", json.dumps(args), booker, events)
     # the schema forbids a model-supplied requester, so the call is rejected outright
     assert out.startswith("Error: invalid arguments") and not route.called
@@ -49,14 +49,14 @@ async def test_booking_requester_comes_from_user_not_model(tools, booker, events
     out = await tools[0].execute("book_test_drive", json.dumps(args), booker, events)
     assert json.loads(out) == {"booking_id": "B1"}
     sent = json.loads(route.calls.last.request.content)
-    assert sent == {"model": "V1", "city": "Oslo", "date": "2999-01-01", "requester": "oid-anna"}
+    assert sent == {"model": "atlas", "city": "Stockholm", "date": "2999-01-01", "requester": "oid-anna"}
     assert route.calls.last.request.headers["authorization"] == "Bearer tok"
 
 
 @respx.mock
 async def test_422_becomes_readable_output(tools, booker, events):
     respx.post(f"{BASE}/test-drives").respond(422, json={"detail": "Invalid booking: no such city"})
-    args = {"model": "V1", "city": "Atlantis", "date": "2999-01-01"}
+    args = {"model": "atlas", "city": "Stockholm", "date": "2999-01-01"}
     out = await tools[0].execute("book_test_drive", json.dumps(args), booker, events)
     assert "rejected" in out and "no such city" in out
 
@@ -80,12 +80,12 @@ async def test_correlation_id_is_sent(tools, user, events):
     route = respx.get(f"{BASE}/stock").respond(200, json={"rows": []})
     reset = current_correlation_id.set("turn-42")
     try:
-        await tools[0].execute("check_stock", '{"model": "V1", "city": "Oslo"}', user, events)
+        await tools[0].execute("check_stock", '{"model": "atlas", "city": "Stockholm"}', user, events)
     finally:
         current_correlation_id.reset(reset)
     request = route.calls.last.request
     assert request.headers["x-correlation-id"] == "turn-42"
-    assert dict(request.url.params) == {"model": "V1", "city": "Oslo"}
+    assert dict(request.url.params) == {"model": "atlas", "city": "Stockholm"}
 
 
 @respx.mock
@@ -97,7 +97,7 @@ async def test_correlation_id_generated_when_absent(tools, user, events):
 
 
 async def test_book_test_drive_requires_role(tools, user, events):
-    args = '{"model": "V1", "city": "Oslo", "date": "2999-01-01"}'
+    args = '{"model": "atlas", "city": "Stockholm", "date": "2999-01-01"}'
     out = await tools[0].execute("book_test_drive", args, user, events)
     assert out.startswith("Refused")
     assert [e.data["step"] for e in events.events] == ["authorization_denied"]

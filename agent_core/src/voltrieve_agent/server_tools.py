@@ -1,10 +1,18 @@
 """Tools the agent runs on the server: documentation search and dealer operations."""
 
+import datetime
+
 from voltrieve_agent.dealer import DealerClient
 from voltrieve_agent.knowledge import KnowledgeBase
 from voltrieve_agent.tools import ServerTool, UserContext
 
 BOOK_ROLE = "TestDrive.Book"
+
+# The dealer service takes slugs and exact city names, so the model is given the valid values.
+MODEL_SLUGS = ["spark", "lumen", "ragn", "fjord", "atlas"]
+CITIES = ["Stockholm", "Göteborg", "Malmö", "Uppsala"]
+MODEL_PROPERTY = {"type": "string", "enum": MODEL_SLUGS, "description": "Model slug"}
+CITY_PROPERTY = {"type": "string", "enum": CITIES}
 
 
 def build_server_tools(dealer: DealerClient, search: KnowledgeBase) -> list[ServerTool]:
@@ -21,6 +29,9 @@ def build_server_tools(dealer: DealerClient, search: KnowledgeBase) -> list[Serv
         # The requester is the signed-in user, never something the model supplies.
         return await dealer.book(args["model"], args["city"], args["date"], user.oid)
 
+    async def get_current_date(args: dict, user: UserContext) -> str:
+        return datetime.date.today().isoformat()
+
     def schema(properties: dict, required: list[str] | None = None) -> dict:
         return {
             "type": "object",
@@ -32,8 +43,8 @@ def build_server_tools(dealer: DealerClient, search: KnowledgeBase) -> list[Serv
     return [
         ServerTool(
             "search_voltrieve_docs",
-            "Search the Voltrieve documentation (owner manuals, specifications, service "
-            "guides). Returns document chunks with titles.",
+            "Search the Voltrieve documents: sales brochures, technical specification guides "
+            "and the buyer's guide. Returns document chunks with titles.",
             schema({"query": {"type": "string", "description": "What to look up"}}, ["query"]),
             search_docs,
         ),
@@ -41,7 +52,7 @@ def build_server_tools(dealer: DealerClient, search: KnowledgeBase) -> list[Serv
             "check_stock",
             "Check how many Voltrieve cars of a model are in stock in a city. Both filters "
             "are optional.",
-            schema({"model": {"type": "string"}, "city": {"type": "string"}}),
+            schema({"model": MODEL_PROPERTY, "city": CITY_PROPERTY}),
             check_stock,
         ),
         ServerTool(
@@ -51,13 +62,19 @@ def build_server_tools(dealer: DealerClient, search: KnowledgeBase) -> list[Serv
             get_prices,
         ),
         ServerTool(
+            "get_current_date",
+            "Get today's date as YYYY-MM-DD, for working out dates such as next Saturday.",
+            schema({}),
+            get_current_date,
+        ),
+        ServerTool(
             "book_test_drive",
             "Book a test drive for the signed-in user. The date must be in the future "
             "(YYYY-MM-DD).",
             schema(
                 {
-                    "model": {"type": "string"},
-                    "city": {"type": "string"},
+                    "model": MODEL_PROPERTY,
+                    "city": CITY_PROPERTY,
                     "date": {"type": "string", "format": "date"},
                 },
                 ["model", "city", "date"],

@@ -126,7 +126,7 @@ async def test_dealer_tool_runs_in_the_api_and_mcp_call_becomes_trace():
     openai = FakeOpenAI(
         [
             done_item(type="mcp_call", name="knowledge_base_retrieve", server_label="voltrieve-kb", output="chunk"),
-            done_item(type="function_call", call_id="c1", name="check_stock", arguments='{"model": "V1"}'),
+            done_item(type="function_call", call_id="c1", name="check_stock", arguments='{"model": "atlas"}'),
             completed(2),
         ],
         [text("3 cars"), completed(3)],
@@ -174,7 +174,7 @@ async def test_booking_without_role_is_denied_and_never_reaches_the_dealer():
         type="function_call",
         call_id="c1",
         name="book_test_drive",
-        arguments='{"model": "V1", "city": "Oslo", "date": "2030-01-01"}',
+        arguments='{"model": "atlas", "city": "Stockholm", "date": "2030-01-01"}',
     )
     openai = FakeOpenAI([call, completed(1)], [text("sorry"), completed(1)])
     outcome, events = await run(make_backend(openai, dealer), ctx())
@@ -185,7 +185,7 @@ async def test_booking_without_role_is_denied_and_never_reaches_the_dealer():
 
     openai = FakeOpenAI([call, completed(1)], [text("ok"), completed(1)])
     await run(make_backend(openai, dealer), ctx(roles=["TestDrive.Book"]))
-    assert dealer.booked == [("V1", "Oslo", "2030-01-01", "oid-anna")]
+    assert dealer.booked == [("atlas", "Stockholm", "2030-01-01", "oid-anna")]
 
 
 async def test_unsupported_tool_error_over_http(validator, auth):
