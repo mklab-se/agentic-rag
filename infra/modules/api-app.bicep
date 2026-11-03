@@ -16,6 +16,7 @@ param searchEndpoint string
 param kbConnectionName string
 param promptAgentCli string
 param promptAgentWeb string
+param hostedAgentName string
 @description('Comma separated list of allowed browser origins.')
 param corsOrigins string
 param appInsightsConnectionString string
@@ -70,6 +71,7 @@ resource api 'Microsoft.App/containerApps@2026-07-01' = {
             { name: 'KB_CONNECTION_NAME', value: kbConnectionName }
             { name: 'PROMPT_AGENT_CLI', value: promptAgentCli }
             { name: 'PROMPT_AGENT_WEB', value: promptAgentWeb }
+            { name: 'HOSTED_AGENT_NAME', value: hostedAgentName }
             { name: 'CORS_ORIGINS', value: corsOrigins }
             { name: 'AGENT_BACKEND', value: 'loop' }
             { name: 'APPLICATIONINSIGHTS_CONNECTION_STRING', value: appInsightsConnectionString }

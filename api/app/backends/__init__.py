@@ -4,6 +4,7 @@ import logging
 from collections.abc import Callable
 
 from app.backends.base import Backend, BackendUnavailable
+from app.backends.hosted import build_hosted_backend
 from app.backends.loop import build_loop_backend
 from app.backends.prompt import build_prompt_backend
 from app.settings import Settings
@@ -26,7 +27,7 @@ def register_backend(name: str, factory: BackendFactory) -> None:
 
 register_backend("loop", build_loop_backend)
 register_backend("prompt", build_prompt_backend)
-# Task 8 registers "hosted" here.
+register_backend("hosted", build_hosted_backend)
 
 
 class BackendRegistry:

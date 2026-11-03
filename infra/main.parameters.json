@@ -10,6 +10,7 @@
     "dealerExists": { "value": "${SERVICE_DEALER_RESOURCE_EXISTS=false}" },
     "dealerClientId": { "value": "${DEALER_CLIENT_ID}" },
     "apiExists": { "value": "${SERVICE_API_RESOURCE_EXISTS=false}" },
-    "apiClientId": { "value": "${API_CLIENT_ID}" }
+    "apiClientId": { "value": "${API_CLIENT_ID}" },
+    "hostedAgentPrincipalId": { "value": "${HOSTED_AGENT_PRINCIPAL_ID=}" }
   }
 }

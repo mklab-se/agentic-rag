@@ -26,6 +26,9 @@ param apiExists bool = false
 param webLocation string = 'eastus2'
 @description('True when the dealer Container App already exists (azd sets SERVICE_DEALER_RESOURCE_EXISTS), so provision keeps its deployed image.')
 param dealerExists bool = false
+@description('Principal id of the hosted agent identity (HOSTED_AGENT_PRINCIPAL_ID, set by agents/hosted/deploy.py). Empty until the hosted agent exists.')
+param hostedAgentPrincipalId string = ''
+param hostedAgentName string = 'voltrieve-hosted'
 param chatModelName string = 'gpt-5.4-mini'
 param chatModelVersion string = '2026-03-17'
 param embeddingModelName string = 'text-embedding-3-large'
@@ -198,6 +201,7 @@ module apiApp 'modules/api-app.bicep' = {
     kbConnectionName: kbConnection.outputs.name
     promptAgentCli: 'voltrieve-prompt-cli'
     promptAgentWeb: 'voltrieve-prompt-web'
+    hostedAgentName: hostedAgentName
     corsOrigins: '${web.outputs.url},http://localhost:5173'
     appInsightsConnectionString: monitoring.outputs.appInsightsConnectionString
   }
@@ -219,6 +223,28 @@ module apiReadsSearch 'modules/role-search.bicep' = {
   params: {
     resourceName: search.outputs.name
     principalId: apiApp.outputs.principalId
+    roleDefinitionId: searchIndexDataReader
+    principalType: 'ServicePrincipal'
+  }
+}
+
+// The hosted agent has its own identity and the same data-plane access as the API: it calls
+// the model and reads the index itself. Dealer.Access comes from scripts/deploy-agents.sh.
+module hostedUsesFoundry 'modules/role-foundry.bicep' = if (!empty(hostedAgentPrincipalId)) {
+  scope: rg
+  params: {
+    resourceName: foundry.outputs.name
+    principalId: hostedAgentPrincipalId
+    roleDefinitionId: foundryUser
+    principalType: 'ServicePrincipal'
+  }
+}
+
+module hostedReadsSearch 'modules/role-search.bicep' = if (!empty(hostedAgentPrincipalId)) {
+  scope: rg
+  params: {
+    resourceName: search.outputs.name
+    principalId: hostedAgentPrincipalId
     roleDefinitionId: searchIndexDataReader
     principalType: 'ServicePrincipal'
   }
@@ -374,6 +400,7 @@ output CONTAINER_APPS_ENVIRONMENT_ID string = containerAppsEnv.outputs.id
 output APPLICATIONINSIGHTS_CONNECTION_STRING string = monitoring.outputs.appInsightsConnectionString
 output DEALER_URL string = dealerApp.outputs.url
 output DEALER_PRINCIPAL_ID string = dealerApp.outputs.principalId
+output HOSTED_AGENT_NAME string = hostedAgentName
 output API_URL string = apiApp.outputs.url
 output API_PRINCIPAL_ID string = apiApp.outputs.principalId
 output WEB_URL string = web.outputs.url

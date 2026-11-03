@@ -24,6 +24,9 @@ class Settings(BaseSettings):
     prompt_agent_cli: str = "voltrieve-prompt-cli"
     prompt_agent_web: str = "voltrieve-prompt-web"
 
+    # Backend C: the name of the Foundry hosted agent (agents/hosted/deploy.py creates it).
+    hosted_agent_name: str = "voltrieve-hosted"
+
     @property
     def cors_origin_list(self) -> list[str]:
         return [o.strip() for o in self.cors_origins.split(",") if o.strip()]
