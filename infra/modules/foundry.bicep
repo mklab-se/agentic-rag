@@ -12,7 +12,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02' existing = {
   name: appInsightsName
 }
 
-resource account 'Microsoft.CognitiveServices/accounts@2025-06-01' = {
+resource account 'Microsoft.CognitiveServices/accounts@2026-09-15-preview' = {
   name: name
   location: location
   tags: tags
@@ -27,7 +27,7 @@ resource account 'Microsoft.CognitiveServices/accounts@2025-06-01' = {
   }
 }
 
-resource project 'Microsoft.CognitiveServices/accounts/projects@2025-06-01' = {
+resource project 'Microsoft.CognitiveServices/accounts/projects@2026-09-15-preview' = {
   parent: account
   name: projectName
   location: location
@@ -38,7 +38,7 @@ resource project 'Microsoft.CognitiveServices/accounts/projects@2025-06-01' = {
   }
 }
 
-resource chatDeployment 'Microsoft.CognitiveServices/accounts/deployments@2025-06-01' = {
+resource chatDeployment 'Microsoft.CognitiveServices/accounts/deployments@2026-09-15-preview' = {
   parent: account
   name: chatModelName
   dependsOn: [project]
@@ -56,7 +56,7 @@ resource chatDeployment 'Microsoft.CognitiveServices/accounts/deployments@2025-0
 }
 
 // Chained with dependsOn: the service rejects concurrent deployment writes on one account.
-resource embeddingDeployment 'Microsoft.CognitiveServices/accounts/deployments@2025-06-01' = {
+resource embeddingDeployment 'Microsoft.CognitiveServices/accounts/deployments@2026-09-15-preview' = {
   parent: account
   name: embeddingModelName
   dependsOn: [chatDeployment]
@@ -74,7 +74,7 @@ resource embeddingDeployment 'Microsoft.CognitiveServices/accounts/deployments@2
 }
 
 // The App Insights connection string is an ingestion endpoint identifier, not a secret.
-resource appInsightsConnection 'Microsoft.CognitiveServices/accounts/projects/connections@2025-04-01-preview' = {
+resource appInsightsConnection 'Microsoft.CognitiveServices/accounts/projects/connections@2026-09-15-preview' = {
   parent: project
   name: 'appinsights'
   properties: {
@@ -96,6 +96,7 @@ output name string = account.name
 output id string = account.id
 output principalId string = account.identity.principalId
 output endpoint string = 'https://${account.name}.services.ai.azure.com'
+output openAiEndpoint string = 'https://${account.name}.openai.azure.com'
 output projectEndpoint string = 'https://${account.name}.services.ai.azure.com/api/projects/${project.name}'
 output chatDeployment string = chatDeployment.name
 output embeddingDeployment string = embeddingDeployment.name

@@ -3,11 +3,11 @@ param location string
 param tags object = {}
 param logAnalyticsName string
 
-resource logAnalytics 'Microsoft.OperationalInsights/workspaces@2023-09-01' existing = {
+resource logAnalytics 'Microsoft.OperationalInsights/workspaces@2026-03-01' existing = {
   name: logAnalyticsName
 }
 
-resource environment 'Microsoft.App/managedEnvironments@2025-01-01' = {
+resource environment 'Microsoft.App/managedEnvironments@2026-07-01' = {
   name: name
   location: location
   tags: tags

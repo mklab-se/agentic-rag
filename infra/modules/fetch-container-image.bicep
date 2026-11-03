@@ -3,7 +3,7 @@
 // Only deploy it when the app exists. Plan 2 reuses it for the API.
 param name string
 
-resource app 'Microsoft.App/containerApps@2025-01-01' existing = {
+resource app 'Microsoft.App/containerApps@2026-07-01' existing = {
   name: name
 }
 

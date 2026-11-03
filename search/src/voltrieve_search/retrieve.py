@@ -31,7 +31,7 @@ class RetrieveResult:
 
 def retrieve(client, kb_name: str, question: str, max_output_tokens: int = 5000) -> RetrieveResult:
     body = {
-        "intents": [{"type": "semantic", "search": question}],
+        "messages": [{"role": "user", "content": [{"type": "text", "text": question}]}],
         "knowledgeSourceParams": [
             {
                 "kind": "searchIndex",

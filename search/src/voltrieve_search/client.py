@@ -4,7 +4,7 @@ from collections.abc import Callable
 
 import httpx
 
-DEFAULT_API_VERSION = "2026-04-01"
+DEFAULT_API_VERSION = "2026-08-01-preview"
 
 
 class SearchApiError(Exception):

@@ -12,6 +12,9 @@ VALUES = {
     "FOUNDRY_ENDPOINT": "https://f.services.ai.azure.com",
     "EMBEDDING_DEPLOYMENT": "emb",
     "EMBEDDING_MODEL": "text-embedding-3-large",
+    "FOUNDRY_OPENAI_ENDPOINT": "https://f.openai.azure.com",
+    "CHAT_DEPLOYMENT": "chat",
+    "CHAT_MODEL": "gpt-5.4-mini",
 }
 
 
@@ -58,3 +61,14 @@ def test_apply_all_puts_in_order(fake_client):
         "voltrieve-kb",
     ]
     assert [p.split("/")[1] for p, _ in fake_client.puts] == DEFINITION_ORDER
+
+
+def test_knowledge_base_plans_queries_with_the_chat_model():
+    kb = render((DEFS / "06-knowledge-base.json").read_text(), VALUES)
+    params = kb["models"][0]["azureOpenAIParameters"]
+    assert params == {
+        "resourceUri": "https://f.openai.azure.com",
+        "deploymentId": "chat",
+        "modelName": "gpt-5.4-mini",
+    }
+    assert kb["retrievalReasoningEffort"]["kind"] == "low"

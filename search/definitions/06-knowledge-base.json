@@ -1,5 +1,24 @@
 {
   "name": "voltrieve-kb",
   "description": "Voltrieve electric car brochures, technical specification guides and the buyer's guide.",
-  "knowledgeSources": [{ "name": "voltrieve-docs-ks" }]
+  "knowledgeSources": [
+    {
+      "name": "voltrieve-docs-ks"
+    }
+  ],
+  "models": [
+    {
+      "kind": "azureOpenAI",
+      "azureOpenAIParameters": {
+        "resourceUri": "{{FOUNDRY_OPENAI_ENDPOINT}}",
+        "deploymentId": "{{CHAT_DEPLOYMENT}}",
+        "modelName": "{{CHAT_MODEL}}"
+      }
+    }
+  ],
+  "retrievalReasoningEffort": {
+    "kind": "low"
+  },
+  "outputMode": "extractiveData",
+  "retrievalInstructions": "Answer questions about Voltrieve electric cars. Compare models by searching for each one separately. Prices are only in the buyer's guide."
 }

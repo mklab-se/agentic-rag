@@ -2,7 +2,7 @@ param name string
 param location string
 param tags object = {}
 
-resource logAnalytics 'Microsoft.OperationalInsights/workspaces@2023-09-01' = {
+resource logAnalytics 'Microsoft.OperationalInsights/workspaces@2026-03-01' = {
   name: 'log-${name}'
   location: location
   tags: tags

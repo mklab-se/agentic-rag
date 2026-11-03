@@ -34,6 +34,7 @@ var tags = { 'azd-env-name': environmentName, app: 'voltrieve' }
 
 var storageBlobDataReader = '2a2b9908-6ea1-4ae2-8e65-a410df84e7d1'
 var cognitiveServicesOpenAIUser = '5e0bd9bd-7b93-4f28-af87-19fc36ad61bd'
+var cognitiveServicesUser = 'a97b65f3-24c7-4388-baec-2e87135dc908'
 var searchServiceContributor = '7ca78c08-252a-4471-8644-bb5ff32d4ba0'
 var searchIndexDataContributor = '8ebe5a00-799e-43f5-93ac-243d3dce84a7'
 var storageBlobDataContributor = 'ba92f5b4-2d11-453d-a403-e96b0029c9fe'
@@ -162,6 +163,17 @@ module searchUsesFoundry 'modules/role-foundry.bicep' = {
   }
 }
 
+// The knowledge base calls the chat model for query planning, which needs this role.
+module searchPlansWithFoundry 'modules/role-foundry.bicep' = {
+  scope: rg
+  params: {
+    resourceName: foundry.outputs.name
+    principalId: search.outputs.principalId
+    roleDefinitionId: cognitiveServicesUser
+    principalType: 'ServicePrincipal'
+  }
+}
+
 module deployerSearchService 'modules/role-search.bicep' = if (!empty(principalId)) {
   scope: rg
   params: {
@@ -204,10 +216,13 @@ module deployerFoundry 'modules/role-foundry.bicep' = if (!empty(principalId)) {
 
 output AZURE_RESOURCE_GROUP string = rg.name
 output AZURE_LOCATION string = location
+output DEPLOYER_PRINCIPAL_ID string = principalId
 output FOUNDRY_ACCOUNT_NAME string = foundry.outputs.name
 output FOUNDRY_ENDPOINT string = foundry.outputs.endpoint
 output FOUNDRY_PROJECT_ENDPOINT string = foundry.outputs.projectEndpoint
+output FOUNDRY_OPENAI_ENDPOINT string = foundry.outputs.openAiEndpoint
 output CHAT_DEPLOYMENT string = foundry.outputs.chatDeployment
+output CHAT_MODEL string = chatModelName
 output EMBEDDING_DEPLOYMENT string = foundry.outputs.embeddingDeployment
 output EMBEDDING_MODEL string = embeddingModelName
 output SEARCH_ENDPOINT string = search.outputs.endpoint

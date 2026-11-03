@@ -12,7 +12,7 @@ param appInsightsConnectionString string
 
 // The system-assigned identity is for service auth; the user-assigned one only pulls the image.
 // The caller must make this module depend on the pull identity's AcrPull assignment.
-resource dealer 'Microsoft.App/containerApps@2025-01-01' = {
+resource dealer 'Microsoft.App/containerApps@2026-07-01' = {
   name: name
   location: location
   tags: union(tags, { 'azd-service-name': 'dealer' })

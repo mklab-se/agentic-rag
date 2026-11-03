@@ -3,7 +3,7 @@ param location string
 param tags object = {}
 param docsContainer string
 
-resource storage 'Microsoft.Storage/storageAccounts@2023-05-01' = {
+resource storage 'Microsoft.Storage/storageAccounts@2026-09-01' = {
   name: name
   location: location
   tags: tags
@@ -17,12 +17,12 @@ resource storage 'Microsoft.Storage/storageAccounts@2023-05-01' = {
   }
 }
 
-resource blobService 'Microsoft.Storage/storageAccounts/blobServices@2023-05-01' = {
+resource blobService 'Microsoft.Storage/storageAccounts/blobServices@2026-09-01' = {
   parent: storage
   name: 'default'
 }
 
-resource docs 'Microsoft.Storage/storageAccounts/blobServices/containers@2023-05-01' = {
+resource docs 'Microsoft.Storage/storageAccounts/blobServices/containers@2026-09-01' = {
   parent: blobService
   name: docsContainer
   properties: {

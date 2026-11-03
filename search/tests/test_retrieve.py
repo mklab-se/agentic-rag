@@ -54,7 +54,9 @@ def test_parses_chunks_and_references():
     assert r.chunks[0].content.startswith("Towing") and r.references[0].doc_key == "k1"
     assert r.partial is False
     assert c.sent[0] == "/knowledgebases/voltrieve-kb/retrieve"
-    assert c.sent[1]["intents"] == [{"type": "semantic", "search": "towing of the Fjord"}]
+    assert c.sent[1]["messages"] == [
+        {"role": "user", "content": [{"type": "text", "text": "towing of the Fjord"}]}
+    ]
 
 
 def test_206_marks_partial_and_keeps_activity_errors():

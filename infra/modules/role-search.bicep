@@ -9,7 +9,7 @@ param roleDefinitionId string
 @allowed(['ServicePrincipal', 'User'])
 param principalType string
 
-resource target 'Microsoft.Search/searchServices@2025-05-01' existing = {
+resource target 'Microsoft.Search/searchServices@2026-11-01' existing = {
   name: resourceName
 }
 
