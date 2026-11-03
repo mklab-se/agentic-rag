@@ -41,6 +41,7 @@ resource project 'Microsoft.CognitiveServices/accounts/projects@2025-06-01' = {
 resource chatDeployment 'Microsoft.CognitiveServices/accounts/deployments@2025-06-01' = {
   parent: account
   name: chatModelName
+  dependsOn: [project]
   sku: {
     name: 'GlobalStandard'
     capacity: 10

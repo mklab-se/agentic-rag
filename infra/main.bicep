@@ -1,7 +1,7 @@
 targetScope = 'subscription'
 
 @minLength(1)
-@maxLength(32)
+@maxLength(22)
 @description('Name of the azd environment, used in resource names and tags.')
 param environmentName string
 
@@ -13,11 +13,15 @@ param principalId string
 
 param tenantId string
 param dealerClientId string
+@description('True when the dealer Container App already exists (azd sets SERVICE_DEALER_RESOURCE_EXISTS), so provision keeps its deployed image.')
+param dealerExists bool = false
 param chatModelName string = 'gpt-5.4-mini'
 param chatModelVersion string = '2026-03-17'
 param embeddingModelName string = 'text-embedding-3-large'
 param embeddingModelVersion string = '1'
 
+var placeholderImage = 'mcr.microsoft.com/dotnet/samples:aspnetapp'
+var dealerName = 'ca-dealer-${environmentName}'
 var docsContainer = 'voltrieve-docs'
 var token = toLower(uniqueString(subscription().id, environmentName, location))
 var tags = { 'azd-env-name': environmentName, app: 'voltrieve' }
@@ -107,15 +111,23 @@ module dealerIdentity 'modules/app-identity.bicep' = {
   }
 }
 
+module dealerCurrent 'modules/fetch-container-image.bicep' = if (dealerExists) {
+  scope: rg
+  params: {
+    name: dealerName
+  }
+}
+
 // dealerIdentity includes the AcrPull assignment, so depending on it orders the app after the grant.
 module dealerApp 'modules/dealer-app.bicep' = {
   scope: rg
   params: {
-    name: 'ca-dealer-${environmentName}'
+    name: dealerName
     location: location
     tags: tags
     environmentId: containerAppsEnv.outputs.id
     registryLoginServer: registry.outputs.loginServer
+    image: dealerExists ? dealerCurrent.?outputs.image ?? placeholderImage : placeholderImage
     pullIdentityId: dealerIdentity.outputs.id
     tenantId: tenantId
     dealerClientId: dealerClientId
@@ -123,56 +135,61 @@ module dealerApp 'modules/dealer-app.bicep' = {
   }
 }
 
-// Role assignments land at resource group scope (role.bicep deploys to the group of its caller).
-// The group holds only this app's resources.
-module searchReadsStorage 'modules/role.bicep' = {
+// Role assignments are declared on the target resource (least privilege).
+module searchReadsStorage 'modules/role-storage.bicep' = {
   scope: rg
   params: {
+    resourceName: storage.outputs.name
     principalId: search.outputs.principalId
     roleDefinitionId: storageBlobDataReader
     principalType: 'ServicePrincipal'
   }
 }
 
-module searchUsesFoundry 'modules/role.bicep' = {
+module searchUsesFoundry 'modules/role-foundry.bicep' = {
   scope: rg
   params: {
+    resourceName: foundry.outputs.name
     principalId: search.outputs.principalId
     roleDefinitionId: cognitiveServicesOpenAIUser
     principalType: 'ServicePrincipal'
   }
 }
 
-module deployerSearchService 'modules/role.bicep' = if (!empty(principalId)) {
+module deployerSearchService 'modules/role-search.bicep' = if (!empty(principalId)) {
   scope: rg
   params: {
+    resourceName: search.outputs.name
     principalId: principalId
     roleDefinitionId: searchServiceContributor
     principalType: 'User'
   }
 }
 
-module deployerSearchData 'modules/role.bicep' = if (!empty(principalId)) {
+module deployerSearchData 'modules/role-search.bicep' = if (!empty(principalId)) {
   scope: rg
   params: {
+    resourceName: search.outputs.name
     principalId: principalId
     roleDefinitionId: searchIndexDataContributor
     principalType: 'User'
   }
 }
 
-module deployerStorage 'modules/role.bicep' = if (!empty(principalId)) {
+module deployerStorage 'modules/role-storage.bicep' = if (!empty(principalId)) {
   scope: rg
   params: {
+    resourceName: storage.outputs.name
     principalId: principalId
     roleDefinitionId: storageBlobDataContributor
     principalType: 'User'
   }
 }
 
-module deployerFoundry 'modules/role.bicep' = if (!empty(principalId)) {
+module deployerFoundry 'modules/role-foundry.bicep' = if (!empty(principalId)) {
   scope: rg
   params: {
+    resourceName: foundry.outputs.name
     principalId: principalId
     roleDefinitionId: foundryUser
     principalType: 'User'

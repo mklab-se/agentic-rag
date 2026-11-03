@@ -3,6 +3,8 @@ param location string
 param tags object = {}
 param environmentId string
 param registryLoginServer string
+@description('Image to run. The placeholder listens on 8000 via ASPNETCORE_HTTP_PORTS; azd deploy swaps it.')
+param image string
 param pullIdentityId string
 param tenantId string
 param dealerClientId string
@@ -39,7 +41,7 @@ resource dealer 'Microsoft.App/containerApps@2025-01-01' = {
       containers: [
         {
           name: 'dealer'
-          image: 'mcr.microsoft.com/k8se/quickstart:latest' // placeholder, azd deploy swaps the image
+          image: image
           resources: {
             cpu: json('0.5')
             memory: '1Gi'
@@ -49,6 +51,7 @@ resource dealer 'Microsoft.App/containerApps@2025-01-01' = {
             { name: 'DEALER_CLIENT_ID', value: dealerClientId }
             { name: 'APPLICATIONINSIGHTS_CONNECTION_STRING', value: appInsightsConnectionString }
             { name: 'LOG_LEVEL', value: 'INFO' }
+            { name: 'ASPNETCORE_HTTP_PORTS', value: '8000' } // only used by the placeholder image
           ]
         }
       ]
