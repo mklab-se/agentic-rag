@@ -8,7 +8,7 @@ from pathlib import Path
 
 from azure.identity import DefaultAzureCredential
 
-from voltrieve_search.client import SearchRestClient
+from voltrieve_search.client import SearchApiError, SearchRestClient
 from voltrieve_search.definitions import apply_all
 from voltrieve_search.indexer import IndexerFailed, run_and_wait
 from voltrieve_search.retrieve import retrieve
@@ -70,6 +70,8 @@ def cmd_index(args: argparse.Namespace) -> int:
         print(f"indexer failed: {failure}", file=sys.stderr)
         return 1
     print(f"indexer {run.status}: {run.items_processed} processed, {run.items_failed} failed")
+    for warning in run.warnings:
+        print(f"warning: {warning}")
     return 0
 
 
@@ -81,6 +83,7 @@ def cmd_retrieve(args: argparse.Namespace) -> int:
                 "partial": result.partial,
                 "chunks": [vars(c) for c in result.chunks],
                 "references": [vars(r) for r in result.references],
+                "activity": result.activity,
             },
             indent=2,
         )
@@ -119,6 +122,9 @@ def main(argv: list[str] | None = None) -> int:
         return SUBCOMMANDS[args.command][0](args)
     except MissingEnvironment as error:
         print(str(error), file=sys.stderr)
+        return 1
+    except SearchApiError as error:
+        print(f"search API error, {error}", file=sys.stderr)
         return 1
 
 

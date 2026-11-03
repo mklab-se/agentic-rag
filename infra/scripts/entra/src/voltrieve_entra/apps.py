@@ -9,8 +9,8 @@ from .graph import GraphClient, GraphError
 T = TypeVar("T")
 Sleep = Callable[[float], None]
 
-RETRY_ATTEMPTS = 6
-RETRY_BACKOFF_SECONDS = 1.0
+RETRY_ATTEMPTS = 9
+RETRY_BACKOFF_SECONDS = 3.0
 SCOPE_VALUE = "access_as_user"
 
 

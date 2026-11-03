@@ -1015,9 +1015,9 @@ This task runs the real deployment. It is the verification of plan 1 and it prod
 - [ ] **Step 1: Provision and deploy**
 
 Run: `azd up` (answers: environment `voltrieve-dev`, subscription, location `swedencentral`).
-Expected: pre-provision prints the Entra ids and the test user password once; provisioning completes; the dealer image builds remotely and deploys; post-provision uploads 11 documents, applies six objects, the indexer reports `success` with `itemsFailed: 0`, and the smoke test prints 5 passes.
+Expected: pre-provision prints the Entra ids and the test user password once; provisioning completes; the dealer image builds remotely and deploys; post-provision uploads 11 documents, applies six objects and the indexer reports `success` with `itemsFailed: 0`; after the dealer deploys, the `postup` hook prints 5 smoke passes.
 
-If role assignments have not propagated when the hook runs (403 from Search or Storage), wait two minutes and rerun `sh hooks/postprovision.sh`; note the wait in `docs/deploy.md`.
+The post-provision hook retries upload, apply and index every 60 seconds (up to 10 times) while role assignments propagate; note any wait in `docs/deploy.md`. The `azd up` order is preprovision, Bicep, postprovision, deploy, then the `postup` hook runs the smoke test. If post-provision still fails, wait and rerun `sh hooks/postprovision.sh`, and finish with `azd deploy` so the dealer image ships; then run `sh hooks/postup.sh`.
 
 - [ ] **Step 2: Verify the dealer service in Azure**
 

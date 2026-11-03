@@ -31,3 +31,13 @@ def test_cli_missing_env_var_exits_1_with_short_message(monkeypatch, capsys):
     monkeypatch.delenv("SEARCH_ENDPOINT", raising=False)
     assert main(["retrieve", "q"]) == 1
     assert "SEARCH_ENDPOINT" in capsys.readouterr().err
+
+
+def test_smoke_prints_activity_errors_when_partial(monkeypatch, capsys):
+    monkeypatch.setattr(
+        smoke,
+        "retrieve",
+        lambda c, kb, q: RetrieveResult([], [], [{"type": "searchIndex", "error": {"message": "timeout"}}], True),
+    )
+    run_smoke(None, "kb", [SmokeQuestion("q", "x", "spec")])
+    assert "timeout" in capsys.readouterr().out

@@ -24,7 +24,8 @@ class SmokeOutcome:
 def run_smoke(client, kb_name: str, questions: list[SmokeQuestion]) -> list[SmokeOutcome]:
     outcomes = []
     for q in questions:
-        refs = retrieve(client, kb_name, q.question).references[:TOP_N]
+        result = retrieve(client, kb_name, q.question)
+        refs = result.references[:TOP_N]
         sources = [r.source_data or {} for r in refs]
         passed = any(
             q.expect_title_contains in str(s.get("title", "")) and s.get("doc_type") == q.expect_doc_type
@@ -32,5 +33,9 @@ def run_smoke(client, kb_name: str, questions: list[SmokeQuestion]) -> list[Smok
         )
         outcome = SmokeOutcome(q.question, passed, [str(s.get("title", "")) for s in sources])
         print(f"{'PASS' if passed else 'FAIL'}  {q.question}  ->  {', '.join(outcome.top_titles)}")
+        if result.partial:
+            for activity in result.activity:
+                if "error" in activity:
+                    print(f"  partial result, activity error: {activity['error']}")
         outcomes.append(outcome)
     return outcomes

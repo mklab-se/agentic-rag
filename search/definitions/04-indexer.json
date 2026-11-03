@@ -9,8 +9,8 @@
       "dataToExtract": "contentAndMetadata",
       "parsingMode": "default",
       "indexedFileNameExtensions": ".pdf,.docx,.md",
-      "failOnUnsupportedContentType": false,
-      "failOnUnprocessableDocument": false
+      "failOnUnsupportedContentType": true,
+      "failOnUnprocessableDocument": true
     }
   }
 }

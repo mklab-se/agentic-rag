@@ -8,6 +8,9 @@ param environmentName string
 @description('Primary Azure region.')
 param location string = 'swedencentral'
 
+@description('Region for Azure AI Search. Sweden Central and West Europe cannot create new search services.')
+param searchLocation string = 'francecentral'
+
 @description('Object id of the deployer (AZURE_PRINCIPAL_ID), granted data-plane roles.')
 param principalId string
 
@@ -67,7 +70,7 @@ module search 'modules/search.bicep' = {
   scope: rg
   params: {
     name: 'srch-voltrieve-${token}'
-    location: location
+    location: searchLocation
     tags: tags
   }
 }

@@ -1,5 +1,6 @@
 import logging
 import time
+import re
 import uuid
 
 from fastapi import FastAPI, Request
@@ -11,18 +12,22 @@ from app.routes import DATA_PATH, build_router
 from app.settings import Settings
 
 logger = logging.getLogger("app.access")
+CORRELATION_ID_PATTERN = re.compile(r"^[A-Za-z0-9._-]{1,64}$")
 
 
 def create_app(settings: Settings, validator: TokenValidator | None = None) -> FastAPI:
     configure_logging(settings.log_level)
-    app = FastAPI(title="Voltrieve dealer service")
+    app = FastAPI(
+        title="Voltrieve dealer service", docs_url=None, redoc_url=None, openapi_url=None
+    )
     app.state.validator = validator or TokenValidator(
         settings.tenant_id, settings.dealer_client_id, "Dealer.Access"
     )
 
     @app.middleware("http")
     async def correlation_and_access_log(request: Request, call_next):
-        cid = request.headers.get("X-Correlation-Id") or str(uuid.uuid4())
+        supplied = request.headers.get("X-Correlation-Id", "")
+        cid = supplied if CORRELATION_ID_PATTERN.fullmatch(supplied) else str(uuid.uuid4())
         token = correlation_id.set(cid)
         start = time.perf_counter()
         status = 500

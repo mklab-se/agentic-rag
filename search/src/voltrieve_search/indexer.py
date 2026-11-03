@@ -2,7 +2,6 @@
 
 import time
 from dataclasses import dataclass, field
-from datetime import UTC, datetime
 
 from voltrieve_search.client import SearchApiError
 
@@ -15,6 +14,7 @@ class IndexerRun:
     items_processed: int
     items_failed: int
     errors: list[str] = field(default_factory=list)
+    warnings: list[str] = field(default_factory=list)
 
 
 class IndexerFailed(Exception):
@@ -26,43 +26,34 @@ class IndexerFailed(Exception):
         self.run = run
 
 
-def _started_before(last: dict, cutoff: datetime) -> bool:
-    start = last.get("startTime")
-    if not start:
-        return False
-    try:
-        parsed = datetime.fromisoformat(start)
-    except ValueError:
-        return False
-    if parsed.tzinfo is None:
-        parsed = parsed.replace(tzinfo=UTC)
-    return parsed < cutoff
-
-
 def _to_run(last: dict) -> IndexerRun:
     errors = [f"{e.get('key')}: {e.get('errorMessage')}" for e in last.get("errors") or []]
+    warnings = [f"{w.get('key')}: {w.get('message')}" for w in last.get("warnings") or []]
     return IndexerRun(
         status=last["status"],
         items_processed=last.get("itemsProcessed", 0),
         items_failed=last.get("itemsFailed", 0),
         errors=errors,
+        warnings=warnings,
     )
 
 
 def run_and_wait(client, name: str, timeout_s: int = 600, poll_s: int = 10) -> IndexerRun:
-    requested_at: datetime | None = datetime.now(UTC)
+    # A result is fresh when its start time differs from the one read before the run request,
+    # which avoids comparing the local clock with the service clock.
+    before = (client.get(f"/indexers/{name}/status").get("lastResult") or {}).get("startTime")
     try:
         client.post(f"/indexers/{name}/run")
     except SearchApiError as error:
         if error.status != 409:
             raise
         # Creating an indexer auto-runs it, so a run may already be in progress.
-        # Its start time predates this request, so do not treat it as stale.
-        requested_at = None
+        # Whatever result appears is the one to wait for.
+        before = None
     deadline = time.monotonic() + timeout_s
     while True:
         last = client.get(f"/indexers/{name}/status").get("lastResult")
-        stale = last is not None and requested_at is not None and _started_before(last, requested_at)
+        stale = last is not None and before is not None and last.get("startTime") == before
         if last and not stale and last.get("status") in FINISHED:
             run = _to_run(last)
             if run.status != "success" or run.items_failed > 0:

@@ -45,3 +45,14 @@ def test_post_returns_status_and_body_and_get_returns_body():
     with pytest.raises(SearchApiError) as e:
         c.post("/indexers/x/run")
     assert e.value.status == 409
+
+
+def test_cli_search_api_error_exits_1_with_status(monkeypatch, capsys):
+    import voltrieve_search.cli as cli
+
+    def boom(args):
+        raise cli.SearchApiError(403, "forbidden")
+
+    monkeypatch.setitem(cli.SUBCOMMANDS, "index", (boom, "x"))
+    assert cli.main(["index"]) == 1
+    assert "403" in capsys.readouterr().err

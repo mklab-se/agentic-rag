@@ -16,3 +16,6 @@ hooks:
   postprovision:
     shell: sh
     run: hooks/postprovision.sh
+  postup:
+    shell: sh
+    run: hooks/postup.sh

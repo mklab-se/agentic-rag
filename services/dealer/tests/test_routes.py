@@ -72,6 +72,16 @@ async def test_correlation_id_echoed(settings, validator, auth_header):
     assert r.headers["X-Correlation-Id"] == "abc-123"
 
 
+async def test_unsafe_correlation_id_is_replaced(settings, validator, auth_header):
+    async with client(settings, validator) as c:
+        r = await c.get("/stock", headers={**auth_header, "X-Correlation-Id": "bad id with spaces"})
+        too_long = await c.get("/stock", headers={**auth_header, "X-Correlation-Id": "a" * 65})
+        docs = await c.get("/docs")
+    assert r.headers["X-Correlation-Id"] != "bad id with spaces"
+    assert len(too_long.headers["X-Correlation-Id"]) == 36
+    assert docs.status_code == 404
+
+
 async def test_invalid_token_is_rejected_and_missing_role_is_forbidden(
     settings, validator, make_token
 ):

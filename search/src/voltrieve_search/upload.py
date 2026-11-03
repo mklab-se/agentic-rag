@@ -6,6 +6,18 @@ from pathlib import Path
 from azure.storage.blob import BlobServiceClient, ContentSettings
 
 NO_MODEL_SLUG = "all"
+CONTENT_TYPES = {
+    ".md": "text/markdown",
+    ".pdf": "application/pdf",
+    ".docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+}
+
+
+def _content_type(file_name: str) -> str:
+    suffix = Path(file_name).suffix.lower()
+    if suffix not in CONTENT_TYPES:
+        raise ValueError(f"no content type for {file_name}")
+    return CONTENT_TYPES[suffix]
 
 
 def upload_documents(account_url: str, container: str, generated_dir: Path, credential) -> int:
@@ -24,6 +36,6 @@ def upload_documents(account_url: str, container: str, generated_dir: Path, cred
                 handle,
                 overwrite=True,
                 metadata=metadata,
-                content_settings=ContentSettings(),
+                content_settings=ContentSettings(content_type=_content_type(entry["file"])),
             )
     return len(manifest)
