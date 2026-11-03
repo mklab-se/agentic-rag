@@ -1,0 +1,104 @@
+company:
+  name: Voltrieve
+  tagline: Electric cars that retrieve the joy of driving
+markets:
+  - { code: SE, currency: SEK }
+  - { code: EU, currency: EUR }
+awd_surcharge: { SE: 40000, EU: 3600 }
+option_packs:
+  Winter: { description: "heat pump, heated steering wheel and rear seats, battery preconditioning", price: { SE: 18000, EU: 1600 } }
+  Pilot Plus: { description: "Voltrieve Pilot lane change assist and highway autopilot upgrade", price: { SE: 24000, EU: 2200 } }
+  Tow: { description: "electrically deployable tow bar and trailer stability control", price: { SE: 14000, EU: 1300 } }
+  Sound: { description: "14 speaker Voltrieve Stage audio system", price: { SE: 12000, EU: 1100 } }
+models:
+  - name: Voltrieve Spark
+    slug: spark
+    segment: city car
+    platform: V1
+    voltage: 400
+    battery_kwh: 42
+    range_km: 310
+    peak_charge_kw: 95
+    towing_kg: null
+    drive: [RWD]
+    heat_pump_standard: false
+    pilot_version: 2
+    option_packs: [Winter, Sound]
+    price: { SE: 289000, EU: 26500 }
+    charging_curve: [[10, 95], [50, 80], [80, 40]]
+    tagline: Small outside, generous inside
+    highlights: [turning circle of 9.8 m, 2 ISOFIX seats, one pedal driving]
+  - name: Voltrieve Lumen
+    slug: lumen
+    segment: hatchback
+    platform: V1
+    voltage: 400
+    battery_kwh: 61
+    range_km: 455
+    peak_charge_kw: 135
+    towing_kg: 750
+    drive: [RWD, AWD]
+    heat_pump_standard: true
+    pilot_version: 2
+    option_packs: [Winter, Pilot Plus, Sound]
+    price: { SE: 379000, EU: 34500 }
+    charging_curve: [[10, 135], [50, 110], [80, 55]]
+    tagline: Light on its feet
+    highlights: [frunk of 45 litres, 11 kW onboard charger, 360 camera]
+  - name: Voltrieve Ragn
+    slug: ragn
+    segment: crossover
+    platform: V2
+    voltage: 800
+    battery_kwh: 84
+    range_km: 530
+    peak_charge_kw: 240
+    towing_kg: 1800
+    drive: [AWD]
+    heat_pump_standard: true
+    pilot_version: 3
+    option_packs: [Winter, Pilot Plus, Tow, Sound]
+    price: { SE: 549000, EU: 49900 }
+    charging_curve: [[10, 240], [50, 190], [80, 90]]
+    tagline: Built for the long way round
+    highlights: [ground clearance of 205 mm, off road mode, 22 kW onboard charger]
+  - name: Voltrieve Fjord
+    slug: fjord
+    segment: estate
+    platform: V2
+    voltage: 800
+    battery_kwh: 84
+    range_km: 575
+    peak_charge_kw: 240
+    towing_kg: 2100
+    drive: [RWD, AWD]
+    heat_pump_standard: true
+    pilot_version: 3
+    option_packs: [Winter, Pilot Plus, Tow, Sound]
+    price: { SE: 529000, EU: 47900 }
+    charging_curve: [[10, 240], [50, 200], [80, 95]]
+    tagline: Room for the whole weekend
+    highlights: [boot of 640 litres, roof load of 100 kg, air suspension]
+  - name: Voltrieve Atlas
+    slug: atlas
+    segment: large SUV
+    platform: V2
+    voltage: 800
+    battery_kwh: 112
+    range_km: 610
+    peak_charge_kw: 320
+    towing_kg: 2500
+    drive: [AWD]
+    heat_pump_standard: true
+    pilot_version: 3
+    option_packs: [Winter, Pilot Plus, Tow, Sound]
+    price: { SE: 749000, EU: 67900 }
+    charging_curve: [[10, 320], [50, 260], [80, 120]]
+    tagline: Seven seats, zero compromise
+    highlights: [seven seats, 3.5 kW vehicle to load outlet, rear wheel steering]
+not_documented:
+  - Euro NCAP
+  - crash test
+  - warranty
+  - factory
+  - production

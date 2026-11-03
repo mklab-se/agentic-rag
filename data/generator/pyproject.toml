@@ -1,0 +1,30 @@
+[project]
+name = "voltrieve-data"
+version = "0.1.0"
+description = "Generator for the Voltrieve synthetic document corpus"
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic>=2",
+    "pyyaml",
+    "python-docx",
+    "fpdf2",
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "pypdf",
+]
+
+[project.scripts]
+voltrieve-data = "voltrieve_data.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/voltrieve_data"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
