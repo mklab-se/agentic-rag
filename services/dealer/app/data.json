@@ -1,0 +1,60 @@
+{
+  "cities": [
+    "Stockholm",
+    "Göteborg",
+    "Malmö",
+    "Uppsala"
+  ],
+  "stock": {
+    "spark": {
+      "Stockholm": 4,
+      "Göteborg": 2,
+      "Malmö": 5,
+      "Uppsala": 0
+    },
+    "lumen": {
+      "Stockholm": 3,
+      "Göteborg": 1,
+      "Malmö": 2,
+      "Uppsala": 4
+    },
+    "ragn": {
+      "Stockholm": 2,
+      "Göteborg": 5,
+      "Malmö": 0,
+      "Uppsala": 1
+    },
+    "fjord": {
+      "Stockholm": 1,
+      "Göteborg": 4,
+      "Malmö": 3,
+      "Uppsala": 2
+    },
+    "atlas": {
+      "Stockholm": 2,
+      "Göteborg": 3,
+      "Malmö": 1,
+      "Uppsala": 5
+    }
+  },
+  "prices": {
+    "SE": {
+      "spark": 289000,
+      "lumen": 379000,
+      "ragn": 549000,
+      "fjord": 529000,
+      "atlas": 749000
+    },
+    "EU": {
+      "spark": 26500,
+      "lumen": 34500,
+      "ragn": 49900,
+      "fjord": 47900,
+      "atlas": 67900
+    }
+  },
+  "currencies": {
+    "SE": "SEK",
+    "EU": "EUR"
+  }
+}
