@@ -44,7 +44,8 @@ class GraphMock:
     def _handle(self, request: httpx.Request) -> httpx.Response:
         method = request.method
         path = request.url.path.removeprefix("/v1.0")
-        self.log.append((method, path))
+        query = request.url.query.decode()
+        self.log.append((method, f"{path}?{query}" if query else path))
         for failure in self._failures:
             if failure["times"] > 0 and failure["method"] == method and path.startswith(failure["prefix"]):
                 failure["times"] -= 1
@@ -88,7 +89,17 @@ class GraphMock:
         want = self._filter_values(params).get("displayName", "").replace("''", "'")
         return self._json(200, {"value": [a for a in self.applications.values() if a["displayName"] == want]})
 
+    @staticmethod
+    def _bad_request(message: str) -> httpx.Response:
+        return httpx.Response(400, json={"error": {"code": "Request_BadRequest", "message": message}})
+
+    @staticmethod
+    def _missing(body: dict, required: list[str]) -> list[str]:
+        return [f for f in required if not body.get(f)]
+
     def _create_app(self, m, body, params):
+        if self._missing(body, ["displayName"]):
+            return self._bad_request("displayName is required")
         app = {"id": str(uuid.uuid4()), "appId": str(uuid.uuid4()), **body}
         self.applications[app["id"]] = app
         return self._json(201, app)
@@ -97,6 +108,21 @@ class GraphMock:
         app = self.applications.get(m.group(1))
         if app is None:
             return self._json(404, {"error": {"code": "Request_ResourceNotFound"}})
+        for key, id_field in (("appRoles", "id"), ("api.oauth2PermissionScopes", "id")):
+            if "." in key:
+                outer, inner = key.split(".")
+                old = app.get(outer, {}).get(inner, [])
+                new = body.get(outer, {}).get(inner) if outer in body else None
+            else:
+                old, new = app.get(key, []), body.get(key)
+            if new is None:
+                continue
+            new_by_id = {n[id_field]: n for n in new}
+            for o in old:
+                if o.get("isEnabled") and (
+                    o[id_field] not in new_by_id or new_by_id[o[id_field]].get("value") != o.get("value")
+                ):
+                    return self._bad_request(f"Cannot remove or change enabled entry {o[id_field]}")
         app.update(body)
         return self._json(204, None)
 
@@ -128,7 +154,14 @@ class GraphMock:
         rid = m.group(1)
         if rid not in self.service_principals:
             return self._json(404, {"error": {"code": "Request_ResourceNotFound"}})
-        item = {"id": str(uuid.uuid4()), **body, "resourceId": rid}
+        if self._missing(body, ["principalId", "resourceId", "appRoleId"]):
+            return self._bad_request("principalId, resourceId and appRoleId are required")
+        if body["resourceId"] != rid:
+            return self._bad_request("resourceId does not match the path")
+        app = next(a for a in self.applications.values() if a["appId"] == self.service_principals[rid]["appId"])
+        if body["appRoleId"] not in {r["id"] for r in app.get("appRoles", [])}:
+            return self._bad_request("appRoleId is not defined on the resource")
+        item = {"id": str(uuid.uuid4()), **body}
         self.assignments.append(item)
         return self._json(201, item)
 
@@ -139,6 +172,11 @@ class GraphMock:
         return self._json(200, user)
 
     def _create_user(self, m, body, params):
+        required = ["accountEnabled", "displayName", "mailNickname", "userPrincipalName", "passwordProfile"]
+        if self._missing({**body, "accountEnabled": "accountEnabled" in body}, required) or not body.get(
+            "passwordProfile", {}
+        ).get("password"):
+            return self._bad_request("missing required user properties")
         user = {k: v for k, v in body.items() if k != "passwordProfile"}
         user["id"] = str(uuid.uuid4())
         self.users[body["userPrincipalName"]] = user
@@ -152,6 +190,8 @@ class GraphMock:
         )
 
     def _create_grant(self, m, body, params):
+        if self._missing(body, ["clientId", "consentType", "resourceId", "scope"]):
+            return self._bad_request("clientId, consentType, resourceId and scope are required")
         grant = {"id": str(uuid.uuid4()), **body}
         self.grants.append(grant)
         return self._json(201, grant)

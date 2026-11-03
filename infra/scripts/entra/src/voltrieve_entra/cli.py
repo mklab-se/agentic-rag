@@ -3,6 +3,7 @@ import base64
 import json
 import subprocess
 import sys
+import time
 
 from azure.identity import AzureCliCredential
 
@@ -10,12 +11,21 @@ from .apps import ensure_app_role_assignment, setup
 from .graph import GraphClient
 
 GRAPH_SCOPE = "https://graph.microsoft.com/.default"
+TOKEN_REFRESH_MARGIN_SECONDS = 300
 
 
 def _graph() -> tuple[GraphClient, str]:
     credential = AzureCliCredential()
-    token = credential.get_token(GRAPH_SCOPE).token
-    return GraphClient(lambda: credential.get_token(GRAPH_SCOPE).token), token
+    cached = credential.get_token(GRAPH_SCOPE)
+
+    def provider() -> str:
+        # AzureCliCredential spawns az on every call, so reuse the token until shortly before expiry.
+        nonlocal cached
+        if cached.expires_on - time.time() < TOKEN_REFRESH_MARGIN_SECONDS:
+            cached = credential.get_token(GRAPH_SCOPE)
+        return cached.token
+
+    return GraphClient(provider), cached.token
 
 
 def _tenant_id(token: str) -> str:

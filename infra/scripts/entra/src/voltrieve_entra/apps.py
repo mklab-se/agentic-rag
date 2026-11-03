@@ -113,12 +113,20 @@ def dealer_application_body(role_id: str) -> dict:
 # Idempotent operations
 
 
-def ensure_application(g: GraphClient, display_name: str, desired: dict) -> dict:
+def ensure_application(
+    g: GraphClient, display_name: str, desired: dict, sleep: Sleep = time.sleep
+) -> dict:
     found = g.get(f"/applications?$filter=displayName eq '{_quote(display_name)}'") or {}
     matches = found.get("value", [])
+    if len(matches) > 1:
+        raise RuntimeError(
+            f"{len(matches)} applications are named '{display_name}'; "
+            "delete the duplicates in Entra and rerun"
+        )
     app = matches[0] if matches else g.post("/applications", {"displayName": display_name})
     assert app is not None
-    g.patch(f"/applications/{app['id']}", desired)
+    # A PATCH right after the POST can 404 until the new application has replicated.
+    _retrying(lambda: g.patch(f"/applications/{app['id']}", desired), sleep)
     return {**app, **desired}
 
 
@@ -202,7 +210,8 @@ def ensure_user(
         existing = None
     if existing:
         return existing, None
-    password = secrets.token_urlsafe(24)
+    # The fixed suffix guarantees upper, lower, digit and symbol for the Entra complexity rules.
+    password = secrets.token_urlsafe(24) + "aA1!"
     body = {
         "accountEnabled": True,
         "displayName": display_name,
@@ -230,16 +239,26 @@ def setup(
     dealer_role_id = stable_id("role:Dealer.Access")
 
     api = ensure_application(
-        g, "voltrieve-api", api_application_body(scope_id, chat_role_id, book_role_id)
+        g, "voltrieve-api", api_application_body(scope_id, chat_role_id, book_role_id), sleep
     )
     # The identifier URI embeds the appId, so it can only be set after creation.
-    g.patch(f"/applications/{api['id']}", {"identifierUris": [f"api://{api['appId']}"]})
-    cli = ensure_application(g, "voltrieve-cli", cli_application_body(api["appId"], scope_id))
-    web = ensure_application(
-        g, "voltrieve-web", web_application_body(api["appId"], scope_id, web_redirect_uris)
+    _retrying(
+        lambda: g.patch(f"/applications/{api['id']}", {"identifierUris": [f"api://{api['appId']}"]}),
+        sleep,
     )
-    dealer = ensure_application(g, "voltrieve-dealer", dealer_application_body(dealer_role_id))
-    g.patch(f"/applications/{dealer['id']}", {"identifierUris": [f"api://{dealer['appId']}"]})
+    cli = ensure_application(g, "voltrieve-cli", cli_application_body(api["appId"], scope_id), sleep)
+    web = ensure_application(
+        g, "voltrieve-web", web_application_body(api["appId"], scope_id, web_redirect_uris), sleep
+    )
+    dealer = ensure_application(
+        g, "voltrieve-dealer", dealer_application_body(dealer_role_id), sleep
+    )
+    _retrying(
+        lambda: g.patch(
+            f"/applications/{dealer['id']}", {"identifierUris": [f"api://{dealer['appId']}"]}
+        ),
+        sleep,
+    )
 
     api_sp = ensure_service_principal(g, api["appId"], sleep)
     cli_sp = ensure_service_principal(g, cli["appId"], sleep)
