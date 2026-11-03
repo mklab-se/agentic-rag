@@ -14,8 +14,11 @@ param searchLocation string = 'francecentral'
 @description('Object id of the deployer (AZURE_PRINCIPAL_ID), granted data-plane roles.')
 param principalId string
 
-param tenantId string
-param dealerClientId string
+// Empty defaults because azd checks required parameters before the preprovision
+// hook that produces these values has run. The hook fails hard, so a real
+// deployment always has them.
+param tenantId string = ''
+param dealerClientId string = ''
 @description('True when the dealer Container App already exists (azd sets SERVICE_DEALER_RESOURCE_EXISTS), so provision keeps its deployed image.')
 param dealerExists bool = false
 param chatModelName string = 'gpt-5.4-mini'
