@@ -2,7 +2,7 @@ param name string
 param location string
 param tags object = {}
 
-resource search 'Microsoft.Search/searchServices@2026-11-01' = {
+resource search 'Microsoft.Search/searchServices@2026-09-01-preview' = {
   name: name
   location: location
   tags: tags
