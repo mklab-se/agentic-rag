@@ -98,5 +98,7 @@ output principalId string = account.identity.principalId
 output endpoint string = 'https://${account.name}.services.ai.azure.com'
 output openAiEndpoint string = 'https://${account.name}.openai.azure.com'
 output projectEndpoint string = 'https://${account.name}.services.ai.azure.com/api/projects/${project.name}'
+output projectName string = project.name
+output projectPrincipalId string = project.identity.principalId
 output chatDeployment string = chatDeployment.name
 output embeddingDeployment string = embeddingDeployment.name

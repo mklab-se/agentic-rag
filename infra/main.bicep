@@ -35,6 +35,10 @@ var tags = { 'azd-env-name': environmentName, app: 'voltrieve' }
 var storageBlobDataReader = '2a2b9908-6ea1-4ae2-8e65-a410df84e7d1'
 var cognitiveServicesOpenAIUser = '5e0bd9bd-7b93-4f28-af87-19fc36ad61bd'
 var cognitiveServicesUser = 'a97b65f3-24c7-4388-baec-2e87135dc908'
+var foundryProjectManager = 'eadc314b-1a2d-4efa-be10-5d325db5065e'
+var acrPull = '7f951dda-4ed3-4680-a7ca-43fe172d538d'
+var containerRegistryRepositoryReader = 'b93aa761-3e63-49ed-ac28-beffa264f7ac'
+var searchIndexDataReader = '1407120a-92aa-4202-b7e9-c0e197c71c8f'
 var searchServiceContributor = '7ca78c08-252a-4471-8644-bb5ff32d4ba0'
 var searchIndexDataContributor = '8ebe5a00-799e-43f5-93ac-243d3dce84a7'
 var storageBlobDataContributor = 'ba92f5b4-2d11-453d-a403-e96b0029c9fe'
@@ -174,6 +178,60 @@ module searchPlansWithFoundry 'modules/role-foundry.bicep' = {
   }
 }
 
+// The project identity calls the knowledge base MCP endpoint for prompt agents.
+module projectReadsSearch 'modules/role-search.bicep' = {
+  scope: rg
+  params: {
+    resourceName: search.outputs.name
+    principalId: foundry.outputs.projectPrincipalId
+    roleDefinitionId: searchIndexDataReader
+    principalType: 'ServicePrincipal'
+  }
+}
+
+// The project identity pulls hosted agent images. AcrPull covers a registry in legacy
+// permission mode, Repository Reader covers one using repository permissions.
+module projectPullsImages 'modules/role-registry.bicep' = {
+  scope: rg
+  params: {
+    resourceName: registry.outputs.name
+    principalId: foundry.outputs.projectPrincipalId
+    roleDefinitionId: acrPull
+    principalType: 'ServicePrincipal'
+  }
+}
+
+module projectReadsRepositories 'modules/role-registry.bicep' = {
+  scope: rg
+  params: {
+    resourceName: registry.outputs.name
+    principalId: foundry.outputs.projectPrincipalId
+    roleDefinitionId: containerRegistryRepositoryReader
+    principalType: 'ServicePrincipal'
+  }
+}
+
+module kbConnection 'modules/foundry-kb-connection.bicep' = {
+  scope: rg
+  params: {
+    accountName: foundry.outputs.name
+    projectName: foundry.outputs.projectName
+    searchEndpoint: search.outputs.endpoint
+    knowledgeBaseName: 'voltrieve-kb'
+  }
+}
+
+// Creating agents and project connections needs this role on the deployer.
+module deployerManagesProject 'modules/role-foundry.bicep' = if (!empty(principalId)) {
+  scope: rg
+  params: {
+    resourceName: foundry.outputs.name
+    principalId: principalId
+    roleDefinitionId: foundryProjectManager
+    principalType: 'User'
+  }
+}
+
 module deployerSearchService 'modules/role-search.bicep' = if (!empty(principalId)) {
   scope: rg
   params: {
@@ -223,6 +281,8 @@ output FOUNDRY_PROJECT_ENDPOINT string = foundry.outputs.projectEndpoint
 output FOUNDRY_OPENAI_ENDPOINT string = foundry.outputs.openAiEndpoint
 output CHAT_DEPLOYMENT string = foundry.outputs.chatDeployment
 output CHAT_MODEL string = chatModelName
+output FOUNDRY_PROJECT_NAME string = foundry.outputs.projectName
+output KB_CONNECTION_NAME string = kbConnection.outputs.name
 output EMBEDDING_DEPLOYMENT string = foundry.outputs.embeddingDeployment
 output EMBEDDING_MODEL string = embeddingModelName
 output SEARCH_ENDPOINT string = search.outputs.endpoint
