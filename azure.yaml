@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+name: voltrieve
+services:
+  dealer:
+    project: ./services/dealer
+    language: python
+    host: containerapp
+    docker:
+      path: ./Dockerfile
+      remoteBuild: true
+hooks:
+  preprovision:
+    shell: sh
+    run: hooks/preprovision.sh
+    interactive: true
+  postprovision:
+    shell: sh
+    run: hooks/postprovision.sh
