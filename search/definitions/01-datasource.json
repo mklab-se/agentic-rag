@@ -1,0 +1,11 @@
+{
+  "name": "voltrieve-docs-ds",
+  "description": "Voltrieve brochures, specification guides and the buyer's guide in blob storage.",
+  "type": "azureblob",
+  "credentials": {
+    "connectionString": "ResourceId={{STORAGE_RESOURCE_ID}};"
+  },
+  "container": {
+    "name": "{{DOCS_CONTAINER}}"
+  }
+}

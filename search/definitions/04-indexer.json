@@ -1,0 +1,16 @@
+{
+  "name": "voltrieve-docs-indexer",
+  "description": "Reads the document container and runs the skillset into the chunk index. No schedule: run on demand.",
+  "dataSourceName": "voltrieve-docs-ds",
+  "targetIndexName": "voltrieve-docs-index",
+  "skillsetName": "voltrieve-docs-skillset",
+  "parameters": {
+    "configuration": {
+      "dataToExtract": "contentAndMetadata",
+      "parsingMode": "default",
+      "indexedFileNameExtensions": ".pdf,.docx,.md",
+      "failOnUnsupportedContentType": false,
+      "failOnUnprocessableDocument": false
+    }
+  }
+}

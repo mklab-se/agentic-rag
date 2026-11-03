@@ -1,0 +1,57 @@
+{
+  "name": "voltrieve-docs-index",
+  "description": "Voltrieve electric car brochures, technical specification guides and the buyer's guide.",
+  "fields": [
+    { "name": "chunk_id", "type": "Edm.String", "key": true, "analyzer": "keyword", "filterable": true, "sortable": true },
+    { "name": "parent_id", "type": "Edm.String", "filterable": true },
+    { "name": "title", "type": "Edm.String", "searchable": true, "filterable": true, "retrievable": true },
+    { "name": "chunk", "type": "Edm.String", "searchable": true, "retrievable": true },
+    {
+      "name": "text_vector",
+      "type": "Collection(Edm.Single)",
+      "searchable": true,
+      "retrievable": false,
+      "stored": false,
+      "dimensions": 3072,
+      "vectorSearchProfile": "hnsw-profile"
+    },
+    { "name": "source_path", "type": "Edm.String", "filterable": true, "retrievable": true },
+    { "name": "model_slug", "type": "Edm.String", "filterable": true, "facetable": true, "retrievable": true },
+    { "name": "doc_type", "type": "Edm.String", "filterable": true, "facetable": true, "retrievable": true }
+  ],
+  "vectorSearch": {
+    "algorithms": [
+      {
+        "name": "hnsw-alg",
+        "kind": "hnsw",
+        "hnswParameters": { "metric": "cosine", "m": 4, "efConstruction": 400, "efSearch": 500 }
+      }
+    ],
+    "profiles": [
+      { "name": "hnsw-profile", "algorithm": "hnsw-alg", "vectorizer": "aoai-vectorizer" }
+    ],
+    "vectorizers": [
+      {
+        "name": "aoai-vectorizer",
+        "kind": "azureOpenAI",
+        "azureOpenAIParameters": {
+          "resourceUri": "{{FOUNDRY_ENDPOINT}}",
+          "deploymentId": "{{EMBEDDING_DEPLOYMENT}}",
+          "modelName": "{{EMBEDDING_MODEL}}"
+        }
+      }
+    ]
+  },
+  "semantic": {
+    "defaultConfiguration": "semantic-config",
+    "configurations": [
+      {
+        "name": "semantic-config",
+        "prioritizedFields": {
+          "titleField": { "fieldName": "title" },
+          "prioritizedContentFields": [{ "fieldName": "chunk" }]
+        }
+      }
+    ]
+  }
+}

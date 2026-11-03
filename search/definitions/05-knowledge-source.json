@@ -1,0 +1,18 @@
+{
+  "name": "voltrieve-docs-ks",
+  "kind": "searchIndex",
+  "description": "Voltrieve electric car brochures, technical specification guides and the buyer's guide.",
+  "searchIndexParameters": {
+    "searchIndexName": "voltrieve-docs-index",
+    "semanticConfigurationName": "semantic-config",
+    "sourceDataFields": [
+      { "name": "chunk_id" },
+      { "name": "title" },
+      { "name": "chunk" },
+      { "name": "source_path" },
+      { "name": "model_slug" },
+      { "name": "doc_type" }
+    ],
+    "searchFields": [{ "name": "chunk" }, { "name": "title" }]
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "name": "voltrieve-kb",
+  "description": "Voltrieve electric car brochures, technical specification guides and the buyer's guide.",
+  "knowledgeSources": [{ "name": "voltrieve-docs-ks" }]
+}
