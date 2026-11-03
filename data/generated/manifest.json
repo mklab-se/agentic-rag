@@ -1,0 +1,57 @@
+[
+  {
+    "file": "voltrieve-spark-brochure.docx",
+    "model_slug": "spark",
+    "doc_type": "brochure"
+  },
+  {
+    "file": "voltrieve-spark-specifications.pdf",
+    "model_slug": "spark",
+    "doc_type": "spec"
+  },
+  {
+    "file": "voltrieve-lumen-brochure.docx",
+    "model_slug": "lumen",
+    "doc_type": "brochure"
+  },
+  {
+    "file": "voltrieve-lumen-specifications.pdf",
+    "model_slug": "lumen",
+    "doc_type": "spec"
+  },
+  {
+    "file": "voltrieve-ragn-brochure.docx",
+    "model_slug": "ragn",
+    "doc_type": "brochure"
+  },
+  {
+    "file": "voltrieve-ragn-specifications.pdf",
+    "model_slug": "ragn",
+    "doc_type": "spec"
+  },
+  {
+    "file": "voltrieve-fjord-brochure.docx",
+    "model_slug": "fjord",
+    "doc_type": "brochure"
+  },
+  {
+    "file": "voltrieve-fjord-specifications.pdf",
+    "model_slug": "fjord",
+    "doc_type": "spec"
+  },
+  {
+    "file": "voltrieve-atlas-brochure.docx",
+    "model_slug": "atlas",
+    "doc_type": "brochure"
+  },
+  {
+    "file": "voltrieve-atlas-specifications.pdf",
+    "model_slug": "atlas",
+    "doc_type": "spec"
+  },
+  {
+    "file": "voltrieve-buyers-guide.md",
+    "model_slug": null,
+    "doc_type": "guide"
+  }
+]
