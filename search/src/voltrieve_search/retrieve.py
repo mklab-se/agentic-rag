@@ -40,7 +40,7 @@ def retrieve(client, kb_name: str, question: str, max_output_tokens: int = 5000)
                 "includeReferenceSourceData": True,
             }
         ],
-        "maxOutputSizeInTokens": max_output_tokens,
+        "maxOutputSize": max_output_tokens,
         "includeActivity": True,
     }
     status, payload = client.post(f"/knowledgebases/{kb_name}/retrieve", body)
