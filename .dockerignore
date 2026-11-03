@@ -2,6 +2,7 @@
 !api/
 !agent_core/
 !search/
+!agents/hosted/
 **/.venv
 **/__pycache__
 **/.pytest_cache
