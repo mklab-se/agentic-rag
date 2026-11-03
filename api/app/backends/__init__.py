@@ -53,3 +53,10 @@ class BackendRegistry:
                 logger.exception("Backend %s failed to start", name)
                 raise BackendUnavailable(f"Backend '{name}' could not be started.") from exc
         return self._instances[name]
+
+    async def close(self) -> None:
+        for name, backend in self._instances.items():
+            try:
+                await backend.close()
+            except Exception:
+                logger.exception("Closing backend %s failed", name)

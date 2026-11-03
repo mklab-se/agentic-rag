@@ -25,24 +25,43 @@ class ScriptedModel:
 
 
 class FakeItems:
-    def __init__(self):
+    def __init__(self, existing=()):
         self.created = []
+        self.existing = list(existing)
 
     async def create(self, conversation_id, items):
         self.created.append((conversation_id, items))
 
+    async def list(self, conversation_id, limit, order):
+        async def gen():
+            for item in self.existing:
+                yield item
+
+        return gen()
+
 
 class FakeConversations:
-    def __init__(self):
-        self.items = FakeItems()
+    def __init__(self, existing=()):
+        self.items = FakeItems(existing)
+        self.metadata = None
 
-    async def create(self):
+    async def create(self, metadata=None):
+        self.metadata = metadata
         return type("Conv", (), {"id": "conv_real"})()
+
+    async def retrieve(self, conversation_id):
+        if conversation_id != "conv_real":
+            raise RuntimeError("not found")
+        return type("Conv", (), {"metadata": self.metadata})()
 
 
 class FakeOpenAI:
-    def __init__(self):
-        self.conversations = FakeConversations()
+    def __init__(self, existing=()):
+        self.conversations = FakeConversations(existing)
+
+
+def item(kind, call_id):
+    return type("Item", (), {"type": kind, "call_id": call_id})()
 
 
 async def test_client_tool_round_trip_through_loop(validator, auth):
@@ -74,7 +93,8 @@ async def test_client_tool_round_trip_through_loop(validator, auth):
         )
         events = parse_sse(r.text)
     assert [d["text"] for t, d in events if t == "delta"] == ["It says hi."]
-    assert events[-1][1]["usage"] == {"total_tokens": 4}
+    assert events[-1][1]["usage"] == {"total_tokens": 7}  # the whole turn
+    assert openai.conversations.metadata == {"owner_oid": "oid-anna"}
     assert model.inputs[1] == [{"type": "function_call_output", "call_id": "call_9", "output": "hi"}]
 
 
@@ -87,3 +107,66 @@ async def test_abandon_adds_items_without_model_call():
     await backend.abandon("conv_1", [])
     assert openai.conversations.items.created == [("conv_1", outputs)]
     assert model.inputs == []
+
+
+async def test_owner_is_read_from_conversation_metadata():
+    openai = FakeOpenAI()
+    backend = LoopBackend(ScriptedModel(), openai, [])
+    await backend.create_conversation("oid-anna")
+    assert await backend.get_conversation_owner("conv_real") == "oid-anna"
+    assert await backend.get_conversation_owner("conv_missing") is None
+
+
+async def test_repair_answers_only_calls_without_output_in_batches():
+    existing = [item("function_call", f"c{i}") for i in range(45)]
+    existing += [item("function_call_output", "c3"), item("message", "ignored")]
+    openai = FakeOpenAI(existing)
+    backend = LoopBackend(ScriptedModel(), openai, [])
+    await backend.repair("conv_real")
+    batches = openai.conversations.items.created
+    assert [len(b[1]) for b in batches] == [20, 20, 4]
+    written = [o["call_id"] for _, b in batches for o in b]
+    assert "c3" not in written and len(set(written)) == 44
+    assert all(o["type"] == "function_call_output" for _, b in batches for o in b)
+
+
+async def test_repair_with_nothing_open_writes_nothing():
+    openai = FakeOpenAI([item("function_call", "a"), item("function_call_output", "a")])
+    await LoopBackend(ScriptedModel(), openai, []).repair("conv_real")
+    assert openai.conversations.items.created == []
+
+
+async def test_close_runs_closers():
+    closed = []
+
+    async def closer():
+        closed.append(1)
+
+    await LoopBackend(ScriptedModel(), FakeOpenAI(), [], closers=[closer]).close()
+    assert closed == [1]
+
+
+async def test_build_loop_backend_constructs_with_dummy_settings():
+    from app.backends.loop import build_loop_backend
+
+    settings = Settings(
+        foundry_project_endpoint="https://example.services.ai.azure.com/api/projects/p",
+        search_endpoint="https://example.search.windows.net",
+        dealer_url="https://dealer.example",
+        dealer_client_id="00000000-0000-0000-0000-0000000000dd",
+    )
+    backend = build_loop_backend(settings)  # no network at construction
+    assert isinstance(backend, LoopBackend)
+    await backend.close()
+
+
+def test_build_loop_backend_without_settings_is_unavailable(caplog):
+    import pytest
+
+    from app.backends.base import BackendUnavailable
+    from app.backends.loop import build_loop_backend
+
+    with pytest.raises(BackendUnavailable) as e, caplog.at_level("WARNING"):
+        build_loop_backend(Settings())
+    assert "FOUNDRY" not in str(e.value)
+    assert "FOUNDRY_PROJECT_ENDPOINT" in caplog.text

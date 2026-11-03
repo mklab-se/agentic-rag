@@ -3,7 +3,10 @@ import re
 import time
 import uuid
 
-from fastapi import FastAPI
+import asyncio
+from contextlib import asynccontextmanager
+
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from starlette.types import ASGIApp, Message, Receive, Scope, Send
@@ -20,10 +23,15 @@ from app.turns import TurnService, TurnStore
 logger = logging.getLogger("app.access")
 CORRELATION_ID_PATTERN = re.compile(r"^[A-Za-z0-9._-]{1,64}$")
 MAX_BODY_BYTES = 64 * 1024
+EVICTION_INTERVAL_SECONDS = 60.0
 
 
-class BodyTooLarge(Exception):
-    pass
+class BodyTooLarge(HTTPException):
+    """An HTTPException, so FastAPI passes it through while reading the body (any other
+    exception there becomes a 400) and turns it into a 413 response."""
+
+    def __init__(self) -> None:
+        super().__init__(413, "Request body too large")
 
 
 class RequestGuard:
@@ -39,7 +47,7 @@ class RequestGuard:
         if scope["type"] != "http":
             await self.app(scope, receive, send)
             return
-        headers = {k.decode().lower(): v.decode() for k, v in scope["headers"]}
+        headers = {k.decode("latin-1").lower(): v.decode("latin-1") for k, v in scope["headers"]}
         supplied = headers.get("x-correlation-id", "")
         cid = supplied if CORRELATION_ID_PATTERN.fullmatch(supplied) else str(uuid.uuid4())
         token = correlation_id.set(cid)
@@ -101,7 +109,34 @@ def create_app(
 ) -> FastAPI:
     configure_logging(settings.log_level)
     configure_telemetry(settings.applicationinsights_connection_string)
-    app = FastAPI(title="Voltrieve API", docs_url=None, redoc_url=None, openapi_url=None)
+
+    @asynccontextmanager
+    async def lifespan(app: FastAPI):
+        async def evict_periodically() -> None:
+            while True:
+                await asyncio.sleep(EVICTION_INTERVAL_SECONDS)
+                app.state.store.evict_expired()
+
+        evictor = asyncio.create_task(evict_periodically())
+        try:
+            yield
+        finally:
+            evictor.cancel()
+            await app.state.turns.drain()
+            await app.state.registry.close()
+
+    app = FastAPI(
+        title="Voltrieve API",
+        docs_url=None,
+        redoc_url=None,
+        openapi_url=None,
+        lifespan=lifespan,
+    )
+
+    @app.exception_handler(RecursionError)
+    async def too_deep(request: Request, exc: RecursionError):
+        return JSONResponse({"detail": "JSON is nested too deeply"}, 422)
+
     app.state.settings = settings
     app.state.validator = validator or TokenValidator(settings.tenant_id, settings.api_client_id)
     app.state.registry = registry or BackendRegistry(settings)

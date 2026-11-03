@@ -1,5 +1,6 @@
 import json
 
+from pydantic import BaseModel, ValidationError
 from fastapi import APIRouter, Depends, Header, HTTPException, Request
 from fastapi.responses import StreamingResponse
 from jsonschema import Draft202012Validator
@@ -27,7 +28,44 @@ async def authenticate(request: Request, authorization: str | None = Header(defa
         raise HTTPException(exc.status_code, exc.detail, headers=headers) from exc
 
 
+MAX_SCHEMA_DEPTH = 32
+
+
+def _depth(value) -> int:
+    """Nesting depth of parsed JSON, computed without recursion."""
+    deepest = 0
+    stack = [(value, 1)]
+    while stack:
+        node, depth = stack.pop()
+        if isinstance(node, dict | list):
+            deepest = max(deepest, depth)
+            if deepest > MAX_SCHEMA_DEPTH:
+                return deepest
+            stack.extend((child, depth + 1) for child in (node.values() if isinstance(node, dict) else node))
+    return deepest
+
+
+def json_body(model: type[BaseModel]):
+    """Parse the body by hand: FastAPI turns a RecursionError from deeply nested JSON into a
+    400 or 500, and clients should get a 422."""
+
+    async def parse(request: Request) -> BaseModel:
+        try:
+            return model.model_validate(json.loads(await request.body()))
+        except RecursionError as exc:
+            raise HTTPException(422, "JSON is nested too deeply") from exc
+        except ValidationError as exc:
+            raise HTTPException(422, json.loads(exc.json(include_url=False, include_context=False))) from exc
+        except ValueError as exc:
+            raise HTTPException(422, "Invalid JSON") from exc
+
+    return parse
+
+
 def _check_client_tools(body: ChatRequest, server_tool_names: frozenset[str]) -> None:
+    for tool in body.client_tools:
+        if _depth(tool.parameters) > MAX_SCHEMA_DEPTH:
+            raise HTTPException(422, f"client tool '{tool.name}' schema is nested too deeply")
     names = [t.name for t in body.client_tools]
     if len(set(names)) != len(names):
         raise HTTPException(422, "client_tools has duplicate names")
@@ -42,6 +80,19 @@ def _check_client_tools(body: ChatRequest, server_tool_names: frozenset[str]) ->
             Draft202012Validator.check_schema(tool.parameters)
         except SchemaError as exc:
             raise HTTPException(422, f"client tool '{tool.name}' has an invalid schema") from exc
+
+
+async def _check_owner(state, backend, conversation_id: str, oid: str) -> None:
+    """Refuse conversations of other users with the same answer as unknown ones, so ids
+    cannot be probed. Foundry holds the owner; the in-process map is only a cache."""
+    owner = state.store.conversation_owner(conversation_id)
+    if owner is None:
+        owner = await backend.get_conversation_owner(conversation_id)
+        if owner == oid:
+            # First touch in this process: the conversation is repaired before it is used.
+            state.store.register_conversation(conversation_id, oid, dirty=True)
+    if owner != oid:
+        raise HTTPException(403, "Unknown conversation")
 
 
 def _stream(request: Request, job: Job) -> StreamingResponse:
@@ -62,24 +113,24 @@ def build_router() -> APIRouter:
 
     @router.post("/chat")
     async def chat(
-        body: ChatRequest,
         request: Request,
         claims: Claims = Depends(authenticate),
+        body: ChatRequest = Depends(json_body(ChatRequest)),
         x_agent_backend: str | None = Header(default=None),
     ):
         state = request.app.state
         _check_client_tools(body, state.server_tool_names)
         name = x_agent_backend or state.settings.agent_backend
         try:
-            state.registry.get_backend(name)
+            backend = state.registry.get_backend(name)
         except BackendUnavailable as exc:
             raise HTTPException(400, str(exc)) from exc
 
         stale = None
         if body.conversation_id is not None:
-            # The same answer for unknown and foreign ids, so ids cannot be probed.
-            if state.store.conversation_owner(body.conversation_id) != claims.oid:
-                raise HTTPException(403, "Unknown conversation")
+            await _check_owner(state, backend, body.conversation_id, claims.oid)
+            if state.turns.is_running(body.conversation_id):
+                raise HTTPException(409, "turn_in_progress")
             stale = state.store.remove_for_conversation(body.conversation_id)
         return _stream(
             request,
@@ -96,7 +147,9 @@ def build_router() -> APIRouter:
 
     @router.post("/chat/tool-results")
     async def tool_results(
-        body: ToolResultsRequest, request: Request, claims: Claims = Depends(authenticate)
+        request: Request,
+        claims: Claims = Depends(authenticate),
+        body: ToolResultsRequest = Depends(json_body(ToolResultsRequest)),
     ):
         store = request.app.state.store
         paused = store.get(body.turn_id)
@@ -125,6 +178,8 @@ def build_router() -> APIRouter:
                 "results must contain exactly one result for each pending call: "
                 + ", ".join(sorted(paused.expected_call_ids)),
             )
+        if request.app.state.turns.is_running(paused.conversation_id):
+            raise HTTPException(409, "turn_in_progress")
         store.remove(body.turn_id)
         items = [
             {"type": "function_call_output", "call_id": r.call_id, "output": r.output_text()}
@@ -140,6 +195,8 @@ def build_router() -> APIRouter:
                 items,
                 paused.client_tools,
                 paused.pending_outputs,
+                usage=paused.usage,
+                continuation=True,
             ),
         )
 

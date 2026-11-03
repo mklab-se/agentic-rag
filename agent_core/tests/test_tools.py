@@ -86,3 +86,12 @@ def test_definitions_list_every_server_tool_whatever_the_role(user):
     assert [d["name"] for d in toolset.definitions(admin)] == ["lookup", "book", "pick_file"]
     assert all(d["type"] == "function" for d in toolset.definitions(admin))
     assert toolset.is_client("pick_file") and not toolset.is_client("lookup")
+
+
+async def test_role_denied_is_logged_as_warning(user, events, caplog):
+    toolset = ToolSet([make_tool([], role="Admin")], [])
+    with caplog.at_level("WARNING", logger="voltrieve_agent.tools"):
+        await toolset.execute("lookup", '{"city": "x"}', user, events)
+    record = next(r for r in caplog.records if "authorization denied" in r.getMessage())
+    assert record.levelname == "WARNING"
+    assert "lookup" in record.getMessage() and "Admin" in record.getMessage() and user.oid in record.getMessage()

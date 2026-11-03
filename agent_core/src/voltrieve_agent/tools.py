@@ -72,6 +72,12 @@ class ToolSet:
         if tool is None:
             return f"Error: unknown tool '{name}'."
         if tool.required_role is not None and tool.required_role not in user.roles:
+            logger.warning(
+                "authorization denied: tool %s requires role %s (user %s)",
+                tool.name,
+                tool.required_role,
+                user.oid,
+            )
             await emit(
                 trace(
                     "authorization_denied",

@@ -24,8 +24,13 @@ class TurnContext:
 
 
 class Backend(Protocol):
-    async def create_conversation(self) -> str:
-        """Create the server-side conversation for a first turn and return its id."""
+    async def create_conversation(self, owner_oid: str) -> str:
+        """Create the server-side conversation for a first turn and return its id.
+        The owner is stored with the conversation, so ownership survives restarts."""
+        ...
+
+    async def get_conversation_owner(self, conversation_id: str) -> str | None:
+        """The owner oid stored with the conversation, or None if unknown or not readable."""
         ...
 
     async def run_turn(self, ctx: TurnContext, emit: Emit) -> TurnOutcome:
@@ -34,6 +39,15 @@ class Backend(Protocol):
 
     async def abandon(self, conversation_id: str, outputs: list[dict]) -> None:
         """Close a paused turn nobody will continue by adding outputs for its open calls."""
+        ...
+
+    async def repair(self, conversation_id: str) -> None:
+        """Give every recent function_call without an output a synthetic output. Raises if
+        the conversation cannot be repaired."""
+        ...
+
+    async def close(self) -> None:
+        """Release clients and credentials at shutdown."""
         ...
 
 

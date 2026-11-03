@@ -1,4 +1,7 @@
-"""Backend C: the orchestration loop in agent_core, run inside the API process."""
+"""Backend B: the orchestration loop in agent_core, run inside the API process."""
+
+import logging
+from collections.abc import Awaitable, Callable, Sequence
 
 from voltrieve_agent.dealer import DealerClient, make_http_client
 from voltrieve_agent.events import Emit
@@ -11,16 +14,38 @@ from voltrieve_agent.tools import ServerTool
 from app.backends.base import BackendUnavailable, TurnContext
 from app.settings import Settings
 
+logger = logging.getLogger(__name__)
+
+
+REPAIR_OUTPUT = "the client did not return a result"
+REPAIR_SCAN_ITEMS = 100
+REPAIR_BATCH = 20
+
 
 class LoopBackend:
-    def __init__(self, model: ModelClient, openai_client, server_tools: list[ServerTool]):
+    def __init__(
+        self,
+        model: ModelClient,
+        openai_client,
+        server_tools: list[ServerTool],
+        closers: Sequence[Callable[[], Awaitable[None]]] = (),
+    ):
         self._model = model
         self._openai = openai_client  # AsyncOpenAI; only its conversations API is used here
         self._server_tools = server_tools
+        self._closers = closers
 
-    async def create_conversation(self) -> str:
-        conversation = await self._openai.conversations.create()
+    async def create_conversation(self, owner_oid: str) -> str:
+        conversation = await self._openai.conversations.create(metadata={"owner_oid": owner_oid})
         return conversation.id
+
+    async def get_conversation_owner(self, conversation_id: str) -> str | None:
+        try:
+            conversation = await self._openai.conversations.retrieve(conversation_id)
+        except Exception:
+            logger.warning("Could not read conversation %s", conversation_id, exc_info=True)
+            return None
+        return (getattr(conversation, "metadata", None) or {}).get("owner_oid")
 
     async def run_turn(self, ctx: TurnContext, emit: Emit) -> TurnOutcome:
         input_ = ctx.input
@@ -41,6 +66,38 @@ class LoopBackend:
         if outputs:
             await self._openai.conversations.items.create(conversation_id, items=outputs)
 
+    async def repair(self, conversation_id: str) -> None:
+        calls: list[str] = []
+        answered: set[str] = set()
+        page = await self._openai.conversations.items.list(
+            conversation_id, limit=REPAIR_SCAN_ITEMS, order="desc"
+        )
+        async for item in page:
+            if item.type == "function_call":
+                calls.append(item.call_id)
+            elif item.type == "function_call_output":
+                answered.add(item.call_id)
+            if len(calls) + len(answered) >= REPAIR_SCAN_ITEMS:
+                break
+        missing = [
+            {"type": "function_call_output", "call_id": c, "output": REPAIR_OUTPUT}
+            for c in dict.fromkeys(calls)
+            if c not in answered
+        ]
+        for start in range(0, len(missing), REPAIR_BATCH):
+            await self._openai.conversations.items.create(
+                conversation_id, items=missing[start : start + REPAIR_BATCH]
+            )
+        if missing:
+            logger.info("Repaired %d open calls in %s", len(missing), conversation_id)
+
+    async def close(self) -> None:
+        for closer in self._closers:
+            try:
+                await closer()
+            except Exception:
+                logger.exception("Closing the loop backend failed")
+
 
 def build_loop_backend(settings: Settings) -> LoopBackend:
     """Connect to Foundry, search and the dealer. Called on first use, never at import."""
@@ -55,7 +112,9 @@ def build_loop_backend(settings: Settings) -> LoopBackend:
         if not value
     ]
     if missing:
-        raise BackendUnavailable(f"Backend 'loop' is not configured (missing {', '.join(missing)}).")
+        # Which settings are missing is an operator matter: log it, do not tell the caller.
+        logger.warning("Backend 'loop' is not configured, missing: %s", ", ".join(missing))
+        raise BackendUnavailable("Backend 'loop' is not configured in this deployment.")
 
     from azure.ai.projects.aio import AIProjectClient
     from azure.identity import DefaultAzureCredential
@@ -72,7 +131,16 @@ def build_loop_backend(settings: Settings) -> LoopBackend:
     async def dealer_token() -> str:
         return (await async_credential.get_token(dealer_scope)).token
 
-    dealer = DealerClient(settings.dealer_url, dealer_token, make_http_client())
+    http = make_http_client()
+    dealer = DealerClient(settings.dealer_url, dealer_token, http)
     knowledge = KnowledgeBase(settings.search_endpoint, DefaultAzureCredential())
     model = ResponsesModelClient(openai_client, settings.chat_deployment)
-    return LoopBackend(model, openai_client, build_server_tools(dealer, knowledge))
+    async def close_all() -> None:
+        await http.aclose()
+        await openai_client.close()
+        await project.close()
+        await async_credential.close()
+
+    return LoopBackend(
+        model, openai_client, build_server_tools(dealer, knowledge), closers=[close_all]
+    )

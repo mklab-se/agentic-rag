@@ -67,18 +67,37 @@ class FakeBackend:
         self.script = []
         self.contexts = []
         self.abandoned = []
+        self.owners = {}  # conversation id -> owner oid, the "Foundry" side
+        self.repaired = []
+        self.repair_error = None
+        self.abandon_error = None
+        self.closed = False
         self.created = 0
 
-    async def create_conversation(self) -> str:
+    async def create_conversation(self, owner_oid: str) -> str:
         self.created += 1
+        self.owners[f"conv_{self.created}"] = owner_oid
         return f"conv_{self.created}"
+
+    async def get_conversation_owner(self, conversation_id):
+        return self.owners.get(conversation_id)
 
     async def run_turn(self, ctx, emit):
         self.contexts.append(ctx)
         return await self.script.pop(0)(ctx, emit)
 
     async def abandon(self, conversation_id, outputs):
+        if self.abandon_error:
+            raise self.abandon_error
         self.abandoned.append((conversation_id, outputs))
+
+    async def repair(self, conversation_id):
+        if self.repair_error:
+            raise self.repair_error
+        self.repaired.append(conversation_id)
+
+    async def close(self):
+        self.closed = True
 
 
 def answer(text="Hi", usage=None):
@@ -90,7 +109,7 @@ def answer(text="Hi", usage=None):
     return run
 
 
-def pause(call_ids=("call_1",), pending=None):
+def pause(call_ids=("call_1",), pending=None, usage=None):
     async def run(ctx, emit):
         await emit(
             AgentEvent(
@@ -101,7 +120,7 @@ def pause(call_ids=("call_1",), pending=None):
                 },
             )
         )
-        return TurnOutcome("paused", pending or [], {}, list(call_ids))
+        return TurnOutcome("paused", pending or [], usage or {}, list(call_ids))
 
     return run
 

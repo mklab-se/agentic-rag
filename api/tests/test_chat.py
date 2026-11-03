@@ -282,3 +282,165 @@ async def test_correlation_id(client, auth, backend):
     assert generated != "bad id!" and len(generated) == 36
     assert backend.contexts[1].correlation_id == generated
     assert (await client.get("/healthz")).headers["x-correlation-id"]
+
+
+async def test_owner_survives_restart_via_foundry_metadata(app, auth, backend, make_token, validator):
+    import httpx
+
+    from app.backends import BackendRegistry
+    from app.main import create_app
+    from app.settings import Settings
+    from app.turns import TurnStore
+
+    backend.owners["conv_old"] = "oid-anna"
+    settings = Settings()
+    fresh = create_app(settings, validator, BackendRegistry(settings, {"loop": lambda s: backend}), TurnStore())
+    async with httpx.AsyncClient(transport=httpx.ASGITransport(app=fresh), base_url="http://t") as c:
+        bob = {"Authorization": f"Bearer {make_token(oid='oid-bob')}"}
+        assert (await chat(c, bob, {"message": "x", "conversation_id": "conv_old"})).status_code == 403
+        assert (await chat(c, auth, {"message": "x", "conversation_id": "conv_missing"})).status_code == 403
+        backend.script = [answer()]
+        r = await chat(c, auth, {"message": "x", "conversation_id": "conv_old"})
+        assert parse_sse(r.text)[-1][0] == "done"
+    assert backend.repaired == ["conv_old"]  # first touch in this process
+    backend.script = [answer()]
+    async with httpx.AsyncClient(transport=httpx.ASGITransport(app=fresh), base_url="http://t") as c:
+        await chat(c, auth, {"message": "x", "conversation_id": "conv_old"})
+    assert backend.repaired == ["conv_old"]  # not again
+
+
+async def test_repair_failure_blocks_the_turn(app, auth, backend, clock):
+    backend.owners["conv_old"] = "oid-anna"
+    backend.repair_error = RuntimeError("boom")
+    r = await chat(auth=auth, client=app.state and __import__("httpx").AsyncClient(
+        transport=__import__("httpx").ASGITransport(app=app), base_url="http://t"
+    ), body={"message": "x", "conversation_id": "conv_old"})
+    events = parse_sse(r.text)
+    assert events[-1][1]["code"] == "conversation_recovery_failed"
+    assert not backend.contexts
+
+
+async def test_failed_close_marks_conversation_for_repair(client, auth, backend):
+    paused = await paused_turn(client, auth, backend)
+    backend.abandon_error = RuntimeError("down")
+    backend.script.append(answer())
+    r = await chat(client, auth, {"message": "again", "conversation_id": paused["conversation_id"]})
+    assert parse_sse(r.text)[-1][0] == "done"
+    # The failed close leaves the conversation dirty, so the same turn repairs it first.
+    assert backend.repaired == [paused["conversation_id"]]
+
+
+async def test_failed_continuation_marks_conversation_for_repair(client, auth, backend):
+    paused = await paused_turn(client, auth, backend)
+
+    async def boom(ctx, emit):
+        raise RuntimeError("x")
+
+    backend.script.append(boom)
+    r = await client.post("/chat/tool-results", headers=auth, json=results_body(paused, "call_1"))
+    assert parse_sse(r.text)[-1][1]["code"] == "internal_error"
+    backend.script.append(answer())
+    await chat(client, auth, {"message": "again", "conversation_id": paused["conversation_id"]})
+    assert backend.repaired == [paused["conversation_id"]]
+
+
+async def test_running_turn_gives_409(client, auth, backend):
+    import asyncio
+
+    gate = asyncio.Event()
+
+    async def slow(ctx, emit):
+        await gate.wait()
+        return await answer()(ctx, emit)
+
+    backend.script = [answer()]
+    conv = parse_sse((await chat(client, auth)).text)[-1][1]["conversation_id"]
+    backend.script = [slow, answer()]
+    first = asyncio.create_task(chat(client, auth, {"message": "slow", "conversation_id": conv}))
+    await asyncio.sleep(0.05)
+    r = await chat(client, auth, {"message": "second", "conversation_id": conv})
+    assert r.status_code == 409 and r.json()["detail"] == "turn_in_progress"
+    gate.set()
+    await first
+    r = await chat(client, auth, {"message": "third", "conversation_id": conv})
+    assert r.status_code == 200
+
+
+async def test_usage_covers_the_whole_turn(client, auth, backend):
+    backend.script = [pause(usage={"total_tokens": 3, "d": {"x": 1}}), answer(usage={"total_tokens": 4, "d": {"x": 2}})]
+    paused = parse_sse((await chat(client, auth, {"message": "go", "client_tools": [TOOL]})).text)[-1][1]
+    r = await client.post("/chat/tool-results", headers=auth, json=results_body(paused, "call_1"))
+    assert parse_sse(r.text)[-1][1]["usage"] == {"total_tokens": 7, "d": {"x": 3}}
+
+
+async def test_expired_pauses_are_evicted_and_conversation_repaired(app, client, auth, backend, clock):
+    paused = await paused_turn(client, auth, backend)
+    clock.now += 3600
+    assert app.state.store.evict_expired() == 1
+    assert app.state.store.get(paused["turn_id"]) is None
+    backend.script.append(answer())
+    await chat(client, auth, {"message": "x", "conversation_id": paused["conversation_id"]})
+    assert backend.repaired == [paused["conversation_id"]]
+
+
+def test_conversation_map_is_a_bounded_lru():
+    from app.turns import TurnStore
+
+    store = TurnStore(max_conversations=2)
+    store.register_conversation("a", "o")
+    store.register_conversation("b", "o")
+    store.conversation_owner("a")
+    store.register_conversation("c", "o")
+    assert store.conversation_owner("b") is None and store.conversation_owner("a") == "o"
+
+
+async def test_keepalive_comment_when_idle(client, auth, backend, monkeypatch):
+    import asyncio
+
+    from app import turns
+
+    monkeypatch.setattr(turns, "KEEPALIVE_SECONDS", 0.02)
+
+    async def slow(ctx, emit):
+        await asyncio.sleep(0.1)
+        return await answer()(ctx, emit)
+
+    backend.script = [slow]
+    r = await chat(client, auth)
+    assert ": keep-alive\n\n" in r.text
+    assert parse_sse(r.text.replace(": keep-alive\n\n", ""))[-1][0] == "done"
+
+
+async def test_lifespan_closes_backends_and_drains(app, backend, auth):
+    async with app.router.lifespan_context(app):
+        backend.script = [answer()]
+        async with __import__("httpx").AsyncClient(
+            transport=__import__("httpx").ASGITransport(app=app), base_url="http://t"
+        ) as c:
+            await chat(c, auth)
+    assert backend.closed is True
+
+
+async def test_chunked_oversized_body_is_413(client, auth):
+    async def body():
+        for _ in range(80):
+            yield b"x" * 1024
+
+    r = await client.post("/chat", content=body(), headers={**auth, "Content-Type": "application/json"})
+    assert r.status_code == 413
+
+
+async def test_deeply_nested_schema_is_422(client, auth, backend):
+    nested = {"type": "object"}
+    for _ in range(40):
+        nested = {"type": "object", "properties": {"a": nested}}
+    r = await chat(client, auth, {"message": "hi", "client_tools": [{**TOOL, "parameters": nested}]})
+    assert r.status_code == 422
+    raw = '{"message":"hi","client_tools":[{"name":"t","description":"d","parameters":' + "[" * 20000 + "]" * 20000 + "}]}"
+    r = await client.post("/chat", content=raw[:60000], headers={**auth, "Content-Type": "application/json"})
+    assert r.status_code == 422
+
+
+async def test_non_ascii_header_does_not_crash(client, auth):
+    r = await client.get("/healthz", headers={"X-Correlation-Id": "caf\u00e9".encode("latin-1")})
+    assert r.status_code == 200 and len(r.headers["x-correlation-id"]) == 36
