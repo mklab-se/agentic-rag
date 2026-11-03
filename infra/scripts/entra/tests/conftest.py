@@ -62,6 +62,7 @@ class GraphMock:
         return [
             (("GET", r"/applications"), self._list_apps),
             (("POST", r"/applications"), self._create_app),
+            (("GET", r"/applications/([^/]+)"), self._get_app),
             (("PATCH", r"/applications/([^/]+)"), self._patch_app),
             (("GET", r"/servicePrincipals"), self._list_sps),
             (("POST", r"/servicePrincipals"), self._create_sp),
@@ -123,8 +124,37 @@ class GraphMock:
                     o[id_field] not in new_by_id or new_by_id[o[id_field]].get("value") != o.get("value")
                 ):
                     return self._bad_request(f"Cannot remove or change enabled entry {o[id_field]}")
-        app.update(body)
+        error = self._check_pre_authorized(app, body)
+        if error:
+            return self._bad_request(error)
+        merged = dict(body)
+        if "api" in body:  # Graph merges the properties of the api complex type
+            merged["api"] = {**app.get("api", {}), **body["api"]}
+        app.update(merged)
         return self._json(204, None)
+
+    @staticmethod
+    def _check_pre_authorized(app: dict, body: dict) -> str | None:
+        entries = body.get("api", {}).get("preAuthorizedApplications")
+        if entries is None:
+            return None
+        scopes = body.get("api", {}).get("oauth2PermissionScopes") or app.get("api", {}).get(
+            "oauth2PermissionScopes", []
+        )
+        enabled = {s["id"] for s in scopes if s.get("isEnabled")}
+        for entry in entries:
+            if set(entry) != {"appId", "delegatedPermissionIds"} or not entry["appId"]:
+                return "preAuthorizedApplications entries need appId and delegatedPermissionIds"
+            ids = entry["delegatedPermissionIds"]
+            if not ids or not set(ids) <= enabled:
+                return "delegatedPermissionIds must reference enabled scopes of the application"
+        return None
+
+    def _get_app(self, m, body, params):
+        app = self.applications.get(m.group(1))
+        if app is None:
+            return self._json(404, {"error": {"code": "Request_ResourceNotFound"}})
+        return self._json(200, app)
 
     def _list_sps(self, m, body, params):
         want = self._filter_values(params).get("appId")

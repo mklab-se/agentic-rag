@@ -8,6 +8,19 @@ services:
     docker:
       path: ./Dockerfile
       remoteBuild: true
+  api:
+    project: ./api
+    language: python
+    host: containerapp
+    docker:
+      path: Dockerfile
+      context: ..
+      remoteBuild: true
+  web:
+    project: ./clients/web
+    language: ts
+    host: staticwebapp
+    dist: dist
 hooks:
   preprovision:
     shell: sh
@@ -19,3 +32,6 @@ hooks:
   postup:
     shell: sh
     run: hooks/postup.sh
+  predeploy:
+    shell: sh
+    run: hooks/predeploy.sh

@@ -12,6 +12,7 @@ Sleep = Callable[[float], None]
 RETRY_ATTEMPTS = 9
 RETRY_BACKOFF_SECONDS = 3.0
 SCOPE_VALUE = "access_as_user"
+AZURE_CLI_CLIENT_ID = "04b07795-8ddb-461a-bbee-02f9e1bf7b46"
 
 
 def stable_id(name: str) -> str:
@@ -130,6 +131,37 @@ def ensure_application(
     return {**app, **desired}
 
 
+def pre_authorized_body(scope_id: str) -> dict:
+    """Lets the Azure CLI request access_as_user without a consent prompt. Tokens still
+    need the Chat.User app role, which is checked by the API."""
+    return {
+        "api": {
+            "preAuthorizedApplications": [
+                {"appId": AZURE_CLI_CLIENT_ID, "delegatedPermissionIds": [scope_id]}
+            ]
+        }
+    }
+
+
+def ensure_spa_redirect(g: GraphClient, uri: str, sleep: Sleep = time.sleep) -> list[str]:
+    """Add uri to the web app's SPA redirect URIs, keeping the existing ones."""
+    found = g.get("/applications?$filter=displayName eq 'voltrieve-web'") or {}
+    matches = found.get("value", [])
+    if len(matches) != 1:
+        raise RuntimeError(f"expected one application named 'voltrieve-web', found {len(matches)}")
+    app = matches[0]
+
+    def call() -> list[str]:
+        current = (g.get(f"/applications/{app['id']}?$select=spa") or {}).get("spa", {}) or {}
+        uris = list(current.get("redirectUris", []))
+        if uri not in uris:
+            uris.append(uri)
+            g.patch(f"/applications/{app['id']}", {"spa": {"redirectUris": uris}})
+        return uris
+
+    return _retrying(call, sleep)
+
+
 def ensure_service_principal(g: GraphClient, app_id: str, sleep: Sleep = time.sleep) -> dict:
     def call() -> dict:
         found = g.get(f"/servicePrincipals?$filter=appId eq '{_quote(app_id)}'") or {}
@@ -246,6 +278,9 @@ def setup(
         lambda: g.patch(f"/applications/{api['id']}", {"identifierUris": [f"api://{api['appId']}"]}),
         sleep,
     )
+    # The pre-authorized application references the scope, so it can only be set once the
+    # scope exists (enabled by the PATCH above).
+    _retrying(lambda: g.patch(f"/applications/{api['id']}", pre_authorized_body(scope_id)), sleep)
     cli = ensure_application(g, "voltrieve-cli", cli_application_body(api["appId"], scope_id), sleep)
     web = ensure_application(
         g, "voltrieve-web", web_application_body(api["appId"], scope_id, web_redirect_uris), sleep

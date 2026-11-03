@@ -7,7 +7,7 @@ import time
 
 from azure.identity import AzureCliCredential
 
-from .apps import ensure_app_role_assignment, setup
+from .apps import ensure_app_role_assignment, ensure_spa_redirect, setup
 from .graph import GraphClient
 
 GRAPH_SCOPE = "https://graph.microsoft.com/.default"
@@ -69,6 +69,11 @@ def _run_assign(args: argparse.Namespace) -> None:
     )
 
 
+def _run_spa_redirect(args: argparse.Namespace) -> None:
+    g, _ = _graph()
+    ensure_spa_redirect(g, args.uri)
+
+
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(prog="voltrieve-entra")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -83,6 +88,10 @@ def main(argv: list[str] | None = None) -> None:
     p_assign.add_argument("--resource-sp-object-id", required=True)
     p_assign.add_argument("--app-role-id", required=True)
     p_assign.set_defaults(func=_run_assign)
+
+    p_spa = sub.add_parser("set-spa-redirect", help="Add a redirect URI to the web app registration")
+    p_spa.add_argument("--uri", required=True)
+    p_spa.set_defaults(func=_run_spa_redirect)
 
     args = parser.parse_args(argv)
     args.func(args)

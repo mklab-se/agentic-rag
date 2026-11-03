@@ -184,3 +184,59 @@ def test_generated_password_meets_complexity(graph_mock, graph, no_sleep):
     _, password = apps.ensure_user(graph, f"p@{DOMAIN}", "P", sleep=no_sleep)
     assert any(c.isupper() for c in password) and any(c.islower() for c in password)
     assert any(c.isdigit() for c in password) and any(not c.isalnum() for c in password)
+
+
+def _app(graph_mock, name):
+    return next(a for a in graph_mock.applications.values() if a["displayName"] == name)
+
+
+def test_azure_cli_is_pre_authorized_for_the_scope(graph_mock, graph):
+    env = apps.setup(graph, "tid", "deployer-oid", DOMAIN, [])
+    api = _app(graph_mock, "voltrieve-api")
+    assert api["api"]["preAuthorizedApplications"] == [
+        {"appId": "04b07795-8ddb-461a-bbee-02f9e1bf7b46", "delegatedPermissionIds": [env["API_SCOPE_ID"]]}
+    ]
+    assert api["api"]["oauth2PermissionScopes"][0]["value"] == "access_as_user"
+
+
+def test_pre_authorization_survives_a_second_setup(graph_mock, graph):
+    apps.setup(graph, "tid", "deployer-oid", DOMAIN, [])
+    apps.setup(graph, "tid", "deployer-oid", DOMAIN, [])
+    api = _app(graph_mock, "voltrieve-api")
+    assert len(api["api"]["preAuthorizedApplications"]) == 1
+    assert len(api["api"]["oauth2PermissionScopes"]) == 1
+
+
+def test_graph_rejects_pre_authorization_of_an_unknown_scope(graph_mock, graph):
+    apps.setup(graph, "tid", "deployer-oid", DOMAIN, [])
+    api = _app(graph_mock, "voltrieve-api")
+    with pytest.raises(GraphError) as err:
+        graph.patch(
+            f"/applications/{api['id']}",
+            {"api": {"preAuthorizedApplications": [{"appId": "x", "delegatedPermissionIds": ["nope"]}]}},
+        )
+    assert err.value.status == 400
+
+
+def test_setup_passes_web_redirect_uri(graph_mock, graph):
+    apps.setup(graph, "tid", "deployer-oid", DOMAIN, ["https://web.example"])
+    assert _app(graph_mock, "voltrieve-web")["spa"]["redirectUris"] == [
+        "http://localhost:5173",
+        "https://web.example",
+    ]
+
+
+def test_set_spa_redirect_adds_once_and_keeps_existing(graph_mock, graph, no_sleep):
+    apps.setup(graph, "tid", "deployer-oid", DOMAIN, [])
+    apps.ensure_spa_redirect(graph, "https://web.example", no_sleep)
+    apps.ensure_spa_redirect(graph, "https://web.example", no_sleep)
+    assert _app(graph_mock, "voltrieve-web")["spa"]["redirectUris"] == [
+        "http://localhost:5173",
+        "https://web.example",
+    ]
+    assert graph_mock.calls("PATCH", "/applications") > 0
+
+
+def test_set_spa_redirect_requires_the_web_app(graph_mock, graph, no_sleep):
+    with pytest.raises(RuntimeError, match="voltrieve-web"):
+        apps.ensure_spa_redirect(graph, "https://web.example", no_sleep)

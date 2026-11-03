@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 eval "$(azd env get-values)"
-export STORAGE_ACCOUNT_NAME DOCS_CONTAINER STORAGE_RESOURCE_ID FOUNDRY_ENDPOINT EMBEDDING_DEPLOYMENT EMBEDDING_MODEL SEARCH_ENDPOINT FOUNDRY_OPENAI_ENDPOINT CHAT_DEPLOYMENT CHAT_MODEL
+export STORAGE_ACCOUNT_NAME DOCS_CONTAINER STORAGE_RESOURCE_ID FOUNDRY_ENDPOINT EMBEDDING_DEPLOYMENT EMBEDDING_MODEL SEARCH_ENDPOINT FOUNDRY_OPENAI_ENDPOINT CHAT_DEPLOYMENT CHAT_MODEL API_PRINCIPAL_ID DEALER_SP_OBJECT_ID DEALER_APP_ROLE_ID WEB_URL
 
 # The role assignments for the signed-in user are created for the azd user, so the
 # CLI must be signed in as the same user or every call below fails with 403.
@@ -17,3 +17,11 @@ retry() { n=0; until "$@"; do n=$((n+1)); [ "$n" -ge 10 ] && return 1; echo "ret
 retry uv run --project search voltrieve-search upload --generated data/generated
 retry uv run --project search voltrieve-search apply
 retry uv run --project search voltrieve-search index
+
+# The API calls the dealer as itself, so its identity needs the Dealer.Access app role.
+retry uv run --project infra/scripts/entra voltrieve-entra assign-app-role \
+  --principal-object-id "$API_PRINCIPAL_ID" \
+  --resource-sp-object-id "$DEALER_SP_OBJECT_ID" \
+  --app-role-id "$DEALER_APP_ROLE_ID"
+# The Static Web App URL only exists after provisioning, so the first deployment adds it here.
+retry uv run --project infra/scripts/entra voltrieve-entra set-spa-redirect --uri "$WEB_URL"

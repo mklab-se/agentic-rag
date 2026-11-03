@@ -19,6 +19,11 @@ param principalId string
 // deployment always has them.
 param tenantId string = ''
 param dealerClientId string = ''
+param apiClientId string = ''
+@description('True when the API Container App already exists (azd sets SERVICE_API_RESOURCE_EXISTS), so provision keeps its deployed image.')
+param apiExists bool = false
+@description('Static Web Apps is not available in every region.')
+param webLocation string = 'westeurope'
 @description('True when the dealer Container App already exists (azd sets SERVICE_DEALER_RESOURCE_EXISTS), so provision keeps its deployed image.')
 param dealerExists bool = false
 param chatModelName string = 'gpt-5.4-mini'
@@ -28,6 +33,7 @@ param embeddingModelVersion string = '1'
 
 var placeholderImage = 'mcr.microsoft.com/dotnet/samples:aspnetapp'
 var dealerName = 'ca-dealer-${environmentName}'
+var apiName = 'ca-api-${environmentName}'
 var docsContainer = 'voltrieve-docs'
 var token = toLower(uniqueString(subscription().id, environmentName, location))
 var tags = { 'azd-env-name': environmentName, app: 'voltrieve' }
@@ -143,6 +149,75 @@ module dealerApp 'modules/dealer-app.bicep' = {
     tenantId: tenantId
     dealerClientId: dealerClientId
     appInsightsConnectionString: monitoring.outputs.appInsightsConnectionString
+  }
+}
+
+module apiIdentity 'modules/app-identity.bicep' = {
+  scope: rg
+  params: {
+    name: 'id-api-${environmentName}'
+    location: location
+    tags: tags
+    registryName: registry.outputs.name
+  }
+}
+
+module apiCurrent 'modules/fetch-container-image.bicep' = if (apiExists) {
+  scope: rg
+  params: {
+    name: apiName
+  }
+}
+
+module web 'modules/static-web-app.bicep' = {
+  scope: rg
+  params: {
+    name: 'stapp-voltrieve-${environmentName}'
+    location: webLocation
+    tags: tags
+  }
+}
+
+module apiApp 'modules/api-app.bicep' = {
+  scope: rg
+  params: {
+    name: apiName
+    location: location
+    tags: tags
+    environmentId: containerAppsEnv.outputs.id
+    registryLoginServer: registry.outputs.loginServer
+    image: apiExists ? apiCurrent.?outputs.image ?? placeholderImage : placeholderImage
+    pullIdentityId: apiIdentity.outputs.id
+    tenantId: tenantId
+    apiClientId: apiClientId
+    dealerUrl: dealerApp.outputs.url
+    dealerClientId: dealerClientId
+    foundryProjectEndpoint: foundry.outputs.projectEndpoint
+    chatDeployment: foundry.outputs.chatDeployment
+    searchEndpoint: search.outputs.endpoint
+    corsOrigins: '${web.outputs.url},http://localhost:5173'
+    appInsightsConnectionString: monitoring.outputs.appInsightsConnectionString
+  }
+}
+
+// The API calls Foundry (agents and chat) and reads the search index with its own identity.
+module apiUsesFoundry 'modules/role-foundry.bicep' = {
+  scope: rg
+  params: {
+    resourceName: foundry.outputs.name
+    principalId: apiApp.outputs.principalId
+    roleDefinitionId: foundryUser
+    principalType: 'ServicePrincipal'
+  }
+}
+
+module apiReadsSearch 'modules/role-search.bicep' = {
+  scope: rg
+  params: {
+    resourceName: search.outputs.name
+    principalId: apiApp.outputs.principalId
+    roleDefinitionId: searchIndexDataReader
+    principalType: 'ServicePrincipal'
   }
 }
 
@@ -296,3 +371,6 @@ output CONTAINER_APPS_ENVIRONMENT_ID string = containerAppsEnv.outputs.id
 output APPLICATIONINSIGHTS_CONNECTION_STRING string = monitoring.outputs.appInsightsConnectionString
 output DEALER_URL string = dealerApp.outputs.url
 output DEALER_PRINCIPAL_ID string = dealerApp.outputs.principalId
+output API_URL string = apiApp.outputs.url
+output API_PRINCIPAL_ID string = apiApp.outputs.principalId
+output WEB_URL string = web.outputs.url
