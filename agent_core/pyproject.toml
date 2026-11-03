@@ -7,7 +7,6 @@ dependencies = [
     "httpx",
     "jsonschema",
     "openai",
-    "azure-identity",
     "opentelemetry-instrumentation-httpx",
     "voltrieve-search",
 ]

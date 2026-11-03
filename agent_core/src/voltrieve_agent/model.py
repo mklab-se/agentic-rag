@@ -25,11 +25,17 @@ class McpCall:
 
 
 @dataclass
+class Failed:
+    code: str
+    message: str = ""
+
+
+@dataclass
 class Completed:
     usage: dict = field(default_factory=dict)
 
 
-StreamItem = TextDelta | FunctionCall | McpCall | Completed
+StreamItem = TextDelta | FunctionCall | McpCall | Completed | Failed
 
 
 class ModelClient(Protocol):
@@ -56,16 +62,26 @@ class ResponsesModelClient:
             tools=tools,
             stream=True,
         )
-        async for event in events:
-            item = _map_event(event)
-            if item is not None:
-                yield item
+        async with events:
+            async for event in events:
+                item = _map_event(event)
+                if item is not None:
+                    yield item
 
 
 def _map_event(event) -> StreamItem | None:
     kind = event.type
     if kind == "response.output_text.delta":
         return TextDelta(event.delta)
+    if kind == "response.refusal.delta":
+        return TextDelta(event.delta)
+    if kind == "response.failed":
+        return Failed("model_failed", _failure_message(getattr(event.response, "error", None)))
+    if kind == "response.incomplete":
+        details = getattr(event.response, "incomplete_details", None)
+        return Failed("model_incomplete", str(getattr(details, "reason", "") or ""))
+    if kind == "error":
+        return Failed("model_error", str(getattr(event, "message", "") or ""))
     if kind == "response.output_item.done":
         out = event.item
         if out.type == "function_call":
@@ -78,3 +94,7 @@ def _map_event(event) -> StreamItem | None:
         usage = getattr(event.response, "usage", None)
         return Completed(usage.model_dump() if usage is not None else {})
     return None
+
+
+def _failure_message(error) -> str:
+    return str(getattr(error, "message", "") or "")

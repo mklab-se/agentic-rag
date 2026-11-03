@@ -1,13 +1,16 @@
 """Tool definitions and the tool set that validates, authorizes and runs them."""
 
 import json
+import logging
 from collections.abc import Awaitable, Callable
 from contextvars import ContextVar
 from dataclasses import dataclass
 
-from jsonschema import Draft202012Validator
+from jsonschema import Draft202012Validator, FormatChecker
 
 from voltrieve_agent.events import Emit, trace
+
+logger = logging.getLogger(__name__)
 
 # Set by ToolSet.execute while a handler runs, so handlers can emit trace events.
 current_emit: ContextVar[Emit | None] = ContextVar("current_emit", default=None)
@@ -53,12 +56,11 @@ class ToolSet:
         self._server = {t.name: t for t in server}
         self._client = {t.name: t for t in client}
 
-    def definitions(self, user: UserContext) -> list[dict]:
-        server = [
-            _definition(t.name, t.description, t.parameters)
-            for t in self._server.values()
-            if t.required_role is None or t.required_role in user.roles
-        ]
+    def definitions(self, user: UserContext | None = None) -> list[dict]:
+        # Every server tool is listed whatever the role: execute() enforces roles, so a
+        # denied call is visible as an authorization_denied event (and prompt agents
+        # cannot hide tools anyway).
+        server = [_definition(t.name, t.description, t.parameters) for t in self._server.values()]
         client = [_definition(t.name, t.description, t.parameters) for t in self._client.values()]
         return server + client
 
@@ -88,7 +90,7 @@ class ToolSet:
         except ValueError as exc:
             return f"Error: arguments for '{name}' are not valid JSON ({exc})."
         errors = sorted(
-            Draft202012Validator(tool.parameters).iter_errors(arguments),
+            Draft202012Validator(tool.parameters, format_checker=FormatChecker()).iter_errors(arguments),
             key=lambda e: list(e.path),
         )
         if errors:
@@ -100,6 +102,7 @@ class ToolSet:
         try:
             return await tool.handler(arguments, user)
         except Exception as exc:  # tool failures go back to the model, not up the stack
-            return f"Error: '{name}' failed ({type(exc).__name__}: {exc})."
+            logger.exception("Tool %s failed", name)
+            return f"Error: the tool '{name}' failed. Tell the user it is unavailable right now."
         finally:
             current_emit.reset(token)

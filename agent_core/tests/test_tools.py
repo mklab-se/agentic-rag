@@ -46,7 +46,7 @@ async def test_handler_exception_becomes_output(user, events):
 
     toolset = ToolSet([ServerTool("lookup", "d", SCHEMA, boom)], [])
     out = await toolset.execute("lookup", '{"city": "x"}', user, events)
-    assert "RuntimeError" in out and "down" in out
+    assert "failed" in out and "RuntimeError" not in out and "down" not in out
 
 
 async def test_role_denied_refuses_and_traces(user, events):
@@ -58,17 +58,30 @@ async def test_role_denied_refuses_and_traces(user, events):
     assert [e.data["step"] for e in events.events] == ["authorization_denied"]
 
 
+async def test_date_format_is_enforced(user, events):
+    calls = []
+
+    async def handler(args, u):
+        calls.append(args)
+        return "ok"
+
+    schema = {"type": "object", "properties": {"d": {"type": "string", "format": "date"}}}
+    toolset = ToolSet([ServerTool("t", "d", schema, handler)], [])
+    out = await toolset.execute("t", '{"d": "tomorrow"}', user, events)
+    assert out.startswith("Error: invalid arguments") and calls == []
+
+
 async def test_unknown_tool(user, events):
     out = await ToolSet([], []).execute("nope", "{}", user, events)
     assert "unknown tool" in out
 
 
-def test_definitions_hide_tools_the_user_may_not_call(user):
+def test_definitions_list_every_server_tool_whatever_the_role(user):
     toolset = ToolSet(
         [make_tool([]), ServerTool("book", "d", SCHEMA, None, required_role="Admin")],
         [ClientTool("pick_file", "Pick", {"type": "object", "properties": {}})],
     )
-    assert [d["name"] for d in toolset.definitions(user)] == ["lookup", "pick_file"]
+    assert [d["name"] for d in toolset.definitions(user)] == ["lookup", "book", "pick_file"]
     admin = UserContext("o", "u", frozenset({"Admin"}))
     assert [d["name"] for d in toolset.definitions(admin)] == ["lookup", "book", "pick_file"]
     assert all(d["type"] == "function" for d in toolset.definitions(admin))
