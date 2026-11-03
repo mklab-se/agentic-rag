@@ -200,7 +200,8 @@ class TurnService:
         its end, so the conversation is never left with a function call without output.
         """
         run = _Run()
-        if job.conversation_id is not None:
+        # A turn_expired job runs nothing, and its conversation id is unvalidated client input.
+        if job.conversation_id is not None and not job.turn_expired:
             self._running[job.conversation_id] = run
         task = asyncio.create_task(self._execute(run, job, correlation_id.get()))
         self._tasks.add(task)
@@ -288,6 +289,7 @@ class TurnService:
             if conversation_id is None:
                 conversation_id = await backend.create_conversation(oid)
                 self.store.register_conversation(conversation_id, oid)
+                self._running[conversation_id] = run
                 bind_log_context(conversation_id=conversation_id)
                 await run.emit(trace("conversation_created", "api", conversation_id))
 

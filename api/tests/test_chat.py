@@ -444,3 +444,52 @@ async def test_deeply_nested_schema_is_422(client, auth, backend):
 async def test_non_ascii_header_does_not_crash(client, auth):
     r = await client.get("/healthz", headers={"X-Correlation-Id": "caf\u00e9".encode("latin-1")})
     assert r.status_code == 200 and len(r.headers["x-correlation-id"]) == 36
+
+
+async def test_new_conversation_is_running_from_creation(client, auth, backend):
+    import asyncio
+
+    gate = asyncio.Event()
+
+    async def slow(ctx, emit):
+        await gate.wait()
+        return await answer()(ctx, emit)
+
+    backend.script = [slow]
+    first = asyncio.create_task(chat(client, auth))
+    for _ in range(100):
+        if backend.created:
+            break
+        await asyncio.sleep(0.01)
+    r = await chat(client, auth, {"message": "second", "conversation_id": "conv_1"})
+    assert r.status_code == 409
+    gate.set()
+    await first
+    backend.script = [answer()]
+    assert (await chat(client, auth, {"message": "third", "conversation_id": "conv_1"})).status_code == 200
+
+
+async def test_turn_expired_job_does_not_touch_running_marker(client, auth, backend):
+    import asyncio
+
+    gate = asyncio.Event()
+
+    async def slow(ctx, emit):
+        await gate.wait()
+        return await answer()(ctx, emit)
+
+    backend.script = [answer()]
+    conv = parse_sse((await chat(client, auth)).text)[-1][1]["conversation_id"]
+    backend.script = [slow]
+    running = asyncio.create_task(chat(client, auth, {"message": "slow", "conversation_id": conv}))
+    await asyncio.sleep(0.05)
+    r = await client.post(
+        "/chat/tool-results",
+        headers=auth,
+        json={"conversation_id": conv, "turn_id": "nope", "results": [{"call_id": "a", "output": "x"}]},
+    )
+    assert parse_sse(r.text)[-1][1]["code"] == "turn_expired"
+    r = await chat(client, auth, {"message": "second", "conversation_id": conv})
+    assert r.status_code == 409
+    gate.set()
+    await running
