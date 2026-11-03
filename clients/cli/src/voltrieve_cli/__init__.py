@@ -1,0 +1,1 @@
+"""Voltrieve terminal client."""
