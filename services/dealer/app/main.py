@@ -10,6 +10,7 @@ from app.data import DealerData
 from app.logging_setup import configure_logging, correlation_id
 from app.routes import DATA_PATH, build_router
 from app.settings import Settings
+from app.telemetry import annotate_span, configure_telemetry
 
 logger = logging.getLogger("app.access")
 CORRELATION_ID_PATTERN = re.compile(r"^[A-Za-z0-9._-]{1,64}$")
@@ -17,6 +18,7 @@ CORRELATION_ID_PATTERN = re.compile(r"^[A-Za-z0-9._-]{1,64}$")
 
 def create_app(settings: Settings, validator: TokenValidator | None = None) -> FastAPI:
     configure_logging(settings.log_level)
+    configure_telemetry(settings.applicationinsights_connection_string)
     app = FastAPI(
         title="Voltrieve dealer service", docs_url=None, redoc_url=None, openapi_url=None
     )
@@ -29,6 +31,7 @@ def create_app(settings: Settings, validator: TokenValidator | None = None) -> F
         supplied = request.headers.get("X-Correlation-Id", "")
         cid = supplied if CORRELATION_ID_PATTERN.fullmatch(supplied) else str(uuid.uuid4())
         token = correlation_id.set(cid)
+        annotate_span(correlation_id=cid)
         start = time.perf_counter()
         status = 500
         try:

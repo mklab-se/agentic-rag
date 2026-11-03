@@ -14,6 +14,7 @@ dependencies = [
     "aiohttp",
     "azure-ai-projects",
     "azure-monitor-opentelemetry",
+    "opentelemetry-api",
     "voltrieve-agent-core",
     "voltrieve-search",
 ]

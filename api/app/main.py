@@ -17,7 +17,7 @@ from app.backends import BackendRegistry
 from app.logging_setup import configure_logging, correlation_id
 from app.routes import build_router
 from app.settings import Settings
-from app.telemetry import configure_telemetry
+from app.telemetry import annotate_span, configure_telemetry
 from app.turns import TurnService, TurnStore
 
 logger = logging.getLogger("app.access")
@@ -51,6 +51,7 @@ class RequestGuard:
         supplied = headers.get("x-correlation-id", "")
         cid = supplied if CORRELATION_ID_PATTERN.fullmatch(supplied) else str(uuid.uuid4())
         token = correlation_id.set(cid)
+        annotate_span(correlation_id=cid)
         start = time.perf_counter()
         status = 500
         started = False

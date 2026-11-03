@@ -9,6 +9,8 @@ dependencies = [
     "PyJWT[crypto]",
     "httpx",
     "pydantic-settings",
+    "azure-monitor-opentelemetry",
+    "opentelemetry-api",
 ]
 
 [dependency-groups]

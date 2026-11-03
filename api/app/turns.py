@@ -23,6 +23,7 @@ from app.backends import BackendRegistry
 from app.backends.base import TurnContext
 from app.logging_setup import bind_log_context, correlation_id
 from app.sse import KEEPALIVE, format_event
+from app.telemetry import annotate_span, debug_payload, turn_span
 
 logger = logging.getLogger(__name__)
 
@@ -231,6 +232,16 @@ class TurnService:
 
     async def _execute(self, run: _Run, job: Job, cid: str) -> None:
         correlation_id.set(cid)
+        with turn_span(
+            conversation_id=job.conversation_id,
+            turn_id=job.turn_id,
+            backend=job.backend,
+            correlation_id=cid,
+            user_oid=job.claims.oid,
+        ):
+            await self._run_job(run, job)
+
+    async def _run_job(self, run: _Run, job: Job) -> None:
         oid = job.claims.oid
         conversation_id = job.conversation_id
         bind_log_context(
@@ -291,8 +302,10 @@ class TurnService:
                 self.store.register_conversation(conversation_id, oid)
                 self._running[conversation_id] = run
                 bind_log_context(conversation_id=conversation_id)
+                annotate_span(conversation_id=conversation_id)
                 await run.emit(trace("conversation_created", "api", conversation_id))
 
+            debug_payload(logger, "turn input", job.input)
             ctx = TurnContext(
                 user=UserContext(oid, job.claims.username, frozenset(job.claims.roles)),
                 conversation_id=conversation_id,
