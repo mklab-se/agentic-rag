@@ -120,3 +120,57 @@ async def test_not_yet_valid_is_401(validator, make_token, rsa_key, tenant_id, c
     with pytest.raises(AuthError) as e:
         await validator.validate(token)
     assert e.value.status_code == 401
+
+
+async def test_consecutive_unknown_kids_refetch_only_once(make_token, jwks, client_id, tenant_id):
+    calls = []
+
+    def fetch():
+        calls.append(1)
+        return jwks
+
+    v = TokenValidator(tenant_id, client_id, "Dealer.Access", jwks_fetcher=fetch)
+    await v.validate(make_token())
+    for _ in range(3):
+        with pytest.raises(AuthError) as e:
+            await v.validate(make_token(kid="nope"))
+        assert e.value.status_code == 401
+    assert len(calls) == 2
+
+
+async def test_valid_token_not_blocked_by_slow_fetch(make_token, jwks, client_id, tenant_id):
+    import asyncio
+    import time
+
+    delay = 0.0
+
+    def fetch():
+        time.sleep(delay)
+        return jwks
+
+    v = TokenValidator(tenant_id, client_id, "Dealer.Access", jwks_fetcher=fetch)
+    await v.validate(make_token())
+    delay = 0.5
+    forged = asyncio.create_task(v.validate(make_token(kid="nope")))
+    await asyncio.sleep(0.05)
+    start = time.monotonic()
+    await v.validate(make_token())
+    assert time.monotonic() - start < 0.2
+    with pytest.raises(AuthError):
+        await forged
+
+
+@pytest.mark.parametrize("missing", ["exp", "aud"])
+async def test_token_missing_required_claim_is_401(validator, rsa_key, tenant_id, client_id, missing):
+    claims = {
+        "iss": f"https://login.microsoftonline.com/{tenant_id}/v2.0",
+        "aud": client_id,
+        "roles": ["Dealer.Access"],
+        "oid": "x",
+        "exp": 4102444800,
+    }
+    del claims[missing]
+    token = jwt.encode(claims, rsa_key, algorithm="RS256", headers={"kid": "test"})
+    with pytest.raises(AuthError) as e:
+        await validator.validate(token)
+    assert e.value.status_code == 401

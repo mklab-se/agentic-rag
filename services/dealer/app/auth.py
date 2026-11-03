@@ -1,5 +1,6 @@
 import asyncio
 import logging
+import time
 from collections.abc import Callable
 from dataclasses import dataclass
 
@@ -32,6 +33,7 @@ class TokenValidator:
         client_id: str,
         required_role: str,
         jwks_fetcher: Callable[[], dict] | None = None,
+        miss_refetch_interval: float = 300.0,
     ):
         self._client_id = client_id
         self._required_role = required_role
@@ -41,6 +43,8 @@ class TokenValidator:
         self._fetcher = jwks_fetcher or self._fetch_jwks
         self._keys: dict[str, jwt.PyJWK] = {}
         self._lock = asyncio.Lock()
+        self._miss_refetch_interval = miss_refetch_interval
+        self._last_miss_refresh: float | None = None
 
     def _fetch_jwks(self) -> dict:
         response = httpx.get(self._jwks_url, timeout=10.0)
@@ -57,15 +61,33 @@ class TokenValidator:
         self._keys = {key.key_id: key for key in keyset.keys if key.key_id}
 
     async def _signing_key(self, kid: str) -> jwt.PyJWK:
+        # Cached keys are served without touching the lock, so a slow JWKS fetch
+        # never delays tokens signed with a known key.
+        key = self._keys.get(kid)
+        if key is not None:
+            return key
+        if self._keys and self._in_cooldown():
+            raise AuthError(401, "Unknown signing key")
         async with self._lock:
-            if not self._keys:
-                await self._refresh_keys()
-            if kid not in self._keys:
-                await self._refresh_keys()
+            key = self._keys.get(kid)
+            if key is not None:
+                return key
+            if self._keys:
+                # A miss with keys already loaded: rate limit forged kids.
+                if self._in_cooldown():
+                    raise AuthError(401, "Unknown signing key")
+                self._last_miss_refresh = time.monotonic()
+            await self._refresh_keys()
             key = self._keys.get(kid)
         if key is None:
             raise AuthError(401, "Unknown signing key")
         return key
+
+    def _in_cooldown(self) -> bool:
+        return (
+            self._last_miss_refresh is not None
+            and time.monotonic() - self._last_miss_refresh < self._miss_refetch_interval
+        )
 
     @staticmethod
     def _extract_token(bearer: str | None) -> str:
