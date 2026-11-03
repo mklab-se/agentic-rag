@@ -1,0 +1,10 @@
+.git
+.azure
+.superpowers
+clients
+docs
+data
+infra
+**/.venv
+**/node_modules
+**/__pycache__

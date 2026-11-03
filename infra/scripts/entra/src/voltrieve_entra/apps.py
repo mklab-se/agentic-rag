@@ -50,23 +50,27 @@ def _app_role(role_id: str, value: str, description: str, member_types: list[str
     }
 
 
+def _scopes(scope_id: str) -> list[dict]:
+    return [
+        {
+            "id": scope_id,
+            "value": SCOPE_VALUE,
+            "type": "User",
+            "isEnabled": True,
+            "adminConsentDisplayName": "Access Voltrieve as the signed-in user",
+            "adminConsentDescription": "Allows the app to call the Voltrieve API on behalf of the signed-in user.",
+            "userConsentDisplayName": "Access Voltrieve as you",
+            "userConsentDescription": "Allows the app to call the Voltrieve API on your behalf.",
+        }
+    ]
+
+
 def api_application_body(scope_id: str, chat_role_id: str, book_role_id: str) -> dict:
     return {
         "signInAudience": "AzureADMyOrg",
         "api": {
             "requestedAccessTokenVersion": 2,
-            "oauth2PermissionScopes": [
-                {
-                    "id": scope_id,
-                    "value": SCOPE_VALUE,
-                    "type": "User",
-                    "isEnabled": True,
-                    "adminConsentDisplayName": "Access Voltrieve as the signed-in user",
-                    "adminConsentDescription": "Allows the app to call the Voltrieve API on behalf of the signed-in user.",
-                    "userConsentDisplayName": "Access Voltrieve as you",
-                    "userConsentDescription": "Allows the app to call the Voltrieve API on your behalf.",
-                }
-            ],
+            "oauth2PermissionScopes": _scopes(scope_id),
         },
         "appRoles": [
             _app_role(chat_role_id, "Chat.User", "Can chat with the Voltrieve assistant.", ["User"]),
@@ -136,6 +140,9 @@ def pre_authorized_body(scope_id: str) -> dict:
     need the Chat.User app role, which is checked by the API."""
     return {
         "api": {
+            # Repeated so PATCH semantics on the api property can never drop them.
+            "requestedAccessTokenVersion": 2,
+            "oauth2PermissionScopes": _scopes(scope_id),
             "preAuthorizedApplications": [
                 {"appId": AZURE_CLI_CLIENT_ID, "delegatedPermissionIds": [scope_id]}
             ]

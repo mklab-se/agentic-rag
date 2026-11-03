@@ -240,3 +240,9 @@ def test_set_spa_redirect_adds_once_and_keeps_existing(graph_mock, graph, no_sle
 def test_set_spa_redirect_requires_the_web_app(graph_mock, graph, no_sleep):
     with pytest.raises(RuntimeError, match="voltrieve-web"):
         apps.ensure_spa_redirect(graph, "https://web.example", no_sleep)
+
+
+def test_pre_authorized_body_repeats_scopes_and_token_version():
+    body = apps.pre_authorized_body("s")["api"]
+    assert body["oauth2PermissionScopes"] == apps.api_application_body("s", "c", "b")["api"]["oauth2PermissionScopes"]
+    assert body["requestedAccessTokenVersion"] == 2

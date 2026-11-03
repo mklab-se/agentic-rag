@@ -21,6 +21,11 @@ services:
     language: ts
     host: staticwebapp
     dist: dist
+    hooks:
+      # Vite reads .env.production at build time, so this must run before the package step.
+      prepackage:
+        shell: sh
+        run: ../../hooks/web-prepackage.sh
 hooks:
   preprovision:
     shell: sh
@@ -32,6 +37,11 @@ hooks:
   postup:
     shell: sh
     run: hooks/postup.sh
-  predeploy:
-    shell: sh
-    run: hooks/predeploy.sh
+workflows:
+  # The default order packages before provision, which is too early: the web build needs
+  # values that provision creates.
+  up:
+    steps:
+      - azd: provision
+      - azd: package --all
+      - azd: deploy --all
