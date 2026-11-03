@@ -1,0 +1,51 @@
+# Factual questions for the runbook and the grounding check. The expected values are never
+# written here: `expect` says how to derive them from data/voltrieve.yaml (and the dealer's
+# data.json for stock) when the check runs.
+questions:
+  - id: towing-fjord
+    step: 2
+    ask: "What is the towing capacity of the Fjord?"
+    expect: { type: value, model: fjord, field: towing_kg }
+
+  - id: towing-84kwh
+    step: 3
+    ask: "Which of the 84 kWh models tows more?"
+    expect: { type: best, where: { battery_kwh: 84 }, field: towing_kg, pick: max }
+
+  - id: fastest-charging
+    step: 4
+    ask: "Which Voltrieve charges fastest?"
+    expect: { type: best, field: peak_charge_kw, pick: max }
+
+  - id: spark-towing
+    step: 5
+    ask: "Can the Spark tow a trailer?"
+    expect: { type: absent, model: spark, field: towing_kg }
+
+  - id: lumen-ncap
+    step: 6
+    ask: "What is the Lumen's Euro NCAP rating?"
+    expect: { type: not_documented, topic: "Euro NCAP", terms: [ncap] }
+
+  - id: cheapest-awd-se
+    step: 7
+    ask: "What is the cheapest AWD Voltrieve in Sweden?"
+    expect: { type: cheapest_awd, market: SE }
+
+  - id: atlas-stock
+    step: 8
+    ask: "Is the Atlas in stock in Göteborg?"
+    expect: { type: stock, model: atlas, city: Göteborg }
+
+  # Grounding only: not in the documents at all, the answer must not invent a value.
+  - id: ragn-warranty
+    ask: "How long is the battery warranty on the Ragn?"
+    expect: { type: not_documented, topic: warranty, terms: [warranty] }
+
+  - id: fjord-crash-test
+    ask: "How did the Fjord do in crash tests?"
+    expect: { type: not_documented, topic: crash test, terms: [crash] }
+
+  - id: production-location
+    ask: "In which factory are Voltrieve cars produced?"
+    expect: { type: not_documented, topic: factory, terms: [factory, production] }

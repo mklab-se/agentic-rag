@@ -1,0 +1,27 @@
+[project]
+name = "voltrieve-contract-tests"
+version = "0.1.0"
+description = "Contract tests: every backend produces the same event shapes for the same scripted conversations"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "voltrieve-api",
+    "voltrieve-agent-core",
+    "voltrieve-search",
+    "httpx",
+]
+
+[dependency-groups]
+dev = ["pytest", "pytest-asyncio"]
+
+[tool.uv]
+package = false
+
+[tool.uv.sources]
+voltrieve-api = { path = "../../api" }
+voltrieve-agent-core = { path = "../../agent_core" }
+voltrieve-search = { path = "../../search" }
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["."]
