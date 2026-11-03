@@ -23,7 +23,7 @@ param apiClientId string = ''
 @description('True when the API Container App already exists (azd sets SERVICE_API_RESOURCE_EXISTS), so provision keeps its deployed image.')
 param apiExists bool = false
 @description('Static Web Apps is not available in every region.')
-param webLocation string = 'westeurope'
+param webLocation string = 'eastus2'
 @description('True when the dealer Container App already exists (azd sets SERVICE_DEALER_RESOURCE_EXISTS), so provision keeps its deployed image.')
 param dealerExists bool = false
 param chatModelName string = 'gpt-5.4-mini'
