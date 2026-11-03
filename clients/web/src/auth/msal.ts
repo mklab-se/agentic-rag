@@ -46,6 +46,8 @@ export function createMsalAuth(config: AppConfig): Auth {
       } catch (e) {
         if (e instanceof InteractionRequiredAuthError) {
           await app.acquireTokenRedirect({ ...request, account });
+          // The page is navigating away; never settle so no error flashes.
+          return new Promise<string>(() => {});
         }
         throw e;
       }

@@ -95,4 +95,4 @@ createServer(async (req, res) => {
   } finally {
     res.end();
   }
-}).listen(PORT, () => console.log(`mock Web API on http://localhost:${PORT}`));
+}).listen(PORT, "127.0.0.1", () => console.log(`mock Web API on http://127.0.0.1:${PORT}`));

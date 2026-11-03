@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useReducer, useRef, useState } from "react";
-import { createAuth, type Auth, type AuthSession } from "./auth";
+import { bootAuth, type Auth, type AuthSession } from "./auth";
 import { streamChat } from "./chat";
 import { Chat } from "./components/Chat";
 import { Header } from "./components/Header";
@@ -33,8 +33,7 @@ function Authed({ config }: { config: AppConfig }) {
     let cancelled = false;
     (async () => {
       try {
-        const a = await createAuth(config);
-        const s = await a.init();
+        const { auth: a, session: s } = await bootAuth(config);
         if (cancelled) return;
         setAuth(a);
         setSession(s);

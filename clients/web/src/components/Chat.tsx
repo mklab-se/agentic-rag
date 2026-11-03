@@ -32,7 +32,7 @@ export function Chat({ state, busy, onSend }: Props) {
   }
 
   function onKey(e: KeyboardEvent<HTMLTextAreaElement>) {
-    if (e.key === "Enter" && !e.shiftKey) submit(e);
+    if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) submit(e);
   }
 
   return (

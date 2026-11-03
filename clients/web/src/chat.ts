@@ -68,15 +68,25 @@ export async function* streamChat(
   const parser = createSseParser();
   const decoder = new TextDecoder();
   const reader = res.body.getReader();
+  let terminal = false;
   try {
     for (;;) {
       const { done, value } = await reader.read();
       const messages = done ? parser.flush() : parser.feed(decoder.decode(value, { stream: true }));
       for (const m of messages) {
         const ev = parseServerEvent(m);
-        if (ev) yield ev;
+        if (ev) {
+          if (ev.type === "done" || ev.type === "error" || ev.type === "client_tool_calls") terminal = true;
+          yield ev;
+        }
       }
       if (done) break;
+    }
+    if (!terminal && !signal?.aborted) {
+      yield {
+        type: "error",
+        data: { code: "incomplete", message: "The stream ended before the turn completed." },
+      };
     }
   } catch {
     if (signal?.aborted) return;

@@ -71,6 +71,32 @@ describe("streamChat", () => {
     expect(e2).toMatchObject([{ type: "error", data: { code: "network" } }]);
   });
 
+  it("yields an error when the stream ends without done or error", async () => {
+    const fetchImpl = (async () =>
+      sseResponse(['event: delta\ndata: {"text":"Hi"}\n\n'])) as unknown as typeof fetch;
+    const events = await collect(streamChat(base, undefined, fetchImpl));
+    expect(events.map((e) => e.type)).toEqual(["delta", "error"]);
+    expect(events[1]).toMatchObject({
+      data: { code: "incomplete", message: "The stream ended before the turn completed." },
+    });
+  });
+
+  it("decodes a multibyte character split across byte chunks", async () => {
+    const bytes = new TextEncoder().encode('event: delta\ndata: {"text":"Göteborg"}\n\nevent: done\ndata: {"conversation_id":"c","turn_id":"t","backend":"loop"}\n\n');
+    const split = bytes.indexOf(0xc3) + 1; // between the two bytes of "ö"
+    const body = new ReadableStream<Uint8Array>({
+      start(c) {
+        c.enqueue(bytes.slice(0, split));
+        c.enqueue(bytes.slice(split));
+        c.close();
+      },
+    });
+    const fetchImpl = (async () => new Response(body, { status: 200 })) as unknown as typeof fetch;
+    const events = await collect(streamChat(base, undefined, fetchImpl));
+    expect(events[0]).toMatchObject({ type: "delta", data: { text: "Göteborg" } });
+    expect(events[1]!.type).toBe("done");
+  });
+
   it("reports malformed event JSON as an error event instead of throwing", async () => {
     const fetchImpl = (async () => sseResponse(["event: delta\ndata: {nope\n\n"])) as unknown as typeof fetch;
     const events = await collect(streamChat(base, undefined, fetchImpl));
