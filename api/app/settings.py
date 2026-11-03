@@ -18,6 +18,12 @@ class Settings(BaseSettings):
     dealer_url: str = ""
     dealer_client_id: str = ""
 
+    # Backend A: the project connection to the knowledge base MCP endpoint (used when the agents
+    # are created) and the names of the two prompt agents the API drives.
+    kb_connection_name: str = "voltrieve-kb-mcp"
+    prompt_agent_cli: str = "voltrieve-prompt-cli"
+    prompt_agent_web: str = "voltrieve-prompt-web"
+
     @property
     def cors_origin_list(self) -> list[str]:
         return [o.strip() for o in self.cors_origins.split(",") if o.strip()]

@@ -45,23 +45,37 @@ class ModelClient(Protocol):
 
 
 class ResponsesModelClient:
-    """Streams one model call through the Responses API of a Foundry project."""
+    """Streams one model call through the Responses API of a Foundry project.
 
-    def __init__(self, openai_client, model: str):
+    With `agent_name` the call goes to that Foundry prompt agent instead: the agent's own
+    definition supplies model, instructions and tools, and Foundry rejects a request that
+    also sets them ("Not allowed when agent is specified"), so they are left out.
+    """
+
+    def __init__(self, openai_client, model: str | None = None, agent_name: str | None = None):
         self._client = openai_client  # AsyncOpenAI from AIProjectClient.get_openai_client()
         self._model = model
+        self._agent_name = agent_name
 
     async def stream(
         self, *, instructions: str, conversation: str, input: str | list[dict], tools: list[dict]
     ) -> AsyncIterator[StreamItem]:
-        events = await self._client.responses.create(
-            model=self._model,
-            instructions=instructions,
-            conversation=conversation,
-            input=input,
-            tools=tools,
-            stream=True,
-        )
+        if self._agent_name is not None:
+            events = await self._client.responses.create(
+                conversation=conversation,
+                input=input,
+                extra_body={"agent_reference": {"name": self._agent_name, "type": "agent_reference"}},
+                stream=True,
+            )
+        else:
+            events = await self._client.responses.create(
+                model=self._model,
+                instructions=instructions,
+                conversation=conversation,
+                input=input,
+                tools=tools,
+                stream=True,
+            )
         async with events:
             async for event in events:
                 item = _map_event(event)

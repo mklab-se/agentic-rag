@@ -1,0 +1,17 @@
+[project]
+name = "voltrieve-prompt-agents"
+version = "0.1.0"
+description = "Creates the Foundry prompt agents for backend A and demonstrates the tools rejection"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "azure-ai-projects",
+    "azure-identity",
+    "voltrieve-agent-core",
+]
+
+[tool.uv]
+package = false
+
+[tool.uv.sources]
+voltrieve-agent-core = { path = "../../agent_core" }
+voltrieve-search = { path = "../../search" }

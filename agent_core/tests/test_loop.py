@@ -298,3 +298,32 @@ async def test_responses_client_maps_stream_events():
         Completed({"total_tokens": 9}),
     ]
     assert seen["closed"] and seen["stream"] is True and seen["model"] == "gpt-x" and seen["conversation"] == "conv"
+
+
+async def test_responses_model_client_with_agent_sends_only_the_reference():
+    seen = {}
+
+    class FakeStream:
+        async def __aenter__(self):
+            return self
+
+        async def __aexit__(self, *exc):
+            pass
+
+        async def __aiter__(self):
+            return
+            yield
+
+    async def create(**kwargs):
+        seen.update(kwargs)
+        return FakeStream()
+
+    client = SimpleNamespace(responses=SimpleNamespace(create=create))
+    model = ResponsesModelClient(client, agent_name="agent-x")
+    [i async for i in model.stream(instructions="i", conversation="conv", input="hi", tools=[{"type": "function"}])]
+    assert seen == {
+        "conversation": "conv",
+        "input": "hi",
+        "extra_body": {"agent_reference": {"name": "agent-x", "type": "agent_reference"}},
+        "stream": True,
+    }

@@ -13,6 +13,9 @@ param dealerClientId string
 param foundryProjectEndpoint string
 param chatDeployment string
 param searchEndpoint string
+param kbConnectionName string
+param promptAgentCli string
+param promptAgentWeb string
 @description('Comma separated list of allowed browser origins.')
 param corsOrigins string
 param appInsightsConnectionString string
@@ -64,6 +67,9 @@ resource api 'Microsoft.App/containerApps@2026-07-01' = {
             { name: 'FOUNDRY_PROJECT_ENDPOINT', value: foundryProjectEndpoint }
             { name: 'CHAT_DEPLOYMENT', value: chatDeployment }
             { name: 'SEARCH_ENDPOINT', value: searchEndpoint }
+            { name: 'KB_CONNECTION_NAME', value: kbConnectionName }
+            { name: 'PROMPT_AGENT_CLI', value: promptAgentCli }
+            { name: 'PROMPT_AGENT_WEB', value: promptAgentWeb }
             { name: 'CORS_ORIGINS', value: corsOrigins }
             { name: 'AGENT_BACKEND', value: 'loop' }
             { name: 'APPLICATIONINSIGHTS_CONNECTION_STRING', value: appInsightsConnectionString }

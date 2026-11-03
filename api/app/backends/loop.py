@@ -47,6 +47,9 @@ class LoopBackend:
             return None
         return (getattr(conversation, "metadata", None) or {}).get("owner_oid")
 
+    def _model_for(self, ctx: TurnContext) -> ModelClient:
+        return self._model
+
     async def run_turn(self, ctx: TurnContext, emit: Emit) -> TurnOutcome:
         input_ = ctx.input
         if isinstance(input_, list):
@@ -59,7 +62,7 @@ class LoopBackend:
             client_tools=ctx.client_tools,
             correlation_id=ctx.correlation_id,
         )
-        return await run_turn(self._model, self._server_tools, turn, emit)
+        return await run_turn(self._model_for(ctx), self._server_tools, turn, emit)
 
     async def abandon(self, conversation_id: str, outputs: list[dict]) -> None:
         # Adding items does not call the model, so abandoning costs no tokens.

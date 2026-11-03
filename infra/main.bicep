@@ -195,6 +195,9 @@ module apiApp 'modules/api-app.bicep' = {
     foundryProjectEndpoint: foundry.outputs.projectEndpoint
     chatDeployment: foundry.outputs.chatDeployment
     searchEndpoint: search.outputs.endpoint
+    kbConnectionName: kbConnection.outputs.name
+    promptAgentCli: 'voltrieve-prompt-cli'
+    promptAgentWeb: 'voltrieve-prompt-web'
     corsOrigins: '${web.outputs.url},http://localhost:5173'
     appInsightsConnectionString: monitoring.outputs.appInsightsConnectionString
   }
