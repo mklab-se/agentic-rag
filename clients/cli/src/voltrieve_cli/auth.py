@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import subprocess
+import sys
 from pathlib import Path
 
 from .config import Settings
@@ -34,11 +35,12 @@ def _build_app(settings: Settings):  # pragma: no cover - needs a real tenant
     import msal
     from msal_extensions import FilePersistence, PersistedTokenCache, build_encrypted_persistence
 
+    CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
     try:
         persistence = build_encrypted_persistence(str(CACHE_PATH))
     except Exception:
+        print("warning: encrypted token cache unavailable, using a plaintext cache file", file=sys.stderr)
         persistence = FilePersistence(str(CACHE_PATH))
-    CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
     return msal.PublicClientApplication(
         settings.cli_client_id,
         authority=f"https://login.microsoftonline.com/{settings.tenant_id}",

@@ -5,7 +5,8 @@ import pytest
 from typer.testing import CliRunner
 
 from voltrieve_cli import tools
-from voltrieve_cli.api import ApiClient, parse_sse, run_turn
+from voltrieve_cli.api import ApiClient, ApiError, parse_sse, run_turn
+from voltrieve_cli.render import ChatView
 from voltrieve_cli.config import ConfigError, load_settings, parse_env_values
 from voltrieve_cli.main import app
 
@@ -99,7 +100,7 @@ def test_ask_json_prints_event_lines(monkeypatch):
                                             ("done", {"conversation_id": "c", "turn_id": "t", "backend": "prompt", "usage": {}})))
 
     real = ApiClient
-    monkeypatch.setattr("voltrieve_cli.main._client", lambda b, a, d: real("http://api", "t", transport=httpx.MockTransport(handler)))
+    monkeypatch.setattr("voltrieve_cli.main._client", lambda b, a: real("http://api", "t", transport=httpx.MockTransport(handler)))
     result = CliRunner().invoke(app, ["ask", "q", "--json"])
     assert result.exit_code == 0
     lines = [json.loads(l) for l in result.stdout.strip().splitlines()]
@@ -110,7 +111,7 @@ def test_ask_error_event_exits_nonzero(monkeypatch):
     def handler(request):
         return httpx.Response(200, text=sse(("error", {"code": "denied", "message": "no"})))
 
-    monkeypatch.setattr("voltrieve_cli.main._client", lambda b, a, d: ApiClient("http://api", "t", transport=httpx.MockTransport(handler)))
+    monkeypatch.setattr("voltrieve_cli.main._client", lambda b, a: ApiClient("http://api", "t", transport=httpx.MockTransport(handler)))
     assert CliRunner().invoke(app, ["ask", "q", "--json"]).exit_code == 1
 
 
@@ -118,10 +119,55 @@ def test_chat_view_renders_narrow_and_wide():
     from rich.console import Console
     for width in (60, 140):
         console = Console(width=width, height=30, record=True, force_terminal=False)
-        with __import__("voltrieve_cli.render", fromlist=["ChatView"]).ChatView(console) as view:
+        with ChatView(console) as view:
             view.user("hello")
             view.on_event("trace", {"step": "model", "component": "api", "detail": "called", "elapsed_ms": 5})
             view.on_event("delta", {"text": "hi there"})
             view.show_banner("BANNER")
         out = console.export_text()
         assert "hi there" in out and "model" in out and "BANNER" in out
+
+
+def test_ask_survives_markup_like_text(monkeypatch):
+    calls = {"n": 0}
+
+    def handler(request):
+        calls["n"] += 1
+        if request.url.path == "/chat":
+            return httpx.Response(200, text=sse(
+                ("trace", {"step": "[/x]", "component": "[b]", "detail": "[/x]"}),
+                ("client_tool_calls", {"conversation_id": "c", "turn_id": "t", "calls": [
+                    {"call_id": "1", "name": "show_banner", "arguments": {"text": "[/x]"}}]})))
+        return httpx.Response(200, text=sse(("delta", {"text": "[/x] ok"}),
+                                            ("done", {"conversation_id": "c", "turn_id": "t", "backend": "p", "usage": {}})))
+
+    monkeypatch.setattr("voltrieve_cli.main._client", lambda b, a: ApiClient("http://api", "t", transport=httpx.MockTransport(handler)))
+    result = CliRunner().invoke(app, ["ask", "q"])
+    assert result.exit_code == 0, result.output
+    assert calls["n"] == 2 and "[/x] ok" in result.stdout
+
+
+def test_http_error_raises_api_error():
+    client = ApiClient("http://api", "t", transport=httpx.MockTransport(lambda r: httpx.Response(401)))
+    with pytest.raises(ApiError):
+        run_turn(client, "q", None, lambda n, d: None)
+
+
+def test_max_rounds_limit():
+    def handler(request):
+        return httpx.Response(200, text=sse(("client_tool_calls", {"conversation_id": "c", "turn_id": "t", "calls": [
+            {"call_id": "1", "name": "get_local_time", "arguments": {}}]})))
+
+    client = ApiClient("http://api", "t", transport=httpx.MockTransport(handler))
+    outcome = run_turn(client, "q", None, lambda n, d: None, max_rounds=3)
+    assert outcome.error and "too many" in outcome.error["message"]
+    assert len(outcome.tool_runs) == 3
+
+
+def test_token_provider_called_per_request():
+    tokens = iter(["a", "b"])
+    seen = []
+    client = ApiClient("http://api", lambda: next(tokens),
+                       transport=httpx.MockTransport(lambda r: seen.append(r.headers["authorization"]) or httpx.Response(200, text="")))
+    list(client.chat("x")); list(client.chat("y"))
+    assert seen == ["Bearer a", "Bearer b"]

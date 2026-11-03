@@ -55,8 +55,8 @@ def make_noise(times: Any, bell: Callable[[], None] | None = None) -> str:
 
 
 def _bell() -> None:  # pragma: no cover
-    sys.stdout.write("\a")
-    sys.stdout.flush()
+    sys.stderr.write("\a")  # stderr keeps `ask --json` stdout parseable
+    sys.stderr.flush()
 
 
 def get_local_time() -> str:

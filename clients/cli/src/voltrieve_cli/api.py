@@ -59,19 +59,20 @@ class TurnOutcome:
 
 
 class ApiClient:
-    def __init__(self, base_url: str, token: str, backend: str | None = None,
+    def __init__(self, base_url: str, token: str | Callable[[], str], backend: str | None = None,
                  transport: httpx.BaseTransport | None = None, timeout: float = 120.0):
-        headers = {"Authorization": f"Bearer {token}"}
-        if backend:
-            headers["X-Agent-Backend"] = backend
-        self._http = httpx.Client(base_url=base_url, headers=headers, transport=transport,
-                                  timeout=timeout)
+        self._token = token if callable(token) else (lambda: token)
+        self._backend = backend
+        self._http = httpx.Client(base_url=base_url, transport=transport, timeout=timeout)
 
     def close(self) -> None:
         self._http.close()
 
     def _stream(self, path: str, body: dict[str, Any]) -> Iterator[Event]:
-        with self._http.stream("POST", path, json=body) as resp:
+        headers = {"Authorization": f"Bearer {self._token()}"}
+        if self._backend:
+            headers["X-Agent-Backend"] = self._backend
+        with self._http.stream("POST", path, json=body, headers=headers) as resp:
             if resp.status_code >= 400:
                 resp.read()
                 raise ApiError(f"{path} returned HTTP {resp.status_code}")

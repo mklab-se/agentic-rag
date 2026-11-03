@@ -8,6 +8,7 @@ from typing import Annotated, Any
 
 import typer
 from rich.console import Console
+from rich.markup import escape
 
 from . import auth
 from .api import ApiClient, ApiError, run_turn
@@ -30,17 +31,22 @@ DeviceOpt = Annotated[bool, typer.Option("--device-code", help="Device code sign
 
 
 def _fail(message: str) -> typer.Exit:
-    err.print(f"[red]{message}[/red]")
+    err.print(f"[red]{escape(message)}[/red]")
     return typer.Exit(1)
 
 
-def _client(backend: Backend | None, az_token: bool, device_code: bool) -> ApiClient:
+def _client(backend: Backend | None, az_token: bool) -> ApiClient:
     try:
         settings = load_settings()
-        token = auth.get_token(settings, az_token=az_token, device_code=device_code, interactive=False)
+
+        def provider() -> str:
+            # MSAL refreshes silently from the cache, so long sessions keep a valid token.
+            return auth.get_token(settings, az_token=az_token, interactive=False)
+
+        provider()  # fail early with a clear message
     except (ConfigError, auth.AuthError) as exc:
         raise _fail(str(exc))
-    return ApiClient(settings.api_url, token, backend.value if backend else None)
+    return ApiClient(settings.api_url, provider, backend.value if backend else None)
 
 
 @app.command()
@@ -55,9 +61,9 @@ def login(device_code: DeviceOpt = False) -> None:
 
 @app.command()
 def ask(question: str, backend: BackendOpt = None, json_out: Annotated[bool, typer.Option("--json")] = False,
-        az_token: AzOpt = False, device_code: DeviceOpt = False) -> None:
+        az_token: AzOpt = False) -> None:
     """Ask one question. With --json, print every event as a JSON line."""
-    client = _client(backend, az_token, device_code)
+    client = _client(backend, az_token)
     out = Console()
     status = {"ok": True}
 
@@ -68,17 +74,17 @@ def ask(question: str, backend: BackendOpt = None, json_out: Annotated[bool, typ
         elif name == "delta":
             out.print(data.get("text", ""), end="", markup=False, highlight=False)
         elif name == "tool_ran":
-            err.print(f"[dim]client tool {data.get('name')}: {data.get('output')}[/dim]")
+            err.print(f"[dim]client tool {escape(str(data.get('name')))}: {escape(str(data.get('output')))}[/dim]")
         elif name == "trace":
-            err.print(f"[dim]{data.get('component')} {data.get('step')}: {data.get('detail')}[/dim]")
+            err.print(f"[dim]{escape(str(data.get('component')))} {escape(str(data.get('step')))}: {escape(str(data.get('detail')))}[/dim]")
         elif name == "error":
-            err.print(f"[red]error {data.get('code')}: {data.get('message')}[/red]")
+            err.print(f"[red]error {escape(str(data.get('code')))}: {escape(str(data.get('message')))}[/red]")
         if name == "error":
             status["ok"] = False
 
     try:
         outcome = run_turn(client, question, None, show,
-                           banner=lambda t: err.print(f"[bold black on yellow] {t} [/]"))
+                           banner=lambda t: err.print(f"[bold black on yellow] {escape(t)} [/]"))
     except (ApiError, OSError) as exc:
         raise _fail(str(exc))
     finally:
@@ -90,9 +96,9 @@ def ask(question: str, backend: BackendOpt = None, json_out: Annotated[bool, typ
 
 
 @app.command()
-def chat(backend: BackendOpt = None, az_token: AzOpt = False, device_code: DeviceOpt = False) -> None:
+def chat(backend: BackendOpt = None, az_token: AzOpt = False) -> None:
     """Interactive chat with a live trace panel. Empty line or Ctrl-D exits."""
-    client = _client(backend, az_token, device_code)
+    client = _client(backend, az_token)
     console = Console()
     conversation_id: str | None = None
     try:
