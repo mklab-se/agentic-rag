@@ -4,6 +4,7 @@ from fpdf import FPDF
 from fpdf.enums import XPos, YPos
 
 from voltrieve_data.formatting import fmt_int
+from voltrieve_data.pilot import pilot_features
 from voltrieve_data.model import Catalog, CarModel
 
 
@@ -84,7 +85,7 @@ def write_spec_guide(model: CarModel, catalog: Catalog, out_dir: Path) -> Path:
 
     _heading(pdf, "Software")
     _line(pdf, f"Voltrieve Pilot version {model.pilot_version}")
-    _line(pdf, "Features: lane keeping, adaptive speed control, parking assist")
+    _line(pdf, "Features: " + ", ".join(pilot_features(model.pilot_version)))
 
     _heading(pdf, "Option pack availability")
     for pack in model.option_packs:

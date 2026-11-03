@@ -51,20 +51,20 @@ The AWD surcharge applies to models where AWD is an option next to RWD.
 
 ### Voltrieve Spark
 
-Small outside, generous inside. A city car on the V1 platform with RWD drive, a 42 kWh battery and up to 310 km of WLTP range. Peak charging is 95 kW. It is not rated for towing, so it suits drivers who travel light.
+Small outside, generous inside. Segment: city car. Platform: V1. Drive: RWD. Battery: 42 kWh, with up to 310 km of WLTP range. Peak charging is 95 kW. It is not rated for towing, so it suits drivers who travel light.
 
 ### Voltrieve Lumen
 
-Light on its feet. A hatchback on the V1 platform with RWD or AWD drive, a 61 kWh battery and up to 455 km of WLTP range. Peak charging is 135 kW. It tows up to 750 kg.
+Light on its feet. Segment: hatchback. Platform: V1. Drive: RWD or AWD. Battery: 61 kWh, with up to 455 km of WLTP range. Peak charging is 135 kW. It tows up to 750 kg.
 
 ### Voltrieve Ragn
 
-Built for the long way round. A crossover on the V2 platform with AWD drive, a 84 kWh battery and up to 530 km of WLTP range. Peak charging is 240 kW. It tows up to 1 800 kg.
+Built for the long way round. Segment: crossover. Platform: V2. Drive: AWD. Battery: 84 kWh, with up to 530 km of WLTP range. Peak charging is 240 kW. It tows up to 1 800 kg.
 
 ### Voltrieve Fjord
 
-Room for the whole weekend. A estate on the V2 platform with RWD or AWD drive, a 84 kWh battery and up to 575 km of WLTP range. Peak charging is 240 kW. It tows up to 2 100 kg.
+Room for the whole weekend. Segment: estate. Platform: V2. Drive: RWD or AWD. Battery: 84 kWh, with up to 575 km of WLTP range. Peak charging is 240 kW. It tows up to 2 100 kg.
 
 ### Voltrieve Atlas
 
-Seven seats, zero compromise. A large SUV on the V2 platform with AWD drive, a 112 kWh battery and up to 610 km of WLTP range. Peak charging is 320 kW. It tows up to 2 500 kg.
+Seven seats, zero compromise. Segment: large SUV. Platform: V2. Drive: AWD. Battery: 112 kWh, with up to 610 km of WLTP range. Peak charging is 320 kW. It tows up to 2 500 kg.

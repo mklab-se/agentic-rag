@@ -17,8 +17,8 @@ def _paragraph(model: CarModel) -> str:
     )
     return (
         f"### {model.name}\n\n"
-        f"{model.tagline}. A {model.segment} on the {model.platform} platform with "
-        f"{drive} drive, a {model.battery_kwh} kWh battery and up to {model.range_km} km "
+        f"{model.tagline}. Segment: {model.segment}. Platform: {model.platform}. "
+        f"Drive: {drive}. Battery: {model.battery_kwh} kWh, with up to {model.range_km} km "
         f"of WLTP range. Peak charging is {model.peak_charge_kw} kW. {towing}"
     )
 

@@ -69,3 +69,13 @@ def test_no_em_dash_in_any_document(tmp_path):
             [pdf_text(p) for p in tmp_path.glob("*.pdf")] + \
             [p.read_text() for p in tmp_path.glob("*.md")]
     assert all(EM_DASH not in t for t in texts)
+
+
+def test_pilot_features_follow_pilot_version(tmp_path):
+    generate_all(CATALOG, tmp_path)
+    assert "traffic jam assist" in pdf_text(tmp_path / "voltrieve-ragn-specifications.pdf")
+    assert "traffic jam assist" not in pdf_text(tmp_path / "voltrieve-spark-specifications.pdf")
+    assert "traffic jam assist" in docx_text(tmp_path / "voltrieve-ragn-brochure.docx")
+    for p in list(tmp_path.glob("*.docx")) + list(tmp_path.glob("*.pdf")):
+        text = docx_text(p) if p.suffix == ".docx" else pdf_text(p)
+        assert "parking" not in text.lower()

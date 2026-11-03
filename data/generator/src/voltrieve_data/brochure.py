@@ -2,6 +2,7 @@ from pathlib import Path
 
 import docx
 
+from voltrieve_data.pilot import pilot_features
 from voltrieve_data.model import Catalog, CarModel
 
 
@@ -34,10 +35,11 @@ def write_brochure(model: CarModel, catalog: Catalog, out_dir: Path) -> Path:
     )
 
     doc.add_heading("Voltrieve Pilot", level=1)
+    features = pilot_features(model.pilot_version)
     doc.add_paragraph(
         f"The {model.name} comes with Voltrieve Pilot version {model.pilot_version}, "
-        f"our driver assistance suite. It keeps you centred in your lane, adapts your "
-        f"speed to traffic and helps you park with confidence."
+        f"our driver assistance suite. It brings {', '.join(features[:-1])} "
+        f"and {features[-1]} to make every journey more relaxed."
     )
 
     doc.add_heading("Option packs", level=1)
