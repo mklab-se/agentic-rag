@@ -6,11 +6,12 @@ import os
 import subprocess
 from dataclasses import dataclass
 
+# name -> (environment variable that overrides, key in the azd environment)
 KEYS = {
-    "api_url": "VOLTRIEVE_API_URL",
-    "tenant_id": "VOLTRIEVE_TENANT_ID",
-    "cli_client_id": "VOLTRIEVE_CLI_CLIENT_ID",
-    "api_client_id": "VOLTRIEVE_API_CLIENT_ID",
+    "api_url": ("VOLTRIEVE_API_URL", "API_URL"),
+    "tenant_id": ("VOLTRIEVE_TENANT_ID", "TENANT_ID"),
+    "cli_client_id": ("VOLTRIEVE_CLI_CLIENT_ID", "CLI_CLIENT_ID"),
+    "api_client_id": ("VOLTRIEVE_API_CLIENT_ID", "API_CLIENT_ID"),
 }
 
 
@@ -27,7 +28,7 @@ class Settings:
 
     @property
     def scope(self) -> str:
-        return f"api://{self.api_client_id}/.default"
+        return f"api://{self.api_client_id}/access_as_user"
 
 
 def parse_env_values(text: str) -> dict[str, str]:
@@ -53,14 +54,18 @@ def _azd_values() -> dict[str, str]:
 
 
 def load_settings(env: dict[str, str] | None = None, azd: dict[str, str] | None = None) -> Settings:
-    """Environment wins; missing keys are read from azd (lazily, only if needed)."""
+    """A VOLTRIEVE_* variable wins; otherwise the azd environment is read (lazily, only if
+    needed), so inside an azd project nothing has to be exported."""
     env = dict(os.environ) if env is None else env
-    found = {name: env.get(var, "") for name, var in KEYS.items()}
+    found = {name: env.get(var, "") for name, (var, _) in KEYS.items()}
     if not all(found.values()):
         azd_values = _azd_values() if azd is None else azd
-        found = {name: found[name] or azd_values.get(var, "") for name, var in KEYS.items()}
-    missing = [KEYS[n] for n, v in found.items() if not v]
+        found = {name: found[name] or azd_values.get(key, "") for name, (_, key) in KEYS.items()}
+    missing = [KEYS[n][0] for n, v in found.items() if not v]
     if missing:
-        raise ConfigError(f"Missing settings: {', '.join(missing)}. Set them or run inside an azd env.")
+        raise ConfigError(
+            f"Missing settings: {', '.join(missing)}. Set them, or run inside an azd environment "
+            "(`azd env select`)."
+        )
     found["api_url"] = found["api_url"].rstrip("/")
     return Settings(**found)

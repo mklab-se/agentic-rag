@@ -13,7 +13,7 @@ from rich.markup import escape
 from . import auth
 from .api import ApiClient, ApiError, run_turn
 from .config import ConfigError, load_settings
-from .render import ChatView, json_line
+from .render import ChatView, clean, json_line
 
 app = typer.Typer(help="Voltrieve terminal client.", no_args_is_help=True)
 err = Console(stderr=True)
@@ -31,7 +31,7 @@ DeviceOpt = Annotated[bool, typer.Option("--device-code", help="Device code sign
 
 
 def _fail(message: str) -> typer.Exit:
-    err.print(f"[red]{escape(message)}[/red]")
+    err.print(f"[red]{escape(clean(message))}[/red]")
     return typer.Exit(1)
 
 
@@ -51,12 +51,22 @@ def _client(backend: Backend | None, az_token: bool) -> ApiClient:
 
 @app.command()
 def login(device_code: DeviceOpt = False) -> None:
-    """Sign in with Entra and cache the token."""
+    """Sign in with Entra (you pick the account) and cache the token."""
     try:
-        auth.get_token(load_settings(), device_code=device_code)
+        auth.login(load_settings(), device_code=device_code)
     except (ConfigError, auth.AuthError) as exc:
         raise _fail(str(exc))
     typer.echo("Signed in.")
+
+
+@app.command()
+def logout() -> None:
+    """Forget the cached sign-in."""
+    try:
+        count = auth.logout(load_settings())
+    except (ConfigError, auth.AuthError) as exc:
+        raise _fail(str(exc))
+    typer.echo("Signed out." if count else "Nothing to sign out of.")
 
 
 @app.command()
@@ -72,20 +82,22 @@ def ask(question: str, backend: BackendOpt = None, json_out: Annotated[bool, typ
             sys.stdout.write(json_line(name, data) + "\n")
             sys.stdout.flush()
         elif name == "delta":
-            out.print(data.get("text", ""), end="", markup=False, highlight=False)
+            out.print(clean(data.get("text", "")), end="", markup=False, highlight=False)
+        elif name == "turn_started":
+            err.print(f"[dim]correlation id {escape(clean(data.get('correlation_id')))}[/dim]")
         elif name == "tool_ran":
-            err.print(f"[dim]client tool {escape(str(data.get('name')))}: {escape(str(data.get('output')))}[/dim]")
+            err.print(f"[dim]client tool {escape(clean(data.get('name')))}: {escape(clean(data.get('output')))}[/dim]")
         elif name == "trace":
-            err.print(f"[dim]{escape(str(data.get('component')))} {escape(str(data.get('step')))}: {escape(str(data.get('detail')))}[/dim]")
+            err.print(f"[dim]{escape(clean(data.get('component')))} {escape(clean(data.get('step')))}: {escape(clean(data.get('detail')))}[/dim]")
         elif name == "error":
-            err.print(f"[red]error {escape(str(data.get('code')))}: {escape(str(data.get('message')))}[/red]")
+            err.print(f"[red]error {escape(clean(data.get('code')))}: {escape(clean(data.get('message')))}[/red]")
         if name == "error":
             status["ok"] = False
 
     try:
         outcome = run_turn(client, question, None, show,
-                           banner=lambda t: err.print(f"[bold black on yellow] {escape(t)} [/]"))
-    except (ApiError, OSError) as exc:
+                           banner=lambda t: err.print(f"[bold black on yellow] {escape(clean(t))} [/]"))
+    except (ApiError, auth.AuthError) as exc:
         raise _fail(str(exc))
     finally:
         client.close()
@@ -114,7 +126,7 @@ def chat(backend: BackendOpt = None, az_token: AzOpt = False) -> None:
                 try:
                     outcome = run_turn(client, message, conversation_id, view.on_event,
                                        banner=view.show_banner)
-                except (ApiError, OSError) as exc:
+                except (ApiError, auth.AuthError) as exc:
                     view.on_event("error", {"code": "client", "message": str(exc)})
                     continue
             conversation_id = outcome.conversation_id or conversation_id

@@ -31,7 +31,7 @@ def az_cli_token(settings: Settings) -> str:
     return token
 
 
-def _build_app(settings: Settings):  # pragma: no cover - needs a real tenant
+def _build_app(settings: Settings):  # pragma: no cover - needs a real tenant and a keychain
     import msal
     from msal_extensions import FilePersistence, PersistedTokenCache, build_encrypted_persistence
 
@@ -48,11 +48,15 @@ def _build_app(settings: Settings):  # pragma: no cover - needs a real tenant
     )
 
 
-def msal_token(settings: Settings, device_code: bool = False, interactive: bool = True) -> str:  # pragma: no cover
-    """Silent from cache when possible, else interactive browser or device code."""
+def msal_token(settings: Settings, device_code: bool = False, interactive: bool = True,
+               fresh: bool = False) -> str:
+    """Silent from cache when possible, else interactive browser or device code.
+
+    `fresh` is for `voltrieve login`: it skips the cache and always shows the account picker, so
+    a user with several accounts can choose which one the CLI signs in as."""
     app = _build_app(settings)
     scopes = [settings.scope]
-    accounts = app.get_accounts()
+    accounts = [] if fresh else app.get_accounts()
     result = app.acquire_token_silent(scopes, account=accounts[0]) if accounts else None
     if not result and interactive:
         if device_code:
@@ -62,15 +66,28 @@ def msal_token(settings: Settings, device_code: bool = False, interactive: bool 
             print(flow["message"])
             result = app.acquire_token_by_device_flow(flow)
         else:
-            result = app.acquire_token_interactive(scopes=scopes)
+            result = app.acquire_token_interactive(scopes=scopes, prompt="select_account")
     if not result or "access_token" not in result:
         detail = (result or {}).get("error_description", "no cached session; run `voltrieve login`")
         raise AuthError(detail)
     return result["access_token"]
 
 
-def get_token(settings: Settings, az_token: bool = False, device_code: bool = False,
-              interactive: bool = True) -> str:
+def login(settings: Settings, device_code: bool = False) -> None:
+    """Sign in as an account the user picks, replacing nothing until the sign-in succeeds."""
+    msal_token(settings, device_code=device_code, fresh=True)
+
+
+def logout(settings: Settings) -> int:
+    """Forget every cached account. Returns how many there were."""
+    app = _build_app(settings)
+    accounts = app.get_accounts()
+    for account in accounts:
+        app.remove_account(account)
+    return len(accounts)
+
+
+def get_token(settings: Settings, az_token: bool = False, interactive: bool = True) -> str:
     if az_token:
         return az_cli_token(settings)
-    return msal_token(settings, device_code=device_code, interactive=interactive)
+    return msal_token(settings, interactive=interactive)

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import uuid
 from collections.abc import Callable, Iterable, Iterator
 from dataclasses import dataclass, field
 from typing import Any
@@ -52,6 +53,7 @@ class ApiError(Exception):
 @dataclass
 class TurnOutcome:
     conversation_id: str | None = None
+    correlation_id: str = ""
     text: str = ""
     done: dict[str, Any] | None = None
     error: dict[str, Any] | None = None
@@ -68,27 +70,35 @@ class ApiClient:
     def close(self) -> None:
         self._http.close()
 
-    def _stream(self, path: str, body: dict[str, Any]) -> Iterator[Event]:
+    def _stream(self, path: str, body: dict[str, Any], correlation_id: str | None) -> Iterator[Event]:
         headers = {"Authorization": f"Bearer {self._token()}"}
         if self._backend:
             headers["X-Agent-Backend"] = self._backend
-        with self._http.stream("POST", path, json=body, headers=headers) as resp:
-            if resp.status_code >= 400:
-                resp.read()
-                raise ApiError(f"{path} returned HTTP {resp.status_code}")
-            yield from parse_sse(resp.iter_lines())
+        if correlation_id:
+            headers["X-Correlation-Id"] = correlation_id
+        try:
+            with self._http.stream("POST", path, json=body, headers=headers) as resp:
+                if resp.status_code >= 400:
+                    resp.read()
+                    raise ApiError(f"{path} returned HTTP {resp.status_code}")
+                yield from parse_sse(resp.iter_lines())
+        except httpx.HTTPError as exc:
+            # Unreachable, timed out, or the stream broke: one error type for the callers.
+            raise ApiError(f"{path} failed: {type(exc).__name__}") from exc
 
     def chat(self, message: str, conversation_id: str | None = None,
-             client_tools: list[dict[str, Any]] | None = None) -> Iterator[Event]:
+             client_tools: list[dict[str, Any]] | None = None,
+             correlation_id: str | None = None) -> Iterator[Event]:
         body: dict[str, Any] = {"message": message, "client_tools": client_tools or []}
         if conversation_id:
             body["conversation_id"] = conversation_id
-        return self._stream("/chat", body)
+        return self._stream("/chat", body, correlation_id)
 
-    def tool_results(self, conversation_id: str, turn_id: str,
-                     results: list[dict[str, str]]) -> Iterator[Event]:
+    def tool_results(self, conversation_id: str, turn_id: str, results: list[dict[str, str]],
+                     correlation_id: str | None = None) -> Iterator[Event]:
         return self._stream("/chat/tool-results", {
-            "conversation_id": conversation_id, "turn_id": turn_id, "results": results})
+            "conversation_id": conversation_id, "turn_id": turn_id, "results": results},
+            correlation_id)
 
 
 def run_turn(client: ApiClient, message: str, conversation_id: str | None,
@@ -97,9 +107,14 @@ def run_turn(client: ApiClient, message: str, conversation_id: str | None,
              bell: Callable[[], None] | None = None,
              tools: list[dict[str, Any]] | None = None,
              max_rounds: int = 8) -> TurnOutcome:
-    """Send a message, run any requested client tools, post results, until done or error."""
-    outcome = TurnOutcome(conversation_id=conversation_id)
-    stream = client.chat(message, conversation_id, CLIENT_TOOLS if tools is None else tools)
+    """Send a message, run any requested client tools, post results, until done or error.
+
+    One correlation id covers the whole turn: every request of it (the message and each
+    tool-results post) carries it, so logs and traces of all of them can be found together."""
+    outcome = TurnOutcome(conversation_id=conversation_id, correlation_id=str(uuid.uuid4()))
+    on_event("turn_started", {"correlation_id": outcome.correlation_id})
+    stream = client.chat(message, conversation_id, CLIENT_TOOLS if tools is None else tools,
+                         outcome.correlation_id)
     for _ in range(max_rounds):
         pending: dict[str, Any] | None = None
         for name, data in stream:
@@ -127,6 +142,7 @@ def run_turn(client: ApiClient, message: str, conversation_id: str | None,
         if not conv:
             outcome.error = {"code": "client", "message": "no conversation id to post tool results"}
             return outcome
-        stream = client.tool_results(conv, pending.get("turn_id", ""), results)
+        stream = client.tool_results(conv, pending.get("turn_id", ""), results,
+                                     outcome.correlation_id)
     outcome.error = {"code": "client", "message": "too many tool rounds"}
     return outcome
