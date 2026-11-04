@@ -1,10 +1,9 @@
 """One scripted conversation per scenario, run through the real API and each real backend with
 a fake model. Every backend must produce the same event shapes (spec sections 8.1 and 14).
 
-The `hosted` backend joins automatically once `app.backends.hosted` is importable; see `_hosted`.
+The `hosted` backend runs against an in-process stand-in for the agent; see `_hosted`.
 """
 
-import importlib.util
 import json
 import os
 
@@ -25,9 +24,7 @@ from voltrieve_agent.server_tools import build_server_tools  # noqa: E402
 
 MAKE_NOISE = {"name": "make_noise", "description": "Ring", "parameters": {"type": "object"}}
 BOOK = '{"model": "atlas", "city": "Göteborg", "date": "2030-01-05"}'
-HOSTED_IMPORTABLE = importlib.util.find_spec("app.backends.hosted") is not None
-BACKENDS = ["loop", "prompt", pytest.param("hosted", marks=pytest.mark.skipif(
-    not HOSTED_IMPORTABLE, reason="app.backends.hosted is not importable yet"))]
+BACKENDS = ["loop", "prompt", "hosted"]
 
 
 class ScriptedModel:
@@ -64,13 +61,52 @@ def build_backend(name: str, model: ScriptedModel):
 
 
 def _hosted(model, server_tools):
-    """Wire the hosted backend to the same scripted model.
+    """The hosted backend against an in-process stand-in for the hosted agent.
 
-    Fill this in against app.backends.hosted: its agent runs agent_core's run_turn, so serve
-    that over the Invocations SSE shape from an httpx.MockTransport and give the backend that
-    client. Until then the hosted cases skip instead of failing.
+    The stand-in does what agents/hosted/main.py does: parse the body, run agent_core's run_turn
+    with the scripted model and the request's client tools, and answer with SSE ending in an
+    `outcome` event. An httpx.MockTransport carries it, so the real HostedBackend relay runs.
     """
-    pytest.skip("app.backends.hosted is importable but not yet wired into the contract test")
+    from app.backends.hosted import HostedBackend
+    from app.sse import format_event
+    from voltrieve_agent.events import AgentEvent
+    from voltrieve_agent.loop import TurnInput, run_turn
+    from voltrieve_agent.tools import ClientTool, UserContext
+
+    async def agent(request: httpx.Request) -> httpx.Response:
+        body = json.loads(request.content)
+        user = body["user"]
+        input_ = body["input"]
+        if isinstance(input_, list):
+            input_ = [*body["pending_outputs"], *input_]
+        turn = TurnInput(
+            user=UserContext(user["oid"], user["username"], frozenset(user["roles"])),
+            conversation_id=body["conversation_id"],
+            turn_id=body["turn_id"],
+            input=input_,
+            client_tools=[ClientTool(t["name"], t["description"], t["parameters"]) for t in body["client_tools"]],
+            correlation_id=body["correlation_id"],
+        )
+        wire = b""
+
+        async def emit(event: AgentEvent) -> None:
+            nonlocal wire
+            wire += format_event(event)
+
+        outcome = await run_turn(model, server_tools, turn, emit)
+        wire += format_event(AgentEvent("outcome", {
+            "status": outcome.status,
+            "pending_outputs": outcome.pending_outputs,
+            "client_call_ids": outcome.client_call_ids,
+            "usage": outcome.usage,
+        }))
+        return httpx.Response(200, content=wire, headers={"x-agent-session-id": "sess-contract"})
+
+    async def token(scope: str) -> str:
+        return "token"
+
+    http = httpx.AsyncClient(transport=httpx.MockTransport(agent))
+    return HostedBackend(FakeOpenAI(), http, token, "https://foundry.invalid/api/projects/p", "voltrieve-hosted")
 
 
 def api_for(name: str, model: ScriptedModel, roles: tuple[str, ...]):

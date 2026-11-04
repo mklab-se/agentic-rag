@@ -4,9 +4,9 @@
 
 Reads the azd environment from the process environment (`eval "$(azd env get-values)"`):
 FOUNDRY_PROJECT_ENDPOINT, AZURE_CONTAINER_REGISTRY_NAME, AZURE_CONTAINER_REGISTRY_ENDPOINT,
-CHAT_DEPLOYMENT, SEARCH_ENDPOINT, DEALER_URL, DEALER_CLIENT_ID, TENANT_ID and API_PRINCIPAL_ID.
-Optional: HOSTED_AGENT_NAME, and ALLOWED_CALLER_OID (an empty value turns the caller check off;
-by default only the Web API's identity may invoke the agent).
+CHAT_DEPLOYMENT, SEARCH_ENDPOINT, DEALER_URL, DEALER_CLIENT_ID and API_PRINCIPAL_ID.
+Optional: HOSTED_AGENT_NAME, and ALLOWED_CALLER_OID (default API_PRINCIPAL_ID, which must not be
+empty: the agent refuses every caller but this one).
 
 Steps: `az acr build` (linux/amd64, repository root as context, a unique tag), create the agent
 version, wait until it is active, then store the agent identity's principal id with
@@ -18,7 +18,7 @@ import os
 import subprocess
 import sys
 import time
-from datetime import UTC, datetime
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
 from azure.ai.projects.models import (
@@ -26,6 +26,7 @@ from azure.ai.projects.models import (
     ContainerConfiguration,
     HostedAgentDefinition,
     ProtocolVersionRecord,
+    SessionConfiguration,
 )
 
 DEFAULT_AGENT_NAME = "voltrieve-hosted"
@@ -57,13 +58,14 @@ def _git_sha() -> str:
 def environment_variables(env: dict[str, str]) -> dict[str, str]:
     """What the container needs. FOUNDRY_PROJECT_ENDPOINT and the Application Insights
     connection string are injected by the platform, and FOUNDRY_ names are reserved."""
-    allowed = env["ALLOWED_CALLER_OID"] if "ALLOWED_CALLER_OID" in env else env["API_PRINCIPAL_ID"]
+    allowed = (env.get("ALLOWED_CALLER_OID") or env.get("API_PRINCIPAL_ID") or "").strip()
+    if not allowed:
+        raise SystemExit("API_PRINCIPAL_ID (or ALLOWED_CALLER_OID) is empty: the agent would refuse every caller.")
     return {
         "MODEL_DEPLOYMENT_NAME": env["CHAT_DEPLOYMENT"],
         "SEARCH_ENDPOINT": env["SEARCH_ENDPOINT"],
         "DEALER_URL": env["DEALER_URL"],
         "DEALER_CLIENT_ID": env["DEALER_CLIENT_ID"],
-        "TENANT_ID": env["TENANT_ID"],
         "ALLOWED_CALLER_OID": allowed,
         "PYTHONNOUSERSITE": "1",
     }
@@ -77,6 +79,8 @@ def hosted_definition(image: str, env: dict[str, str]) -> HostedAgentDefinition:
         cpu="0.5",
         memory="1Gi",
         container_configuration=ContainerConfiguration(image=image),
+        # The minimum the platform allows: an idle session is suspended after two minutes.
+        session_configuration=SessionConfiguration(idle_timeout_seconds=timedelta(seconds=120)),
         environment_variables=environment_variables(env),
     )
 
@@ -116,10 +120,8 @@ def main() -> None:
     endpoint = _require("FOUNDRY_PROJECT_ENDPOINT")
     registry = _require("AZURE_CONTAINER_REGISTRY_NAME")
     login_server = _require("AZURE_CONTAINER_REGISTRY_ENDPOINT")
-    for name in ("CHAT_DEPLOYMENT", "SEARCH_ENDPOINT", "DEALER_URL", "DEALER_CLIENT_ID", "TENANT_ID"):
+    for name in ("CHAT_DEPLOYMENT", "SEARCH_ENDPOINT", "DEALER_URL", "DEALER_CLIENT_ID"):
         _require(name)
-    if "ALLOWED_CALLER_OID" not in env:
-        _require("API_PRINCIPAL_ID")
     agent_name = env.get("HOSTED_AGENT_NAME") or DEFAULT_AGENT_NAME
 
     tag = unique_tag(sha=_git_sha())

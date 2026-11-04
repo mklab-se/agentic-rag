@@ -2,6 +2,8 @@
 
 from datetime import UTC, datetime
 
+import pytest
+
 import deploy
 
 ENV = {
@@ -9,7 +11,6 @@ ENV = {
     "SEARCH_ENDPOINT": "https://srch.example",
     "DEALER_URL": "https://dealer.example",
     "DEALER_CLIENT_ID": "dealer-id",
-    "TENANT_ID": "tenant",
     "API_PRINCIPAL_ID": "api-oid",
 }
 
@@ -31,9 +32,17 @@ def test_environment_has_no_reserved_names_and_defaults_the_caller_to_the_api():
     assert env["MODEL_DEPLOYMENT_NAME"] == "gpt-5.4-mini"
 
 
-def test_allowed_caller_can_be_overridden_or_emptied():
+def test_allowed_caller_can_be_overridden_but_never_empty():
     assert deploy.environment_variables({**ENV, "ALLOWED_CALLER_OID": "x"})["ALLOWED_CALLER_OID"] == "x"
-    assert deploy.environment_variables({**ENV, "ALLOWED_CALLER_OID": ""})["ALLOWED_CALLER_OID"] == ""
+    with pytest.raises(SystemExit):
+        deploy.environment_variables({**ENV, "API_PRINCIPAL_ID": ""})
+    with pytest.raises(SystemExit):
+        deploy.environment_variables({k: v for k, v in ENV.items() if k != "API_PRINCIPAL_ID"})
+
+
+def test_sessions_are_suspended_after_the_minimum_idle_time():
+    definition = deploy.hosted_definition("img", ENV)
+    assert definition.session_configuration.idle_timeout_seconds.total_seconds() == 120
 
 
 def test_tag_is_unique_per_second_and_carries_the_commit():

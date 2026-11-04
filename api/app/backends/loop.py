@@ -22,17 +22,11 @@ REPAIR_SCAN_ITEMS = 100
 REPAIR_BATCH = 20
 
 
-class LoopBackend:
-    def __init__(
-        self,
-        model: ModelClient,
-        openai_client,
-        server_tools: list[ServerTool],
-        closers: Sequence[Callable[[], Awaitable[None]]] = (),
-    ):
-        self._model = model
+class ConversationBackend:
+    """What backends share: the conversation lives in Foundry Conversations."""
+
+    def __init__(self, openai_client, closers: Sequence[Callable[[], Awaitable[None]]] = ()):
         self._openai = openai_client  # AsyncOpenAI; only its conversations API is used here
-        self._server_tools = server_tools
         self._closers = closers
 
     async def create_conversation(self, owner_oid: str) -> str:
@@ -46,23 +40,6 @@ class LoopBackend:
             logger.warning("Could not read conversation %s", conversation_id, exc_info=True)
             return None
         return (getattr(conversation, "metadata", None) or {}).get("owner_oid")
-
-    def _model_for(self, ctx: TurnContext) -> ModelClient:
-        return self._model
-
-    async def run_turn(self, ctx: TurnContext, emit: Emit) -> TurnOutcome:
-        input_ = ctx.input
-        if isinstance(input_, list):
-            input_ = [*ctx.pending_outputs, *input_]
-        turn = TurnInput(
-            user=ctx.user,
-            conversation_id=ctx.conversation_id,
-            turn_id=ctx.turn_id,
-            input=input_,
-            client_tools=ctx.client_tools,
-            correlation_id=ctx.correlation_id,
-        )
-        return await run_turn(self._model_for(ctx), self._server_tools, turn, emit)
 
     async def abandon(self, conversation_id: str, outputs: list[dict]) -> None:
         # Adding items does not call the model, so abandoning costs no tokens.
@@ -100,6 +77,36 @@ class LoopBackend:
                 await closer()
             except Exception:
                 logger.exception("Closing the loop backend failed")
+
+
+class LoopBackend(ConversationBackend):
+    def __init__(
+        self,
+        model: ModelClient,
+        openai_client,
+        server_tools: list[ServerTool],
+        closers: Sequence[Callable[[], Awaitable[None]]] = (),
+    ):
+        super().__init__(openai_client, closers)
+        self._model = model
+        self._server_tools = server_tools
+
+    def _model_for(self, ctx: TurnContext) -> ModelClient:
+        return self._model
+
+    async def run_turn(self, ctx: TurnContext, emit: Emit) -> TurnOutcome:
+        input_ = ctx.input
+        if isinstance(input_, list):
+            input_ = [*ctx.pending_outputs, *input_]
+        turn = TurnInput(
+            user=ctx.user,
+            conversation_id=ctx.conversation_id,
+            turn_id=ctx.turn_id,
+            input=input_,
+            client_tools=ctx.client_tools,
+            correlation_id=ctx.correlation_id,
+        )
+        return await run_turn(self._model_for(ctx), self._server_tools, turn, emit)
 
 
 def build_loop_backend(settings: Settings) -> LoopBackend:

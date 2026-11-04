@@ -41,7 +41,7 @@ def main() -> int:
                 extra_body={"agent_reference": {"name": agent, "type": "agent_reference"}},
             )
         except openai.BadRequestError as exc:
-            print(f"{exc.status_code} invalid_payload: {exc.message}")
+            print(f"{exc.status_code} {exc.code}: {exc.message}")
             return 0
     print("Unexpected: the request was accepted.", file=sys.stderr)
     return 1

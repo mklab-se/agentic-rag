@@ -8,9 +8,21 @@ same events the loop emits, then one `outcome` event that is consumed here, not 
 
 The Foundry session id of the agent is kept per conversation and passed back as a query
 parameter, so a conversation keeps landing on the same agent session. Losing it (a restart
-of the API) only costs a new session, as the agent holds no state.
+of the API) only costs a new session, as the agent holds no state. A session is bound to the
+agent version it started on: conversations in flight stay on the old version after a
+redeploy until their session is dropped (an API restart, or a non-200 answer, which drops the
+cached id and retries once without it).
+
+A lost stream: the agent runs the turn detached from the response, so when the stream breaks
+(connection reset, or it ends without the `outcome` event) the turn may still be running and
+adding items to the conversation. The error event is sent at once, but run_turn then waits a
+bounded grace (120 seconds) before returning "failed". The API keeps the conversation marked as
+running for that time, so a new message is answered "turn in progress" instead of racing the
+agent, and marks it dirty afterwards (every failed outcome does), which repairs it on next use.
+This also keeps the response open for the grace period.
 """
 
+import asyncio
 import json
 import logging
 from collections import OrderedDict
@@ -18,11 +30,12 @@ from collections.abc import AsyncIterator, Awaitable, Callable, Sequence
 from typing import Any
 
 import httpx
+from voltrieve_agent.dealer import make_http_client
 from voltrieve_agent.events import AgentEvent, Emit
 from voltrieve_agent.loop import TurnOutcome
 
 from app.backends.base import BackendUnavailable, TurnContext
-from app.backends.loop import LoopBackend
+from app.backends.loop import ConversationBackend
 from app.settings import Settings
 
 logger = logging.getLogger(__name__)
@@ -32,6 +45,8 @@ INVOCATIONS_API_VERSION = "v1"
 SESSION_HEADER = "x-agent-session-id"
 OUTCOME_EVENT = "outcome"
 MAX_SESSIONS = 1000
+STREAM_BREAK_GRACE_SECONDS = 120.0
+OUTCOME_STATUSES = ("done", "paused", "failed")
 # A cold agent session can take a while to start; once it answers, keep-alives keep data flowing.
 INVOKE_TIMEOUT = httpx.Timeout(30.0, read=300.0)
 
@@ -39,7 +54,13 @@ TokenProvider = Callable[[str], Awaitable[str]]
 
 
 class HostedAgentError(Exception):
-    """The call to the hosted agent failed. The message is for the log, never for the caller."""
+    """The call to the hosted agent failed. The message is for the log, never for the caller.
+
+    `stream_started` is True when the agent had accepted the turn (HTTP 200) before it broke."""
+
+    def __init__(self, message: str, stream_started: bool = False):
+        super().__init__(message)
+        self.stream_started = stream_started
 
 
 async def parse_sse(lines: AsyncIterator[str]) -> AsyncIterator[tuple[str, dict]]:
@@ -61,7 +82,7 @@ async def parse_sse(lines: AsyncIterator[str]) -> AsyncIterator[tuple[str, dict]
             data.append(line[5:].removeprefix(" "))
 
 
-class HostedBackend(LoopBackend):
+class HostedBackend(ConversationBackend):
     def __init__(
         self,
         openai_client,
@@ -70,9 +91,11 @@ class HostedBackend(LoopBackend):
         project_endpoint: str,
         agent_name: str,
         closers: Sequence[Callable[[], Awaitable[None]]] = (),
+        stream_break_grace: float = STREAM_BREAK_GRACE_SECONDS,
     ):
         # No model and no server tools here: those run inside the hosted agent.
-        super().__init__(None, openai_client, [], closers)  # type: ignore[arg-type]
+        super().__init__(openai_client, closers)
+        self._grace = stream_break_grace
         self._http = http
         self._token = token_provider
         self._url = f"{project_endpoint.rstrip('/')}/agents/{agent_name}/endpoint/protocols/invocations"
@@ -104,24 +127,28 @@ class HostedBackend(LoopBackend):
         }
 
     async def run_turn(self, ctx: TurnContext, emit: Emit) -> TurnOutcome:
+        stream_broken = False
         try:
             return await self._invoke(ctx, emit)
-        except Exception:
+        except Exception as exc:
             logger.exception("The hosted agent call failed")
-            await emit(
-                AgentEvent(
-                    "error",
-                    {
-                        "code": "hosted_agent_error",
-                        "message": "The hosted agent could not complete the answer.",
-                    },
-                )
+            stream_broken = isinstance(exc, HostedAgentError) and exc.stream_started
+        await emit(
+            AgentEvent(
+                "error",
+                {
+                    "code": "hosted_agent_error",
+                    "message": "The hosted agent could not complete the answer.",
+                },
             )
-            return TurnOutcome("failed")
+        )
+        if stream_broken and self._grace > 0:
+            # The detached turn may still be writing to the conversation; see the docstring.
+            await asyncio.sleep(self._grace)
+        return TurnOutcome("failed")
 
-    async def _invoke(self, ctx: TurnContext, emit: Emit) -> TurnOutcome:
+    async def _open(self, ctx: TurnContext, session_id: str | None) -> httpx.Response:
         params = {"api-version": INVOCATIONS_API_VERSION}
-        session_id = self._sessions.get(ctx.conversation_id)
         if session_id:
             params["agent_session_id"] = session_id
         headers = {
@@ -132,7 +159,18 @@ class HostedBackend(LoopBackend):
             "POST", self._url, params=params, headers=headers, json=self._body(ctx),
             timeout=INVOKE_TIMEOUT,
         )
-        response = await self._http.send(request, stream=True)
+        return await self._http.send(request, stream=True)
+
+    async def _invoke(self, ctx: TurnContext, emit: Emit) -> TurnOutcome:
+        session_id = self._sessions.get(ctx.conversation_id)
+        response = await self._open(ctx, session_id)
+        if response.status_code != 200 and session_id:
+            # The cached session may be gone or on a retired version: start a new one, once.
+            await response.aclose()
+            self._sessions.pop(ctx.conversation_id, None)
+            logger.warning("Hosted agent answered %s; retrying without the cached session", response.status_code)
+            response = await self._open(ctx, None)
+        outcome: dict | None = None
         try:
             if response.status_code != 200:
                 body = (await response.aread())[:500].decode(errors="replace")
@@ -140,18 +178,23 @@ class HostedBackend(LoopBackend):
             new_session = response.headers.get(SESSION_HEADER)
             if new_session:
                 self._remember_session(ctx.conversation_id, new_session)
-            outcome: dict | None = None
-            async for kind, data in parse_sse(response.aiter_lines()):
-                if kind == OUTCOME_EVENT:
-                    outcome = data
-                else:
+            try:
+                async for kind, data in parse_sse(response.aiter_lines()):
+                    if kind == OUTCOME_EVENT:
+                        outcome = data
+                        break
                     await emit(AgentEvent(kind, data))
+            except httpx.HTTPError as exc:
+                raise HostedAgentError(f"the event stream broke: {exc!r}", stream_started=True) from exc
         finally:
             await response.aclose()
         if outcome is None:
-            raise HostedAgentError("the event stream ended without an outcome")
+            raise HostedAgentError("the event stream ended without an outcome", stream_started=True)
+        status = outcome.get("status")
+        if status not in OUTCOME_STATUSES:
+            raise HostedAgentError(f"unknown outcome status {status!r}")
         return TurnOutcome(
-            outcome["status"],
+            status,
             outcome.get("pending_outputs") or [],
             outcome.get("usage") or {},
             outcome.get("client_call_ids") or [],
@@ -170,7 +213,7 @@ def build_hosted_backend(settings: Settings) -> HostedBackend:
     credential = AsyncDefaultAzureCredential()
     project = AIProjectClient(endpoint=settings.foundry_project_endpoint, credential=credential)
     openai_client = project.get_openai_client()
-    http = httpx.AsyncClient()
+    http = make_http_client()  # carries traceparent to the agent
 
     async def token(scope: str) -> str:
         return (await credential.get_token(scope)).token

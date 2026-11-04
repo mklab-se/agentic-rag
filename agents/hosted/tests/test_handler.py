@@ -8,7 +8,7 @@ from voltrieve_agent.model import Completed, FunctionCall, TextDelta
 from voltrieve_agent.tools import ServerTool
 
 import main
-from main import Runtime, check_caller, parse_subject
+from main import Runtime
 
 OID = "11111111-2222-3333-4444-555555555555"
 
@@ -63,7 +63,7 @@ async def invoke(runtime: Runtime, body=BODY, headers=None):
 
 async def test_streams_events_then_outcome():
     model = ScriptedModel([TextDelta("Hi"), Completed({"total_tokens": 5})])
-    r = await invoke(Runtime(model, []))
+    r = await invoke(Runtime(model, [], allow_any_caller=True))
     assert r.status_code == 200
     assert r.headers["content-type"].startswith("text/event-stream")
     events = parse_sse(r.text)
@@ -82,7 +82,7 @@ async def test_streams_events_then_outcome():
 async def test_client_tools_of_the_request_reach_the_model_and_pause_the_turn():
     tool = {"name": "read_file", "description": "Read", "parameters": {"type": "object"}}
     model = ScriptedModel([FunctionCall("call_1", "read_file", "{}"), Completed({})])
-    r = await invoke(Runtime(model, []), {**BODY, "client_tools": [tool]})
+    r = await invoke(Runtime(model, [], allow_any_caller=True), {**BODY, "client_tools": [tool]})
     events = parse_sse(r.text)
     assert "read_file" in [t["name"] for t in model.calls[0]["tools"]]
     paused = [d for t, d in events if t == "client_tool_calls"]
@@ -95,7 +95,7 @@ async def test_continuation_sends_pending_outputs_before_client_results():
     pending = [{"type": "function_call_output", "call_id": "s1", "output": "stock 3"}]
     results = [{"type": "function_call_output", "call_id": "c1", "output": "hi"}]
     model = ScriptedModel([TextDelta("ok"), Completed({})])
-    await invoke(Runtime(model, []), {**BODY, "input": results, "pending_outputs": pending})
+    await invoke(Runtime(model, [], allow_any_caller=True), {**BODY, "input": results, "pending_outputs": pending})
     assert model.calls[0]["input"] == [*pending, *results]
 
 
@@ -111,14 +111,14 @@ async def test_user_roles_gate_server_tools():
         [FunctionCall("c1", "book", "{}"), Completed({})], [TextDelta("done"), Completed({})]
     )
     body = {**BODY, "user": {**BODY["user"], "roles": []}}
-    r = await invoke(Runtime(model, [tool]), body)
+    r = await invoke(Runtime(model, [tool], allow_any_caller=True), body)
     assert seen == []
     assert any(d["step"] == "authorization_denied" for t, d in parse_sse(r.text) if t == "trace")
 
     model = ScriptedModel(
         [FunctionCall("c1", "book", "{}"), Completed({})], [TextDelta("done"), Completed({})]
     )
-    await invoke(Runtime(model, [tool]), BODY)
+    await invoke(Runtime(model, [tool], allow_any_caller=True), BODY)
     assert seen[0].oid == "oid-anna" and "TestDrive.Book" in seen[0].roles
 
 
@@ -127,22 +127,23 @@ async def test_model_failure_is_an_error_event_and_a_failed_outcome():
         def stream(self, **kwargs):
             raise RuntimeError("boom")
 
-    events = parse_sse((await invoke(Runtime(Broken(), []))).text)
+    events = parse_sse((await invoke(Runtime(Broken(), [], allow_any_caller=True))).text)
     assert [t for t, _ in events if t == "error"] == ["error"]
     assert events[-1][1]["status"] == "failed"
 
 
 @pytest.mark.parametrize("body", [{"input": "x"}, {**BODY, "input": 3}, {**BODY, "user": {}}])
 async def test_malformed_body_is_400(body):
-    r = await invoke(Runtime(ScriptedModel(), []), body)
+    r = await invoke(Runtime(ScriptedModel(), [], allow_any_caller=True), body)
     assert r.status_code == 400
+
+
+def subject(oid):
+    return {"x-ms-original-subject": f'oid="{oid}", tid="t", idtype="servicePrincipal"'}
 
 
 async def test_caller_check_refuses_other_callers_and_allows_the_api():
     runtime = Runtime(ScriptedModel([TextDelta("a"), Completed({})]), [], OID)
-    def subject(oid):
-        return {"x-ms-original-subject": f'oid="{oid}", tid="t", idtype="servicePrincipal"'}
-
     assert (await invoke(runtime)).status_code == 403
     assert (await invoke(runtime, headers=subject("not-a-guid"))).status_code == 403
     other = "99999999-2222-3333-4444-555555555555"
@@ -151,21 +152,21 @@ async def test_caller_check_refuses_other_callers_and_allows_the_api():
     assert ok.status_code == 200
 
 
-def test_parse_subject_formats():
-    assert parse_subject(f'oid="{OID.upper()}", tid="t", idtype="x"') == OID
-    assert parse_subject(f'tid="t", oid="{OID}"') == OID
-    assert parse_subject('oid="nope"') is None
-    assert parse_subject(OID) == OID
-    assert parse_subject(f"  {OID.upper()} ") == OID
-    assert parse_subject(json.dumps({"oid": OID})) == OID
-    assert parse_subject(f"principal:{OID}") == OID
-    assert parse_subject("not a guid") is None
-    assert parse_subject(f"{OID} 99999999-2222-3333-4444-555555555555") is None
-    assert parse_subject('{"name": "x"}') is None
+async def test_check_fails_closed_without_an_allowed_caller():
+    model = ScriptedModel([TextDelta("a"), Completed({})])
+    assert (await invoke(Runtime(model, []), headers=subject(OID))).status_code == 403
+    assert (await invoke(Runtime(model, [], ""), headers=subject(OID))).status_code == 403
+    assert (await invoke(Runtime(model, [], "   "))).status_code == 403
 
 
-def test_check_caller_without_allowed_oid_accepts_everything(caplog):
-    caplog.set_level("INFO", logger="voltrieve.hosted")
-    assert check_caller({}, "")
-    assert "present: False" in caplog.text
-    assert not check_caller({}, OID)
+async def test_allow_any_caller_is_an_explicit_opt_in():
+    model = ScriptedModel([TextDelta("a"), Completed({})])
+    assert (await invoke(Runtime(model, [], allow_any_caller=True))).status_code == 200
+
+
+async def test_line_separators_in_text_survive_as_escapes():
+    text = "a\u2028b\u2029c\u0085d"
+    r = await invoke(Runtime(ScriptedModel([TextDelta(text), Completed({})]), [], allow_any_caller=True))
+    for ch in "\u2028\u2029\u0085":
+        assert ch not in r.text
+    assert [d["text"] for t, d in parse_sse(r.text) if t == "delta"] == [text]

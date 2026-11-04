@@ -13,8 +13,14 @@ continuation resends client_tools and pending_outputs, and the conversation itse
 Foundry.
 
 The Web API's managed identity is the only caller allowed to invoke the agent (spec 6.5), so
-the `user` claims in the body are trusted. The Foundry gateway forwards the caller's identity in
-`x-ms-original-subject`; ALLOWED_CALLER_OID names the one caller to accept.
+the `user` claims in the body are trusted. The Foundry gateway replaces `x-ms-original-subject`
+with the true caller (verified live: a forged header is answered with 403), and the agent server
+parses it. The oid it carries must equal ALLOWED_CALLER_OID. The check fails closed: with
+ALLOWED_CALLER_OID empty every request is refused, unless ALLOW_ANY_CALLER=true is set explicitly
+(local use only, logged loudly).
+
+Tracing: the agent server host configures Azure Monitor itself from
+APPLICATIONINSIGHTS_CONNECTION_STRING (azure.ai.agentserver.core), so nothing is configured here.
 """
 
 import asyncio
@@ -38,9 +44,6 @@ SUBJECT_HEADER = "x-ms-original-subject"
 KEEPALIVE_SECONDS = 15.0
 KEEPALIVE = b": keep-alive\n\n"
 OUTCOME_EVENT = "outcome"
-GUID = re.compile(r"[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}")
-SUBJECT_OID = re.compile(r'(?:^|,)\s*oid="([^"]*)"')
-SUBJECT_KEYS = ("oid", "objectId", "object_id", "principalId", "principal_id", "sub", "id")
 
 
 @dataclass
@@ -48,58 +51,37 @@ class Runtime:
     model: ModelClient
     server_tools: list[ServerTool]
     allowed_caller_oid: str = ""
+    allow_any_caller: bool = False
 
 
-def parse_subject(value: str) -> str | None:
-    """The caller's object id from x-ms-original-subject, or None when it cannot be read.
+def caller_oid() -> str | None:
+    """The oid of the caller as parsed by the agent server from x-ms-original-subject."""
+    from azure.ai.agentserver.core import get_request_context
 
-    The Foundry agent server documents the header as a dictionary of quoted strings,
-    `oid="...", tid="...", idtype="..."`, and itself answers 400 to anything else. Whether the
-    oid is the calling identity is for a live check (the value is logged). Also accepted, in
-    case the platform changes: a bare GUID, a JSON object carrying the id under a known key,
-    or any text holding exactly one GUID. Anything else is unparseable.
-    """
-    value = value.strip()
-    member = SUBJECT_OID.search(value)
-    if member is not None:
-        oid = member.group(1).strip()
-        return oid.lower() if GUID.fullmatch(oid) else None
-    if value.startswith("{"):
-        try:
-            data = json.loads(value)
-        except ValueError:
-            data = None
-        if isinstance(data, dict):
-            for key in SUBJECT_KEYS:
-                candidate = data.get(key)
-                if isinstance(candidate, str) and GUID.fullmatch(candidate.strip()):
-                    return candidate.strip().lower()
-            return None
-    found = {m.lower() for m in GUID.findall(value)}
-    return found.pop() if len(found) == 1 else None
+    subject = get_request_context().original_subject
+    return subject.oid if subject is not None else None
 
 
-def check_caller(headers: Mapping[str, str], allowed_oid: str) -> bool:
-    """True when the caller may invoke the agent. Logs the header, so its format is on record."""
-    subject = headers.get(SUBJECT_HEADER)
-    logger.info("%s present: %s, value: %r", SUBJECT_HEADER, subject is not None, subject)
-    if not allowed_oid:
+def check_caller(allowed_oid: str, allow_any: bool = False) -> bool:
+    """True when the caller may invoke the agent. Fails closed when nothing is configured."""
+    if allow_any:
         return True
-    if subject is None:
-        logger.warning("Refused: no %s header and ALLOWED_CALLER_OID is set", SUBJECT_HEADER)
+    if not allowed_oid.strip():
+        logger.error("Refused: ALLOWED_CALLER_OID is not set (set ALLOW_ANY_CALLER=true for local use)")
         return False
-    caller = parse_subject(subject)
-    if caller is None:
-        logger.warning("Refused: could not read a caller id from %s %r", SUBJECT_HEADER, subject)
+    oid = caller_oid()
+    logger.debug("%s oid: %r", SUBJECT_HEADER, oid)
+    if not oid:
+        logger.warning("Refused: no caller oid in %s", SUBJECT_HEADER)
         return False
-    if caller != allowed_oid.strip().lower():
-        logger.warning("Refused: caller %s is not the allowed caller", caller)
+    if oid.strip().lower() != allowed_oid.strip().lower():
+        logger.warning("Refused: caller %s is not the allowed caller", oid)
         return False
     return True
 
 
-def parse_turn(body: object) -> TurnInput | tuple[str, list[dict]] | None:
-    """Build the TurnInput and pending outputs from the request body, or None if malformed."""
+def parse_turn(body: object) -> TurnInput | None:
+    """Build the TurnInput from the request body (pending outputs are folded into the input), or None if malformed."""
     if not isinstance(body, dict):
         return None
     try:
@@ -124,13 +106,14 @@ def parse_turn(body: object) -> TurnInput | tuple[str, list[dict]] | None:
             input=input_,
             client_tools=tools,
             correlation_id=body.get("correlation_id"),
-        ), pending
+        )
     except (KeyError, TypeError, AttributeError):
         return None
 
 
 def format_event(event_type: str, data: dict) -> bytes:
-    payload = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
+    # ensure_ascii: U+2028, U+2029 and U+0085 would otherwise be taken as line breaks by readers.
+    payload = json.dumps(data, ensure_ascii=True, separators=(",", ":"))
     return f"event: {event_type}\ndata: {payload}\n\n".encode()
 
 
@@ -191,16 +174,15 @@ async def stream_turn(runtime: Runtime, turn: TurnInput) -> AsyncIterator[bytes]
 
 
 async def handle(request: Request, runtime: Runtime) -> Response:
-    if not check_caller(request.headers, runtime.allowed_caller_oid):
+    if not check_caller(runtime.allowed_caller_oid, runtime.allow_any_caller):
         return JSONResponse({"error": "forbidden"}, status_code=403)
     try:
         body = await request.json()
     except ValueError:
         body = None
-    parsed = parse_turn(body)
-    if parsed is None:
+    turn = parse_turn(body)
+    if turn is None:
         return JSONResponse({"error": "invalid request body"}, status_code=400)
-    turn, _ = parsed
     logger.info(
         "turn %s conversation %s session %s",
         turn.turn_id,
@@ -241,6 +223,7 @@ def build_runtime() -> Runtime:
         ResponsesModelClient(openai_client, os.environ["MODEL_DEPLOYMENT_NAME"]),
         build_server_tools(dealer, knowledge),
         os.environ.get("ALLOWED_CALLER_OID", ""),
+        os.environ.get("ALLOW_ANY_CALLER", "").lower() == "true",
     )
 
 
@@ -255,6 +238,10 @@ def create_host():
     from azure.ai.agentserver.invocations import InvocationAgentServerHost
 
     host = InvocationAgentServerHost()
+    if os.environ.get("ALLOW_ANY_CALLER", "").lower() == "true":
+        logger.critical("ALLOW_ANY_CALLER=true: ANY caller may invoke this agent. Local use only.")
+    elif not os.environ.get("ALLOWED_CALLER_OID", "").strip():
+        logger.error("ALLOWED_CALLER_OID is empty: every request will be refused")
 
     @host.invoke_handler
     async def invoke(request: Request) -> Response:

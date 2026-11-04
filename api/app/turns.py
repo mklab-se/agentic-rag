@@ -350,13 +350,14 @@ class TurnService:
                         },
                     )
                 )
-            elif job.continuation:
-                # "failed": the loop has already emitted the error event. The results may
-                # not have reached the conversation, so check it before its next use.
+            else:
+                # "failed": the loop has already emitted the error event. The turn may have
+                # left function calls without output (or the results may not have reached the
+                # conversation), so check it before its next use.
                 self.store.mark_dirty(conversation_id)
         except Exception:
             logger.exception("Turn failed")
-            if job.continuation and conversation_id:
+            if conversation_id:
                 self.store.mark_dirty(conversation_id)
             await run.queue.put(GENERIC_ERROR)
         finally:

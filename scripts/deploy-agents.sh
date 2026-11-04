@@ -29,4 +29,5 @@ retry uv run --project infra/scripts/entra voltrieve-entra assign-app-role \
   --principal-object-id "$HOSTED_AGENT_PRINCIPAL_ID" \
   --resource-sp-object-id "$DEALER_SP_OBJECT_ID" \
   --app-role-id "$DEALER_APP_ROLE_ID"
+echo "Note: sessions are bound to the agent version they started on; conversations in flight stay on the old version until the API restarts (or a call fails and the session is dropped)."
 echo "Agents deployed. Hosted agent: ${HOSTED_AGENT_NAME:-voltrieve-hosted} (principal $HOSTED_AGENT_PRINCIPAL_ID)"

@@ -1,3 +1,4 @@
+import pytest
 from types import SimpleNamespace
 
 from voltrieve_agent.loop import TurnInput, run_turn
@@ -327,3 +328,20 @@ async def test_responses_model_client_with_agent_sends_only_the_reference():
         "extra_body": {"agent_reference": {"name": "agent-x", "type": "agent_reference"}},
         "stream": True,
     }
+
+
+def test_responses_client_needs_a_model_or_an_agent():
+    with pytest.raises(ValueError):
+        ResponsesModelClient(object())
+
+
+def test_mcp_call_error_text_is_surfaced_when_there_is_no_output():
+    from voltrieve_agent.model import _map_event
+
+    failed = SimpleNamespace(
+        type="response.output_item.done",
+        item=SimpleNamespace(
+            type="mcp_call", name="search", server_label="kb", output=None, error="403 forbidden"
+        ),
+    )
+    assert _map_event(failed) == McpCall("search", "kb", "403 forbidden")

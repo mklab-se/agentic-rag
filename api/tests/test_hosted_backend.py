@@ -1,5 +1,6 @@
 """Backend C: the SSE relay to the hosted agent, session reuse and failure handling."""
 
+import asyncio
 import json
 
 import httpx
@@ -40,7 +41,7 @@ def outcome(status="done", pending=(), call_ids=(), usage=None):
     )
 
 
-def make_backend(client: httpx.AsyncClient, openai=None) -> HostedBackend:
+def make_backend(client: httpx.AsyncClient, openai=None, grace: float = 0) -> HostedBackend:
     scopes = []
 
     async def token(scope: str) -> str:
@@ -48,7 +49,7 @@ def make_backend(client: httpx.AsyncClient, openai=None) -> HostedBackend:
         return "tok"
 
     backend = HostedBackend(
-        openai or FakeOpenAI(), client, token, ENDPOINT, "voltrieve-hosted"
+        openai or FakeOpenAI(), client, token, ENDPOINT, "voltrieve-hosted", stream_break_grace=grace
     )
     backend.scopes = scopes
     return backend
@@ -224,3 +225,97 @@ async def test_client_tool_round_trip_through_the_api_looks_like_backend_b(valid
 def test_unconfigured_deployment_is_unavailable():
     with pytest.raises(BackendUnavailable):
         build_hosted_backend(Settings(foundry_project_endpoint=""))
+
+
+@respx.mock
+async def test_non_200_with_a_cached_session_drops_it_and_retries_once(http):
+    route = respx.post(INVOKE_URL).mock(
+        side_effect=[
+            httpx.Response(200, content=sse(outcome()), headers={"x-agent-session-id": "sess-1"}),
+            httpx.Response(404, text="no such session"),
+            httpx.Response(200, content=sse(("delta", {"text": "ok"}), outcome()),
+                           headers={"x-agent-session-id": "sess-2"}),
+            httpx.Response(200, content=sse(outcome())),
+        ]
+    )
+    backend = make_backend(http)
+    emitted = []
+
+    async def emit(event):
+        emitted.append(event)
+
+    await backend.run_turn(ctx(), emit)
+    result = await backend.run_turn(ctx(), emit)
+    await backend.run_turn(ctx(), emit)
+    assert result.status == "done" and [e.type for e in emitted] == ["delta"]
+    params = [c.request.url.params.get("agent_session_id") for c in route.calls]
+    assert params == [None, "sess-1", None, "sess-2"]
+
+
+@respx.mock
+async def test_unknown_status_is_failed_and_events_after_outcome_are_ignored(http):
+    respx.post(INVOKE_URL).respond(
+        200, content=sse(outcome("weird")) + sse(("delta", {"text": "late"}))
+    )
+    emitted = []
+
+    async def emit(event):
+        emitted.append(event)
+
+    result = await make_backend(http).run_turn(ctx(), emit)
+    assert result.status == "failed"
+    assert [e.type for e in emitted] == ["error"]
+
+
+@respx.mock
+async def test_line_separators_survive_the_relay(http):
+    text = "a\u2028b\u2029c\u0085d"
+    # The API and the agent both write ASCII-only JSON.
+    from app.sse import format_event
+    from voltrieve_agent.events import AgentEvent
+
+    wire = format_event(AgentEvent("delta", {"text": text})) + sse(outcome())
+    for ch in "\u2028\u2029\u0085":
+        assert ch not in wire.decode()
+    respx.post(INVOKE_URL).respond(200, content=wire)
+    emitted = []
+
+    async def emit(event):
+        emitted.append(event)
+
+    await make_backend(http).run_turn(ctx(), emit)
+    assert emitted[0].data["text"] == text
+
+
+@respx.mock
+async def test_lost_stream_keeps_the_turn_running_for_the_grace_then_fails(http):
+    class Broken(httpx.AsyncByteStream):
+        async def __aiter__(self):
+            yield sse(("delta", {"text": "partial"}))
+            raise httpx.ReadError("reset")
+
+    respx.post(INVOKE_URL).respond(200, stream=Broken())
+    backend = make_backend(http, grace=0.2)
+    emitted = []
+
+    async def emit(event):
+        emitted.append(event)
+
+    task = asyncio.create_task(backend.run_turn(ctx(), emit))
+    await asyncio.sleep(0.05)
+    assert not task.done()  # still within the grace: the API keeps the turn marked running
+    assert [e.type for e in emitted] == ["delta", "error"]
+    assert (await task).status == "failed"
+
+
+@respx.mock
+async def test_failed_new_message_turn_marks_the_conversation_dirty(validator, auth, http):
+    respx.post(INVOKE_URL).respond(500, text="boom")
+    backend = make_backend(http)
+    settings = Settings()
+    store = TurnStore()
+    app = create_app(settings, validator, BackendRegistry(settings, {"hosted": lambda s: backend}), store)
+    async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app), base_url="http://t") as c:
+        r = await c.post("/chat", headers={**auth, "X-Agent-Backend": "hosted"}, json={"message": "hi"})
+    assert parse_sse(r.text)[-1][0] == "error"
+    assert store.needs_repair("conv_real")

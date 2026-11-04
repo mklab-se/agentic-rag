@@ -48,8 +48,7 @@ class PromptBackend(LoopBackend):
         return self._cli_model if ctx.client_tools else self._web_model
 
     async def run_turn(self, ctx: TurnContext, emit: Emit) -> TurnOutcome:
-        supported = CLI_AGENT_TOOL_NAMES if ctx.client_tools else frozenset()
-        unsupported = sorted({t.name for t in ctx.client_tools} - supported)
+        unsupported = sorted({t.name for t in ctx.client_tools} - CLI_AGENT_TOOL_NAMES)
         if unsupported:
             names = ", ".join(unsupported)
             await emit(

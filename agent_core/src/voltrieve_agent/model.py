@@ -53,6 +53,8 @@ class ResponsesModelClient:
     """
 
     def __init__(self, openai_client, model: str | None = None, agent_name: str | None = None):
+        if model is None and agent_name is None:
+            raise ValueError("ResponsesModelClient needs a model or an agent_name")
         self._client = openai_client  # AsyncOpenAI from AIProjectClient.get_openai_client()
         self._model = model
         self._agent_name = agent_name
@@ -101,7 +103,8 @@ def _map_event(event) -> StreamItem | None:
         if out.type == "function_call":
             return FunctionCall(out.call_id, out.name, out.arguments)
         if out.type == "mcp_call":
-            preview = (getattr(out, "output", None) or "")[:500]
+            # A failed call has no output, only an error text: show that.
+            preview = str(getattr(out, "output", None) or getattr(out, "error", None) or "")[:500]
             return McpCall(out.name, getattr(out, "server_label", ""), preview)
         return None
     if kind == "response.completed":
