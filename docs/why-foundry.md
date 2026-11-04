@@ -8,7 +8,7 @@ A Foundry prompt agent owns its tool list: sending `tools` with an agent referen
 So client tools must already be in the agent definition, which only works for a fixed, known list.
 The Responses API with a model instead of an agent accepts per-request tools, so an own loop in a web API solves it directly.
 A hosted agent can run that same loop, but its Responses protocol dropped caller tools, so it needs Invocations and a custom contract.
-All three ran the same runbook. Answer quality matched: 30 of 30 grounding questions, and one cross-document question that varies on every host. They differed in how much the trace shows.
+All three ran the same runbook. Answer quality matched: 29 or 30 of 30 grounding questions per run, with one cross-document question that varies on every host. They differed in how much the trace shows.
 Agentic RAG without Foundry agents is not hard: the loop is 210 lines. The hard part is pausing and repairing turns, which every backend needs.
 Foundry agents add a managed identity, versions and a path to Teams and Microsoft 365. Publishing was not exercised here.
 Recommendation: own loop when clients bring tools, hosted agent when you also need agent identity or publishing, prompt agent when tools are fixed.
@@ -181,7 +181,7 @@ The complexity sits elsewhere:
 
 Almost none of it is Foundry-specific. Only `model.py` speaks the Responses API, and only `ConversationBackend` speaks the Conversations API. Both are OpenAI SDK calls. Apart from the model endpoint, the conversation store is the one piece you would replace if you left Foundry entirely. The tool relay, turn state, auth and tracing are ordinary web API work.
 
-Answer quality did not depend on the host. Grounding on the final build: 30 of 30 answers passed (`docs/evidence/grounding.txt`). The one question that varied is the cross-document "cheapest AWD in Sweden". Repeated 6 times per backend it was right 13 of 18 times: prompt 5, loop 4, hosted 4 (`docs/evidence/cross-document-repeat.txt`). The wrong answers treat AWD-only models as the only AWD models. That is model behaviour with `gpt-5.4-mini`, not a difference between hosts, and the sample size is too small to rank them. For a client system, measure such questions by repetition rather than by one pass.
+Answer quality did not depend on the host. Grounding on the final build: 29 of 30 answers passed (`docs/evidence/grounding.txt`), and 30 of 30 on the build before. The one question that varies is the cross-document "cheapest AWD in Sweden". Repeated 6 times per backend it was right 15 of 18 times: prompt 4, loop 6, hosted 5 (`docs/evidence/cross-document-repeat.txt`), and 13 and 11 of 18 on earlier builds. The ranking of backends changed between runs. The wrong answers treat AWD-only models as the only AWD models, and an added instruction did not improve it. That is model behaviour with `gpt-5.4-mini`, not a difference between hosts. For a client system, measure such questions by repetition rather than by one pass, and expect a stronger model or an explicit calculation tool to be the real fix (neither was tested here).
 
 Recovery was tested live too. A paused turn nobody answers, and a conversation resumed after the API scaled to zero, both recovered on all three backends (`docs/evidence/repair.txt`).
 

@@ -1,7 +1,6 @@
 Question: What is the cheapest AWD Voltrieve in Sweden? Six repeats per backend.
-hosted MISS 2
-hosted PASS 4
-loop MISS 2
-loop PASS 4
-prompt MISS 1
-prompt PASS 5
+hosted MISS 1
+hosted PASS 5
+loop PASS 6
+prompt MISS 2
+prompt PASS 4
