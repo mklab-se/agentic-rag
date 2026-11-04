@@ -194,7 +194,7 @@ def run_backend(backend: str, base: str, token, wanted: set[int]) -> list[Result
     if want(12):
         ids = ", ".join(f"runbook-{backend}-{n}" for n in (2, 8))
         results.append(Result(12, "Follow one correlation id in Application Insights", "MANUAL",
-                              note=f"search customDimensions for: {ids}"))
+                              note=f"run scripts/trace_evidence.py, or search customDimensions for: {ids}"))
     api.close()
     return sorted(results, key=lambda r: r.number)
 

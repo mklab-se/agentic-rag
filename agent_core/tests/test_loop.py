@@ -1,6 +1,8 @@
 import pytest
 from types import SimpleNamespace
 
+import openai
+
 from voltrieve_agent.loop import TurnInput, run_turn
 from voltrieve_agent.model import (
     Completed,
@@ -410,3 +412,61 @@ async def test_the_model_stream_is_closed_when_the_loop_stops_reading_it(user, e
 
     outcome = await run_turn(Tracked(), [], turn(user), events)
     assert outcome.status == "failed" and closed == [True]
+
+
+class _Events:
+    """An async stream of canned events that can end by raising."""
+
+    def __init__(self, events, error=None):
+        self.events, self.error = events, error
+
+    async def __aenter__(self):
+        return self
+
+    async def __aexit__(self, *exc):
+        return False
+
+    async def __aiter__(self):
+        for event in self.events:
+            yield event
+        if self.error:
+            raise self.error
+
+
+def _openai_client(*streams):
+    pending = list(streams)
+
+    async def create(**kwargs):
+        return pending.pop(0)
+
+    return SimpleNamespace(responses=SimpleNamespace(create=create))
+
+
+def _rate_limited():
+    return openai.APIError("Model deployment rate limit exceeded.", request=None, body=None)
+
+
+async def _collect(client):
+    kwargs = dict(instructions="i", conversation="c", input="hi", tools=[])
+    return [item async for item in client.stream(**kwargs)]
+
+
+async def test_rate_limit_before_output_is_retried():
+    waits = []
+
+    async def sleep(seconds):
+        waits.append(seconds)
+
+    delta = SimpleNamespace(type="response.output_text.delta", delta="Hi")
+    client = ResponsesModelClient(
+        _openai_client(_Events([], _rate_limited()), _Events([delta])), model="m", sleep=sleep
+    )
+    assert [i.text for i in await _collect(client)] == ["Hi"]
+    assert waits == [20.0]
+
+
+async def test_rate_limit_after_output_is_not_retried():
+    delta = SimpleNamespace(type="response.output_text.delta", delta="Hi")
+    client = ResponsesModelClient(_openai_client(_Events([delta], _rate_limited())), model="m")
+    with pytest.raises(openai.APIError):
+        await _collect(client)

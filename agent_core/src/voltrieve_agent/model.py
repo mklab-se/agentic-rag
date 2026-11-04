@@ -1,8 +1,14 @@
 """The model boundary: stream items and the Responses API implementation."""
 
-from collections.abc import AsyncIterator
+import asyncio
+from collections.abc import AsyncIterator, Awaitable, Callable
 from dataclasses import dataclass, field
 from typing import Protocol
+
+import openai
+
+RATE_LIMIT_RETRIES = 3
+RATE_LIMIT_DELAY_SECONDS = 20.0
 
 
 @dataclass
@@ -63,15 +69,39 @@ class ResponsesModelClient:
     also sets them ("Not allowed when agent is specified"), so they are left out.
     """
 
-    def __init__(self, openai_client, model: str | None = None, agent_name: str | None = None):
+    def __init__(
+        self,
+        openai_client,
+        model: str | None = None,
+        agent_name: str | None = None,
+        sleep: Callable[[float], Awaitable[None]] = asyncio.sleep,
+    ):
         if model is None and agent_name is None:
             raise ValueError("ResponsesModelClient needs a model or an agent_name")
         self._client = openai_client  # AsyncOpenAI from AIProjectClient.get_openai_client()
         self._model = model
         self._agent_name = agent_name
+        self._sleep = sleep
 
     async def stream(
         self, *, instructions: str, conversation: str, input: str | list[dict], tools: list[dict]
+    ) -> AsyncIterator[StreamItem]:
+        """Retries a rate limited call, which Foundry reports mid-stream, until output has started."""
+        for attempt in range(RATE_LIMIT_RETRIES + 1):
+            started = False
+            try:
+                async for item in self._stream_once(instructions, conversation, input, tools):
+                    started = True
+                    yield item
+                return
+            except openai.APIError as exc:
+                limited = "rate limit" in str(exc).lower()
+                if started or not limited or attempt == RATE_LIMIT_RETRIES:
+                    raise
+                await self._sleep(RATE_LIMIT_DELAY_SECONDS * (attempt + 1))
+
+    async def _stream_once(
+        self, instructions: str, conversation: str, input: str | list[dict], tools: list[dict]
     ) -> AsyncIterator[StreamItem]:
         if self._agent_name is not None:
             events = await self._client.responses.create(
