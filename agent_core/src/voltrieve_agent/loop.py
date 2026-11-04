@@ -1,11 +1,13 @@
 """The orchestration loop: stream the model, run server tools, pause for client tools.
 
 The loop never emits `done`: hosts do, because only they know the backend. On status
-"failed" the loop has already emitted an `error` event. Hosts must use turn ids that match
-`^[A-Za-z0-9._-]{1,64}$`.
+"failed" the loop has already emitted an `error` event. The turn's correlation id (the turn
+id when the host gives none) is sent to the dealer service as X-Correlation-Id, so it should
+match `^[A-Za-z0-9._-]{1,64}$`; the dealer replaces any other value.
 """
 
 import logging
+from contextlib import aclosing
 from dataclasses import dataclass, field
 from typing import Literal
 
@@ -18,6 +20,7 @@ from voltrieve_agent.model import (
     McpCall,
     ModelClient,
     TextDelta,
+    merge_usage,
 )
 from voltrieve_agent.tools import (
     ClientTool,
@@ -55,12 +58,6 @@ class TurnOutcome:
     client_call_ids: list[str] = field(default_factory=list)
 
 
-def _add_usage(total: dict, usage: dict) -> None:
-    for key, value in usage.items():
-        if isinstance(value, int | float) and not isinstance(value, bool):
-            total[key] = total.get(key, 0) + value
-
-
 def _output_item(call_id: str, output: str) -> dict:
     return {"type": "function_call_output", "call_id": call_id, "output": output}
 
@@ -86,7 +83,7 @@ async def run_turn(
 
 async def _run(model, server_tools, turn, emit, max_iterations) -> TurnOutcome:
     toolset = ToolSet(server_tools, turn.client_tools)
-    definitions = toolset.definitions(turn.user)
+    definitions = toolset.definitions()
     usage: dict = {}
     next_input: str | list[dict] = turn.input
 
@@ -95,13 +92,26 @@ async def _run(model, server_tools, turn, emit, max_iterations) -> TurnOutcome:
         calls: list[FunctionCall] = []
         text_deltas = 0
         failed: Failed | None = None
-        try:
-            async for item in model.stream(
+        stream_error = False
+        # Only the model stream is guarded: a failing emit is a host problem, not a model one.
+        async with aclosing(
+            model.stream(
                 instructions=AGENT_INSTRUCTIONS,
                 conversation=turn.conversation_id,
                 input=next_input,
                 tools=definitions,
-            ):
+            )
+        ) as stream:
+            items = aiter(stream)
+            while True:
+                try:
+                    item = await anext(items)
+                except StopAsyncIteration:
+                    break
+                except Exception:
+                    logger.exception("Model stream failed")
+                    stream_error = True
+                    break
                 if isinstance(item, TextDelta):
                     text_deltas += 1
                     await emit(AgentEvent("delta", {"text": item.text}))
@@ -118,14 +128,13 @@ async def _run(model, server_tools, turn, emit, max_iterations) -> TurnOutcome:
                         )
                     )
                 elif isinstance(item, Completed):
-                    _add_usage(usage, item.usage)
+                    usage = merge_usage(usage, item.usage)
                 elif isinstance(item, Failed):
                     failed = item
                     break
-        except Exception:
-            logger.exception("Model stream failed")
-            return await _fail(emit, "model_error", usage)
 
+        if stream_error:
+            return await _fail(emit, "model_error", usage)
         if failed is not None:
             logger.warning("Model reported %s: %s", failed.code, failed.message)
             code = failed.code if failed.code in FAILURE_MESSAGES else "model_error"
@@ -147,7 +156,15 @@ async def _run(model, server_tools, turn, emit, max_iterations) -> TurnOutcome:
         client_calls: list[FunctionCall] = []
         for call in calls:
             if toolset.is_client(call.name):
-                client_calls.append(call)
+                error = toolset.validate_client(call.name, call.arguments)
+                if error is None:
+                    client_calls.append(call)
+                else:
+                    # Never forward arguments the client's own schema rejects.
+                    await emit(
+                        trace("client_tool_rejected", "tools", call.name, tool=call.name)
+                    )
+                    outputs.append(_output_item(call.call_id, error))
                 continue
             await emit(
                 trace(
@@ -192,14 +209,17 @@ async def _run(model, server_tools, turn, emit, max_iterations) -> TurnOutcome:
         if iteration == max_iterations - 1:
             # Give every function_call in the conversation an output, without offering tools.
             try:
-                async for item in model.stream(
-                    instructions=AGENT_INSTRUCTIONS,
-                    conversation=turn.conversation_id,
-                    input=outputs,
-                    tools=[],
-                ):
-                    if isinstance(item, Completed):
-                        _add_usage(usage, item.usage)
+                async with aclosing(
+                    model.stream(
+                        instructions=AGENT_INSTRUCTIONS,
+                        conversation=turn.conversation_id,
+                        input=outputs,
+                        tools=[],
+                    )
+                ) as stream:
+                    async for item in stream:
+                        if isinstance(item, Completed):
+                            usage = merge_usage(usage, item.usage)
             except Exception:
                 logger.exception("Closing model call failed")
             return await _fail(emit, "too_many_iterations", usage)

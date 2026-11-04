@@ -1,12 +1,17 @@
 """Tools the agent runs on the server: documentation search and dealer operations."""
 
 import datetime
+from zoneinfo import ZoneInfo
 
 from voltrieve_agent.dealer import DealerClient
 from voltrieve_agent.knowledge import KnowledgeBase
 from voltrieve_agent.tools import ServerTool, UserContext
 
 BOOK_ROLE = "TestDrive.Book"
+# Prompt agents get the knowledge base as an MCP tool instead, so they drop this one.
+KB_SEARCH_TOOL = "search_voltrieve_docs"
+# The dealer works in Swedish local time, whatever the timezone of the host.
+DEALER_TIMEZONE = ZoneInfo("Europe/Stockholm")
 
 # The dealer service takes slugs and exact city names, so the model is given the valid values.
 MODEL_SLUGS = ["spark", "lumen", "ragn", "fjord", "atlas"]
@@ -30,7 +35,7 @@ def build_server_tools(dealer: DealerClient, search: KnowledgeBase) -> list[Serv
         return await dealer.book(args["model"], args["city"], args["date"], user.oid)
 
     async def get_current_date(args: dict, user: UserContext) -> str:
-        return datetime.date.today().isoformat()
+        return datetime.datetime.now(DEALER_TIMEZONE).date().isoformat()
 
     def schema(properties: dict, required: list[str] | None = None) -> dict:
         return {
@@ -42,7 +47,7 @@ def build_server_tools(dealer: DealerClient, search: KnowledgeBase) -> list[Serv
 
     return [
         ServerTool(
-            "search_voltrieve_docs",
+            KB_SEARCH_TOOL,
             "Search the Voltrieve documents: sales brochures, technical specification guides "
             "and the buyer's guide. Returns document chunks with titles.",
             schema({"query": {"type": "string", "description": "What to look up"}}, ["query"]),
@@ -57,7 +62,8 @@ def build_server_tools(dealer: DealerClient, search: KnowledgeBase) -> list[Serv
         ),
         ServerTool(
             "get_prices",
-            "Get the current Voltrieve price list for a market.",
+            "Get the dealer's base price per model for a market. It has no drive "
+            "configuration prices (such as AWD): those are in the documents.",
             schema({"market": {"type": "string", "enum": ["SE", "EU"]}}),
             get_prices,
         ),

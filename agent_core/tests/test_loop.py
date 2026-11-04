@@ -345,3 +345,68 @@ def test_mcp_call_error_text_is_surfaced_when_there_is_no_output():
         ),
     )
     assert _map_event(failed) == McpCall("search", "kb", "403 forbidden")
+
+
+async def test_client_call_with_arguments_its_schema_rejects_is_answered_not_forwarded(user, events):
+    schema = {"type": "object", "properties": {"times": {"type": "integer", "maximum": 10}}, "required": ["times"]}
+    client = ClientTool("make_noise", "Ring", schema)
+    model = FakeModel(
+        [
+            [FunctionCall("c1", "make_noise", '{"times": 99}'), FunctionCall("c2", "make_noise", '{"times": 2}')],
+            [TextDelta("ok")],
+        ]
+    )
+    outcome = await run_turn(model, [], turn(user, [client]), events)
+    forwarded = next(e for e in events.events if e.type == "client_tool_calls")
+    assert [c["call_id"] for c in forwarded.data["calls"]] == ["c2"]
+    assert outcome.status == "paused" and outcome.client_call_ids == ["c2"]
+    assert outcome.pending_outputs[0]["call_id"] == "c1"
+    assert outcome.pending_outputs[0]["output"].startswith("Error: invalid arguments for 'make_noise'")
+    assert "client_tool_rejected" in steps(events)
+
+
+async def test_when_every_client_call_is_rejected_the_model_gets_the_errors_and_the_turn_goes_on(user, events):
+    client = ClientTool("make_noise", "Ring", {"type": "object", "required": ["times"]})
+    model = FakeModel([[FunctionCall("c1", "make_noise", "{}")], [TextDelta("sorry")]])
+    outcome = await run_turn(model, [], turn(user, [client]), events)
+    assert outcome.status == "done" and "client_tool_calls" not in types(events)
+    assert model.calls[1]["input"][0]["output"].startswith("Error: invalid arguments")
+
+
+async def test_usage_is_summed_including_nested_detail(user, events):
+    model = FakeModel(
+        [
+            [FunctionCall("c1", "check_stock", '{"city": "x"}'),
+             Completed({"input_tokens": 10, "input_tokens_details": {"cached_tokens": 4}})],
+            [TextDelta("ok"),
+             Completed({"input_tokens": 5, "input_tokens_details": {"cached_tokens": 1}, "total_tokens": 7})],
+        ]
+    )
+    outcome = await run_turn(model, [tool()], turn(user), events)
+    assert outcome.usage == {
+        "input_tokens": 15, "input_tokens_details": {"cached_tokens": 5}, "total_tokens": 7
+    }
+
+
+async def test_a_failing_emit_is_not_reported_as_a_model_error(user):
+    async def broken_emit(event):
+        if event.type == "delta":
+            raise RuntimeError("the client went away")
+
+    with pytest.raises(RuntimeError, match="went away"):
+        await run_turn(FakeModel([[TextDelta("hi")]]), [], turn(user), broken_emit)
+
+
+async def test_the_model_stream_is_closed_when_the_loop_stops_reading_it(user, events):
+    closed = []
+
+    class Tracked:
+        async def stream(self, **kwargs):
+            try:
+                yield Failed("model_failed", "x")
+                yield TextDelta("never read")
+            finally:
+                closed.append(True)
+
+    outcome = await run_turn(Tracked(), [], turn(user), events)
+    assert outcome.status == "failed" and closed == [True]

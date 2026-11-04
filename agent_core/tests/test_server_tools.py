@@ -101,7 +101,7 @@ async def test_book_test_drive_requires_role(tools, user, events):
     out = await tools[0].execute("book_test_drive", args, user, events)
     assert out.startswith("Refused")
     assert [e.data["step"] for e in events.events] == ["authorization_denied"]
-    names = [d["name"] for d in tools[0].definitions(user)]
+    names = [d["name"] for d in tools[0].definitions()]
     assert "book_test_drive" in names and "search_voltrieve_docs" in names
 
 
@@ -149,3 +149,23 @@ async def test_knowledge_base_traces_sub_queries_and_titles(monkeypatch, user, e
     assert event.data["step"] == "knowledge_base_retrieved"
     assert event.data["sub_queries"] == ["v1 range", "battery capacity"]
     assert event.data["references"] == ["V1 Manual"]
+
+
+def test_get_prices_says_it_holds_base_prices_only():
+    description = next(t.description for t in build_server_tools(None, None) if t.name == "get_prices")
+    assert description.startswith("Get the dealer's base price per model")
+    assert "drive configuration" in description
+
+
+async def test_current_date_is_the_date_in_stockholm(tools, user, events, monkeypatch):
+    import datetime
+    import voltrieve_agent.server_tools as server_tools
+
+    class Clock(datetime.datetime):
+        @classmethod
+        def now(cls, tz=None):
+            # 23:30 UTC on 4 November is already 5 November in Stockholm.
+            return datetime.datetime(2026, 11, 4, 23, 30, tzinfo=datetime.UTC).astimezone(tz)
+
+    monkeypatch.setattr(server_tools.datetime, "datetime", Clock)
+    assert await tools[0].execute("get_current_date", "{}", user, events) == "2026-11-05"

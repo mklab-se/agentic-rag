@@ -1,6 +1,6 @@
 import json
 
-from voltrieve_agent.tools import ClientTool, ServerTool, ToolSet, UserContext
+from voltrieve_agent.tools import ClientTool, ServerTool, ToolSet
 
 SCHEMA = {
     "type": "object",
@@ -81,11 +81,23 @@ def test_definitions_list_every_server_tool_whatever_the_role(user):
         [make_tool([]), ServerTool("book", "d", SCHEMA, None, required_role="Admin")],
         [ClientTool("pick_file", "Pick", {"type": "object", "properties": {}})],
     )
-    assert [d["name"] for d in toolset.definitions(user)] == ["lookup", "book", "pick_file"]
-    admin = UserContext("o", "u", frozenset({"Admin"}))
-    assert [d["name"] for d in toolset.definitions(admin)] == ["lookup", "book", "pick_file"]
-    assert all(d["type"] == "function" for d in toolset.definitions(admin))
+    assert [d["name"] for d in toolset.definitions()] == ["lookup", "book", "pick_file"]
+    assert all(d["type"] == "function" for d in toolset.definitions())
     assert toolset.is_client("pick_file") and not toolset.is_client("lookup")
+
+
+def test_client_arguments_are_validated_against_the_clients_schema():
+    schema = {
+        "type": "object",
+        "properties": {"times": {"type": "integer", "minimum": 1, "maximum": 10}},
+        "required": ["times"],
+    }
+    toolset = ToolSet([], [ClientTool("make_noise", "Ring", schema)])
+    assert toolset.validate_client("make_noise", '{"times": 3}') is None
+    assert toolset.validate_client("make_noise", "{bad") .startswith("Error: arguments for 'make_noise' are not valid JSON")
+    for bad in ('{}', '{"times": 99}', '{"times": "x"}', '[]'):
+        assert toolset.validate_client("make_noise", bad).startswith("Error: invalid arguments for 'make_noise'")
+    assert "times" in toolset.validate_client("make_noise", '{"times": 99}')
 
 
 async def test_role_denied_is_logged_as_warning(user, events, caplog):

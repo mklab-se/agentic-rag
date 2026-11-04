@@ -8,15 +8,6 @@ import httpx
 from voltrieve_agent.tools import current_correlation_id
 
 
-def make_http_client() -> httpx.AsyncClient:
-    """An httpx client whose requests carry W3C traceparent through OpenTelemetry."""
-    from opentelemetry.instrumentation.httpx import HTTPXClientInstrumentor
-
-    client = httpx.AsyncClient(timeout=45.0)  # the dealer scales to zero, so allow for a cold start
-    HTTPXClientInstrumentor.instrument_client(client)
-    return client
-
-
 class DealerClient:
     def __init__(
         self,

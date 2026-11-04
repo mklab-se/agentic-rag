@@ -8,6 +8,7 @@ dependencies = [
     "jsonschema",
     "openai",
     "opentelemetry-instrumentation-httpx",
+    "tzdata",
     "voltrieve-search",
 ]
 

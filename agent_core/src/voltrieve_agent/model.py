@@ -35,6 +35,17 @@ class Completed:
     usage: dict = field(default_factory=dict)
 
 
+def merge_usage(total: dict, more: dict) -> dict:
+    """Sum two usage dicts, descending into nested ones (token detail breakdowns)."""
+    merged = dict(total)
+    for key, value in more.items():
+        if isinstance(value, dict):
+            merged[key] = merge_usage(merged.get(key) or {}, value)
+        elif isinstance(value, int | float) and not isinstance(value, bool):
+            merged[key] = merged.get(key, 0) + value
+    return merged
+
+
 StreamItem = TextDelta | FunctionCall | McpCall | Completed | Failed
 
 
