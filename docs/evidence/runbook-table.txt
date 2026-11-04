@@ -1,10 +1,10 @@
 Installed 8 packages in 7ms
 running prompt ...
-  evidence: /Users/kristofer/repos/mklab-se/agentic-rag/docs/evidence/prompt.json
+  evidence: docs/evidence/prompt.json
 running loop ...
-  evidence: /Users/kristofer/repos/mklab-se/agentic-rag/docs/evidence/loop.json
+  evidence: docs/evidence/loop.json
 running hosted ...
-  evidence: /Users/kristofer/repos/mklab-se/agentic-rag/docs/evidence/hosted.json
+  evidence: docs/evidence/hosted.json
 
 step what                                                  prompt   loop     hosted   
 --------------------------------------------------------------------------------------

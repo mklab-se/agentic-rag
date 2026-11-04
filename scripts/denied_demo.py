@@ -63,12 +63,9 @@ async def run(backend: str) -> int:
             print(f"error  {data}")
     answer = "".join(d.get("text", "") for k, d in events if k == "delta")
     print("\nanswer:", " ".join(answer.split()))
-    denied = [d for k, d in events if k == "trace" and d.get("step") == "authorization_denied"]
-    booked = any(d.get("step") == "server_tool_returned" and d.get("tool") == "book_test_drive"
-                 for k, d in events if k == "trace") and not denied
-    print("\nPASS: authorization_denied emitted" if denied and not booked
-          else "\nFAIL: no authorization_denied event")
-    return 0 if denied and not booked else 1
+    denied = any(k == "trace" and d.get("step") == "authorization_denied" for k, d in events)
+    print("\nPASS: authorization_denied emitted" if denied else "\nFAIL: no authorization_denied event")
+    return 0 if denied else 1
 
 
 def main() -> int:

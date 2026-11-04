@@ -38,21 +38,18 @@ AGENT_GROUPS = (
     Group("Model client (Responses streaming)", "ABC", (f"{CORE}/model.py",)),
     Group("Tool set (validate, authorize, run)", "ABC", (f"{CORE}/tools.py",)),
     Group("Server tool definitions", "ABC", (f"{CORE}/server_tools.py",)),
-    Group("Dealer client", "ABC", (f"{CORE}/dealer.py",)),
+    Group("Dealer client", "ABC", (f"{CORE}/dealer.py", f"{CORE}/http_client.py")),
     Group(
         "Knowledge base client (retrieve)",
         "BC",
         (f"{CORE}/knowledge.py", f"{SEARCH}/retrieve.py", f"{SEARCH}/client.py"),
     ),
-    Group("API contract (routes, schemas, SSE, app)", "ABC", (
-        "api/app/routes.py", "api/app/schemas.py", "api/app/sse.py", "api/app/main.py",
+    Group("API contract (routes, schemas, app)", "ABC", (
+        "api/app/routes.py", "api/app/schemas.py", "api/app/main.py",
         "api/app/settings.py",
     )),
     Group("Auth (token validation)", "ABC", ("api/app/auth.py",)),
-    Group("Turn state and repair", "ABC", (
-        "api/app/turns.py", "api/app/backends/base.py",
-        "api/app/backends/loop.py::ConversationBackend",
-    )),
+    Group("Turn state and repair", "ABC", ("api/app/turns.py", "api/app/backends/base.py")),
     Group("Telemetry and logging", "ABC", ("api/app/telemetry.py", "api/app/logging_setup.py")),
     Group("Backend registry", "ABC", ("api/app/backends/__init__.py",)),
     Group("Loop host in the API (backends/loop.py)", "AB", ("api/app/backends/loop.py",)),

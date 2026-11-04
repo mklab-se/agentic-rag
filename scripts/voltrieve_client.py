@@ -8,12 +8,16 @@ from __future__ import annotations
 import datetime as dt
 import json
 import os
+import re
 import subprocess
 import time
 from collections.abc import Callable, Iterable, Iterator
 from dataclasses import dataclass, field
+from pathlib import Path
 
 import httpx
+
+ROOT = Path(__file__).resolve().parents[1]
 
 Event = tuple[str, dict]
 
@@ -127,11 +131,14 @@ class Api:
         headers = {"Authorization": f"Bearer {self._token()}", "X-Agent-Backend": self._backend}
         if correlation_id:
             headers["X-Correlation-Id"] = correlation_id
-        with self._http.stream("POST", path, json=body, headers=headers) as response:
-            if response.status_code >= 400:
-                response.read()
-                raise ApiError(response.status_code, response.text[:300])
-            yield from parse_sse(response.iter_lines())
+        try:
+            with self._http.stream("POST", path, json=body, headers=headers) as response:
+                if response.status_code >= 400:
+                    response.read()
+                    raise ApiError(response.status_code, response.text[:300])
+                yield from parse_sse(response.iter_lines())
+        except httpx.HTTPError as exc:
+            raise ApiError(0, f"{path} failed: {type(exc).__name__}") from exc
 
     def turn(
         self,
@@ -182,6 +189,29 @@ def cached_token(fetch: Callable[[], str], ttl: float = 1200.0) -> Callable[[], 
         return state["value"]
 
     return get
+
+
+def evidence_text(text: str) -> str:
+    """The text of a file saved under docs/evidence/.
+
+    Model output is otherwise kept verbatim. Two things are changed on the way to disk: an
+    em-dash becomes " - " (the repository avoids the character, and models like it), and
+    absolute paths are removed so that no file carries the name of the machine's user.
+    """
+    text = text.replace(str(ROOT) + os.sep, "").replace(str(ROOT), ".")
+    text = re.sub(
+        r"(?:/Users|/home)/[^\s\"'`),;]+"
+        r"|(?<![A-Za-z0-9])[A-Za-z]:\\{1,2}(?:[^\s\\\"'`),;]+\\{1,2})+[^\s\\\"'`),;]*",
+        "<path>",
+        text,
+    )
+    return re.sub(r"[ \t]*\u2014[ \t]*", " - ", text)
+
+
+def write_evidence(path: Path, text: str) -> Path:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(evidence_text(text))
+    return path
 
 
 def booking_request() -> str:

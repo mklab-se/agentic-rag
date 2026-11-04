@@ -228,7 +228,7 @@
         "trace:model_returned",
         "done"
       ],
-      "answer": "The **Voltrieve Atlas** charges fastest, with a **peak charging power of 320 kW**.  \nSource: **voltrieve-buyers-guide.md** and **voltrieve-atlas-specifications.pdf**.\n\nFor comparison, the other models are:\n- Spark: 95 kW — **voltrieve-buyers-guide.md**\n- Lumen: 135 kW — **voltrieve-buyers-guide.md**, **voltrieve-lumen-specifications.pdf**\n- Ragn: 240 kW — **voltrieve-buyers-guide.md**, **voltrieve-ragn-specifications.pdf**\n- Fjord: 240 kW — **voltrieve-buyers-guide.md**, **voltrieve-fjord-specifications.pdf**\n- Atlas: 320 kW — **voltrieve-buyers-guide.md**, **voltrieve-atlas-specifications.pdf**",
+      "answer": "The **Voltrieve Atlas** charges fastest, with a **peak charging power of 320 kW**.  \nSource: **voltrieve-buyers-guide.md** and **voltrieve-atlas-specifications.pdf**.\n\nFor comparison, the other models are:\n- Spark: 95 kW - **voltrieve-buyers-guide.md**\n- Lumen: 135 kW - **voltrieve-buyers-guide.md**, **voltrieve-lumen-specifications.pdf**\n- Ragn: 240 kW - **voltrieve-buyers-guide.md**, **voltrieve-ragn-specifications.pdf**\n- Fjord: 240 kW - **voltrieve-buyers-guide.md**, **voltrieve-fjord-specifications.pdf**\n- Atlas: 320 kW - **voltrieve-buyers-guide.md**, **voltrieve-atlas-specifications.pdf**",
       "client_tools_run": [],
       "usage": {
         "input_tokens": 4462,
@@ -412,7 +412,7 @@
         "trace:model_returned",
         "done"
       ],
-      "answer": "The cheapest AWD Voltrieve in Sweden is the **Voltrieve Lumen AWD** at **419,000 SEK**.  \nSource: **voltrieve-buyers-guide.md**\n\nFor comparison, the AWD prices in Sweden are:\n- **Lumen AWD** — 419,000 SEK\n- **Fjord AWD** — 569,000 SEK\n- **Ragn AWD** — 549,000 SEK\n- **Atlas AWD** — 749,000 SEK\n\nSource: **voltrieve-buyers-guide.md**",
+      "answer": "The cheapest AWD Voltrieve in Sweden is the **Voltrieve Lumen AWD** at **419,000 SEK**.  \nSource: **voltrieve-buyers-guide.md**\n\nFor comparison, the AWD prices in Sweden are:\n- **Lumen AWD** - 419,000 SEK\n- **Fjord AWD** - 569,000 SEK\n- **Ragn AWD** - 549,000 SEK\n- **Atlas AWD** - 749,000 SEK\n\nSource: **voltrieve-buyers-guide.md**",
       "client_tools_run": [],
       "usage": {
         "input_tokens": 3049,
@@ -453,7 +453,7 @@
         "trace:model_returned",
         "done"
       ],
-      "answer": "Yes — the Atlas is in stock in Göteborg: 3 available.",
+      "answer": "Yes - the Atlas is in stock in Göteborg: 3 available.",
       "client_tools_run": [],
       "usage": {
         "input_tokens": 955,

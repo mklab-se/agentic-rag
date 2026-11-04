@@ -26,7 +26,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from voltrieve_client import Api, ApiError, Turn, api_token, api_url, booking_request, cached_token  # noqa: E402
+from voltrieve_client import (  # noqa: E402
+    Api, ApiError, Turn, api_token, api_url, booking_request, cached_token, write_evidence,
+)
 from voltrieve_facts import ROOT, check, load_data, load_dealer, load_questions  # noqa: E402
 
 EVIDENCE = ROOT / "docs" / "evidence"
@@ -198,32 +200,32 @@ def run_backend(backend: str, base: str, token, wanted: set[int]) -> list[Result
 
 
 def save(backend: str, results: list[Result]) -> Path:
-    EVIDENCE.mkdir(parents=True, exist_ok=True)
-    path = EVIDENCE / f"{backend}.json"
-    path.write_text(json.dumps({
+    # Model answers are saved verbatim except for the two changes write_evidence makes
+    # (em-dash to " - ", absolute paths removed); see docs/evidence/README.md.
+    return write_evidence(EVIDENCE / f"{backend}.json", json.dumps({
         "backend": backend,
         "run_at": dt.datetime.now(dt.UTC).isoformat(timespec="seconds"),
         "steps": [r.evidence() for r in results],
     }, indent=2, ensure_ascii=False) + "\n")
-    return path
 
 
-def print_table(all_results: dict[str, list[Result]]) -> None:
+def table(all_results: dict[str, list[Result]]) -> str:
     backends = list(all_results)
     numbers = sorted({r.number for rs in all_results.values() for r in rs})
     titles = {r.number: r.title for rs in all_results.values() for r in rs if r.title != "backend unavailable"}
     header = f"{'step':<5}{'what':<54}" + "".join(f"{b:<9}" for b in backends)
-    print("\n" + header + "\n" + "-" * len(header))
+    lines = [header, "-" * len(header)]
     for n in numbers:
         cells = ""
         for b in backends:
             found = next((r for r in all_results[b] if r.number == n), None)
             cells += f"{found.status if found else '-':<9}"
-        print(f"{n:<5}{titles.get(n, ''):<54}{cells}")
+        lines.append(f"{n:<5}{titles.get(n, ''):<54}{cells}")
     for b, rs in all_results.items():
         for r in rs:
             if r.status in ("FAIL", "SKIP") or r.status == "MANUAL":
-                print(f"  [{b} step {r.number} {r.status}] {r.note}")
+                lines.append(f"  [{b} step {r.number} {r.status}] {r.note}")
+    return "\n".join(lines) + "\n"
 
 
 def main() -> int:
@@ -239,8 +241,10 @@ def main() -> int:
     for backend in args.backends.split(","):
         print(f"running {backend} ...", flush=True)
         all_results[backend] = run_backend(backend, base, token, wanted)
-        print(f"  evidence: {save(backend, all_results[backend])}")
-    print_table(all_results)
+        print(f"  evidence: {save(backend, all_results[backend]).relative_to(ROOT)}")
+    text = table(all_results)
+    print("\n" + text)
+    write_evidence(EVIDENCE / "runbook-table.txt", text)
     failed = any(r.status == "FAIL" for rs in all_results.values() for r in rs)
     return 1 if failed else 0
 

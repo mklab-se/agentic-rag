@@ -52,7 +52,7 @@ MISS cheapest-awd-se: What is the cheapest AWD Voltrieve in Sweden?
      answer:   The cheapest AWD Voltrieve in Sweden is the **Voltrieve Ragn**, at **549,000 SEK**. The buyer’s guide shows that Ragn is AWD only and lists its AWD price in Sweden as 549,000 SEK. Source: **voltrieve-buyers-guide.md**
 PASS atlas-stock: Is the Atlas in stock in Göteborg?
      expected: atlas in Göteborg: 3
-     answer:   Yes — the Atlas is in stock in Göteborg: 3 units.
+     answer:   Yes - the Atlas is in stock in Göteborg: 3 units.
 PASS ragn-warranty: How long is the battery warranty on the Ragn?
      expected: not documented (warranty): decline, no invented value
      answer:   The Ragn has an **84 kWh battery**, but I **can’t find any battery warranty information** in the documentation I retrieved. Sources: **voltrieve-ragn-specifications.pdf**, **voltrieve-buyers-guide.md**
@@ -84,7 +84,7 @@ PASS cheapest-awd-se: What is the cheapest AWD Voltrieve in Sweden?
      answer:   The cheapest AWD Voltrieve in Sweden is the **Voltrieve Lumen AWD** at **419 000 SEK**. This is shown in the buyer’s guide, which lists the Swedish price with AWD for Lumen as 419 000 SEK, and it’s the lowest AWD price among the models. **[voltrieve-buyers-guide.md]** For comparison, the buyer’s guide lists these AWD prices in Sweden: - **Lumen AWD:** 419 000 SEK - **Ragn AWD:** 549 000 SEK - **Fj
 PASS atlas-stock: Is the Atlas in stock in Göteborg?
      expected: atlas in Göteborg: 3
-     answer:   Yes — the Atlas is in stock in Göteborg: 3 cars available.
+     answer:   Yes - the Atlas is in stock in Göteborg: 3 cars available.
 PASS ragn-warranty: How long is the battery warranty on the Ragn?
      expected: not documented (warranty): decline, no invented value
      answer:   I couldn’t find a battery warranty in the available documentation for the Voltrieve Ragn. I checked the Ragn brochure, specifications, and buyer’s guide, but none of them mention battery warranty length.

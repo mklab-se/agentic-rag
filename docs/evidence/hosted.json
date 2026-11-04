@@ -448,7 +448,7 @@
         "trace:model_returned",
         "done"
       ],
-      "answer": "Yes — the Atlas is in stock in Göteborg: 3 cars available.",
+      "answer": "Yes - the Atlas is in stock in Göteborg: 3 cars available.",
       "client_tools_run": [],
       "usage": {
         "input_tokens": 955,

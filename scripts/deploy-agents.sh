@@ -8,6 +8,7 @@
 #                       it is active and stores HOSTED_AGENT_PRINCIPAL_ID in the azd environment
 # 3. azd provision      Bicep assigns the hosted agent identity its roles on Foundry and Search
 # 4. assign-app-role    the hosted agent identity gets Dealer.Access (Graph, not Bicep)
+# 5. smoke.py           health of the API and dealer, the indexer, one turn per backend
 # Run it after `azd up`, from the repository root, signed in with az and azd as the deployer.
 set -eu
 cd "$(dirname "$0")/.."
@@ -29,5 +30,8 @@ retry uv run --project infra/scripts/entra voltrieve-entra assign-app-role \
   --principal-object-id "$HOSTED_AGENT_PRINCIPAL_ID" \
   --resource-sp-object-id "$DEALER_SP_OBJECT_ID" \
   --app-role-id "$DEALER_APP_ROLE_ID"
+
+# A new agent version and fresh role assignments can take minutes to settle, so the check retries.
+retry uv run scripts/smoke.py
 echo "Note: sessions are bound to the agent version they started on; conversations in flight stay on the old version until the API restarts (or a call fails and the session is dropped)."
 echo "Agents deployed. Hosted agent: ${HOSTED_AGENT_NAME:-voltrieve-hosted} (principal $HOSTED_AGENT_PRINCIPAL_ID)"
