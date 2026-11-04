@@ -75,6 +75,7 @@ resource api 'Microsoft.App/containerApps@2026-07-01' = {
             { name: 'CORS_ORIGINS', value: corsOrigins }
             { name: 'AGENT_BACKEND', value: 'loop' }
             { name: 'APPLICATIONINSIGHTS_CONNECTION_STRING', value: appInsightsConnectionString }
+            { name: 'OTEL_SERVICE_NAME', value: 'voltrieve-api' }
             { name: 'LOG_LEVEL', value: 'INFO' }
             { name: 'ASPNETCORE_HTTP_PORTS', value: '8000' } // only used by the placeholder image
           ]

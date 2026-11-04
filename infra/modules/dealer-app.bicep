@@ -50,6 +50,7 @@ resource dealer 'Microsoft.App/containerApps@2026-07-01' = {
             { name: 'TENANT_ID', value: tenantId }
             { name: 'DEALER_CLIENT_ID', value: dealerClientId }
             { name: 'APPLICATIONINSIGHTS_CONNECTION_STRING', value: appInsightsConnectionString }
+            { name: 'OTEL_SERVICE_NAME', value: 'voltrieve-dealer' }
             { name: 'LOG_LEVEL', value: 'INFO' }
             { name: 'ASPNETCORE_HTTP_PORTS', value: '8000' } // only used by the placeholder image
           ]
