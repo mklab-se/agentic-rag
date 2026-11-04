@@ -1,3 +1,10 @@
+running prompt ...
+  evidence: docs/evidence/prompt.json
+running loop ...
+  evidence: docs/evidence/loop.json
+running hosted ...
+  evidence: docs/evidence/hosted.json
+
 step what                                                  prompt   loop     hosted   
 --------------------------------------------------------------------------------------
 1    Sign in, roles in the trace                           PASS     PASS     PASS     
@@ -19,3 +26,4 @@ step what                                                  prompt   loop     hos
   [hosted step 7 FAIL] expected Voltrieve Lumen AWD at 419000 (SE)
   [hosted step 11 SKIP] backend A only
   [hosted step 12 MANUAL] search customDimensions for: runbook-hosted-2, runbook-hosted-8
+

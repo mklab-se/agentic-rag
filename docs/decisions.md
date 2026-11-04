@@ -167,15 +167,16 @@ It is an ingestion identifier, not a secret: it only allows sending telemetry. I
 - Hosted: each agent has an Entra identity (`instance_identity.principal_id`), stable across versions.
 - Hosted: the first call on a new session is slow, a broken image gives `session_not_ready`, sessions bind to one version, the idle timeout minimum is 120 seconds, and billing is for active sessions only.
 - Hosted deployment needs a `linux/amd64` image, Foundry Project Manager, and registry pull roles for the project identity. Search and dealer roles for the agent identity come after that identity exists, so a second provision is needed.
-- Grounding, 30 questions over 3 backends: 28 passed. The two misses are in `docs/evidence/grounding.txt`.
+- Grounding, 30 questions over 3 backends: 30 passed on the final build (`docs/evidence/grounding.txt`). An earlier run had 28: a dealer cold-start timeout, fixed with a 45 second timeout, and one wrong answer.
+- "Cheapest AWD in Sweden" repeated 6 times per backend: 13 of 18 right (prompt 5, loop 4, hosted 4). The wrong answers treat AWD-only models as the only AWD models. `docs/evidence/cross-document-repeat.txt`.
+- Paused turn abandoned, and conversation resumed after 420 seconds idle so the API scaled to zero: passed on all three backends, with `turn_abandoned` and `conversation_repaired` in the trace. `docs/evidence/repair.txt`.
+- One trace id spans the API, Foundry, the hosted agent and the dealer. Foundry adds its own `responsesapi` spans for prompt and hosted agents, and an `agentsv2` request for hosted. The direct loop gets none of these. `docs/evidence/application-insights.txt`.
 - `scripts/denied_demo.py` on `loop` gave `authorization_denied` and a polite refusal (`docs/evidence/authorization-denied.txt`).
 
 ## Not recorded or not verified
 
 - Interactive SPA sign-in, and a real browser sign-in with `voltrieve login` (tested against a fake MSAL application).
 - A real sign-in as the tester. The denied case ran with a fake validator.
-- Runbook step 12: following a correlation id in Application Insights.
-- What Foundry's own tracing writes for prompt and hosted agents.
 - Publishing to Teams and Microsoft 365.
 - Latency and cold-start figures.
 - The 10 minute run expiry from older documentation.

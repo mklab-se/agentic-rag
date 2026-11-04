@@ -44,7 +44,7 @@ async def run(backend: str) -> int:
     class ChatUserOnly:
         async def validate(self, authorization):
             return Claims("00000000-0000-0000-0000-00000000dead", "chat.user@example.invalid",
-                          "demo", ["Chat.User"])
+                          ["Chat.User"])
 
     app = create_app(Settings(agent_backend=backend, log_level="WARNING"), validator=ChatUserOnly())
     try:

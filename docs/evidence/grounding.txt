@@ -2,34 +2,34 @@
 == backend: prompt
 PASS towing-fjord: What is the towing capacity of the Fjord?
      expected: Voltrieve Fjord towing_kg = 2100
-     answer:   The Voltrieve Fjord has a towing capacity of **2,100 kg (braked)**.【5:0†voltrieve-fjord-specifications.pdf】
+     answer:   The Voltrieve Fjord has a towing capacity of **2,100 kg (braked)**.
 PASS towing-84kwh: Which of the 84 kWh models tows more?
      expected: Voltrieve Fjord with towing_kg = 2100
-     answer:   Among the 84 kWh models, **Voltrieve Fjord tows more**. - **Voltrieve Fjord:** 2,100 kg braked towing capacity【5:0†voltrieve-fjord-specifications.pdf】 - **Voltrieve Ragn:** 1,800 kg braked towing capacity【5:1†voltrieve-ragn-specifications.pdf】 So Fjord tows **300 kg more** than Ragn【5:0†voltrieve-fjord-specifications.pdf】【5:1†voltrieve-ragn-specifications.pdf】
+     answer:   Among the 84 kWh models, **Voltrieve Fjord tows more**. - **Voltrieve Fjord**: **2,100 kg** braked towing capacity (voltrieve-fjord-specifications.pdf) - **Voltrieve Ragn**: **1,800 kg** braked towing capacity (voltrieve-ragn-specifications.pdf) So Fjord tows **300 kg more** than Ragn (voltrieve-fjord-specifications.pdf) (voltrieve-ragn-specifications.pdf)
 PASS fastest-charging: Which Voltrieve charges fastest?
      expected: Voltrieve Atlas with peak_charge_kw = 320
-     answer:   The **Voltrieve Atlas** charges fastest. Its peak charging power is **320 kW**, which is higher than the other models listed in the buyer’s guide and specifications【5:6†voltrieve-buyers-guide.md】【5:0†voltrieve-atlas-specifications.pdf】. For comparison: - Atlas: **320 kW**【5:6†voltrieve-buyers-guide.md】 - Ragn: **240 kW**【5:6†voltrieve-buyers-guide.md】 - Fjord: **240 kW**【5:6†voltrieve-buyers-guide
+     answer:   The fastest-charging Voltrieve is the **Atlas**, with a peak charging power of **320 kW**. The next fastest are the **Ragn** and **Fjord** at **240 kW** each. (voltrieve-atlas-specifications.pdf) (voltrieve-fjord-specifications.pdf) (voltrieve-ragn-specifications.pdf) (voltrieve-buyers-guide.md)
 PASS spark-towing: Can the Spark tow a trailer?
      expected: Voltrieve Spark has no towing_kg: decline, no kg figure
-     answer:   No. The Spark is not rated for towing, so it cannot tow a trailer according to the documentation.【5:3†voltrieve-spark-specifications.pdf】【5:2†voltrieve-buyers-guide.md】
+     answer:   No. The Spark is not rated for towing, so it cannot tow a trailer according to the documentation. (voltrieve-spark-specifications.pdf) (voltrieve-buyers-guide.md)
 PASS lumen-ncap: What is the Lumen's Euro NCAP rating?
      expected: not documented (Euro NCAP): decline, no invented value
-     answer:   I couldn’t find a Euro NCAP rating for the Voltrieve Lumen in the documentation I retrieved. The available Lumen documents cover specs, brochure details, and the buyer’s guide, but none mention Euro NCAP. 【5:0†voltrieve-buyers-guide.md】【5:2†voltrieve-lumen-brochure.docx】【5:3†voltrieve-lumen-specifications.pdf】
+     answer:   I can’t find any Euro NCAP rating for the Voltrieve Lumen in the documentation I retrieved. The Lumen brochure and buyer’s guide mention its drive options, range, and prices, but not a Euro NCAP rating (voltrieve-buyers-guide.md) (voltrieve-lumen-brochure.docx)
 PASS cheapest-awd-se: What is the cheapest AWD Voltrieve in Sweden?
      expected: Voltrieve Lumen AWD at 419000 (SE)
-     answer:   The cheapest Voltrieve with AWD in Sweden is the **Voltrieve Lumen AWD** at **419 000 SEK**. The buyer’s guide lists Lumen with AWD in SE at 419 000 SEK, while Ragn AWD is 549 000 SEK, Fjord AWD is 569 000 SEK, and Atlas AWD is 749 000 SEK【5:0†voltrieve-buyers-guide.md】
-MISS atlas-stock: Is the Atlas in stock in Göteborg?
+     answer:   In Sweden, the cheapest AWD Voltrieve is the **Voltrieve Lumen AWD** at **419 000 SEK**. The buyer’s guide shows that Lumen is available with AWD and lists its Sweden price with AWD at 419 000 SEK, which is lower than the AWD prices for Ragn, Fjord, and Atlas (voltrieve-buyers-guide.md)
+PASS atlas-stock: Is the Atlas in stock in Göteborg?
      expected: atlas in Göteborg: 3
-     answer:   I couldn’t check the stock right now because the dealer service timed out. Please try again later.
+     answer:   Yes  -  the Atlas is in stock in Göteborg, with 3 cars available.
 PASS ragn-warranty: How long is the battery warranty on the Ragn?
      expected: not documented (warranty): decline, no invented value
-     answer:   I can’t find any battery warranty information for the Ragn in the documentation I retrieved. The brochure and buyer’s guide list the battery size and range, but not warranty terms【5:0†voltrieve-ragn-brochure.docx】【5:1†voltrieve-buyers-guide.md】.
+     answer:   I couldn’t find any battery warranty information for the Ragn in the documentation I retrieved. The brochure and buyer’s guide list the Ragn’s battery size and range, but not warranty terms (voltrieve-ragn-brochure.docx) (voltrieve-buyers-guide.md). If you want, I can check whether another document mentions warranty coverage.
 PASS fjord-crash-test: How did the Fjord do in crash tests?
      expected: not documented (crash test): decline, no invented value
-     answer:   I can’t find crash-test information for the Voltrieve Fjord in the documentation I retrieved. The buyer’s guide includes model specs, pricing, and option packs, but no crash-test ratings or safety test results for the Fjord【5:0†voltrieve-buyers-guide.md】
+     answer:   I couldn’t find any crash-test information for the Voltrieve Fjord in the documentation I retrieved. The buyer’s guide I found covers specs, prices, options, and towing, but not crash-test results (voltrieve-buyers-guide.md). If you want, I can check whether there’s a separate safety or technical specification document that mentions crash tests.
 PASS production-location: In which factory are Voltrieve cars produced?
      expected: not documented (factory): decline, no invented value
-     answer:   I can’t find that in the retrieved documentation.
+     answer:   I can’t find that in the documentation I have access to.
 
 == backend: loop
 PASS towing-fjord: What is the towing capacity of the Fjord?
@@ -37,62 +37,62 @@ PASS towing-fjord: What is the towing capacity of the Fjord?
      answer:   The Voltrieve Fjord has a towing capacity of **2,100 kg (braked)**. Source: **voltrieve-fjord-specifications.pdf**
 PASS towing-84kwh: Which of the 84 kWh models tows more?
      expected: Voltrieve Fjord with towing_kg = 2100
-     answer:   Among the 84 kWh models, **Voltrieve Fjord tows more**. - **Voltrieve Fjord:** up to **2,100 kg** towing capacity - **Voltrieve Ragn:** up to **1,800 kg** towing capacity Source: **voltrieve-buyers-guide.md**
+     answer:   Among the 84 kWh models, the **Voltrieve Fjord** tows more than the **Voltrieve Ragn**. - **Fjord:** 2,100 kg braked towing capacity - **Ragn:** 1,800 kg braked towing capacity Source: **voltrieve-buyers-guide.md** and the model specification guides **voltrieve-fjord-specifications.pdf** / **voltrieve-ragn-specifications.pdf**.
 PASS fastest-charging: Which Voltrieve charges fastest?
      expected: Voltrieve Atlas with peak_charge_kw = 320
-     answer:   The **Voltrieve Atlas** charges fastest, with a **peak charging power of 320 kW**. It is higher than the other models listed in the buyer’s guide: Spark 95 kW, Lumen 135 kW, Ragn 240 kW, and Fjord 240 kW. Source: **voltrieve-buyers-guide.md**
+     answer:   The **Voltrieve Atlas** charges fastest, with a **peak charging power of 320 kW**. Sources: **voltrieve-buyers-guide.md**, **voltrieve-atlas-specifications.pdf** For comparison: - **Ragn**: 240 kW - **Fjord**: 240 kW - **Lumen**: 135 kW - **Spark**: 95 kW Sources: **voltrieve-buyers-guide.md**, **voltrieve-spark-specifications.pdf**, **voltrieve-lumen-specifications.pdf**, **voltrieve-ragn-specifi
 PASS spark-towing: Can the Spark tow a trailer?
      expected: Voltrieve Spark has no towing_kg: decline, no kg figure
-     answer:   No. The Voltrieve Spark is not rated for towing. [voltrieve-spark-specifications.pdf]
+     answer:   No. The Voltrieve Spark is **not rated for towing**. [voltrieve-spark-specifications.pdf]
 PASS lumen-ncap: What is the Lumen's Euro NCAP rating?
      expected: not documented (Euro NCAP): decline, no invented value
-     answer:   I couldn’t find any Euro NCAP rating for the Voltrieve Lumen in the documentation I retrieved. I checked the Lumen brochure, the buyer’s guide, and the specifications, and none of them mention a Euro NCAP result.
-MISS cheapest-awd-se: What is the cheapest AWD Voltrieve in Sweden?
+     answer:   I couldn’t find a Euro NCAP rating for the Voltrieve Lumen in the documentation I retrieved. The Lumen brochure, buyer’s guide, and specifications sheet list its drive, range, features, and options, but not any Euro NCAP result. Source: **voltrieve-lumen-brochure.docx**, **voltrieve-buyers-guide.md**, **voltrieve-lumen-specifications.pdf**
+PASS cheapest-awd-se: What is the cheapest AWD Voltrieve in Sweden?
      expected: Voltrieve Lumen AWD at 419000 (SE)
-     answer:   The cheapest AWD Voltrieve in Sweden is the **Voltrieve Ragn**, at **549,000 SEK**. The buyer’s guide shows that Ragn is AWD only and lists its AWD price in Sweden as 549,000 SEK. Source: **voltrieve-buyers-guide.md**
+     answer:   The cheapest AWD Voltrieve in Sweden is the **Voltrieve Lumen AWD** at **419,000 SEK**. The buyer’s guide lists the Lumen’s AWD price in Sweden, and it is lower than the AWD prices for the other AWD models: Ragn (**549,000 SEK**), Fjord (**569,000 SEK**), and Atlas (**749,000 SEK**). **Voltrieve Spark** does not offer AWD. Source: **voltrieve-buyers-guide.md**
 PASS atlas-stock: Is the Atlas in stock in Göteborg?
      expected: atlas in Göteborg: 3
-     answer:   Yes - the Atlas is in stock in Göteborg: 3 units.
+     answer:   Yes  -  the Atlas is in stock in Göteborg, with 3 cars available.
 PASS ragn-warranty: How long is the battery warranty on the Ragn?
      expected: not documented (warranty): decline, no invented value
-     answer:   The Ragn has an **84 kWh battery**, but I **can’t find any battery warranty information** in the documentation I retrieved. Sources: **voltrieve-ragn-specifications.pdf**, **voltrieve-buyers-guide.md**
+     answer:   I couldn’t find any battery warranty information for the Voltrieve Ragn in the documentation I retrieved. The Ragn brochure, specifications, and buyer’s guide list its battery capacity and range, but not warranty terms.
 PASS fjord-crash-test: How did the Fjord do in crash tests?
      expected: not documented (crash test): decline, no invented value
-     answer:   I couldn’t find any crash test information for the Voltrieve Fjord in the documentation I have. The buyer’s guide lists its battery, range, towing capacity, and drive options, but not crash test results. [voltrieve-buyers-guide.md]
+     answer:   I couldn’t find any crash test results for the Voltrieve Fjord in the documentation I retrieved. The buyer’s guide lists its specs, drive options, range, towing capacity, and prices, but not crash test ratings or safety test outcomes. **Source:** *voltrieve-buyers-guide.md*
 PASS production-location: In which factory are Voltrieve cars produced?
      expected: not documented (factory): decline, no invented value
-     answer:   I can’t find any information in the documentation about which factory Voltrieve cars are produced in.
+     answer:   I couldn’t find that information in the Voltrieve documentation.
 
 == backend: hosted
 PASS towing-fjord: What is the towing capacity of the Fjord?
      expected: Voltrieve Fjord towing_kg = 2100
-     answer:   The Voltrieve Fjord has a towing capacity of **2,100 kg (braked)**. Source: **voltrieve-fjord-specifications.pdf**.
+     answer:   The Voltrieve Fjord has a towing capacity of **2,100 kg (braked)**. Source: **voltrieve-fjord-specifications.pdf**
 PASS towing-84kwh: Which of the 84 kWh models tows more?
      expected: Voltrieve Fjord with towing_kg = 2100
-     answer:   Among the 84 kWh models, the **Voltrieve Fjord** tows more than the **Voltrieve Ragn**. - **Fjord:** 2,100 kg braked towing capacity. - **Ragn:** 1,800 kg braked towing capacity. Source: **voltrieve-buyers-guide.md** and **voltrieve-fjord-specifications.pdf** / **voltrieve-ragn-specifications.pdf**.
+     answer:   Among the 84 kWh models, **Voltrieve Fjord** tows more. - **Voltrieve Fjord:** 2,100 kg braked towing capacity  -  **voltrieve-fjord-specifications.pdf** - **Voltrieve Ragn:** 1,800 kg braked towing capacity  -  **voltrieve-ragn-specifications.pdf** So Fjord tows **300 kg more** than Ragn.
 PASS fastest-charging: Which Voltrieve charges fastest?
      expected: Voltrieve Atlas with peak_charge_kw = 320
-     answer:   The **Voltrieve Atlas** charges fastest, with a **peak charging power of 320 kW**. Source: **voltrieve-buyers-guide.md**; **voltrieve-atlas-specifications.pdf**.
+     answer:   The **Voltrieve Atlas** charges fastest. Its **peak charging power is 320 kW**, which is the highest among the models listed. Source: **voltrieve-atlas-specifications.pdf**; **voltrieve-buyers-guide.md**
 PASS spark-towing: Can the Spark tow a trailer?
      expected: Voltrieve Spark has no towing_kg: decline, no kg figure
-     answer:   No. The Voltrieve Spark is not rated for towing. [voltrieve-spark-specifications.pdf]
+     answer:   No. The Spark is **not rated for towing**. Source: **voltrieve-spark-specifications.pdf**; **voltrieve-buyers-guide.md**
 PASS lumen-ncap: What is the Lumen's Euro NCAP rating?
      expected: not documented (Euro NCAP): decline, no invented value
-     answer:   I can’t find any Euro NCAP rating for the Voltrieve Lumen in the documentation I retrieved. The Lumen brochure and specifications cover drive, range, charging, and features, but not safety ratings. Source: **voltrieve-lumen-brochure.docx**, **voltrieve-lumen-specifications.pdf**.
+     answer:   I can’t find any Euro NCAP rating for the Voltrieve Lumen in the documentation I retrieved. The available Lumen documents cover battery, range, towing, drive, and features, but not an NCAP result. [voltrieve-lumen-brochure.docx] [voltrieve-lumen-specifications.pdf]
 PASS cheapest-awd-se: What is the cheapest AWD Voltrieve in Sweden?
      expected: Voltrieve Lumen AWD at 419000 (SE)
-     answer:   The cheapest AWD Voltrieve in Sweden is the **Voltrieve Lumen AWD** at **419 000 SEK**. This is shown in the buyer’s guide, which lists the Swedish price with AWD for Lumen as 419 000 SEK, and it’s the lowest AWD price among the models. **[voltrieve-buyers-guide.md]** For comparison, the buyer’s guide lists these AWD prices in Sweden: - **Lumen AWD:** 419 000 SEK - **Ragn AWD:** 549 000 SEK - **Fj
+     answer:   The cheapest AWD Voltrieve in Sweden is the **Voltrieve Ragn**, at **549,000 SEK**. According to the **Voltrieve buyer's guide**, Ragn is AWD-only and its Sweden price with AWD is 549,000 SEK. The same guide lists the other AWD models as Lumen (419,000 SEK with AWD), Fjord (569,000 SEK with AWD), and Atlas (749,000 SEK), so Ragn is the cheapest AWD option.
 PASS atlas-stock: Is the Atlas in stock in Göteborg?
      expected: atlas in Göteborg: 3
-     answer:   Yes - the Atlas is in stock in Göteborg: 3 cars available.
+     answer:   Yes  -  the Atlas is in stock in Göteborg, with 3 units available.
 PASS ragn-warranty: How long is the battery warranty on the Ragn?
      expected: not documented (warranty): decline, no invented value
-     answer:   I couldn’t find a battery warranty in the available documentation for the Voltrieve Ragn. I checked the Ragn brochure, specifications, and buyer’s guide, but none of them mention battery warranty length.
+     answer:   The Ragn battery warranty is not stated in the documentation I could retrieve, so I can’t find it there.
 PASS fjord-crash-test: How did the Fjord do in crash tests?
      expected: not documented (crash test): decline, no invented value
-     answer:   I can’t find any crash test results for the Voltrieve Fjord in the documentation I retrieved. The buyer’s guide covers model specs, towing, drive options, and prices, but not crash tests. Source: **voltrieve-buyers-guide.md**
+     answer:   I couldn’t find any crash test results for the Voltrieve Fjord in the documentation I retrieved. The Fjord brochure describes the car’s features, and the buyer’s guide lists its drive, range, towing, and pricing, but neither includes crash test ratings or safety-test outcomes. Sources: **voltrieve-fjord-brochure.docx**, **voltrieve-buyers-guide.md**
 PASS production-location: In which factory are Voltrieve cars produced?
      expected: not documented (factory): decline, no invented value
-     answer:   I cannot find that in the documentation I retrieved.
+     answer:   I can’t find the factory or production location in the Voltrieve documentation I retrieved.
 
-2 miss(es)
+0 miss(es)

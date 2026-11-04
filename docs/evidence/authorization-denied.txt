@@ -1,23 +1,15 @@
-Installed 86 packages in 107ms
-{"time": "2026-11-04T01:30:17+0100", "level": "INFO", "logger": "azure.monitor.opentelemetry.exporter._quickpulse._manager", "message": "QuickpulseManager initialized successfully.", "correlation_id": "-", "conversation_id": null, "turn_id": null, "backend": null, "user_oid": null}
-{"time": "2026-11-04T01:30:18+0100", "level": "WARNING", "logger": "azure.ai.projects.telemetry._ai_project_instrumentor", "message": "GenAI tracing is not enabled. Set environment variable AZURE_EXPERIMENTAL_ENABLE_GENAI_TRACING=true to enable this experimental feature.", "correlation_id": "-", "conversation_id": null, "turn_id": null, "backend": null, "user_oid": null}
-{"time": "2026-11-04T01:30:18+0100", "level": "INFO", "logger": "app.telemetry", "message": "Azure Monitor telemetry enabled", "correlation_id": "-", "conversation_id": null, "turn_id": null, "backend": null, "user_oid": null}
-{"time": "2026-11-04T01:30:18+0100", "level": "INFO", "logger": "azure.core.pipeline.policies.http_logging_policy", "message": "Request URL: 'https://swedencentral.livediagnostics.monitor.azure.com/QuickPulseService.svc/ping?api-version=2024-04-01-preview&ikey=REDACTED'\nRequest method: 'POST'\nRequest headers:\n    'Content-Type': 'application/json'\n    'Content-Length': '330'\n    'x-ms-qps-transmission-time': 'REDACTED'\n    'x-ms-qps-machine-name': 'REDACTED'\n    'x-ms-qps-instance-name': 'REDACTED'\n    'x-ms-qps-stream-id': 'REDACTED'\n    'x-ms-qps-role-name': 'REDACTED'\n    'x-ms-qps-invariant-version': 'REDACTED'\n    'x-ms-qps-configuration-etag': 'REDACTED'\n    'Accept': 'application/json'\nA body is sent with the request", "correlation_id": "-", "conversation_id": null, "turn_id": null, "backend": null, "user_oid": null}
-{"time": "2026-11-04T01:30:18+0100", "level": "INFO", "logger": "azure.core.pipeline.policies.http_logging_policy", "message": "Request URL: 'https://swedencentral-0.in.applicationinsights.azure.com//v2.1/track'\nRequest method: 'POST'\nRequest headers:\n    'Content-Type': 'application/json'\n    'Content-Length': '3124'\n    'Accept': 'application/json'\n    'x-ms-client-request-id': 'e9b548e8-d7e6-11f1-bc4f-4d9e57dc7513'\n    'User-Agent': 'azsdk-python-monitor-opentelemetry-exporter/1.0.0b1 Python/3.12.16 (macOS-27.2-arm64-arm-64bit)'\nA body is sent with the request", "correlation_id": "-", "conversation_id": null, "turn_id": null, "backend": null, "user_oid": null}
-{"time": "2026-11-04T01:30:19+0100", "level": "WARNING", "logger": "opentelemetry.metrics._internal", "message": "Overriding of current MeterProvider is not allowed", "correlation_id": "-", "conversation_id": null, "turn_id": null, "backend": null, "user_oid": null}
-{"time": "2026-11-04T01:30:19+0100", "level": "WARNING", "logger": "opentelemetry.trace", "message": "Overriding of current TracerProvider is not allowed", "correlation_id": "-", "conversation_id": null, "turn_id": null, "backend": null, "user_oid": null}
-{"time": "2026-11-04T01:30:19+0100", "level": "WARNING", "logger": "opentelemetry._logs._internal", "message": "Overriding of current LoggerProvider is not allowed", "correlation_id": "-", "conversation_id": null, "turn_id": null, "backend": null, "user_oid": null}
-{"time": "2026-11-04T01:30:19+0100", "level": "WARNING", "logger": "opentelemetry.instrumentation.instrumentor", "message": "Attempting to instrument while already instrumented", "correlation_id": "-", "conversation_id": null, "turn_id": null, "backend": null, "user_oid": null}
-{"time": "2026-11-04T01:30:19+0100", "level": "WARNING", "logger": "opentelemetry.instrumentation.instrumentor", "message": "Attempting to instrument while already instrumented", "correlation_id": "-", "conversation_id": null, "turn_id": null, "backend": null, "user_oid": null}
-{"time": "2026-11-04T01:30:19+0100", "level": "WARNING", "logger": "opentelemetry.instrumentation.instrumentor", "message": "Attempting to instrument while already instrumented", "correlation_id": "-", "conversation_id": null, "turn_id": null, "backend": null, "user_oid": null}
-{"time": "2026-11-04T01:30:19+0100", "level": "WARNING", "logger": "opentelemetry.instrumentation.instrumentor", "message": "Attempting to instrument while already instrumented", "correlation_id": "-", "conversation_id": null, "turn_id": null, "backend": null, "user_oid": null}
-{"time": "2026-11-04T01:30:19+0100", "level": "WARNING", "logger": "opentelemetry.instrumentation.instrumentor", "message": "Attempting to instrument while already instrumented", "correlation_id": "-", "conversation_id": null, "turn_id": null, "backend": null, "user_oid": null}
-{"time": "2026-11-04T01:30:19+0100", "level": "WARNING", "logger": "opentelemetry.instrumentation.instrumentor", "message": "Attempting to instrument while already instrumented", "correlation_id": "-", "conversation_id": null, "turn_id": null, "backend": null, "user_oid": null}
-{"time": "2026-11-04T01:30:19+0100", "level": "WARNING", "logger": "azure.ai.projects.telemetry._ai_project_instrumentor", "message": "GenAI tracing is not enabled. Set environment variable AZURE_EXPERIMENTAL_ENABLE_GENAI_TRACING=true to enable this experimental feature.", "correlation_id": "-", "conversation_id": null, "turn_id": null, "backend": null, "user_oid": null}
-{"time": "2026-11-04T01:30:21+0100", "level": "WARNING", "logger": "voltrieve_agent.tools", "message": "authorization denied: tool book_test_drive requires role TestDrive.Book (user 00000000-0000-0000-0000-00000000dead)", "correlation_id": "eb4859aa-0054-4c4f-8e13-7aceeb86061f", "conversation_id": "conv_064e0033eae11f60009CePuDDkXGXz0fI5rzN94DRu7pW5CWWX", "turn_id": "c01d1591-f7a8-49ca-966c-e99118beda2a", "backend": "loop", "user_oid": "00000000-0000-0000-0000-00000000dead"}
+   Building voltrieve-api @ file://api
+   Building voltrieve-search @ file://search
+   Building voltrieve-agent-core @ file://agent_core
+      Built voltrieve-agent-core @ file://agent_core
+      Built voltrieve-search @ file://search
+      Built voltrieve-api @ file://api
+Uninstalled 87 packages in 364ms
+{"time": "2026-11-04T02:26:28+0100", "level": "WARNING", "logger": "azure.ai.projects.telemetry._ai_project_instrumentor", "message": "GenAI tracing is not enabled. Set environment variable AZURE_EXPERIMENTAL_ENABLE_GENAI_TRACING=true to enable this experimental feature.", "correlation_id": "-", "conversation_id": null, "turn_id": null, "backend": null, "user_oid": null}
+{"time": "2026-11-04T02:26:31+0100", "level": "WARNING", "logger": "voltrieve_agent.tools", "message": "authorization denied: tool book_test_drive requires role TestDrive.Book (user 00000000-0000-0000-0000-00000000dead)", "correlation_id": "5d8f9195-9f6e-4d02-b256-1e70394c308a", "conversation_id": "conv_0684d15b4d65ef18001e2d5ezYpRN1d0hobjSvPn6FUTQHJ0tv", "turn_id": "1ccb5b7a-a160-48fd-bed4-0e84bf494772", "backend": "loop", "user_oid": "00000000-0000-0000-0000-00000000dead"}
 trace  token_validated          roles: Chat.User
 trace  backend_selected         loop
-trace  conversation_created     conv_064e0033eae11f60009CePuDDkXGXz0fI5rzN94DRu7pW5CWWX
+trace  conversation_created     conv_0684d15b4d65ef18001e2d5ezYpRN1d0hobjSvPn6FUTQHJ0tv
 trace  model_called             iteration 1
 trace  model_returned           0 text deltas, 1 tool calls
 trace  server_tool_called       book_test_drive
@@ -26,6 +18,6 @@ trace  server_tool_returned     book_test_drive
 trace  model_called             iteration 2
 trace  model_returned           22 text deltas, 0 tool calls
 
-answer: I’m sorry, but I can’t book the test drive because the signed-in user isn’t allowed to use the test-drive booking tool.
+answer: I’m sorry, but I can’t book that test drive for you because the signed-in user isn’t अनुमति to use the booking tool.
 
 PASS: authorization_denied emitted

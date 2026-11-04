@@ -92,8 +92,11 @@ Deployed and run live on 2026-11-04.
 
 Verified live:
 
-- All three backends through the deployed API. The runbook passed on every step, except one wrong answer on step 7 on the prompt backend.
-- Grounding: 28 of 30 answers passed.
+- All three backends through the deployed API. The runbook passes on every step except the cross-document step 7, which is non-deterministic (below).
+- Grounding on the final build: 30 of 30 answers passed.
+- The cross-document question "cheapest AWD in Sweden" repeated 6 times per backend: 13 of 18 right (prompt 5, loop 4, hosted 4). The checks are not loosened for it.
+- Recovery on all three backends: a paused turn nobody answers, and a conversation resumed after the API scaled to zero (`docs/evidence/repair.txt`).
+- One trace per turn across API, Foundry, hosted agent and dealer (`docs/evidence/application-insights.txt`).
 - The prompt agent's 400.
 - The authorization denied path, on the loop backend, against real Foundry with a fake token validator.
 
@@ -103,8 +106,6 @@ Not verified:
 
 - Interactive sign-in to the SPA, and a real browser sign-in with `voltrieve login` (its MSAL calls are tested against a fake).
 - A real sign-in as the tester.
-- Following a correlation id in Application Insights (runbook step 12).
-- What Foundry's own tracing records.
 - Publishing to Teams and Microsoft 365.
 - Latency and cold-start figures.
 

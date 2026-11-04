@@ -1,0 +1,6 @@
+PASS  prompt abandon  recovery steps: ['turn_abandoned']  error: None  answer: 'The Voltrieve Spark has a **42 kWh** battery. (voltrieve-spark-specifications.pdf)'
+PASS  loop abandon  recovery steps: ['turn_abandoned']  error: None  answer: 'The Voltrieve Spark has a battery capacity of **42 kWh**.  \nSource: **voltrieve-spark-spec'
+PASS  hosted abandon  recovery steps: ['turn_abandoned']  error: None  answer: 'The Voltrieve Spark has a **42 kWh** battery. [voltrieve-spark-specifications.pdf]'
+PASS  prompt repair  recovery steps: ['conversation_repaired']  error: None  answer: 'The Voltrieve Spark has a **42 kWh** battery. (voltrieve-spark-specifications.pdf)'
+PASS  loop repair  recovery steps: ['conversation_repaired']  error: None  answer: 'The Voltrieve Spark has a battery capacity of 42 kWh. [voltrieve-spark-specifications.pdf]'
+PASS  hosted repair  recovery steps: ['conversation_repaired']  error: None  answer: 'The Voltrieve Spark has a **42 kWh** battery. [voltrieve-spark-specifications.pdf]'
