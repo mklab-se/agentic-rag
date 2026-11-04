@@ -1,6 +1,6 @@
 {
   "backend": "hosted",
-  "run_at": "2026-11-04T02:10:48+00:00",
+  "run_at": "2026-11-04T02:29:05+00:00",
   "steps": [
     {
       "step": 1,
@@ -26,10 +26,11 @@
         "delta",
         "delta",
         "delta",
+        "delta",
         "trace:model_returned",
         "done"
       ],
-      "answer": "Hello! How can I help with Voltrieve vehicles today?",
+      "answer": "Hello! How can I help you with Voltrieve vehicles today?",
       "client_tools_run": [],
       "usage": {
         "input_tokens": 488,
@@ -37,11 +38,11 @@
           "cache_write_tokens": 0,
           "cached_tokens": 0
         },
-        "output_tokens": 16,
+        "output_tokens": 17,
         "output_tokens_details": {
           "reasoning_tokens": 0
         },
-        "total_tokens": 504
+        "total_tokens": 505
       }
     },
     {
@@ -88,19 +89,19 @@
         "trace:model_returned",
         "done"
       ],
-      "answer": "The Voltrieve Fjord has a towing capacity of **2,100 kg (braked)**.  \nSource: **voltrieve-fjord-specifications.pdf**",
+      "answer": "The Voltrieve Fjord’s towing capacity is **2,100 kg (braked)**.  \nSource: **voltrieve-fjord-specifications.pdf**",
       "client_tools_run": [],
       "usage": {
-        "input_tokens": 3338,
+        "input_tokens": 3366,
         "input_tokens_details": {
           "cache_write_tokens": 0,
-          "cached_tokens": 2560
+          "cached_tokens": 0
         },
-        "output_tokens": 59,
+        "output_tokens": 150,
         "output_tokens_details": {
-          "reasoning_tokens": 0
+          "reasoning_tokens": 88
         },
-        "total_tokens": 3397
+        "total_tokens": 3516
       }
     },
     {
@@ -153,27 +154,22 @@
         "delta",
         "delta",
         "delta",
-        "delta",
-        "delta",
-        "delta",
-        "delta",
-        "delta",
         "trace:model_returned",
         "done"
       ],
-      "answer": "Among the 84 kWh models, **Voltrieve Fjord tows more**.\n\n- **Voltrieve Fjord:** 2,100 kg braked towing capacity - *voltrieve-fjord-specifications.pdf*\n- **Voltrieve Ragn:** 1,800 kg braked towing capacity - *voltrieve-ragn-specifications.pdf*\n\nSo, **Fjord tows 300 kg more than Ragn**.",
+      "answer": "The **Voltrieve Fjord** tows more: **2,100 kg** versus the **Voltrieve Ragn** at **1,800 kg**. So among the 84 kWh models, **Fjord has the higher towing capacity**.  \nSource: **voltrieve-buyers-guide.md**",
       "client_tools_run": [],
       "usage": {
-        "input_tokens": 3286,
+        "input_tokens": 3307,
         "input_tokens_details": {
           "cache_write_tokens": 0,
           "cached_tokens": 0
         },
-        "output_tokens": 126,
+        "output_tokens": 229,
         "output_tokens_details": {
-          "reasoning_tokens": 0
+          "reasoning_tokens": 127
         },
-        "total_tokens": 3412
+        "total_tokens": 3536
       }
     },
     {
@@ -222,25 +218,22 @@
         "delta",
         "delta",
         "delta",
-        "delta",
-        "delta",
-        "delta",
         "trace:model_returned",
         "done"
       ],
-      "answer": "The **Voltrieve Atlas** charges fastest, with a **peak charging power of 320 kW**. The next fastest are the **Voltrieve Ragn** and **Voltrieve Fjord** at **240 kW** each.  \nSource: **voltrieve-buyers-guide.md**",
+      "answer": "The **Voltrieve Atlas** charges fastest, with a **peak charging power of 320 kW**. This is listed in both the **voltrieve-atlas-specifications.pdf** and the **Voltrieve buyer's guide**.",
       "client_tools_run": [],
       "usage": {
-        "input_tokens": 4546,
+        "input_tokens": 3296,
         "input_tokens_details": {
           "cache_write_tokens": 0,
           "cached_tokens": 0
         },
-        "output_tokens": 91,
+        "output_tokens": 149,
         "output_tokens_details": {
-          "reasoning_tokens": 0
+          "reasoning_tokens": 60
         },
-        "total_tokens": 4637
+        "total_tokens": 3445
       }
     },
     {
@@ -279,22 +272,25 @@
         "delta",
         "delta",
         "delta",
+        "delta",
+        "delta",
+        "delta",
         "trace:model_returned",
         "done"
       ],
-      "answer": "No. The Spark is not rated for towing. Source: **voltrieve-spark-specifications.pdf**.",
+      "answer": "No. The **Voltrieve Spark** is **not rated for towing**.  \nSource: **voltrieve-spark-specifications.pdf**",
       "client_tools_run": [],
       "usage": {
-        "input_tokens": 3534,
+        "input_tokens": 4100,
         "input_tokens_details": {
           "cache_write_tokens": 0,
           "cached_tokens": 0
         },
-        "output_tokens": 53,
+        "output_tokens": 119,
         "output_tokens_details": {
-          "reasoning_tokens": 0
+          "reasoning_tokens": 57
         },
-        "total_tokens": 3587
+        "total_tokens": 4219
       }
     },
     {
@@ -333,28 +329,36 @@
         "delta",
         "delta",
         "delta",
+        "delta",
+        "delta",
+        "delta",
+        "delta",
+        "delta",
+        "delta",
+        "delta",
+        "delta",
         "trace:model_returned",
         "done"
       ],
-      "answer": "I couldn’t find a Euro NCAP rating for the Voltrieve Lumen in the documentation I retrieved.",
+      "answer": "I can’t find a Euro NCAP rating for the Voltrieve Lumen in the documentation I retrieved: the buyer’s guide, the Lumen brochure, and the Lumen specifications do not mention one.",
       "client_tools_run": [],
       "usage": {
-        "input_tokens": 2640,
+        "input_tokens": 2662,
         "input_tokens_details": {
           "cache_write_tokens": 0,
           "cached_tokens": 0
         },
-        "output_tokens": 52,
+        "output_tokens": 253,
         "output_tokens_details": {
-          "reasoning_tokens": 0
+          "reasoning_tokens": 179
         },
-        "total_tokens": 2692
+        "total_tokens": 2915
       }
     },
     {
       "step": 7,
       "title": "Cross-document",
-      "status": "FAIL",
+      "status": "PASS",
       "note": "expected Voltrieve Lumen AWD at 419000 (SE)",
       "question": "What is the cheapest AWD Voltrieve in Sweden?",
       "correlation_id": "runbook-hosted-7",
@@ -372,7 +376,15 @@
         "trace:server_tool_called",
         "trace:knowledge_base_retrieved",
         "trace:server_tool_returned",
+        "trace:server_tool_called",
+        "trace:knowledge_base_retrieved",
+        "trace:server_tool_returned",
         "trace:model_called",
+        "delta",
+        "delta",
+        "delta",
+        "delta",
+        "delta",
         "delta",
         "delta",
         "delta",
@@ -405,19 +417,19 @@
         "trace:model_returned",
         "done"
       ],
-      "answer": "The cheapest AWD Voltrieve in Sweden is the **Voltrieve Ragn**, at **549,000 SEK**. It has AWD as standard, so there’s no AWD surcharge.  \nSource: **voltrieve-buyers-guide.md**",
+      "answer": "The cheapest AWD Voltrieve in Sweden is the **Voltrieve Lumen AWD** at **419,000 SEK**. The buyer’s guide shows that the Lumen is available with AWD, while the Spark is not, and lists the Lumen’s price with AWD as 419,000 SEK. **[voltrieve-buyers-guide.md]**",
       "client_tools_run": [],
       "usage": {
-        "input_tokens": 6688,
+        "input_tokens": 6975,
         "input_tokens_details": {
           "cache_write_tokens": 0,
           "cached_tokens": 0
         },
-        "output_tokens": 133,
+        "output_tokens": 484,
         "output_tokens_details": {
-          "reasoning_tokens": 0
+          "reasoning_tokens": 295
         },
-        "total_tokens": 6821
+        "total_tokens": 7459
       }
     },
     {
@@ -449,25 +461,22 @@
         "delta",
         "delta",
         "delta",
-        "delta",
-        "delta",
-        "delta",
         "trace:model_returned",
         "done"
       ],
-      "answer": "Yes - the Atlas is in stock in Göteborg, with 3 cars available.",
+      "answer": "Yes - there are 3 Atlas cars in stock in Göteborg.",
       "client_tools_run": [],
       "usage": {
-        "input_tokens": 1043,
+        "input_tokens": 1071,
         "input_tokens_details": {
           "cache_write_tokens": 0,
           "cached_tokens": 0
         },
-        "output_tokens": 43,
+        "output_tokens": 68,
         "output_tokens_details": {
-          "reasoning_tokens": 0
+          "reasoning_tokens": 26
         },
-        "total_tokens": 1086
+        "total_tokens": 1139
       }
     },
     {
@@ -521,19 +530,19 @@
         "trace:model_returned",
         "done"
       ],
-      "answer": "Your test drive is booked.\n\n- Model: Atlas\n- City: Göteborg\n- Date: 2026-11-07\n- Booking ID: c4ed7bc1-ee8f-4868-a5eb-2a2f78c6a25c",
+      "answer": "Booked! Your test drive is confirmed.\n\n- Model: Atlas\n- City: Göteborg\n- Date: 2026-11-07\n- Booking ID: 62c846c0-6860-46ac-8e66-6c9eae861882",
       "client_tools_run": [],
       "usage": {
-        "input_tokens": 1134,
+        "input_tokens": 1223,
         "input_tokens_details": {
           "cache_write_tokens": 0,
           "cached_tokens": 0
         },
-        "output_tokens": 94,
+        "output_tokens": 186,
         "output_tokens_details": {
-          "reasoning_tokens": 0
+          "reasoning_tokens": 90
         },
-        "total_tokens": 1228
+        "total_tokens": 1409
       }
     },
     {
@@ -546,11 +555,6 @@
       "event_sequence": [
         "trace:token_validated",
         "trace:backend_selected",
-        "trace:model_called",
-        "trace:model_returned",
-        "trace:server_tool_called",
-        "trace:knowledge_base_retrieved",
-        "trace:server_tool_returned",
         "trace:model_called",
         "trace:model_returned",
         "trace:client_tool_requested",
@@ -587,7 +591,7 @@
         "trace:model_returned",
         "done"
       ],
-      "answer": "The Voltrieve Fjord has a towing capacity of **2,100 kg (braked)**.  \nSource: **voltrieve-fjord-specifications.pdf**\n\nBeeped three times.",
+      "answer": "The Voltrieve Fjord’s towing capacity is **2,100 kg (braked)**.  \nSource: **voltrieve-fjord-specifications.pdf**\n\nI also beeped three times.",
       "client_tools_run": [
         {
           "name": "make_noise",
@@ -596,16 +600,16 @@
         }
       ],
       "usage": {
-        "input_tokens": 15527,
+        "input_tokens": 6036,
         "input_tokens_details": {
           "cache_write_tokens": 0,
-          "cached_tokens": 11264
+          "cached_tokens": 5120
         },
-        "output_tokens": 85,
+        "output_tokens": 172,
         "output_tokens_details": {
-          "reasoning_tokens": 0
+          "reasoning_tokens": 109
         },
-        "total_tokens": 15612
+        "total_tokens": 6208
       }
     },
     {
@@ -613,14 +617,6 @@
       "title": "Prompt agent rejects extra tools",
       "status": "SKIP",
       "note": "backend A only",
-      "question": "",
-      "correlation_id": ""
-    },
-    {
-      "step": 12,
-      "title": "Follow one correlation id in Application Insights",
-      "status": "MANUAL",
-      "note": "run scripts/trace_evidence.py, or search customDimensions for: runbook-hosted-2, runbook-hosted-8",
       "question": "",
       "correlation_id": ""
     }
