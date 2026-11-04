@@ -1,5 +1,5 @@
 // Assigns one built-in role on a single storage resource. Pass the role as a GUID, never a name.
-// Plan 2 reuses it.
+// The API and the agents use it too.
 param resourceName string
 param principalId string
 

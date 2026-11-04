@@ -1,7 +1,7 @@
 // A user-assigned identity that holds AcrPull on the registry. A Container App cannot use its own
 // system-assigned identity to pull its image, because the role assignment needs the principal id
 // while the app must depend on the assignment (circular). Create this first, name its id in
-// `registries[].identity`, and make the app depend on this module. Plan 2 reuses it for the API.
+// `registries[].identity`, and make the app depend on this module. The API uses it too.
 param name string
 param location string
 param tags object = {}

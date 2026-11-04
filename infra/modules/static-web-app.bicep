@@ -1,5 +1,5 @@
 param name string
-@description('Static Web Apps is not available in every region; eastus2 is the closest to swedencentral.')
+@description('West Europe rejected new Static Web Apps; East US 2 holds only metadata, content is served globally.')
 param location string
 param tags object = {}
 

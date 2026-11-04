@@ -13,7 +13,6 @@ param dealerClientId string
 param foundryProjectEndpoint string
 param chatDeployment string
 param searchEndpoint string
-param kbConnectionName string
 param promptAgentCli string
 param promptAgentWeb string
 param hostedAgentName string
@@ -68,7 +67,6 @@ resource api 'Microsoft.App/containerApps@2026-07-01' = {
             { name: 'FOUNDRY_PROJECT_ENDPOINT', value: foundryProjectEndpoint }
             { name: 'CHAT_DEPLOYMENT', value: chatDeployment }
             { name: 'SEARCH_ENDPOINT', value: searchEndpoint }
-            { name: 'KB_CONNECTION_NAME', value: kbConnectionName }
             { name: 'PROMPT_AGENT_CLI', value: promptAgentCli }
             { name: 'PROMPT_AGENT_WEB', value: promptAgentWeb }
             { name: 'HOSTED_AGENT_NAME', value: hostedAgentName }
@@ -76,6 +74,7 @@ resource api 'Microsoft.App/containerApps@2026-07-01' = {
             { name: 'AGENT_BACKEND', value: 'loop' }
             { name: 'APPLICATIONINSIGHTS_CONNECTION_STRING', value: appInsightsConnectionString }
             { name: 'OTEL_SERVICE_NAME', value: 'voltrieve-api' }
+            { name: 'AZURE_EXPERIMENTAL_ENABLE_GENAI_TRACING', value: 'true' }
             { name: 'LOG_LEVEL', value: 'INFO' }
             { name: 'ASPNETCORE_HTTP_PORTS', value: '8000' } // only used by the placeholder image
           ]

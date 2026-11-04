@@ -22,7 +22,7 @@ param dealerClientId string = ''
 param apiClientId string = ''
 @description('True when the API Container App already exists (azd sets SERVICE_API_RESOURCE_EXISTS), so provision keeps its deployed image.')
 param apiExists bool = false
-@description('Static Web Apps is not available in every region.')
+@description('West Europe rejected new Static Web Apps; East US 2 holds only metadata, content is served globally.')
 param webLocation string = 'eastus2'
 @description('True when the dealer Container App already exists (azd sets SERVICE_DEALER_RESOURCE_EXISTS), so provision keeps its deployed image.')
 param dealerExists bool = false
@@ -198,7 +198,6 @@ module apiApp 'modules/api-app.bicep' = {
     foundryProjectEndpoint: foundry.outputs.projectEndpoint
     chatDeployment: foundry.outputs.chatDeployment
     searchEndpoint: search.outputs.endpoint
-    kbConnectionName: kbConnection.outputs.name
     promptAgentCli: 'voltrieve-prompt-cli'
     promptAgentWeb: 'voltrieve-prompt-web'
     hostedAgentName: hostedAgentName
