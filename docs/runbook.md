@@ -37,7 +37,7 @@ uv run tests/grounding/check.py --backends prompt --only atlas-stock
 
 Both scripts compare answers with `data/voltrieve.yaml` and exit 1 on a miss. Recorded results:
 
-- Runbook: every step passed on every backend, except step 7 on `prompt`. Step 11 is `prompt` only and step 12 is manual.
+- Runbook: every step passes on every backend on the final build. Step 11 is `prompt` only. Step 12 is checked automatically by `scripts/runbook.py`, which waits for telemetry and writes `docs/evidence/application-insights.txt`.
 - Grounding: 28 of 30 passed (`docs/evidence/grounding.txt`). Misses: `atlas-stock` on `prompt` (dealer cold start, 15 second timeout at the time, now 45) and `cheapest-awd-se` on `loop`.
 
 Step 7 and `cheapest-awd-se` are the same question. It passed and failed on different backends in different runs, so read it as non-deterministic.
