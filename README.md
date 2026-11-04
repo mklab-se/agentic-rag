@@ -95,6 +95,7 @@ Verified live:
 - All three backends through the deployed API: every runbook step passes on the final build, including the automated trace check in step 12.
 - Grounding: 30 of 30 answers passed.
 - The cross-document question "cheapest AWD in Sweden" repeated 6 times per backend: 18 of 18 right. At the default reasoning effort it was 11 to 15 of 18, so the sample uses medium effort.
+- A tool the server has never seen (`set_emissivity`, declared only in the request): relayed on loop and hosted, refused on prompt (`docs/evidence/new-client-tool.txt`).
 - Recovery on all three backends: a paused turn nobody answers, and a conversation resumed after the API scaled to zero (`docs/evidence/repair.txt`).
 - One trace per turn across API, Foundry, hosted agent and dealer (`docs/evidence/application-insights.txt`).
 - The prompt agent's 400.

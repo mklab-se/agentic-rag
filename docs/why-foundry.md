@@ -245,6 +245,8 @@ Start with B if unsure. The core moves to C unchanged, for about 460 lines.
 
 ## The Irma situation
 
+This was run against the deployed API with `scripts/new_client_tool_demo.py`. A script declares `set_emissivity` in the request, and nothing about that tool exists in the API, the agents or Foundry. Backends B and C relayed the call to the client with the value 0.95 and finished the turn, with no server change. Backend A refused it with `unsupported_client_tool` (`docs/evidence/new-client-tool.txt`). The script stands in for a camera: no Android code or device was involved.
+
 The problem: an Android camera client exposes `set_emissivity` to the agent, alongside knowledge bases. This repository did not test an Android client, `set_emissivity` or more than one knowledge base. The advice below follows from what was measured.
 
 **Pick option B, the own loop in a web API.** The camera declares a device capability, which is what per-request tools exist for. The model must ask the camera to act, and the camera answers. Backend B does this with no workaround, and the Android app talks to a contract you own.
