@@ -31,6 +31,8 @@ uv run scripts/runbook.py                       # steps 1 to 12, all backends
 uv run scripts/runbook.py --backends loop --steps 2,8
 uv run tests/grounding/check.py                 # 10 questions per backend
 uv run tests/grounding/check.py --backends prompt --only atlas-stock
+uv run tests/routing/check.py                   # 14 questions, 3 repeats, all backends
+uv run tests/routing/check.py --only brakes-fjord --repeats 1 --no-save
 ```
 
 `scripts/runbook.py` prints a table and writes `docs/evidence/<backend>.json` and `runbook-table.txt`, overwriting what is there. Saved files keep model output verbatim except for em-dashes and absolute paths ([docs/evidence/README.md](evidence/README.md)). It sends `runbook-<backend>-<step>` as the correlation id. Keep the committed evidence with `git checkout docs/evidence` after a partial run.
@@ -39,6 +41,7 @@ Both scripts compare answers with `data/voltrieve.yaml` and exit 1 on a miss. Re
 
 - Runbook: every step passes on every backend on the final build. Step 11 is `prompt` only. Step 12 is checked automatically by `scripts/runbook.py`, which waits for telemetry and writes `docs/evidence/application-insights.txt`.
 - Grounding: 30 of 30 passed (`docs/evidence/grounding.txt`).
+- Routing: 45 of 45 runs used exactly the right sources on every backend, with no knowledge base call in vain. Overlapping calls on two source questions: 12 of 12 on `loop` and `hosted`, 0 of 12 on `prompt`. Article numbers: 117 of 117 on `prompt`, 115 of 117 on `loop` and `hosted`, none invented. The script exits 1 on a missing article, so the recorded run exits 1. Run it with `--workers 1`: more turns at once measure the rate limit, not the routing.
 
 `uv run scripts/new_client_tool_demo.py` shows a client bringing a tool the server has never seen, as a thermal camera would.
 
@@ -50,7 +53,7 @@ The recorded evidence comes from these scripts, which speak the same contract as
 
 ## Backend A: prompt
 
-The knowledge base is an MCP tool inside Foundry, so retrieval shows as one `mcp_tool_called` event, with no sub-queries or references. Foundry writes citations as `【5:0†voltrieve-fjord-specifications.pdf】`. The API rewrites them to ` (voltrieve-fjord-specifications.pdf)` and drops a marker that names no file (`【4:0†source】`), so a client cannot tell this backend by its text. The recorded runs predate that filter and show the raw markers.
+Each knowledge base is an MCP tool inside Foundry, so a retrieval shows as one `mcp_tool_called` event per base, with no sub-queries or references. Foundry writes citations as `【5:0†voltrieve-fjord-specifications.pdf】`. The API rewrites them to ` (voltrieve-fjord-specifications.pdf)` and drops a marker that names no file (`【4:0†source】`), so a client cannot tell this backend by its text. The recorded runs predate that filter and show the raw markers.
 
 | Step | Command | Expected trace | Recorded result |
 | --- | --- | --- | --- |

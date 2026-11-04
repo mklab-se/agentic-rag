@@ -28,6 +28,7 @@ models:
     charging_curve: [[10, 95], [50, 80], [80, 40]]
     tagline: Small outside, generous inside
     highlights: [turning circle of 9.8 m, 2 ISOFIX seats, one pedal driving]
+    brakes: { front_disc_mm: { RWD: 280 }, rear_disc_mm: 265, front_caliper: single piston floating, rear_caliper: single piston floating }
   - name: Voltrieve Lumen
     slug: lumen
     segment: hatchback
@@ -45,6 +46,7 @@ models:
     charging_curve: [[10, 135], [50, 110], [80, 55]]
     tagline: Light on its feet
     highlights: [frunk of 45 litres, 11 kW onboard charger, 360 camera]
+    brakes: { front_disc_mm: { RWD: 300, AWD: 320 }, rear_disc_mm: 290, front_caliper: twin piston floating, rear_caliper: single piston floating }
   - name: Voltrieve Ragn
     slug: ragn
     segment: crossover
@@ -62,6 +64,7 @@ models:
     charging_curve: [[10, 240], [50, 190], [80, 90]]
     tagline: Built for the long way round
     highlights: [ground clearance of 205 mm, off road mode, 22 kW onboard charger]
+    brakes: { front_disc_mm: { AWD: 350 }, rear_disc_mm: 330, front_caliper: twin piston floating, rear_caliper: single piston floating }
   - name: Voltrieve Fjord
     slug: fjord
     segment: estate
@@ -79,6 +82,7 @@ models:
     charging_curve: [[10, 240], [50, 200], [80, 95]]
     tagline: Room for the whole weekend
     highlights: [boot of 640 litres, roof load of 100 kg, air suspension]
+    brakes: { front_disc_mm: { RWD: 345, AWD: 370 }, rear_disc_mm: 330, front_caliper: twin piston floating, rear_caliper: single piston floating }
   - name: Voltrieve Atlas
     slug: atlas
     segment: large SUV
@@ -96,6 +100,7 @@ models:
     charging_curve: [[10, 320], [50, 260], [80, 120]]
     tagline: Seven seats, zero compromise
     highlights: [seven seats, 3.5 kW vehicle to load outlet, rear wheel steering]
+    brakes: { front_disc_mm: { AWD: 400 }, rear_disc_mm: 360, front_caliper: six piston fixed, rear_caliper: twin piston floating }
 not_documented:
   - Euro NCAP
   - crash test

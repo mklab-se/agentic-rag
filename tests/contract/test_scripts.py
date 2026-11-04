@@ -101,3 +101,77 @@ def test_smoke_survives_an_unreachable_service():
 
     results = run(down, backends=("loop",))
     assert [ok for _, ok, _ in results] == [False, False, False, False]
+
+
+def _routing():
+    import importlib.util
+
+    root = Path(__file__).resolve().parents[2]
+    spec = importlib.util.spec_from_file_location("routing_check", root / "tests" / "routing" / "check.py")
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module  # dataclasses look their module up by name
+    spec.loader.exec_module(module)
+    return module
+
+
+class _Trace:
+    def __init__(self, *events):
+        self.events = events
+
+    def trace(self, step):
+        return [d for s, d in self.events if s == step]
+
+
+def test_routing_overlap_tells_parallel_from_sequential():
+    routing = _routing()
+    together = [{"started_ms": 100, "finished_ms": 900}, {"started_ms": 200, "finished_ms": 800}]
+    in_turn = [{"started_ms": 100, "finished_ms": 500}, {"started_ms": 500, "finished_ms": 800}]
+    assert routing.overlap(together) is True
+    assert routing.overlap(in_turn) is False
+    assert routing.overlap([{"started_ms": None, "finished_ms": 1}] * 2) is False
+
+
+def test_routing_reads_mcp_calls_and_tool_calls_the_same_way():
+    routing = _routing()
+    mcp = routing.Run("prompt", "q", "both", 1, expected=["docs", "parts"])
+    routing.read_trace(mcp, _Trace(
+        ("model_called", {}),
+        ("mcp_tool_called", {"server": "voltrieve-kb", "started_ms": 10, "finished_ms": 90}),
+        ("mcp_tool_called", {"server": "voltrieve-parts-kb", "started_ms": 20, "finished_ms": 80}),
+    ))
+    loop = routing.Run("loop", "q", "both", 1, expected=["docs", "parts"])
+    routing.read_trace(loop, _Trace(
+        ("model_called", {}), ("model_called", {}),
+        ("tools_parallel_started", {}),
+        ("server_tool_called", {"tool": "search_voltrieve_docs", "iteration": 1}),
+        ("server_tool_called", {"tool": "search_spare_parts", "iteration": 1}),
+        ("tools_parallel_finished", {"one_by_one_ms": 900, "wall_ms": 500}),
+    ))
+    assert mcp.right and mcp.together and loop.right and loop.together
+    assert loop.saved_ms == 400 and loop.steps == 2
+
+
+def test_routing_counts_a_sequential_pair_as_not_together():
+    routing = _routing()
+    run = routing.Run("loop", "q", "both", 1, expected=["docs", "parts"])
+    routing.read_trace(run, _Trace(
+        ("server_tool_called", {"tool": "search_voltrieve_docs", "iteration": 1}),
+        ("server_tool_called", {"tool": "search_spare_parts", "iteration": 2}),
+    ))
+    assert run.right and run.together is False
+
+
+def test_routing_flags_vain_and_missed_sources():
+    routing = _routing()
+    run = routing.Run("loop", "q", "docs", 1, expected=["docs"], used=["parts"])
+    assert not run.right and run.vain == ["parts"] and run.missed == ["docs"]
+
+
+def test_routing_questions_resolve_against_the_parts_index():
+    routing = _routing()
+    questions = routing.yaml.safe_load(routing.QUESTIONS.read_text())["questions"]
+    index = json.loads(routing.INDEX.read_text())
+    for question in questions:
+        routing.message(question, index)
+        if question["group"] == "both":
+            assert routing.expected_articles(question, index)

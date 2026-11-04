@@ -1,0 +1,7 @@
+Prompt agent on job questions, after the instructions said not to use the dealer tools for repairs.
+Each line is one turn: the model steps and the tools called in order. Four of four turns.
+
+fjord: step, check_stock, get_prices | step, get_current_date, check_stock | step, voltrieve-kb, voltrieve-parts-kb
+atlas: step, check_stock, get_prices, get_current_date | step, get_prices | step, check_stock, get_current_date | step, voltrieve-kb, voltrieve-parts-kb
+fjord: step, get_prices, check_stock | step, get_current_date x2 | step, get_current_date x2 | step, get_current_date, further calls cut off in the capture
+atlas: step, check_stock, get_prices | step, check_stock, get_prices | step, check_stock | step, voltrieve-kb, voltrieve-parts-kb

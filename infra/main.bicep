@@ -38,6 +38,7 @@ var placeholderImage = 'mcr.microsoft.com/dotnet/samples:aspnetapp'
 var dealerName = 'ca-dealer-${environmentName}'
 var apiName = 'ca-api-${environmentName}'
 var docsContainer = 'voltrieve-docs'
+var partsContainer = 'voltrieve-parts'
 var token = toLower(uniqueString(subscription().id, environmentName, location))
 var tags = { 'azd-env-name': environmentName, app: 'voltrieve' }
 
@@ -99,6 +100,7 @@ module storage 'modules/storage.bicep' = {
     location: location
     tags: tags
     docsContainer: docsContainer
+    partsContainer: partsContainer
   }
 }
 
@@ -324,6 +326,17 @@ module kbConnection 'modules/foundry-kb-connection.bicep' = {
   }
 }
 
+module partsKbConnection 'modules/foundry-kb-connection.bicep' = {
+  scope: rg
+  params: {
+    accountName: foundry.outputs.name
+    projectName: foundry.outputs.projectName
+    searchEndpoint: search.outputs.endpoint
+    knowledgeBaseName: 'voltrieve-parts-kb'
+    connectionName: 'voltrieve-parts-kb-mcp'
+  }
+}
+
 // Creating agents and project connections needs this role on the deployer.
 module deployerManagesProject 'modules/role-foundry.bicep' = if (!empty(principalId)) {
   scope: rg
@@ -386,6 +399,7 @@ output CHAT_DEPLOYMENT string = foundry.outputs.chatDeployment
 output CHAT_MODEL string = chatModelName
 output FOUNDRY_PROJECT_NAME string = foundry.outputs.projectName
 output KB_CONNECTION_NAME string = kbConnection.outputs.name
+output PARTS_KB_CONNECTION_NAME string = partsKbConnection.outputs.name
 output EMBEDDING_DEPLOYMENT string = foundry.outputs.embeddingDeployment
 output EMBEDDING_MODEL string = embeddingModelName
 output SEARCH_ENDPOINT string = search.outputs.endpoint
@@ -393,6 +407,7 @@ output SEARCH_SERVICE_NAME string = search.outputs.name
 output STORAGE_ACCOUNT_NAME string = storage.outputs.name
 output STORAGE_RESOURCE_ID string = storage.outputs.id
 output DOCS_CONTAINER string = storage.outputs.docsContainer
+output PARTS_CONTAINER string = storage.outputs.partsContainer
 output AZURE_CONTAINER_REGISTRY_ENDPOINT string = registry.outputs.loginServer
 output AZURE_CONTAINER_REGISTRY_NAME string = registry.outputs.name
 output CONTAINER_APPS_ENVIRONMENT_ID string = containerAppsEnv.outputs.id

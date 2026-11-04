@@ -1,0 +1,24 @@
+{
+  "name": "voltrieve-parts-kb",
+  "description": "Voltrieve spare parts catalogs: article numbers, part descriptions, positions on the car and the vehicles each part fits.",
+  "knowledgeSources": [
+    {
+      "name": "voltrieve-parts-ks"
+    }
+  ],
+  "models": [
+    {
+      "kind": "azureOpenAI",
+      "azureOpenAIParameters": {
+        "resourceUri": "{{FOUNDRY_OPENAI_ENDPOINT}}",
+        "deploymentId": "{{CHAT_DEPLOYMENT}}",
+        "modelName": "{{CHAT_MODEL}}"
+      }
+    }
+  ],
+  "retrievalReasoningEffort": {
+    "kind": "low"
+  },
+  "outputMode": "extractiveData",
+  "retrievalInstructions": "Find spare parts by article number, part name and vehicle. Search for each part separately and keep the model, the drive and the position (front left, rear axle) in every query. A row lists the vehicles it fits."
+}

@@ -1,0 +1,16 @@
+{
+  "name": "voltrieve-parts-indexer",
+  "description": "Reads the parts container and runs the skillset into the parts index. No schedule: run on demand.",
+  "dataSourceName": "voltrieve-parts-ds",
+  "targetIndexName": "voltrieve-parts-index",
+  "skillsetName": "voltrieve-parts-skillset",
+  "parameters": {
+    "configuration": {
+      "dataToExtract": "contentAndMetadata",
+      "parsingMode": "default",
+      "indexedFileNameExtensions": ".pdf,.docx,.md",
+      "failOnUnsupportedContentType": true,
+      "failOnUnprocessableDocument": true
+    }
+  }
+}

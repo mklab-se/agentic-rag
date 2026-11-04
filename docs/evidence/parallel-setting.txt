@@ -1,0 +1,5 @@
+agent, parallel_tool_calls=True: accepted, 2 tool calls in one response
+agent, parallel_tool_calls=False: accepted, 1 tool calls in one response
+agent, tool_choice=required: accepted, 2 tool calls in one response
+model, parallel_tool_calls=True: accepted, 2 tool calls in one response
+model, parallel_tool_calls=False: accepted, 1 tool calls in one response

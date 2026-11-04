@@ -12,3 +12,5 @@ Nothing else is edited. In particular, the citation markers of the prompt agents
 Evidence holds no tokens, usernames or URLs.
 
 `runbook-table.txt` is the last full run on the final build.
+
+`routing.txt` and `routing.json` are the last full run of `tests/routing/check.py`, one question at a time. `routing-load.txt` is a run of the four brake questions with `--workers 4`. `parallel-setting.txt` comes from `agents/prompt/demo_parallel_setting.py`. `prompt-extra-steps.txt` holds traces of the prompt agent on job questions.

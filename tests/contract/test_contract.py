@@ -22,7 +22,7 @@ from app.main import create_app  # noqa: E402
 from app.settings import Settings  # noqa: E402
 from app.turns import TurnStore  # noqa: E402
 from voltrieve_agent.model import Completed, FunctionCall, TextDelta  # noqa: E402
-from voltrieve_agent.server_tools import KB_SEARCH_TOOL, build_server_tools  # noqa: E402
+from voltrieve_agent.server_tools import KB_SEARCH_TOOLS, build_server_tools  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -69,7 +69,7 @@ def build_backend(name: str, model: ScriptedModel):
         return LoopBackend(model, FakeOpenAI(), server_tools)
     if name == "prompt":
         # Both agents share one script, since a scenario uses one of them.
-        return PromptBackend(model, model, FakeOpenAI(), [t for t in server_tools if t.name != KB_SEARCH_TOOL])
+        return PromptBackend(model, model, FakeOpenAI(), [t for t in server_tools if t.name not in KB_SEARCH_TOOLS])
     return _hosted(model, server_tools)
 
 

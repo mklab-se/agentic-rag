@@ -2,6 +2,7 @@ param name string
 param location string
 param tags object = {}
 param docsContainer string
+param partsContainer string
 
 resource storage 'Microsoft.Storage/storageAccounts@2026-09-01' = {
   name: name
@@ -30,6 +31,15 @@ resource docs 'Microsoft.Storage/storageAccounts/blobServices/containers@2026-09
   }
 }
 
+resource parts 'Microsoft.Storage/storageAccounts/blobServices/containers@2026-09-01' = {
+  parent: blobService
+  name: partsContainer
+  properties: {
+    publicAccess: 'None'
+  }
+}
+
 output name string = storage.name
 output id string = storage.id
 output docsContainer string = docs.name
+output partsContainer string = parts.name

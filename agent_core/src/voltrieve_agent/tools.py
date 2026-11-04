@@ -32,6 +32,9 @@ class ServerTool:
     parameters: dict
     handler: Callable[[dict, UserContext], Awaitable[str]]
     required_role: str | None = None
+    # May run alongside other tools of the same model response. Reads may; a tool that changes
+    # something waits for them and runs alone.
+    concurrent: bool = True
 
 
 @dataclass(frozen=True)
@@ -84,6 +87,10 @@ class ToolSet:
 
     def is_client(self, name: str) -> bool:
         return name in self._client
+
+    def is_concurrent(self, name: str) -> bool:
+        tool = self._server.get(name)
+        return tool is None or tool.concurrent
 
     def validate_client(self, name: str, raw_arguments: str) -> str | None:
         """The error to give the model when a client tool call has invalid arguments, else None.

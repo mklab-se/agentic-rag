@@ -7,7 +7,7 @@ from functools import partial
 from voltrieve_agent.dealer import DealerClient
 from voltrieve_agent.events import Emit
 from voltrieve_agent.http_client import make_http_client
-from voltrieve_agent.knowledge import KnowledgeBase
+from voltrieve_agent.knowledge import KnowledgeBase, parts_knowledge_base
 from voltrieve_agent.loop import TurnInput, TurnOutcome, run_turn
 from voltrieve_agent.model import ModelClient, ResponsesModelClient
 from voltrieve_agent.server_tools import build_server_tools
@@ -83,11 +83,13 @@ def build_loop_backend(settings: Settings) -> LoopBackend:
 
     http = make_http_client()
     dealer = DealerClient(settings.dealer_url, dealer_token, http)
-    knowledge = KnowledgeBase(settings.search_endpoint, DefaultAzureCredential())
+    search_credential = DefaultAzureCredential()
+    knowledge = KnowledgeBase(settings.search_endpoint, search_credential)
+    parts = parts_knowledge_base(settings.search_endpoint, search_credential)
     model = ResponsesModelClient(openai_client, settings.chat_deployment)
     return LoopBackend(
         model,
         openai_client,
-        build_server_tools(dealer, knowledge),
+        build_server_tools(dealer, knowledge, parts),
         closers=[partial(close_all, http, openai_client, project, async_credential)],
     )

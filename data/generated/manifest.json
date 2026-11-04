@@ -2,56 +2,103 @@
   {
     "file": "voltrieve-spark-brochure.docx",
     "model_slug": "spark",
-    "doc_type": "brochure"
+    "doc_type": "brochure",
+    "collection": "docs"
   },
   {
     "file": "voltrieve-spark-specifications.pdf",
     "model_slug": "spark",
-    "doc_type": "spec"
+    "doc_type": "spec",
+    "collection": "docs"
   },
   {
     "file": "voltrieve-lumen-brochure.docx",
     "model_slug": "lumen",
-    "doc_type": "brochure"
+    "doc_type": "brochure",
+    "collection": "docs"
   },
   {
     "file": "voltrieve-lumen-specifications.pdf",
     "model_slug": "lumen",
-    "doc_type": "spec"
+    "doc_type": "spec",
+    "collection": "docs"
   },
   {
     "file": "voltrieve-ragn-brochure.docx",
     "model_slug": "ragn",
-    "doc_type": "brochure"
+    "doc_type": "brochure",
+    "collection": "docs"
   },
   {
     "file": "voltrieve-ragn-specifications.pdf",
     "model_slug": "ragn",
-    "doc_type": "spec"
+    "doc_type": "spec",
+    "collection": "docs"
   },
   {
     "file": "voltrieve-fjord-brochure.docx",
     "model_slug": "fjord",
-    "doc_type": "brochure"
+    "doc_type": "brochure",
+    "collection": "docs"
   },
   {
     "file": "voltrieve-fjord-specifications.pdf",
     "model_slug": "fjord",
-    "doc_type": "spec"
+    "doc_type": "spec",
+    "collection": "docs"
   },
   {
     "file": "voltrieve-atlas-brochure.docx",
     "model_slug": "atlas",
-    "doc_type": "brochure"
+    "doc_type": "brochure",
+    "collection": "docs"
   },
   {
     "file": "voltrieve-atlas-specifications.pdf",
     "model_slug": "atlas",
-    "doc_type": "spec"
+    "doc_type": "spec",
+    "collection": "docs"
   },
   {
     "file": "voltrieve-buyers-guide.md",
     "model_slug": null,
-    "doc_type": "guide"
+    "doc_type": "guide",
+    "collection": "docs"
+  },
+  {
+    "file": "voltrieve-service-guide.md",
+    "model_slug": null,
+    "doc_type": "service",
+    "collection": "docs"
+  },
+  {
+    "file": "voltrieve-parts-brakes.md",
+    "model_slug": null,
+    "doc_type": "parts",
+    "collection": "parts"
+  },
+  {
+    "file": "voltrieve-parts-suspension-steering.md",
+    "model_slug": null,
+    "doc_type": "parts",
+    "collection": "parts"
+  },
+  {
+    "file": "voltrieve-parts-body-glass-lighting.md",
+    "model_slug": null,
+    "doc_type": "parts",
+    "collection": "parts"
+  },
+  {
+    "file": "voltrieve-parts-electrical-charging.md",
+    "model_slug": null,
+    "doc_type": "parts",
+    "collection": "parts"
+  },
+  {
+    "file": "voltrieve-parts-service-items.md",
+    "model_slug": null,
+    "doc_type": "parts",
+    "collection": "parts"
   }
 ]

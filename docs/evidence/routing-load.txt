@@ -1,0 +1,15 @@
+Routing per backend and question group
+
+backend group   runs  right  vain  missed  together  steps  calls  seconds
+prompt  both       8   87 %     0       1       0 %    3.0    2.0     36.6
+loop    both       8  100 %     0       0     100 %    3.0    3.0     21.5
+hosted  both       8  100 %     0       0     100 %    2.5    2.5     20.1
+
+Article numbers in the answers
+
+prompt  73 of 74 found, 7 of 8 answers complete, 0 invented
+loop    74 of 74 found, 8 of 8 answers complete, 0 invented
+hosted  72 of 74 found, 6 of 8 answers complete, 0 invented
+
+Parallel tool runs saved a median of 1.837 s over 22 turns (own loop and hosted agent).
+

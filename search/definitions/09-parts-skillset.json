@@ -1,0 +1,86 @@
+{
+  "name": "voltrieve-parts-skillset",
+  "description": "Splits the catalogs into pages, embeds each page and projects the pages into the parts index.",
+  "skills": [
+    {
+      "@odata.type": "#Microsoft.Skills.Text.SplitSkill",
+      "name": "split-into-pages",
+      "context": "/document",
+      "textSplitMode": "pages",
+      "maximumPageLength": 2000,
+      "pageOverlapLength": 200,
+      "unit": "characters",
+      "inputs": [
+        {
+          "name": "text",
+          "source": "/document/content"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "textItems",
+          "targetName": "pages"
+        }
+      ]
+    },
+    {
+      "@odata.type": "#Microsoft.Skills.Text.AzureOpenAIEmbeddingSkill",
+      "name": "embed-pages",
+      "context": "/document/pages/*",
+      "resourceUri": "{{FOUNDRY_ENDPOINT}}",
+      "deploymentId": "{{EMBEDDING_DEPLOYMENT}}",
+      "modelName": "{{EMBEDDING_MODEL}}",
+      "dimensions": 3072,
+      "inputs": [
+        {
+          "name": "text",
+          "source": "/document/pages/*"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "embedding",
+          "targetName": "text_vector"
+        }
+      ]
+    }
+  ],
+  "indexProjections": {
+    "selectors": [
+      {
+        "targetIndexName": "voltrieve-parts-index",
+        "parentKeyFieldName": "parent_id",
+        "sourceContext": "/document/pages/*",
+        "mappings": [
+          {
+            "name": "chunk",
+            "source": "/document/pages/*"
+          },
+          {
+            "name": "text_vector",
+            "source": "/document/pages/*/text_vector"
+          },
+          {
+            "name": "title",
+            "source": "/document/metadata_storage_name"
+          },
+          {
+            "name": "source_path",
+            "source": "/document/metadata_storage_path"
+          },
+          {
+            "name": "model_slug",
+            "source": "/document/model_slug"
+          },
+          {
+            "name": "doc_type",
+            "source": "/document/doc_type"
+          }
+        ]
+      }
+    ],
+    "parameters": {
+      "projectionMode": "skipIndexingParentDocuments"
+    }
+  }
+}

@@ -6,7 +6,9 @@ id when the host gives none) is sent to the dealer service as X-Correlation-Id, 
 match `^[A-Za-z0-9._-]{1,64}$`; the dealer replaces any other value.
 """
 
+import asyncio
 import logging
+import time
 from contextlib import aclosing
 from dataclasses import dataclass, field
 from typing import Literal
@@ -67,6 +69,64 @@ async def _fail(emit: Emit, code: str, usage: dict) -> TurnOutcome:
     return TurnOutcome("failed", [], usage)
 
 
+async def _run_server_tool(toolset, call, user, emit, iteration) -> tuple[str, int]:
+    await emit(
+        trace(
+            "server_tool_called",
+            "tools",
+            call.name,
+            tool=call.name,
+            arguments=call.arguments,
+            iteration=iteration + 1,
+        )
+    )
+    began = time.perf_counter()
+    output = await toolset.execute(call.name, call.arguments, user, emit)
+    duration_ms = round((time.perf_counter() - began) * 1000)
+    await emit(
+        trace(
+            "server_tool_returned",
+            "tools",
+            call.name,
+            tool=call.name,
+            output_preview=output[:500],
+            duration_ms=duration_ms,
+        )
+    )
+    return output, duration_ms
+
+
+async def _run_server_tools(toolset, calls, user, emit, iteration) -> dict[str, str]:
+    """Run the server calls of one model response: reads together, then writes one at a time.
+    Returns the output per call id."""
+    outputs: dict[str, str] = {}
+    together = [c for c in calls if toolset.is_concurrent(c.name)]
+    alone = [c for c in calls if not toolset.is_concurrent(c.name)]
+    if len(together) > 1:
+        names = [c.name for c in together]
+        await emit(trace("tools_parallel_started", "tools", ", ".join(names), tools=names))
+    began = time.perf_counter()
+    results = await asyncio.gather(
+        *(_run_server_tool(toolset, c, user, emit, iteration) for c in together)
+    )
+    outputs.update((c.call_id, output) for c, (output, _) in zip(together, results))
+    if len(together) > 1:
+        wall_ms = round((time.perf_counter() - began) * 1000)
+        one_by_one_ms = sum(duration for _, duration in results)
+        await emit(
+            trace(
+                "tools_parallel_finished",
+                "tools",
+                f"{len(together)} tools in {wall_ms} ms, {one_by_one_ms} ms one at a time",
+                wall_ms=wall_ms,
+                one_by_one_ms=one_by_one_ms,
+            )
+        )
+    for call in alone:
+        outputs[call.call_id], _ = await _run_server_tool(toolset, call, user, emit, iteration)
+    return outputs
+
+
 async def run_turn(
     model: ModelClient,
     server_tools: list[ServerTool],
@@ -122,9 +182,12 @@ async def _run(model, server_tools, turn, emit, max_iterations) -> TurnOutcome:
                         trace(
                             "mcp_tool_called",
                             "model",
-                            item.name,
+                            f"{item.server}: {item.name}",
                             server=item.server,
                             output_preview=item.output_preview,
+                            arguments=item.arguments,
+                            started_ms=item.started_ms,
+                            finished_ms=item.finished_ms,
                         )
                     )
                 elif isinstance(item, Completed):
@@ -152,40 +215,27 @@ async def _run(model, server_tools, turn, emit, max_iterations) -> TurnOutcome:
         if not calls:
             return TurnOutcome("done", [], usage)
 
-        outputs: list[dict] = []
+        outputs_by_call: dict[str, dict] = {}
         client_calls: list[FunctionCall] = []
+        server_calls: list[FunctionCall] = []
         for call in calls:
-            if toolset.is_client(call.name):
-                error = toolset.validate_client(call.name, call.arguments)
-                if error is None:
-                    client_calls.append(call)
-                else:
-                    # Never forward arguments the client's own schema rejects.
-                    await emit(
-                        trace("client_tool_rejected", "tools", call.name, tool=call.name)
-                    )
-                    outputs.append(_output_item(call.call_id, error))
+            if not toolset.is_client(call.name):
+                server_calls.append(call)
                 continue
-            await emit(
-                trace(
-                    "server_tool_called",
-                    "tools",
-                    call.name,
-                    tool=call.name,
-                    arguments=call.arguments,
-                )
-            )
-            output = await toolset.execute(call.name, call.arguments, turn.user, emit)
-            await emit(
-                trace(
-                    "server_tool_returned",
-                    "tools",
-                    call.name,
-                    tool=call.name,
-                    output_preview=output[:500],
-                )
-            )
-            outputs.append(_output_item(call.call_id, output))
+            error = toolset.validate_client(call.name, call.arguments)
+            if error is None:
+                client_calls.append(call)
+            else:
+                # Never forward arguments the client's own schema rejects.
+                await emit(trace("client_tool_rejected", "tools", call.name, tool=call.name))
+                outputs_by_call[call.call_id] = _output_item(call.call_id, error)
+
+        for call_id, output in (
+            await _run_server_tools(toolset, server_calls, turn.user, emit, iteration)
+        ).items():
+            outputs_by_call[call_id] = _output_item(call_id, output)
+        # The model reads the outputs in the order it made the calls, whichever finished first.
+        outputs = [outputs_by_call[c.call_id] for c in calls if c.call_id in outputs_by_call]
 
         if client_calls:
             for c in client_calls:

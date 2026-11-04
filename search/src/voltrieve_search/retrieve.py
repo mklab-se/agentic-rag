@@ -4,6 +4,8 @@ import json
 from dataclasses import dataclass, field
 
 KNOWLEDGE_SOURCE_NAME = "voltrieve-docs-ks"
+PARTS_KNOWLEDGE_BASE_NAME = "voltrieve-parts-kb"
+PARTS_KNOWLEDGE_SOURCE_NAME = "voltrieve-parts-ks"
 
 
 @dataclass
@@ -29,13 +31,19 @@ class RetrieveResult:
     partial: bool = False
 
 
-def retrieve(client, kb_name: str, question: str, max_output_tokens: int = 5000) -> RetrieveResult:
+def retrieve(
+    client,
+    kb_name: str,
+    question: str,
+    max_output_tokens: int = 5000,
+    knowledge_source: str = KNOWLEDGE_SOURCE_NAME,
+) -> RetrieveResult:
     body = {
         "messages": [{"role": "user", "content": [{"type": "text", "text": question}]}],
         "knowledgeSourceParams": [
             {
                 "kind": "searchIndex",
-                "knowledgeSourceName": KNOWLEDGE_SOURCE_NAME,
+                "knowledgeSourceName": knowledge_source,
                 "includeReferences": True,
                 "includeReferenceSourceData": True,
             }

@@ -15,7 +15,7 @@ from voltrieve_agent.events import AgentEvent, Emit, trace
 from voltrieve_agent.http_client import make_http_client
 from voltrieve_agent.loop import TurnOutcome
 from voltrieve_agent.model import ModelClient, ResponsesModelClient
-from voltrieve_agent.server_tools import KB_SEARCH_TOOL, build_server_tools
+from voltrieve_agent.server_tools import KB_SEARCH_TOOLS, build_server_tools
 from voltrieve_agent.tools import ServerTool
 
 from app.backends.base import BackendUnavailable, TurnContext, close_all
@@ -163,7 +163,7 @@ def build_prompt_backend(settings: Settings) -> PromptBackend:
 
     http = make_http_client()
     dealer = DealerClient(settings.dealer_url, dealer_token, http)
-    server_tools = [t for t in build_server_tools(dealer, None) if t.name != KB_SEARCH_TOOL]
+    server_tools = [t for t in build_server_tools(dealer, None) if t.name not in KB_SEARCH_TOOLS]
 
     return PromptBackend(
         ResponsesModelClient(openai_client, agent_name=settings.prompt_agent_cli),

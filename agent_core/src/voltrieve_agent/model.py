@@ -1,6 +1,7 @@
 """The model boundary: stream items and the Responses API implementation."""
 
 import asyncio
+import time
 from collections.abc import AsyncIterator, Awaitable, Callable
 from dataclasses import dataclass, field
 from typing import Protocol
@@ -30,6 +31,11 @@ class McpCall:
     name: str
     server: str
     output_preview: str
+    arguments: str = ""
+    # Milliseconds since this model call began. The interval is what shows whether two calls ran
+    # at the same time, since Foundry runs them and the host only sees them go by.
+    started_ms: int | None = field(default=None, compare=False)
+    finished_ms: int | None = field(default=None, compare=False)
 
 
 @dataclass
@@ -119,12 +125,24 @@ class ResponsesModelClient:
                 conversation=conversation,
                 input=input,
                 tools=tools,
+                parallel_tool_calls=True,  # one response may ask for several tools at once
                 reasoning={"effort": REASONING_EFFORT},
                 stream=True,
             )
+        began = time.perf_counter()
+        mcp_started: dict[str, int] = {}
+
+        def elapsed_ms() -> int:
+            return round((time.perf_counter() - began) * 1000)
+
         async with events:
             async for event in events:
+                if event.type == "response.output_item.added" and event.item.type == "mcp_call":
+                    mcp_started[event.item.id] = elapsed_ms()
                 item = _map_event(event)
+                if isinstance(item, McpCall):
+                    item.started_ms = mcp_started.get(getattr(event.item, "id", ""))
+                    item.finished_ms = elapsed_ms()
                 if item is not None:
                     yield item
 
@@ -149,7 +167,8 @@ def _map_event(event) -> StreamItem | None:
         if out.type == "mcp_call":
             # A failed call has no output, only an error text: show that.
             preview = str(getattr(out, "output", None) or getattr(out, "error", None) or "")[:500]
-            return McpCall(out.name, getattr(out, "server_label", ""), preview)
+            arguments = str(getattr(out, "arguments", "") or "")
+            return McpCall(out.name, getattr(out, "server_label", ""), preview, arguments)
         return None
     if kind == "response.completed":
         usage = getattr(event.response, "usage", None)

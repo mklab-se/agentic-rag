@@ -1,0 +1,2999 @@
+[
+ {
+  "backend": "prompt",
+  "question": "greeting",
+  "group": "none",
+  "repeat": 1,
+  "seconds": 111.68,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "Good morning! How can I help with Voltrieve today?",
+  "expected": []
+ },
+ {
+  "backend": "loop",
+  "question": "greeting",
+  "group": "none",
+  "repeat": 1,
+  "seconds": 1.49,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "Good morning! How can I help with Voltrieve today?",
+  "expected": []
+ },
+ {
+  "backend": "hosted",
+  "question": "greeting",
+  "group": "none",
+  "repeat": 1,
+  "seconds": 6.24,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "Good morning! How can I help with Voltrieve vehicles today?",
+  "expected": []
+ },
+ {
+  "backend": "prompt",
+  "question": "thanks",
+  "group": "none",
+  "repeat": 1,
+  "seconds": 1.52,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "You’re welcome!",
+  "expected": []
+ },
+ {
+  "backend": "loop",
+  "question": "thanks",
+  "group": "none",
+  "repeat": 1,
+  "seconds": 1.24,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "You’re welcome! If you need anything else about Voltrieve vehicles, just ask.",
+  "expected": []
+ },
+ {
+  "backend": "hosted",
+  "question": "thanks",
+  "group": "none",
+  "repeat": 1,
+  "seconds": 6.08,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "You’re welcome!",
+  "expected": []
+ },
+ {
+  "backend": "prompt",
+  "question": "off-topic",
+  "group": "none",
+  "repeat": 1,
+  "seconds": 1.3,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "I only cover Voltrieve electric vehicles, so I can’t help with that.",
+  "expected": []
+ },
+ {
+  "backend": "loop",
+  "question": "off-topic",
+  "group": "none",
+  "repeat": 1,
+  "seconds": 1.37,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "I only cover Voltrieve electric vehicles, so I can’t help with that.",
+  "expected": []
+ },
+ {
+  "backend": "hosted",
+  "question": "off-topic",
+  "group": "none",
+  "repeat": 1,
+  "seconds": 5.81,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "I only cover Voltrieve electric vehicles, so I can’t help with that question.",
+  "expected": []
+ },
+ {
+  "backend": "prompt",
+  "question": "other-brand",
+  "group": "none",
+  "repeat": 1,
+  "seconds": 1.47,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "I only cover Voltrieve vehicles, so I can’t help with a Tesla Model 3. If you want, I can help find brake pads for a Voltrieve model instead.",
+  "expected": []
+ },
+ {
+  "backend": "loop",
+  "question": "other-brand",
+  "group": "none",
+  "repeat": 1,
+  "seconds": 1.31,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "I only cover Voltrieve electric vehicles, so I can’t help with Tesla Model 3 brake pads.",
+  "expected": []
+ },
+ {
+  "backend": "hosted",
+  "question": "other-brand",
+  "group": "none",
+  "repeat": 1,
+  "seconds": 5.7,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "I only cover Voltrieve vehicles, so I can’t help with Tesla Model 3 brake pads.",
+  "expected": []
+ },
+ {
+  "backend": "prompt",
+  "question": "no-model",
+  "group": "none",
+  "repeat": 1,
+  "seconds": 1.66,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "Which Voltrieve model is it? I need the model to look up the left front brake parts.",
+  "expected": []
+ },
+ {
+  "backend": "loop",
+  "question": "no-model",
+  "group": "none",
+  "repeat": 1,
+  "seconds": 1.37,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "I need the model first to look up the correct parts.\n\nPlease tell me which Voltrieve model you have: **spark, lumen, ragn, fjord, or atlas**.",
+  "expected": []
+ },
+ {
+  "backend": "hosted",
+  "question": "no-model",
+  "group": "none",
+  "repeat": 1,
+  "seconds": 5.65,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "Which Voltrieve model is your car?\n\nI need the model to look up the correct left-front brake parts.",
+  "expected": []
+ },
+ {
+  "backend": "prompt",
+  "question": "towing",
+  "group": "docs",
+  "repeat": 1,
+  "seconds": 4.3,
+  "first_text_seconds": null,
+  "used": [
+   "docs"
+  ],
+  "calls": 1,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "The Voltrieve Fjord has a towing capacity of **2,100 kg (braked)**. (voltrieve-fjord-specifications.pdf)",
+  "expected": [
+   "docs"
+  ]
+ },
+ {
+  "backend": "loop",
+  "question": "towing",
+  "group": "docs",
+  "repeat": 1,
+  "seconds": 5.1,
+  "first_text_seconds": null,
+  "used": [
+   "docs"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "The Voltrieve Fjord has a towing capacity of **2,100 kg braked**. Source: **voltrieve-fjord-specifications.pdf**",
+  "expected": [
+   "docs"
+  ]
+ },
+ {
+  "backend": "hosted",
+  "question": "towing",
+  "group": "docs",
+  "repeat": 1,
+  "seconds": 10.0,
+  "first_text_seconds": null,
+  "used": [
+   "docs"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "The Voltrieve Fjord has a towing capacity of **2,100 kg (braked)**. Source: **voltrieve-fjord-specifications.pdf**",
+  "expected": [
+   "docs"
+  ]
+ },
+ {
+  "backend": "prompt",
+  "question": "option-pack",
+  "group": "docs",
+  "repeat": 1,
+  "seconds": 5.36,
+  "first_text_seconds": null,
+  "used": [
+   "docs"
+  ],
+  "calls": 1,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "The Winter option pack contains a heat pump, a heated steering wheel and rear seats, and battery preconditioning. (voltrieve-buyers-guide.md)",
+  "expected": [
+   "docs"
+  ]
+ },
+ {
+  "backend": "loop",
+  "question": "option-pack",
+  "group": "docs",
+  "repeat": 1,
+  "seconds": 4.18,
+  "first_text_seconds": null,
+  "used": [
+   "docs"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "The Winter option pack contains a **heat pump, heated steering wheel and rear seats, and battery preconditioning**.  \nSource: **voltrieve-buyers-guide.md**",
+  "expected": [
+   "docs"
+  ]
+ },
+ {
+  "backend": "hosted",
+  "question": "option-pack",
+  "group": "docs",
+  "repeat": 1,
+  "seconds": 9.77,
+  "first_text_seconds": null,
+  "used": [
+   "docs"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "The Winter option pack contains:\n\n- heat pump\n- heated steering wheel and rear seats\n- battery preconditioning\n\nSource: **Voltrieve buyer's guide**",
+  "expected": [
+   "docs"
+  ]
+ },
+ {
+  "backend": "prompt",
+  "question": "filter-howto",
+  "group": "docs",
+  "repeat": 1,
+  "seconds": 4.23,
+  "first_text_seconds": null,
+  "used": [
+   "docs"
+  ],
+  "calls": 1,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "The cabin air filter is changed every two years (voltrieve-service-guide.md).",
+  "expected": [
+   "docs"
+  ]
+ },
+ {
+  "backend": "loop",
+  "question": "filter-howto",
+  "group": "docs",
+  "repeat": 1,
+  "seconds": 4.38,
+  "first_text_seconds": null,
+  "used": [
+   "docs"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "The cabin air filter is changed every two years. It sits behind the passenger footwell trim, and no tools are needed apart from a trim tool.  \nSource: **voltrieve-service-guide.md**",
+  "expected": [
+   "docs"
+  ]
+ },
+ {
+  "backend": "hosted",
+  "question": "filter-howto",
+  "group": "docs",
+  "repeat": 1,
+  "seconds": 8.79,
+  "first_text_seconds": null,
+  "used": [
+   "docs"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "The cabin air filter is changed **every two years**. It sits **behind the passenger footwell trim**, and the only tool needed apart from the trim is a **trim tool**.  \nSource: **voltrieve-service-guide.md**",
+  "expected": [
+   "docs"
+  ]
+ },
+ {
+  "backend": "prompt",
+  "question": "windscreen",
+  "group": "parts",
+  "repeat": 1,
+  "seconds": 3.56,
+  "first_text_seconds": null,
+  "used": [
+   "parts"
+  ],
+  "calls": 1,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 1,
+  "articles_found": 1,
+  "invented": [],
+  "error": "",
+  "answer": "The article number for the Voltrieve Atlas windscreen is **VP-14167** (voltrieve-parts-body-glass-lighting.md)",
+  "expected": [
+   "parts"
+  ]
+ },
+ {
+  "backend": "loop",
+  "question": "windscreen",
+  "group": "parts",
+  "repeat": 1,
+  "seconds": 4.55,
+  "first_text_seconds": null,
+  "used": [
+   "parts"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 1,
+  "articles_found": 1,
+  "invented": [],
+  "error": "",
+  "answer": "The article number for the Voltrieve Atlas windscreen is **VP-14167**. Source: **voltrieve-parts-body-glass-lighting.md**.",
+  "expected": [
+   "parts"
+  ]
+ },
+ {
+  "backend": "hosted",
+  "question": "windscreen",
+  "group": "parts",
+  "repeat": 1,
+  "seconds": 9.05,
+  "first_text_seconds": null,
+  "used": [
+   "parts"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 1,
+  "articles_found": 1,
+  "invented": [],
+  "error": "",
+  "answer": "The article number for the Voltrieve Atlas windscreen is **VP-14167**.  \nSource: **voltrieve-parts-body-glass-lighting.md**",
+  "expected": [
+   "parts"
+  ]
+ },
+ {
+  "backend": "prompt",
+  "question": "air-spring",
+  "group": "parts",
+  "repeat": 1,
+  "seconds": 4.75,
+  "first_text_seconds": null,
+  "used": [
+   "parts"
+  ],
+  "calls": 1,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 1,
+  "articles_found": 1,
+  "invented": [],
+  "error": "",
+  "answer": "The article number for the rear left air spring on the Voltrieve Fjord is **VP-12035** (voltrieve-parts-suspension-steering.md).",
+  "expected": [
+   "parts"
+  ]
+ },
+ {
+  "backend": "loop",
+  "question": "air-spring",
+  "group": "parts",
+  "repeat": 1,
+  "seconds": 5.75,
+  "first_text_seconds": null,
+  "used": [
+   "parts"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 1,
+  "articles_found": 1,
+  "invented": [],
+  "error": "",
+  "answer": "The article number for the rear left air spring on the Voltrieve Fjord is **VP-12035**. It is listed as **“Rear air spring, rear left”** and fits **Voltrieve Fjord**. **Source:** *voltrieve-parts-suspension-steering.md*",
+  "expected": [
+   "parts"
+  ]
+ },
+ {
+  "backend": "hosted",
+  "question": "air-spring",
+  "group": "parts",
+  "repeat": 1,
+  "seconds": 10.84,
+  "first_text_seconds": null,
+  "used": [
+   "parts"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 1,
+  "articles_found": 1,
+  "invented": [],
+  "error": "",
+  "answer": "The article number for the rear left air spring on a Voltrieve Fjord is **VP-12035**. It is listed as **“Rear air spring, rear left”** and fits **Voltrieve Fjord**. Source: *voltrieve-parts-suspension-steering.md*",
+  "expected": [
+   "parts"
+  ]
+ },
+ {
+  "backend": "prompt",
+  "question": "reverse-lookup",
+  "group": "parts",
+  "repeat": 1,
+  "seconds": 6.03,
+  "first_text_seconds": null,
+  "used": [
+   "parts"
+  ],
+  "calls": 1,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "VP-14739 is the **CCS2 charge port**. It sits at the **rear right** of the car and is described as an **inlet with latch and temperature sensors**. It fits **Voltrieve Ragn, Voltrieve Fjord, and Voltrieve Atlas**. (voltrieve-parts-electrical-charging.md)\n\nIf you want, I can also look up related charging parts like the charge port door or onboard charger.",
+  "expected": [
+   "parts"
+  ]
+ },
+ {
+  "backend": "loop",
+  "question": "reverse-lookup",
+  "group": "parts",
+  "repeat": 1,
+  "seconds": 4.68,
+  "first_text_seconds": null,
+  "used": [
+   "parts"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "VP-14739 is the **CCS2 charge port** - a **rear-right inlet with latch and temperature sensors**. It fits:\n\n- **Voltrieve Ragn**\n- **Voltrieve Fjord**\n- **Voltrieve Atlas**\n\nSource: **voltrieve-parts-electrical-charging.md**",
+  "expected": [
+   "parts"
+  ]
+ },
+ {
+  "backend": "hosted",
+  "question": "reverse-lookup",
+  "group": "parts",
+  "repeat": 1,
+  "seconds": 10.75,
+  "first_text_seconds": null,
+  "used": [
+   "parts"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "VP-14739 is a **CCS2 charge port** for the **rear right** of the car. It is described as an **inlet with latch and temperature sensors** and it fits **Voltrieve Ragn, Voltrieve Fjord, and Voltrieve Atlas**. Source: **voltrieve-parts-electrical-charging.md**.",
+  "expected": [
+   "parts"
+  ]
+ },
+ {
+  "backend": "prompt",
+  "question": "brakes-fjord",
+  "group": "both",
+  "repeat": 1,
+  "seconds": 47.76,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 2,
+  "steps": 3,
+  "together": false,
+  "saved_ms": 8,
+  "articles_expected": 9,
+  "articles_found": 9,
+  "invented": [],
+  "error": "",
+  "answer": "For a **Voltrieve Fjord AWD** complete **front brake replacement on the left front side**, the service guide says you need a full front-corner set, and that Fjord front brakes are **370 mm on AWD**.\n\nHere are the spare parts from the catalog:\n\n- **Brake disc, front left** - **VP-10072**\n- **Brake pad set, front axle** - **VP-10254**  \n  - this set covers **both sides of the axle**\n- **Brake caliper, front left** - **VP-10345**\n- **Caliper carrier, front left** - **VP-10527**\n- **Brake hose, front left** - **VP-10631**\n- **Pad wear sensor, front left** - **VP-10670**\n- **Caliper fitting kit, front axle** - **VP-10709**\n- **Brake dust shield, front left** - **VP-10761**\n- **Brake fluid DOT 4 LV** - **VP-15220**\n\nIf you want, I can also turn this into a simple order list grouped by **must replace** vs **only if worn/damaged**.",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "loop",
+  "question": "brakes-fjord",
+  "group": "both",
+  "repeat": 1,
+  "seconds": 16.54,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 4,
+  "steps": 3,
+  "together": true,
+  "saved_ms": 4055,
+  "articles_expected": 9,
+  "articles_found": 9,
+  "invented": [],
+  "error": "",
+  "answer": "For a **Voltrieve Fjord AWD** complete front brake replacement on the **left front** side, the documentation says you need these parts:\n\n- **VP-10072 - Brake disc, front left** (370 mm ventilated disc, Fjord AWD) [voltrieve-parts-brakes.md]\n- **VP-10254 - Brake pad set, front axle** (set of 4 pads for the 370 mm disc; covers both sides of the axle) [voltrieve-parts-brakes.md; voltrieve-service-guide.md]\n- **VP-10345 - Brake caliper, front left** (twin piston floating caliper for the 370 mm disc) [voltrieve-parts-brakes.md]\n- **VP-10527 - Caliper carrier, front left** [voltrieve-parts-brakes.md; voltrieve-service-guide.md]\n- **VP-10631 - Brake hose, front left** [voltrieve-parts-brakes.md; voltrieve-service-guide.md]\n- **VP-10670 - Pad wear sensor, front left** [voltrieve-parts-brakes.md; voltrieve-service-guide.md]\n- **VP-10709 - Caliper fitting kit, front axle** [voltrieve-parts-brakes.md; voltrieve-service-guide.md]\n- **VP-10761 - Brake dust shield, front left** [voltrieve-parts-brakes.md; voltrieve-service-guide.md]\n- **VP-15220 - Brake fluid DOT 4 LV** (for bleeding afterwards) [voltrieve-parts-service-items.md; voltrieve-service-guide.md]\n\nThe service guide says that on the **Voltrieve Fjord**, front brake parts differ by drive: **345 mm on RWD, 370 mm on AWD**, so you should order the AWD-specific parts above. [voltrieve-service-guide.md]\n\nIf you want, I can also format this as a simple shopping list.",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "hosted",
+  "question": "brakes-fjord",
+  "group": "both",
+  "repeat": 1,
+  "seconds": 14.65,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 2,
+  "steps": 2,
+  "together": true,
+  "saved_ms": 2196,
+  "articles_expected": 9,
+  "articles_found": 8,
+  "invented": [],
+  "error": "",
+  "answer": "For a **Voltrieve Fjord AWD** doing a **complete front brake replacement on the left front side**, the documentation says the front brakes are **370 mm on AWD**. The job needs the following parts. The pad set is renewed for the **front axle**, even though you are working on only one side.  \nSources: **voltrieve-service-guide.md**, **voltrieve-parts-brakes.md**\n\n| Part | Article number | Notes |\n|---|---:|---|\n| Brake disc, front left | **VP-10072** | 370 mm ventilated brake disc |\n| Brake pad set, front axle | **VP-10254** | Set of 4 pads for the 370 mm disc, covers both sides of the axle |\n| Brake caliper, front left | **VP-10345** | Twin piston floating caliper for the 370 mm disc |\n| Caliper carrier, front left | **VP-10527** | Carrier bracket for the floating caliper |\n| Brake hose, front left | **VP-10631** | Reinforced flexible hose with banjo fitting |\n| Pad wear sensor, front left | **VP-10670** | Electrical pad wear sensor |\n| Caliper fitting kit, front axle | **VP-10709** | Slide pins, bolts and anti-rattle clips for one side |\n| Brake dust shield, front left | **VP-10761** | Pressed steel shield |\n| Brake fluid DOT 4 LV | - | Needed for bleeding afterwards; I could not find an article number for brake fluid in the catalog results |\n\nIf you want, I can also list these as a plain “shopping list” with just the part names and article numbers.",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "prompt",
+  "question": "brakes-spark",
+  "group": "both",
+  "repeat": 1,
+  "seconds": 20.55,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 2,
+  "steps": 5,
+  "together": false,
+  "saved_ms": 36,
+  "articles_expected": 8,
+  "articles_found": 8,
+  "invented": [],
+  "error": "",
+  "answer": "For the Voltrieve Spark (RWD), the service guide says a complete rear brake replacement on one side needs these parts, and the Spark has no electrical pad wear sensor (voltrieve-service-guide.md):\n\n- Brake disc, rear right - VP-10917 (voltrieve-parts-brakes.md)\n- Brake pad set, rear axle - VP-10982 (voltrieve-parts-brakes.md)\n- Brake caliper, rear right - VP-11112 (voltrieve-parts-brakes.md)\n- Caliper carrier, rear right - VP-11203 (voltrieve-parts-brakes.md)\n- Brake hose, rear right - VP-11255 (voltrieve-parts-brakes.md)\n- Caliper fitting kit, rear axle - VP-11307 (voltrieve-parts-brakes.md)\n- Brake dust shield, rear right - VP-11398 (voltrieve-parts-brakes.md)\n- Brake fluid DOT 4 LV - VP-15220 (voltrieve-parts-service-items.md)\n\nI did not find any additional Spark rear-right brake parts in the documentation beyond those items, and there is no pad wear sensor for the Spark rear brake job (voltrieve-service-guide.md).",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "loop",
+  "question": "brakes-spark",
+  "group": "both",
+  "repeat": 1,
+  "seconds": 8.58,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 2,
+  "steps": 2,
+  "together": true,
+  "saved_ms": 1924,
+  "articles_expected": 8,
+  "articles_found": 8,
+  "invented": [],
+  "error": "",
+  "answer": "For a **Voltrieve Spark (RWD)** complete rear right brake replacement, the service guide says the job needs these parts, and the spare parts catalog gives the article numbers:\n\n- **Brake disc, rear right** - **VP-10917**  \n  Source: *voltrieve-service-guide.md*; *voltrieve-parts-brakes.md*\n\n- **Brake pad set, rear axle** - **VP-10982**  \n  Source: *voltrieve-service-guide.md*; *voltrieve-parts-brakes.md*\n\n- **Brake caliper, rear right** - **VP-11112**  \n  Source: *voltrieve-service-guide.md*; *voltrieve-parts-brakes.md*\n\n- **Caliper carrier, rear right** - **VP-11203**  \n  Source: *voltrieve-service-guide.md*; *voltrieve-parts-brakes.md*\n\n- **Brake hose, rear right** - **VP-11255**  \n  Source: *voltrieve-service-guide.md*; *voltrieve-parts-brakes.md*\n\n- **Caliper fitting kit, rear axle** - **VP-11307**  \n  Source: *voltrieve-service-guide.md*; *voltrieve-parts-brakes.md*\n\n- **Brake dust shield, rear right** - **VP-11398**  \n  Source: *voltrieve-service-guide.md*; *voltrieve-parts-brakes.md*\n\n- **Brake fluid DOT 4 LV** - **VP-15220**  \n  Source: *voltrieve-service-guide.md*; *voltrieve-parts-service-items.md*\n\nThe service guide also says the **Spark has no electrical pad wear sensor**, so none is needed for this job.  \nSource: *voltrieve-service-guide.md*",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "hosted",
+  "question": "brakes-spark",
+  "group": "both",
+  "repeat": 1,
+  "seconds": 13.59,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 2,
+  "steps": 2,
+  "together": true,
+  "saved_ms": 2041,
+  "articles_expected": 8,
+  "articles_found": 8,
+  "invented": [],
+  "error": "",
+  "answer": "For a **Voltrieve Spark (RWD) complete rear brake replacement on the rear right side**, the service guide says the job needs these components, and the catalog gives these article numbers:\n\n- **Brake disc, rear right** - **VP-10917**  \n- **Brake pad set, rear axle** - **VP-10982**  \n- **Brake caliper, rear right** - **VP-11112**  \n- **Caliper carrier, rear right** - **VP-11203**  \n- **Brake hose, rear right** - **VP-11255**  \n- **Caliper fitting kit, rear axle** - **VP-11307**  \n- **Brake dust shield, rear right** - **VP-11398**  \n- **Brake fluid DOT 4 LV** - **VP-15220**\n\nThe service guide also says the **Voltrieve Spark has no electrical pad wear sensor**, so there is no pad sensor to list for this job.  \nSources: **voltrieve-service-guide.md**, **voltrieve-parts-brakes.md**, **voltrieve-parts-service-items.md**",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "prompt",
+  "question": "brakes-atlas",
+  "group": "both",
+  "repeat": 1,
+  "seconds": 30.68,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 2,
+  "steps": 5,
+  "together": false,
+  "saved_ms": -3,
+  "articles_expected": 8,
+  "articles_found": 8,
+  "invented": [],
+  "error": "",
+  "answer": "For a **complete front right brake replacement** on a **Voltrieve Atlas (AWD)**, the service guide says to renew the following parts on that corner, with the pads ordered as a **front axle set**.\n\nOrder these article numbers:\n\n- **VP-10176** - Brake disc, front right\n- **VP-10267** - Brake pad set, front axle\n- **VP-10449** - Brake caliper, front right\n- **VP-10657** - Brake hose, front right\n- **VP-10683** - Pad wear sensor, front right\n- **VP-10709** - Caliper fitting kit, front axle\n- **VP-10839** - Brake dust shield, front right\n- **VP-15220** - Brake fluid DOT 4 LV\n\nYou **do not** need a caliper carrier for the Atlas, because the service guide says the Atlas has a **fixed caliper**, so there is no caliper carrier.\n\nIf you want, I can also turn this into a short shopping list in the exact order you’d hand to the parts desk.",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "loop",
+  "question": "brakes-atlas",
+  "group": "both",
+  "repeat": 1,
+  "seconds": 15.37,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 3,
+  "steps": 3,
+  "together": true,
+  "saved_ms": 2275,
+  "articles_expected": 8,
+  "articles_found": 8,
+  "invented": [],
+  "error": "",
+  "answer": "For a **complete front right brake replacement** on a **Voltrieve Atlas**, the service guide says the Atlas job needs these parts, and it notes that the Atlas has a **fixed caliper, so there is no caliper carrier**. Pads are ordered as a **front axle set**. *(voltrieve-service-guide.md)*\n\n### Order these parts\n- **VP-10176** - Brake disc, front right *(voltrieve-parts-brakes.md)*\n- **VP-10267** - Brake pad set, front axle *(voltrieve-parts-brakes.md)*\n- **VP-10449** - Brake caliper, front right *(voltrieve-parts-brakes.md)*\n- **VP-10657** - Brake hose, front right *(voltrieve-parts-brakes.md)*\n- **VP-10683** - Pad wear sensor, front right *(voltrieve-parts-brakes.md)*\n- **VP-10709** - Caliper fitting kit, front axle *(voltrieve-parts-brakes.md)*\n- **VP-10839** - Brake dust shield, front right *(voltrieve-parts-brakes.md)*\n- **VP-15220** - Brake fluid DOT 4 LV, 1 litre bottle *(voltrieve-parts-service-items.md)*\n\n### Not needed\n- **Caliper carrier** - the Atlas has a fixed caliper, so the service guide says there is **no caliper carrier** for this job. *(voltrieve-service-guide.md)*\n\nIf you want, I can also format this as a short workshop pick list.",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "hosted",
+  "question": "brakes-atlas",
+  "group": "both",
+  "repeat": 1,
+  "seconds": 16.66,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 2,
+  "steps": 2,
+  "together": true,
+  "saved_ms": 2124,
+  "articles_expected": 8,
+  "articles_found": 8,
+  "invented": [],
+  "error": "",
+  "answer": "For a **complete front right brake replacement on a Voltrieve Atlas**, order these parts:\n\n- **VP-10176** - Brake disc, front right - **1**  \n- **VP-10267** - Brake pad set, front axle - **1 set**  \n- **VP-10449** - Brake caliper, front right - **1**  \n- **VP-10657** - Brake hose, front right - **1**  \n- **VP-10683** - Pad wear sensor, front right - **1**  \n- **VP-10709** - Caliper fitting kit, front axle - **1**  \n- **VP-10839** - Brake dust shield, front right - **1**  \n- **VP-15220** - Brake fluid DOT 4 LV, 1 litre bottle - **1**\n\nA few notes from the documentation:\n- The Atlas front brake job needs the **front axle pad set**, even when you are only working on one side. *(voltrieve-service-guide.md)*\n- The Atlas uses a **fixed front caliper**, so there is **no caliper carrier** to order. *(voltrieve-service-guide.md)*\n- The front right brake disc is a **400 mm ventilated disc**, and the front right caliper is a **six-piston fixed caliper**. *(voltrieve-parts-brakes.md)*\n\nIf you want, I can also format this as a simple purchase list with quantities only.",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "prompt",
+  "question": "brakes-lumen",
+  "group": "both",
+  "repeat": 1,
+  "seconds": 26.48,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 2,
+  "steps": 3,
+  "together": false,
+  "saved_ms": 6,
+  "articles_expected": 12,
+  "articles_found": 12,
+  "invented": [],
+  "error": "",
+  "answer": "For a **Voltrieve Lumen** complete front brake replacement on one side, the service guide says you need: **1 brake disc, 1 front-axle brake pad set, 1 brake caliper, 1 caliper carrier, 1 brake hose, 1 front-axle caliper fitting kit, 1 brake dust shield, and 1 bottle of brake fluid DOT 4 LV**. The Lumen has **no electrical pad wear sensor**. Front brake parts differ by drive: **300 mm on RWD** and **320 mm on AWD**, so check the drive before ordering. (voltrieve-service-guide.md)\n\n### If your Lumen is RWD, buy:\n- **VP-10020** - Brake disc, front left (voltrieve-parts-brakes.md)\n- **VP-10202** - Brake pad set, front axle (voltrieve-parts-brakes.md)\n- **VP-10293** - Brake caliper, front left (voltrieve-parts-brakes.md)\n- **VP-10475** - Caliper carrier, front left (voltrieve-parts-brakes.md)\n- **VP-10618** - Brake hose, front left (voltrieve-parts-brakes.md)\n- **VP-10696** - Caliper fitting kit, front axle (voltrieve-parts-brakes.md)\n- **VP-10735** - Brake dust shield, front left (voltrieve-parts-brakes.md)\n- **VP-15220** - Brake fluid DOT 4 LV (voltrieve-parts-service-items.md)\n\n### If your Lumen is AWD, buy:\n- **VP-10033** - Brake disc, front left (voltrieve-parts-brakes.md)\n- **VP-10215** - Brake pad set, front axle (voltrieve-parts-brakes.md)\n- **VP-10306** - Brake caliper, front left (voltrieve-parts-brakes.md)\n- **VP-10488** - Caliper carrier, front left (voltrieve-parts-brakes.md)\n- **VP-10618** - Brake hose, front left (voltrieve-parts-brakes.md)\n- **VP-10696** - Caliper fitting kit, front axle (voltrieve-parts-brakes.md)\n- **VP-10735** - Brake dust shield, front left (voltrieve-parts-brakes.md)\n- **VP-15220** - Brake fluid DOT 4 LV (voltrieve-parts-service-items.md)\n\nIf you want, I can also turn this into a single shopping list once you tell me whether your Lumen is **RWD or AWD**.",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "loop",
+  "question": "brakes-lumen",
+  "group": "both",
+  "repeat": 1,
+  "seconds": 17.98,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 3,
+  "steps": 3,
+  "together": true,
+  "saved_ms": 1914,
+  "articles_expected": 12,
+  "articles_found": 12,
+  "invented": [],
+  "error": "",
+  "answer": "For a **complete front-left brake job on a Voltrieve Lumen**, the service guide says you need:\n\n- 1 brake disc for the side being worked on\n- 1 brake pad set for the **front axle** (covers both sides)\n- 1 brake caliper for the side being worked on\n- 1 caliper carrier for the side being worked on\n- 1 brake hose for the side being worked on\n- 1 caliper fitting kit for the **front axle**\n- 1 brake dust shield for the side being worked on\n- 1 bottle of **brake fluid DOT 4 LV**\n- **No electrical pad wear sensor** on the Lumen\n\nSource: **voltrieve-service-guide.md**; brake fluid article from **voltrieve-parts-service-items.md**\n\nBecause the Lumen comes in **RWD and AWD**, the front brake parts differ. Here’s what to buy for each drive:\n\n### Voltrieve Lumen RWD\n- **VP-10020** - Brake disc, front left\n- **VP-10202** - Brake pad set, front axle\n- **VP-10293** - Brake caliper, front left\n- **VP-10475** - Caliper carrier, front left\n- **VP-10618** - Brake hose, front left\n- **VP-10696** - Caliper fitting kit, front axle\n- **VP-10735** - Brake dust shield, front left\n- **VP-15220** - Brake fluid DOT 4 LV\n\nSource: **voltrieve-parts-brakes.md**; **voltrieve-parts-service-items.md**\n\n### Voltrieve Lumen AWD\n- **VP-10033** - Brake disc, front left\n- **VP-10215** - Brake pad set, front axle\n- **VP-10306** - Brake caliper, front left\n- **VP-10488** - Caliper carrier, front left\n- **VP-10618** - Brake hose, front left\n- **VP-10696** - Caliper fitting kit, front axle\n- **VP-10735** - Brake dust shield, front left\n- **VP-15220** - Brake fluid DOT 4 LV\n\nSource: **voltrieve-parts-brakes.md**; **voltrieve-parts-service-items.md**\n\nIf you want, I can also turn this into a **single shopping list** with quantities grouped by part.",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "hosted",
+  "question": "brakes-lumen",
+  "group": "both",
+  "repeat": 1,
+  "seconds": 19.23,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 2,
+  "steps": 2,
+  "together": true,
+  "saved_ms": 2092,
+  "articles_expected": 12,
+  "articles_found": 12,
+  "invented": [],
+  "error": "",
+  "answer": "For a **complete front-left brake job** on a **Voltrieve Lumen**, the service guide says you renew: **1 brake disc, 1 front axle brake pad set, 1 brake caliper, 1 caliper carrier, 1 brake hose, 1 caliper fitting kit, 1 brake dust shield, and 1 bottle of brake fluid DOT 4 LV**. The **Voltrieve Lumen has no electrical pad wear sensor**. Front brake parts **differ by drive**: **300 mm on RWD** and **320 mm on AWD**. [voltrieve-service-guide.md]\n\nBecause the Lumen comes in **RWD and AWD**, here are the buy lists for both:\n\n### Voltrieve Lumen RWD\n- **VP-10020** - Brake disc, front left [voltrieve-parts-brakes.md]\n- **VP-10202** - Brake pad set, front axle [voltrieve-parts-brakes.md]\n- **VP-10293** - Brake caliper, front left [voltrieve-parts-brakes.md]\n- **VP-10475** - Caliper carrier, front left [voltrieve-parts-brakes.md]\n- **VP-10618** - Brake hose, front left [voltrieve-parts-brakes.md]\n- **VP-10696** - Caliper fitting kit, front axle [voltrieve-parts-brakes.md]\n- **VP-10735** - Brake dust shield, front left [voltrieve-parts-brakes.md]\n- **VP-15220** - Brake fluid DOT 4 LV [voltrieve-parts-service-items.md]\n\n### Voltrieve Lumen AWD\n- **VP-10033** - Brake disc, front left [voltrieve-parts-brakes.md]\n- **VP-10215** - Brake pad set, front axle [voltrieve-parts-brakes.md]\n- **VP-10306** - Brake caliper, front left [voltrieve-parts-brakes.md]\n- **VP-10488** - Caliper carrier, front left [voltrieve-parts-brakes.md]\n- **VP-10618** - Brake hose, front left [voltrieve-parts-brakes.md]\n- **VP-10696** - Caliper fitting kit, front axle [voltrieve-parts-brakes.md]\n- **VP-10735** - Brake dust shield, front left [voltrieve-parts-brakes.md]\n- **VP-15220** - Brake fluid DOT 4 LV [voltrieve-parts-service-items.md]\n\nIf you tell me whether your Lumen is **RWD or AWD**, I can give you a single exact shopping list.",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "prompt",
+  "question": "greeting",
+  "group": "none",
+  "repeat": 2,
+  "seconds": 1.64,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "Good morning! How can I help you with Voltrieve today?",
+  "expected": []
+ },
+ {
+  "backend": "loop",
+  "question": "greeting",
+  "group": "none",
+  "repeat": 2,
+  "seconds": 1.39,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "Good morning! How can I help with Voltrieve today?",
+  "expected": []
+ },
+ {
+  "backend": "hosted",
+  "question": "greeting",
+  "group": "none",
+  "repeat": 2,
+  "seconds": 5.74,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "Good morning! How can I help with Voltrieve electric vehicles?",
+  "expected": []
+ },
+ {
+  "backend": "prompt",
+  "question": "thanks",
+  "group": "none",
+  "repeat": 2,
+  "seconds": 1.48,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "You’re welcome! If you need anything else about Voltrieve vehicles, just let me know.",
+  "expected": []
+ },
+ {
+  "backend": "loop",
+  "question": "thanks",
+  "group": "none",
+  "repeat": 2,
+  "seconds": 1.92,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "You’re welcome!",
+  "expected": []
+ },
+ {
+  "backend": "hosted",
+  "question": "thanks",
+  "group": "none",
+  "repeat": 2,
+  "seconds": 8.49,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "You’re welcome! If you need anything else about Voltrieve vehicles, just let me know.",
+  "expected": []
+ },
+ {
+  "backend": "prompt",
+  "question": "off-topic",
+  "group": "none",
+  "repeat": 2,
+  "seconds": 3.22,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "I only cover Voltrieve vehicles and services, so I can’t help with that.",
+  "expected": []
+ },
+ {
+  "backend": "loop",
+  "question": "off-topic",
+  "group": "none",
+  "repeat": 2,
+  "seconds": 1.77,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "I only cover Voltrieve electric vehicles, so I can’t help with that.",
+  "expected": []
+ },
+ {
+  "backend": "hosted",
+  "question": "off-topic",
+  "group": "none",
+  "repeat": 2,
+  "seconds": 6.54,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "I only cover Voltrieve electric vehicles, so I can’t help with that.",
+  "expected": []
+ },
+ {
+  "backend": "prompt",
+  "question": "other-brand",
+  "group": "none",
+  "repeat": 2,
+  "seconds": 1.43,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "I only cover Voltrieve vehicles, so I can’t help with Tesla Model 3 brake pads.",
+  "expected": []
+ },
+ {
+  "backend": "loop",
+  "question": "other-brand",
+  "group": "none",
+  "repeat": 2,
+  "seconds": 1.11,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "I only cover Voltrieve vehicles, so I can’t help with Tesla Model 3 brake pads.",
+  "expected": []
+ },
+ {
+  "backend": "hosted",
+  "question": "other-brand",
+  "group": "none",
+  "repeat": 2,
+  "seconds": 6.26,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "I only cover Voltrieve vehicles, so I can’t help with Tesla Model 3 brake pads.",
+  "expected": []
+ },
+ {
+  "backend": "prompt",
+  "question": "no-model",
+  "group": "none",
+  "repeat": 2,
+  "seconds": 1.64,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "Which Voltrieve model do you have? I need the model before I can check which parts are needed for the left front brake job.",
+  "expected": []
+ },
+ {
+  "backend": "loop",
+  "question": "no-model",
+  "group": "none",
+  "repeat": 2,
+  "seconds": 1.85,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "Which Voltrieve model do you have?  \nI need the model before I can check the correct left-front brake parts.",
+  "expected": []
+ },
+ {
+  "backend": "hosted",
+  "question": "no-model",
+  "group": "none",
+  "repeat": 2,
+  "seconds": 6.0,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "I need the Voltrieve model first to identify the correct brake parts.\n\nPlease tell me which model you have: **Spark, Lumen, Ragn, Fjord, or Atlas**.",
+  "expected": []
+ },
+ {
+  "backend": "prompt",
+  "question": "towing",
+  "group": "docs",
+  "repeat": 2,
+  "seconds": 6.54,
+  "first_text_seconds": null,
+  "used": [
+   "docs"
+  ],
+  "calls": 1,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "The Voltrieve Fjord has a towing capacity of **2,100 kg (braked)**. (voltrieve-fjord-specifications.pdf)",
+  "expected": [
+   "docs"
+  ]
+ },
+ {
+  "backend": "loop",
+  "question": "towing",
+  "group": "docs",
+  "repeat": 2,
+  "seconds": 4.53,
+  "first_text_seconds": null,
+  "used": [
+   "docs"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "The Voltrieve Fjord has a towing capacity of **2,100 kg (braked)**.  \nSource: **voltrieve-fjord-specifications.pdf**",
+  "expected": [
+   "docs"
+  ]
+ },
+ {
+  "backend": "hosted",
+  "question": "towing",
+  "group": "docs",
+  "repeat": 2,
+  "seconds": 8.79,
+  "first_text_seconds": null,
+  "used": [
+   "docs"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "The Voltrieve Fjord has a towing capacity of **2,100 kg (braked)**. It is available with **RWD or AWD**.  \nSource: **voltrieve-fjord-specifications.pdf**",
+  "expected": [
+   "docs"
+  ]
+ },
+ {
+  "backend": "prompt",
+  "question": "option-pack",
+  "group": "docs",
+  "repeat": 2,
+  "seconds": 6.2,
+  "first_text_seconds": null,
+  "used": [
+   "docs"
+  ],
+  "calls": 1,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "The Winter option pack contains a heat pump, heated steering wheel and rear seats, and battery preconditioning. (voltrieve-buyers-guide.md)",
+  "expected": [
+   "docs"
+  ]
+ },
+ {
+  "backend": "loop",
+  "question": "option-pack",
+  "group": "docs",
+  "repeat": 2,
+  "seconds": 4.75,
+  "first_text_seconds": null,
+  "used": [
+   "docs"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "The **Winter** option pack contains:\n\n- **heat pump**\n- **heated steering wheel and rear seats**\n- **battery preconditioning**\n\nSource: **voltrieve-buyers-guide.md**  \nThis same Winter pack is also listed in the model brochures: **voltrieve-spark-brochure.docx**, **voltrieve-lumen-brochure.docx**, **voltrieve-ragn-brochure.docx**, **voltrieve-fjord-brochure.docx**, and **voltrieve-atlas-brochure.docx**.",
+  "expected": [
+   "docs"
+  ]
+ },
+ {
+  "backend": "hosted",
+  "question": "option-pack",
+  "group": "docs",
+  "repeat": 2,
+  "seconds": 9.46,
+  "first_text_seconds": null,
+  "used": [
+   "docs"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "The **Winter** option pack contains **a heat pump, heated steering wheel and rear seats, and battery preconditioning**.  \nSource: **Voltrieve buyer's guide**",
+  "expected": [
+   "docs"
+  ]
+ },
+ {
+  "backend": "prompt",
+  "question": "filter-howto",
+  "group": "docs",
+  "repeat": 2,
+  "seconds": 4.37,
+  "first_text_seconds": null,
+  "used": [
+   "docs"
+  ],
+  "calls": 1,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "The cabin air filter is changed every two years. It sits behind the passenger footwell trim, and the service guide says you only need a trim tool to do the job. (voltrieve-service-guide.md)",
+  "expected": [
+   "docs"
+  ]
+ },
+ {
+  "backend": "loop",
+  "question": "filter-howto",
+  "group": "docs",
+  "repeat": 2,
+  "seconds": 4.63,
+  "first_text_seconds": null,
+  "used": [
+   "docs"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "The cabin air filter is changed every two years. The service guide also says it sits behind the passenger footwell trim and only needs a trim tool. Source: **voltrieve-service-guide.md**",
+  "expected": [
+   "docs"
+  ]
+ },
+ {
+  "backend": "hosted",
+  "question": "filter-howto",
+  "group": "docs",
+  "repeat": 2,
+  "seconds": 8.86,
+  "first_text_seconds": null,
+  "used": [
+   "docs"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "The cabin air filter is changed every two years. The service guide also says it sits behind the passenger footwell trim. Source: **voltrieve-service-guide.md**",
+  "expected": [
+   "docs"
+  ]
+ },
+ {
+  "backend": "prompt",
+  "question": "windscreen",
+  "group": "parts",
+  "repeat": 2,
+  "seconds": 7.21,
+  "first_text_seconds": null,
+  "used": [
+   "parts"
+  ],
+  "calls": 1,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 1,
+  "articles_found": 1,
+  "invented": [],
+  "error": "",
+  "answer": "The article number for the Voltrieve Atlas windscreen is **VP-14167** (voltrieve-parts-body-glass-lighting.md).",
+  "expected": [
+   "parts"
+  ]
+ },
+ {
+  "backend": "loop",
+  "question": "windscreen",
+  "group": "parts",
+  "repeat": 2,
+  "seconds": 6.08,
+  "first_text_seconds": null,
+  "used": [
+   "parts"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 1,
+  "articles_found": 1,
+  "invented": [],
+  "error": "",
+  "answer": "The article number for the Voltrieve Atlas windscreen is **VP-14167**. It is listed as **Windscreen, Front, Laminated, with camera bracket** in **voltrieve-parts-body-glass-lighting.md**.",
+  "expected": [
+   "parts"
+  ]
+ },
+ {
+  "backend": "hosted",
+  "question": "windscreen",
+  "group": "parts",
+  "repeat": 2,
+  "seconds": 8.44,
+  "first_text_seconds": null,
+  "used": [
+   "parts"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 1,
+  "articles_found": 1,
+  "invented": [],
+  "error": "",
+  "answer": "The article number for the Voltrieve Atlas windscreen is **VP-14167**.  \nSource: **voltrieve-parts-body-glass-lighting.md**",
+  "expected": [
+   "parts"
+  ]
+ },
+ {
+  "backend": "prompt",
+  "question": "air-spring",
+  "group": "parts",
+  "repeat": 2,
+  "seconds": 8.12,
+  "first_text_seconds": null,
+  "used": [
+   "parts"
+  ],
+  "calls": 1,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 1,
+  "articles_found": 1,
+  "invented": [],
+  "error": "",
+  "answer": "The article number for the rear left air spring on the Voltrieve Fjord is **VP-12035**. It is listed as **“Rear air spring, rear left”** and fits **Voltrieve Fjord**. (voltrieve-parts-suspension-steering.md)",
+  "expected": [
+   "parts"
+  ]
+ },
+ {
+  "backend": "loop",
+  "question": "air-spring",
+  "group": "parts",
+  "repeat": 2,
+  "seconds": 11.36,
+  "first_text_seconds": null,
+  "used": [
+   "parts"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 1,
+  "articles_found": 1,
+  "invented": [],
+  "error": "",
+  "answer": "The article number for the **rear left air spring** on a **Voltrieve Fjord** is **VP-12035**.  \nSource: **voltrieve-parts-suspension-steering.md**",
+  "expected": [
+   "parts"
+  ]
+ },
+ {
+  "backend": "hosted",
+  "question": "air-spring",
+  "group": "parts",
+  "repeat": 2,
+  "seconds": 13.31,
+  "first_text_seconds": null,
+  "used": [
+   "parts"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 1,
+  "articles_found": 1,
+  "invented": [],
+  "error": "",
+  "answer": "The article number for the **rear left air spring** on a **Voltrieve Fjord** is **VP-12035**.  \nSource: **voltrieve-parts-suspension-steering.md**",
+  "expected": [
+   "parts"
+  ]
+ },
+ {
+  "backend": "prompt",
+  "question": "reverse-lookup",
+  "group": "parts",
+  "repeat": 2,
+  "seconds": 4.82,
+  "first_text_seconds": null,
+  "used": [
+   "parts"
+  ],
+  "calls": 1,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "VP-14739 is a **CCS2 charge port** - an **inlet with latch and temperature sensors** - and it fits **Voltrieve Ragn, Voltrieve Fjord, and Voltrieve Atlas** (voltrieve-parts-electrical-charging.md)",
+  "expected": [
+   "parts"
+  ]
+ },
+ {
+  "backend": "loop",
+  "question": "reverse-lookup",
+  "group": "parts",
+  "repeat": 2,
+  "seconds": 6.28,
+  "first_text_seconds": null,
+  "used": [
+   "parts"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "VP-14739 is the **CCS2 charge port**: a **rear-right inlet with latch and temperature sensors**. It fits the **Voltrieve Ragn, Voltrieve Fjord, and Voltrieve Atlas**.  \nSource: **voltrieve-parts-electrical-charging.md**",
+  "expected": [
+   "parts"
+  ]
+ },
+ {
+  "backend": "hosted",
+  "question": "reverse-lookup",
+  "group": "parts",
+  "repeat": 2,
+  "seconds": 27.53,
+  "first_text_seconds": null,
+  "used": [
+   "parts"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "Article **VP-14739** is a **CCS2 charge port** at the **rear right**. It is described as an **inlet with latch and temperature sensors** and fits **Voltrieve Ragn, Voltrieve Fjord, and Voltrieve Atlas**.  \nSource: **voltrieve-parts-electrical-charging.md**",
+  "expected": [
+   "parts"
+  ]
+ },
+ {
+  "backend": "prompt",
+  "question": "brakes-fjord",
+  "group": "both",
+  "repeat": 2,
+  "seconds": 23.39,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 2,
+  "steps": 3,
+  "together": false,
+  "saved_ms": 17,
+  "articles_expected": 9,
+  "articles_found": 9,
+  "invented": [],
+  "error": "",
+  "answer": "If you mean the service-guide job **“complete front brake replacement on one side”** for a **Voltrieve Fjord AWD**, the documentation says you need these parts; Fjord AWD uses the **370 mm** front brake setup. (voltrieve-service-guide.md)\n\n| Part | Article number |\n|---|---|\n| Brake disc, front left | **VP-10072** (voltrieve-parts-brakes.md) |\n| Brake pad set, front axle | **VP-10254** (voltrieve-parts-brakes.md) |\n| Brake caliper, front left | **VP-10345** (voltrieve-parts-brakes.md) |\n| Caliper carrier, front left | **VP-10527** (voltrieve-parts-brakes.md) |\n| Brake hose, front left | **VP-10631** (voltrieve-parts-brakes.md) |\n| Pad wear sensor, front left | **VP-10670** (voltrieve-parts-brakes.md) |\n| Caliper fitting kit, front axle | **VP-10709** (voltrieve-parts-brakes.md) |\n| Brake dust shield, front left | **VP-10761** (voltrieve-parts-brakes.md) |\n| Brake fluid DOT 4 LV | **VP-15220** (voltrieve-parts-service-items.md) |\n\nThe service guide also says the **pad set covers both sides of the axle**, even when you’re only working on the left front side. (voltrieve-service-guide.md)\n\nIf you want, I can also format this as a simple shopping checklist.",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "loop",
+  "question": "brakes-fjord",
+  "group": "both",
+  "repeat": 2,
+  "seconds": 14.49,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 2,
+  "steps": 2,
+  "together": true,
+  "saved_ms": 1899,
+  "articles_expected": 9,
+  "articles_found": 8,
+  "invented": [],
+  "error": "",
+  "answer": "For a **complete front brake replacement on one side** of a **Voltrieve Fjord AWD**, the service guide says you need these components, and the Fjord AWD front brakes use the **370 mm** parts. The service guide also says the pad set is an **axle set** that covers both sides.  \nSource: **voltrieve-service-guide.md**\n\nHere are the spare parts with article numbers from the catalog:\n\n- **VP-10072** - Brake disc, front left  \n- **VP-10254** - Brake pad set, front axle  \n- **VP-10345** - Brake caliper, front left  \n- **VP-10527** - Caliper carrier, front left  \n- **VP-10631** - Brake hose, front left  \n- **VP-10670** - Pad wear sensor, front left  \n- **VP-10709** - Caliper fitting kit, front axle  \n- **VP-10761** - Brake dust shield, front left  \nSource: **voltrieve-parts-brakes.md**\n\nThe service guide also says you need **1 bottle of brake fluid DOT 4 LV** for bleeding afterwards, but I **could not find an article number for that in the catalog**.  \nSource: **voltrieve-service-guide.md**; **voltrieve-parts-brakes.md**\n\nIf you want, I can also list the parts in a simple “order checklist” format.",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "hosted",
+  "question": "brakes-fjord",
+  "group": "both",
+  "repeat": 2,
+  "seconds": 16.96,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 2,
+  "steps": 2,
+  "together": true,
+  "saved_ms": 1849,
+  "articles_expected": 9,
+  "articles_found": 9,
+  "invented": [],
+  "error": "",
+  "answer": "For a **Voltrieve Fjord AWD** front-left brake replacement, the service guide says the job needs: brake disc, front-axle brake pad set, brake caliper, caliper carrier, brake hose, pad wear sensor, caliper fitting kit, brake dust shield, and brake fluid DOT 4 LV. It also says the Fjord uses **370 mm** front brakes on **AWD**. **Voltrieve service guide**  \n\nThe spare parts catalog lists these matching parts for the **front left** side of the **Fjord AWD**:\n\n- **VP-10072** - Brake disc, front left, 370 mm ventilated brake disc. **voltrieve-parts-brakes.md**\n- **VP-10254** - Brake pad set, front axle, set of 4 pads for the 370 mm disc. **voltrieve-parts-brakes.md**\n- **VP-10345** - Brake caliper, front left, twin piston floating caliper for the 370 mm disc. **voltrieve-parts-brakes.md**\n- **VP-10527** - Caliper carrier, front left. **voltrieve-parts-brakes.md**\n- **VP-10631** - Brake hose, front left. **voltrieve-parts-brakes.md**\n- **VP-10670** - Pad wear sensor, front left. **voltrieve-parts-brakes.md**\n- **VP-10709** - Caliper fitting kit, front axle. **voltrieve-parts-brakes.md**\n- **VP-10761** - Brake dust shield, front left. **voltrieve-parts-brakes.md**\n- **VP-15220** - Brake fluid DOT 4 LV. **voltrieve-parts-service-items.md**\n\nSo, for a complete left-front brake job, those are the spare parts I found in the documentation. If you want, I can also group them into **must replace** vs **only if worn/damaged** based on the service guide.",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "prompt",
+  "question": "brakes-spark",
+  "group": "both",
+  "repeat": 2,
+  "seconds": 23.57,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 2,
+  "steps": 5,
+  "together": false,
+  "saved_ms": 19,
+  "articles_expected": 8,
+  "articles_found": 8,
+  "invented": [],
+  "error": "",
+  "answer": "For a **Voltrieve Spark**, the service guide says a **complete rear brake replacement on one side** needs these items, and the Spark has **no electrical pad wear sensor** (voltrieve-service-guide.md).\n\n| Part | Article number | Notes |\n|---|---:|---|\n| Brake disc, rear right | **VP-10917** | Rear right item for the Spark (voltrieve-parts-brakes.md) |\n| Brake pad set, rear axle | **VP-10982** | Covers both sides of the rear axle (voltrieve-parts-brakes.md) (voltrieve-service-guide.md) |\n| Brake caliper, rear right | **VP-11112** | Rear right item for the Spark (voltrieve-parts-brakes.md) |\n| Caliper carrier, rear right | **VP-11203** | Rear right item for the Spark (voltrieve-parts-brakes.md) |\n| Brake hose, rear right | **VP-11255** | Rear right item for the Spark (voltrieve-parts-brakes.md) |\n| Caliper fitting kit, rear axle | **VP-11307** | Used for one side of the rear axle (voltrieve-parts-brakes.md) (voltrieve-service-guide.md) |\n| Brake dust shield, rear right | **VP-11398** | Rear right item for the Spark (voltrieve-parts-brakes.md) |\n| Brake fluid DOT 4 LV | **VP-15220** | 1 litre bottle, used for bleeding afterwards (voltrieve-parts-service-items.md) (voltrieve-service-guide.md) |\n\nIf you want, I can also format this as a simple shopping list with quantities only.",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "loop",
+  "question": "brakes-spark",
+  "group": "both",
+  "repeat": 2,
+  "seconds": 9.84,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 2,
+  "steps": 2,
+  "together": true,
+  "saved_ms": 2150,
+  "articles_expected": 8,
+  "articles_found": 8,
+  "invented": [],
+  "error": "",
+  "answer": "For the Voltrieve Spark, the service guide says a complete rear brake replacement on one side needs the following parts; the Spark applies as **RWD**. The matching article numbers from the spare parts catalog are: **voltrieve-service-guide.md**; **voltrieve-parts-brakes.md**; **voltrieve-parts-service-items.md**\n\n- **VP-10917** - Brake disc, rear right **voltrieve-parts-brakes.md**\n- **VP-10982** - Brake pad set, rear axle **voltrieve-parts-brakes.md**\n- **VP-11112** - Brake caliper, rear right **voltrieve-parts-brakes.md**\n- **VP-11203** - Caliper carrier, rear right **voltrieve-parts-brakes.md**\n- **VP-11255** - Brake hose, rear right **voltrieve-parts-brakes.md**\n- **VP-11307** - Caliper fitting kit, rear axle **voltrieve-parts-brakes.md**\n- **VP-11398** - Brake dust shield, rear right **voltrieve-parts-brakes.md**\n- **VP-15220** - Brake fluid DOT 4 LV **voltrieve-parts-service-items.md**\n\nIf you want, I can also format this as a workshop parts list with quantities.",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "hosted",
+  "question": "brakes-spark",
+  "group": "both",
+  "repeat": 2,
+  "seconds": 19.34,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 2,
+  "steps": 2,
+  "together": true,
+  "saved_ms": 2059,
+  "articles_expected": 8,
+  "articles_found": 8,
+  "invented": [],
+  "error": "",
+  "answer": "For a **Voltrieve Spark** rear brake replacement on one side, the service guide says the job needs these parts, and the Spark has **no electrical pad wear sensor**. The pad set is an **axle set**, so it covers both rear sides. Sources: **voltrieve-service-guide.md** and **voltrieve-parts-brakes.md** / **voltrieve-parts-service-items.md**.\n\n| Part | Article number | Qty for the job |\n|---|---:|---:|\n| Brake disc, rear right | **VP-10917** | 1 |\n| Brake pad set, rear axle | **VP-10982** | 1 |\n| Brake caliper, rear right | **VP-11112** | 1 |\n| Caliper carrier, rear right | **VP-11203** | 1 |\n| Brake hose, rear right | **VP-11255** | 1 |\n| Caliper fitting kit, rear axle | **VP-11307** | 1 |\n| Brake dust shield, rear right | **VP-11398** | 1 |\n| Brake fluid DOT 4 LV | **VP-15220** | 1 bottle |\n\nIf you want, I can also format this as a simple parts order list.",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "prompt",
+  "question": "brakes-atlas",
+  "group": "both",
+  "repeat": 2,
+  "seconds": 25.59,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 2,
+  "steps": 4,
+  "together": false,
+  "saved_ms": 48,
+  "articles_expected": 8,
+  "articles_found": 8,
+  "invented": [],
+  "error": "",
+  "answer": "For a complete **front right brake replacement** on a **Voltrieve Atlas**, order:\n\n- **VP-10176** - Brake disc, front right (voltrieve-parts-brakes.md)\n- **VP-10267** - Brake pad set, front axle (voltrieve-parts-brakes.md)\n- **VP-10449** - Brake caliper, front right (voltrieve-parts-brakes.md)\n- **VP-10657** - Brake hose, front right (voltrieve-parts-brakes.md)\n- **VP-10683** - Pad wear sensor, front right (voltrieve-parts-brakes.md)\n- **VP-10709** - Caliper fitting kit, front axle (voltrieve-parts-brakes.md)\n- **VP-10839** - Brake dust shield, front right (voltrieve-parts-brakes.md)\n- **VP-15220** - Brake fluid DOT 4 LV, 1 litre bottle (voltrieve-parts-service-items.md)\n\nNotes:\n- The Atlas is **AWD** and uses a **fixed front caliper**, so there is **no caliper carrier** to order for this job. (voltrieve-service-guide.md)\n- The service guide says a complete front brake replacement on one side also needs brake fluid for bleeding afterwards, and the catalog gives the matching brake fluid article number above. (voltrieve-service-guide.md) (voltrieve-parts-service-items.md)\n\nIf you want, I can also format this as a simple shopping list with quantities.",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "loop",
+  "question": "brakes-atlas",
+  "group": "both",
+  "repeat": 2,
+  "seconds": 17.1,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 3,
+  "steps": 3,
+  "together": true,
+  "saved_ms": 1887,
+  "articles_expected": 8,
+  "articles_found": 8,
+  "invented": [],
+  "error": "",
+  "answer": "For a **complete front right brake replacement** on a **Voltrieve Atlas (AWD)**, the service guide says the job needs: one front disc for the side being worked on, one front pad set for the axle, one front caliper, one brake hose, one pad wear sensor, one caliper fitting kit for the front axle, one brake dust shield for the side being worked on, and one bottle of brake fluid DOT 4 LV. It also says the Atlas has a **fixed caliper, so there is no caliper carrier**. **Source: voltrieve-service-guide.md**\n\nThe matching parts to order are:\n\n- **VP-10176** - Brake disc, front right. **Source: voltrieve-parts-brakes.md**\n- **VP-10267** - Brake pad set, front axle. **Source: voltrieve-parts-brakes.md**\n- **VP-10449** - Brake caliper, front right. **Source: voltrieve-parts-brakes.md**\n- **VP-10657** - Brake hose, front right. **Source: voltrieve-parts-brakes.md**\n- **VP-10683** - Pad wear sensor, front right. **Source: voltrieve-parts-brakes.md**\n- **VP-10709** - Caliper fitting kit, front axle. **Source: voltrieve-parts-brakes.md**\n- **VP-10839** - Brake dust shield, front right. **Source: voltrieve-parts-brakes.md**\n- **VP-15220** - Brake fluid DOT 4 LV, 1 litre bottle. **Source: voltrieve-parts-service-items.md**\n\nI did **not** find a caliper carrier for the Atlas front brake job, and the service guide says it is **not needed** because the Atlas uses a fixed caliper. **Source: voltrieve-service-guide.md**",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "hosted",
+  "question": "brakes-atlas",
+  "group": "both",
+  "repeat": 2,
+  "seconds": 14.81,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 2,
+  "steps": 2,
+  "together": true,
+  "saved_ms": 1968,
+  "articles_expected": 8,
+  "articles_found": 8,
+  "invented": [],
+  "error": "",
+  "answer": "For a **complete front right brake replacement** on a **Voltrieve Atlas (AWD)**, the service guide says the job needs these items, and the Atlas has **no caliper carrier** because it uses a fixed front caliper. Source: **voltrieve-service-guide.md**\n\nFrom the spare parts catalog, order:\n\n| Part | Article number | Qty |\n|---|---:|---:|\n| Brake disc, front right | **VP-10176** | 1 |\n| Brake pad set, front axle | **VP-10267** | 1 |\n| Brake caliper, front right | **VP-10449** | 1 |\n| Brake hose, front right | **VP-10657** | 1 |\n| Pad wear sensor, front right | **VP-10683** | 1 |\n| Caliper fitting kit, front axle | **VP-10709** | 1 |\n| Brake dust shield, front right | **VP-10839** | 1 |\n| Brake fluid DOT 4 LV | **VP-15220** | 1 bottle |\n\nSources: **voltrieve-parts-brakes.md**, **voltrieve-parts-service-items.md**\n\nIf you want, I can also format this as a plain order list you can copy into a parts request.",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "prompt",
+  "question": "brakes-lumen",
+  "group": "both",
+  "repeat": 2,
+  "seconds": 23.29,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 2,
+  "steps": 4,
+  "together": false,
+  "saved_ms": 28,
+  "articles_expected": 12,
+  "articles_found": 12,
+  "invented": [],
+  "error": "",
+  "answer": "A complete front brake job on one side of a Voltrieve Lumen renews the disc, pad set, caliper, caliper carrier, brake hose, caliper fitting kit, brake dust shield, and brake fluid. The Lumen has no electrical pad wear sensor. Front brake parts differ between RWD and AWD, so check the drive before ordering. (voltrieve-service-guide.md)\n\n**Voltrieve Lumen RWD**\n- Brake disc, front left - **VP-10020** (voltrieve-parts-brakes.md)\n- Brake pad set, front axle - **VP-10202** (voltrieve-parts-brakes.md)\n- Brake caliper, front left - **VP-10293** (voltrieve-parts-brakes.md)\n- Caliper carrier, front left - **VP-10475** (voltrieve-parts-brakes.md)\n- Brake hose, front left - **VP-10618** (voltrieve-parts-brakes.md)\n- Caliper fitting kit, front axle - **VP-10696** (voltrieve-parts-brakes.md)\n- Brake dust shield, front left - **VP-10735** (voltrieve-parts-brakes.md)\n- Brake fluid DOT 4 LV - **VP-15220** (voltrieve-parts-service-items.md)\n\n**Voltrieve Lumen AWD**\n- Brake disc, front left - **VP-10033** (voltrieve-parts-brakes.md)\n- Brake pad set, front axle - **VP-10215** (voltrieve-parts-brakes.md)\n- Brake caliper, front left - **VP-10306** (voltrieve-parts-brakes.md)\n- Caliper carrier, front left - **VP-10488** (voltrieve-parts-brakes.md)\n- Brake hose, front left - **VP-10618** (voltrieve-parts-brakes.md)\n- Caliper fitting kit, front axle - **VP-10696** (voltrieve-parts-brakes.md)\n- Brake dust shield, front left - **VP-10735** (voltrieve-parts-brakes.md)\n- Brake fluid DOT 4 LV - **VP-15220** (voltrieve-parts-service-items.md)\n\nIf you want, I can also turn this into a simple shopping list for just your specific drive (RWD or AWD).",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "loop",
+  "question": "brakes-lumen",
+  "group": "both",
+  "repeat": 2,
+  "seconds": 9.99,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 2,
+  "steps": 2,
+  "together": true,
+  "saved_ms": 1829,
+  "articles_expected": 12,
+  "articles_found": 12,
+  "invented": [],
+  "error": "",
+  "answer": "For a **Voltrieve Lumen** complete **front left** brake job, the service guide says you need these items: a brake disc, a front-axle pad set, a brake caliper, a caliper carrier, a brake hose, a front-axle caliper fitting kit, a brake dust shield, and brake fluid. It also says the **Lumen has no electrical pad wear sensor**.  \nSource: **voltrieve-service-guide.md**\n\nBecause the Lumen comes in **RWD and AWD**, and the front brake parts differ between them, here are both parts lists.  \nSource: **voltrieve-service-guide.md**\n\n## If your Lumen is RWD\n- **VP-10020** - Brake disc, front left  \n- **VP-10202** - Brake pad set, front axle  \n- **VP-10293** - Brake caliper, front left  \n- **VP-10475** - Caliper carrier, front left  \n- **VP-10618** - Brake hose, front left  \n- **VP-10696** - Caliper fitting kit, front axle  \n- **VP-10735** - Brake dust shield, front left  \n- **VP-15220** - Brake fluid DOT 4 LV  \n\nSources: **voltrieve-parts-brakes.md**, **voltrieve-parts-service-items.md**\n\n## If your Lumen is AWD\n- **VP-10033** - Brake disc, front left  \n- **VP-10215** - Brake pad set, front axle  \n- **VP-10306** - Brake caliper, front left  \n- **VP-10488** - Caliper carrier, front left  \n- **VP-10618** - Brake hose, front left  \n- **VP-10696** - Caliper fitting kit, front axle  \n- **VP-10735** - Brake dust shield, front left  \n- **VP-15220** - Brake fluid DOT 4 LV  \n\nSources: **voltrieve-parts-brakes.md**, **voltrieve-parts-service-items.md**\n\nIf you want, I can also help you narrow it down to **RWD or AWD** if you tell me which drivetrain your Lumen has.",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "hosted",
+  "question": "brakes-lumen",
+  "group": "both",
+  "repeat": 2,
+  "seconds": 26.0,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 4,
+  "steps": 3,
+  "together": true,
+  "saved_ms": 4429,
+  "articles_expected": 12,
+  "articles_found": 12,
+  "invented": [],
+  "error": "",
+  "answer": "For a **complete front brake replacement on one side** of a **Voltrieve Lumen**, the service guide says you need:\n\n- 1 brake disc for that side\n- 1 brake pad set for the front axle\n- 1 brake caliper for that side\n- 1 caliper carrier for that side\n- 1 brake hose for that side\n- 1 caliper fitting kit for the front axle\n- 1 brake dust shield for that side\n- 1 bottle of brake fluid DOT 4 LV for bleeding afterward\n\nThe guide also says the **Lumen has no electrical pad wear sensor**. It also says **front brake parts differ by drive: 300 mm on RWD, 320 mm on AWD**. (voltrieve-service-guide.md)\n\n### What to buy\n\n#### If your Lumen is **RWD**\n- **VP-10020** - Brake disc, front left - 300 mm ventilated brake disc (voltrieve-parts-brakes.md)\n- **VP-10202** - Brake pad set, front axle - set for the 300 mm disc (voltrieve-parts-brakes.md)\n- **VP-10293** - Brake caliper, front left - twin piston floating caliper for the 300 mm disc (voltrieve-parts-brakes.md)\n- **VP-10475** - Caliper carrier, front left - carrier bracket for the floating caliper (voltrieve-parts-brakes.md)\n- **VP-10618** - Brake hose, front left - reinforced flexible hose with banjo fitting (voltrieve-parts-brakes.md)\n- **VP-10696** - Caliper fitting kit, front axle - slide pins, bolts and anti-rattle clips for one side (voltrieve-parts-brakes.md)\n- **VP-10735** - Brake dust shield, front left - pressed steel shield (voltrieve-parts-brakes.md)\n- **VP-15220** - Brake fluid DOT 4 LV - 1 litre bottle (voltrieve-parts-service-items.md)\n\n#### If your Lumen is **AWD**\n- **VP-10033** - Brake disc, front left - 320 mm ventilated brake disc (voltrieve-parts-brakes.md)\n- **VP-10215** - Brake pad set, front axle - set for the 320 mm disc (voltrieve-parts-brakes.md)\n- **VP-10306** - Brake caliper, front left - twin piston floating caliper for the 320 mm disc (voltrieve-parts-brakes.md)\n- **VP-10488** - Caliper carrier, front left - carrier bracket for the floating caliper (voltrieve-parts-brakes.md)\n- **VP-10618** - Brake hose, front left - reinforced flexible hose with banjo fitting (voltrieve-parts-brakes.md)\n- **VP-10696** - Caliper fitting kit, front axle - slide pins, bolts and anti-rattle clips for one side (voltrieve-parts-brakes.md)\n- **VP-10735** - Brake dust shield, front left - pressed steel shield (voltrieve-parts-brakes.md)\n- **VP-15220** - Brake fluid DOT 4 LV - 1 litre bottle (voltrieve-parts-service-items.md)\n\nIf you want, I can also help you narrow this to the exact list for **RWD or AWD** if you tell me which drive your Lumen has.",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "prompt",
+  "question": "greeting",
+  "group": "none",
+  "repeat": 3,
+  "seconds": 1.42,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "Good morning! How can I help with Voltrieve today?",
+  "expected": []
+ },
+ {
+  "backend": "loop",
+  "question": "greeting",
+  "group": "none",
+  "repeat": 3,
+  "seconds": 1.24,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "Good morning! How can I help with Voltrieve vehicles today?",
+  "expected": []
+ },
+ {
+  "backend": "hosted",
+  "question": "greeting",
+  "group": "none",
+  "repeat": 3,
+  "seconds": 6.42,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "Good morning! How can I help with Voltrieve electric vehicles today?",
+  "expected": []
+ },
+ {
+  "backend": "prompt",
+  "question": "thanks",
+  "group": "none",
+  "repeat": 3,
+  "seconds": 1.42,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "You’re welcome!",
+  "expected": []
+ },
+ {
+  "backend": "loop",
+  "question": "thanks",
+  "group": "none",
+  "repeat": 3,
+  "seconds": 1.16,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "You’re welcome!",
+  "expected": []
+ },
+ {
+  "backend": "hosted",
+  "question": "thanks",
+  "group": "none",
+  "repeat": 3,
+  "seconds": 5.38,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "You’re welcome!",
+  "expected": []
+ },
+ {
+  "backend": "prompt",
+  "question": "off-topic",
+  "group": "none",
+  "repeat": 3,
+  "seconds": 1.82,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "I only cover Voltrieve electric vehicles, so I can’t help with that.",
+  "expected": []
+ },
+ {
+  "backend": "loop",
+  "question": "off-topic",
+  "group": "none",
+  "repeat": 3,
+  "seconds": 2.98,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "I only cover Voltrieve electric vehicles, so I can’t help with that.",
+  "expected": []
+ },
+ {
+  "backend": "hosted",
+  "question": "off-topic",
+  "group": "none",
+  "repeat": 3,
+  "seconds": 5.93,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "I only cover Voltrieve electric vehicles, so I can’t help with that.",
+  "expected": []
+ },
+ {
+  "backend": "prompt",
+  "question": "other-brand",
+  "group": "none",
+  "repeat": 3,
+  "seconds": 2.38,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "I only cover Voltrieve electric vehicles, so I can’t help with Tesla Model 3 brake pads.",
+  "expected": []
+ },
+ {
+  "backend": "loop",
+  "question": "other-brand",
+  "group": "none",
+  "repeat": 3,
+  "seconds": 1.71,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "I only cover Voltrieve electric vehicles, so I can’t help with Tesla Model 3 brake pads.",
+  "expected": []
+ },
+ {
+  "backend": "hosted",
+  "question": "other-brand",
+  "group": "none",
+  "repeat": 3,
+  "seconds": 5.61,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "I only cover Voltrieve vehicles, so I can’t help with Tesla Model 3 brake pads.",
+  "expected": []
+ },
+ {
+  "backend": "prompt",
+  "question": "no-model",
+  "group": "none",
+  "repeat": 3,
+  "seconds": 2.01,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "Which Voltrieve model is it? For a parts question I need the model first. If you know the drive configuration too, you can include that, but the model is the minimum.",
+  "expected": []
+ },
+ {
+  "backend": "loop",
+  "question": "no-model",
+  "group": "none",
+  "repeat": 3,
+  "seconds": 1.27,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "I need the Voltrieve model first to look up the correct brake parts.\n\nPlease tell me the model, for example: Spark, Lumen, Ragn, Fjord, or Atlas.",
+  "expected": []
+ },
+ {
+  "backend": "hosted",
+  "question": "no-model",
+  "group": "none",
+  "repeat": 3,
+  "seconds": 6.1,
+  "first_text_seconds": null,
+  "used": [],
+  "calls": 0,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "I need the Voltrieve model first to look up the correct front-left brake parts.\n\nPlease tell me which model you have: Spark, Lumen, Ragn, Fjord, or Atlas.",
+  "expected": []
+ },
+ {
+  "backend": "prompt",
+  "question": "towing",
+  "group": "docs",
+  "repeat": 3,
+  "seconds": 6.89,
+  "first_text_seconds": null,
+  "used": [
+   "docs"
+  ],
+  "calls": 1,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "The Voltrieve Fjord has a towing capacity of 2,100 kg (braked).",
+  "expected": [
+   "docs"
+  ]
+ },
+ {
+  "backend": "loop",
+  "question": "towing",
+  "group": "docs",
+  "repeat": 3,
+  "seconds": 4.92,
+  "first_text_seconds": null,
+  "used": [
+   "docs"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "The Voltrieve Fjord has a towing capacity of **2,100 kg (braked)**. Source: **voltrieve-fjord-specifications.pdf**.\n\nThe buyer’s guide also lists the Fjord’s towing figure as **2,100 kg**. Source: **voltrieve-buyers-guide.md**.",
+  "expected": [
+   "docs"
+  ]
+ },
+ {
+  "backend": "hosted",
+  "question": "towing",
+  "group": "docs",
+  "repeat": 3,
+  "seconds": 8.49,
+  "first_text_seconds": null,
+  "used": [
+   "docs"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "The Voltrieve Fjord has a towing capacity of **2,100 kg (braked)**. Source: **voltrieve-fjord-specifications.pdf**",
+  "expected": [
+   "docs"
+  ]
+ },
+ {
+  "backend": "prompt",
+  "question": "option-pack",
+  "group": "docs",
+  "repeat": 3,
+  "seconds": 4.91,
+  "first_text_seconds": null,
+  "used": [
+   "docs"
+  ],
+  "calls": 1,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "The **Winter** option pack contains a **heat pump, heated steering wheel and rear seats, and battery preconditioning** (voltrieve-buyers-guide.md).",
+  "expected": [
+   "docs"
+  ]
+ },
+ {
+  "backend": "loop",
+  "question": "option-pack",
+  "group": "docs",
+  "repeat": 3,
+  "seconds": 4.72,
+  "first_text_seconds": null,
+  "used": [
+   "docs"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "The Winter option pack contains a heat pump, heated steering wheel and rear seats, and battery preconditioning. Source: *voltrieve-buyers-guide.md*",
+  "expected": [
+   "docs"
+  ]
+ },
+ {
+  "backend": "hosted",
+  "question": "option-pack",
+  "group": "docs",
+  "repeat": 3,
+  "seconds": 9.92,
+  "first_text_seconds": null,
+  "used": [
+   "docs"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "The **Winter** option pack contains a **heat pump, heated steering wheel and rear seats, and battery preconditioning**.  \nSource: **voltrieve-buyers-guide.md**",
+  "expected": [
+   "docs"
+  ]
+ },
+ {
+  "backend": "prompt",
+  "question": "filter-howto",
+  "group": "docs",
+  "repeat": 3,
+  "seconds": 5.17,
+  "first_text_seconds": null,
+  "used": [
+   "docs"
+  ],
+  "calls": 1,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "The cabin air filter is changed every two years. (voltrieve-service-guide.md)",
+  "expected": [
+   "docs"
+  ]
+ },
+ {
+  "backend": "loop",
+  "question": "filter-howto",
+  "group": "docs",
+  "repeat": 3,
+  "seconds": 7.7,
+  "first_text_seconds": null,
+  "used": [
+   "docs"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "The cabin air filter is changed **every two years**. It sits behind the passenger footwell trim, and the only tool needed is a trim tool.  \nSource: **voltrieve-service-guide.md**",
+  "expected": [
+   "docs"
+  ]
+ },
+ {
+  "backend": "hosted",
+  "question": "filter-howto",
+  "group": "docs",
+  "repeat": 3,
+  "seconds": 9.23,
+  "first_text_seconds": null,
+  "used": [
+   "docs"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "The cabin air filter is changed every two years. It sits behind the passenger footwell trim, and only a trim tool is needed. Source: **voltrieve-service-guide.md**",
+  "expected": [
+   "docs"
+  ]
+ },
+ {
+  "backend": "prompt",
+  "question": "windscreen",
+  "group": "parts",
+  "repeat": 3,
+  "seconds": 4.83,
+  "first_text_seconds": null,
+  "used": [
+   "parts"
+  ],
+  "calls": 1,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 1,
+  "articles_found": 1,
+  "invented": [],
+  "error": "",
+  "answer": "The windscreen article number for the Voltrieve Atlas is **VP-14167**; the catalog lists it as a **front windscreen, laminated, with camera bracket** (voltrieve-parts-body-glass-lighting.md).",
+  "expected": [
+   "parts"
+  ]
+ },
+ {
+  "backend": "loop",
+  "question": "windscreen",
+  "group": "parts",
+  "repeat": 3,
+  "seconds": 4.84,
+  "first_text_seconds": null,
+  "used": [
+   "parts"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 1,
+  "articles_found": 1,
+  "invented": [],
+  "error": "",
+  "answer": "The article number for the Voltrieve Atlas windscreen is **VP-14167**.  \nSource: **voltrieve-parts-body-glass-lighting.md**.",
+  "expected": [
+   "parts"
+  ]
+ },
+ {
+  "backend": "hosted",
+  "question": "windscreen",
+  "group": "parts",
+  "repeat": 3,
+  "seconds": 9.71,
+  "first_text_seconds": null,
+  "used": [
+   "parts"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 1,
+  "articles_found": 1,
+  "invented": [],
+  "error": "",
+  "answer": "The article number for the Voltrieve Atlas windscreen is **VP-14167**. Source: **voltrieve-parts-body-glass-lighting.md**.",
+  "expected": [
+   "parts"
+  ]
+ },
+ {
+  "backend": "prompt",
+  "question": "air-spring",
+  "group": "parts",
+  "repeat": 3,
+  "seconds": 4.38,
+  "first_text_seconds": null,
+  "used": [
+   "parts"
+  ],
+  "calls": 1,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 1,
+  "articles_found": 1,
+  "invented": [],
+  "error": "",
+  "answer": "The article number for the rear left air spring on a Voltrieve Fjord is **VP-12035**. It is listed as **“Rear air spring, rear left”** and fits **Voltrieve Fjord**. (voltrieve-parts-suspension-steering.md)",
+  "expected": [
+   "parts"
+  ]
+ },
+ {
+  "backend": "loop",
+  "question": "air-spring",
+  "group": "parts",
+  "repeat": 3,
+  "seconds": 4.75,
+  "first_text_seconds": null,
+  "used": [
+   "parts"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 1,
+  "articles_found": 1,
+  "invented": [],
+  "error": "",
+  "answer": "The article number for the **rear left air spring** on a **Voltrieve Fjord** is **VP-12035**. It is listed as **“Rear air spring, rear left”** and fits **Voltrieve Fjord**.  \nSource: *voltrieve-parts-suspension-steering.md*",
+  "expected": [
+   "parts"
+  ]
+ },
+ {
+  "backend": "hosted",
+  "question": "air-spring",
+  "group": "parts",
+  "repeat": 3,
+  "seconds": 9.22,
+  "first_text_seconds": null,
+  "used": [
+   "parts"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 1,
+  "articles_found": 1,
+  "invented": [],
+  "error": "",
+  "answer": "The rear left air spring for the Voltrieve Fjord is **VP-12035** - **Rear air spring, rear left**.  \nSource: **voltrieve-parts-suspension-steering.md**",
+  "expected": [
+   "parts"
+  ]
+ },
+ {
+  "backend": "prompt",
+  "question": "reverse-lookup",
+  "group": "parts",
+  "repeat": 3,
+  "seconds": 4.4,
+  "first_text_seconds": null,
+  "used": [
+   "parts"
+  ],
+  "calls": 1,
+  "steps": 1,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "VP-14739 is the **CCS2 charge port** at the **rear right** of the car, described as an **inlet with latch and temperature sensors**. It fits **Voltrieve Ragn, Voltrieve Fjord, and Voltrieve Atlas** (voltrieve-parts-electrical-charging.md)",
+  "expected": [
+   "parts"
+  ]
+ },
+ {
+  "backend": "loop",
+  "question": "reverse-lookup",
+  "group": "parts",
+  "repeat": 3,
+  "seconds": 4.76,
+  "first_text_seconds": null,
+  "used": [
+   "parts"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "VP-14739 is a **CCS2 charge port** at the **rear right** of the car, described as an **inlet with latch and temperature sensors**. It fits **Voltrieve Ragn, Voltrieve Fjord, and Voltrieve Atlas**.  \nSource: **voltrieve-parts-electrical-charging.md**",
+  "expected": [
+   "parts"
+  ]
+ },
+ {
+  "backend": "hosted",
+  "question": "reverse-lookup",
+  "group": "parts",
+  "repeat": 3,
+  "seconds": 8.76,
+  "first_text_seconds": null,
+  "used": [
+   "parts"
+  ],
+  "calls": 1,
+  "steps": 2,
+  "together": null,
+  "saved_ms": 0,
+  "articles_expected": 0,
+  "articles_found": 0,
+  "invented": [],
+  "error": "",
+  "answer": "VP-14739 is a **CCS2 charge port** for the **rear right** of the car, described as an **inlet with latch and temperature sensors**. It fits **Voltrieve Ragn, Voltrieve Fjord, and Voltrieve Atlas**.  \nSource: *voltrieve-parts-electrical-charging.md*",
+  "expected": [
+   "parts"
+  ]
+ },
+ {
+  "backend": "prompt",
+  "question": "brakes-fjord",
+  "group": "both",
+  "repeat": 3,
+  "seconds": 27.52,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 2,
+  "steps": 4,
+  "together": false,
+  "saved_ms": 27,
+  "articles_expected": 9,
+  "articles_found": 9,
+  "invented": [],
+  "error": "",
+  "answer": "For a complete front brake replacement on the **left front** of a **Voltrieve Fjord AWD**, the service guide says you need: **1 brake disc, 1 brake pad set for the front axle, 1 brake caliper, 1 caliper carrier, 1 brake hose, 1 pad wear sensor, 1 caliper fitting kit, 1 brake dust shield, and 1 bottle of brake fluid DOT 4 LV**. It also says the Fjord’s front brake parts differ by drive, and **AWD uses the 370 mm front disc**. (voltrieve-service-guide.md)\n\nThe matching spare parts catalog numbers are:\n\n- **VP-10072** - Brake disc, front left, 370 mm ventilated brake disc (voltrieve-parts-brakes.md)\n- **VP-10254** - Brake pad set, front axle, for the 370 mm disc (voltrieve-parts-brakes.md)\n- **VP-10345** - Brake caliper, front left, twin piston floating caliper for the 370 mm disc (voltrieve-parts-brakes.md)\n- **VP-10527** - Caliper carrier, front left (voltrieve-parts-brakes.md)\n- **VP-10631** - Brake hose, front left (voltrieve-parts-brakes.md)\n- **VP-10670** - Pad wear sensor, front left (voltrieve-parts-brakes.md)\n- **VP-10709** - Caliper fitting kit, front axle (voltrieve-parts-brakes.md)\n- **VP-10761** - Brake dust shield, front left (voltrieve-parts-brakes.md)\n- **VP-15220** - Brake fluid DOT 4 LV (voltrieve-parts-service-items.md)\n\nIf you want, I can also turn that into a **shopping list grouped by “one per side” vs “one per axle.”**",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "loop",
+  "question": "brakes-fjord",
+  "group": "both",
+  "repeat": 3,
+  "seconds": 10.04,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 2,
+  "steps": 2,
+  "together": true,
+  "saved_ms": 1710,
+  "articles_expected": 9,
+  "articles_found": 9,
+  "invented": [],
+  "error": "",
+  "answer": "For a **complete front brake replacement on the left front side** of a **Voltrieve Fjord AWD**, the service guide says the job needs these components: brake disc, front axle brake pad set, brake caliper, caliper carrier, brake hose, pad wear sensor, caliper fitting kit, brake dust shield, and brake fluid DOT 4 LV. It also notes that Fjord front brake parts differ by drive, with **370 mm on AWD**. Source: **voltrieve-service-guide.md**\n\nThe spare-parts catalog lists these **left-front AWD** article numbers for the Fjord:\n\n| Part | Article number | Notes |\n|---|---:|---|\n| Brake disc, front left | **VP-10072** | 370 mm ventilated brake disc. Source: **voltrieve-parts-brakes.md** |\n| Brake pad set, front axle | **VP-10254** | Set of 4 pads for the 370 mm disc; covers both sides of the axle. Source: **voltrieve-parts-brakes.md** |\n| Brake caliper, front left | **VP-10345** | Twin piston floating caliper for the 370 mm disc. Source: **voltrieve-parts-brakes.md** |\n| Caliper carrier, front left | **VP-10527** | Carrier bracket for the floating caliper. Source: **voltrieve-parts-brakes.md** |\n| Brake hose, front left | **VP-10631** | Reinforced flexible hose with banjo fitting. Source: **voltrieve-parts-brakes.md** |\n| Pad wear sensor, front left | **VP-10670** | Electrical pad wear sensor. Source: **voltrieve-parts-brakes.md** |\n| Caliper fitting kit, front axle | **VP-10709** | Slide pins, bolts and anti-rattle clips for one side. Source: **voltrieve-parts-brakes.md** |\n| Brake dust shield, front left | **VP-10761** | Pressed steel shield. Source: **voltrieve-parts-brakes.md** |\n| Brake fluid DOT 4 LV | **VP-15220** | 1 litre bottle. Source: **voltrieve-parts-service-items.md** |\n\nIf you want, I can also format this as a simple order list with quantities.",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "hosted",
+  "question": "brakes-fjord",
+  "group": "both",
+  "repeat": 3,
+  "seconds": 20.36,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 4,
+  "steps": 3,
+  "together": true,
+  "saved_ms": 4085,
+  "articles_expected": 9,
+  "articles_found": 9,
+  "invented": [],
+  "error": "",
+  "answer": "For a **Voltrieve Fjord AWD** with a **complete front brake replacement on the left front side**, the service guide says you need these items, and the parts catalog gives the article numbers:\n\n| Needed part | Article number | Notes |\n|---|---:|---|\n| Brake disc, front left | **VP-10072** | 370 mm disc for Fjord AWD |\n| Brake pad set, front axle | **VP-10254** | One set covers both sides of the front axle |\n| Brake caliper, front left | **VP-10345** | For Fjord AWD |\n| Caliper carrier, front left | **VP-10527** | For Fjord AWD |\n| Brake hose, front left | **VP-10631** | Shared part for Fjord |\n| Pad wear sensor, front left | **VP-10670** | Shared part for Fjord AWD |\n| Caliper fitting kit, front axle | **VP-10709** | One kit for the front axle |\n| Brake dust shield, front left | **VP-10761** | Fjord-specific part |\n| Brake fluid DOT 4 LV | **VP-15220** | 1 litre bottle for bleeding afterwards |\n\nSources: **voltrieve-service-guide.md** and **voltrieve-parts-brakes.md**; **voltrieve-parts-service-items.md** for the brake fluid.\n\nThe service guide also notes that **Fjord front brake parts differ by drive**, and the **AWD uses 370 mm front brakes**. Source: **voltrieve-service-guide.md**.\n\nIf you want, I can also give you the **rear-left brake parts** for the Fjord AWD.",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "prompt",
+  "question": "brakes-spark",
+  "group": "both",
+  "repeat": 3,
+  "seconds": 19.55,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 2,
+  "steps": 3,
+  "together": false,
+  "saved_ms": 27,
+  "articles_expected": 8,
+  "articles_found": 8,
+  "invented": [],
+  "error": "",
+  "answer": "For a **Voltrieve Spark (RWD)**, the **complete rear right brake replacement on one side** needs these parts (voltrieve-service-guide.md):\n\n| Part | Article number | Notes |\n|---|---:|---|\n| Brake disc, rear right | VP-10917 | Rear-right disc (voltrieve-parts-brakes.md) |\n| Brake pad set, rear axle | VP-10982 | Covers both sides of the rear axle (voltrieve-service-guide.md) (voltrieve-parts-brakes.md) |\n| Brake caliper, rear right | VP-11112 | Rear-right caliper (voltrieve-parts-brakes.md) |\n| Caliper carrier, rear right | VP-11203 | Rear-right carrier bracket (voltrieve-parts-brakes.md) |\n| Brake hose, rear right | VP-11255 | Rear-right hose (voltrieve-parts-brakes.md) |\n| Caliper fitting kit, rear axle | VP-11307 | One-side fitting kit for the rear axle (voltrieve-service-guide.md) (voltrieve-parts-brakes.md) |\n| Brake dust shield, rear right | VP-11398 | Rear-right dust shield (voltrieve-parts-brakes.md) |\n| Brake fluid DOT 4 LV | VP-15220 | One bottle for bleeding afterwards (voltrieve-service-guide.md) (voltrieve-parts-service-items.md) |\n\nNote: the Spark **has no electrical pad wear sensor**, so there is no sensor part in this job (voltrieve-service-guide.md).",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "loop",
+  "question": "brakes-spark",
+  "group": "both",
+  "repeat": 3,
+  "seconds": 7.89,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 2,
+  "steps": 2,
+  "together": true,
+  "saved_ms": 1913,
+  "articles_expected": 8,
+  "articles_found": 8,
+  "invented": [],
+  "error": "",
+  "answer": "For a **complete rear right brake replacement** on a **Voltrieve Spark (RWD)**, the job needs these parts:\n\n- **Brake disc, rear right** - **VP-10917**  \n  Source: **voltrieve-parts-brakes.md**\n\n- **Brake pad set, rear axle** - **VP-10982**  \n  This set covers both sides of the rear axle.  \n  Source: **voltrieve-service-guide.md**; **voltrieve-parts-brakes.md**\n\n- **Brake caliper, rear right** - **VP-11112**  \n  Source: **voltrieve-parts-brakes.md**\n\n- **Caliper carrier, rear right** - **VP-11203**  \n  Source: **voltrieve-parts-brakes.md**\n\n- **Brake hose, rear right** - **VP-11255**  \n  Source: **voltrieve-parts-brakes.md**\n\n- **Caliper fitting kit, rear axle** - **VP-11307**  \n  Source: **voltrieve-service-guide.md**; **voltrieve-parts-brakes.md**\n\n- **Brake dust shield, rear right** - **VP-11398**  \n  Source: **voltrieve-parts-brakes.md**\n\n- **Brake fluid DOT 4 LV** - **VP-15220**  \n  Source: **voltrieve-service-guide.md**; **voltrieve-parts-service-items.md**\n\nNotes:\n- The Spark **has no electrical pad wear sensor**, so none is needed for this job. Source: **voltrieve-service-guide.md**\n- The replacement is for the **rear right side**, but the pad set is an **axle set** for both rear wheels. Source: **voltrieve-service-guide.md**\n\nIf you want, I can also format this as a workshop shopping list.",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "hosted",
+  "question": "brakes-spark",
+  "group": "both",
+  "repeat": 3,
+  "seconds": 17.27,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 2,
+  "steps": 2,
+  "together": true,
+  "saved_ms": 2304,
+  "articles_expected": 8,
+  "articles_found": 8,
+  "invented": [],
+  "error": "",
+  "answer": "For a **Voltrieve Spark (RWD)**, the service guide says a complete rear brake replacement on one side needs these parts, and the Spark has **no electrical pad wear sensor**. The spare parts catalog provides the article numbers below.  \nSources: **voltrieve-service-guide.md**, **voltrieve-parts-brakes.md**, **voltrieve-parts-service-items.md**\n\n| Part | Article number |\n|---|---|\n| Brake disc, rear right | **VP-10917** |\n| Brake pad set, rear axle | **VP-10982** |\n| Brake caliper, rear right | **VP-11112** |\n| Caliper carrier, rear right | **VP-11203** |\n| Brake hose, rear right | **VP-11255** |\n| Caliper fitting kit, rear axle | **VP-11307** |\n| Brake dust shield, rear right | **VP-11398** |\n| Brake fluid DOT 4 LV | **VP-15220** |\n\nIf you want, I can also format this as a purchase list in the exact order you’d typically replace the parts.",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "prompt",
+  "question": "brakes-atlas",
+  "group": "both",
+  "repeat": 3,
+  "seconds": 14.75,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 2,
+  "steps": 1,
+  "together": false,
+  "saved_ms": 0,
+  "articles_expected": 8,
+  "articles_found": 8,
+  "invented": [],
+  "error": "",
+  "answer": "For a **complete front right brake replacement on a Voltrieve Atlas**, the service guide says the Atlas job needs a brake disc, a front-axle pad set, a brake caliper, a brake hose, a pad wear sensor, a front-axle caliper fitting kit, a brake dust shield, and brake fluid; it also says the Atlas has a **fixed caliper, so there is no caliper carrier**.\n\nFrom the parts catalog, the items to order are:\n\n- **VP-10176 - Brake disc, front right**\n- **VP-10267 - Brake pad set, front axle**\n- **VP-10449 - Brake caliper, front right**\n- **VP-10657 - Brake hose, front right**\n- **VP-10683 - Pad wear sensor, front right**\n- **VP-10709 - Caliper fitting kit, front axle**\n- **VP-10839 - Brake dust shield, front right**\n- **VP-15220 - Brake fluid DOT 4 LV**\n\nSo, **do not order a caliper carrier** for the Atlas front brake job, because the Atlas uses a fixed front caliper.\n\nIf you want, I can also turn this into a short workshop order checklist.",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "loop",
+  "question": "brakes-atlas",
+  "group": "both",
+  "repeat": 3,
+  "seconds": 9.72,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 2,
+  "steps": 2,
+  "together": true,
+  "saved_ms": 1834,
+  "articles_expected": 8,
+  "articles_found": 8,
+  "invented": [],
+  "error": "",
+  "answer": "For a **complete front right brake replacement on a Voltrieve Atlas**, the documentation says the job needs these items, and the Atlas **has a fixed caliper, so there is no caliper carrier**. It also says the Atlas is **AWD**.  \nSource: **voltrieve-service-guide.md**\n\nOrder:\n\n- **VP-10176** - Brake disc, front right  \n- **VP-10267** - Brake pad set, front axle  \n- **VP-10449** - Brake caliper, front right  \n- **VP-10657** - Brake hose, front right  \n- **VP-10683** - Pad wear sensor, front right  \n- **VP-10709** - Caliper fitting kit, front axle  \n- **VP-10839** - Brake dust shield, front right  \n- **VP-15220** - Brake fluid DOT 4 LV  \n\nSources: **voltrieve-parts-brakes.md** and **voltrieve-parts-service-items.md**\n\nIf you want, I can also format this as a simple order list with quantities.",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "hosted",
+  "question": "brakes-atlas",
+  "group": "both",
+  "repeat": 3,
+  "seconds": 18.23,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 3,
+  "steps": 3,
+  "together": true,
+  "saved_ms": 2372,
+  "articles_expected": 8,
+  "articles_found": 8,
+  "invented": [],
+  "error": "",
+  "answer": "For a complete **front right brake replacement** on a **Voltrieve Atlas (AWD)**, the service guide says you need these items, and the spare parts catalog gives the article numbers:\n\n- **VP-10176** - Brake disc, front right  \n- **VP-10267** - Brake pad set, front axle  \n- **VP-10449** - Brake caliper, front right  \n- **VP-10657** - Brake hose, front right  \n- **VP-10683** - Pad wear sensor, front right  \n- **VP-10709** - Caliper fitting kit, front axle  \n- **VP-10839** - Brake dust shield, front right  \n- **VP-15220** - Brake fluid DOT 4 LV, 1 litre bottle\n\nThere is **no caliper carrier** on the Atlas front brake job, because the Atlas has a **fixed caliper**.  \nSources: **voltrieve-service-guide.md** and **voltrieve-parts-brakes.md**; **voltrieve-parts-service-items.md** for the brake fluid.",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "prompt",
+  "question": "brakes-lumen",
+  "group": "both",
+  "repeat": 3,
+  "seconds": 29.88,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 3,
+  "steps": 3,
+  "together": false,
+  "saved_ms": 6,
+  "articles_expected": 12,
+  "articles_found": 12,
+  "invented": [],
+  "error": "",
+  "answer": "For a **Voltrieve Lumen** “complete front brake replacement on one side,” the service guide says you need: **1 brake disc for the side being worked on, 1 front-axle brake pad set, 1 brake caliper, 1 caliper carrier, 1 brake hose, 1 caliper fitting kit, 1 brake dust shield, and 1 bottle of brake fluid DOT 4 LV**. It also says the **Lumen has no electrical pad wear sensor**, and that front brake parts differ by drive: **300 mm on RWD, 320 mm on AWD**. (voltrieve-service-guide.md) (voltrieve-service-guide.md)\n\n## If your Lumen is RWD\nBuy these article numbers:\n\n- **VP-10020** - Brake disc, front left (voltrieve-parts-brakes.md)\n- **VP-10202** - Brake pad set, front axle (voltrieve-parts-brakes.md)\n- **VP-10293** - Brake caliper, front left (voltrieve-parts-brakes.md)\n- **VP-10475** - Caliper carrier, front left (voltrieve-parts-brakes.md)\n- **VP-10618** - Brake hose, front left (voltrieve-parts-brakes.md)\n- **VP-10696** - Caliper fitting kit, front axle (voltrieve-parts-brakes.md)\n- **VP-10735** - Brake dust shield, front left (voltrieve-parts-brakes.md)\n- **VP-15220** - Brake fluid DOT 4 LV (voltrieve-parts-service-items.md)\n\n## If your Lumen is AWD\nBuy these article numbers:\n\n- **VP-10033** - Brake disc, front left (voltrieve-parts-brakes.md)\n- **VP-10215** - Brake pad set, front axle (voltrieve-parts-brakes.md)\n- **VP-10306** - Brake caliper, front left (voltrieve-parts-brakes.md)\n- **VP-10488** - Caliper carrier, front left (voltrieve-parts-brakes.md)\n- **VP-10618** - Brake hose, front left (voltrieve-parts-brakes.md)\n- **VP-10696** - Caliper fitting kit, front axle (voltrieve-parts-brakes.md)\n- **VP-10735** - Brake dust shield, front left (voltrieve-parts-brakes.md)\n- **VP-15220** - Brake fluid DOT 4 LV (voltrieve-parts-service-items.md)\n\nIf you want, I can also turn this into a **single shopping list** once you tell me whether your Lumen is **RWD or AWD**.",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "loop",
+  "question": "brakes-lumen",
+  "group": "both",
+  "repeat": 3,
+  "seconds": 14.67,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 4,
+  "steps": 3,
+  "together": true,
+  "saved_ms": 4083,
+  "articles_expected": 12,
+  "articles_found": 11,
+  "invented": [],
+  "error": "",
+  "answer": "For a **Voltrieve Lumen**, a complete **front brake replacement on one side** needs these parts: brake disc, front axle pad set, brake caliper, caliper carrier, brake hose, caliper fitting kit, brake dust shield, and brake fluid. The Lumen has **no electrical pad wear sensor**.  \nSource: **voltrieve-service-guide.md**\n\nBecause **Lumen front brake parts differ by drive** - **300 mm on RWD, 320 mm on AWD** - I can only narrow it to the correct article numbers once the drive is confirmed.  \nSource: **voltrieve-service-guide.md**\n\n## If your Lumen is RWD\nBuy:\n\n- **VP-10020** - Brake disc, front left  \n- **VP-10202** - Brake pad set, front axle  \n- **VP-10293** - Brake caliper, front left  \n- **VP-10475** - Caliper carrier, front left  \n- **VP-10618** - Brake hose, front left  \n- **VP-10696** - Caliper fitting kit, front axle  \n- **VP-10735** - Brake dust shield, front left  \n\nSource: **voltrieve-parts-brakes.md**\n\n## If your Lumen is AWD\nBuy:\n\n- **VP-10033** - Brake disc, front left  \n- **VP-10215** - Brake pad set, front axle  \n- **VP-10306** - Brake caliper, front left  \n- **VP-10488** - Caliper carrier, front left  \n- **VP-10618** - Brake hose, front left  \n- **VP-10696** - Caliper fitting kit, front axle  \n- **VP-10735** - Brake dust shield, front left  \n\nSource: **voltrieve-parts-brakes.md**\n\n## Also needed\n- **Brake fluid DOT 4 LV** for bleeding afterwards\n\nI can’t find an article number for the brake fluid in the catalog results.  \nSource: **voltrieve-service-guide.md** and **voltrieve-parts-brakes.md**\n\nIf you want, I can also give you the **right-side** article numbers so you can replace both sides together.",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ },
+ {
+  "backend": "hosted",
+  "question": "brakes-lumen",
+  "group": "both",
+  "repeat": 3,
+  "seconds": 13.98,
+  "first_text_seconds": null,
+  "used": [
+   "docs",
+   "parts"
+  ],
+  "calls": 2,
+  "steps": 2,
+  "together": true,
+  "saved_ms": 1934,
+  "articles_expected": 12,
+  "articles_found": 11,
+  "invented": [],
+  "error": "",
+  "answer": "For a **Voltrieve Lumen** doing a **complete front brake replacement on the front left side**, the service guide says you need these items, and the Lumen has **no electrical pad wear sensor**. It also says **front brake parts differ by drive**: **300 mm on RWD** and **320 mm on AWD**, so you need to order the right version for your car.  \nSource: **voltrieve-service-guide.md**\n\n## What to buy\n\n### Common to both Lumen drives\n- **1 brake disc, front left**\n- **1 brake pad set, front axle** - covers both sides of the axle\n- **1 brake caliper, front left**\n- **1 caliper carrier, front left**\n- **1 brake hose, front left**\n- **1 caliper fitting kit, front axle**\n- **1 brake dust shield, front left**\n- **1 bottle of brake fluid DOT 4 LV**  \nSource: **voltrieve-service-guide.md**\n\n## Article numbers\n\n### Voltrieve Lumen RWD\n- **VP-10020** - Brake disc, front left\n- **VP-10202** - Brake pad set, front axle\n- **VP-10293** - Brake caliper, front left\n- **VP-10475** - Caliper carrier, front left\n- **VP-10618** - Brake hose, front left\n- **VP-10696** - Caliper fitting kit, front axle\n- **VP-10735** - Brake dust shield, front left  \nSource: **voltrieve-parts-brakes.md**\n\n### Voltrieve Lumen AWD\n- **VP-10033** - Brake disc, front left\n- **VP-10215** - Brake pad set, front axle\n- **VP-10306** - Brake caliper, front left\n- **VP-10488** - Caliper carrier, front left\n- **VP-10618** - Brake hose, front left\n- **VP-10696** - Caliper fitting kit, front axle\n- **VP-10735** - Brake dust shield, front left  \nSource: **voltrieve-parts-brakes.md**\n\nIf you want, I can also give you the **matching front right article numbers** so you can see what’s on the other side of the axle.",
+  "expected": [
+   "docs",
+   "parts"
+  ]
+ }
+]

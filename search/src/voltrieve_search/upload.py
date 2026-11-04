@@ -20,12 +20,14 @@ def _content_type(file_name: str) -> str:
     return CONTENT_TYPES[suffix]
 
 
-def upload_documents(account_url: str, container: str, generated_dir: Path, credential) -> int:
+def upload_documents(
+    account_url: str, containers: dict[str, str], generated_dir: Path, credential
+) -> int:
+    """Upload each document to the container of its collection (docs or parts)."""
     manifest = json.loads((generated_dir / "manifest.json").read_text(encoding="utf-8"))
-    container_client = BlobServiceClient(account_url, credential=credential).get_container_client(
-        container
-    )
+    service = BlobServiceClient(account_url, credential=credential)
     for entry in manifest:
+        container_client = service.get_container_client(containers[entry["collection"]])
         metadata = {
             "model_slug": entry.get("model_slug") or NO_MODEL_SLUG,
             "doc_type": entry["doc_type"],

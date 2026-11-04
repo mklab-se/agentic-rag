@@ -68,7 +68,7 @@ What each hook does:
 | Hook | When | What |
 | --- | --- | --- |
 | `hooks/preprovision.sh` | Before each provision | Creates or updates the app registrations (`voltrieve-api`, `voltrieve-cli`, `voltrieve-web`, `voltrieve-dealer`), the tester, roles and consent, and stores the ids in the azd environment. Idempotent. Runs interactively so the password is visible. |
-| `hooks/postprovision.sh` | After each provision | Checks that `az` and `azd` are the same user. Uploads the documents, applies the search objects, runs the indexer, gives the API identity `Dealer.Access`, and adds the SPA redirect URI. Each step retries up to 10 times, 60 seconds apart, for role propagation. |
+| `hooks/postprovision.sh` | After each provision | Checks that `az` and `azd` are the same user. Uploads the documents to their two containers, applies the search objects of both knowledge bases, runs both indexers, gives the API identity `Dealer.Access`, and adds the SPA redirect URI. Each step retries up to 10 times, 60 seconds apart, for role propagation. |
 | `hooks/web-prepackage.sh` | Before the web package | Writes `clients/web/.env.production` with public values only. |
 | `hooks/postup.sh` | After `azd up` | Runs the search smoke test. It runs last so that a retrieval miss cannot block a deployment. |
 

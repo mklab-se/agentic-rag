@@ -2,13 +2,13 @@
 
 A reference implementation of agentic RAG on Azure, built around a fictional electric car maker. It answers two questions with running code and visible logs. A Foundry prompt agent refuses per-request tools, so what do you do when the client has tools of its own? And why host an agent in Foundry at all?
 
-It ships three backends behind one Web API, a CLI that declares its own tools, a web client that declares none, one knowledge base in Azure AI Search, and a sample dealer service.
+It ships three backends behind one Web API, a CLI that declares its own tools, a web client that declares none, two knowledge bases in Azure AI Search (product documents and spare parts), and a sample dealer service.
 
 ## The two questions
 
 **How do client-side tools coexist with a Foundry-based RAG solution?** A prompt agent rejects `tools` with `400 Not allowed when agent is specified.`, so client tools must be in its definition, which only suits a fixed list. Calling the Responses API with a model accepts per-request tools, so an own loop in a web API solves it directly. A hosted agent can run the same loop, but needs the Invocations protocol, because its Responses protocol drops caller tools.
 
-**Why define and host an agent in Foundry at all?** For a managed agent identity, versions and a path to Teams and Microsoft 365. Not for the loop: it is 210 lines of Python, and most of the work (turn state, auth, tracing, relay) stays in your API with any backend. Use an own loop when clients bring tools, a hosted agent when you also need agent identity or publishing, and a prompt agent when the tool list is fixed.
+**Why define and host an agent in Foundry at all?** For a managed agent identity, versions and a path to Teams and Microsoft 365. Not for the loop: it is 252 lines of Python, and most of the work (turn state, auth, tracing, relay) stays in your API with any backend. Use an own loop when clients bring tools, a hosted agent when you also need agent identity or publishing, and a prompt agent when the tool list is fixed.
 
 The full argument, with evidence and line counts, is in [docs/why-foundry.md](docs/why-foundry.md).
 
@@ -26,9 +26,9 @@ flowchart LR
     API -->|"C: Invocations"| Hosted["Hosted agent<br/>same agent core"]
     Prompt --> Model
     Hosted --> Model
-    Prompt -->|MCP| KB["AI Search knowledge base"]
-    API -->|"B: retrieve"| KB
-    Hosted -->|retrieve| KB
+    Prompt -->|"MCP, one per base"| KB["AI Search knowledge bases<br/>documents and spare parts"]
+    API -->|"B: retrieve, in parallel"| KB
+    Hosted -->|"retrieve, in parallel"| KB
     API -->|"A, B: dealer tools"| Dealer["Dealer service"]
     Hosted -->|"C: dealer tools"| Dealer
     API --> AI["Application Insights"]
@@ -37,6 +37,14 @@ flowchart LR
 ```
 
 Pick a backend per request with `X-Agent-Backend: prompt|loop|hosted`. The clients cannot otherwise tell which one answered.
+
+## Choosing between knowledge bases
+
+The model chooses, from what each tool says it holds and does not hold, and it can answer with no search at all. A parts question for a job needs both bases: the service guide says what the job consists of, and only the catalog has article numbers. The own loop and the hosted agent run such calls at the same time. The prompt agent ran them one after the other. All three chose correctly in 45 of 45 runs, with no call in vain, as [docs/why-foundry.md](docs/why-foundry.md) shows in section 6.
+
+```sh
+uv run tests/routing/check.py --repeats 1 --no-save
+```
 
 ## Quick start
 

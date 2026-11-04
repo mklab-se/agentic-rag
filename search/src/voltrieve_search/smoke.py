@@ -2,7 +2,7 @@
 
 from dataclasses import dataclass
 
-from voltrieve_search.retrieve import retrieve
+from voltrieve_search.retrieve import KNOWLEDGE_SOURCE_NAME, retrieve
 
 TOP_N = 5
 
@@ -12,6 +12,8 @@ class SmokeQuestion:
     question: str
     expect_title_contains: str
     expect_doc_type: str
+    knowledge_base: str = "voltrieve-kb"
+    knowledge_source: str = KNOWLEDGE_SOURCE_NAME
 
 
 @dataclass
@@ -21,10 +23,10 @@ class SmokeOutcome:
     top_titles: list[str]
 
 
-def run_smoke(client, kb_name: str, questions: list[SmokeQuestion]) -> list[SmokeOutcome]:
+def run_smoke(client, questions: list[SmokeQuestion]) -> list[SmokeOutcome]:
     outcomes = []
     for q in questions:
-        result = retrieve(client, kb_name, q.question)
+        result = retrieve(client, q.knowledge_base, q.question, knowledge_source=q.knowledge_source)
         refs = result.references[:TOP_N]
         sources = [r.source_data or {} for r in refs]
         passed = any(

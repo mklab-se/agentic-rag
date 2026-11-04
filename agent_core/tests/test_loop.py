@@ -470,3 +470,43 @@ async def test_rate_limit_after_output_is_not_retried():
     client = ResponsesModelClient(_openai_client(_Events([delta], _rate_limited())), model="m")
     with pytest.raises(openai.APIError):
         await _collect(client)
+
+
+async def test_mcp_calls_report_when_they_ran():
+    from voltrieve_agent.model import ResponsesModelClient
+
+    raw = [
+        SimpleNamespace(
+            type="response.output_item.added", item=SimpleNamespace(type="mcp_call", id="m1")
+        ),
+        SimpleNamespace(
+            type="response.output_item.done",
+            item=SimpleNamespace(
+                type="mcp_call", id="m1", name="knowledge_base_retrieve",
+                server_label="voltrieve-parts-kb", output="x", arguments='{"q":"disc"}',
+            ),
+        ),
+    ]
+
+    class Stream:
+        async def __aenter__(self):
+            return self
+
+        async def __aexit__(self, *exc):
+            return False
+
+        def __aiter__(self):
+            async def events():
+                for event in raw:
+                    yield event
+
+            return events()
+
+    class Responses:
+        async def create(self, **kwargs):
+            return Stream()
+
+    client = ResponsesModelClient(SimpleNamespace(responses=Responses()), "m", agent_name="a")
+    items = [i async for i in client.stream(instructions="", conversation="c", input="q", tools=[])]
+    assert items[0].server == "voltrieve-parts-kb" and items[0].arguments == '{"q":"disc"}'
+    assert items[0].started_ms is not None and items[0].finished_ms >= items[0].started_ms

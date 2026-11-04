@@ -125,7 +125,7 @@ async def test_knowledge_base_traces_sub_queries_and_titles(monkeypatch, user, e
     )
     seen = {}
 
-    def fake_retrieve(client, kb_name, question):
+    def fake_retrieve(client, kb_name, question, knowledge_source):
         seen.update(kb_name=kb_name, question=question)
         return result
 
@@ -169,3 +169,105 @@ async def test_current_date_is_the_date_in_stockholm(tools, user, events, monkey
 
     monkeypatch.setattr(server_tools.datetime, "datetime", Clock)
     assert await tools[0].execute("get_current_date", "{}", user, events) == "2026-11-05"
+
+
+def test_routing_descriptions_say_what_each_base_does_not_hold():
+    tools = {t.name: t for t in build_server_tools(None, None)}
+    assert "no article numbers" in tools["search_voltrieve_docs"].description
+    assert "does not say which parts a job needs" in tools["search_spare_parts"].description
+
+
+def test_only_the_booking_tool_runs_alone():
+    alone = [t.name for t in build_server_tools(None, None) if not t.concurrent]
+    assert alone == ["book_test_drive"]
+
+
+async def test_parts_search_uses_the_parts_knowledge_base(monkeypatch):
+    from voltrieve_search.retrieve import RetrieveResult
+
+    from voltrieve_agent import knowledge
+    from voltrieve_agent.tools import ToolSet
+
+    seen = {}
+
+    def fake_retrieve(client, kb_name, question, knowledge_source):
+        seen.update(kb=kb_name, source=knowledge_source, question=question)
+        return RetrieveResult()
+
+    class Credential:
+        def get_token(self, scope):
+            raise AssertionError("no token needed")
+
+    monkeypatch.setattr(knowledge, "retrieve", fake_retrieve)
+    parts = knowledge.parts_knowledge_base("https://search.test", Credential())
+    tools = ToolSet(build_server_tools(None, None, parts), [])
+    events = []
+
+    async def emit(event):
+        events.append(event)
+
+    user = UserContext("oid", "user", frozenset())
+    await tools.execute("search_spare_parts", '{"query": "disc"}', user, emit)
+    assert seen == {"kb": "voltrieve-parts-kb", "source": "voltrieve-parts-ks", "question": "disc"}
+    assert events[0].data["knowledge_base"] == "voltrieve-parts-kb"
+    assert events[0].data["detail"].startswith("voltrieve-parts-kb: ")
+
+
+class _NoToken:
+    def get_token(self, scope):
+        raise AssertionError("no token needed")
+
+
+async def test_search_waits_out_a_rate_limit(monkeypatch):
+    from voltrieve_search.client import SearchApiError
+    from voltrieve_search.retrieve import RetrieveResult
+
+    from voltrieve_agent import knowledge
+
+    answers = [SearchApiError(429, "busy"), RetrieveResult()]
+
+    def fake_retrieve(client, kb_name, question, knowledge_source):
+        answer = answers.pop(0)
+        if isinstance(answer, Exception):
+            raise answer
+        return answer
+
+    monkeypatch.setattr(knowledge, "retrieve", fake_retrieve)
+    monkeypatch.setattr(knowledge, "RATE_LIMIT_DELAY_SECONDS", 0)
+    assert await knowledge.KnowledgeBase("https://s.test", _NoToken()).search("q")
+    assert not answers
+
+
+async def test_search_gives_up_after_the_retries(monkeypatch):
+    from voltrieve_search.client import SearchApiError
+
+    from voltrieve_agent import knowledge
+
+    calls = []
+
+    def fake_retrieve(client, kb_name, question, knowledge_source):
+        calls.append(question)
+        raise SearchApiError(429, "busy")
+
+    monkeypatch.setattr(knowledge, "retrieve", fake_retrieve)
+    monkeypatch.setattr(knowledge, "RATE_LIMIT_DELAY_SECONDS", 0)
+    with pytest.raises(SearchApiError):
+        await knowledge.KnowledgeBase("https://s.test", _NoToken()).search("q")
+    assert len(calls) == knowledge.RATE_LIMIT_RETRIES + 1
+
+
+async def test_search_does_not_retry_other_failures(monkeypatch):
+    from voltrieve_search.client import SearchApiError
+
+    from voltrieve_agent import knowledge
+
+    calls = []
+
+    def fake_retrieve(client, kb_name, question, knowledge_source):
+        calls.append(question)
+        raise SearchApiError(403, "forbidden")
+
+    monkeypatch.setattr(knowledge, "retrieve", fake_retrieve)
+    with pytest.raises(SearchApiError):
+        await knowledge.KnowledgeBase("https://s.test", _NoToken()).search("q")
+    assert len(calls) == 1

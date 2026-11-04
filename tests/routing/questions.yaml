@@ -1,0 +1,23 @@
+# Which knowledge bases should a question reach? `expect` lists the sources a thoughtful agent
+# needs: none, docs, parts. `job` names an entry of data/generated/parts-index.json whose article
+# numbers must all appear in the answer. `article` is resolved from the same file by key and
+# vehicle, so no article number is written here.
+questions:
+  - { id: greeting, group: none, ask: "Good morning!", expect: [] }
+  - { id: thanks, group: none, ask: "Thanks, that was all I needed.", expect: [] }
+  - { id: off-topic, group: none, ask: "What is the capital of France?", expect: [] }
+  - { id: other-brand, group: none, ask: "Which brake pads fit a Tesla Model 3?", expect: [] }
+  - { id: no-model, group: none, ask: "I have a car and I want to change the brakes on the left front side. Which parts do I need?", expect: [] }
+
+  - { id: towing, group: docs, ask: "What is the towing capacity of the Fjord?", expect: [docs] }
+  - { id: option-pack, group: docs, ask: "What does the Winter option pack contain?", expect: [docs] }
+  - { id: filter-howto, group: docs, ask: "How often should the cabin air filter be changed?", expect: [docs] }
+
+  - { id: windscreen, group: parts, ask: "What is the article number for the windscreen of the Voltrieve Atlas?", expect: [parts], article: { key: windscreen, fits: Voltrieve Atlas } }
+  - { id: air-spring, group: parts, ask: "I need the rear left air spring for my Voltrieve Fjord. What is the article number?", expect: [parts], article: { key: rear_air_spring_rear_left, fits: Voltrieve Fjord } }
+  - { id: reverse-lookup, group: parts, ask: "What is article {article} and which cars does it fit?", expect: [parts], reverse: { key: charge_port, fits: Voltrieve Ragn } }
+
+  - { id: brakes-fjord, group: both, ask: "I have a Voltrieve Fjord AWD. I want to completely change the brakes on the left front side. Which spare parts do I need?", expect: [docs, parts], job: fjord/AWD/front/left }
+  - { id: brakes-spark, group: both, ask: "I want to replace the complete rear right brake on my Voltrieve Spark. List every part with its article number.", expect: [docs, parts], job: spark/RWD/rear/right }
+  - { id: brakes-atlas, group: both, ask: "What do I have to order for a complete front right brake replacement on a Voltrieve Atlas?", expect: [docs, parts], job: atlas/AWD/front/right }
+  - { id: brakes-lumen, group: both, ask: "I own a Voltrieve Lumen and I need to redo the front left brake completely. What do I need to buy?", expect: [docs, parts], job: lumen/RWD/front/left, also_job: lumen/AWD/front/left }

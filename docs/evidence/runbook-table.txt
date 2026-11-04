@@ -1,10 +1,3 @@
-running prompt ...
-  evidence: docs/evidence/prompt.json
-running loop ...
-  evidence: docs/evidence/loop.json
-running hosted ...
-  evidence: docs/evidence/hosted.json
-
 step what                                                  prompt   loop     hosted   
 --------------------------------------------------------------------------------------
 1    Sign in, roles in the trace                           PASS     PASS     PASS     
@@ -21,4 +14,3 @@ step what                                                  prompt   loop     hos
 12   Follow one trace id in Application Insights           PASS     PASS     PASS     
   [loop step 11 SKIP] backend A only
   [hosted step 11 SKIP] backend A only
-

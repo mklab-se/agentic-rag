@@ -5,7 +5,8 @@ import re
 from pathlib import Path
 from typing import Protocol
 
-# The N in the "0N-" file prefix selects DEFINITION_ORDER[N-1], the REST collection.
+# The file prefix selects the REST collection: each knowledge base is six numbered files in this
+# order (01 to 06 for the documents, 07 to 12 for the spare parts).
 DEFINITION_ORDER = [
     "datasources",
     "indexes",
@@ -34,7 +35,7 @@ def render(template_text: str, values: dict[str, str]) -> dict:
 def apply_all(client: _Putter, values: dict[str, str], definitions_dir: Path) -> list[str]:
     applied = []
     for file in sorted(definitions_dir.glob("[0-9][0-9]-*.json")):
-        collection = DEFINITION_ORDER[int(file.name[:2]) - 1]
+        collection = DEFINITION_ORDER[(int(file.name[:2]) - 1) % len(DEFINITION_ORDER)]
         body = render(file.read_text(), values)
         client.put(f"/{collection}/{body['name']}", body)
         applied.append(body["name"])

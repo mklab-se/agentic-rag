@@ -19,11 +19,13 @@ def pdf_text(p):
     return "\n".join(page.extract_text() for page in pypdf.PdfReader(p).pages)
 
 
-def test_generates_eleven_documents_and_manifest(tmp_path):
+def test_generates_all_documents_and_manifest(tmp_path):
     docs = generate_all(CATALOG, tmp_path)
-    assert len(docs) == 11
+    assert len(docs) == 17
     manifest = json.loads((tmp_path / "manifest.json").read_text())
-    assert {d["doc_type"] for d in manifest} == {"brochure", "spec", "guide"}
+    assert {d["doc_type"] for d in manifest} == {"brochure", "spec", "guide", "service", "parts"}
+    assert sum(d["collection"] == "parts" for d in manifest) == 5
+    assert sum(d["collection"] == "docs" for d in manifest) == 12
 
 
 def test_spec_guide_has_exact_numbers(tmp_path):

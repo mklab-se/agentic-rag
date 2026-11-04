@@ -1,0 +1,37 @@
+{
+  "name": "voltrieve-parts-ks",
+  "kind": "searchIndex",
+  "description": "Voltrieve spare parts catalogs: article numbers, part descriptions, positions on the car and the vehicles each part fits.",
+  "searchIndexParameters": {
+    "searchIndexName": "voltrieve-parts-index",
+    "semanticConfigurationName": "semantic-config",
+    "sourceDataFields": [
+      {
+        "name": "chunk_id"
+      },
+      {
+        "name": "title"
+      },
+      {
+        "name": "chunk"
+      },
+      {
+        "name": "source_path"
+      },
+      {
+        "name": "model_slug"
+      },
+      {
+        "name": "doc_type"
+      }
+    ],
+    "searchFields": [
+      {
+        "name": "chunk"
+      },
+      {
+        "name": "title"
+      }
+    ]
+  }
+}

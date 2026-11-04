@@ -18,6 +18,13 @@ class OptionPack(BaseModel):
     price: dict[str, int]
 
 
+class Brakes(BaseModel):
+    front_disc_mm: dict[str, int]
+    rear_disc_mm: int
+    front_caliper: str
+    rear_caliper: str
+
+
 class CarModel(BaseModel):
     name: str
     slug: str
@@ -36,6 +43,7 @@ class CarModel(BaseModel):
     charging_curve: list[tuple[int, int]]
     tagline: str
     highlights: list[str]
+    brakes: Brakes
 
 
 class Catalog(BaseModel):

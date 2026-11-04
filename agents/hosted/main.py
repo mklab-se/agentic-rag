@@ -202,7 +202,7 @@ def build_runtime() -> Runtime:
     from azure.identity.aio import DefaultAzureCredential as AsyncDefaultAzureCredential
     from voltrieve_agent.dealer import DealerClient
     from voltrieve_agent.http_client import make_http_client
-    from voltrieve_agent.knowledge import KnowledgeBase
+    from voltrieve_agent.knowledge import KnowledgeBase, parts_knowledge_base
     from voltrieve_agent.model import ResponsesModelClient
     from voltrieve_agent.server_tools import build_server_tools
 
@@ -215,10 +215,12 @@ def build_runtime() -> Runtime:
         return (await credential.get_token(dealer_scope)).token
 
     dealer = DealerClient(os.environ["DEALER_URL"], dealer_token, make_http_client())
-    knowledge = KnowledgeBase(os.environ["SEARCH_ENDPOINT"], DefaultAzureCredential())
+    search_credential = DefaultAzureCredential()
+    knowledge = KnowledgeBase(os.environ["SEARCH_ENDPOINT"], search_credential)
+    parts = parts_knowledge_base(os.environ["SEARCH_ENDPOINT"], search_credential)
     return Runtime(
         ResponsesModelClient(openai_client, os.environ["MODEL_DEPLOYMENT_NAME"]),
-        build_server_tools(dealer, knowledge),
+        build_server_tools(dealer, knowledge, parts),
         os.environ.get("ALLOWED_CALLER_OID", ""),
         os.environ.get("ALLOW_ANY_CALLER", "").lower() == "true",
     )

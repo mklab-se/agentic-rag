@@ -3,5 +3,11 @@
   {"question": "How fast can the Voltrieve Atlas charge?", "expect_title_contains": "atlas-specifications", "expect_doc_type": "spec"},
   {"question": "Can the Voltrieve Spark tow a trailer?", "expect_title_contains": "spark-specifications", "expect_doc_type": "spec"},
   {"question": "What does the Voltrieve Atlas cost in Sweden?", "expect_title_contains": "buyers-guide", "expect_doc_type": "guide"},
-  {"question": "Why would I enjoy driving a Voltrieve Lumen?", "expect_title_contains": "lumen-brochure", "expect_doc_type": "brochure"}
+  {"question": "Why would I enjoy driving a Voltrieve Lumen?", "expect_title_contains": "lumen-brochure", "expect_doc_type": "brochure"},
+  {"question": "What does a complete front brake replacement on one side of a Voltrieve Fjord need?", "expect_title_contains": "service-guide", "expect_doc_type": "service"},
+  {"question": "Front left brake disc for the Voltrieve Fjord AWD", "expect_title_contains": "parts-brakes", "expect_doc_type": "parts", "knowledge_base": "voltrieve-parts-kb", "knowledge_source": "voltrieve-parts-ks"},
+  {"question": "Rear air spring for the Voltrieve Fjord", "expect_title_contains": "parts-suspension", "expect_doc_type": "parts", "knowledge_base": "voltrieve-parts-kb", "knowledge_source": "voltrieve-parts-ks"},
+  {"question": "Windscreen for the Voltrieve Atlas", "expect_title_contains": "parts-body", "expect_doc_type": "parts", "knowledge_base": "voltrieve-parts-kb", "knowledge_source": "voltrieve-parts-ks"},
+  {"question": "CCS2 charge port for the Voltrieve Ragn", "expect_title_contains": "parts-electrical", "expect_doc_type": "parts", "knowledge_base": "voltrieve-parts-kb", "knowledge_source": "voltrieve-parts-ks"},
+  {"question": "Cabin air filter for the Voltrieve Spark", "expect_title_contains": "parts-service", "expect_doc_type": "parts", "knowledge_base": "voltrieve-parts-kb", "knowledge_source": "voltrieve-parts-ks"}
 ]

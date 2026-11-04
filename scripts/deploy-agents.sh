@@ -18,8 +18,8 @@ load_env() { set -a; eval "$(azd env get-values)"; set +a; }
 retry() { n=0; until "$@"; do n=$((n+1)); [ "$n" -ge 10 ] && return 1; echo "retrying in 60s (role propagation)"; sleep 60; done; }
 
 load_env
-# Path dependencies are installed as copies, so pick up the current agent_core.
-uv sync -q --project agents/prompt --reinstall-package voltrieve-agent-core
+# Path dependencies are installed as copies, so pick up the current agent_core and search.
+uv sync -q --project agents/prompt --reinstall-package voltrieve-agent-core --reinstall-package voltrieve-search
 uv run --project agents/prompt agents/prompt/create_agents.py
 uv run --project agents/hosted agents/hosted/deploy.py
 

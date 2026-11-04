@@ -174,12 +174,42 @@ It is an ingestion identifier, not a secret: it only allows sending telemetry. I
 - One trace id spans the API, Foundry, the hosted agent and the dealer. Foundry adds its own `responsesapi` spans for prompt and hosted agents, and an `agentsv2` request for hosted. The direct loop gets none of these. `docs/evidence/application-insights.txt`.
 - `scripts/denied_demo.py` on `loop` gave `authorization_denied` and a polite refusal (`docs/evidence/authorization-denied.txt`).
 
+### Second knowledge base
+
+Spare parts are a separate knowledge base with its own container, index, indexer and knowledge source, not a second source in `voltrieve-kb`. A knowledge base with both sources let the search planner route, and it used only the parts source in 3 of 3 runs.
+
+The service guide sits in the documents base and has no article numbers. The catalogs have no procedures. This makes the question that needs both real, instead of a test written to pass.
+
+Every catalog row names its vehicle, because search returns chunks and a row must make sense without its heading. Parts search uses an overlap of 200 characters instead of 500, since rows stand alone.
+
+### Parallel tools
+
+Reads of one model response run together. A tool with `concurrent=False` waits for them and runs alone, so a booking never races a read. Outputs reach the model in call order, whichever finished first.
+
+### No router step
+
+A separate planning call would add a model round trip to every turn, to do what the first model call does anyway. The routing check found no call in vain without one.
+
+### Follow-up search for what the first search could not know
+
+After a job search, the agent checks each component against the catalog results and searches again for the rest. It costs a third step on some turns. It does not always fire: in the final run brake fluid was still missing from 4 of 36 job answers on the own loop and hosted agent.
+
+### Search retries on 429
+
+A retrieve spends model tokens on query planning, so a busy deployment answers `429`. `KnowledgeBase` retries twice, after 10 and 20 seconds. Other failures go straight to the model as a tool error.
+
+### The deployment script refreshes search as well
+
+`scripts/deploy-agents.sh` reinstalls `voltrieve-search` next to `voltrieve-agent-core`. Without it the prompt agents failed on a stale copy, and the agents stayed on the previous version.
+
 ## Not recorded or not verified
 
 - Interactive SPA sign-in, and a real browser sign-in with `voltrieve login` (tested against a fake MSAL application).
 - A real sign-in as the tester. The denied case ran with a fake validator.
 - Publishing to Teams and Microsoft 365.
-- Latency and cold-start figures.
+- Cold-start figures. Whole turn times are in `docs/why-foundry.md` section 6, measured from one laptop.
+- Why the prompt agent calls dealer tools before searching on job questions.
+- Whether `alwaysQuerySource` would make one knowledge base cover both sources.
 - The 10 minute run expiry from older documentation.
 - Whether an MCP tool with a project connection works outside an agent definition.
 - Indexer duration, final item counts, how long role propagation retries waited, and smoke test scores. The first deployment did not keep these.

@@ -7,7 +7,7 @@ from types import SimpleNamespace
 import httpx
 from voltrieve_agent.events import AgentEvent
 from voltrieve_agent.model import ResponsesModelClient
-from voltrieve_agent.server_tools import KB_SEARCH_TOOL, build_server_tools
+from voltrieve_agent.server_tools import KB_SEARCH_TOOLS, build_server_tools
 from voltrieve_agent.tools import ClientTool, UserContext
 
 from app.backends import BACKEND_NAMES, BackendRegistry
@@ -78,7 +78,7 @@ class FakeDealer:
 
 
 def make_backend(openai, dealer=None):
-    tools = [t for t in build_server_tools(dealer or FakeDealer(), None) if t.name != KB_SEARCH_TOOL]
+    tools = [t for t in build_server_tools(dealer or FakeDealer(), None) if t.name not in KB_SEARCH_TOOLS]
     return PromptBackend(
         ResponsesModelClient(openai, agent_name="agent-cli"),
         ResponsesModelClient(openai, agent_name="agent-web"),
@@ -249,8 +249,14 @@ def test_prompt_backend_is_listed_and_names_match_the_agent_script():
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     assert {t["name"] for t in module.CLI_TOOLS} == CLI_AGENT_TOOL_NAMES
-    cli = [t.name for t in module.agent_definition("m", "https://s", "conn", True).tools if t.type == "function"]
-    web = [t.name for t in module.agent_definition("m", "https://s", "conn", False).tools if t.type == "function"]
-    assert KB_SEARCH_TOOL not in cli + web
+    cli = [t.name for t in module.agent_definition("m", "https://s", "conn", "parts-conn", True).tools if t.type == "function"]
+    web = [t.name for t in module.agent_definition("m", "https://s", "conn", "parts-conn", False).tools if t.type == "function"]
+    assert not set(KB_SEARCH_TOOLS) & set(cli + web)
+    mcp = [t for t in module.agent_definition("m", "https://s", "conn", "parts-conn", False).tools
+           if t.type == "mcp"]
+    assert [t.server_label for t in mcp] == ["voltrieve-kb", "voltrieve-parts-kb"]
+    assert [t.project_connection_id for t in mcp] == ["conn", "parts-conn"]
+    assert "/knowledgebases/voltrieve-parts-kb/mcp" in mcp[1].server_url
+    assert "article numbers" in mcp[1].server_description
     assert set(cli) - set(web) == CLI_AGENT_TOOL_NAMES
     assert {"check_stock", "get_prices", "book_test_drive"} <= set(web)

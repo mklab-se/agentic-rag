@@ -11,17 +11,23 @@ from azure.identity import DefaultAzureCredential
 from voltrieve_search.client import SearchApiError, SearchRestClient
 from voltrieve_search.definitions import apply_all
 from voltrieve_search.indexer import IndexerFailed, run_and_wait
-from voltrieve_search.retrieve import retrieve
+from voltrieve_search.retrieve import (
+    KNOWLEDGE_SOURCE_NAME,
+    PARTS_KNOWLEDGE_BASE_NAME,
+    PARTS_KNOWLEDGE_SOURCE_NAME,
+    retrieve,
+)
 from voltrieve_search.smoke import SmokeQuestion, run_smoke
 from voltrieve_search.upload import upload_documents
 
 DEFINITIONS_DIR = Path(__file__).parents[2] / "definitions"
 SMOKE_QUESTIONS = Path(__file__).parents[2] / "smoke-questions.json"
-INDEXER_NAME = "voltrieve-docs-indexer"
+INDEXER_NAMES = ["voltrieve-docs-indexer", "voltrieve-parts-indexer"]
 KNOWLEDGE_BASE_NAME = "voltrieve-kb"
 VALUE_KEYS = [
     "STORAGE_RESOURCE_ID",
     "DOCS_CONTAINER",
+    "PARTS_CONTAINER",
     "FOUNDRY_ENDPOINT",
     "EMBEDDING_DEPLOYMENT",
     "EMBEDDING_MODEL",
@@ -59,27 +65,37 @@ def cmd_apply(args: argparse.Namespace) -> int:
 
 def cmd_upload(args: argparse.Namespace) -> int:
     account_url = f"https://{require_env('STORAGE_ACCOUNT_NAME')}.blob.core.windows.net"
-    count = upload_documents(
-        account_url, require_env("DOCS_CONTAINER"), Path(args.generated), DefaultAzureCredential()
-    )
+    containers = {"docs": require_env("DOCS_CONTAINER"), "parts": require_env("PARTS_CONTAINER")}
+    count = upload_documents(account_url, containers, Path(args.generated), DefaultAzureCredential())
     print(f"uploaded {count} documents")
     return 0
 
 
 def cmd_index(args: argparse.Namespace) -> int:
-    try:
-        run = run_and_wait(make_client(), INDEXER_NAME)
-    except IndexerFailed as failure:
-        print(f"indexer failed: {failure}", file=sys.stderr)
-        return 1
-    print(f"indexer {run.status}: {run.items_processed} processed, {run.items_failed} failed")
-    for warning in run.warnings:
-        print(f"warning: {warning}")
+    client = make_client()
+    for name in INDEXER_NAMES:
+        try:
+            run = run_and_wait(client, name)
+        except IndexerFailed as failure:
+            print(f"{name} failed: {failure}", file=sys.stderr)
+            return 1
+        print(f"{name} {run.status}: {run.items_processed} processed, {run.items_failed} failed")
+        for warning in run.warnings:
+            print(f"warning: {warning}")
     return 0
 
 
 def cmd_retrieve(args: argparse.Namespace) -> int:
-    result = retrieve(make_client(), KNOWLEDGE_BASE_NAME, args.question)
+    if args.parts:
+        result = retrieve(
+            make_client(), PARTS_KNOWLEDGE_BASE_NAME, args.question,
+            knowledge_source=PARTS_KNOWLEDGE_SOURCE_NAME,
+        )
+    else:
+        result = retrieve(
+            make_client(), KNOWLEDGE_BASE_NAME, args.question,
+            knowledge_source=KNOWLEDGE_SOURCE_NAME,
+        )
     print(
         json.dumps(
             {
@@ -96,16 +112,16 @@ def cmd_retrieve(args: argparse.Namespace) -> int:
 
 def cmd_smoke(args: argparse.Namespace) -> int:
     questions = [SmokeQuestion(**q) for q in json.loads(SMOKE_QUESTIONS.read_text(encoding="utf-8"))]
-    outcomes = run_smoke(make_client(), KNOWLEDGE_BASE_NAME, questions)
+    outcomes = run_smoke(make_client(), questions)
     failed = [o for o in outcomes if not o.passed]
     print(f"{len(outcomes) - len(failed)}/{len(outcomes)} smoke questions passed")
     return 1 if failed else 0
 
 
 SUBCOMMANDS = {
-    "apply": (cmd_apply, "PUT all six definitions to the search service"),
+    "apply": (cmd_apply, "PUT all definitions of both knowledge bases to the search service"),
     "upload": (cmd_upload, "upload generated documents to blob storage"),
-    "index": (cmd_index, "run the indexer and wait for the result"),
+    "index": (cmd_index, "run both indexers and wait for the results"),
     "retrieve": (cmd_retrieve, "query the knowledge base and print chunks and references"),
     "smoke": (cmd_smoke, "run the smoke questions against the knowledge base"),
 }
@@ -120,6 +136,7 @@ def main(argv: list[str] | None = None) -> int:
             command.add_argument("--generated", default="data/generated")
         if name == "retrieve":
             command.add_argument("question")
+            command.add_argument("--parts", action="store_true", help="use the spare parts base")
     args = parser.parse_args(argv)
     try:
         return SUBCOMMANDS[args.command][0](args)
