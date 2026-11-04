@@ -161,7 +161,7 @@ def run_backend(backend: str, base: str, token, wanted: set[int]) -> list[Result
             beeps.append(arguments)
             return "Rang the terminal bell."
 
-        r = ask(10, "Client tool make_noise", "Beep three times when you have the answer to question 2.",
+        r = ask(10, "Client tool make_noise", "What is the towing capacity of the Voltrieve Fjord? When you have the answer, beep three times.",
                 conversation_id=conversations.get(2), client_tools=[MAKE_NOISE],
                 handlers={"make_noise": make_noise})
         if r.turn and not r.turn.error:

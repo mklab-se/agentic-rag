@@ -1,0 +1,4 @@
+Final build, reruns after the full runbook in runbook-table.txt.
+Loop, step 7 cross-document: 3 of 3 passed.
+Step 10 client tool, reworded to be self-contained: 9 of 9 passed (3 runs on each of prompt, loop, hosted).
+The original wording, "when you have the answer to question 2", means nothing in a new conversation. It passed 1 of 3 on loop.

@@ -92,7 +92,7 @@ Deployed and run live on 2026-11-04.
 
 Verified live:
 
-- All three backends through the deployed API. On the final build the runbook passes on prompt and hosted, and on loop except two steps where the model answered differently: step 7 was wrong and step 10 did not call the tool. Earlier runs passed these on loop and failed step 7 elsewhere, so this is model behaviour rather than a host difference.
+- All three backends through the deployed API. The runbook passes on every step except that the cross-document step 7 varies between runs on all three hosts (below). Step 10 was reworded to be self-contained and then passed 9 of 9 (`docs/evidence/loop-reruns.txt`).
 - Grounding on the final build: 29 of 30 answers passed. An earlier build scored 30 of 30.
 - The cross-document question "cheapest AWD in Sweden" repeated 6 times per backend: 15 of 18 right (prompt 4, loop 6, hosted 5). The checks are not loosened for it.
 - Recovery on all three backends: a paused turn nobody answers, and a conversation resumed after the API scaled to zero (`docs/evidence/repair.txt`).
