@@ -1,34 +1,161 @@
 # Decisions
 
-## Region
+What was decided, why, and what was found on the live service. Dated facts are from 2026-11-04 unless noted. The comparison is in [why-foundry.md](why-foundry.md).
 
-- Sweden Central hosts everything except Azure AI Search: Foundry, storage, Container Apps, registry and monitoring.
-- Azure AI Search is placed in France Central through the `searchLocation` parameter (azd env value `AZURE_SEARCH_LOCATION`, default `francecentral`). Sweden Central and West Europe cannot currently create new search services, and France Central is the nearest EU region that can. Search reaches Foundry and storage over the public endpoints with Entra tokens, so the cross-region placement costs only a little latency.
+## API versions
 
-## Search API version and the knowledge base model
+### Latest versions everywhere, including preview
 
-- The search definitions use the GA REST API version 2026-04-01.
-- The knowledge base is defined without a language model. Retrieval is semantic query to ranked chunks and references, with no LLM query planning.
-- LLM query planning requires the 2026-08-01-preview API version and the Cognitive Services User role for the Search service identity on the Foundry account. Whether to move to the preview for plan 2 is an open decision for the user.
+The user decided to use the latest API versions, preview included. This replaced an earlier plan to stay on GA.
 
-## No page or section field in the chunk index
+| Surface | Version |
+| --- | --- |
+| Search data plane (REST) | `2026-08-01-preview` |
+| Knowledge base MCP endpoint | `2026-08-01-preview` |
+| Search management (Bicep) | `2026-09-01-preview` |
+| `Microsoft.CognitiveServices/*` | `2026-09-15-preview` |
+| `Microsoft.App/*` | `2026-07-01` |
+| `Microsoft.Storage/*` | `2026-09-01` |
+| `Microsoft.ContainerRegistry/registries` | `2026-09-01-preview` |
+| `Microsoft.OperationalInsights/workspaces` | `2026-03-01` |
+| `Microsoft.Web/staticSites` | `2025-03-01` |
+| `Microsoft.ManagedIdentity/userAssignedIdentities` | `2024-11-30` |
+| `Microsoft.Insights/components` | `2020-02-02` |
 
-The index has no page number or section field. The skillset splits extracted text into character-based chunks (with overlap), and the built-in extraction does not give a reliable source page or section for Markdown, DOCX and PDF alike, so a field would be wrong or empty for some formats. Citations use the document title and the chunk content instead.
+### Search management stepped back from the newest listed version
 
-## Dealer telemetry
+`2026-11-01` is listed in the docs but was not live in France Central, so Bicep uses `2026-09-01-preview`, the newest the service accepted.
 
-OpenTelemetry for the dealer service moved to plan 2. In plan 1 the dealer logs structured JSON with a correlation id.
+### Bicep BCP081 warnings are expected
 
-## Application Insights connection string
+The lint reports BCP081 ("does not have types available") for `Microsoft.CognitiveServices/*@2026-09-15-preview` and `Microsoft.Storage/*@2026-09-01`. These versions are newer than Bicep's type data. The warnings do not block deployment, but Bicep cannot validate those resources' properties before deploying, so errors there appear at deployment time. `infra/tests/test_bicep.sh` does not fail on them.
 
-The Application Insights connection string passed to the dealer app is an ingestion identifier, not a secret: it only allows sending telemetry. It is therefore set as a plain environment value. Every other Azure call uses Entra tokens and no keys are stored anywhere.
+## Search
 
-## Facts still to record from Task 9
+### Query planning on
 
-To be filled in after the first real `azd up`:
+The knowledge base has the chat model in `models` with `retrievalReasoningEffort` low. On `2026-08-01-preview` this produced `modelQueryPlanning` activity and three sub-queries for one question. GA `2026-04-01` cannot plan with a model for `searchIndex` sources. The search service identity needs Cognitive Services User on Foundry for this. Output mode is `extractiveData`: the agent writes the answer.
 
-- Whether the role propagation retry in the post-provision hook was needed, and how long it waited.
-- Indexer duration and the final item counts.
-- Smoke test results and any reranker scores worth keeping as a baseline.
-- The Foundry model deployment names and quota actually granted in Sweden Central.
-- Anything in the search or Container Apps behaviour that differed from the plan.
+### Retrieve request shape
+
+The retrieve body uses `messages` and `maxOutputSize`. Live testing settled this: the docs also list `maxOutputSizeInTokens`, but the service wanted `maxOutputSize`.
+
+### No page or section field in the chunk index
+
+The skillset splits extracted text into character-based chunks, and extraction gives no reliable page or section for Markdown, DOCX and PDF alike. A field would be wrong or empty for some formats. Citations use the document title and the chunk content.
+
+## Regions
+
+- Sweden Central holds everything except the two below.
+- Azure AI Search is in France Central (`AZURE_SEARCH_LOCATION`). Sweden Central and West Europe were flagged as not accepting new Search services. The cross-region placement costs a little latency.
+- The Static Web App metadata is in East US 2. West Europe rejected new Static Web Apps. The content is global, so users are not affected.
+
+## Models
+
+- Chat: `gpt-5.4-mini` version `2026-03-17`, GlobalStandard, capacity 50.
+- Embeddings: `text-embedding-3-large` version 1, GlobalStandard, capacity 10.
+- Capacity 10 on chat broke multi-question runs with rate limits. On pay-per-token, capacity is a cap, not a cost, so it was raised to 50.
+
+## Agent core
+
+### Plain Responses loop instead of Agent Framework
+
+The design preferred Microsoft Agent Framework, with the plain OpenAI SDK as the stated fallback. `agent_core` uses the fallback: a plain loop over the Responses API. Pausing for client tools and emitting trace events are first class in the loop, and the comparison needs an honest line count. Agent Framework was not tried, so this does not show that it cannot do the job. The choice is reversible.
+
+### Server tools are listed whatever the role
+
+`ToolSet.definitions` offers every server tool, and `execute` enforces roles. A denied call must be a visible `authorization_denied` event, and a prompt agent cannot hide tools per user anyway. This overrides the plan text.
+
+### Hosts emit `done`
+
+The core never emits `done`, because only the host knows the backend. `TurnOutcome` carries `failed` status and `client_call_ids`, and terminal events stay single.
+
+### Client tool calls carry the conversation id
+
+`client_tool_calls` includes `conversation_id`, amending design section 8.1. A first-turn client has no other way to learn it.
+
+## Turn state
+
+### In-process turn state and `maxReplicas` 1
+
+Paused turns live in a dict in the API process, so the API runs with `maxReplicas` 1. A restart loses paused turns and the client gets `turn_expired`. This is acceptable for a reference implementation at low cost. Running more replicas needs a shared store.
+
+The pause limit is 15 minutes. A turn survives a client disconnect, and SSE sends a keep-alive every 15 seconds, because Container Apps closes connections idle for 240 seconds.
+
+### Conversation owner stored in Foundry metadata
+
+The owner `oid` goes into the Foundry conversation's metadata when the conversation is created. The in-process map is a bounded cache (1000 conversations). Otherwise scale to zero would break every conversation. Reading it back after a real restart is not in the recorded evidence.
+
+A foreign conversation gets the same 403 as an unknown one, so ids cannot be probed.
+
+### Stateless repair
+
+A conversation touched first by a process, or left dirty by a failure, is repaired before use: function calls without an output get a synthetic one. This costs one extra list call per conversation per process. It covers lost pauses, failed closes and restarts.
+
+### Concurrent turns
+
+A second message while a turn is running gets 409 `turn_in_progress`. It is the simplest correct behaviour, and the client must retry.
+
+## Backends
+
+### A: two agents
+
+Tools are fixed in the definition, so there are two agents, `voltrieve-prompt-cli` and `voltrieve-prompt-web`. The API picks by whether the request has `client_tools`, and refers to the agent by name, which gives the latest version.
+
+### C: Invocations protocol
+
+Measured: the hosted Responses protocol drops caller `tools` and `metadata` (they arrive as `None`). Invocations forwards arbitrary JSON, SSE and `traceparent`.
+
+### C: caller check fails closed
+
+The agent accepts only the API's managed identity, read from `x-ms-original-subject`. With `ALLOWED_CALLER_OID` empty, every request is refused. `ALLOW_ANY_CALLER=true` is for local use only. The operator must keep `API_PRINCIPAL_ID` correct.
+
+### C: lost stream grace
+
+When the stream to the hosted agent breaks, the conversation stays blocked for 120 seconds and is then repaired. This avoids racing a detached turn. The user can wait up to two minutes after a dropped connection.
+
+## Identity
+
+### Azure CLI pre-authorized on the API
+
+`voltrieve-api` lists the Azure CLI as a pre-authorized application for `access_as_user`, so scripts can get tokens without an interactive login. Tokens still need the `Chat.User` role. This slightly widens who can mint tokens for the API in the tenant.
+
+### Roles live in Bicep
+
+Direct `az role assignment` was blocked by a safety check in this environment. Every Azure role is declared in Bicep, by GUID, at the target resource. App roles such as `Dealer.Access` go through Graph in the hook and scripts.
+
+### Application Insights connection string
+
+It is an ingestion identifier, not a secret: it only allows sending telemetry. It is set as a plain value. Everything else uses Entra tokens.
+
+## Deployment
+
+- Provision runs before package, because the web build needs provision outputs.
+- The SPA upload runs in Docker on Apple Silicon. The SWA CLI's client is x86, and installing Rosetta is a system change.
+- The root `.dockerignore` is an allow-list, because `azd` tar failed on files changing during the archive.
+- The search smoke test runs in `postup`, so a miss cannot block a deployment.
+- The dealer client timeout is 45 seconds, because the dealer scales to zero. The earlier 15 seconds caused one grounding miss.
+
+## Live findings
+
+- Prompt agent with `agent_reference` plus `tools`: `400 Not allowed when agent is specified.`
+- Responses with `conversation` plus per-request `tools` works. `function_call_output` works with a model and with `agent_reference`.
+- Prompt agent: the knowledge base attaches by MCP through a `RemoteTool` connection with `ProjectManagedIdentity`. The result has no references or activity, and citations appear as `【5:0†file】` markers. Roles can only be enforced in the relay in the API.
+- Hosted: the gateway replaces `x-ms-original-subject`. A forged request as the deployer got 403 from the handler.
+- Hosted: each agent has an Entra identity (`instance_identity.principal_id`), stable across versions.
+- Hosted: the first call on a new session is slow, a broken image gives `session_not_ready`, sessions bind to one version, the idle timeout minimum is 120 seconds, and billing is for active sessions only.
+- Hosted deployment needs a `linux/amd64` image, Foundry Project Manager, and registry pull roles for the project identity. Search and dealer roles for the agent identity come after that identity exists, so a second provision is needed.
+- Grounding, 30 questions over 3 backends: 28 passed. The two misses are in `docs/evidence/grounding.txt`.
+- `scripts/denied_demo.py` on `loop` gave `authorization_denied` and a polite refusal (`docs/evidence/authorization-denied.txt`).
+
+## Not recorded or not verified
+
+- Interactive SPA sign-in, and `voltrieve login`.
+- A real sign-in as the tester. The denied case ran with a fake validator.
+- Runbook step 12: following a correlation id in Application Insights.
+- What Foundry's own tracing writes for prompt and hosted agents.
+- Publishing to Teams and Microsoft 365.
+- Latency and cold-start figures.
+- The 10 minute run expiry from older documentation.
+- Whether an MCP tool with a project connection works outside an agent definition.
+- Indexer duration, final item counts, how long role propagation retries waited, and smoke test scores. The first deployment did not keep these.
