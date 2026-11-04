@@ -29,6 +29,7 @@ def test_environment_has_no_reserved_names_and_defaults_the_caller_to_the_api():
     assert not [k for k in env if k.startswith("FOUNDRY_")]
     assert env["ALLOWED_CALLER_OID"] == "api-oid"
     assert env["PYTHONNOUSERSITE"] == "1"
+    assert env["AZURE_EXPERIMENTAL_ENABLE_GENAI_TRACING"] == "true"
     assert env["MODEL_DEPLOYMENT_NAME"] == "gpt-5.4-mini"
 
 

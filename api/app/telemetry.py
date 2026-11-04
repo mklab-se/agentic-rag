@@ -21,9 +21,16 @@ def configure_telemetry(connection_string: str) -> bool:
         return False
     from azure.monitor.opentelemetry import configure_azure_monitor
 
-    configure_azure_monitor(connection_string=connection_string)
+    configure_azure_monitor(connection_string=connection_string, enable_live_metrics=False)
     logger.info("Azure Monitor telemetry enabled")
     return True
+
+
+def span_event(name: str, **attributes: str | float | None) -> None:
+    """Add an event to the current span (a no-op when there is none or telemetry is off)."""
+    trace.get_current_span().add_event(
+        name, {k: truncate(v) if isinstance(v, str) else v for k, v in attributes.items() if v is not None}
+    )
 
 
 def annotate_span(**attributes: str | None) -> None:

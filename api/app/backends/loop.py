@@ -2,81 +2,21 @@
 
 import logging
 from collections.abc import Awaitable, Callable, Sequence
+from functools import partial
 
-from voltrieve_agent.dealer import DealerClient, make_http_client
+from voltrieve_agent.dealer import DealerClient
 from voltrieve_agent.events import Emit
+from voltrieve_agent.http_client import make_http_client
 from voltrieve_agent.knowledge import KnowledgeBase
 from voltrieve_agent.loop import TurnInput, TurnOutcome, run_turn
 from voltrieve_agent.model import ModelClient, ResponsesModelClient
 from voltrieve_agent.server_tools import build_server_tools
 from voltrieve_agent.tools import ServerTool
 
-from app.backends.base import BackendUnavailable, TurnContext
+from app.backends.base import BackendUnavailable, ConversationBackend, TurnContext, close_all
 from app.settings import Settings
 
 logger = logging.getLogger(__name__)
-
-
-REPAIR_OUTPUT = "the client did not return a result"
-REPAIR_SCAN_ITEMS = 100
-REPAIR_BATCH = 20
-
-
-class ConversationBackend:
-    """What backends share: the conversation lives in Foundry Conversations."""
-
-    def __init__(self, openai_client, closers: Sequence[Callable[[], Awaitable[None]]] = ()):
-        self._openai = openai_client  # AsyncOpenAI; only its conversations API is used here
-        self._closers = closers
-
-    async def create_conversation(self, owner_oid: str) -> str:
-        conversation = await self._openai.conversations.create(metadata={"owner_oid": owner_oid})
-        return conversation.id
-
-    async def get_conversation_owner(self, conversation_id: str) -> str | None:
-        try:
-            conversation = await self._openai.conversations.retrieve(conversation_id)
-        except Exception:
-            logger.warning("Could not read conversation %s", conversation_id, exc_info=True)
-            return None
-        return (getattr(conversation, "metadata", None) or {}).get("owner_oid")
-
-    async def abandon(self, conversation_id: str, outputs: list[dict]) -> None:
-        # Adding items does not call the model, so abandoning costs no tokens.
-        if outputs:
-            await self._openai.conversations.items.create(conversation_id, items=outputs)
-
-    async def repair(self, conversation_id: str) -> None:
-        calls: list[str] = []
-        answered: set[str] = set()
-        page = await self._openai.conversations.items.list(
-            conversation_id, limit=REPAIR_SCAN_ITEMS, order="desc"
-        )
-        async for item in page:
-            if item.type == "function_call":
-                calls.append(item.call_id)
-            elif item.type == "function_call_output":
-                answered.add(item.call_id)
-            if len(calls) + len(answered) >= REPAIR_SCAN_ITEMS:
-                break
-        missing = [
-            {"type": "function_call_output", "call_id": c, "output": REPAIR_OUTPUT}
-            for c in dict.fromkeys(calls)
-            if c not in answered
-        ]
-        for start in range(0, len(missing), REPAIR_BATCH):
-            await self._openai.conversations.items.create(
-                conversation_id, items=missing[start : start + REPAIR_BATCH]
-            )
-        if missing:
-            logger.info("Repaired %d open calls in %s", len(missing), conversation_id)
-
-    async def close(self) -> None:
-        for closer in self._closers:
-            try:
-                await closer()
-            except Exception:
-                logger.exception("Closing the loop backend failed")
 
 
 class LoopBackend(ConversationBackend):
@@ -145,12 +85,9 @@ def build_loop_backend(settings: Settings) -> LoopBackend:
     dealer = DealerClient(settings.dealer_url, dealer_token, http)
     knowledge = KnowledgeBase(settings.search_endpoint, DefaultAzureCredential())
     model = ResponsesModelClient(openai_client, settings.chat_deployment)
-    async def close_all() -> None:
-        await http.aclose()
-        await openai_client.close()
-        await project.close()
-        await async_credential.close()
-
     return LoopBackend(
-        model, openai_client, build_server_tools(dealer, knowledge), closers=[close_all]
+        model,
+        openai_client,
+        build_server_tools(dealer, knowledge),
+        closers=[partial(close_all, http, openai_client, project, async_credential)],
     )

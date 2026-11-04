@@ -7,7 +7,7 @@ correlation_id: contextvars.ContextVar[str] = contextvars.ContextVar("correlatio
 # Per-request fields that appear in every log line once known.
 log_context: contextvars.ContextVar[dict] = contextvars.ContextVar("log_context", default={})
 
-_EXTRA = ("path", "status", "elapsed_ms")
+_EXTRA = ("path", "status", "elapsed_ms", "step", "component", "detail")
 _CONTEXT_KEYS = ("conversation_id", "turn_id", "backend", "user_oid")
 
 
@@ -42,3 +42,5 @@ def configure_logging(level: str) -> None:
     root = logging.getLogger()
     root.handlers[:] = [handler]
     root.setLevel(level.upper())
+    # The Azure SDK logs every HTTP request and response header at INFO.
+    logging.getLogger("azure").setLevel(logging.WARNING)

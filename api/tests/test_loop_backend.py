@@ -1,6 +1,7 @@
 """The real orchestration loop behind the real API, with a scripted model and a fake openai."""
 
 import httpx
+import pytest
 from voltrieve_agent.model import Completed, FunctionCall, TextDelta
 
 from app.backends import BackendRegistry
@@ -40,6 +41,10 @@ class FakeItems:
         return gen()
 
 
+class NotFound(Exception):
+    status_code = 404
+
+
 class FakeConversations:
     def __init__(self, existing=()):
         self.items = FakeItems(existing)
@@ -51,7 +56,7 @@ class FakeConversations:
 
     async def retrieve(self, conversation_id):
         if conversation_id != "conv_real":
-            raise RuntimeError("not found")
+            raise NotFound()
         return type("Conv", (), {"metadata": self.metadata})()
 
 
@@ -115,6 +120,17 @@ async def test_owner_is_read_from_conversation_metadata():
     await backend.create_conversation("oid-anna")
     assert await backend.get_conversation_owner("conv_real") == "oid-anna"
     assert await backend.get_conversation_owner("conv_missing") is None
+
+
+async def test_an_outage_is_not_mistaken_for_an_unknown_conversation():
+    openai = FakeOpenAI()
+
+    async def down(conversation_id):
+        raise ConnectionError("foundry is down")
+
+    openai.conversations.retrieve = down
+    with pytest.raises(ConnectionError):
+        await LoopBackend(ScriptedModel(), openai, []).get_conversation_owner("conv_real")
 
 
 async def test_repair_answers_only_calls_without_output_in_batches():

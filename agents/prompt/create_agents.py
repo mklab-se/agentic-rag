@@ -17,20 +17,19 @@ import sys
 
 from azure.ai.projects.models import FunctionTool, MCPTool, PromptAgentDefinition
 from voltrieve_agent.instructions import AGENT_INSTRUCTIONS
-from voltrieve_agent.server_tools import build_server_tools
+from voltrieve_agent.server_tools import KB_SEARCH_TOOL, build_server_tools
 
 CLI_AGENT_NAME = "voltrieve-prompt-cli"
 WEB_AGENT_NAME = "voltrieve-prompt-web"
 KB_SERVER_LABEL = "voltrieve-kb"
 KB_NAME = "voltrieve-kb"
 KB_API_VERSION = "2026-08-01-preview"
-KB_SEARCH_TOOL = "search_voltrieve_docs"  # replaced by the MCP tool on these agents
 
 MAX_NOISE = 10
 
 # Copy of CLIENT_TOOLS in clients/cli/src/voltrieve_cli/tools.py. The CLI is a separate project,
-# so the schemas are repeated here; keep the two in step. The API checks request tools against
-# the names (CLI_AGENT_TOOL_NAMES in api/app/backends/prompt.py, covered by a test).
+# so the schemas are repeated here. tests/contract fails when the two differ. The API checks
+# request tools against the names (CLI_AGENT_TOOL_NAMES in api/app/backends/prompt.py).
 CLI_TOOLS = [
     {
         "name": "make_noise",
@@ -64,7 +63,8 @@ def _function_tool(name: str, description: str, parameters: dict) -> FunctionToo
 
 
 def dealer_function_tools() -> list[FunctionTool]:
-    """The dealer operations, from the same ServerTool definitions the API executes."""
+    """The dealer operations, from the same ServerTool definitions the API executes. The
+    documentation search is left out: these agents get the knowledge base as an MCP tool."""
     return [
         _function_tool(t.name, t.description, t.parameters)
         for t in build_server_tools(None, None)  # type: ignore[arg-type]

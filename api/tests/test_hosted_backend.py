@@ -164,7 +164,7 @@ async def test_failures_become_a_generic_error_event_and_a_failed_outcome(http, 
     result = await make_backend(http).run_turn(ctx(), emit)
     assert result.status == "failed"
     error = [e for e in emitted if e.type == "error"]
-    assert len(error) == 1 and error[0].data["code"] == "hosted_agent_error"
+    assert len(error) == 1 and error[0].data["code"] == "agent_unavailable"
     assert "secret" not in json.dumps(error[0].data) and "traceback" not in json.dumps(error[0].data)
 
 
@@ -271,8 +271,7 @@ async def test_unknown_status_is_failed_and_events_after_outcome_are_ignored(htt
 async def test_line_separators_survive_the_relay(http):
     text = "a\u2028b\u2029c\u0085d"
     # The API and the agent both write ASCII-only JSON.
-    from app.sse import format_event
-    from voltrieve_agent.events import AgentEvent
+    from voltrieve_agent.events import AgentEvent, format_event
 
     wire = format_event(AgentEvent("delta", {"text": text})) + sse(outcome())
     for ch in "\u2028\u2029\u0085":

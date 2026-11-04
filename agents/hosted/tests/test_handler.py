@@ -170,3 +170,10 @@ async def test_line_separators_in_text_survive_as_escapes():
     for ch in "\u2028\u2029\u0085":
         assert ch not in r.text
     assert [d["text"] for t, d in parse_sse(r.text) if t == "delta"] == [text]
+
+
+async def test_the_turn_is_logged_with_correlation_id_and_user_oid(caplog):
+    with caplog.at_level("INFO", logger="voltrieve.hosted"):
+        await invoke(Runtime(ScriptedModel([TextDelta("a"), Completed({})]), [], allow_any_caller=True))
+    [line] = [r.getMessage() for r in caplog.records if r.getMessage().startswith("turn ")]
+    assert "correlation_id corr-1" in line and "user_oid oid-anna" in line

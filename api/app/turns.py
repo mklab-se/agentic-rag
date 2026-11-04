@@ -15,37 +15,23 @@ from collections import OrderedDict
 from collections.abc import AsyncIterator, Callable
 from dataclasses import dataclass, field
 
-from voltrieve_agent.events import AgentEvent, trace
+from voltrieve_agent.events import KEEPALIVE, KEEPALIVE_SECONDS, AgentEvent, format_event, trace
+from voltrieve_agent.model import merge_usage
 from voltrieve_agent.tools import ClientTool, UserContext
 
 from app.auth import Claims
 from app.backends import BackendRegistry
-from app.backends.base import TurnContext
+from app.backends.base import ABANDONED_OUTPUT, TurnContext
 from app.logging_setup import bind_log_context, correlation_id
-from app.sse import KEEPALIVE, format_event
-from app.telemetry import annotate_span, debug_payload, turn_span
+from app.telemetry import annotate_span, debug_payload, span_event, turn_span
 
 logger = logging.getLogger(__name__)
 
 TURN_TTL_SECONDS = 15 * 60
 MAX_CONVERSATIONS = 1000
-# Container Apps closes connections that are idle for 240 seconds.
-KEEPALIVE_SECONDS = 15.0
-ABANDONED_OUTPUT = "the client did not return a result"
 GENERIC_ERROR = AgentEvent(
     "error", {"code": "internal_error", "message": "The request could not be completed."}
 )
-
-
-def merge_usage(total: dict, more: dict) -> dict:
-    """Sum two usage dicts, descending into nested ones (token detail breakdowns)."""
-    merged = dict(total)
-    for key, value in more.items():
-        if isinstance(value, dict):
-            merged[key] = merge_usage(merged.get(key) or {}, value)
-        elif isinstance(value, int | float) and not isinstance(value, bool):
-            merged[key] = merged.get(key, 0) + value
-    return merged
 
 
 @dataclass
@@ -159,7 +145,6 @@ class Job:
     client_tools: list[ClientTool] = field(default_factory=list)
     pending_outputs: list[dict] = field(default_factory=list)
     usage: dict = field(default_factory=dict)  # of the earlier parts of this turn
-    continuation: bool = False
     stale: PausedTurn | None = None  # a paused turn to close before running
     turn_expired: bool = False  # answer turn_expired instead of running
     expired: PausedTurn | None = None  # with turn_expired: also close this turn
@@ -177,11 +162,38 @@ class _Run:
         if event.type == "trace" and "elapsed_ms" not in event.data:
             elapsed = round((time.perf_counter() - self._start) * 1000, 1)
             event = AgentEvent("trace", {**event.data, "elapsed_ms": elapsed})
+        if event.type == "trace":
+            self._record(event.data)
         if event.type == "client_tool_calls":
             # Held until the paused turn is stored, so a fast client never beats the store.
             self.held_tool_calls = event
             return
         await self.queue.put(event)
+
+
+    @staticmethod
+    def _record(data: dict) -> None:
+        """Every hop is a log line and a span event, so logs and traces show the whole turn."""
+        step = data["step"]
+        logger.info(
+            "trace",
+            extra={
+                "step": step,
+                "component": data.get("component"),
+                "detail": data.get("detail"),
+                "elapsed_ms": data.get("elapsed_ms"),
+            },
+        )
+        span_event(
+            step,
+            component=data.get("component"),
+            detail=data.get("detail"),
+            elapsed_ms=data.get("elapsed_ms"),
+        )
+        # Arguments and results can hold user data: only at debug level, truncated.
+        for key in ("arguments", "output_preview"):
+            if key in data:
+                debug_payload(logger, f"{step} {key}", data[key])
 
 
 class TurnService:

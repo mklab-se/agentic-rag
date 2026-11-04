@@ -158,4 +158,7 @@ def create_app(
     return app
 
 
-app = create_app(Settings())
+def build_app() -> FastAPI:
+    """The uvicorn entry point (`uvicorn --factory app.main:build_app`): nothing is built at
+    import, so importing the module never needs the environment."""
+    return create_app(Settings())

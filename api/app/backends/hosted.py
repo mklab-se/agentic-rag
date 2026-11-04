@@ -27,15 +27,15 @@ import json
 import logging
 from collections import OrderedDict
 from collections.abc import AsyncIterator, Awaitable, Callable, Sequence
+from functools import partial
 from typing import Any
 
 import httpx
-from voltrieve_agent.dealer import make_http_client
 from voltrieve_agent.events import AgentEvent, Emit
+from voltrieve_agent.http_client import make_http_client
 from voltrieve_agent.loop import TurnOutcome
 
-from app.backends.base import BackendUnavailable, TurnContext
-from app.backends.loop import ConversationBackend
+from app.backends.base import BackendUnavailable, ConversationBackend, TurnContext, close_all
 from app.settings import Settings
 
 logger = logging.getLogger(__name__)
@@ -137,7 +137,7 @@ class HostedBackend(ConversationBackend):
             AgentEvent(
                 "error",
                 {
-                    "code": "hosted_agent_error",
+                    "code": "agent_unavailable",
                     "message": "The hosted agent could not complete the answer.",
                 },
             )
@@ -218,17 +218,11 @@ def build_hosted_backend(settings: Settings) -> HostedBackend:
     async def token(scope: str) -> str:
         return (await credential.get_token(scope)).token
 
-    async def close_all() -> None:
-        await http.aclose()
-        await openai_client.close()
-        await project.close()
-        await credential.close()
-
     return HostedBackend(
         openai_client,
         http,
         token,
         settings.foundry_project_endpoint,
         settings.hosted_agent_name,
-        closers=[close_all],
+        closers=[partial(close_all, http, openai_client, project, credential)],
     )

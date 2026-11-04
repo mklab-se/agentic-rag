@@ -1,4 +1,5 @@
 import json
+import logging
 
 from pydantic import BaseModel, ValidationError
 from fastapi import APIRouter, Depends, Header, HTTPException, Request
@@ -7,6 +8,7 @@ from jsonschema import Draft202012Validator
 from jsonschema.exceptions import SchemaError
 
 from app.auth import AuthError, Claims
+from app.backends import BACKEND_NAMES
 from app.backends.base import BackendUnavailable
 from app.logging_setup import correlation_id
 from app.schemas import (
@@ -16,6 +18,8 @@ from app.schemas import (
     to_client_tools,
 )
 from app.turns import Job, new_turn_id
+
+logger = logging.getLogger(__name__)
 
 SSE_HEADERS = {"Cache-Control": "no-store", "X-Accel-Buffering": "no"}
 
@@ -45,6 +49,23 @@ def _depth(value) -> int:
     return deepest
 
 
+REF_KEYWORDS = ("$ref", "$dynamicRef")
+
+
+def _has_ref(value) -> bool:
+    """Whether a reference keyword appears anywhere in parsed JSON (iterative, like _depth)."""
+    stack = [value]
+    while stack:
+        node = stack.pop()
+        if isinstance(node, dict):
+            if any(k in node for k in REF_KEYWORDS):
+                return True
+            stack.extend(node.values())
+        elif isinstance(node, list):
+            stack.extend(node)
+    return False
+
+
 def json_body(model: type[BaseModel]):
     """Parse the body by hand: FastAPI turns a RecursionError from deeply nested JSON into a
     400 or 500, and clients should get a 422."""
@@ -66,6 +87,9 @@ def _check_client_tools(body: ChatRequest, server_tool_names: frozenset[str]) ->
     for tool in body.client_tools:
         if _depth(tool.parameters) > MAX_SCHEMA_DEPTH:
             raise HTTPException(422, f"client tool '{tool.name}' schema is nested too deeply")
+        if _has_ref(tool.parameters):
+            # A reference could make the validator fetch a URL of the client's choosing.
+            raise HTTPException(422, f"client tool '{tool.name}' schema must not use $ref")
     names = [t.name for t in body.client_tools]
     if len(set(names)) != len(names):
         raise HTTPException(422, "client_tools has duplicate names")
@@ -87,12 +111,22 @@ async def _check_owner(state, backend, conversation_id: str, oid: str) -> None:
     cannot be probed. Foundry holds the owner; the in-process map is only a cache."""
     owner = state.store.conversation_owner(conversation_id)
     if owner is None:
-        owner = await backend.get_conversation_owner(conversation_id)
+        try:
+            owner = await backend.get_conversation_owner(conversation_id)
+        except Exception as exc:
+            # Foundry is down or failing: that is not "unknown conversation".
+            logger.warning("Could not look up the owner of %s", conversation_id, exc_info=True)
+            raise HTTPException(503, "The conversation store is unavailable. Try again later.") from exc
         if owner == oid:
             # First touch in this process: the conversation is repaired before it is used.
             state.store.register_conversation(conversation_id, oid, dirty=True)
     if owner != oid:
         raise HTTPException(403, "Unknown conversation")
+
+
+def _requested_backend(request: Request, header: str | None) -> str:
+    """The backend the client asked for when it names a real one, else the default."""
+    return header if header in BACKEND_NAMES else request.app.state.settings.agent_backend
 
 
 def _stream(request: Request, job: Job) -> StreamingResponse:
@@ -150,18 +184,18 @@ def build_router() -> APIRouter:
         request: Request,
         claims: Claims = Depends(authenticate),
         body: ToolResultsRequest = Depends(json_body(ToolResultsRequest)),
+        x_agent_backend: str | None = Header(default=None),
     ):
         store = request.app.state.store
         paused = store.get(body.turn_id)
-        if paused is None:
-            # Unknown, or the API restarted: nothing to close, only tell the client.
+        if paused is None or paused.oid != claims.oid:
+            # Unknown, the API restarted, or another user's turn: all get the same answer, so
+            # turn ids cannot be probed. Nothing to close, only tell the client.
             return _stream(
                 request,
-                Job(claims, request.app.state.settings.agent_backend, body.conversation_id,
+                Job(claims, _requested_backend(request, x_agent_backend), body.conversation_id,
                     body.turn_id, "", turn_expired=True),
             )
-        if paused.oid != claims.oid:
-            raise HTTPException(403, "This turn belongs to another user")
         if paused.conversation_id != body.conversation_id:
             raise HTTPException(422, "conversation_id does not match the turn")
         if store.is_expired(paused):
@@ -196,7 +230,6 @@ def build_router() -> APIRouter:
                 paused.client_tools,
                 paused.pending_outputs,
                 usage=paused.usage,
-                continuation=True,
             ),
         )
 

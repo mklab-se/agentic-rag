@@ -21,19 +21,18 @@ ALLOWED_CALLER_OID empty every request is refused, unless ALLOW_ANY_CALLER=true 
 
 Tracing: the agent server host configures Azure Monitor itself from
 APPLICATIONINSIGHTS_CONNECTION_STRING (azure.ai.agentserver.core), so nothing is configured here.
+AZURE_EXPERIMENTAL_ENABLE_GENAI_TRACING=true (set in deploy.py) adds the model call spans.
 """
 
 import asyncio
-import json
 import logging
 import os
-import re
-from collections.abc import AsyncIterator, Mapping
+from collections.abc import AsyncIterator
 from dataclasses import dataclass
 
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response, StreamingResponse
-from voltrieve_agent.events import AgentEvent
+from voltrieve_agent.events import KEEPALIVE, KEEPALIVE_SECONDS, AgentEvent, format_event
 from voltrieve_agent.loop import TurnInput, run_turn
 from voltrieve_agent.model import ModelClient
 from voltrieve_agent.tools import ClientTool, ServerTool, UserContext
@@ -41,8 +40,6 @@ from voltrieve_agent.tools import ClientTool, ServerTool, UserContext
 logger = logging.getLogger("voltrieve.hosted")
 
 SUBJECT_HEADER = "x-ms-original-subject"
-KEEPALIVE_SECONDS = 15.0
-KEEPALIVE = b": keep-alive\n\n"
 OUTCOME_EVENT = "outcome"
 
 
@@ -111,12 +108,6 @@ def parse_turn(body: object) -> TurnInput | None:
         return None
 
 
-def format_event(event_type: str, data: dict) -> bytes:
-    # ensure_ascii: U+2028, U+2029 and U+0085 would otherwise be taken as line breaks by readers.
-    payload = json.dumps(data, ensure_ascii=True, separators=(",", ":"))
-    return f"event: {event_type}\ndata: {payload}\n\n".encode()
-
-
 _tasks: set[asyncio.Task] = set()
 
 
@@ -126,16 +117,16 @@ async def stream_turn(runtime: Runtime, turn: TurnInput) -> AsyncIterator[bytes]
     The turn is not tied to the response: if the caller disconnects it still runs to its end,
     so the conversation is not left with a function call without output.
     """
-    queue: asyncio.Queue[tuple[str, dict] | None] = asyncio.Queue()
+    queue: asyncio.Queue[AgentEvent | None] = asyncio.Queue()
 
     async def emit(event: AgentEvent) -> None:
-        await queue.put((event.type, event.data))
+        await queue.put(event)
 
     async def run() -> None:
         try:
             outcome = await run_turn(runtime.model, runtime.server_tools, turn, emit)
             await queue.put(
-                (
+                AgentEvent(
                     OUTCOME_EVENT,
                     {
                         "status": outcome.status,
@@ -148,13 +139,16 @@ async def stream_turn(runtime: Runtime, turn: TurnInput) -> AsyncIterator[bytes]
         except Exception:
             logger.exception("Turn failed")
             await queue.put(
-                (
+                AgentEvent(
                     "error",
                     {"code": "internal_error", "message": "The request could not be completed."},
                 )
             )
             await queue.put(
-                (OUTCOME_EVENT, {"status": "failed", "pending_outputs": [], "client_call_ids": [], "usage": {}})
+                AgentEvent(
+                    OUTCOME_EVENT,
+                    {"status": "failed", "pending_outputs": [], "client_call_ids": [], "usage": {}},
+                )
             )
         finally:
             await queue.put(None)
@@ -170,7 +164,7 @@ async def stream_turn(runtime: Runtime, turn: TurnInput) -> AsyncIterator[bytes]
             continue
         if item is None:
             return
-        yield format_event(*item)
+        yield format_event(item)
 
 
 async def handle(request: Request, runtime: Runtime) -> Response:
@@ -184,10 +178,12 @@ async def handle(request: Request, runtime: Runtime) -> Response:
     if turn is None:
         return JSONResponse({"error": "invalid request body"}, status_code=400)
     logger.info(
-        "turn %s conversation %s session %s",
+        "turn %s conversation %s session %s correlation_id %s user_oid %s",
         turn.turn_id,
         turn.conversation_id,
         request.headers.get("x-agent-session-id"),
+        turn.correlation_id,
+        turn.user.oid,
     )
     return StreamingResponse(
         stream_turn(runtime, turn),
@@ -204,7 +200,8 @@ def build_runtime() -> Runtime:
     from azure.ai.projects.aio import AIProjectClient
     from azure.identity import DefaultAzureCredential
     from azure.identity.aio import DefaultAzureCredential as AsyncDefaultAzureCredential
-    from voltrieve_agent.dealer import DealerClient, make_http_client
+    from voltrieve_agent.dealer import DealerClient
+    from voltrieve_agent.http_client import make_http_client
     from voltrieve_agent.knowledge import KnowledgeBase
     from voltrieve_agent.model import ResponsesModelClient
     from voltrieve_agent.server_tools import build_server_tools

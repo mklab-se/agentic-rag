@@ -72,6 +72,16 @@ async def test_foreign_or_unknown_conversation_is_403(client, auth, backend, mak
     assert (await chat(client, auth, {"message": "x", "conversation_id": "conv_nope"})).status_code == 403
 
 
+async def test_a_foundry_outage_on_owner_lookup_is_503_not_403(client, auth, backend):
+    async def down(conversation_id):
+        raise ConnectionError("foundry is down")
+
+    backend.get_conversation_owner = down
+    r = await chat(client, auth, {"message": "x", "conversation_id": "conv_1"})
+    assert r.status_code == 503
+    assert "foundry" not in r.text.lower()
+
+
 async def test_pause_then_continue(client, auth, backend):
     backend.script = [
         pause(("c1", "c2"), pending=[{"type": "function_call_output", "call_id": "s1", "output": "o"}]),
@@ -130,11 +140,22 @@ async def test_mismatched_call_ids_are_422_and_turn_survives(client, auth, backe
     assert parse_sse(r.text)[-1][0] == "done"
 
 
-async def test_foreign_oid_on_continue_is_403(client, auth, backend, make_token):
+async def test_foreign_oid_on_continue_gets_the_unknown_turn_answer(client, auth, backend, make_token):
     paused = await paused_turn(client, auth, backend)
     other = {"Authorization": f"Bearer {make_token(oid='oid-bob')}"}
     r = await client.post("/chat/tool-results", headers=other, json=results_body(paused, "call_1"))
-    assert r.status_code == 403 and len(backend.contexts) == 1
+    unknown = await client.post(
+        "/chat/tool-results", headers=other, json=results_body({**paused, "turn_id": "nope"}, "call_1")
+    )
+    assert r.status_code == unknown.status_code == 200
+    events = parse_sse(r.text)
+    assert events[-1][1]["code"] == "turn_expired"
+    assert [k for k, _ in events] == [k for k, _ in parse_sse(unknown.text)]
+    assert len(backend.contexts) == 1 and backend.abandoned == []  # the owner's turn is untouched
+    # ...and the owner can still finish it.
+    backend.script = [answer("Done")]
+    mine = await client.post("/chat/tool-results", headers=auth, json=results_body(paused, "call_1"))
+    assert parse_sse(mine.text)[-1][0] == "done"
 
 
 async def test_unknown_turn_is_turn_expired_stream(client, auth):
@@ -149,6 +170,25 @@ async def test_unknown_turn_is_turn_expired_stream(client, auth):
         {"code": "turn_expired", "message": "This turn is no longer available. Send the message again."},
     )
     assert events[0][1]["step"] == "token_validated"
+
+
+async def test_unknown_turn_reports_the_requested_backend_when_it_is_a_real_one(client, auth):
+    body = {"conversation_id": "conv_1", "turn_id": "nope", "results": [{"call_id": "a", "output": "x"}]}
+    for header, expected in [("hosted", "hosted"), ("nonsense", "loop"), (None, "loop")]:
+        headers = {**auth, **({"X-Agent-Backend": header} if header else {})}
+        r = await client.post("/chat/tool-results", headers=headers, json=body)
+        selected = next(d for k, d in parse_sse(r.text) if d.get("step") == "backend_selected")
+        assert selected["detail"] == expected
+
+
+async def test_expired_turn_reports_the_backend_of_the_turn(client, auth, backend, clock):
+    paused = await paused_turn(client, auth, backend)
+    clock.now += 15 * 60 + 1
+    r = await client.post(
+        "/chat/tool-results", headers={**auth, "X-Agent-Backend": "hosted"}, json=results_body(paused, "call_1")
+    )
+    selected = next(d for k, d in parse_sse(r.text) if d.get("step") == "backend_selected")
+    assert selected["detail"] == "loop"
 
 
 async def test_expired_turn_is_closed_and_reported(client, auth, backend, clock):
@@ -211,7 +251,7 @@ async def test_disconnect_does_not_stop_the_turn(app, auth, backend):
     from app.auth import Claims
 
     stream = app.state.turns.start(
-        Job(Claims("oid-anna", "a", "cli", ["Chat.User"]), "loop", None, "t1", "hi", [])
+        Job(Claims("oid-anna", "a", ["Chat.User"]), "loop", None, "t1", "hi", [])
     )
     await anext(stream)  # first event, then the client goes away
     await stream.aclose()
@@ -221,6 +261,21 @@ async def test_disconnect_does_not_stop_the_turn(app, auth, backend):
             break
         await asyncio.sleep(0.01)
     assert app.state.store.get("t1") is not None
+
+
+@pytest.mark.parametrize(
+    "parameters",
+    [
+        {"type": "object", "properties": {"a": {"$ref": "https://evil.example/schema.json"}}},
+        {"type": "object", "$defs": {"x": {"type": "string"}}, "properties": {"a": {"$ref": "#/$defs/x"}}},
+        {"type": "object", "allOf": [{"$dynamicRef": "#meta"}]},
+        {"type": "object", "properties": {"a": {"items": [{"$ref": "#"}]}}},
+    ],
+)
+async def test_client_tool_schemas_with_references_are_422(client, auth, parameters):
+    tool = {"name": "read_file", "description": "d", "parameters": parameters}
+    r = await chat(client, auth, {"message": "x", "client_tools": [tool]})
+    assert r.status_code == 422 and "$ref" in r.text
 
 
 @pytest.mark.parametrize(

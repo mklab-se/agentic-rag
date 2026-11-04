@@ -1,4 +1,4 @@
-"""Backend registry. Tasks adding a backend call `register_backend` below."""
+"""Backend registry: the three backends by name, each built on first use."""
 
 import logging
 from collections.abc import Callable
@@ -11,23 +11,15 @@ from app.settings import Settings
 
 logger = logging.getLogger(__name__)
 
-BACKEND_NAMES = ("loop", "prompt", "hosted")
 BackendFactory = Callable[[Settings], Backend]
 
-_DEFAULT_FACTORIES: dict[str, BackendFactory] = {}
-
-
-def register_backend(name: str, factory: BackendFactory) -> None:
-    """Register how to build a backend. The factory runs on first use, not at import, and
-    raises BackendUnavailable when the deployment lacks what it needs."""
-    if name not in BACKEND_NAMES:
-        raise ValueError(f"Unknown backend name {name!r}")
-    _DEFAULT_FACTORIES[name] = factory
-
-
-register_backend("loop", build_loop_backend)
-register_backend("prompt", build_prompt_backend)
-register_backend("hosted", build_hosted_backend)
+# A factory raises BackendUnavailable when the deployment lacks what its backend needs.
+BACKEND_FACTORIES: dict[str, BackendFactory] = {
+    "loop": build_loop_backend,
+    "prompt": build_prompt_backend,
+    "hosted": build_hosted_backend,
+}
+BACKEND_NAMES = tuple(BACKEND_FACTORIES)
 
 
 class BackendRegistry:
@@ -35,7 +27,7 @@ class BackendRegistry:
 
     def __init__(self, settings: Settings, factories: dict[str, BackendFactory] | None = None):
         self._settings = settings
-        self._factories = dict(_DEFAULT_FACTORIES if factories is None else factories)
+        self._factories = dict(BACKEND_FACTORIES if factories is None else factories)
         self._instances: dict[str, Backend] = {}
 
     def get_backend(self, name: str) -> Backend:

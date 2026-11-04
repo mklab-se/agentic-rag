@@ -7,7 +7,7 @@ from types import SimpleNamespace
 import httpx
 from voltrieve_agent.events import AgentEvent
 from voltrieve_agent.model import ResponsesModelClient
-from voltrieve_agent.server_tools import build_server_tools
+from voltrieve_agent.server_tools import KB_SEARCH_TOOL, build_server_tools
 from voltrieve_agent.tools import ClientTool, UserContext
 
 from app.backends import BACKEND_NAMES, BackendRegistry
@@ -78,7 +78,7 @@ class FakeDealer:
 
 
 def make_backend(openai, dealer=None):
-    tools = [t for t in build_server_tools(dealer or FakeDealer(), None) if t.name != "search_voltrieve_docs"]
+    tools = [t for t in build_server_tools(dealer or FakeDealer(), None) if t.name != KB_SEARCH_TOOL]
     return PromptBackend(
         ResponsesModelClient(openai, agent_name="agent-cli"),
         ResponsesModelClient(openai, agent_name="agent-web"),
@@ -188,6 +188,41 @@ async def test_booking_without_role_is_denied_and_never_reaches_the_dealer():
     assert dealer.booked == [("atlas", "Stockholm", "2030-01-01", "oid-anna")]
 
 
+async def deltas_for(*chunks):
+    openai = FakeOpenAI([*[text(c) for c in chunks], completed(1)])
+    _, events = await run(make_backend(openai), ctx())
+    return [e.data["text"] for e in events if e.type == "delta"]
+
+
+async def test_citation_markers_are_rewritten_so_clients_see_plain_text():
+    out = await deltas_for("Range is 400 km\u30105:0\u2020voltrieve-fjord-specifications.pdf\u3011. Done.")
+    assert "".join(out) == "Range is 400 km (voltrieve-fjord-specifications.pdf). Done."
+
+
+async def test_a_marker_split_over_deltas_is_held_until_it_closes():
+    out = await deltas_for("Text \u30104:", "0\u2020voltrieve-", "atlas-brochure.docx", "\u3011 more")
+    assert "".join(out) == "Text  (voltrieve-atlas-brochure.docx) more"
+    assert not any("\u3010" in d or "\u2020" in d for d in out)
+    # Nothing is held back from the client longer than the marker needs.
+    assert out[0] == "Text "
+
+
+async def test_a_marker_without_a_real_file_name_is_removed():
+    out = await deltas_for("Fast\u30104:0\u2020source\u3011 charging\u30101:2\u2020\u3011.")
+    assert "".join(out) == "Fast charging."
+
+
+async def test_an_unterminated_marker_is_released_when_the_turn_ends():
+    out = await deltas_for("Almost \u30105:0\u2020voltr")
+    assert "".join(out) == "Almost \u30105:0\u2020voltr"
+
+
+async def test_non_text_events_pass_through_the_citation_filter():
+    openai = FakeOpenAI([text("a\u3010x\u2020f.pdf\u3011"), completed(1)])
+    _, events = await run(make_backend(openai), ctx())
+    assert {"trace"} <= {e.type for e in events}
+
+
 async def test_unsupported_tool_error_over_http(validator, auth):
     backend = make_backend(FakeOpenAI())
     settings = Settings(agent_backend="prompt")
@@ -205,10 +240,10 @@ async def test_unsupported_tool_error_over_http(validator, auth):
     assert events[-1][0] == "error" and events[-1][1]["code"] == "unsupported_client_tool"
 
 
-def test_prompt_backend_is_registered_and_names_match_the_agent_script():
-    from app.backends import _DEFAULT_FACTORIES
+def test_prompt_backend_is_listed_and_names_match_the_agent_script():
+    from app.backends import BACKEND_FACTORIES
 
-    assert "prompt" in BACKEND_NAMES and "prompt" in _DEFAULT_FACTORIES
+    assert "prompt" in BACKEND_NAMES and "prompt" in BACKEND_FACTORIES
     script = Path(__file__).parents[2] / "agents" / "prompt" / "create_agents.py"
     spec = importlib.util.spec_from_file_location("create_agents", script)
     module = importlib.util.module_from_spec(spec)
@@ -216,6 +251,6 @@ def test_prompt_backend_is_registered_and_names_match_the_agent_script():
     assert {t["name"] for t in module.CLI_TOOLS} == CLI_AGENT_TOOL_NAMES
     cli = [t.name for t in module.agent_definition("m", "https://s", "conn", True).tools if t.type == "function"]
     web = [t.name for t in module.agent_definition("m", "https://s", "conn", False).tools if t.type == "function"]
-    assert "search_voltrieve_docs" not in cli + web
+    assert KB_SEARCH_TOOL not in cli + web
     assert set(cli) - set(web) == CLI_AGENT_TOOL_NAMES
     assert {"check_stock", "get_prices", "book_test_drive"} <= set(web)

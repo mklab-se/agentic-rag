@@ -67,6 +67,7 @@ def environment_variables(env: dict[str, str]) -> dict[str, str]:
         "DEALER_URL": env["DEALER_URL"],
         "DEALER_CLIENT_ID": env["DEALER_CLIENT_ID"],
         "ALLOWED_CALLER_OID": allowed,
+        "AZURE_EXPERIMENTAL_ENABLE_GENAI_TRACING": "true",
         "PYTHONNOUSERSITE": "1",
     }
 

@@ -24,7 +24,6 @@ class AuthError(Exception):
 class Claims:
     oid: str
     username: str
-    app_id: str
     roles: list[str]
 
 
@@ -137,6 +136,5 @@ class TokenValidator:
         return Claims(
             oid=oid,
             username=str(payload.get("preferred_username") or ""),
-            app_id=str(payload.get("azp") or payload.get("appid") or ""),
             roles=[str(r) for r in roles],
         )

@@ -18,9 +18,7 @@ class Settings(BaseSettings):
     dealer_url: str = ""
     dealer_client_id: str = ""
 
-    # Backend A: the project connection to the knowledge base MCP endpoint (used when the agents
-    # are created) and the names of the two prompt agents the API drives.
-    kb_connection_name: str = "voltrieve-kb-mcp"
+    # Backend A: the names of the two prompt agents the API drives.
     prompt_agent_cli: str = "voltrieve-prompt-cli"
     prompt_agent_web: str = "voltrieve-prompt-web"
 

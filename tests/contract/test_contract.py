@@ -4,8 +4,10 @@ a fake model. Every backend must produce the same event shapes (spec sections 8.
 The `hosted` backend runs against an in-process stand-in for the agent; see `_hosted`.
 """
 
+import importlib.util
 import json
 import os
+from pathlib import Path
 
 os.environ.setdefault("TENANT_ID", "00000000-0000-0000-0000-0000000000aa")
 os.environ.setdefault("API_CLIENT_ID", "00000000-0000-0000-0000-0000000000cc")
@@ -20,7 +22,18 @@ from app.main import create_app  # noqa: E402
 from app.settings import Settings  # noqa: E402
 from app.turns import TurnStore  # noqa: E402
 from voltrieve_agent.model import Completed, FunctionCall, TextDelta  # noqa: E402
-from voltrieve_agent.server_tools import build_server_tools  # noqa: E402
+from voltrieve_agent.server_tools import KB_SEARCH_TOOL, build_server_tools  # noqa: E402
+
+ROOT = Path(__file__).resolve().parents[2]
+
+
+def load_module(name: str, relative_path: str):
+    """Import a script that is not an installed package (agents are separate projects)."""
+    spec = importlib.util.spec_from_file_location(name, ROOT / relative_path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
 
 MAKE_NOISE = {"name": "make_noise", "description": "Ring", "parameters": {"type": "object"}}
 BOOK = '{"model": "atlas", "city": "Göteborg", "date": "2030-01-05"}'
@@ -56,50 +69,26 @@ def build_backend(name: str, model: ScriptedModel):
         return LoopBackend(model, FakeOpenAI(), server_tools)
     if name == "prompt":
         # Both agents share one script, since a scenario uses one of them.
-        return PromptBackend(model, model, FakeOpenAI(), [t for t in server_tools if t.name != "search_voltrieve_docs"])
+        return PromptBackend(model, model, FakeOpenAI(), [t for t in server_tools if t.name != KB_SEARCH_TOOL])
     return _hosted(model, server_tools)
 
 
 def _hosted(model, server_tools):
-    """The hosted backend against an in-process stand-in for the hosted agent.
+    """The hosted backend against the real hosted agent code, minus the Foundry gateway.
 
-    The stand-in does what agents/hosted/main.py does: parse the body, run agent_core's run_turn
-    with the scripted model and the request's client tools, and answer with SSE ending in an
-    `outcome` event. An httpx.MockTransport carries it, so the real HostedBackend relay runs.
+    The stand-in runs what agents/hosted/main.py runs for a request: `parse_turn` on the body and
+    `stream_turn` with the scripted model, which answers with SSE ending in an `outcome` event.
+    An httpx.MockTransport carries it, so the real HostedBackend relay runs too.
     """
     from app.backends.hosted import HostedBackend
-    from app.sse import format_event
-    from voltrieve_agent.events import AgentEvent
-    from voltrieve_agent.loop import TurnInput, run_turn
-    from voltrieve_agent.tools import ClientTool, UserContext
+
+    hosted = load_module("hosted_main", "agents/hosted/main.py")
+    runtime = hosted.Runtime(model, server_tools, allow_any_caller=True)
 
     async def agent(request: httpx.Request) -> httpx.Response:
-        body = json.loads(request.content)
-        user = body["user"]
-        input_ = body["input"]
-        if isinstance(input_, list):
-            input_ = [*body["pending_outputs"], *input_]
-        turn = TurnInput(
-            user=UserContext(user["oid"], user["username"], frozenset(user["roles"])),
-            conversation_id=body["conversation_id"],
-            turn_id=body["turn_id"],
-            input=input_,
-            client_tools=[ClientTool(t["name"], t["description"], t["parameters"]) for t in body["client_tools"]],
-            correlation_id=body["correlation_id"],
-        )
-        wire = b""
-
-        async def emit(event: AgentEvent) -> None:
-            nonlocal wire
-            wire += format_event(event)
-
-        outcome = await run_turn(model, server_tools, turn, emit)
-        wire += format_event(AgentEvent("outcome", {
-            "status": outcome.status,
-            "pending_outputs": outcome.pending_outputs,
-            "client_call_ids": outcome.client_call_ids,
-            "usage": outcome.usage,
-        }))
+        turn = hosted.parse_turn(json.loads(request.content))
+        assert turn is not None, "the API sent a body the hosted agent rejects"
+        wire = b"".join([chunk async for chunk in hosted.stream_turn(runtime, turn)])
         return httpx.Response(200, content=wire, headers={"x-agent-session-id": "sess-contract"})
 
     async def token(scope: str) -> str:
@@ -112,7 +101,7 @@ def _hosted(model, server_tools):
 def api_for(name: str, model: ScriptedModel, roles: tuple[str, ...]):
     class Validator:
         async def validate(self, authorization):
-            return Claims("oid-contract", "contract@example.invalid", "test", list(roles))
+            return Claims("oid-contract", "contract@example.invalid", list(roles))
 
     backend = build_backend(name, model)
     settings = Settings(agent_backend=name, log_level="WARNING")
@@ -221,3 +210,14 @@ async def test_model_failure_is_an_error_event_without_detail(run_scenario, name
     assert kind == "error" and "done" not in [k for k, _ in first]
     assert set(data) == {"code", "message"}
     assert "secret" not in json.dumps(data)
+
+
+def test_the_cli_and_the_prompt_agent_declare_the_same_client_tools():
+    """The CLI sends its tools with each request; the prompt agent has a copy in its definition
+    (a prompt agent cannot take tools per request). The two copies must not drift."""
+    cli = load_module("cli_tools", "clients/cli/src/voltrieve_cli/tools.py").CLIENT_TOOLS
+    agent = load_module("create_agents", "agents/prompt/create_agents.py").CLI_TOOLS
+    assert cli == agent
+    from app.backends.prompt import CLI_AGENT_TOOL_NAMES
+
+    assert {t["name"] for t in cli} == CLI_AGENT_TOOL_NAMES
