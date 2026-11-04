@@ -13,17 +13,17 @@ step what                                                  prompt   loop     hos
 4    Unique feature                                        PASS     PASS     PASS     
 5    Absent by design                                      PASS     PASS     PASS     
 6    Not in the documents                                  PASS     PASS     PASS     
-7    Cross-document                                        PASS     FAIL     PASS     
+7    Cross-document                                        FAIL     PASS     FAIL     
 8    Server tool to the dealer service                     PASS     PASS     PASS     
 9    Book a test drive (full-role user)                    PASS     PASS     PASS     
-10   Client tool make_noise                                PASS     FAIL     PASS     
+10   Client tool make_noise                                PASS     PASS     PASS     
 11   Prompt agent rejects extra tools                      PASS     SKIP     SKIP     
 12   Follow one correlation id in Application Insights     MANUAL   MANUAL   MANUAL   
+  [prompt step 7 FAIL] expected Voltrieve Lumen AWD at 419000 (SE)
   [prompt step 12 MANUAL] run scripts/trace_evidence.py, or search customDimensions for: runbook-prompt-2, runbook-prompt-8
-  [loop step 7 FAIL] expected Voltrieve Lumen AWD at 419000 (SE)
-  [loop step 10 FAIL] make_noise requested 0 time(s), times=None, turn continued: True
   [loop step 11 SKIP] backend A only
   [loop step 12 MANUAL] run scripts/trace_evidence.py, or search customDimensions for: runbook-loop-2, runbook-loop-8
+  [hosted step 7 FAIL] expected Voltrieve Lumen AWD at 419000 (SE)
   [hosted step 11 SKIP] backend A only
   [hosted step 12 MANUAL] run scripts/trace_evidence.py, or search customDimensions for: runbook-hosted-2, runbook-hosted-8
 

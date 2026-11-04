@@ -11,4 +11,4 @@ Nothing else is edited. In particular, the citation markers of the prompt agents
 
 Evidence holds no tokens, usernames or URLs.
 
-`runbook-table.txt` is the last full run and shows step 10 with its original, ambiguous wording. `loop-reruns.txt` has the reruns after that wording was fixed.
+`runbook-table.txt` is the last full run on the final build. `loop-reruns.txt` has the earlier reruns of steps 7 and 10, including why step 10 was reworded.

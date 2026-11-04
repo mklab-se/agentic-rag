@@ -1,26 +1,26 @@
 == backend loop, step 8 (dealer stock question)
 voltrieve-api        request      1
-voltrieve-api        dependency   6
+voltrieve-api        dependency   7
 voltrieve-api        trace        23
 voltrieve-dealer     request      1
 voltrieve-dealer     trace        1
 voltrieve-dealer     dependency   3
 == backend prompt, step 8 (dealer stock question)
 responsesapi         dependency   4
-voltrieve-api        request      1
-voltrieve-api        dependency   10
 voltrieve-api        trace        23
+voltrieve-api        request      1
+voltrieve-api        dependency   11
 voltrieve-dealer     request      1
-voltrieve-dealer     trace        1
-voltrieve-dealer     dependency   3
+voltrieve-dealer     dependency   4
+voltrieve-dealer     trace        2
 == backend hosted, step 8 (dealer stock question)
 agentsv2             request      1
 responsesapi         dependency   4
-voltrieve-api        request      1
 voltrieve-api        dependency   6
+voltrieve-api        request      1
 voltrieve-api        trace        21
 voltrieve-dealer     trace        1
-voltrieve-dealer     request      1
 voltrieve-dealer     dependency   3
+voltrieve-dealer     request      1
 voltrieve-hosted     trace        16
 voltrieve-hosted     dependency   3
