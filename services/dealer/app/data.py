@@ -3,6 +3,14 @@ import json
 import uuid
 from dataclasses import dataclass
 from pathlib import Path
+from zoneinfo import ZoneInfo
+
+DEALER_TIMEZONE = ZoneInfo("Europe/Stockholm")
+
+
+def today() -> dt.date:
+    """Today at the dealer, whatever the timezone of the host (containers run in UTC)."""
+    return dt.datetime.now(DEALER_TIMEZONE).date()
 
 
 class UnknownModel(ValueError):
@@ -82,6 +90,6 @@ class DealerData:
 
     def book(self, model: str, city: str, date: dt.date, requester: str) -> Booking:
         self._check(model, city)
-        if date <= dt.date.today():
+        if date <= today():
             raise DateNotInFuture(date.isoformat())
         return Booking(str(uuid.uuid4()), model, city, date, requester)

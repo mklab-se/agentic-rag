@@ -16,7 +16,7 @@ def configure_telemetry(connection_string: str) -> bool:
         return False
     from azure.monitor.opentelemetry import configure_azure_monitor
 
-    configure_azure_monitor(connection_string=connection_string)
+    configure_azure_monitor(connection_string=connection_string, enable_live_metrics=False)
     logger.info("Azure Monitor telemetry enabled")
     return True
 

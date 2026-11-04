@@ -28,7 +28,7 @@ def test_app_starts_with_and_without_connection_string(monkeypatch, settings, va
     assert calls == []
     with_telemetry = Settings(applicationinsights_connection_string="InstrumentationKey=k")
     create_app(with_telemetry, validator)
-    assert calls == [{"connection_string": "InstrumentationKey=k"}]
+    assert calls == [{"connection_string": "InstrumentationKey=k", "enable_live_metrics": False}]
 
 
 async def test_inbound_traceparent_is_honoured_and_correlation_id_recorded(settings, validator):
@@ -58,3 +58,12 @@ async def test_logs_keep_the_correlation_id(settings, validator, capsys):
     lines = [json.loads(line) for line in capsys.readouterr().out.splitlines() if line.startswith("{")]
     access = [e for e in lines if e["message"] == "request"]
     assert access and access[0]["correlation_id"] == "cid-9"
+
+
+def test_azure_sdk_logging_is_kept_quiet():
+    import logging
+
+    from app.logging_setup import configure_logging
+
+    configure_logging("INFO")
+    assert logging.getLogger("azure").level == logging.WARNING

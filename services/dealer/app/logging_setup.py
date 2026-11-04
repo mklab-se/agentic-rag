@@ -31,3 +31,5 @@ def configure_logging(level: str) -> None:
     root = logging.getLogger()
     root.handlers[:] = [handler]
     root.setLevel(level.upper())
+    # The Azure SDK logs every HTTP request and response header at INFO.
+    logging.getLogger("azure").setLevel(logging.WARNING)

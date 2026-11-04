@@ -6,7 +6,7 @@ from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel, field_validator
 
 from app.auth import AuthError, Claims
-from app.data import DealerData
+from app.data import DealerData, today
 
 DATA_PATH = Path(__file__).parent / "data.json"
 
@@ -33,7 +33,7 @@ class TestDriveRequest(BaseModel):
     @field_validator("date")
     @classmethod
     def date_in_future(cls, value: dt.date) -> dt.date:
-        if value <= dt.date.today():
+        if value <= today():
             raise ValueError("date must be in the future")
         return value
 

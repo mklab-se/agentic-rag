@@ -3,6 +3,7 @@ import datetime as dt
 from httpx import ASGITransport, AsyncClient
 
 from app.auth import TokenValidator
+from app.data import today
 from app.main import create_app
 
 
@@ -43,7 +44,7 @@ async def test_prices_in_eur(settings, validator, auth_header):
 
 
 async def test_book_test_drive(settings, validator, auth_header):
-    date = (dt.date.today() + dt.timedelta(days=3)).isoformat()
+    date = (today() + dt.timedelta(days=3)).isoformat()
     async with client(settings, validator) as c:
         r = await c.post(
             "/test-drives",
@@ -54,8 +55,8 @@ async def test_book_test_drive(settings, validator, auth_header):
 
 
 async def test_booking_validation(settings, validator, auth_header):
-    past = (dt.date.today() - dt.timedelta(days=1)).isoformat()
-    future = (dt.date.today() + dt.timedelta(days=1)).isoformat()
+    past = (today() - dt.timedelta(days=1)).isoformat()
+    future = (today() + dt.timedelta(days=1)).isoformat()
     async with client(settings, validator) as c:
         for body in [
             {"model": "atlas", "city": "Göteborg", "date": past, "requester": "x"},
@@ -102,3 +103,11 @@ async def test_jwks_failure_is_passed_through_as_503(settings, tenant_id, client
     async with client(settings, broken_validator) as c:
         r = await c.get("/stock", headers={"Authorization": f"Bearer {make_token()}"})
     assert r.status_code == 503
+
+
+def test_today_is_the_dealers_date_not_the_hosts():
+    import datetime as dt
+
+    from app.data import DEALER_TIMEZONE
+
+    assert today() == dt.datetime.now(DEALER_TIMEZONE).date()

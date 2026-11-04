@@ -11,6 +11,7 @@ dependencies = [
     "pydantic-settings",
     "azure-monitor-opentelemetry",
     "opentelemetry-api",
+    "tzdata",
 ]
 
 [dependency-groups]

@@ -54,4 +54,7 @@ def create_app(settings: Settings, validator: TokenValidator | None = None) -> F
     return app
 
 
-app = create_app(Settings())
+def build_app() -> FastAPI:
+    """The uvicorn entry point (`uvicorn --factory app.main:build_app`): nothing is built at
+    import."""
+    return create_app(Settings())
