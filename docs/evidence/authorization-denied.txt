@@ -4,20 +4,24 @@
       Built voltrieve-agent-core @ file://agent_core
       Built voltrieve-search @ file://search
       Built voltrieve-api @ file://api
-Uninstalled 87 packages in 364ms
-{"time": "2026-11-04T02:26:28+0100", "level": "WARNING", "logger": "azure.ai.projects.telemetry._ai_project_instrumentor", "message": "GenAI tracing is not enabled. Set environment variable AZURE_EXPERIMENTAL_ENABLE_GENAI_TRACING=true to enable this experimental feature.", "correlation_id": "-", "conversation_id": null, "turn_id": null, "backend": null, "user_oid": null}
-{"time": "2026-11-04T02:26:31+0100", "level": "WARNING", "logger": "voltrieve_agent.tools", "message": "authorization denied: tool book_test_drive requires role TestDrive.Book (user 00000000-0000-0000-0000-00000000dead)", "correlation_id": "5d8f9195-9f6e-4d02-b256-1e70394c308a", "conversation_id": "conv_0684d15b4d65ef18001e2d5ezYpRN1d0hobjSvPn6FUTQHJ0tv", "turn_id": "1ccb5b7a-a160-48fd-bed4-0e84bf494772", "backend": "loop", "user_oid": "00000000-0000-0000-0000-00000000dead"}
+Uninstalled 87 packages in 362ms
+{"time": "2026-11-04T03:29:48+0100", "level": "WARNING", "logger": "azure.ai.projects.telemetry._ai_project_instrumentor", "message": "GenAI tracing is not enabled. Set environment variable AZURE_EXPERIMENTAL_ENABLE_GENAI_TRACING=true to enable this experimental feature.", "correlation_id": "-", "conversation_id": null, "turn_id": null, "backend": null, "user_oid": null}
+{"time": "2026-11-04T03:29:52+0100", "level": "WARNING", "logger": "voltrieve_agent.tools", "message": "authorization denied: tool book_test_drive requires role TestDrive.Book (user 00000000-0000-0000-0000-00000000dead)", "correlation_id": "fa9afe02-123d-4b95-890b-9812b29a5462", "conversation_id": "conv_0d1e430ce61ecab000SKywP5Mwa7UvzfkeTrIa4HxH0A7w20Pa", "turn_id": "2a56685b-06f3-445b-aedf-866c666fddb6", "backend": "loop", "user_oid": "00000000-0000-0000-0000-00000000dead"}
 trace  token_validated          roles: Chat.User
 trace  backend_selected         loop
-trace  conversation_created     conv_0684d15b4d65ef18001e2d5ezYpRN1d0hobjSvPn6FUTQHJ0tv
+trace  conversation_created     conv_0d1e430ce61ecab000SKywP5Mwa7UvzfkeTrIa4HxH0A7w20Pa
 trace  model_called             iteration 1
+trace  model_returned           0 text deltas, 1 tool calls
+trace  server_tool_called       get_current_date
+trace  server_tool_returned     get_current_date
+trace  model_called             iteration 2
 trace  model_returned           0 text deltas, 1 tool calls
 trace  server_tool_called       book_test_drive
 trace  authorization_denied     book_test_drive requires role TestDrive.Book
 trace  server_tool_returned     book_test_drive
-trace  model_called             iteration 2
-trace  model_returned           22 text deltas, 0 tool calls
+trace  model_called             iteration 3
+trace  model_returned           20 text deltas, 0 tool calls
 
-answer: I’m sorry, but I can’t book that test drive for you because the signed-in user isn’t अनुमति to use the booking tool.
+answer: I couldn’t book the test drive because the signed-in user isn’t allowed to use the booking function right now.
 
 PASS: authorization_denied emitted
