@@ -7,6 +7,8 @@ from typing import Protocol
 
 import openai
 
+# Comparison questions across documents went wrong too often at the default effort.
+REASONING_EFFORT = "medium"
 RATE_LIMIT_RETRIES = 3
 RATE_LIMIT_DELAY_SECONDS = 20.0
 
@@ -117,6 +119,7 @@ class ResponsesModelClient:
                 conversation=conversation,
                 input=input,
                 tools=tools,
+                reasoning={"effort": REASONING_EFFORT},
                 stream=True,
             )
         async with events:

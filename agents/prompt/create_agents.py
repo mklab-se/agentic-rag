@@ -92,7 +92,12 @@ def agent_definition(
     tools = [kb_mcp_tool(search_endpoint, connection_name), *dealer_function_tools()]
     if with_cli_tools:
         tools += cli_function_tools()
-    return PromptAgentDefinition(model=chat_deployment, instructions=AGENT_INSTRUCTIONS, tools=tools)
+    return PromptAgentDefinition(
+        model=chat_deployment,
+        instructions=AGENT_INSTRUCTIONS,
+        tools=tools,
+        reasoning=Reasoning(effort=REASONING_EFFORT),
+    )
 
 
 def _require(name: str) -> str:

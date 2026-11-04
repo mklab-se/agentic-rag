@@ -21,11 +21,13 @@ import argparse
 import datetime as dt
 import json
 import sys
+import time
 from dataclasses import dataclass
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+from trace_evidence import resource_group_app, trace_counts, write_report
 from voltrieve_client import (  # noqa: E402
     Api, ApiError, Turn, api_token, api_url, booking_request, cached_token, write_evidence,
 )
@@ -190,11 +192,6 @@ def run_backend(backend: str, base: str, token, wanted: set[int]) -> list[Result
                                        f"error code: {code}. Foundry's own 400: agents/prompt/demo_rejection.py")
             results.append(r)
 
-    # 12. Application Insights, by hand.
-    if want(12):
-        ids = ", ".join(f"runbook-{backend}-{n}" for n in (2, 8))
-        results.append(Result(12, "Follow one correlation id in Application Insights", "MANUAL",
-                              note=f"run scripts/trace_evidence.py, or search customDimensions for: {ids}"))
     api.close()
     return sorted(results, key=lambda r: r.number)
 
@@ -228,6 +225,32 @@ def table(all_results: dict[str, list[Result]]) -> str:
     return "\n".join(lines) + "\n"
 
 
+REQUIRED_SERVICES = {
+    "loop": {"voltrieve-api", "voltrieve-dealer"},
+    "prompt": {"voltrieve-api", "voltrieve-dealer", "responsesapi"},
+    "hosted": {"voltrieve-api", "voltrieve-dealer", "responsesapi", "agentsv2", "voltrieve-hosted"},
+}
+
+
+def check_traces(all_results: dict[str, list[Result]]) -> None:
+    """Step 12: one trace id must reach every service of the backend. Ingestion takes a few minutes."""
+    group, app = resource_group_app()
+    counts: dict[str, list[list]] = {}
+    deadline = time.monotonic() + 420
+    while True:
+        counts = {b: trace_counts(group, app, b, 1) for b in all_results}
+        seen = {b: {row[0] for row in rows} for b, rows in counts.items()}
+        if all(REQUIRED_SERVICES[b] <= seen[b] for b in all_results) or time.monotonic() > deadline:
+            break
+        time.sleep(30)
+    write_report(counts)
+    for backend, results in all_results.items():
+        missing = REQUIRED_SERVICES[backend] - seen[backend]
+        status = "FAIL" if missing else "PASS"
+        results.append(Result(12, "Follow one trace id in Application Insights", status,
+                              note=f"missing {sorted(missing)}" if missing else "all services in one trace"))
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     parser.add_argument("--backends", default="prompt,loop,hosted")
@@ -242,6 +265,8 @@ def main() -> int:
         print(f"running {backend} ...", flush=True)
         all_results[backend] = run_backend(backend, base, token, wanted)
         print(f"  evidence: {save(backend, all_results[backend]).relative_to(ROOT)}")
+    if not wanted or 12 in wanted:
+        check_traces(all_results)
     text = table(all_results)
     print("\n" + text)
     write_evidence(EVIDENCE / "runbook-table.txt", text)
