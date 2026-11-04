@@ -15,8 +15,9 @@ definition.
 import os
 import sys
 
-from azure.ai.projects.models import FunctionTool, MCPTool, PromptAgentDefinition
+from azure.ai.projects.models import FunctionTool, MCPTool, PromptAgentDefinition, Reasoning
 from voltrieve_agent.instructions import AGENT_INSTRUCTIONS
+from voltrieve_agent.model import REASONING_EFFORT
 from voltrieve_agent.server_tools import KB_SEARCH_TOOL, build_server_tools
 
 CLI_AGENT_NAME = "voltrieve-prompt-cli"
