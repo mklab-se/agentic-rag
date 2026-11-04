@@ -11,16 +11,14 @@ az login
 azd env select voltrieve-dev
 ```
 
-The CLI reads `VOLTRIEVE_*` settings. The azd environment holds the same values under other names, so export them once:
+The CLI reads `API_URL`, `TENANT_ID`, `CLI_CLIENT_ID` and `API_CLIENT_ID` from the azd environment (`azd env get-values`), so nothing has to be exported. A `VOLTRIEVE_API_URL`, `VOLTRIEVE_TENANT_ID`, `VOLTRIEVE_CLI_CLIENT_ID` or `VOLTRIEVE_API_CLIENT_ID` variable overrides the azd value, for pointing the CLI at another API.
 
 ```sh
-export VOLTRIEVE_API_URL="$(azd env get-value API_URL)"
-export VOLTRIEVE_TENANT_ID="$(azd env get-value TENANT_ID)"
-export VOLTRIEVE_CLI_CLIENT_ID="$(azd env get-value CLI_CLIENT_ID)"
-export VOLTRIEVE_API_CLIENT_ID="$(azd env get-value API_CLIENT_ID)"
 export FOUNDRY_PROJECT_ENDPOINT="$(azd env get-value FOUNDRY_PROJECT_ENDPOINT)"
 alias voltrieve='uv run --project clients/cli voltrieve'
 ```
+
+The CLI asks for the `access_as_user` scope. `voltrieve login` always shows the Microsoft account picker and does not reuse a cached sign-in, so you can choose which account to use. `voltrieve logout` forgets the cached accounts. Each `ask` and each turn of `chat` generates a correlation id and sends it as `X-Correlation-Id` on every request of the turn; `ask` prints it on stderr, and `chat` shows it in the trace panel.
 
 Run everything from the repository root. `voltrieve ask` prints the answer on stdout and the trace on stderr. Add `--json` to get every event as a JSON line. `voltrieve chat` shows the chat and a live trace panel.
 
@@ -35,7 +33,7 @@ uv run tests/grounding/check.py                 # 10 questions per backend
 uv run tests/grounding/check.py --backends prompt --only atlas-stock
 ```
 
-`scripts/runbook.py` prints a table and writes `docs/evidence/<backend>.json`, overwriting what is there. It sends `runbook-<backend>-<step>` as the correlation id. Keep the committed evidence with `git checkout docs/evidence` after a partial run.
+`scripts/runbook.py` prints a table and writes `docs/evidence/<backend>.json` and `runbook-table.txt`, overwriting what is there. Saved files keep model output verbatim except for em-dashes and absolute paths ([docs/evidence/README.md](evidence/README.md)). It sends `runbook-<backend>-<step>` as the correlation id. Keep the committed evidence with `git checkout docs/evidence` after a partial run.
 
 Both scripts compare answers with `data/voltrieve.yaml` and exit 1 on a miss. Recorded results:
 
@@ -44,11 +42,13 @@ Both scripts compare answers with `data/voltrieve.yaml` and exit 1 on a miss. Re
 
 Step 7 and `cheapest-awd-se` are the same question. It passed and failed on different backends in different runs, so read it as non-deterministic.
 
-The recorded evidence comes from these scripts, which speak the same contract as the CLI. There is no transcript of `voltrieve` itself in `docs/evidence/`, and `voltrieve login` (MSAL browser sign-in) is covered by no test.
+The recorded evidence comes from these scripts, which speak the same contract as the CLI. There is no transcript of `voltrieve` itself in `docs/evidence/`. `voltrieve login` and `logout` are tested against a fake MSAL application; a real browser sign-in was not exercised.
+
+`uv run scripts/smoke.py` is the quick check after a deployment (`scripts/deploy-agents.sh` runs it last): `/healthz` of the API and the dealer, the indexer's last run, and one question on each backend.
 
 ## Backend A: prompt
 
-The knowledge base is an MCP tool inside Foundry, so retrieval shows as one `mcp_tool_called` event, with no sub-queries or references. Citations look like `【5:0†voltrieve-fjord-specifications.pdf】`.
+The knowledge base is an MCP tool inside Foundry, so retrieval shows as one `mcp_tool_called` event, with no sub-queries or references. Foundry writes citations as `【5:0†voltrieve-fjord-specifications.pdf】`. The API rewrites them to ` (voltrieve-fjord-specifications.pdf)` and drops a marker that names no file (`【4:0†source】`), so a client cannot tell this backend by its text. The recorded runs predate that filter and show the raw markers.
 
 | Step | Command | Expected trace | Recorded result |
 | --- | --- | --- | --- |
@@ -140,7 +140,9 @@ npm run dev:mock      # in a second terminal, SPA with fake auth
 
 ## Follow a correlation id
 
-The API takes `X-Correlation-Id` from the request, or generates one. It sets it as `correlation_id` on the request span and the `chat.turn` span, and passes it to the dealer, which sets it on its own span. The value is therefore in `customDimensions` of `requests` and `dependencies`. It is not on log records in Application Insights: there, join on `operation_Id`. The JSON logs on stdout do carry it.
+The API takes `X-Correlation-Id` from the request, or generates one. It sets it as `correlation_id` on the request span and the `chat.turn` span, and passes it to the dealer, which sets it on its own span. The hosted agent logs it with the user's oid on every turn. The value is therefore in `customDimensions` of `requests` and `dependencies`. It is not on log records in Application Insights: there, join on `operation_Id`. The JSON logs on stdout do carry it.
+
+Every hop of a turn is also a log line (`trace`, with `step`, `component`, `detail` and `elapsed_ms`) and an event on the `chat.turn` span, so the logs show the same sequence the client sees. Tool arguments and result previews are logged only at `LOG_LEVEL=DEBUG`, truncated.
 
 In the Azure portal, open the Application Insights resource and choose Logs:
 
@@ -166,9 +168,9 @@ Expect `cloud_RoleName` `voltrieve-api`, with `voltrieve-dealer` for the dealer 
 - on `prompt`: the same, with no Search call, because Foundry makes it;
 - on `hosted`: the call to `.../protocols/invocations`. The model and dealer calls are made in the agent, under whatever service name the agent host sets.
 
-A client tool turn is two HTTP requests, so it spans two `operation_Id` values under one correlation id. The query handles that when the client sends the same id on both, as `scripts/runbook.py` does.
+A client tool turn is two HTTP requests, so it spans two `operation_Id` values under one correlation id. The query handles that when the client sends the same id on both, as `scripts/runbook.py` and the CLI do.
 
-`voltrieve` and the SPA send no correlation id, and neither shows the generated one. For those, take `turn_id` from `voltrieve ask --json` and filter on it instead:
+`voltrieve` and the SPA generate one id per turn, send it on every request of the turn and show it (the CLI on stderr and in the trace panel, the SPA in the event timeline). Copy it into `cid` above. Without an id, take `turn_id` from `voltrieve ask --json` and filter on it instead:
 
 ```kusto
 dependencies
@@ -185,7 +187,7 @@ The services can run locally with your Azure CLI identity. This path has no reco
 ```sh
 set -a; eval "$(azd env get-values)"; set +a
 export CORS_ORIGINS=http://localhost:5173 VOLTRIEVE_API_URL=http://localhost:8000
-(cd api && uv run uvicorn app.main:app --port 8000)
+(cd api && uv run uvicorn --factory app.main:build_app --port 8000)
 ```
 
 Foundry and Search work through your roles. Dealer tools fail against the deployed dealer, because it requires the `Dealer.Access` application role, which a user token does not have.

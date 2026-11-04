@@ -8,7 +8,7 @@ It ships three backends behind one Web API, a CLI that declares its own tools, a
 
 **How do client-side tools coexist with a Foundry-based RAG solution?** A prompt agent rejects `tools` with `400 Not allowed when agent is specified.`, so client tools must be in its definition, which only suits a fixed list. Calling the Responses API with a model accepts per-request tools, so an own loop in a web API solves it directly. A hosted agent can run the same loop, but needs the Invocations protocol, because its Responses protocol drops caller tools.
 
-**Why define and host an agent in Foundry at all?** For a managed agent identity, versions and a path to Teams and Microsoft 365. Not for the loop: it is 185 lines of Python, and most of the work (turn state, auth, tracing, relay) stays in your API with any backend. Use an own loop when clients bring tools, a hosted agent when you also need agent identity or publishing, and a prompt agent when the tool list is fixed.
+**Why define and host an agent in Foundry at all?** For a managed agent identity, versions and a path to Teams and Microsoft 365. Not for the loop: it is 210 lines of Python, and most of the work (turn state, auth, tracing, relay) stays in your API with any backend. Use an own loop when clients bring tools, a hosted agent when you also need agent identity or publishing, and a prompt agent when the tool list is fixed.
 
 The full argument, with evidence and line counts, is in [docs/why-foundry.md](docs/why-foundry.md).
 
@@ -54,16 +54,12 @@ scripts/deploy-agents.sh
 Then ask something:
 
 ```sh
-export VOLTRIEVE_API_URL="$(azd env get-value API_URL)"
-export VOLTRIEVE_TENANT_ID="$(azd env get-value TENANT_ID)"
-export VOLTRIEVE_CLI_CLIENT_ID="$(azd env get-value CLI_CLIENT_ID)"
-export VOLTRIEVE_API_CLIENT_ID="$(azd env get-value API_CLIENT_ID)"
-
+# The CLI reads API_URL, TENANT_ID, CLI_CLIENT_ID and API_CLIENT_ID from the azd environment.
 uv run --project clients/cli voltrieve ask "Which Voltrieve charges fastest?" --backend loop --az-token
 uv run --project clients/cli voltrieve chat --backend hosted --az-token
 ```
 
-Run the checks with `uv run scripts/runbook.py` and `uv run tests/grounding/check.py`. The walkthrough is in [docs/runbook.md](docs/runbook.md).
+Run the checks with `uv run scripts/runbook.py` and `uv run tests/grounding/check.py`. `scripts/deploy-agents.sh` ends with `scripts/smoke.py`: health of the API and dealer, the indexer, and one question per backend. The walkthrough is in [docs/runbook.md](docs/runbook.md).
 
 Tear down with `azd down --purge`. App registrations and the tester are not removed by azd: [docs/deploy.md](docs/deploy.md#teardown) shows how to delete them.
 
@@ -101,11 +97,11 @@ Verified live:
 - The prompt agent's 400.
 - The authorization denied path, on the loop backend, against real Foundry with a fake token validator.
 
-Offline tests pass: `agent_core` 34, `api` 102, `agents/hosted` 17, `tests/contract` 12, `clients/cli` 14, `services/dealer` 35, `search` 25, Entra setup 31, `clients/web` 24.
+Offline tests pass: `agent_core` 45, `api` 118, `agents/hosted` 18, `tests/contract` 20, `clients/cli` 23, `services/dealer` 37, `search` 25, Entra setup 31, `clients/web` 28.
 
 Not verified:
 
-- Interactive sign-in to the SPA, and `voltrieve login`.
+- Interactive sign-in to the SPA, and a real browser sign-in with `voltrieve login` (its MSAL calls are tested against a fake).
 - A real sign-in as the tester.
 - Following a correlation id in Application Insights (runbook step 12).
 - What Foundry's own tracing records.

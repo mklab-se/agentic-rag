@@ -86,7 +86,7 @@ The pause limit is 15 minutes. A turn survives a client disconnect, and SSE send
 
 The owner `oid` goes into the Foundry conversation's metadata when the conversation is created. The in-process map is a bounded cache (1000 conversations). Otherwise scale to zero would break every conversation. Reading it back after a real restart is not in the recorded evidence.
 
-A foreign conversation gets the same 403 as an unknown one, so ids cannot be probed.
+A foreign conversation gets the same 403 as an unknown one, so ids cannot be probed. A foreign paused turn gets the same `turn_expired` answer as an unknown one, and is left untouched for its owner. If Foundry cannot be read at all, the lookup answers 503: an outage is not an unknown conversation.
 
 ### Stateless repair
 
@@ -114,6 +114,28 @@ The agent accepts only the API's managed identity, read from `x-ms-original-subj
 
 When the stream to the hosted agent breaks, the conversation stays blocked for 120 seconds and is then repaired. This avoids racing a detached turn. The user can wait up to two minutes after a dropped connection.
 
+## Clients and observability
+
+### Backends are indistinguishable to clients
+
+The prompt backend rewrites Foundry citation markers (`【5:0†file】` becomes ` (file)`, `【4:0†source】` is dropped) before text reaches a client, holding a marker back across deltas until it closes. The fact checks in `scripts/voltrieve_facts.py` no longer strip markers, so they judge what a client sees. The error code for a failed hosted call is `agent_unavailable`, not a name that gives the backend away.
+
+### Client tool arguments are validated, and schemas may not use `$ref`
+
+A client declares the schema of its tools, and the model is not bound to it. `ToolSet.validate_client` checks each call before it is forwarded; a failing call is answered with the error and never reaches the client. The API rejects `$ref` and `$dynamicRef` anywhere in a client schema (422), so the validator can never be made to fetch a URL.
+
+### One correlation id per turn
+
+The CLI and the SPA generate an id for each turn and send it as `X-Correlation-Id` on every request of the turn, and show it. A client tool turn is two requests under one id. Every hop of a turn is a log line and a span event, with arguments and result previews at debug level only.
+
+### The CLI reads the azd environment
+
+The CLI maps the azd keys (`API_URL`, `TENANT_ID`, `CLI_CLIENT_ID`, `API_CLIENT_ID`) itself; `VOLTRIEVE_*` variables override them. `voltrieve login` shows the account picker every time and `voltrieve logout` forgets the cache. Control characters in model text are removed before they reach the terminal.
+
+### Dates follow the dealer
+
+`get_current_date` and the dealer's "future date" rule use Europe/Stockholm, not the host's clock: containers run in UTC, which is a day behind for the first hours after midnight in Sweden.
+
 ## Identity
 
 ### Azure CLI pre-authorized on the API
@@ -133,14 +155,14 @@ It is an ingestion identifier, not a secret: it only allows sending telemetry. I
 - Provision runs before package, because the web build needs provision outputs.
 - The SPA upload runs in Docker on Apple Silicon. The SWA CLI's client is x86, and installing Rosetta is a system change.
 - The root `.dockerignore` is an allow-list, because `azd` tar failed on files changing during the archive.
-- The search smoke test runs in `postup`, so a miss cannot block a deployment.
+- The search smoke test runs in `postup`, so a miss cannot block a deployment. `scripts/smoke.py` runs at the end of `scripts/deploy-agents.sh` and covers the API, the dealer, the indexer and one turn per backend.
 - The dealer client timeout is 45 seconds, because the dealer scales to zero. The earlier 15 seconds caused one grounding miss.
 
 ## Live findings
 
 - Prompt agent with `agent_reference` plus `tools`: `400 Not allowed when agent is specified.`
 - Responses with `conversation` plus per-request `tools` works. `function_call_output` works with a model and with `agent_reference`.
-- Prompt agent: the knowledge base attaches by MCP through a `RemoteTool` connection with `ProjectManagedIdentity`. The result has no references or activity, and citations appear as `【5:0†file】` markers. Roles can only be enforced in the relay in the API.
+- Prompt agent: the knowledge base attaches by MCP through a `RemoteTool` connection with `ProjectManagedIdentity`. The result has no references or activity, and citations appear as `【5:0†file】` markers, which the API rewrites before they reach a client. Roles can only be enforced in the relay in the API.
 - Hosted: the gateway replaces `x-ms-original-subject`. A forged request as the deployer got 403 from the handler.
 - Hosted: each agent has an Entra identity (`instance_identity.principal_id`), stable across versions.
 - Hosted: the first call on a new session is slow, a broken image gives `session_not_ready`, sessions bind to one version, the idle timeout minimum is 120 seconds, and billing is for active sessions only.
@@ -150,7 +172,7 @@ It is an ingestion identifier, not a secret: it only allows sending telemetry. I
 
 ## Not recorded or not verified
 
-- Interactive SPA sign-in, and `voltrieve login`.
+- Interactive SPA sign-in, and a real browser sign-in with `voltrieve login` (tested against a fake MSAL application).
 - A real sign-in as the tester. The denied case ran with a fake validator.
 - Runbook step 12: following a correlation id in Application Insights.
 - What Foundry's own tracing writes for prompt and hosted agents.
