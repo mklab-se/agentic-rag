@@ -40,7 +40,7 @@ Both scripts compare answers with `data/voltrieve.yaml` and exit 1 on a miss. Re
 - Runbook: every step passes on every backend on the final build. Step 11 is `prompt` only. Step 12 is checked automatically by `scripts/runbook.py`, which waits for telemetry and writes `docs/evidence/application-insights.txt`.
 - Grounding: 30 of 30 passed (`docs/evidence/grounding.txt`).
 
-Step 7 and `cheapest-awd-se` are the same question. It passed and failed on different backends in different runs, so read it as non-deterministic.
+Step 7 and `cheapest-awd-se` are the same question. At the default reasoning effort it varied between runs on every backend. At medium effort it passed 18 of 18 (`docs/evidence/cross-document-repeat.txt`).
 
 The recorded evidence comes from these scripts, which speak the same contract as the CLI. There is no transcript of `voltrieve` itself in `docs/evidence/`. `voltrieve login` and `logout` are tested against a fake MSAL application; a real browser sign-in was not exercised.
 
