@@ -73,13 +73,14 @@ function Workspace({ config, auth, session }: { config: AppConfig; auth: Auth; s
   const send = useCallback(
     async (message: string) => {
       setBusy(true);
-      dispatch({ type: "start", message, backend });
+      const correlationId = crypto.randomUUID();
+      dispatch({ type: "start", message, backend, correlationId });
       const ctrl = new AbortController();
       abort.current = ctrl;
       try {
         const token = await auth.getToken();
         for await (const event of streamChat(
-          { apiUrl: config.apiUrl, token, backend, conversationId: conversationId.current, message },
+          { apiUrl: config.apiUrl, token, backend, conversationId: conversationId.current, message, correlationId },
           ctrl.signal,
         )) {
           dispatch({ type: "event", event });

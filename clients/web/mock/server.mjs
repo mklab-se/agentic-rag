@@ -4,8 +4,11 @@
 //   npm run mock            (listens on :8787)
 //   npm run dev:mock        (SPA with fake auth pointing here)
 //
-// Special messages: containing "tools" emits client_tool_calls, "error" emits an
-// error event. Everything else gets the scripted grounded answer.
+// The steps and components are the ones the real API emits (token_validated, backend_selected,
+// conversation_created, model_called, server_tool_called, knowledge_base_retrieved,
+// server_tool_returned, model_returned). Special messages: containing "tools" emits
+// client_tool_calls, "error" emits an error event. Everything else gets the scripted grounded
+// answer. The X-Correlation-Id of the request is echoed back, as the real API does.
 import { createServer } from "node:http";
 import { randomUUID } from "node:crypto";
 
@@ -15,19 +18,22 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, FAST ? 0 : ms));
 
 const CORS = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, content-type, x-agent-backend",
+  "Access-Control-Allow-Headers": "authorization, content-type, x-agent-backend, x-correlation-id",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Expose-Headers": "x-correlation-id",
 };
 
 function script(message, backend) {
   const t = [
-    ["token validated", "auth", "oid 7f3a..., roles Chat.User, TestDrive.Book", 4],
-    ["backend selected", "agent", `backend ${backend}`, 6],
-    ["model called", "model", "gpt chat deployment, 2 server tools available", 38],
-    ["server tool requested", "tool", "search_documents(query=\"Fjord towing capacity\")", 920],
-    ["retrieval started", "search", "knowledge base voltrieve-kb, semantic reranker", 931],
-    ["retrieval returned 4 chunks", "search", "fjord-owners-manual p.41, fjord-spec-sheet p.2", 1384],
-    ["model called", "model", "answering from 4 chunks", 1402],
+    ["token_validated", "auth", "roles: Chat.User, TestDrive.Book", 4],
+    ["backend_selected", "api", backend, 6],
+    ["conversation_created", "api", "conv_mock", 21],
+    ["model_called", "model", "iteration 1", 38],
+    ["model_returned", "model", "0 text deltas, 1 tool calls", 910],
+    ["server_tool_called", "tools", "search_voltrieve_docs", 920],
+    ["knowledge_base_retrieved", "search", "4 chunks from 2 documents", 1384],
+    ["server_tool_returned", "tools", "search_voltrieve_docs", 1390],
+    ["model_called", "model", "iteration 2", 1402],
   ];
   const answer =
     message.toLowerCase().includes("beep")
@@ -46,9 +52,9 @@ async function turn(res, body, backend) {
 
   const { trace, answer } = script(msg, backend);
   if (/error/i.test(msg)) {
-    send("trace", { step: "token validated", component: "auth", detail: "ok", elapsed_ms: el() });
+    send("trace", { step: "token_validated", component: "auth", detail: "roles: Chat.User", elapsed_ms: el() });
     await sleep(300);
-    send("error", { code: "backend_failed", message: "The backend could not complete the turn." });
+    send("error", { code: "model_error", message: "The model call failed." });
     return;
   }
   for (const [step, component, detail, at] of trace) {
@@ -56,7 +62,12 @@ async function turn(res, body, backend) {
     send("trace", { step, component, detail, elapsed_ms: at });
   }
   if (/tools/i.test(msg)) {
-    send("client_tool_calls", { turn_id, calls: [{ call_id: "c1", name: "beep", arguments: { times: 3 } }] });
+    send("trace", { step: "client_tool_requested", component: "tools", detail: "beep", elapsed_ms: el() });
+    send("client_tool_calls", {
+      turn_id,
+      conversation_id,
+      calls: [{ call_id: "c1", name: "beep", arguments: JSON.stringify({ times: 3 }) }],
+    });
     return;
   }
   for (const word of answer.split(/(?<=\s)/)) {
@@ -89,7 +100,13 @@ createServer(async (req, res) => {
     return;
   }
   const backend = String(req.headers["x-agent-backend"] ?? "loop");
-  res.writeHead(200, { ...CORS, "Content-Type": "text/event-stream", "Cache-Control": "no-cache" });
+  const correlationId = String(req.headers["x-correlation-id"] ?? randomUUID());
+  res.writeHead(200, {
+    ...CORS,
+    "Content-Type": "text/event-stream",
+    "Cache-Control": "no-cache",
+    "X-Correlation-Id": correlationId,
+  });
   try {
     await turn(res, body, backend);
   } finally {

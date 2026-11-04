@@ -176,6 +176,8 @@ button:disabled { cursor: not-allowed; opacity: 0.5; }
 .rec-turn header { display: flex; gap: 10px; align-items: baseline; padding-bottom: 8px; border-bottom: 1px dashed var(--rec-line); font-size: 12px; }
 .turn-no { color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; white-space: nowrap; }
 .turn-q { color: var(--rec-ink-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; min-width: 0; }
+.turn-cid { margin: 6px 0 0; font-size: 11px; color: var(--rec-ink-2); overflow-wrap: anywhere; }
+.turn-cid code { font-family: inherit; user-select: all; }
 .turn-meta { color: var(--rec-ink-2); white-space: nowrap; }
 .rail { list-style: none; margin: 0; padding: 10px 0 0; position: relative; }
 .ev {

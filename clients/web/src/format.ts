@@ -3,14 +3,15 @@ export function formatElapsed(ms: number): string {
   return `${(ms / 1000).toFixed(ms < 10000 ? 2 : 1)} s`;
 }
 
-/** Map a free-form component label to one of a few stable colour families. */
+/** The components the API (and the agent code behind it) put on trace events, by colour family. */
+const FAMILIES: Record<string, string> = {
+  auth: "auth",
+  api: "api",
+  model: "model",
+  tools: "tool",
+  search: "search",
+};
+
 export function componentFamily(component: string): string {
-  const c = component.toLowerCase();
-  if (/auth|token|identity|entra/.test(c)) return "auth";
-  if (/model|llm|openai|completion/.test(c)) return "model";
-  if (/search|retriev|knowledge|kb|index/.test(c)) return "search";
-  if (/dealer|tool/.test(c)) return "tool";
-  if (/agent|loop|prompt|hosted|backend|foundry/.test(c)) return "agent";
-  if (/api|http|server/.test(c)) return "api";
-  return "other";
+  return FAMILIES[component] ?? "other";
 }

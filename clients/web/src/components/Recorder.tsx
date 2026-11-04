@@ -44,6 +44,9 @@ export function Recorder({ state }: { state: ChatState }) {
                 {totalMs(t) > 0 && ` · ${formatElapsed(totalMs(t))}`}
               </span>
             </header>
+            <p className="turn-cid">
+              correlation id <code>{t.correlationId}</code>
+            </p>
             <ol className="rail">
               {t.entries.map((e, i) =>
                 e.kind === "trace" ? (

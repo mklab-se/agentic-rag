@@ -3,7 +3,7 @@ import { chatReducer, initialChatState, type ChatState } from "./turns";
 import type { ServerEvent } from "./types";
 
 function run(events: ServerEvent[], start: ChatState = initialChatState): ChatState {
-  let s = chatReducer(start, { type: "start", message: "q", backend: "loop" });
+  let s = chatReducer(start, { type: "start", message: "q", backend: "loop", correlationId: "corr-1" });
   for (const event of events) s = chatReducer(s, { type: "event", event });
   return s;
 }
@@ -21,6 +21,12 @@ describe("chatReducer", () => {
     expect(t.status).toBe("done");
     expect(t.entries.map((e) => e.kind)).toEqual(["trace", "done"]);
     expect(s.conversationId).toBe("c1");
+  });
+
+  it("keeps the correlation id of each turn", () => {
+    let s = chatReducer(initialChatState, { type: "start", message: "a", backend: "loop", correlationId: "c-1" });
+    s = chatReducer(s, { type: "start", message: "b", backend: "loop", correlationId: "c-2" });
+    expect(s.turns.map((t) => t.correlationId)).toEqual(["c-1", "c-2"]);
   });
 
   it("keeps separate timelines per turn and the conversation id across turns", () => {

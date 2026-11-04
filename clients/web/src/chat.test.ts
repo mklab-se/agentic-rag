@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { buildChatRequest, streamChat } from "./chat";
 import type { ServerEvent } from "./types";
 
-const base = { apiUrl: "https://api.example/", token: "tok", backend: "loop" as const, message: "hello" };
+const base = { apiUrl: "https://api.example/", token: "tok", backend: "loop" as const, message: "hello", correlationId: "corr-1" };
 
 function sseResponse(chunks: string[], status = 200): Response {
   const enc = new TextEncoder();
@@ -42,6 +42,7 @@ describe("buildChatRequest", () => {
     const h = init.headers as Record<string, string>;
     expect(h.Authorization).toBe("Bearer tok");
     expect(h["X-Agent-Backend"]).toBe("hosted");
+    expect(h["X-Correlation-Id"]).toBe("corr-1");
     expect(init.method).toBe("POST");
   });
 });
@@ -63,6 +64,11 @@ describe("streamChat", () => {
     const f403 = (async () => new Response("", { status: 403 })) as unknown as typeof fetch;
     const e1 = await collect(streamChat(base, undefined, f403));
     expect(e1).toMatchObject([{ type: "error", data: { code: "http_403" } }]);
+    // A 403 is not always a missing role: it is also a missing scope or someone else's conversation.
+    const message = (e1[0] as { data: { message: string } }).data.message;
+    expect(message).toContain("Chat.User");
+    expect(message).toContain("access_as_user");
+    expect(message).not.toMatch(/role is required/);
 
     const fnet = (async () => {
       throw new TypeError("failed");

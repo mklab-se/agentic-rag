@@ -8,6 +8,8 @@ export interface ChatRequestInput {
   backend: Backend;
   conversationId?: string;
   message: string;
+  /** One id for the whole turn, sent on every request of it. */
+  correlationId: string;
 }
 
 /**
@@ -26,6 +28,7 @@ export function buildChatRequest(input: ChatRequestInput): { url: string; init: 
         Accept: "text/event-stream",
         Authorization: `Bearer ${input.token}`,
         "X-Agent-Backend": input.backend,
+        "X-Correlation-Id": input.correlationId,
       },
       body: JSON.stringify(body),
     },
@@ -37,7 +40,7 @@ function httpError(status: number): ServerEvent {
     status === 401
       ? "The API rejected the access token (401). Try signing in again."
       : status === 403
-        ? "You are signed in but not allowed to chat (403). The Chat.User role is required."
+        ? "The API refused the request (403). Check that your account has the Chat.User role, that the token carries the access_as_user scope, and that the conversation is yours."
         : `The API answered with HTTP ${status}.`;
   return { type: "error", data: { code: `http_${status}`, message } };
 }

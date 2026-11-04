@@ -8,6 +8,8 @@ export type TimelineEntry =
 export interface Turn {
   id: number;
   userText: string;
+  /** Sent as X-Correlation-Id: the id to search for in logs and traces. */
+  correlationId: string;
   requestedBackend: Backend;
   answer: string;
   entries: TimelineEntry[];
@@ -23,7 +25,7 @@ export interface ChatState {
 }
 
 export type ChatAction =
-  | { type: "start"; message: string; backend: Backend }
+  | { type: "start"; message: string; backend: Backend; correlationId: string }
   | { type: "event"; event: ServerEvent }
   | { type: "reset" };
 
@@ -48,6 +50,7 @@ export function chatReducer(state: ChatState, action: ChatAction): ChatState {
       const turn: Turn = {
         id: state.turns.length + 1,
         userText: action.message,
+        correlationId: action.correlationId,
         requestedBackend: action.backend,
         answer: "",
         entries: [],
