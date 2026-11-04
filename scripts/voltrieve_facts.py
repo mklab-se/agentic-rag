@@ -38,6 +38,8 @@ def load_questions() -> list[dict]:
 
 
 def _normal(text: str) -> str:
+    # Foundry citation markers such as 【5:0†file.pdf】 are not part of the answer.
+    text = re.sub(r"【[^】]*】", " ", text)
     text = text.replace("’", "'").lower()
     # 2 100 / 2,100 / 2 100 (nbsp) -> 2100
     return re.sub(r"(?<=\d)[ ,  ](?=\d{3}(?!\d))", "", text)

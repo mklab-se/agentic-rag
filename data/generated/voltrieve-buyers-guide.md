@@ -16,27 +16,25 @@ Electric cars that retrieve the joy of driving
 
 ### SE (SEK)
 
-| Model | Price |
-|---|---|
-| Voltrieve Spark | 289 000 SEK |
-| Voltrieve Lumen | 379 000 SEK |
-| Voltrieve Ragn | 549 000 SEK |
-| Voltrieve Fjord | 529 000 SEK |
-| Voltrieve Atlas | 749 000 SEK |
-| AWD surcharge | 40 000 SEK |
+| Model | Base price | Price with AWD |
+|---|---|---|
+| Voltrieve Spark | 289 000 SEK | not available |
+| Voltrieve Lumen | 379 000 SEK | 419 000 SEK |
+| Voltrieve Ragn | 549 000 SEK | 549 000 SEK |
+| Voltrieve Fjord | 529 000 SEK | 569 000 SEK |
+| Voltrieve Atlas | 749 000 SEK | 749 000 SEK |
 
 ### EU (EUR)
 
-| Model | Price |
-|---|---|
-| Voltrieve Spark | 26 500 EUR |
-| Voltrieve Lumen | 34 500 EUR |
-| Voltrieve Ragn | 49 900 EUR |
-| Voltrieve Fjord | 47 900 EUR |
-| Voltrieve Atlas | 67 900 EUR |
-| AWD surcharge | 3 600 EUR |
+| Model | Base price | Price with AWD |
+|---|---|---|
+| Voltrieve Spark | 26 500 EUR | not available |
+| Voltrieve Lumen | 34 500 EUR | 38 100 EUR |
+| Voltrieve Ragn | 49 900 EUR | 49 900 EUR |
+| Voltrieve Fjord | 47 900 EUR | 51 500 EUR |
+| Voltrieve Atlas | 67 900 EUR | 67 900 EUR |
 
-The AWD surcharge applies to models where AWD is an option next to RWD.
+Where AWD is an option next to RWD, the price with AWD includes a surcharge of 40 000 SEK or 3 600 EUR.
 
 ## Option packs
 

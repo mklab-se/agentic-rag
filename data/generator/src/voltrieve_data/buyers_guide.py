@@ -38,12 +38,18 @@ def write_buyers_guide(catalog: Catalog, out_dir: Path) -> Path:
     lines += ["", "## Prices", ""]
     for market in catalog.markets:
         c = market.currency
-        lines += [f"### {market.code} ({c})", "", f"| Model | Price |", "|---|---|"]
+        lines += [f"### {market.code} ({c})", "", f"| Model | Base price | Price with AWD |", "|---|---|---|"]
         for m in catalog.models:
-            lines.append(f"| {m.name} | {fmt_int(m.price[market.code])} {c} |")
-        lines.append(f"| AWD surcharge | {fmt_int(catalog.awd_surcharge[market.code])} {c} |")
+            awd = (
+                f"{fmt_int(catalog.awd_price(m, market.code))} {c}"
+                if "AWD" in m.drive
+                else "not available"
+            )
+            lines.append(f"| {m.name} | {fmt_int(m.price[market.code])} {c} | {awd} |")
         lines.append("")
-    lines += ["The AWD surcharge applies to models where AWD is an option next to RWD.", ""]
+    lines += ["Where AWD is an option next to RWD, the price with AWD includes a surcharge of "
+              f"{fmt_int(catalog.awd_surcharge['SE'])} SEK or "
+              f"{fmt_int(catalog.awd_surcharge['EU'])} EUR.", ""]
 
     lines += ["## Option packs", ""]
     codes = [m.code for m in catalog.markets]
