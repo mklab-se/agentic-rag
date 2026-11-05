@@ -221,9 +221,9 @@ Publishing to Teams and Microsoft 365 was not exercised. It requires a prompt or
 
 ## 6. Two knowledge bases: who chooses, and who runs them together
 
-The figures in this section are from the run of 2026-11-04. `docs/evidence/routing.txt` now holds the run of 2026-11-05, after curated answers were added: 14.0, 27.4 and 15.9 seconds for two bases on the own loop, prompt agent and hosted agent. The pattern is the same, and the prompt agent also called `get_curated_answer` in vain in 7 of 12 job questions.
+The figures in this section are from the run of 2026-11-04. `docs/evidence/routing.txt` and `routing-after-catalog-fix.txt` hold the runs of 2026-11-05. Two changes made the prompt agent much faster on two bases, from 24.6 to 16.5 seconds, with the own loop at 12.3 and the hosted agent at 17.2. The needless calls came from the instruction to use the same step: a prompt agent cannot run searches in parallel, so the model made parallel function calls instead. Prompt agents now have their own sentence, which cut this from most job runs to 1 of 27. Brake fluid also moved into the brake catalog, and all 111 article numbers were then found on all three backends.
 
-A second knowledge base holds 433 spare parts across five catalogs. The first gained a service guide that says what each job consists of, with no article numbers. The catalogs have the article numbers, with no procedures. So "which parts do I need to change the front left brake on my Fjord?" really needs both.
+A second knowledge base holds 429 spare parts across five catalogs. The first gained a service guide that says what each job consists of, with no article numbers. The catalogs have the article numbers, with no procedures. So "which parts do I need to change the front left brake on my Fjord?" really needs both.
 
 Two different decisions are involved, and they are often confused:
 
@@ -264,7 +264,7 @@ Backend A has less control:
 - A request with an agent reference does accept the setting, and it changes function tools: `true` gave 2 calls in one response, `false` gave 1 (`docs/evidence/parallel-setting.txt`).
 - It did not make the knowledge bases run together. The two MCP calls never overlapped in 12 runs, and the second query was written after the first result had come back. The explicit setting was tried on a few direct calls only, and only one of those reached the knowledge bases, so treat it as a strong hint.
 
-The prompt agent also lost time on something else. In 4 of 4 traced runs of a job question it first called `check_stock`, `get_prices` or `get_current_date` for several steps, although the instructions forbid that (`docs/evidence/prompt-extra-steps.txt`). Those are function tools, so each one returns to the API. Questions for one base took one step, and the other backends did not do this. The cause was not established.
+The prompt agent also lost time on something else. In 4 of 4 traced runs of a job question it first called `check_stock`, `get_prices` or `get_current_date` for several steps, although the instructions forbid that (`docs/evidence/prompt-extra-steps.txt`). Those are function tools, so each one returns to the API. Questions for one base took one step, and the other backends did not do this. The cause was found later: see the note at the start of this section.
 
 ### Parallel is not always better
 

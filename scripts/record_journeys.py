@@ -24,7 +24,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from voltrieve_client import Api, api_token, api_url, cached_token, write_evidence
+from voltrieve_client import Api, ApiError, api_token, api_url, cached_token, write_evidence
 
 BACKENDS = ["loop", "prompt", "hosted"]
 TIME_TOOL = {
@@ -88,15 +88,18 @@ def one(url, token, backend: str, key: str, repeat: int) -> dict:
         if key == "follow":
             conversation = api.turn(FIRST).conversation_id
         began = time.perf_counter()
-        turn = api.turn(
-            PROMPTS[key],
-            conversation_id=conversation,
-            client_tools=[TIME_TOOL] if key == "client" else None,
-            handlers={"get_local_time": local_time},
-            correlation_id=f"journey-{backend}-{key}-{repeat}",
-        )
-        return {
-            "seconds": round(time.perf_counter() - began, 2),
+        try:
+            turn = api.turn(
+                PROMPTS[key],
+                conversation_id=conversation,
+                client_tools=[TIME_TOOL] if key == "client" else None,
+                handlers={"get_local_time": local_time},
+                correlation_id=f"journey-{backend}-{key}-{repeat}",
+            )
+        except ApiError as exc:
+            return {"seconds": 0, "model_calls": 0, "tokens": 0, "used": [], "error": str(exc),
+                    "trace": {"server_tools": [], "mcp": [], "knowledge": [], "parallel": [], "answer": ""}}
+        return {            "seconds": round(time.perf_counter() - began, 2),
             "model_calls": len(turn.trace("model_called")),
             "tokens": (turn.done or {}).get("usage", {}).get("total_tokens", 0),
             "used": used(turn),

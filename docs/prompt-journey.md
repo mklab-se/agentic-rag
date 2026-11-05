@@ -125,7 +125,7 @@ A changed text needs a new API image, and on the hosted agent a new agent image 
 | Creates the conversation | Web API | Web API | Web API |
 | Holds instructions and tool list | Web API, sent on each call | Foundry, in the agent definition | Hosted container, sent on each call |
 | Calls the model | Web API | Web API, sending only the agent's name | Hosted container |
-| Calls Azure AI Search | Web API | Foundry, through MCP, inside the model call | Hosted container |
+| Calls Azure AI Search | Web API | Foundry, through MCP, during the agent run | Hosted container |
 | Calls the dealer service | Web API | Web API | Hosted container |
 
 The prompt agent still runs a loop in the Web API, because the dealer tools are function tools, and Foundry hands those requests back for the caller to run. Only the searches run inside Foundry. The hosted agent is the same `run_turn` code in a container that Foundry runs.
@@ -157,12 +157,12 @@ The spare parts base runs the same path at the same time, through `voltrieve-par
 
 | What you care about | Own loop | Prompt agent | Hosted agent |
 | --- | --- | --- | --- |
-| Everyday question | 1.4 s | 1.7 s | 5.7 s, the hop into the agent session adds about 4 s |
-| Two knowledge bases | 14.0 s, together | 27.4 s, one at a time | 15.9 s, together |
+| Everyday question | 1.6 s | 2.0 s | 6.0 s, the hop into the agent session adds about 4 s |
+| Two knowledge bases | 12.3 s, together | 16.5 s, one at a time | 17.2 s, together |
 | A client tool the server has never seen | Works | Refused | Works |
-| Staying on task | No tool in vain | Calls other function tools first on two-base jobs, in 7 of 12 runs, cause unknown | No tool in vain |
+| Staying on task | No tool in vain | Fixed with its own instructions: 1 of 27 job runs still made needless calls | No tool in vain |
 | Input tokens for a greeting | About 1,200 | About 2,550 | About 1,200 |
-| Control over each search | Full | Little, it runs inside the model call | Full |
+| Control over each search | Full | Little, it runs inside Foundry's agent run | Full |
 | Code for searching | A client and a tool per base | None, an MCP tool per base | A client and a tool per base |
 | Change instructions without shipping code | No | Yes, a new agent version | No |
 

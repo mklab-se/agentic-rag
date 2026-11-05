@@ -12,6 +12,9 @@ from voltrieve_data.parts import AXLES, DOCUMENTS, SIDES, Part, build_parts, job
 
 HEADER = "| Article number | Part | Position | Description | Qty | Fits |"
 RULE = "|---|---|---|---|---|---|"
+# Listed again where a job needs them. A search for brake parts reaches the brake catalog, and
+# the model left out brake fluid when it lived only among the service items.
+CROSS_REFERENCES = {"voltrieve-parts-brakes.md": ("Consumables for brake work", ("brake_fluid",))}
 
 
 def _row(part: Part) -> str:
@@ -48,6 +51,11 @@ def write_parts_documents(catalog: Catalog, out_dir: Path) -> list[Path]:
             for system in dict.fromkeys(p.system for p in rows):
                 lines += [f"### {model.name}: {system.lower()}", "", HEADER, RULE]
                 lines += [_row(p) for p in rows if p.system == system]
+                lines.append("")
+            if file_name in CROSS_REFERENCES:
+                heading, keys = CROSS_REFERENCES[file_name]
+                lines += [f"### {model.name}: {heading.lower()}", "", HEADER, RULE]
+                lines += [_row(p) for p in parts if p.key in keys and _fits(p, model)]
                 lines.append("")
         path = out_dir / file_name
         path.write_text("\n".join(lines), encoding="utf-8")

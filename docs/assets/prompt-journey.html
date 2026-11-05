@@ -166,64 +166,51 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
   "yours": {
    "runs": 3,
    "errors": 0,
-   "seconds": 4.26,
+   "seconds": 5.41,
    "model_calls": 2,
-   "tokens": 3138,
+   "tokens": 3299,
    "paths": {
-    "get_prices": 3
+    "get_prices": 2,
+    "get_prices + get_prices": 1
    },
    "example": {
     "server_tools": [
      {
       "tool": "get_prices",
-      "arguments": "{}",
+      "arguments": "{\"market\":\"SE\"}",
+      "iteration": 1
+     },
+     {
+      "tool": "get_prices",
+      "arguments": "{\"market\":\"EU\"}",
       "iteration": 1
      }
     ],
     "mcp": [],
     "knowledge": [],
-    "parallel": [],
-    "answer": "The cheapest Voltrieve car I can sell you is the **Spark** at **SEK 289,000**."
+    "parallel": [
+     {
+      "wall_ms": 32,
+      "one_by_one_ms": 58
+     }
+    ],
+    "answer": "The cheapest Voltrieve car is the **Spark**.\n\n- **Sweden (SE):** **289,000 SEK**\n- **EU:** **26,500 EUR**\n\nIf you want, I can also list the prices for all models in your market."
    }
   },
   "follow": {
    "runs": 3,
    "errors": 0,
-   "seconds": 6.62,
+   "seconds": 7.97,
    "model_calls": 2,
-   "tokens": 8032,
+   "tokens": 8451,
    "paths": {
-    "search_voltrieve_docs": 2,
-    "no tool": 1
-   },
-   "example": {
-    "server_tools": [],
-    "mcp": [],
-    "knowledge": [],
-    "parallel": [],
-    "answer": "I can work that out, but I still need the **market** first: **SE** or **EU**."
-   }
-  },
-  "awd": {
-   "runs": 3,
-   "errors": 0,
-   "seconds": 8.54,
-   "model_calls": 2,
-   "tokens": 6802,
-   "paths": {
-    "get_prices + search_voltrieve_docs": 2,
-    "get_prices + search_voltrieve_docs + search_voltrieve_docs": 1
+    "search_voltrieve_docs": 3
    },
    "example": {
     "server_tools": [
      {
       "tool": "search_voltrieve_docs",
-      "arguments": "{\"query\":\"Sweden all wheel drive AWD drive configuration models and prices buyer's guide technical specifications\"}",
-      "iteration": 1
-     },
-     {
-      "tool": "get_prices",
-      "arguments": "{\"market\":\"SE\"}",
+      "arguments": "{\"query\":\"all wheel drive AWD price model buyer's guide technical specification guide\"}",
       "iteration": 1
      }
     ],
@@ -232,33 +219,77 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
      {
       "base": "voltrieve-kb",
       "sub_queries": [
-       "Sweden all wheel drive AWD models buyer's guide prices",
-       "Sweden AWD drive configuration technical specifications",
-       "Sweden all wheel drive models"
+       "all wheel drive AWD buyer's guide price",
+       "all wheel drive AWD technical specification guide",
+       "AWD model price"
+      ],
+      "references": [
+       "voltrieve-buyers-guide.md",
+       "voltrieve-fjord-specifications.pdf",
+       "voltrieve-atlas-specifications.pdf",
+       "voltrieve-ragn-specifications.pdf"
+      ]
+     }
+    ],
+    "parallel": [],
+    "answer": "Among the AWD options in the SE price list, the **Voltrieve Lumen AWD** is the cheapest at **419,000 SEK**. The buyer’s guide lists the Lumen as available with **RWD or AWD** and shows its **price with AWD** as **419,000 SEK**. [voltrieve-buyers-guide.md]\n\nIf you want, I can also check the **EU** AWD prices."
+   }
+  },
+  "awd": {
+   "runs": 3,
+   "errors": 0,
+   "seconds": 9.2,
+   "model_calls": 2,
+   "tokens": 8299,
+   "paths": {
+    "get_prices + search_voltrieve_docs + search_voltrieve_docs": 2,
+    "get_prices + search_voltrieve_docs": 1
+   },
+   "example": {
+    "server_tools": [
+     {
+      "tool": "get_prices",
+      "arguments": "{\"market\":\"SE\"}",
+      "iteration": 1
+     },
+     {
+      "tool": "search_voltrieve_docs",
+      "arguments": "{\"query\":\"AWD drive configuration prices Sweden buyer's guide models and price\"}",
+      "iteration": 1
+     }
+    ],
+    "mcp": [],
+    "knowledge": [
+     {
+      "base": "voltrieve-kb",
+      "sub_queries": [
+       "AWD drive configuration Sweden buyer's guide price",
+       "AWD Sweden models price buyer's guide",
+       "all-wheel drive Sweden buyer's guide Voltrieve"
       ],
       "references": [
        "voltrieve-fjord-brochure.docx",
        "voltrieve-ragn-brochure.docx",
-       "voltrieve-lumen-brochure.docx",
-       "voltrieve-buyers-guide.md"
+       "voltrieve-atlas-brochure.docx",
+       "voltrieve-lumen-brochure.docx"
       ]
      }
     ],
     "parallel": [
      {
-      "wall_ms": 1357,
-      "one_by_one_ms": 1377
+      "wall_ms": 1371,
+      "one_by_one_ms": 1415
      }
     ],
-    "answer": "The cheapest Voltrieve with all-wheel drive in Sweden is the **Voltrieve Lumen AWD**, at **419,000 SEK**. The **Voltrieve buyer’s guide** lists the Lumen as available with **RWD, AWD** and shows the **SE price with AWD** as **419,000 SEK**. The Spark is not available with AWD, and the other AWD models cost more: Ragn 549,000 SEK, Fjord 569,000 SEK, and Atlas 749,000 SEK. (Source: **Voltrieve buyer’s guide**; **Voltrieve Lumen specifications**)"
+    "answer": "The cheapest Voltrieve with AWD in Sweden is the **Voltrieve Lumen**, at **419,000 SEK** with AWD. It is a **hatchback** and is available with **RWD or AWD**.  \nSource: **voltrieve-buyers-guide.md**"
    }
   },
   "detail": {
    "runs": 3,
    "errors": 0,
-   "seconds": 9.67,
+   "seconds": 11.05,
    "model_calls": 2,
-   "tokens": 12309,
+   "tokens": 12434,
    "paths": {
     "search_spare_parts + search_voltrieve_docs": 3
    },
@@ -266,58 +297,57 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
     "server_tools": [
      {
       "tool": "search_voltrieve_docs",
-      "arguments": "{\"query\":\"Fjord AWD front brake replacement left side service guide components needed complete brake change front axle brake pads brake disc caliper left front\"}",
+      "arguments": "{\"query\":\"Fjord AWD front left brake replacement service guide components brake job what parts needed front axle left front\"}",
       "iteration": 1
      },
      {
       "tool": "search_spare_parts",
-      "arguments": "{\"query\":\"Voltrieve Fjord AWD left front brake parts disc pads caliper wear sensor\"}",
+      "arguments": "{\"query\":\"Fjord AWD AWD front left brake components front left brake disc pads caliper\"}",
       "iteration": 1
      }
     ],
     "mcp": [],
     "knowledge": [
      {
-      "base": "voltrieve-kb",
-      "sub_queries": [
-       "Fjord AWD front brake replacement left side service guide components needed complete brake change front axle brake pads brake disc caliper left front",
-       "Fjord AWD buyer's guide price front brake replacement components brake pads brake disc caliper left front",
-       "Fjord AWD technical specification guide front axle brake pads brake disc caliper left front"
-      ],
-      "references": [
-       "voltrieve-service-guide.md",
-       "voltrieve-fjord-specifications.pdf",
-       "voltrieve-buyers-guide.md"
-      ]
-     },
-     {
       "base": "voltrieve-parts-kb",
       "sub_queries": [
-       "Voltrieve Fjord AWD left front brake disc pads caliper wear sensor",
-       "Voltrieve Fjord AWD front left brake disc pads caliper wear sensor",
-       "Fjord AWD left front brake parts disc pads caliper wear sensor"
+       "Fjord AWD front left brake disc pads caliper front left",
+       "Fjord AWD front left brake components front left",
+       "Fjord AWD AWD front left brake disc pads caliper"
       ],
       "references": [
        "voltrieve-parts-brakes.md",
-       "voltrieve-parts-suspension-steering.md"
+       "voltrieve-parts-body-glass-lighting.md"
+      ]
+     },
+     {
+      "base": "voltrieve-kb",
+      "sub_queries": [
+       "Fjord AWD front left brake replacement service guide components front axle left front brake job parts needed",
+       "Fjord AWD brake replacement buyer's guide front axle left front components",
+       "Fjord AWD service guide front left brake replacement parts"
+      ],
+      "references": [
+       "voltrieve-service-guide.md",
+       "voltrieve-fjord-specifications.pdf"
       ]
      }
     ],
     "parallel": [
      {
-      "wall_ms": 2111,
-      "one_by_one_ms": 3431
+      "wall_ms": 1856,
+      "one_by_one_ms": 3338
      }
     ],
-    "answer": "For a complete front brake replacement on the left front of a **Voltrieve Fjord AWD**, the service guide says you need these parts for the job: a brake disc, a front-axle brake pad set, a brake caliper, a caliper carrier, a brake hose, a pad wear sensor, a caliper fitting kit, a brake dust shield, and brake fluid DOT 4 LV for bleeding afterward. It also says the Fjord’s front brake parts differ by drive, and AWD uses **370 mm** discs. *(voltrieve-service-guide.md)*\n\nThe spare parts catalog lists these article numbers for the **Fjord AWD front left** side:  \n- **VP-10072** - Brake disc, front left, 370 mm. *(voltrieve-parts-brakes.md)*  \n- **VP-10254** - Brake pad set, front axle, for the 370 mm disc. *(voltrieve-parts-brakes.md)*  \n- **VP-10345** - Brake caliper, front left, for the 370 mm disc. *(voltrieve-parts-brakes.md)*  \n- **VP-10527** - Caliper carrier, front left. *(voltrieve-par"
+    "answer": "For a **Voltrieve Fjord AWD** **complete front brake replacement on the left front side**, the service guide says the job needs these parts, and that **pads are renewed as an axle set** even when only one side is being worked on. It also says the Fjord’s front brake parts are **370 mm on AWD**. (voltrieve-service-guide.md)\n\nHere are the spare parts from the catalog:\n\n- **VP-10072** - Brake disc, front left, **370 mm** ventilated brake disc. (voltrieve-parts-brakes.md)\n- **VP-10254** - Brake pad set, front axle, set for the **370 mm** disc; covers both sides of the axle. (voltrieve-parts-brakes.md)\n- **VP-10345** - Brake caliper, front left, twin piston floating caliper for the **370 mm** disc. (voltrieve-parts-brakes.md)\n- **VP-10527** - Caliper carrier, front left. (voltrieve-parts-brakes.md)\n- **VP-10631** - Brake hose, front left. (voltrieve-parts-brakes.md)\n- **VP-10670** - Pad wear "
    }
   },
   "hello": {
    "runs": 3,
    "errors": 0,
-   "seconds": 1.42,
+   "seconds": 1.67,
    "model_calls": 1,
-   "tokens": 1274,
+   "tokens": 1255,
    "paths": {
     "no tool": 3
    },
@@ -332,9 +362,9 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
   "client": {
    "runs": 3,
    "errors": 0,
-   "seconds": 3.08,
+   "seconds": 3.28,
    "model_calls": 2,
-   "tokens": 2600,
+   "tokens": 2628,
    "paths": {
     "get_local_time": 3
    },
@@ -343,15 +373,15 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
     "mcp": [],
     "knowledge": [],
     "parallel": [],
-    "answer": "It’s 2026-11-05 16:42:10 in your local time zone (Europe/Stockholm)."
+    "answer": "It’s 16:42 on your computer right now, in Europe/Stockholm time."
    }
   },
   "curated": {
    "runs": 3,
    "errors": 0,
-   "seconds": 1.69,
+   "seconds": 3.89,
    "model_calls": 1,
-   "tokens": 1253,
+   "tokens": 1271,
    "paths": {
     "get_curated_answer": 3
    },
@@ -374,12 +404,11 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
   "yours": {
    "runs": 3,
    "errors": 0,
-   "seconds": 4.95,
+   "seconds": 10.33,
    "model_calls": 2,
-   "tokens": 6161,
+   "tokens": 6353,
    "paths": {
-    "get_prices": 1,
-    "get_prices + get_prices": 2
+    "get_prices + get_prices": 3
    },
    "example": {
     "server_tools": [
@@ -398,19 +427,19 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
     "knowledge": [],
     "parallel": [
      {
-      "wall_ms": 27,
-      "one_by_one_ms": 48
+      "wall_ms": 13,
+      "one_by_one_ms": 23
      }
     ],
-    "answer": "The cheapest Voltrieve car is the **Spark**.\n\n- **SE market:** Spark at **289,000 SEK**\n- **EU market:** Spark at **26,500 EUR**\n\nIf you want, I can also compare the full range or help you narrow it down by budget."
+    "answer": "The cheapest Voltrieve car is the **Spark**.\n\n- **Sweden:** **289,000 SEK**\n- **EU:** **€26,500**\n\nIf you want, I can also compare the full price list for all models."
    }
   },
   "follow": {
    "runs": 3,
    "errors": 0,
-   "seconds": 5.82,
+   "seconds": 6.28,
    "model_calls": 1,
-   "tokens": 12905,
+   "tokens": 12855,
    "paths": {
     "MCP voltrieve-kb": 3
    },
@@ -419,25 +448,26 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
     "mcp": [
      {
       "server": "voltrieve-kb",
-      "arguments": "{\"query_variants\":[\"Which Voltrieve models offer all wheel drive (AWD), and what does AWD cost for each model?\"]}",
-      "started_ms": 610,
-      "finished_ms": 3079
+      "arguments": "{\"query_variants\":[\"Which Voltrieve model is the cheapest with all wheel drive (AWD), and what does AWD cost for each model that offers it?\"]}",
+      "started_ms": 842,
+      "finished_ms": 3165
      }
     ],
     "knowledge": [],
     "parallel": [],
-    "answer": "The cheapest Voltrieve with **AWD** is the **Lumen**, priced at **419,000 SEK** with AWD in Sweden. The buyer’s guide says the Spark does **not** offer AWD, while the Ragn and Atlas have AWD as standard and cost more overall. (voltrieve-buyers-guide.md)\n\nIf you want, I can also give you the **cheapest AWD option in EUR** or compare the AWD models side by side."
+    "answer": "The **cheapest AWD Voltrieve is the Lumen**.\n\n- **SE:** **419,000 SEK** with AWD\n- **EU:** **38,100 EUR** with AWD (voltrieve-buyers-guide.md)\n\nFor comparison, the other AWD models are priced higher in the buyer’s guide: **Ragn** 549,000 SEK / 49,900 EUR, **Fjord** 569,000 SEK / 51,500 EUR, and **Atlas** 749,000 SEK / 67,900 EUR (voltrieve-buyers-guide.md).\n\nIf you want, I can also tell you which models come with AWD at all."
    }
   },
   "awd": {
    "runs": 3,
    "errors": 0,
-   "seconds": 9.97,
+   "seconds": 10.08,
    "model_calls": 2,
-   "tokens": 16294,
+   "tokens": 15804,
    "paths": {
-    "MCP voltrieve-kb + get_current_date + get_prices + get_prices": 2,
-    "MCP voltrieve-kb + get_curated_answer + get_current_date + get_prices": 1
+    "MCP voltrieve-kb": 1,
+    "MCP voltrieve-kb + check_stock + get_current_date + get_prices": 1,
+    "MCP voltrieve-kb + get_current_date + get_prices": 1
    },
    "example": {
     "server_tools": [
@@ -450,132 +480,70 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
       "tool": "get_current_date",
       "arguments": "{}",
       "iteration": 1
-     },
-     {
-      "tool": "get_prices",
-      "arguments": "{\"market\":\"SE\"}",
-      "iteration": 1
      }
     ],
     "mcp": [
      {
       "server": "voltrieve-kb",
-      "arguments": "{\"query_variants\":[\"Which Voltrieve models in Sweden offer all wheel drive (AWD), and what is the cheapest car with AWD that you can sell me in Sweden?\"]}",
-      "started_ms": 588,
-      "finished_ms": 3451
+      "arguments": "{\"query_variants\":[\"Which Voltrieve model(s) available in Sweden have all wheel drive, and what is the AWD option price for each one?\"]}",
+      "started_ms": 312,
+      "finished_ms": 3572
      }
     ],
     "knowledge": [],
     "parallel": [
      {
-      "wall_ms": 35,
-      "one_by_one_ms": 65
+      "wall_ms": 24,
+      "one_by_one_ms": 23
      }
     ],
-    "answer": "In Sweden, the cheapest Voltrieve with AWD is the **Voltrieve Lumen**, priced at **419,000 SEK** with AWD. The Lumen is available with **RWD or AWD**; the other AWD models are the **Ragn** at **549,000 SEK**, the **Fjord** at **569,000 SEK**, and the **Atlas** at **749,000 SEK**. The **Spark** does not have an AWD version. (voltrieve-buyers-guide.md)"
+    "answer": "The cheapest Voltrieve with all-wheel drive in Sweden is the **Lumen with AWD**, priced at **419,000 SEK**. (voltrieve-buyers-guide.md)\n\nFor comparison, the other AWD models are **Ragn** at **549,000 SEK**, **Fjord** at **569,000 SEK**, and **Atlas** at **749,000 SEK**, so the Lumen is the cheapest AWD option. (voltrieve-buyers-guide.md)"
    }
   },
   "detail": {
    "runs": 3,
    "errors": 0,
-   "seconds": 23.57,
-   "model_calls": 3,
-   "tokens": 41313,
+   "seconds": 27.95,
+   "model_calls": 1,
+   "tokens": 38902,
    "paths": {
-    "MCP voltrieve-kb + MCP voltrieve-parts-kb + MCP voltrieve-parts-kb + check_stock + get_curated_answer + get_current_date + get_prices": 1,
     "MCP voltrieve-kb + MCP voltrieve-parts-kb": 1,
-    "MCP voltrieve-kb + MCP voltrieve-parts-kb + get_curated_answer + get_curated_answer + get_curated_answer + get_curated_answer + get_curated_answer + get_curated_answer + get_curated_answer + get_curated_answer + get_curated_answer": 1
+    "MCP voltrieve-kb + MCP voltrieve-parts-kb + check_stock + get_curated_answer + get_curated_answer + get_prices": 1,
+    "MCP voltrieve-kb + MCP voltrieve-parts-kb + MCP voltrieve-parts-kb": 1
    },
    "example": {
-    "server_tools": [
-     {
-      "tool": "get_curated_answer",
-      "arguments": "{\"topic\":\"contact\"}",
-      "iteration": 1
-     },
-     {
-      "tool": "get_curated_answer",
-      "arguments": "{\"topic\":\"opening_hours\"}",
-      "iteration": 1
-     },
-     {
-      "tool": "get_curated_answer",
-      "arguments": "{\"topic\":\"roadside_assistance\"}",
-      "iteration": 2
-     },
-     {
-      "tool": "get_curated_answer",
-      "arguments": "{\"topic\":\"complaints\"}",
-      "iteration": 2
-     },
-     {
-      "tool": "get_curated_answer",
-      "arguments": "{\"topic\":\"battery_emergency\"}",
-      "iteration": 3
-     },
-     {
-      "tool": "get_curated_answer",
-      "arguments": "{\"topic\":\"personal_data\"}",
-      "iteration": 3
-     },
-     {
-      "tool": "get_curated_answer",
-      "arguments": "{\"topic\":\"cancel_test_drive\"}",
-      "iteration": 4
-     },
-     {
-      "tool": "get_curated_answer",
-      "arguments": "{\"topic\":\"contact\"}",
-      "iteration": 4
-     },
-     {
-      "tool": "get_curated_answer",
-      "arguments": "{\"topic\":\"opening_hours\"}",
-      "iteration": 5
-     }
-    ],
+    "server_tools": [],
     "mcp": [
      {
       "server": "voltrieve-kb",
-      "arguments": "{\"query_variants\":[\"What spare parts are needed to completely change the brakes on the left front side of a Voltrieve Fjord AWD?\"]}",
-      "started_ms": 230,
-      "finished_ms": 2918
+      "arguments": "{\"query_variants\":[\"I have a Voltrieve Fjord AWD. I want to completely change the brakes on the left front side. Which spare parts do I need?\"]}",
+      "started_ms": 1602,
+      "finished_ms": 4054
      },
      {
       "server": "voltrieve-parts-kb",
-      "arguments": "{\"query_variants\":[\"Which article numbers are for the left front brake parts on a Voltrieve Fjord AWD?\"]}",
-      "started_ms": 3310,
-      "finished_ms": 6301
+      "arguments": "{\"query_variants\":[\"Which spare parts are needed for a complete front brake replacement on one side on a Voltrieve Fjord AWD, including the 370 mm front brake parts?\"]}",
+      "started_ms": 5959,
+      "finished_ms": 9005
+     },
+     {
+      "server": "voltrieve-parts-kb",
+      "arguments": "{\"query_variants\":[\"What is the article number for the brake dust shield, front left, for Voltrieve Fjord AWD?\"]}",
+      "started_ms": 12455,
+      "finished_ms": 24785
      }
     ],
     "knowledge": [],
-    "parallel": [
-     {
-      "wall_ms": 2,
-      "one_by_one_ms": 0
-     },
-     {
-      "wall_ms": 1,
-      "one_by_one_ms": 0
-     },
-     {
-      "wall_ms": 1,
-      "one_by_one_ms": 0
-     },
-     {
-      "wall_ms": 1,
-      "one_by_one_ms": 0
-     }
-    ],
-    "answer": "For a **Voltrieve Fjord AWD**, the service guide says a **complete front brake replacement on one side** needs a brake disc, front-axle brake pad set, brake caliper, caliper carrier, brake hose, pad wear sensor, caliper fitting kit, brake dust shield, and brake fluid for bleeding afterward. It also says Fjord front brakes differ by drive: **370 mm on AWD**. (voltrieve-service-guide.md)\n\nMatching the **left front** parts in the spare-parts catalog, you need:\n\n- **VP-10072** - Brake disc, front left, **370 mm** (voltrieve-parts-brakes.md)\n- **VP-10254** - Brake pad set, front axle, for the **370 mm** disc (voltrieve-parts-brakes.md)\n- **VP-10345** - Brake caliper, front left, for the **370 mm** disc (voltrieve-parts-brakes.md)\n- **VP-10527** - Caliper carrier, front left (voltrieve-parts-brakes.md)\n- **VP-10631** - Brake hose, front left (voltrieve-parts-brakes.md)\n- **VP-10670** - Pad wea"
+    "parallel": [],
+    "answer": "For a **Voltrieve Fjord AWD**, a **complete front brake replacement on one side** needs:\n\n- 1 brake disc for the side being worked on\n- 1 brake pad set for the front axle\n- 1 brake caliper for the side being worked on\n- 1 caliper carrier for the side being worked on\n- 1 brake hose for the side being worked on\n- 1 pad wear sensor for the side being worked on\n- 1 caliper fitting kit for the front axle\n- 1 brake dust shield for the side being worked on\n- 1 bottle of brake fluid DOT 4 LV for bleeding afterwards (voltrieve-service-guide.md)\n\nFor the **left front** side, the spare parts catalog lists these article numbers:\n\n- **VP-10072** - Brake disc, front left, 370 mm ventilated brake disc, fits **Voltrieve Fjord AWD** (voltrieve-parts-brakes.md)\n- **VP-10254** - Brake pad set, front axle, for the 370 mm disc (voltrieve-parts-brakes.md)\n- **VP-10345** - Brake caliper, front left, twin pisto"
    }
   },
   "hello": {
    "runs": 3,
    "errors": 0,
-   "seconds": 1.69,
+   "seconds": 1.55,
    "model_calls": 1,
-   "tokens": 2638,
+   "tokens": 2646,
    "paths": {
     "no tool": 3
    },
@@ -584,15 +552,15 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
     "mcp": [],
     "knowledge": [],
     "parallel": [],
-    "answer": "Good morning! How can I help with Voltrieve EVs today?"
+    "answer": "Good morning! How can I help with Voltrieve today?"
    }
   },
   "client": {
    "runs": 3,
    "errors": 0,
-   "seconds": 3.75,
+   "seconds": 2.92,
    "model_calls": 2,
-   "tokens": 5538,
+   "tokens": 5532,
    "paths": {
     "get_local_time": 3
    },
@@ -607,9 +575,9 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
   "curated": {
    "runs": 3,
    "errors": 0,
-   "seconds": 1.78,
+   "seconds": 1.76,
    "model_calls": 1,
-   "tokens": 2650,
+   "tokens": 2659,
    "paths": {
     "get_curated_answer": 3
    },
@@ -632,42 +600,33 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
   "yours": {
    "runs": 3,
    "errors": 0,
-   "seconds": 9.8,
+   "seconds": 12.15,
    "model_calls": 2,
-   "tokens": 3694,
+   "tokens": 3146,
    "paths": {
-    "get_prices + get_prices": 3
+    "get_prices": 2,
+    "get_prices + get_prices": 1
    },
    "example": {
     "server_tools": [
      {
       "tool": "get_prices",
-      "arguments": "{\"market\":\"SE\"}",
-      "iteration": 1
-     },
-     {
-      "tool": "get_prices",
-      "arguments": "{\"market\":\"EU\"}",
+      "arguments": "{}",
       "iteration": 1
      }
     ],
     "mcp": [],
     "knowledge": [],
-    "parallel": [
-     {
-      "wall_ms": 80,
-      "one_by_one_ms": 149
-     }
-    ],
-    "answer": "The cheapest Voltrieve car is the **Spark**.\n\n- **SE market:** **SEK 289,000**\n- **EU market:** **EUR 26,500**\n\nIf you want, I can also compare the rest of the lineup for you."
+    "parallel": [],
+    "answer": "The cheapest car in the SE price list is the **Voltrieve Spark**, at **289,000 SEK**."
    }
   },
   "follow": {
    "runs": 3,
    "errors": 0,
-   "seconds": 7.3,
+   "seconds": 9.37,
    "model_calls": 2,
-   "tokens": 8156,
+   "tokens": 7052,
    "paths": {
     "search_voltrieve_docs": 2,
     "get_prices + search_voltrieve_docs": 1
@@ -676,12 +635,7 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
     "server_tools": [
      {
       "tool": "search_voltrieve_docs",
-      "arguments": "{\"query\":\"AWD all wheel drive buyer's guide drive configurations prices models\"}",
-      "iteration": 1
-     },
-     {
-      "tool": "get_prices",
-      "arguments": "{\"market\":\"SE\"}",
+      "arguments": "{\"query\":\"all wheel drive AWD availability and price for each model buyer's guide\"}",
       "iteration": 1
      }
     ],
@@ -690,36 +644,31 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
      {
       "base": "voltrieve-kb",
       "sub_queries": [
-       "AWD all wheel drive buyer's guide drive configurations prices models",
-       "all wheel drive buyer's guide prices models",
-       "drive configurations buyer's guide AWD"
+       "buyer's guide all wheel drive AWD availability price for each model",
+       "AWD availability buyer's guide model price",
+       "all wheel drive price model buyer's guide"
       ],
       "references": [
        "voltrieve-buyers-guide.md",
-       "voltrieve-ragn-brochure.docx",
-       "voltrieve-atlas-specifications.pdf",
-       "voltrieve-atlas-brochure.docx"
+       "voltrieve-atlas-brochure.docx",
+       "voltrieve-fjord-specifications.pdf",
+       "voltrieve-atlas-specifications.pdf"
       ]
      }
     ],
-    "parallel": [
-     {
-      "wall_ms": 1507,
-      "one_by_one_ms": 1516
-     }
-    ],
-    "answer": "The **cheapest Voltrieve with AWD in Sweden is the Lumen**, at **419,000 SEK**. The buyer’s guide lists the Lumen as **RWD or AWD** and gives its **price with AWD** as **419,000 SEK**. It also shows that the **Ragn** is AWD only at **549,000 SEK**, the **Fjord** is **569,000 SEK with AWD**, and the **Atlas** is **749,000 SEK**.  \nSource: **voltrieve-buyers-guide.md**\n\nIf you want, I can also show the **cheapest non-AWD option** again for comparison."
+    "parallel": [],
+    "answer": "The cheapest Voltrieve with AWD is the **Voltrieve Lumen**, at **419,000 SEK** in SE. The **Spark** does not offer AWD.  \nSource: **voltrieve-buyers-guide.md**"
    }
   },
   "awd": {
    "runs": 3,
    "errors": 0,
-   "seconds": 12.13,
+   "seconds": 13.35,
    "model_calls": 2,
-   "tokens": 10747,
+   "tokens": 8563,
    "paths": {
-    "get_prices + search_voltrieve_docs + search_voltrieve_docs": 2,
-    "get_prices + search_voltrieve_docs + search_voltrieve_docs + search_voltrieve_docs": 1
+    "get_prices + search_voltrieve_docs + search_voltrieve_docs + search_voltrieve_docs": 1,
+    "get_prices + search_voltrieve_docs": 2
    },
    "example": {
     "server_tools": [
@@ -730,12 +679,7 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
      },
      {
       "tool": "search_voltrieve_docs",
-      "arguments": "{\"query\":\"AWD all wheel drive drive configuration prices Sweden models\"}",
-      "iteration": 1
-     },
-     {
-      "tool": "search_voltrieve_docs",
-      "arguments": "{\"query\":\"all wheel drive AWD buyer's guide price SE\"}",
+      "arguments": "{\"query\":\"all wheel drive AWD drive configuration prices Sweden models buyer's guide\"}",
       "iteration": 1
      }
     ],
@@ -744,61 +688,46 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
      {
       "base": "voltrieve-kb",
       "sub_queries": [
-       "AWD all wheel drive drive configuration Sweden models prices buyer's guide",
-       "all wheel drive AWD models Sweden",
-       "prices Sweden AWD buyer's guide"
-      ],
-      "references": [
-       "voltrieve-fjord-brochure.docx",
-       "voltrieve-ragn-brochure.docx",
-       "voltrieve-lumen-brochure.docx",
-       "voltrieve-buyers-guide.md"
-      ]
-     },
-     {
-      "base": "voltrieve-kb",
-      "sub_queries": [
-       "all wheel drive AWD buyer's guide price SE",
-       "AWD SE price buyer's guide",
-       "all wheel drive SE"
+       "all wheel drive AWD drive configuration buyer's guide Sweden price",
+       "AWD models buyer's guide Sweden",
+       "all wheel drive electric car models price Sweden"
       ],
       "references": [
        "voltrieve-buyers-guide.md",
-       "voltrieve-fjord-brochure.docx",
-       "voltrieve-lumen-brochure.docx",
-       "voltrieve-ragn-brochure.docx"
+       "voltrieve-atlas-brochure.docx",
+       "voltrieve-ragn-brochure.docx",
+       "voltrieve-fjord-brochure.docx"
       ]
      }
     ],
     "parallel": [
      {
-      "wall_ms": 1290,
-      "one_by_one_ms": 2488
+      "wall_ms": 1576,
+      "one_by_one_ms": 1650
      }
     ],
-    "answer": "The cheapest Voltrieve with AWD in Sweden is the **Voltrieve Lumen AWD** at **419,000 SEK**. The Voltrieve buyer’s guide lists the AWD prices in Sweden as Lumen 419,000 SEK, Ragn 549,000 SEK, Fjord 569,000 SEK, and Atlas 749,000 SEK, with Spark not available with AWD.  \nSource: **voltrieve-buyers-guide.md**"
+    "answer": "The cheapest AWD Voltrieve you can buy in Sweden is the **Voltrieve Lumen AWD**, priced at **419,000 SEK**. The **Voltrieve buyer's guide** lists the Lumen as available with **RWD or AWD** and shows its **SE price with AWD** as **419,000 SEK**."
    }
   },
   "detail": {
    "runs": 3,
    "errors": 0,
-   "seconds": 14.33,
+   "seconds": 13.71,
    "model_calls": 2,
-   "tokens": 12661,
+   "tokens": 12542,
    "paths": {
-    "search_spare_parts + search_voltrieve_docs": 2,
-    "search_spare_parts + search_spare_parts + search_voltrieve_docs": 1
+    "search_spare_parts + search_voltrieve_docs": 3
    },
    "example": {
     "server_tools": [
      {
       "tool": "search_voltrieve_docs",
-      "arguments": "{\"query\":\"Fjord AWD front left brake replacement service guide complete brake change parts needed front axle left side\"}",
+      "arguments": "{\"query\":\"Fjord AWD front left brake replacement service guide parts needed brake pads brake disc caliper\"}",
       "iteration": 1
      },
      {
       "tool": "search_spare_parts",
-      "arguments": "{\"query\":\"Fjord AWD front left brake parts brake disc brake pads caliper left front\"}",
+      "arguments": "{\"query\":\"Fjord AWD front left brake parts brake pads brake disc caliper\"}",
       "iteration": 1
      }
     ],
@@ -807,9 +736,9 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
      {
       "base": "voltrieve-kb",
       "sub_queries": [
-       "Fjord AWD front left brake replacement service guide",
-       "Fjord AWD complete brake change front axle left side parts needed",
-       "Fjord AWD buyer's guide brake replacement front axle left side"
+       "Fjord AWD brake replacement service guide front left brake pads brake disc caliper",
+       "Fjord AWD buyer's guide brake parts front left brake pads brake disc caliper",
+       "Fjord AWD technical specification brake pad brake disc caliper front left"
       ],
       "references": [
        "voltrieve-service-guide.md",
@@ -820,32 +749,31 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
      {
       "base": "voltrieve-parts-kb",
       "sub_queries": [
-       "Fjord AWD front left brake disc brake parts",
-       "Fjord AWD front left brake pads brake parts",
-       "Fjord AWD front left caliper left front brake parts"
+       "Fjord AWD front left brake pads",
+       "Fjord AWD front left brake disc",
+       "Fjord AWD front left caliper"
       ],
       "references": [
        "voltrieve-parts-brakes.md",
-       "voltrieve-parts-service-items.md",
        "voltrieve-parts-suspension-steering.md"
       ]
      }
     ],
     "parallel": [
      {
-      "wall_ms": 1653,
-      "one_by_one_ms": 3112
+      "wall_ms": 1764,
+      "one_by_one_ms": 2962
      }
     ],
-    "answer": "For a **Voltrieve Fjord AWD**, a **complete front brake replacement on the left front side** needs these parts:\n\n- **1 brake disc, front left** - **VP-10072** - **Voltrieve Fjord AWD**.  \n- **1 brake pad set, front axle** - **VP-10254** - set covers **both sides of the front axle**.  \n- **1 brake caliper, front left** - **VP-10345** - **Voltrieve Fjord AWD**.  \n- **1 caliper carrier, front left** - **VP-10527** - **Voltrieve Fjord AWD**.  \n- **1 brake hose, front left** - **VP-10631** - fits **Voltrieve Fjord**.  \n- **1 pad wear sensor, front left** - **VP-10670** - fits **Voltrieve Fjord**.  \n- **1 caliper fitting kit, front axle** - **VP-10709** - fits **Voltrieve Fjord AWD**.  \n- **1 brake dust shield, front left** - **VP-10761** - **Voltrieve Fjord**.  \n- **1 bottle of brake fluid DOT 4 LV** - **VP-15220**.  \n\nThe service guide says that for a **complete front brake replacement on on"
+    "answer": "For a **complete front brake replacement on the left front side** of a **Voltrieve Fjord AWD**, the documentation says you need these parts:\n\n- **Brake disc, front left** - **VP-10072** - 370 mm ventilated brake disc, fits **Voltrieve Fjord AWD**. [voltrieve-parts-brakes.md]\n- **Brake pad set, front axle** - **VP-10254** - set of 4 pads for the 370 mm disc; it covers both sides of the front axle. [voltrieve-parts-brakes.md]\n- **Brake caliper, front left** - **VP-10345** - twin piston floating caliper for the 370 mm disc. [voltrieve-parts-brakes.md]\n- **Caliper carrier, front left** - **VP-10527** - carrier bracket for the floating caliper. [voltrieve-parts-brakes.md]\n- **Brake hose, front left** - **VP-10631** - reinforced flexible hose with banjo fitting. [voltrieve-parts-brakes.md]\n- **Pad wear sensor, front left** - **VP-10670** - electrical pad wear sensor. [voltrieve-parts-brakes.md"
    }
   },
   "hello": {
    "runs": 3,
    "errors": 0,
-   "seconds": 5.47,
+   "seconds": 5.67,
    "model_calls": 1,
-   "tokens": 1243,
+   "tokens": 1266,
    "paths": {
     "no tool": 3
    },
@@ -860,9 +788,9 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
   "client": {
    "runs": 3,
    "errors": 0,
-   "seconds": 7.42,
+   "seconds": 7.41,
    "model_calls": 2,
-   "tokens": 2592,
+   "tokens": 2622,
    "paths": {
     "get_local_time": 3
    },
@@ -871,15 +799,15 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
     "mcp": [],
     "knowledge": [],
     "parallel": [],
-    "answer": "It’s 16:42 on your computer right now, in Europe/Stockholm."
+    "answer": "Your computer’s local time is 2026-11-05 16:42:10 in Europe/Stockholm."
    }
   },
   "curated": {
    "runs": 3,
    "errors": 0,
-   "seconds": 5.92,
+   "seconds": 5.89,
    "model_calls": 1,
-   "tokens": 1246,
+   "tokens": 1269,
    "paths": {
     "get_curated_answer": 3
    },
@@ -898,8 +826,7 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
    }
   }
  }
-}
-</script>
+}</script>
 
 <div class="wrap">
 <header>
@@ -914,6 +841,7 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
   <div class="seg" role="group" aria-label="Architecture" id="seg"></div>
   <div class="tabs" role="tablist" aria-label="Prompt" id="tabs"></div>
   <div class="verdict" id="verdict"></div>
+  <p class="legend">Cards show the median of 3 runs at once on all backends, so a gap of a second or two is noise. The comparison table further down uses larger samples.</p>
   <div class="mapwrap" tabindex="0" aria-label="Map of the systems. Scroll sideways on a small screen."><svg class="map" id="map" viewBox="0 0 1290 760" role="img" aria-label="System map: client, Web API with routes, loop and tool table, Foundry with conversations and the model, the dealer service, and Azure AI Search with knowledge base, knowledge source, index, embedding model and semantic ranker. Numbered arrows show the calls of the selected prompt."></svg></div>
   <div class="stepbar" id="stepbar"></div>
   <div class="card" id="card" aria-live="polite"></div>
@@ -971,7 +899,7 @@ return await tool.handler(arguments, user)</pre>
 
 <section aria-labelledby="ctx-title">
   <h2 id="ctx-title">First message, second call, follow-up</h2>
-  <p>This shows what the model reads on each call. A turn can hold several model calls, so there are two kinds of "second" here: the second call in a message, and the second message in a conversation. The real run below is the same conversation from start to finish.</p>
+  <p>This shows what the model reads on each call, on the own loop and hosted agent. On the prompt agent, Foundry makes the second call itself. A turn can hold several model calls, so there are two kinds of "second" here: the second call in a message, and the second message in a conversation. The real run below is the same conversation from start to finish.</p>
   <div class="key"><span><b class="blk sent">Sent by the Web API</b> on this call</span><span><b class="blk hist">Added by Foundry</b> from the stored conversation</span></div>
   <div class="stacks" id="stacks"></div>
   <p>The Web API never sends the history. It sends the conversation id, and Foundry does the rest. The difference at the API is small: a first message creates the conversation and stores your user id as owner, while a later message checks that owner. Instructions and tools are never stored, so a change applies on the next call.</p>
@@ -1008,12 +936,12 @@ return await tool.handler(arguments, user)</pre>
     <tr><td>Creates the conversation</td><td>Web API</td><td>Web API</td><td>Web API</td></tr>
     <tr><td>Holds instructions and tool list</td><td>Web API, sent on each call</td><td>Foundry, in the agent definition</td><td>Hosted container, sent on each call</td></tr>
     <tr><td>Calls the model</td><td>Web API</td><td>Web API, sending only the agent's name</td><td>Hosted container</td></tr>
-    <tr><td>Calls Azure AI Search</td><td>Web API</td><td>Foundry, through MCP, inside the model call</td><td>Hosted container</td></tr>
+    <tr><td>Calls Azure AI Search</td><td>Web API</td><td>Foundry, through MCP, during the agent run</td><td>Hosted container</td></tr>
     <tr><td>Calls the dealer service</td><td>Web API</td><td>Web API</td><td>Hosted container</td></tr>
     <tr><td>Runs tools at the same time</td><td>Yes, our code</td><td>Searches ran one at a time</td><td>Yes, same code</td></tr>
     <tr><td>Accepts a new client tool per request</td><td>Yes</td><td>No, only those in the definition</td><td>Yes</td></tr>
   </table></div>
-  <p>The surprise is the prompt agent: the Web API still runs a loop there, because the dealer tools are function tools, and Foundry hands those requests back for the caller to run. Only the searches run inside Foundry, which is why you lose control of them. The hosted agent is the own loop, unchanged, in a container that Foundry runs. The token figures are from one run each, so read them as an example and not as a benchmark.</p>
+  <p>On the prompt agent, a count of one request doesn't mean one model call, because Foundry runs its own loop inside that request. The surprise is that the Web API still runs a loop there too, because the dealer tools are function tools, and Foundry hands those requests back for the caller to run. Only the searches run inside Foundry, which is why you lose control of them. The hosted agent is the own loop, unchanged, in a container that Foundry runs. The token figures are from one run each, so read them as an example and not as a benchmark.</p>
 </section>
 
 
@@ -1022,15 +950,15 @@ return await tool.handler(arguments, user)</pre>
   <p>Green marks the best result on that row and red marks a real weakness. Figures are medians from the live runs in <code>docs/evidence/</code>.</p>
   <div class="tablewrap"><table>
     <tr><th>What you care about</th><th>Own loop</th><th>Prompt agent</th><th>Hosted agent</th></tr>
-    <tr><td>Everyday question, such as a greeting</td><td class="win">1.4 s</td><td class="win">1.7 s</td><td class="fail">5.7 s. Every turn adds about 4.5 s for the hop into the agent session</td></tr>
-<tr><td>Question for two knowledge bases</td><td class="win">14.0 s, searches run together in 11 of 12</td><td class="fail">27.4 s, searches run one at a time in 12 of 12</td><td>15.9 s, searches run together in 12 of 12</td></tr>
+    <tr><td>Everyday question, such as a greeting</td><td class="win">1.6 s</td><td class="win">2.0 s</td><td class="fail">6.0 s. Every turn adds about 4.5 s for the hop into the agent session</td></tr>
+<tr><td>Question for two knowledge bases</td><td class="win">12.3 s, searches run together in 11 of 12</td><td>16.5 s, searches run one at a time in 12 of 12</td><td>17.2 s, searches run together in 12 of 12</td></tr>
 <tr><td>A client tool the server has never seen</td><td class="win">Works</td><td class="fail">Refused: tools must be in the agent definition</td><td class="win">Works, through Invocations</td></tr>
 <tr><td>Client tools from a fixed list</td><td class="win">Works</td><td class="win">Works</td><td class="win">Works</td></tr>
-<tr><td>Curated answer, word for word</td><td class="win">1.6 s, 27 of 27 right</td><td class="win">1.8 s, 27 of 27 right</td><td>6.0 s, 27 of 27 right</td></tr>
-<tr><td>Staying on task</td><td class="win">No tool called in vain</td><td class="fail">On two-base jobs it calls other function tools first, in 7 of 12 runs here, cause unknown</td><td class="win">No tool called in vain</td></tr>
+<tr><td>Curated answer, word for word</td><td class="win">1.7 s, 27 of 27 right</td><td class="win">1.8 s, 27 of 27 right</td><td>6.4 s, 27 of 27 right</td></tr>
+<tr><td>Staying on task</td><td class="win">No tool called in vain</td><td>Fixed with its own instructions: 1 of 27 job runs still made needless calls</td><td class="win">No tool called in vain</td></tr>
 <tr><td>Tokens for "Good morning!"</td><td class="win">About 1,200 input tokens</td><td class="fail">About 2,550 input tokens</td><td class="win">About 1,200 input tokens</td></tr>
-<tr><td>Control over each search</td><td class="win">Full: retries, timing, parallel runs</td><td class="fail">Little: it happens inside the model call, and a rate limit after a search isn't retried</td><td class="win">Full, same code</td></tr>
-<tr><td>Article numbers found, 117 expected</td><td>114, none invented</td><td class="win">117, none invented</td><td class="win">117, none invented</td></tr>
+<tr><td>Control over each search</td><td class="win">Full: retries, timing, parallel runs</td><td class="fail">Little: it happens inside Foundry's agent run, and a rate limit after a search isn't retried</td><td class="win">Full, same code</td></tr>
+<tr><td>Article numbers found on brake jobs</td><td class="win">All, none invented</td><td class="win">All, none invented</td><td class="win">All, none invented</td></tr>
 <tr><td>Code you own for searching</td><td>A client and a tool per base</td><td class="win">None: declare the base as an MCP tool</td><td>A client and a tool per base</td></tr>
 <tr><td>Agent identity and versions in Foundry</td><td class="fail">No, it's your API</td><td class="win">Yes</td><td class="win">Yes</td></tr>
 <tr><td>Change instructions without shipping code</td><td class="fail">No, redeploy the API</td><td class="win">Yes, a new agent version</td><td class="fail">No, build a new image</td></tr>
@@ -1095,6 +1023,7 @@ const E={
  em_ix:{p:[[1125,605],[1118,605],[1118,684],[1100,684]],a:[1128,645],m:"start",v:"mid",ret:1},
  ix_r:{p:[[1100,702],[1125,702]],a:[1125,744],m:"start",v:"mid"},
  r_ix:{p:[[1125,718],[1100,718]],a:[1125,744],m:"start",v:"mid",ret:1},
+ m_m:{p:[[1250,205],[1262,205],[1262,255],[1250,255]],a:[1102,312],m:"start",v:"mid"},
  c_c:{p:[[60,130],[60,172],[140,172],[140,130]],a:[105,186],m:"middle",v:"down"},
  l_v:{p:[[680,200],[760,200],[760,116],[920,116]],a:[770,156],m:"start",v:"mid"},
 };
@@ -1279,8 +1208,12 @@ function promptSteps(key){
   S("Knowledge base planner","gpt-5.4-mini",["p_m","m_p"],["plan sub-queries","sub-queries"],"Same planning as in the other backends.","The MCP server is the knowledge base itself, so planning works as usual."),
   S("Knowledge base","Index",["kb_ks","ks_ix"],["each sub-query","hybrid search"],"Knowledge source, then index, as in the other backends.","Search does the same work whoever calls it."),
   S("Index","Knowledge base",["ix_ks","ks_kb"],["ranked chunks","merged"],"Chunks, best match first.","Nothing has reached our code yet."),
-  S("Knowledge base "+nm,"Prompt agent in Foundry","k_m","documents, inside the model call",'{ "documents": [{ "id": "...", "content": "{ \\"chunk_id\\": ..., \\"title\\": ..., \\"chunk\\": ... }" }, ...] }',"The Web API only sees this go by afterwards, as an mcp_call item in the stream."))});
- out.push(UP("text, no tool calls",ex.answer.slice(0,240)+(ex.answer.length>240?" ...":""),"The searches happened inside the model call, so no second call from the Web API was needed."));
+  S("Knowledge base "+nm,"Prompt agent in Foundry","k_m","documents",'{ "documents": [{ "id": "...", "content": "{ \\"chunk_id\\": ..., \\"title\\": ..., \\"chunk\\": ... }" }, ...] }',"The Web API only sees this go by afterwards, as an mcp_call item in the stream."),
+  S("Foundry's agent run","gpt-5.4-mini","m_m","Foundry calls the model again",`Foundry's own loop, not ours:
+1. The model asks for the search
+2. Foundry runs it through MCP
+3. Foundry calls the model again, now with the documents`,"This is the same work as the second model call in the own loop, but Foundry does it, so our code can't see or count it. It shows up in the token total."))});
+ out.push(UP("text, no tool calls",ex.answer.slice(0,240)+(ex.answer.length>240?" ...":""),"Foundry streams the answer back on the same request. The Web API made one request, while Foundry called the model at least twice."));
  out.push(base[base.length-1]);
  return out}
 function DETAIL_STEPS(){
@@ -1345,10 +1278,10 @@ function drawVerdict(key){
  const host=document.getElementById("verdict");host.replaceChildren();
  const secs=Object.keys(BACKENDS).map(b=>J[b][key].seconds),best=Math.min(...secs);
  Object.entries(BACKENDS).forEach(([b,v])=>{
-  const r=J[b][key],note=(VERDICT[key]||{})[b]||[],state=note[0]||(r.seconds===best?"win":""),c=document.createElement("div");
+  const r=J[b][key],note=(VERDICT[key]||{})[b]||[],state=note[0]||"",c=document.createElement("div");
   c.className="vc"+(state?" "+state:"")+(b===backend?" sel":"");c.setAttribute("role","button");c.tabIndex=0;c.onclick=()=>{backend=b;drawScen(scen)};
   const t=document.createElement("b");t.textContent=v.label;
-  const n=document.createElement("div");n.className="num";n.textContent=`${r.seconds.toFixed(1)} s · ${r.model_calls} model calls · ${Math.round(r.tokens).toLocaleString("en-US")} tokens`;
+  const n=document.createElement("div");n.className="num";n.textContent=`${r.seconds.toFixed(1)} s · ${r.model_calls} ${r.model_calls===1?"request":"requests"} to Foundry · ${Math.round(r.tokens).toLocaleString("en-US")} tokens`;
   const u=document.createElement("div");u.textContent="Used: "+pathText(r.paths);
   c.append(t,n,u);
   if(note[1]){const w=document.createElement("div");if(state){const g=document.createElement("span");g.className="tag";g.textContent=(state==="win"?"Works best: ":"Weakest: ");w.append(g)}w.append(document.createTextNode(note[1]));c.append(w)}
@@ -1366,9 +1299,9 @@ function applyBackend(){
 }
 const VERDICT={
  yours:{loop:["win","Fastest for a price question."],prompt:["","Same path as the own loop, at about twice the tokens."],hosted:["fail","Same path and same code, about 5 s slower."]},
- follow:{loop:["","In 1 of 3 runs it asked for the market instead of searching."],prompt:["win","The search runs inside one model call, though it costs the most tokens."],hosted:["","Same path as the own loop, plus the hop into Foundry."]},
- awd:{loop:["win","Fastest, with the fewest tokens."],prompt:["fail","Called tools it didn't need, such as get_current_date, at more than twice the tokens."],hosted:["","Same path as the own loop, plus the hop into Foundry."]},
- detail:{loop:["win","Both bases searched at the same time, in 2 model calls."],prompt:["fail","Searches one base at a time and calls unneeded function tools first, 9 of them in one run."],hosted:["","Both bases at the same time, plus the hop into Foundry."]},
+ follow:{loop:["","About level with the others. In 1 of 3 runs it asked for the market instead of searching."],prompt:["","No real speed gain: on document questions over 9 runs it was slightly slower than the own loop. Our code makes one request, but Foundry still calls the model at least twice, and this path costs the most tokens."],hosted:["","Same path as the own loop, plus the hop into Foundry."]},
+ awd:{loop:["win","Fastest, with the fewest tokens."],prompt:["fail","Still calls tools it doesn't need here, such as get_current_date, at almost twice the tokens."],hosted:["","Same path as the own loop, plus the hop into Foundry."]},
+ detail:{loop:["win","Both bases searched at the same time, in 2 model calls."],prompt:["fail","Searches one base at a time, so it depends most on how many searches the model makes. Across 12 larger runs it took 16.5 s, about the same as the hosted agent."],hosted:["","Both bases at the same time, plus the hop into Foundry."]},
  hello:{loop:["win","No tool and one model call."],prompt:["","As fast, at about twice the tokens."],hosted:["fail","About 4 s slower, for the hop into the agent session."]},
  client:{loop:["win","Accepts any tool, even one the server has never seen."],prompt:["fail","Works here only because the tool is in the agent definition. A new tool is refused."],hosted:["","Accepts any tool too, plus the hop into Foundry."]},
  curated:{loop:["win","Word for word in 1 model call."],prompt:["win","Word for word in 1 model call."],hosted:["fail","Word for word, but about 4 s slower."]},
@@ -1417,7 +1350,7 @@ box(group("em"),1125,566,130,60,"var(--search)","Embedding",["text-embedding","-
 box(group("rk"),1125,664,130,66,"var(--search)","Semantic",["ranker: reorders","the results"]);
 const edgeG=map.appendChild(el("g")),badgeG=map.appendChild(el("g")),chipG=map.appendChild(el("g"));
 const edges={};Object.entries(E).forEach(([id,e])=>{const l=el("polyline",{class:"edge"+(e.ret?" ret":""),points:e.p.join(" ")});edges[id]=l;edgeG.append(l)});
-const USES={c_r:["client","routes"],r_c:["client","routes"],r_v:["routes","conv"],v_r:["routes","conv"],r_l:["routes","loop"],l_r:["routes","loop"],l_m:["loop","model"],m_l:["loop","model"],v_m:["conv","model"],l_t:["loop","tools"],t_l:["loop","tools"],t_d:["tools","dealer"],d_t:["tools","dealer"],t_p:["tools","kb"],p_t:["tools","kb"],p_m:["kb","model"],m_p:["kb","model"],m_k:["kb","model"],k_m:["kb","model"],kb_ks:["kb","ks"],ks_kb:["kb","ks"],ks_ix:["ks","ix"],ix_ks:["ks","ix"],ix_em:["ix","em"],em_ix:["ix","em"],ix_r:["ix","rk"],r_ix:["ix","rk"],c_c:["client"],l_v:["loop","conv"]};
+const USES={c_r:["client","routes"],r_c:["client","routes"],r_v:["routes","conv"],v_r:["routes","conv"],r_l:["routes","loop"],l_r:["routes","loop"],l_m:["loop","model"],m_l:["loop","model"],v_m:["conv","model"],l_t:["loop","tools"],t_l:["loop","tools"],t_d:["tools","dealer"],d_t:["tools","dealer"],t_p:["tools","kb"],p_t:["tools","kb"],p_m:["kb","model"],m_p:["kb","model"],m_k:["kb","model"],k_m:["kb","model"],kb_ks:["kb","ks"],ks_kb:["kb","ks"],ks_ix:["ks","ix"],ix_ks:["ks","ix"],ix_em:["ix","em"],em_ix:["ix","em"],ix_r:["ix","rk"],r_ix:["ix","rk"],c_c:["client"],m_m:["model"],l_v:["loop","conv"]};
 
 let scen="yours",cur=0,badges=[];
 const tabs=document.getElementById("tabs"),bar=document.getElementById("stepbar"),card=document.getElementById("card");

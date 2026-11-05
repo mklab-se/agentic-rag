@@ -206,13 +206,20 @@ A retrieve spends model tokens on query planning, so a busy deployment answers `
 
 The tool list costs a few hundred tokens and no call. A check in front of the model, or a search on every turn, would make every question pay for answers that a few need. An embedding match in the API would be faster for a curated question but cannot see the conversation, and it could match "the phone number to the Stockholm dealer". A handler returns `FinalAnswer`, a `str` subclass, so the loop can skip the second model call without any change to the tool contract. Errors stay plain text and go to the model. The short cut only fires when the tool is the only call of the first model response. The first live run showed why: the prompt agent called the tool in 11 of 12 two-base job questions on its way to the searches, the same habit `prompt-extra-steps.txt` shows with dealer tools, and one brake question ended with the phone number. Genuine curated questions chose it in the first response in 81 of 81 runs. After the fix the prompt agent still made the needless call in 7 of 12 job questions, but none ended early: 117 of 117 article numbers were found, and curated questions stayed at 81 of 81. If writing the answer to the conversation fails, the turn fails with `model_error` before any text is sent, and the conversation is repaired on next use.
 
+### Prompt agents get their own sentence on searching
+
+The instruction "call them all in the same step" made the prompt agent emit two parallel function calls before searching, because it cannot run MCP searches in parallel: 11 of 12 first responses. `parallel_tool_calls=False` on the request also stopped it, in 4 of 4 runs, but it would make a mixed curated question end early, so the instructions differ instead. Search, then catalog, and no other tool first: 0 of 7 first responses, then 1 of 27 job runs in the live checks.
+
+### Brake fluid is listed in the brake catalog too
+
+All remaining article misses were brake fluid, which only sat among the service items, so a search for brake parts did not reach it. The brake catalog now has a section for consumables, and all 111 article numbers were found on all three backends. Regenerating also brought the catalog in line with the generator: 429 parts, and new article numbers from the old 433.
+
 ## Not recorded or not verified
 
 - Interactive SPA sign-in, and a real browser sign-in with `voltrieve login` (tested against a fake MSAL application).
 - A real sign-in as the tester. The denied case ran with a fake validator.
 - Publishing to Teams and Microsoft 365.
 - Cold-start figures. Whole turn times are in `docs/why-foundry.md` section 6, measured from one laptop.
-- Why the prompt agent calls dealer tools before searching on job questions.
 - Whether `alwaysQuerySource` would make one knowledge base cover both sources.
 - The 10 minute run expiry from older documentation.
 - Whether an MCP tool with a project connection works outside an agent definition.

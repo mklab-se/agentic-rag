@@ -11,7 +11,7 @@ Most agent samples stop at "it answers". This one answers the questions you meet
 | **Why host an agent in Foundry at all?** | For a managed identity, versions and a publishing path. Not for the loop, which is 252 lines of Python. | [Comparison](docs/why-foundry.md) |
 | **My client has its own tools. Now what?** | A prompt agent refuses per-request tools with a 400. An own loop or a hosted agent runs them, even one the server has never seen. | [Client tools](docs/why-foundry.md#1-what-happened-with-client-tools) |
 | **How does the agent decide to use RAG?** | No classifier exists. The model decides in its first call, from words you control. | [The journey of a prompt](docs/prompt-journey.md) |
-| **Can it use several knowledge bases without calling them in vain?** | Yes: all three reached the right bases in every run. Two run them at the same time, and the prompt agent also makes needless function calls on the way. | [Two knowledge bases](docs/why-foundry.md#6-two-knowledge-bases-who-chooses-and-who-runs-them-together) |
+| **Can it use several knowledge bases without calling them in vain?** | Yes: all three reached the right bases in every run. Two of them run the searches at the same time. | [Two knowledge bases](docs/why-foundry.md#6-two-knowledge-bases-who-chooses-and-who-runs-them-together) |
 | **I need curated answers without slowing everything down.** | Pick the answer in the model call you already make, then skip the second one. Curated questions took under 2 s on two of the three, and other questions showed no measurable delay. | [Curated answers](docs/prompt-journey.md#curated-answers) |
 
 ## See it: the journey of a prompt
@@ -30,11 +30,11 @@ Prefer text? [docs/prompt-journey.md](docs/prompt-journey.md) has the same story
 
 | What you care about | Own loop | Prompt agent | Hosted agent |
 | --- | --- | --- | --- |
-| Everyday question | **1.4 s** | **1.7 s** | 5.7 s, about 4 s slower on every turn |
-| Question for two knowledge bases | **14.0 s**, searches run together | 27.4 s, one at a time | **15.9 s**, searches run together |
+| Everyday question | **1.6 s** | **2.0 s** | 6.0 s, about 4 s slower on every turn |
+| Question for two knowledge bases | **12.3 s**, searches run together | 16.5 s, one at a time | 17.2 s, searches run together |
 | A client tool the server has never seen | **Works** | Refused | **Works** |
-| Curated answer, word for word | **1.6 s** | **1.8 s** | 6.0 s |
-| Control over each search | **Full** | Little, it runs inside the model call | **Full** |
+| Curated answer, word for word | **1.7 s** | **1.8 s** | 6.4 s |
+| Control over each search | **Full** | Little, it runs inside Foundry's agent run | **Full** |
 | Code you own for searching | A client per base | **None, declare an MCP tool** | A client per base |
 | Agent identity and versions in Foundry | No | **Yes** | **Yes** |
 | Change instructions without shipping code | No | **Yes** | No |
