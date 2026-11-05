@@ -1,0 +1,28 @@
+Speed, quality and estimated cost per run
+
+run                                turns  right in vain  articles errors median s simple s  jobs s  USD/1000
+agent-gpt-5.4-mini                    48     48       0     78/78      0      2.0      1.7    12.2      5.06
+agent-gpt-5.4-nano                    48     47       0     78/78      0      2.5      1.7    21.4      5.62
+agent-gpt-5.6-terra                   48     48       0     78/78      0      1.8      1.5     7.2      8.30
+agent-gpt-6-luna                      48     48       0     78/78      0      2.0      1.4    11.3      1.68
+agent-gpt-6.1-sol                     48     48       0     78/78      0      2.7      2.0    12.8      7.42
+agent-gpt-6.1-terra                   48     48       0     78/78      0      2.6      1.7     6.9      4.71
+planner-gpt-5.4-mini                  20     20       0     78/78      0      6.2      0.0    10.9     10.89
+planner-gpt-5.4-nano                  20     20       0     78/78      0      5.3      0.0    12.5     10.73
+planner-gpt-5.6-terra                 20     20       0     78/78      0      6.0      0.0    10.2     13.47
+
+Each architecture and model. TTFT is time to first token, total is time to last.
+
+backend model            turns  right  articles TTFT med TTFT max over 10s jobs TTFT total med jobs total  USD/1000
+loop    gpt-5.4-mini        48     48     78/78      2.1     30.6        3       9.5       2.1       11.0      5.69
+prompt  gpt-5.4-mini        48     47     78/78      3.3     84.3        9      14.7       3.8       16.7      8.05
+hosted  gpt-5.4-mini        48     48     78/78      7.2     22.1       13      16.0       7.2       17.4      6.29
+loop    gpt-6-luna          48     48     78/78      1.9     24.0        2       7.3       2.1        9.2      1.83
+prompt  gpt-6-luna          48     48     78/78      2.2     45.5        5      10.6       2.3       12.3      1.89
+hosted  gpt-6-luna          48     48     78/78      7.0     14.4        8      10.9       7.0       12.9      1.77
+loop    gpt-6.1-terra       48     48     78/78      2.4      9.5        0       5.7       2.6        7.3      4.39
+prompt  gpt-6.1-terra       48     48     78/78      2.5     52.9        5      10.7       2.6       12.8      7.24
+hosted  gpt-6.1-terra       48     48     78/78      7.3     34.4        7      10.3       7.3       11.9      4.74
+
+USD/1000 is the estimated model and retrieval cost of 1000 turns of this question mix.
+It leaves out fixed costs such as Search Basic, and hosted agent session charges.
