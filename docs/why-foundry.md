@@ -221,6 +221,8 @@ Publishing to Teams and Microsoft 365 was not exercised. It requires a prompt or
 
 ## 6. Two knowledge bases: who chooses, and who runs them together
 
+The figures in this section are from the run of 2026-11-04. `docs/evidence/routing.txt` now holds the run of 2026-11-05, after curated answers were added: 14.0, 27.4 and 15.9 seconds for two bases on the own loop, prompt agent and hosted agent. The pattern is the same, and the prompt agent also called `get_curated_answer` in vain in 7 of 12 job questions.
+
 A second knowledge base holds 433 spare parts across five catalogs. The first gained a service guide that says what each job consists of, with no article numbers. The catalogs have the article numbers, with no procedures. So "which parts do I need to change the front left brake on my Fjord?" really needs both.
 
 Two different decisions are involved, and they are often confused:
