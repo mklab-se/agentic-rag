@@ -12,6 +12,8 @@ export interface Turn {
   correlationId: string;
   requestedBackend: Backend;
   answer: string;
+  /** What the agent says it is doing, until the answer starts. */
+  activity?: string;
   entries: TimelineEntry[];
   status: "streaming" | "done" | "error";
   error?: string;
@@ -61,6 +63,8 @@ export function chatReducer(state: ChatState, action: ChatAction): ChatState {
     case "event": {
       const ev = action.event;
       switch (ev.type) {
+        case "status":
+          return updateLast(state, (t) => ({ ...t, activity: ev.data.message }));
         case "trace":
           return updateLast(state, (t) => ({
             ...t,

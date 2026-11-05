@@ -30,6 +30,11 @@ export function parseServerEvent(msg: SseMessage): ServerEvent | null {
           elapsed_ms: typeof payload.elapsed_ms === "number" ? payload.elapsed_ms : 0,
         },
       };
+    case "status":
+      return {
+        type: "status",
+        data: { code: String(payload.code ?? ""), message: String(payload.message ?? "") },
+      };
     case "delta":
       return { type: "delta", data: { text: String(payload.text ?? "") } };
     case "client_tool_calls": {

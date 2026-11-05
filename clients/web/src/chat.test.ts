@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { buildChatRequest, streamChat } from "./chat";
 import type { ServerEvent } from "./types";
+import { chatReducer, initialChatState } from "./turns";
 
 const base = { apiUrl: "https://api.example/", token: "tok", backend: "loop" as const, message: "hello", correlationId: "corr-1" };
 
@@ -107,5 +108,14 @@ describe("streamChat", () => {
     const fetchImpl = (async () => sseResponse(["event: delta\ndata: {nope\n\n"])) as unknown as typeof fetch;
     const events = await collect(streamChat(base, undefined, fetchImpl));
     expect(events).toMatchObject([{ type: "error", data: { code: "malformed_event" } }]);
+  });
+});
+
+describe("status events", () => {
+  it("shows the latest activity until the answer starts", () => {
+    let state = chatReducer(initialChatState, { type: "start", message: "hi", backend: "loop", correlationId: "c" });
+    state = chatReducer(state, { type: "event", event: { type: "status", data: { code: "thinking", message: "Thinking" } } });
+    state = chatReducer(state, { type: "event", event: { type: "status", data: { code: "searching_parts", message: "Searching the parts catalog" } } });
+    expect(state.turns[0]!.activity).toBe("Searching the parts catalog");
   });
 });

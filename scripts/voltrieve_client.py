@@ -90,6 +90,8 @@ class Turn:
     events: list[Event] = field(default_factory=list)
     conversation_id: str | None = None
     tool_runs: list[tuple[str, str, str]] = field(default_factory=list)  # name, arguments, output
+    first_text_seconds: float | None = None
+    first_status_seconds: float | None = None
 
     @property
     def text(self) -> str:
@@ -151,6 +153,7 @@ class Api:
     ) -> Turn:
         """Send a message and follow the turn to its end, answering client tool calls."""
         result = Turn(conversation_id=conversation_id)
+        began = time.perf_counter()
         body: dict = {"message": message, "client_tools": client_tools or []}
         if conversation_id:
             body["conversation_id"] = conversation_id
@@ -159,6 +162,10 @@ class Api:
             pending = None
             for name, data in stream:
                 result.events.append((name, data))
+                if name == "status" and result.first_status_seconds is None:
+                    result.first_status_seconds = round(time.perf_counter() - began, 2)
+                if name == "delta" and result.first_text_seconds is None:
+                    result.first_text_seconds = round(time.perf_counter() - began, 2)
                 result.conversation_id = data.get("conversation_id") or result.conversation_id
                 if name == "client_tool_calls":
                     pending = data

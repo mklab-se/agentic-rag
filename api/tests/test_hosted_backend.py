@@ -83,7 +83,8 @@ async def test_relays_events_one_to_one_and_returns_the_outcome(http):
     emitted = []
 
     async def emit(event):
-        emitted.append((event.type, event.data))
+        if event.type != "status":
+            emitted.append((event.type, event.data))
 
     result = await backend.run_turn(ctx(client_tools=[TOOL]), emit)
 
@@ -159,7 +160,8 @@ async def test_failures_become_a_generic_error_event_and_a_failed_outcome(http, 
     emitted = []
 
     async def emit(event):
-        emitted.append(event)
+        if event.type != "status":
+            emitted.append(event)
 
     result = await make_backend(http).run_turn(ctx(), emit)
     assert result.status == "failed"
@@ -242,7 +244,8 @@ async def test_non_200_with_a_cached_session_drops_it_and_retries_once(http):
     emitted = []
 
     async def emit(event):
-        emitted.append(event)
+        if event.type != "status":
+            emitted.append(event)
 
     await backend.run_turn(ctx(), emit)
     result = await backend.run_turn(ctx(), emit)
@@ -260,7 +263,8 @@ async def test_unknown_status_is_failed_and_events_after_outcome_are_ignored(htt
     emitted = []
 
     async def emit(event):
-        emitted.append(event)
+        if event.type != "status":
+            emitted.append(event)
 
     result = await make_backend(http).run_turn(ctx(), emit)
     assert result.status == "failed"
@@ -280,7 +284,8 @@ async def test_line_separators_survive_the_relay(http):
     emitted = []
 
     async def emit(event):
-        emitted.append(event)
+        if event.type != "status":
+            emitted.append(event)
 
     await make_backend(http).run_turn(ctx(), emit)
     assert emitted[0].data["text"] == text
@@ -298,7 +303,8 @@ async def test_lost_stream_keeps_the_turn_running_for_the_grace_then_fails(http)
     emitted = []
 
     async def emit(event):
-        emitted.append(event)
+        if event.type != "status":
+            emitted.append(event)
 
     task = asyncio.create_task(backend.run_turn(ctx(), emit))
     await asyncio.sleep(0.05)

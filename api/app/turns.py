@@ -15,7 +15,7 @@ from collections import OrderedDict
 from collections.abc import AsyncIterator, Callable
 from dataclasses import dataclass, field
 
-from voltrieve_agent.events import KEEPALIVE, KEEPALIVE_SECONDS, AgentEvent, format_event, trace
+from voltrieve_agent.events import KEEPALIVE, KEEPALIVE_SECONDS, REVIEWING, THINKING, AgentEvent, status, format_event, trace
 from voltrieve_agent.model import merge_usage
 from voltrieve_agent.tools import ClientTool, UserContext
 
@@ -286,6 +286,8 @@ class TurnService:
                     )
                 )
                 return
+            # First, before anything slow: a user who sees this knows the request arrived.
+            await run.emit(status(THINKING if isinstance(job.input, str) else REVIEWING))
             backend = self._registry.get_backend(job.backend)
             if job.stale is not None:
                 await self._close(job.stale, run)

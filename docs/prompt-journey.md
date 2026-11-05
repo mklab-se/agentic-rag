@@ -117,6 +117,17 @@ Nothing runs in front of the model, so a normal question makes no extra call. Wh
 
 A changed text needs a new API image, and on the hosted agent a new agent image too. A new topic also needs `scripts/deploy-agents.sh`, because prompt agents hold the topic list. Measured with 8 runs per question and backend, medians for normal questions moved by -0.7 to +0.2 s, within the normal spread, for 200 to 600 more tokens per turn. Curated questions took 1.5 to 1.9 s, and about 6 s on the hosted agent. The figures are in [evidence](evidence/curated-latency.txt).
 
+### What the user sees while waiting
+
+Long answers can take seconds to start, and silence makes a solution look broken. So the API sends a `status` event on the same stream, with a stable code and a default text:
+
+```text
+event: status
+data: {"code": "searching_parts", "message": "Searching the parts catalog"}
+```
+
+The first one goes out before anything slow, so the user knows the request arrived. After that, each tool says what it's doing: searching, checking prices or waiting for the user's device. A search inside Foundry is named by its knowledge base, because the Web API sees it start. Rate limit retries say "Busy, trying again", because those are the longest silent waits. A status never holds the user's words or tool arguments, and clients that don't know the event ignore it. This makes the wait feel shorter but no faster, so TTFT stays the number to watch.
+
 ### The three backends
 
 | Who does this? | Own loop | Prompt agent | Hosted agent |

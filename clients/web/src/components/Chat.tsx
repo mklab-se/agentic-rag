@@ -58,8 +58,9 @@ export function Chat({ state, busy, onSend }: Props) {
               {t.answer ? (
                 <p className="answer">{t.answer}</p>
               ) : t.status === "streaming" ? (
-                <p className="thinking" aria-label="Agent is working">
+                <p className="thinking" role="status" aria-label={t.activity ?? "Agent is working"}>
                   <i /><i /><i />
+                  {t.activity && <span>{t.activity}</span>}
                 </p>
               ) : null}
               {t.error && (

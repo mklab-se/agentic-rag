@@ -61,6 +61,7 @@ class Run:
     repeat: int
     seconds: float = 0.0
     first_text_seconds: float | None = None
+    first_status_seconds: float | None = None
     used: list[str] = field(default_factory=list)
     calls: int = 0
     steps: int = 0
@@ -178,6 +179,8 @@ def ask(url, token, backend: str, question: dict, repeat: int, index: dict) -> R
     if turn.error:
         run.error = str(turn.error.get("code"))
     run.answer = turn.text
+    run.first_text_seconds = turn.first_text_seconds
+    run.first_status_seconds = turn.first_status_seconds
     read_trace(run, turn)
     mentioned = set(ARTICLE.findall(turn.text))
     run.articles_expected = len(wanted)

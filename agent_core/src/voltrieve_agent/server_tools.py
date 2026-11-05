@@ -5,7 +5,11 @@ from zoneinfo import ZoneInfo
 
 from voltrieve_agent.curated import CURATED_ANSWERS, FinalAnswer, curated_description
 from voltrieve_agent.dealer import DealerClient
-from voltrieve_agent.knowledge import KnowledgeBase
+from voltrieve_agent.knowledge import (
+    KNOWLEDGE_BASE_NAME,
+    PARTS_KNOWLEDGE_BASE_NAME,
+    KnowledgeBase,
+)
 from voltrieve_agent.tools import ServerTool, UserContext
 
 BOOK_ROLE = "TestDrive.Book"
@@ -26,6 +30,10 @@ PARTS_DESCRIPTION = (
     "car and the vehicles each part fits. Use to find a part or an article number. It does not "
     "say which parts a job needs or how to do the work."
 )
+SEARCHING_DOCUMENTS = ("searching_documents", "Searching the documents")
+SEARCHING_PARTS = ("searching_parts", "Searching the parts catalog")
+# Prompt agents run their searches in Foundry, so these statuses go by knowledge base.
+KB_STATUSES = {KNOWLEDGE_BASE_NAME: SEARCHING_DOCUMENTS, PARTS_KNOWLEDGE_BASE_NAME: SEARCHING_PARTS}
 # The dealer works in Swedish local time, whatever the timezone of the host.
 DEALER_TIMEZONE = ZoneInfo("Europe/Stockholm")
 
@@ -75,12 +83,14 @@ def build_server_tools(
             curated_description(),
             schema({"topic": {"type": "string", "enum": list(CURATED_ANSWERS)}}, ["topic"]),
             get_curated_answer,
+            status=("finding_answer", "Finding the answer"),
         ),
         ServerTool(
             KB_SEARCH_TOOL,
             f"Search {DOCS_DESCRIPTION} Returns document chunks with titles.",
             schema({"query": {"type": "string", "description": "What to look up"}}, ["query"]),
             search_docs,
+            status=SEARCHING_DOCUMENTS,
         ),
         ServerTool(
             PARTS_SEARCH_TOOL,
@@ -96,6 +106,7 @@ def build_server_tools(
                 ["query"],
             ),
             search_parts,
+            status=SEARCHING_PARTS,
         ),
         ServerTool(
             "check_stock",
@@ -103,6 +114,7 @@ def build_server_tools(
             "are optional.",
             schema({"model": MODEL_PROPERTY, "city": CITY_PROPERTY}),
             check_stock,
+            status=("checking_stock", "Checking stock"),
         ),
         ServerTool(
             "get_prices",
@@ -110,6 +122,7 @@ def build_server_tools(
             "configuration prices (such as AWD): those are in the documents.",
             schema({"market": {"type": "string", "enum": ["SE", "EU"]}}),
             get_prices,
+            status=("checking_prices", "Checking prices"),
         ),
         ServerTool(
             "get_current_date",
@@ -131,6 +144,7 @@ def build_server_tools(
             ),
             book_test_drive,
             required_role=BOOK_ROLE,
+            status=("booking_test_drive", "Booking your test drive"),
             concurrent=False,  # it changes something, so it never races another tool
         ),
     ]

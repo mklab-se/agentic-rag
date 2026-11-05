@@ -12,7 +12,7 @@ KEEPALIVE_SECONDS = 15.0
 
 @dataclass(frozen=True)
 class AgentEvent:
-    type: str  # trace, delta, client_tool_calls, done, error
+    type: str  # trace, status, delta, client_tool_calls, done, error
     data: dict
 
 
@@ -21,6 +21,21 @@ Emit = Callable[[AgentEvent], Awaitable[None]]
 
 def trace(step: str, component: str, detail: str = "", **extra) -> AgentEvent:
     return AgentEvent("trace", {"step": step, "component": component, "detail": detail, **extra})
+
+
+# What a user may be told while waiting. Trace events are for developers and hold internals; a
+# status holds a stable code and a default text, and never the user's words or tool arguments.
+THINKING = ("thinking", "Thinking")
+REVIEWING = ("reviewing_results", "Reading the results")
+STARTING_AGENT = ("starting_agent", "Getting ready")
+WAITING_FOR_DEVICE = ("waiting_for_device", "Waiting for your device")
+RETRYING = ("retrying", "Busy, trying again")
+WORKING = ("working", "Working on it")
+
+
+def status(state: tuple[str, str]) -> AgentEvent:
+    code, message = state
+    return AgentEvent("status", {"code": code, "message": message})
 
 
 def format_event(event: AgentEvent) -> bytes:

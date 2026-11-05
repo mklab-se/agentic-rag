@@ -115,6 +115,8 @@ def _routing():
 
 
 class _Trace:
+    done = None
+
     def __init__(self, *events):
         self.events = events
 

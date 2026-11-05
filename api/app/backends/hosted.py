@@ -31,7 +31,7 @@ from functools import partial
 from typing import Any
 
 import httpx
-from voltrieve_agent.events import AgentEvent, Emit
+from voltrieve_agent.events import STARTING_AGENT, AgentEvent, Emit, status
 from voltrieve_agent.http_client import make_http_client
 from voltrieve_agent.loop import TurnOutcome
 
@@ -128,6 +128,7 @@ class HostedBackend(ConversationBackend):
 
     async def run_turn(self, ctx: TurnContext, emit: Emit) -> TurnOutcome:
         stream_broken = False
+        await emit(status(STARTING_AGENT))
         try:
             return await self._invoke(ctx, emit)
         except Exception as exc:
