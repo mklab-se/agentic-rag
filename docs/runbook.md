@@ -175,7 +175,7 @@ Expect `cloud_RoleName` `voltrieve-api`, with `voltrieve-dealer` for the dealer 
 
 A client tool turn is two HTTP requests, so it spans two `operation_Id` values under one correlation id. The query handles that when the client sends the same id on both, as `scripts/runbook.py` and the CLI do.
 
-`voltrieve` and the SPA generate one id per turn, send it on every request of the turn and show it (the CLI on stderr and in the trace panel, the SPA in the event timeline). Copy it into `cid` above. Without an id, take `turn_id` from `voltrieve ask --json` and filter on it instead:
+`voltrieve` and the SPA generate one id per turn, send it on every request of the turn and show it (the CLI on stderr, with `--trace` and with `/trace` in the chat, in the trace panel, the SPA in the event timeline). Copy it into `cid` above. Without an id, take `turn_id` from `voltrieve ask --json` and filter on it instead:
 
 ```kusto
 dependencies

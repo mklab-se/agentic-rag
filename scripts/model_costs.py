@@ -7,7 +7,8 @@
     uv run scripts/model_costs.py
 
 Cost is estimated from the tokens each turn reported and list prices in USD per million tokens,
-Global Standard, Sweden Central, read from the Azure retail prices API on 2026-11-05. The prompt
+Global Standard, Sweden Central, read from the Azure retail prices API on 2026-11-05. Cache write
+charges are left out, because the runs did not record those tokens. The prompt
 agent does not report planning tokens, so its searches borrow the own loop's average per search.
 Writes docs/evidence/model-comparison.txt.
 """

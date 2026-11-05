@@ -13,7 +13,7 @@ from rich.markup import escape
 from . import auth
 from .api import ApiClient, ApiError, run_turn
 from .config import ConfigError, load_settings
-from .render import ChatView, clean, json_line
+from .render import USER_COLOR, ChatView, clean, json_line
 
 app = typer.Typer(help="Voltrieve terminal client.", no_args_is_help=True)
 err = Console(stderr=True)
@@ -110,21 +110,27 @@ def ask(question: str, backend: BackendOpt = None, json_out: Annotated[bool, typ
 
 
 @app.command()
-def chat(backend: BackendOpt = None, az_token: AzOpt = False) -> None:
-    """Interactive chat with a live trace panel. Empty line or Ctrl-D exits."""
+def chat(backend: BackendOpt = None, az_token: AzOpt = False,
+         trace: Annotated[bool, typer.Option("--trace", help="Print the trace as it happens.")] = False) -> None:
+    """Chat in message bubbles. /trace shows the last turn. An empty line or Ctrl-D exits."""
     client = _client(backend, az_token)
     console = Console()
+    view = ChatView(console, show_trace=trace)
     conversation_id: str | None = None
     try:
         while True:
             try:
-                message = console.input("[bold cyan]> [/]").strip()
+                message = console.input(f"[bold {USER_COLOR}]› [/]").strip()
             except (EOFError, KeyboardInterrupt):
                 break
             if not message:
                 break
-            with ChatView(console) as view:
-                view.user(message)
+            if message == "/trace":
+                view.print_trace()
+                continue
+            view.erase_input(message)
+            view.user(message)
+            with view:
                 try:
                     outcome = run_turn(client, message, conversation_id, view.on_event,
                                        banner=view.show_banner)
@@ -132,6 +138,7 @@ def chat(backend: BackendOpt = None, az_token: AzOpt = False) -> None:
                     view.on_event("error", {"code": "client", "message": str(exc)})
                     continue
             conversation_id = outcome.conversation_id or conversation_id
+            console.print()
     finally:
         client.close()
 
