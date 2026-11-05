@@ -14,17 +14,29 @@ from dataclasses import dataclass, field
 from typing import Literal
 
 from voltrieve_agent.curated import FinalAnswer
-from voltrieve_agent.events import AgentEvent, Emit, trace
+from voltrieve_agent.events import (
+    REVIEWING,
+    RETRYING,
+    WAITING_FOR_DEVICE,
+    WORKING,
+    AgentEvent,
+    Emit,
+    status,
+    trace,
+)
 from voltrieve_agent.instructions import AGENT_INSTRUCTIONS
 from voltrieve_agent.model import (
     Completed,
     Failed,
     FunctionCall,
     McpCall,
+    McpStarted,
     ModelClient,
+    Retrying,
     TextDelta,
     merge_usage,
 )
+from voltrieve_agent.server_tools import KB_STATUSES
 from voltrieve_agent.tools import (
     ClientTool,
     ServerTool,
@@ -89,6 +101,7 @@ async def _run_server_tool(toolset, call, user, emit, iteration) -> tuple[str, i
             iteration=iteration + 1,
         )
     )
+    await emit(status(toolset.status_of(call.name)))
     began = time.perf_counter()
     output = await toolset.execute(call.name, call.arguments, user, emit)
     duration_ms = round((time.perf_counter() - began) * 1000)
@@ -158,6 +171,8 @@ async def _run(model, server_tools, turn, emit, max_iterations) -> TurnOutcome:
 
     for iteration in range(max_iterations):
         await emit(trace("model_called", "model", f"iteration {iteration + 1}"))
+        if iteration > 0:
+            await emit(status(REVIEWING))
         calls: list[FunctionCall] = []
         text_deltas = 0
         failed: Failed | None = None
@@ -186,6 +201,10 @@ async def _run(model, server_tools, turn, emit, max_iterations) -> TurnOutcome:
                     await emit(AgentEvent("delta", {"text": item.text}))
                 elif isinstance(item, FunctionCall):
                     calls.append(item)
+                elif isinstance(item, McpStarted):
+                    await emit(status(KB_STATUSES.get(item.server, WORKING)))
+                elif isinstance(item, Retrying):
+                    await emit(status(RETRYING))
                 elif isinstance(item, McpCall):
                     await emit(
                         trace(
@@ -271,6 +290,7 @@ async def _run(model, server_tools, turn, emit, max_iterations) -> TurnOutcome:
                 await emit(
                     trace("client_tool_requested", "tools", c.name, tool=c.name, call_id=c.call_id)
                 )
+            await emit(status(WAITING_FOR_DEVICE))
             await emit(
                 AgentEvent(
                     "client_tool_calls",

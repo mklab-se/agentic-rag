@@ -13,7 +13,7 @@ from voltrieve_search.retrieve import (
     retrieve,
 )
 
-from voltrieve_agent.events import trace
+from voltrieve_agent.events import RETRYING, status, trace
 from voltrieve_agent.tools import current_emit
 
 KNOWLEDGE_BASE_NAME = "voltrieve-kb"
@@ -71,6 +71,9 @@ class KnowledgeBase:
             except SearchApiError as exc:
                 if exc.status != 429 or attempt == RATE_LIMIT_RETRIES:
                     raise
+                emit = current_emit.get()
+                if emit is not None:
+                    await emit(status(RETRYING))
                 await asyncio.sleep(RATE_LIMIT_DELAY_SECONDS * (attempt + 1))
         raise AssertionError("unreachable")
 

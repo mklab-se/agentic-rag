@@ -39,6 +39,18 @@ class McpCall:
 
 
 @dataclass
+class McpStarted:
+    """Foundry began a search. All the host can see of it until the call is over."""
+
+    server: str
+
+
+@dataclass
+class Retrying:
+    """The model call hit a rate limit and is about to wait."""
+
+
+@dataclass
 class Failed:
     code: str
     message: str = ""
@@ -60,7 +72,7 @@ def merge_usage(total: dict, more: dict) -> dict:
     return merged
 
 
-StreamItem = TextDelta | FunctionCall | McpCall | Completed | Failed
+StreamItem = TextDelta | FunctionCall | McpCall | McpStarted | Retrying | Completed | Failed
 
 
 class ModelClient(Protocol):
@@ -108,6 +120,7 @@ class ResponsesModelClient:
                 limited = "rate limit" in str(exc).lower()
                 if started or not limited or attempt == RATE_LIMIT_RETRIES:
                     raise
+                yield Retrying()
                 await self._sleep(RATE_LIMIT_DELAY_SECONDS * (attempt + 1))
 
     async def record(self, conversation: str, items: list[dict]) -> None:
@@ -145,6 +158,8 @@ class ResponsesModelClient:
             async for event in events:
                 if event.type == "response.output_item.added" and event.item.type == "mcp_call":
                     mcp_started[event.item.id] = elapsed_ms()
+                    started_server = getattr(event.item, "server_label", "") or ""
+                    yield McpStarted(started_server)
                 item = _map_event(event)
                 if isinstance(item, McpCall):
                     item.started_ms = mcp_started.get(getattr(event.item, "id", ""))

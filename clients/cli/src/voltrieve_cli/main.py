@@ -87,6 +87,8 @@ def ask(question: str, backend: BackendOpt = None, json_out: Annotated[bool, typ
             err.print(f"[dim]correlation id {escape(clean(data.get('correlation_id')))}[/dim]")
         elif name == "tool_ran":
             err.print(f"[dim]client tool {escape(clean(data.get('name')))}: {escape(clean(data.get('output')))}[/dim]")
+        elif name == "status":
+            err.print(f"[dim]{escape(clean(data.get('message')))}[/dim]")
         elif name == "trace":
             err.print(f"[dim]{escape(clean(data.get('component')))} {escape(clean(data.get('step')))}: {escape(clean(data.get('detail')))}[/dim]")
         elif name == "error":

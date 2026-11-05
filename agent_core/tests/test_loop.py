@@ -461,7 +461,7 @@ async def test_rate_limit_before_output_is_retried():
     client = ResponsesModelClient(
         _openai_client(_Events([], _rate_limited()), _Events([delta])), model="m", sleep=sleep
     )
-    assert [i.text for i in await _collect(client)] == ["Hi"]
+    assert [i.text for i in await _collect(client) if isinstance(i, TextDelta)] == ["Hi"]
     assert waits == [20.0]
 
 
@@ -508,5 +508,6 @@ async def test_mcp_calls_report_when_they_ran():
 
     client = ResponsesModelClient(SimpleNamespace(responses=Responses()), "m", agent_name="a")
     items = [i async for i in client.stream(instructions="", conversation="c", input="q", tools=[])]
+    items = [i for i in items if isinstance(i, McpCall)]
     assert items[0].server == "voltrieve-parts-kb" and items[0].arguments == '{"q":"disc"}'
     assert items[0].started_ms is not None and items[0].finished_ms >= items[0].started_ms

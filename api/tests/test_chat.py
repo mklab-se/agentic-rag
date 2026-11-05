@@ -40,7 +40,7 @@ async def test_sse_framing_and_order(client, auth, backend):
     assert r.headers["content-type"].startswith("text/event-stream")
     events = parse_sse(r.text)
     types = [t for t, _ in events]
-    assert types == ["trace", "trace", "trace", "trace", "delta", "done"]
+    assert types == ["trace", "trace", "status", "trace", "trace", "delta", "done"]
     steps = [d["step"] for t, d in events if t == "trace"]
     assert steps[:2] == ["token_validated", "backend_selected"]
     token_trace = events[0][1]
