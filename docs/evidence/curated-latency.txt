@@ -1,0 +1,27 @@
+Normal questions, median of each backend, before and after curated answers
+
+backend question    runs  s before  s after  calls before  calls after  tokens before  tokens after
+loop    greeting       8       1.5      1.4           1.0          1.0            920          1194
+loop    price          8       3.5      3.4           2.0          2.0           2017          2599
+loop    documents      8       4.4      4.6           2.0          2.0           6174          6370
+prompt  greeting       8       1.6      1.8           1.0          1.0           2313          2587
+prompt  price          8       4.2      3.8           2.0          2.0           4832          5370
+prompt  documents      8       4.7      4.2           1.0          1.0           8502          8779
+hosted  greeting       8       6.1      5.9           1.0          1.0            920          1194
+hosted  price          8       8.2      7.6           2.0          2.0           2022          2577
+hosted  documents      8       9.5      8.8           2.0          2.0           6179          6276
+
+Curated questions
+
+backend question    runs  seconds  model calls  word for word
+loop    phone          8      1.7          1.0           8 of 8
+loop    hours          8      1.7          1.0           8 of 8
+loop    smoke          8      1.5          1.0           8 of 8
+prompt  phone          8      1.7          1.0           8 of 8
+prompt  hours          8      1.8          1.0           8 of 8
+prompt  smoke          8      1.9          1.0           8 of 8
+hosted  phone          8      6.0          1.0           8 of 8
+hosted  hours          8      5.5          1.0           8 of 8
+hosted  smoke          8      5.9          1.0           8 of 8
+
+Runs with an error: 1

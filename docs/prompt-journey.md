@@ -27,7 +27,7 @@ flowchart LR
     subgraph API["Web API: your code"]
         R["Routes<br/>token, role, owner"]
         L["run_turn loop"]
-        T["ToolSet<br/>table of 6 tools"]
+        T["ToolSet<br/>table of 7 tools"]
     end
     subgraph F["Microsoft Foundry"]
         V[("Conversations")]
@@ -41,7 +41,7 @@ flowchart LR
 
     C -->|"1 POST /chat<br/>And what about one with all wheel drive?"| R
     R -->|"2 run_turn, words unchanged"| L
-    L -->|"3 instructions, 6 tools,<br/>conv id, the prompt"| M
+    L -->|"3 instructions, 7 tools,<br/>conv id, the prompt"| M
     V -.->|"4 earlier turn, added by Foundry"| M
     M -.->|"5 search_voltrieve_docs<br/>all wheel drive AWD models price buyer's guide"| L
     L -->|"6 execute by name"| T
@@ -62,7 +62,7 @@ For "What is the cheapest car that you can sell me?", steps 7 to 12 are replaced
 
 ### What happens when the model names a tool
 
-`build_server_tools()` creates six `ServerTool` objects with a name, description, schema and Python handler. `ToolSet` keeps them in a dictionary keyed by name. Name, description and schema are sent to the model on every call. The handler never is. When a response names a tool, the loop does this:
+`build_server_tools()` creates seven `ServerTool` objects with a name, description, schema and Python handler. `ToolSet` keeps them in a dictionary keyed by name. Name, description and schema are sent to the model on every call. The handler never is. When a response names a tool, the loop does this:
 
 ```mermaid
 flowchart TD
@@ -109,6 +109,14 @@ Every Azure AI Search call uses agentic retrieval, so even "simple RAG" gets a q
 
 A first message creates the conversation and stores the owner. A later message checks the owner. Everything else is the same.
 
+### Curated answers
+
+Some questions need an approved answer, word for word: "What is the phone number to Voltrieve?", or "There is smoke coming from under my car!". `get_curated_answer(topic)` covers them on all three backends. The model picks a topic in its normal first call and never sees the text. The Web API sends the stored text from `agent_core/src/voltrieve_agent/curated.py`, adds it to the conversation and skips the second model call. On the prompt agent this works because function tools come back to the Web API.
+
+Nothing runs in front of the model, so a normal question makes no extra call. When the same message also needs another tool, the text goes to the model as a normal tool output. The model then writes a complete answer, and it may reword the text.
+
+A changed text needs a new API image, and on the hosted agent a new agent image too. A new topic also needs `scripts/deploy-agents.sh`, because prompt agents hold the topic list. Measured with 8 runs per question and backend, medians for normal questions moved by -0.7 to +0.2 s, within the normal spread, for 200 to 600 more tokens per turn. Curated questions took 1.5 to 1.9 s, and about 6 s on the hosted agent. The figures are in [evidence](evidence/curated-latency.txt).
+
 ### The three backends
 
 | Who does this? | Own loop | Prompt agent | Hosted agent |
@@ -121,6 +129,44 @@ A first message creates the conversation and stores the owner. A later message c
 | Calls the dealer service | Web API | Web API | Hosted container |
 
 The prompt agent still runs a loop in the Web API, because the dealer tools are function tools, and Foundry hands those requests back for the caller to run. Only the searches run inside Foundry. The hosted agent is the same `run_turn` code in a container that Foundry runs.
+
+### Detailed RAG
+
+The interactive page has a Detailed RAG tab. This is the same path as a diagram, for "I have a Voltrieve Fjord AWD. I want to completely change the brakes on the left front side. Which spare parts do I need?". The numbers come from recorded calls in [search-activity.txt](evidence/search-activity.txt).
+
+```mermaid
+flowchart TD
+    M["gpt-5.4-mini<br/>writes one query per base"] --> T["ToolSet: search_voltrieve_docs<br/>and search_spare_parts, together"]
+    T -->|"POST /knowledgebases/voltrieve-kb/retrieve<br/>one message: the model's query"| KB["Knowledge base voltrieve-kb<br/>planning model, retrieval instructions"]
+    KB -->|"946 tokens in, about 0.8 s"| P["Query planning on gpt-5.4-mini"]
+    P -->|"3 sub-queries"| KB
+    KB --> KS["Knowledge source voltrieve-docs-ks<br/>which index, fields and semantic config"]
+    KS --> IX["Index voltrieve-docs-index<br/>keyword and vector search, 50 to 180 ms each"]
+    IX -->|"sub-query text"| E["text-embedding-3-large<br/>3072 dimensions"]
+    E -->|"vector"| IX
+    IX -->|"6, 7 and 6 hits"| R["Semantic ranker<br/>best score 3.12"]
+    R --> KB
+    KB -->|"8 chunks, no answer written"| T
+    T -->|"function_call_output"| M
+    B["Blob container voltrieve-docs"] -. "indexer and skillset: split, then embed" .-> IX
+```
+
+The spare parts base runs the same path at the same time, through `voltrieve-parts-kb`, `voltrieve-parts-ks` and `voltrieve-parts-index`. On the prompt agent the same objects are used, but the first arrow into the knowledge base starts inside Foundry, through MCP, and the two bases run one after the other.
+
+### Where each backend works better, and where it fails
+
+| What you care about | Own loop | Prompt agent | Hosted agent |
+| --- | --- | --- | --- |
+| Everyday question | 1.8 s | 1.9 s | 6.0 s, the hop into the agent session adds about 4.5 s |
+| Two knowledge bases | 12.4 s, together | About 28 s, one at a time | 20.9 s, together |
+| A client tool the server has never seen | Works | Refused | Works |
+| Staying on task | No tool in vain | Calls other function tools first on two-base jobs, cause unknown | No tool in vain |
+| Input tokens for a greeting | About 1,200 | About 2,550 | About 1,200 |
+| Control over each search | Full | Little, it runs inside the model call | Full |
+| Code for searching | A client and a tool per base | None, an MCP tool per base | A client and a tool per base |
+| Change instructions without shipping code | No | Yes, a new agent version | No |
+
+The per-prompt figures on all three backends are in [journeys.json](evidence/journeys.json), and the interactive page embeds them.
 
 ## The whole path
 
@@ -282,7 +328,7 @@ client.responses.create(
     instructions=AGENT_INSTRUCTIONS,   # about 2300 characters
     conversation="conv_...",           # Foundry adds the history
     input="What is the cheapest car that you can sell me?",   # unchanged
-    tools=[...],                       # 6 server tools, plus client tools from the CLI
+    tools=[...],                       # 7 server tools, plus client tools from the CLI
     parallel_tool_calls=True,
     reasoning={"effort": "medium"},
     stream=True,
@@ -298,7 +344,7 @@ client.responses.create(
 
 For a simple "Good morning!", the input was 920 tokens. Nearly all of that is instructions and tool definitions, so every turn pays for them.
 
-The six server tools are `search_voltrieve_docs`, `search_spare_parts`, `check_stock`, `get_prices`, `get_current_date` and `book_test_drive`. The model sees each name, description and JSON schema. Those descriptions and the instructions are the entire routing logic.
+The seven server tools are `get_curated_answer`, `search_voltrieve_docs`, `search_spare_parts`, `check_stock`, `get_prices`, `get_current_date` and `book_test_drive`. The model sees each name, description and JSON schema. Those descriptions and the instructions are the entire routing logic.
 
 ### 5. The decision: answer, tool, RAG or agentic RAG
 

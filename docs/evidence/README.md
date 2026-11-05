@@ -15,4 +15,4 @@ Evidence holds no tokens, usernames or URLs.
 
 `routing.txt` and `routing.json` are the last full run of `tests/routing/check.py`, one question at a time. `routing-load.txt` is a run of the four brake questions with `--workers 4`. `parallel-setting.txt` comes from `agents/prompt/demo_parallel_setting.py`. `prompt-extra-steps.txt` holds traces of the prompt agent on job questions.
 
-`prompt-journey.txt` comes from `scripts/prompt_journey.py`. `search-activity.txt` is one retrieve call and `prompt-trace.txt` is one run per prompt, both shortened by hand.
+`prompt-journey.txt` comes from `scripts/prompt_journey.py`. `curated-latency.txt` and its two JSON files come from `scripts/curated_latency.py`. `journeys.json` comes from `scripts/record_journeys.py`, and the page in `docs/assets/` embeds it. `search-activity.txt` is one retrieve call and `prompt-trace.txt` is one run per prompt, both shortened by hand.

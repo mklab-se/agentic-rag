@@ -3,11 +3,13 @@
 import datetime
 from zoneinfo import ZoneInfo
 
+from voltrieve_agent.curated import CURATED_ANSWERS, FinalAnswer, curated_description
 from voltrieve_agent.dealer import DealerClient
 from voltrieve_agent.knowledge import KnowledgeBase
 from voltrieve_agent.tools import ServerTool, UserContext
 
 BOOK_ROLE = "TestDrive.Book"
+CURATED_TOOL = "get_curated_answer"
 KB_SEARCH_TOOL = "search_voltrieve_docs"
 PARTS_SEARCH_TOOL = "search_spare_parts"
 # Prompt agents get the knowledge bases as MCP tools instead, so they drop these.
@@ -56,6 +58,9 @@ def build_server_tools(
     async def get_current_date(args: dict, user: UserContext) -> str:
         return datetime.datetime.now(DEALER_TIMEZONE).date().isoformat()
 
+    async def get_curated_answer(args: dict, user: UserContext) -> str:
+        return FinalAnswer(CURATED_ANSWERS[args["topic"]].text)
+
     def schema(properties: dict, required: list[str] | None = None) -> dict:
         return {
             "type": "object",
@@ -65,6 +70,12 @@ def build_server_tools(
         }
 
     return [
+        ServerTool(
+            CURATED_TOOL,
+            curated_description(),
+            schema({"topic": {"type": "string", "enum": list(CURATED_ANSWERS)}}, ["topic"]),
+            get_curated_answer,
+        ),
         ServerTool(
             KB_SEARCH_TOOL,
             f"Search {DOCS_DESCRIPTION} Returns document chunks with titles.",

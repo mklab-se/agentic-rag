@@ -202,6 +202,10 @@ A retrieve spends model tokens on query planning, so a busy deployment answers `
 
 `scripts/deploy-agents.sh` reinstalls `voltrieve-search` next to `voltrieve-agent-core`. Without it the prompt agents failed on a stale copy, and the agents stayed on the previous version.
 
+### Curated answers in the model's first call
+
+The tool list costs a few hundred tokens and no call. A check in front of the model, or a search on every turn, would make every question pay for answers that a few need. An embedding match in the API would be faster for a curated question but cannot see the conversation, and it could match "the phone number to the Stockholm dealer". A handler returns `FinalAnswer`, a `str` subclass, so the loop can skip the second model call without any change to the tool contract. Errors stay plain text and go to the model. The short cut only fires when the tool is the only call of the first model response. The first live run showed why: the prompt agent called the tool in 11 of 12 two-base job questions on its way to the searches, the same habit `prompt-extra-steps.txt` shows with dealer tools, and one brake question ended with the phone number. Genuine curated questions chose it in the first response in 81 of 81 runs. If writing the answer to the conversation fails, the turn fails with `model_error` before any text is sent, and the conversation is repaired on next use.
+
 ## Not recorded or not verified
 
 - Interactive SPA sign-in, and a real browser sign-in with `voltrieve login` (tested against a fake MSAL application).

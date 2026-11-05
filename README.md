@@ -1,20 +1,47 @@
-# Voltrieve: agentic RAG on Azure with client tools
+# Agentic RAG on Azure, three ways, with the receipts
 
-A reference implementation of agentic RAG on Azure, built around a fictional electric car maker. It answers two questions with running code and visible logs. A Foundry prompt agent refuses per-request tools, so what do you do when the client has tools of its own? And why host an agent in Foundry at all?
+**The same assistant built as an own loop, a Foundry prompt agent and a Foundry hosted agent, deployed side by side and measured with real runs.** See exactly who calls what, where each design wins, and where it fails.
 
-It ships three backends behind one Web API, a CLI that declares its own tools, a web client that declares none, two knowledge bases in Azure AI Search (product documents and spare parts), and a sample dealer service.
+![Step through a real prompt: a call map of the Web API, Foundry and Azure AI Search with numbered arrows and the real payload of each call](docs/assets/journey-map.png)
 
-## The two questions
+Most agent samples stop at "it answers". This one answers the questions you meet in the next meeting:
 
-**How do client-side tools coexist with a Foundry-based RAG solution?** A prompt agent rejects `tools` with `400 Not allowed when agent is specified.`, so client tools must be in its definition, which only suits a fixed list. Calling the Responses API with a model accepts per-request tools, so an own loop in a web API solves it directly. A hosted agent can run the same loop, but needs the Invocations protocol, because its Responses protocol drops caller tools.
+| The question | The short answer | Read more |
+| --- | --- | --- |
+| **Why host an agent in Foundry at all?** | For a managed identity, versions and a publishing path. Not for the loop, which is 252 lines of Python. | [Comparison](docs/why-foundry.md) |
+| **My client has its own tools. Now what?** | A prompt agent refuses per-request tools with a 400. An own loop or a hosted agent runs them, even one the server has never seen. | [Client tools](docs/why-foundry.md#1-what-happened-with-client-tools) |
+| **How does the agent decide to use RAG?** | No classifier exists. The model decides in its first call, from words you control. | [The journey of a prompt](docs/prompt-journey.md) |
+| **Can it use several knowledge bases without calling them in vain?** | Yes: 45 of 45 right on all three, none in vain. Only two of the three run them at the same time. | [Two knowledge bases](docs/why-foundry.md#6-two-knowledge-bases-who-chooses-and-who-runs-them-together) |
+| **I need curated answers without slowing everything down.** | Pick the answer in the model call you already make, then skip the second one. Curated questions took under 2 s on two of the three, and other questions showed no measurable delay. | [Curated answers](docs/prompt-journey.md#curated-answers) |
 
-**Why define and host an agent in Foundry at all?** For a managed agent identity, versions and a path to Teams and Microsoft 365. Not for the loop: it is 252 lines of Python, and most of the work (turn state, auth, tracing, relay) stays in your API with any backend. Use an own loop when clients bring tools, a hosted agent when you also need agent identity or publishing, and a prompt agent when the tool list is fixed.
+## See it: the journey of a prompt
 
-The full argument, with evidence and line counts, is in [docs/why-foundry.md](docs/why-foundry.md).
+Open [`docs/assets/prompt-journey.html`](docs/assets/prompt-journey.html) in a browser (download it from GitHub, it's one self-contained file). Pick an architecture and a prompt, then step through every call: who makes it, what it carries and what comes back.
 
-[docs/prompt-journey.md](docs/prompt-journey.md) follows one prompt through every system, with flow diagrams and what is sent at each hop.
+- **Three architectures on one map.** The boxes stay in place and you can watch what moves.
+- **Seven real prompts,** from a greeting to a two-base spare parts job and a client-side tool.
+- **Detailed RAG.** Follow one question from the agent through the knowledge base, knowledge source, index, embedding model and semantic ranker.
 
-## Architecture
+Prefer text? [docs/prompt-journey.md](docs/prompt-journey.md) has the same story as Mermaid diagrams.
+
+## Three architectures compared
+
+![Verdict cards for a spare parts question: own loop 9.7 s, prompt agent 23.6 s, hosted agent 14.3 s](docs/assets/journey-verdict.png)
+
+| What you care about | Own loop | Prompt agent | Hosted agent |
+| --- | --- | --- | --- |
+| Everyday question | **Fastest** | **Fastest** | About 4.5 s slower on every turn |
+| Question for two knowledge bases | **12.4 s**, searches run together | About 28 s, one at a time | 20.9 s, searches run together |
+| A client tool the server has never seen | **Works** | Refused | **Works** |
+| Curated answer, word for word | **1.6 s** | **1.7 s** | 6.1 s |
+| Control over each search | **Full** | Little, it runs inside the model call | **Full** |
+| Code you own for searching | A client per base | **None, declare an MCP tool** | A client per base |
+| Agent identity and versions in Foundry | No | **Yes** | **Yes** |
+| Change instructions without shipping code | No | **Yes** | No |
+
+**Which one should you pick?** The own loop when clients bring tools or speed matters. The prompt agent when the tool list is fixed and you want the least code. The hosted agent when you also need an agent identity or a publishing path. Medians come from live runs, and the [evidence](docs/evidence/) is in the repository.
+
+The diagram below is the whole system. The only thing that changes between backends is who makes the calls.
 
 ```mermaid
 flowchart LR
@@ -38,19 +65,20 @@ flowchart LR
     Hosted --> AI
 ```
 
-Pick a backend per request with `X-Agent-Backend: prompt|loop|hosted`. The clients cannot otherwise tell which one answered.
+Choose per request with `X-Agent-Backend: prompt|loop|hosted`. Clients can't otherwise tell which one answered, so you can compare them on real traffic.
 
-## Choosing between knowledge bases
+## What you can reuse
 
-The model chooses, from what each tool says it holds and does not hold, and it can answer with no search at all. A parts question for a job needs both bases: the service guide says what the job consists of, and only the catalog has article numbers. The own loop and the hosted agent run such calls at the same time. The prompt agent ran them one after the other. All three chose correctly in 45 of 45 runs, with no call in vain, as [docs/why-foundry.md](docs/why-foundry.md) shows in section 6.
-
-```sh
-uv run tests/routing/check.py --repeats 1 --no-save
-```
+- **A shared agent loop** ([`agent_core/`](agent_core/)): parallel tool calls, roles on tools, schema checks, pause and resume for client tools.
+- **Client tools end to end**: a turn that pauses, runs on the user's machine and picks up again, with repair when a client disappears.
+- **Curated answers** ([`curated.py`](agent_core/src/voltrieve_agent/curated.py)): approved text, word for word, with no search on every turn.
+- **Agentic retrieval as code** ([`search/definitions/`](search/definitions/)): knowledge bases, sources, indexes and skillsets, on the latest API version.
+- **Keyless Azure**: Entra and managed identities everywhere, deployed with one `azd up`.
+- **Routing tests** ([`tests/routing/`](tests/routing/)): prove that the model picks the right source, and catch calls in vain.
 
 ## Quick start
 
-You need `az`, `azd`, `uv`, Node.js and, on Apple Silicon without Rosetta, Docker. See [docs/deploy.md](docs/deploy.md) for rights, regions and hooks.
+The story is Voltrieve, a fictional electric car maker, so all data is generated and safe to share. You need `az`, `azd`, `uv`, Node.js and, on Apple Silicon without Rosetta, Docker. See [docs/deploy.md](docs/deploy.md) for rights, regions and hooks.
 
 ```sh
 az login && azd auth login
@@ -61,7 +89,7 @@ scripts/deploy-web.sh      # only where the SWA CLI cannot run
 scripts/deploy-agents.sh
 ```
 
-Then ask something:
+Then ask something, on any backend:
 
 ```sh
 # The CLI reads API_URL, TENANT_ID, CLI_CLIENT_ID and API_CLIENT_ID from the azd environment.
@@ -69,7 +97,7 @@ uv run --project clients/cli voltrieve ask "Which Voltrieve charges fastest?" --
 uv run --project clients/cli voltrieve chat --backend hosted --az-token
 ```
 
-Run the checks with `uv run scripts/runbook.py` and `uv run tests/grounding/check.py`. `scripts/deploy-agents.sh` ends with `scripts/smoke.py`: health of the API and dealer, the indexer, and one question per backend. The walkthrough is in [docs/runbook.md](docs/runbook.md).
+Check it with `uv run scripts/runbook.py` and `uv run tests/grounding/check.py`. Measure routing with `uv run tests/routing/check.py --repeats 1 --no-save`. The walkthrough is in [docs/runbook.md](docs/runbook.md).
 
 Tear down with `azd down --purge`. App registrations and the tester are not removed by azd: [docs/deploy.md](docs/deploy.md#teardown) shows how to delete them.
 
@@ -90,7 +118,7 @@ Tear down with `azd down --purge`. App registrations and the tester are not remo
 | `hooks/` | azd hooks |
 | `scripts/` | Agent and web deployment, runbook, denied demo, line count |
 | `tests/` | Contract tests and the grounding check |
-| `docs/` | Comparison, runbook, deployment, decisions, evidence, design |
+| `docs/` | Comparison, journey of a prompt, runbook, deployment, decisions, evidence, design |
 
 ## Costs
 
@@ -98,7 +126,7 @@ Idle, about 80 USD a month plus a small amount for Log Analytics: Search Basic i
 
 ## Status
 
-Deployed and run live on 2026-11-04.
+Deployed and run live on 2026-11-04 and 2026-11-05.
 
 Verified live:
 
@@ -111,7 +139,7 @@ Verified live:
 - The prompt agent's 400.
 - The authorization denied path, on the loop backend, against real Foundry with a fake token validator.
 
-Offline tests pass: `agent_core` 45, `api` 118, `agents/hosted` 18, `tests/contract` 20, `clients/cli` 23, `services/dealer` 37, `search` 25, Entra setup 31, `clients/web` 28.
+Offline tests pass: `agent_core` 68, `api` 118, `agents/hosted` 18, `tests/contract` 25, `clients/cli` 23, `services/dealer` 37, `search` 25, Entra setup 31, `clients/web` 28.
 
 Not verified:
 
@@ -122,6 +150,7 @@ Not verified:
 
 ## More
 
+- [The journey of a prompt](docs/prompt-journey.md)
 - [Why Foundry: the comparison](docs/why-foundry.md)
 - [Demo runbook](docs/runbook.md)
 - [Deployment](docs/deploy.md)
