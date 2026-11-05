@@ -47,7 +47,7 @@ The diagram below is the whole system. The only thing that changes between backe
 ```mermaid
 flowchart LR
     CLI["CLI<br/>declares client tools"] --> API
-    SPA["SPA<br/>declares no tools"] --> API
+    SPA["SPA<br/>declares set_theme"] --> API
     Entra["Entra ID"] -. tokens .-> CLI
     Entra -. tokens .-> SPA
     API["Web API<br/>contract, auth, turn state"]
@@ -145,7 +145,7 @@ Verified live:
 - The prompt agent's 400.
 - The authorization denied path, on the loop backend, against real Foundry with a fake token validator.
 
-Offline tests pass: `agent_core` 79, `api` 118, `agents/hosted` 18, `tests/contract` 25, `clients/cli` 40, `services/dealer` 37, `search` 25, Entra setup 31, `clients/web` 34.
+Offline tests pass: `agent_core` 79, `api` 118, `agents/hosted` 18, `tests/contract` 25, `clients/cli` 43, `services/dealer` 37, `search` 25, Entra setup 31, `clients/web` 39.
 
 Not verified:
 

@@ -33,6 +33,7 @@ PARTS_KB_NAME = "voltrieve-parts-kb"
 KB_API_VERSION = "2026-08-01-preview"
 
 MAX_NOISE = 10
+MAX_HONKS = 5
 
 # Copy of CLIENT_TOOLS in clients/cli/src/voltrieve_cli/tools.py. The CLI is a separate project,
 # so the schemas are repeated here. tests/contract fails when the two differ. The API checks
@@ -44,6 +45,15 @@ CLI_TOOLS = [
         "parameters": {
             "type": "object",
             "properties": {"times": {"type": "integer", "minimum": 1, "maximum": MAX_NOISE}},
+            "required": ["times"],
+        },
+    },
+    {
+        "name": "honk",
+        "description": f"Honk like a car, out loud on the user's computer. At most {MAX_HONKS} times.",
+        "parameters": {
+            "type": "object",
+            "properties": {"times": {"type": "integer", "minimum": 1, "maximum": MAX_HONKS}},
             "required": ["times"],
         },
     },
@@ -64,6 +74,21 @@ CLI_TOOLS = [
 ]
 
 
+# The web client's tools, the counterpart of CLI_TOOLS: WEB_AGENT_TOOL_NAMES in the API, and
+# CLIENT_TOOLS in clients/web/src/tools.ts.
+WEB_TOOLS = [
+    {
+        "name": "set_theme",
+        "description": "Switch the web app between its light and dark theme.",
+        "parameters": {
+            "type": "object",
+            "properties": {"theme": {"type": "string", "enum": ["light", "dark"]}},
+            "required": ["theme"],
+        },
+    },
+]
+
+
 def _function_tool(name: str, description: str, parameters: dict) -> FunctionTool:
     # strict=False: the schemas do not meet strict mode (optional properties, formats).
     return FunctionTool(name=name, description=description, parameters=parameters, strict=False)
@@ -77,10 +102,6 @@ def dealer_function_tools() -> list[FunctionTool]:
         for t in build_server_tools(None, None)  # type: ignore[arg-type]
         if t.name not in KB_SEARCH_TOOLS
     ]
-
-
-def cli_function_tools() -> list[FunctionTool]:
-    return [_function_tool(t["name"], t["description"], t["parameters"]) for t in CLI_TOOLS]
 
 
 def kb_mcp_tool(search_endpoint: str, kb_name: str, description: str, connection_name: str) -> MCPTool:
@@ -106,8 +127,8 @@ def agent_definition(
         kb_mcp_tool(search_endpoint, PARTS_KB_NAME, PARTS_DESCRIPTION, parts_connection_name),
         *dealer_function_tools(),
     ]
-    if with_cli_tools:
-        tools += cli_function_tools()
+    client_tools = CLI_TOOLS if with_cli_tools else WEB_TOOLS
+    tools += [_function_tool(t["name"], t["description"], t["parameters"]) for t in client_tools]
     return PromptAgentDefinition(
         model=chat_deployment,
         instructions=PROMPT_AGENT_INSTRUCTIONS,

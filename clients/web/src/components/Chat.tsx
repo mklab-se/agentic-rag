@@ -6,7 +6,7 @@ const STARTERS = [
   "What is the towing capacity of the Fjord?",
   "Which Voltrieve charges fastest?",
   "Is the Atlas in stock in Göteborg?",
-  "Beep three times when you have the answer.",
+  "Switch to the dark theme.",
 ];
 
 interface Props {

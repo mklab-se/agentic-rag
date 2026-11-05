@@ -23,19 +23,20 @@ async function collect(gen: AsyncGenerator<ServerEvent>): Promise<ServerEvent[]>
 }
 
 describe("buildChatRequest", () => {
-  it("sends only message on the first turn and never client_tools", () => {
+  it("sends the message and this client's tools on the first turn", () => {
     const { url, init } = buildChatRequest(base);
     expect(url).toBe("https://api.example/chat");
     const body = JSON.parse(init.body as string);
-    expect(body).toEqual({ message: "hello" });
-    expect("client_tools" in body).toBe(false);
+    expect(body.message).toBe("hello");
+    expect(body.client_tools.map((t: { name: string }) => t.name)).toEqual(["set_theme"]);
   });
 
-  it("includes conversation_id on later turns, still without client_tools", () => {
+  it("includes conversation_id on later turns, with the tools again", () => {
     const { init } = buildChatRequest({ ...base, conversationId: "c1" });
     const body = JSON.parse(init.body as string);
-    expect(body).toEqual({ conversation_id: "c1", message: "hello" });
-    expect("client_tools" in body).toBe(false);
+    expect(body.conversation_id).toBe("c1");
+    expect(body.message).toBe("hello");
+    expect(body.client_tools.map((t: { name: string }) => t.name)).toEqual(["set_theme"]);
   });
 
   it("sets bearer auth and the backend header", () => {

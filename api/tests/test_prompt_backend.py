@@ -12,7 +12,7 @@ from voltrieve_agent.tools import ClientTool, UserContext
 
 from app.backends import BACKEND_NAMES, BackendRegistry
 from app.backends.base import TurnContext
-from app.backends.prompt import CLI_AGENT_TOOL_NAMES, PromptBackend
+from app.backends.prompt import CLI_AGENT_TOOL_NAMES, WEB_AGENT_TOOL_NAMES, PromptBackend
 from app.main import create_app
 from app.settings import Settings
 from app.turns import TurnStore
@@ -259,4 +259,6 @@ def test_prompt_backend_is_listed_and_names_match_the_agent_script():
     assert "/knowledgebases/voltrieve-parts-kb/mcp" in mcp[1].server_url
     assert "article numbers" in mcp[1].server_description
     assert set(cli) - set(web) == CLI_AGENT_TOOL_NAMES
+    assert set(web) - set(cli) == WEB_AGENT_TOOL_NAMES
+    assert {t["name"] for t in module.WEB_TOOLS} == WEB_AGENT_TOOL_NAMES
     assert {"check_stock", "get_prices", "book_test_drive"} <= set(web)

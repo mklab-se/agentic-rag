@@ -41,14 +41,17 @@ describe("chatReducer", () => {
     expect(second.conversationId).toBe("c1");
   });
 
-  it("shows client_tool_calls as an error since the client declares no tools", () => {
+  it("keeps the turn running through client_tool_calls and remembers the conversation", () => {
     const s = run([
-      { type: "client_tool_calls", data: { calls: [{ call_id: "1", name: "beep", arguments: {} }] } },
-      { type: "done", data: { conversation_id: "c1", turn_id: "t1", backend: "loop" } },
+      {
+        type: "client_tool_calls",
+        data: { conversation_id: "c1", calls: [{ call_id: "1", name: "set_theme", arguments: "{}" }] },
+      },
     ]);
     const t = s.turns[0]!;
-    expect(t.status).toBe("error");
-    expect(t.error).toContain("beep");
+    expect(t.status).toBe("streaming");
+    expect(t.entries.at(-1)).toMatchObject({ step: "client_tool_ran", detail: "set_theme" });
+    expect(s.conversationId).toBe("c1");
   });
 
   it("marks the turn failed on an error event", () => {

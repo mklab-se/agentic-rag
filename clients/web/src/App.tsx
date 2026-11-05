@@ -1,15 +1,17 @@
 import { useCallback, useEffect, useReducer, useRef, useState } from "react";
 import { bootAuth, type Auth, type AuthSession } from "./auth";
-import { streamChat } from "./chat";
+import { streamChat, streamToolResults } from "./chat";
 import { Chat } from "./components/Chat";
 import { Header } from "./components/Header";
 import { ConfigMissing, Loading, SignIn } from "./components/Notices";
 import { Recorder } from "./components/Recorder";
 import { readConfig, type AppConfig } from "./config";
+import { runClientTool, type Theme } from "./tools";
 import { chatReducer, initialChatState } from "./turns";
-import type { Backend } from "./types";
+import type { Backend, ClientToolCall } from "./types";
 
-type Theme = "light" | "dark";
+// A client tool result can lead to another tool call, but not forever.
+const MAX_TOOL_ROUNDS = 5;
 
 function initialTheme(): Theme {
   const set = document.documentElement.dataset.theme;
@@ -70,6 +72,15 @@ function Workspace({ config, auth, session }: { config: AppConfig; auth: Auth; s
 
   useEffect(() => () => abort.current?.abort(), []);
 
+  const applyTheme = useCallback((next: Theme) => {
+    setTheme(next);
+    try {
+      localStorage.setItem("theme", next);
+    } catch {
+      /* storage may be unavailable */
+    }
+  }, []);
+
   const send = useCallback(
     async (message: string) => {
       setBusy(true);
@@ -79,11 +90,39 @@ function Workspace({ config, auth, session }: { config: AppConfig; auth: Auth; s
       abort.current = ctrl;
       try {
         const token = await auth.getToken();
-        for await (const event of streamChat(
+        let events = streamChat(
           { apiUrl: config.apiUrl, token, backend, conversationId: conversationId.current, message, correlationId },
           ctrl.signal,
-        )) {
-          dispatch({ type: "event", event });
+        );
+        for (let round = 0; round <= MAX_TOOL_ROUNDS; round += 1) {
+          let paused: { turnId: string; conversationId: string; calls: ClientToolCall[] } | undefined;
+          for await (const event of events) {
+            dispatch({ type: "event", event });
+            if (event.type === "client_tool_calls" && event.data.turn_id && event.data.conversation_id) {
+              paused = {
+                turnId: event.data.turn_id,
+                conversationId: event.data.conversation_id,
+                calls: event.data.calls,
+              };
+            }
+          }
+          if (!paused) break;
+          const results = paused.calls.map((call) => ({
+            call_id: call.call_id,
+            output: runClientTool(call, { setTheme: applyTheme }),
+          }));
+          events = streamToolResults(
+            {
+              apiUrl: config.apiUrl,
+              token: await auth.getToken(),
+              backend,
+              conversationId: paused.conversationId,
+              turnId: paused.turnId,
+              correlationId,
+              results,
+            },
+            ctrl.signal,
+          );
         }
       } catch (e) {
         dispatch({
@@ -94,17 +133,11 @@ function Workspace({ config, auth, session }: { config: AppConfig; auth: Auth; s
         setBusy(false);
       }
     },
-    [auth, backend, config.apiUrl],
+    [applyTheme, auth, backend, config.apiUrl],
   );
 
   function toggleTheme() {
-    const next: Theme = theme === "dark" ? "light" : "dark";
-    setTheme(next);
-    try {
-      localStorage.setItem("theme", next);
-    } catch {
-      /* storage may be unavailable */
-    }
+    applyTheme(theme === "dark" ? "light" : "dark");
   }
 
   return (

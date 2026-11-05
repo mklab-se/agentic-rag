@@ -25,6 +25,6 @@ export type ServerEvent =
   | { type: "trace"; data: TraceData }
   | { type: "status"; data: { code: string; message: string } }
   | { type: "delta"; data: { text: string } }
-  | { type: "client_tool_calls"; data: { turn_id?: string; calls: ClientToolCall[] } }
+  | { type: "client_tool_calls"; data: { turn_id?: string; conversation_id?: string; calls: ClientToolCall[] } }
   | { type: "done"; data: DoneData }
   | { type: "error"; data: { code: string; message: string } };
