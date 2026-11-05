@@ -142,7 +142,22 @@ button:disabled { cursor: not-allowed; opacity: 0.5; }
 .bubble.user { justify-self: end; background: var(--accent); color: var(--accent-ink); border-bottom-right-radius: 4px; }
 .bubble.agent { justify-self: start; background: var(--surface); border: 1px solid var(--line); border-bottom-left-radius: 4px; display: grid; gap: 8px; }
 .bubble.agent.error { border-color: var(--danger); }
-.answer { white-space: pre-wrap; }
+.answer { overflow-wrap: anywhere; }
+.answer > :first-child { margin-top: 0; }
+.answer > :last-child { margin-bottom: 0; }
+.answer p, .answer ul, .answer ol, .answer pre, .answer blockquote { margin: 0 0 0.75em; }
+.answer h1, .answer h2, .answer h3, .answer h4 { margin: 1em 0 0.4em; font-size: 1em; font-weight: 650; }
+.answer ul, .answer ol { padding-left: 1.4em; }
+.answer li + li { margin-top: 0.2em; }
+.answer a { color: inherit; text-decoration: underline; }
+.answer code { font-family: var(--mono); font-size: 0.88em; padding: 0.1em 0.3em; border-radius: 4px; background: var(--surface-2); }
+.answer pre { overflow-x: auto; padding: 10px 12px; border-radius: 8px; background: var(--surface-2); }
+.answer pre code { padding: 0; background: none; }
+.answer blockquote { padding-left: 0.8em; border-left: 3px solid var(--line); color: var(--ink-2); }
+.answer .table-wrap { overflow-x: auto; margin: 0 0 0.75em; }
+.answer table { border-collapse: collapse; font-size: 0.94em; }
+.answer th, .answer td { padding: 6px 12px 6px 0; border-bottom: 1px solid var(--line); text-align: left; }
+.answer th { font-weight: 650; }
 .meta { font: 11px var(--mono); color: var(--ink-3); }
 .thinking { display: flex; gap: 5px; padding: 6px 0; align-items: center; }
 .thinking span { margin-left: 6px; font-size: 0.875rem; color: var(--ink-3); }
