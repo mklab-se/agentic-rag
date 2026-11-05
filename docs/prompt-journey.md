@@ -157,10 +157,10 @@ The spare parts base runs the same path at the same time, through `voltrieve-par
 
 | What you care about | Own loop | Prompt agent | Hosted agent |
 | --- | --- | --- | --- |
-| Everyday question | 1.8 s | 1.9 s | 6.0 s, the hop into the agent session adds about 4.5 s |
-| Two knowledge bases | 12.4 s, together | About 28 s, one at a time | 20.9 s, together |
+| Everyday question | 1.4 s | 1.7 s | 5.7 s, the hop into the agent session adds about 4 s |
+| Two knowledge bases | 14.0 s, together | 27.4 s, one at a time | 15.9 s, together |
 | A client tool the server has never seen | Works | Refused | Works |
-| Staying on task | No tool in vain | Calls other function tools first on two-base jobs, cause unknown | No tool in vain |
+| Staying on task | No tool in vain | Calls other function tools first on two-base jobs, in 7 of 12 runs, cause unknown | No tool in vain |
 | Input tokens for a greeting | About 1,200 | About 2,550 | About 1,200 |
 | Control over each search | Full | Little, it runs inside the model call | Full |
 | Code for searching | A client and a tool per base | None, an MCP tool per base | A client and a tool per base |
