@@ -18,3 +18,7 @@ ask question backend="loop":
 # Run the web client locally against the deployed API, on http://localhost:5173
 web:
     cd clients/web && npm ci --silent && npm run dev -- --mode production
+
+# Open the deployed web client in your browser
+open:
+    open "$(azd env get-value WEB_URL)"
