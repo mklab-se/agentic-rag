@@ -26,7 +26,7 @@ Prefer text? [docs/prompt-journey.md](docs/prompt-journey.md) has the same story
 
 ## Three architectures compared
 
-![Verdict cards for a spare parts question: own loop 9.7 s, prompt agent 23.6 s, hosted agent 14.3 s](docs/assets/journey-verdict.png)
+![Verdict cards for a spare parts question: own loop 11.1 s, prompt agent 27.9 s, hosted agent 13.7 s](docs/assets/journey-verdict.png)
 
 | What you care about | Own loop | Prompt agent | Hosted agent |
 | --- | --- | --- | --- |
