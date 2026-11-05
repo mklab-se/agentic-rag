@@ -24,3 +24,9 @@ What is the cheapest car with all wheel drive that you can sell me in Sweden?
 
 Good morning! (own loop)
   1 model call, no tool, 920 input tokens, 966 tokens, 1.4 s.
+
+What time is it on my computer right now? (own loop, one client tool, recorded 2026-11-05)
+  model call 1  2.5 s  -> get_local_time arguments {}
+  stream ends with client_tool_calls, the turn is paused
+  POST /chat/tool-results, with a time supplied by the test script
+  model call 2  1.4 s  -> Your computer's local time is 2026-11-05 16:42:10, in the Europe/Stockholm timezone.

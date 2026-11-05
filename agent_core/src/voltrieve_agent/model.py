@@ -68,6 +68,8 @@ class ModelClient(Protocol):
         self, *, instructions: str, conversation: str, input: str | list[dict], tools: list[dict]
     ) -> AsyncIterator[StreamItem]: ...
 
+    async def record(self, conversation: str, items: list[dict]) -> None: ...
+
 
 class ResponsesModelClient:
     """Streams one model call through the Responses API of a Foundry project.
@@ -107,6 +109,10 @@ class ResponsesModelClient:
                 if started or not limited or attempt == RATE_LIMIT_RETRIES:
                     raise
                 await self._sleep(RATE_LIMIT_DELAY_SECONDS * (attempt + 1))
+
+    async def record(self, conversation: str, items: list[dict]) -> None:
+        """Add items to the conversation without calling the model, so it costs no tokens."""
+        await self._client.conversations.items.create(conversation, items=items)
 
     async def _stream_once(
         self, instructions: str, conversation: str, input: str | list[dict], tools: list[dict]

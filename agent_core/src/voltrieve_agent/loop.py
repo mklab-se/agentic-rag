@@ -13,6 +13,7 @@ from contextlib import aclosing
 from dataclasses import dataclass, field
 from typing import Literal
 
+from voltrieve_agent.curated import FinalAnswer
 from voltrieve_agent.events import AgentEvent, Emit, trace
 from voltrieve_agent.instructions import AGENT_INSTRUCTIONS
 from voltrieve_agent.model import (
@@ -62,6 +63,14 @@ class TurnOutcome:
 
 def _output_item(call_id: str, output: str) -> dict:
     return {"type": "function_call_output", "call_id": call_id, "output": output}
+
+
+def _assistant_item(text: str) -> dict:
+    return {
+        "type": "message",
+        "role": "assistant",
+        "content": [{"type": "output_text", "text": text}],
+    }
 
 
 async def _fail(emit: Emit, code: str, usage: dict) -> TurnOutcome:
@@ -230,9 +239,29 @@ async def _run(model, server_tools, turn, emit, max_iterations) -> TurnOutcome:
                 await emit(trace("client_tool_rejected", "tools", call.name, tool=call.name))
                 outputs_by_call[call.call_id] = _output_item(call.call_id, error)
 
-        for call_id, output in (
-            await _run_server_tools(toolset, server_calls, turn.user, emit, iteration)
-        ).items():
+        results = await _run_server_tools(toolset, server_calls, turn.user, emit, iteration)
+        if (
+            iteration == 0
+            and len(calls) == 1
+            and isinstance(results.get(calls[0].call_id), FinalAnswer)
+        ):
+            # The answer is ready, so skip the model call that would only repeat it. It counts
+            # only as the first and only choice: alongside other tools, or after them, it goes
+            # to the model like any output. The prompt agent has called it on the way to a job
+            # question, and a repair question must not end with a phone number.
+            answer = str(results[calls[0].call_id])
+            try:
+                await model.record(
+                    turn.conversation_id,
+                    [_output_item(calls[0].call_id, answer), _assistant_item(answer)],
+                )
+            except Exception:
+                logger.exception("Could not record the final answer")
+                return await _fail(emit, "model_error", usage)
+            await emit(trace("final_answer_sent", "tools", calls[0].name, tool=calls[0].name))
+            await emit(AgentEvent("delta", {"text": answer}))
+            return TurnOutcome("done", [], usage)
+        for call_id, output in results.items():
             outputs_by_call[call_id] = _output_item(call_id, output)
         # The model reads the outputs in the order it made the calls, whichever finished first.
         outputs = [outputs_by_call[c.call_id] for c in calls if c.call_id in outputs_by_call]

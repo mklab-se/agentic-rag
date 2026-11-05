@@ -1,0 +1,1298 @@
+[
+ {
+  "backend": "loop",
+  "question": "greeting",
+  "seconds": 1.37,
+  "model_calls": 1,
+  "input_tokens": 1194,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "price",
+  "seconds": 3.18,
+  "model_calls": 2,
+  "input_tokens": 2631,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "documents",
+  "seconds": 5.75,
+  "model_calls": 2,
+  "input_tokens": 6376,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "phone",
+  "seconds": 1.26,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "hours",
+  "seconds": 4.16,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "smoke",
+  "seconds": 1.51,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "greeting",
+  "seconds": 1.33,
+  "model_calls": 1,
+  "input_tokens": 1194,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "price",
+  "seconds": 3.14,
+  "model_calls": 2,
+  "input_tokens": 2579,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "documents",
+  "seconds": 4.32,
+  "model_calls": 2,
+  "input_tokens": 5826,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "phone",
+  "seconds": 1.67,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "hours",
+  "seconds": 1.77,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "smoke",
+  "seconds": 1.38,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "greeting",
+  "seconds": 1.65,
+  "model_calls": 1,
+  "input_tokens": 1194,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "price",
+  "seconds": 3.49,
+  "model_calls": 2,
+  "input_tokens": 2664,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "documents",
+  "seconds": 4.17,
+  "model_calls": 2,
+  "input_tokens": 6727,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "phone",
+  "seconds": 1.97,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "hours",
+  "seconds": 1.93,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "smoke",
+  "seconds": 1.36,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "greeting",
+  "seconds": 1.5,
+  "model_calls": 1,
+  "input_tokens": 1194,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "price",
+  "seconds": 5.1,
+  "model_calls": 2,
+  "input_tokens": 2619,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "documents",
+  "seconds": 6.24,
+  "model_calls": 2,
+  "input_tokens": 6370,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "phone",
+  "seconds": 5.15,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "hours",
+  "seconds": 1.57,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "smoke",
+  "seconds": 1.76,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "greeting",
+  "seconds": 1.3,
+  "model_calls": 1,
+  "input_tokens": 1194,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "price",
+  "seconds": 3.5,
+  "model_calls": 2,
+  "input_tokens": 2617,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "documents",
+  "seconds": 4.52,
+  "model_calls": 2,
+  "input_tokens": 6369,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "phone",
+  "seconds": 1.74,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "hours",
+  "seconds": 1.76,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "smoke",
+  "seconds": 1.47,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "greeting",
+  "seconds": 1.39,
+  "model_calls": 1,
+  "input_tokens": 1194,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "price",
+  "seconds": 4.52,
+  "model_calls": 2,
+  "input_tokens": 2581,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "documents",
+  "seconds": 4.16,
+  "model_calls": 2,
+  "input_tokens": 5845,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "phone",
+  "seconds": 1.38,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "hours",
+  "seconds": 1.58,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "smoke",
+  "seconds": 1.44,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "greeting",
+  "seconds": 1.39,
+  "model_calls": 1,
+  "input_tokens": 1194,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "price",
+  "seconds": 3.21,
+  "model_calls": 2,
+  "input_tokens": 2577,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "documents",
+  "seconds": 4.86,
+  "model_calls": 2,
+  "input_tokens": 5960,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "phone",
+  "seconds": 1.92,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "hours",
+  "seconds": 1.5,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "smoke",
+  "seconds": 1.83,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "greeting",
+  "seconds": 1.74,
+  "model_calls": 1,
+  "input_tokens": 1194,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "price",
+  "seconds": 3.05,
+  "model_calls": 2,
+  "input_tokens": 2558,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "documents",
+  "seconds": 4.73,
+  "model_calls": 2,
+  "input_tokens": 6376,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "phone",
+  "seconds": 1.36,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "hours",
+  "seconds": 1.54,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "smoke",
+  "seconds": 1.69,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "greeting",
+  "seconds": 1.76,
+  "model_calls": 1,
+  "input_tokens": 2587,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "price",
+  "seconds": 3.63,
+  "model_calls": 2,
+  "input_tokens": 5425,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "documents",
+  "seconds": 4.92,
+  "model_calls": 1,
+  "input_tokens": 8780,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "phone",
+  "seconds": 1.92,
+  "model_calls": 1,
+  "input_tokens": 2593,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "hours",
+  "seconds": 1.64,
+  "model_calls": 1,
+  "input_tokens": 2593,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "smoke",
+  "seconds": 1.6,
+  "model_calls": 1,
+  "input_tokens": 2593,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "greeting",
+  "seconds": 1.92,
+  "model_calls": 1,
+  "input_tokens": 2587,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "price",
+  "seconds": 3.74,
+  "model_calls": 2,
+  "input_tokens": 5366,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "documents",
+  "seconds": 7.77,
+  "model_calls": 1,
+  "input_tokens": 8778,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "phone",
+  "seconds": 1.5,
+  "model_calls": 1,
+  "input_tokens": 2593,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "hours",
+  "seconds": 2.22,
+  "model_calls": 1,
+  "input_tokens": 2593,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "smoke",
+  "seconds": 1.61,
+  "model_calls": 1,
+  "input_tokens": 2593,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "greeting",
+  "seconds": 1.27,
+  "model_calls": 1,
+  "input_tokens": 2587,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "price",
+  "seconds": 4.45,
+  "model_calls": 2,
+  "input_tokens": 5440,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "documents",
+  "seconds": 4.08,
+  "model_calls": 1,
+  "input_tokens": 8776,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "phone",
+  "seconds": 1.51,
+  "model_calls": 1,
+  "input_tokens": 2593,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "hours",
+  "seconds": 1.41,
+  "model_calls": 1,
+  "input_tokens": 2593,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "smoke",
+  "seconds": 1.63,
+  "model_calls": 1,
+  "input_tokens": 2593,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "greeting",
+  "seconds": 1.85,
+  "model_calls": 1,
+  "input_tokens": 2587,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "price",
+  "seconds": 3.61,
+  "model_calls": 2,
+  "input_tokens": 5366,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "documents",
+  "seconds": 4.13,
+  "model_calls": 1,
+  "input_tokens": 8780,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "phone",
+  "seconds": 1.72,
+  "model_calls": 1,
+  "input_tokens": 2593,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "hours",
+  "seconds": 1.73,
+  "model_calls": 1,
+  "input_tokens": 2593,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "smoke",
+  "seconds": 3.82,
+  "model_calls": 1,
+  "input_tokens": 2593,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "greeting",
+  "seconds": 1.33,
+  "model_calls": 1,
+  "input_tokens": 2587,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "price",
+  "seconds": 3.02,
+  "model_calls": 2,
+  "input_tokens": 5363,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "documents",
+  "seconds": 3.84,
+  "model_calls": 1,
+  "input_tokens": 8768,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "phone",
+  "seconds": 1.75,
+  "model_calls": 1,
+  "input_tokens": 2593,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "hours",
+  "seconds": 1.79,
+  "model_calls": 1,
+  "input_tokens": 2593,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "smoke",
+  "seconds": 1.94,
+  "model_calls": 1,
+  "input_tokens": 2593,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "greeting",
+  "seconds": 1.94,
+  "model_calls": 1,
+  "input_tokens": 2587,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "price",
+  "seconds": 6.71,
+  "model_calls": 2,
+  "input_tokens": 5373,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "documents",
+  "seconds": 4.5,
+  "model_calls": 1,
+  "input_tokens": 8782,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "phone",
+  "seconds": 1.91,
+  "model_calls": 1,
+  "input_tokens": 2593,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "hours",
+  "seconds": 1.88,
+  "model_calls": 1,
+  "input_tokens": 2593,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "smoke",
+  "seconds": 1.92,
+  "model_calls": 1,
+  "input_tokens": 2593,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "greeting",
+  "seconds": 1.22,
+  "model_calls": 1,
+  "input_tokens": 2587,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "price",
+  "seconds": 3.79,
+  "model_calls": 2,
+  "input_tokens": 5459,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "documents",
+  "seconds": 4.33,
+  "model_calls": 1,
+  "input_tokens": 8775,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "phone",
+  "seconds": 1.6,
+  "model_calls": 1,
+  "input_tokens": 2593,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "hours",
+  "seconds": 1.91,
+  "model_calls": 1,
+  "input_tokens": 2593,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "smoke",
+  "seconds": 1.99,
+  "model_calls": 1,
+  "input_tokens": 2593,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "greeting",
+  "seconds": 2.21,
+  "model_calls": 1,
+  "input_tokens": 2587,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "price",
+  "seconds": 3.78,
+  "model_calls": 2,
+  "input_tokens": 5351,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "documents",
+  "seconds": 3.95,
+  "model_calls": 1,
+  "input_tokens": 8783,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "phone",
+  "seconds": 1.54,
+  "model_calls": 1,
+  "input_tokens": 2593,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "hours",
+  "seconds": 1.83,
+  "model_calls": 1,
+  "input_tokens": 2593,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "smoke",
+  "seconds": 2.64,
+  "model_calls": 1,
+  "input_tokens": 2593,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "greeting",
+  "seconds": 5.99,
+  "model_calls": 1,
+  "input_tokens": 1194,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "price",
+  "seconds": 8.02,
+  "model_calls": 2,
+  "input_tokens": 2572,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "documents",
+  "seconds": 9.78,
+  "model_calls": 2,
+  "input_tokens": 5300,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "phone",
+  "seconds": 5.71,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "hours",
+  "seconds": 5.89,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "smoke",
+  "seconds": 6.28,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "greeting",
+  "seconds": 5.86,
+  "model_calls": 1,
+  "input_tokens": 1194,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "price",
+  "seconds": 7.76,
+  "model_calls": 2,
+  "input_tokens": 2582,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "documents",
+  "seconds": 9.76,
+  "model_calls": 2,
+  "input_tokens": 5290,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "phone",
+  "seconds": 6.8,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "hours",
+  "seconds": 5.88,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "smoke",
+  "seconds": 5.29,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "greeting",
+  "seconds": 5.78,
+  "model_calls": 1,
+  "input_tokens": 1194,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "price",
+  "seconds": 7.63,
+  "model_calls": 2,
+  "input_tokens": 2566,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "documents",
+  "seconds": 8.44,
+  "model_calls": 2,
+  "input_tokens": 5829,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "phone",
+  "seconds": 5.92,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "hours",
+  "seconds": 6.23,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "smoke",
+  "seconds": 5.53,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "greeting",
+  "seconds": 7.19,
+  "model_calls": 1,
+  "input_tokens": 1194,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "price",
+  "seconds": 7.64,
+  "model_calls": 2,
+  "input_tokens": 2608,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "documents",
+  "seconds": 8.69,
+  "model_calls": 2,
+  "input_tokens": 6724,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "phone",
+  "seconds": 5.86,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "hours",
+  "seconds": 5.45,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "smoke",
+  "seconds": 5.57,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "greeting",
+  "seconds": 5.89,
+  "model_calls": 1,
+  "input_tokens": 1194,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "price",
+  "seconds": 7.12,
+  "model_calls": 2,
+  "input_tokens": 2589,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "documents",
+  "seconds": 8.94,
+  "model_calls": 2,
+  "input_tokens": 6908,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "phone",
+  "seconds": 6.01,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "hours",
+  "seconds": 5.41,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "smoke",
+  "seconds": 5.91,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "greeting",
+  "seconds": 5.94,
+  "model_calls": 1,
+  "input_tokens": 1194,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "price",
+  "seconds": 6.9,
+  "model_calls": 2,
+  "input_tokens": 2566,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "documents",
+  "seconds": 8.57,
+  "model_calls": 2,
+  "input_tokens": 6729,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "phone",
+  "seconds": 6.19,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "hours",
+  "seconds": 5.4,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "smoke",
+  "seconds": 5.83,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "greeting",
+  "seconds": 5.64,
+  "model_calls": 1,
+  "input_tokens": 1194,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "price",
+  "seconds": 7.29,
+  "model_calls": 2,
+  "input_tokens": 2571,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "documents",
+  "seconds": 9.66,
+  "model_calls": 2,
+  "input_tokens": 5300,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "phone",
+  "seconds": 5.8,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "hours",
+  "seconds": 5.52,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "smoke",
+  "seconds": 11.77,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "greeting",
+  "seconds": 7.26,
+  "model_calls": 1,
+  "input_tokens": 1194,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "price",
+  "seconds": 8.7,
+  "model_calls": 2,
+  "input_tokens": 2681,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "documents",
+  "seconds": 8.73,
+  "model_calls": 2,
+  "input_tokens": 7265,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "phone",
+  "seconds": 9.04,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "hours",
+  "seconds": 5.35,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "smoke",
+  "seconds": 7.42,
+  "model_calls": 1,
+  "input_tokens": 1200,
+  "final": true,
+  "error": ""
+ }
+]

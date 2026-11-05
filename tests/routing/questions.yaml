@@ -3,6 +3,16 @@
 # numbers must all appear in the answer. `article` is resolved from the same file by key and
 # vehicle, so no article number is written here.
 questions:
+  - { id: phone, group: curated, ask: "What is the phone number to Voltrieve?", expect: [curated], topic: contact }
+  - { id: reach, group: curated, ask: "How can I get in touch with Voltrieve?", expect: [curated], topic: contact }
+  - { id: hours, group: curated, ask: "What are the opening hours of Voltrieve?", expect: [curated], topic: opening_hours }
+  - { id: hours-saturday, group: curated, ask: "Are you open on Saturdays?", expect: [curated], topic: opening_hours }
+  - { id: broken-down, group: curated, ask: "My car has stopped on the motorway and won't start, who do I call?", expect: [curated], topic: roadside_assistance }
+  - { id: smoke, group: curated, ask: "There is smoke coming from under my car!", expect: [curated], topic: battery_emergency }
+  - { id: cancel, group: curated, ask: "I need to cancel my test drive tomorrow.", expect: [curated], topic: cancel_test_drive }
+  - { id: privacy, group: curated, ask: "How do I get my personal data deleted?", expect: [curated], topic: personal_data }
+  - { id: complain, group: curated, ask: "I'm unhappy with the service I got and want to complain.", expect: [curated], topic: complaints }
+
   - { id: greeting, group: none, ask: "Good morning!", expect: [] }
   - { id: thanks, group: none, ask: "Thanks, that was all I needed.", expect: [] }
   - { id: off-topic, group: none, ask: "What is the capital of France?", expect: [] }

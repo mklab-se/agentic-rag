@@ -45,6 +45,7 @@ INDEX = ROOT / "data" / "generated" / "parts-index.json"
 EVIDENCE = ROOT / "docs" / "evidence"
 ARTICLE = re.compile(r"VP-\d{5}")
 SOURCES = {
+    "get_curated_answer": "curated",
     "search_voltrieve_docs": "docs",
     "search_spare_parts": "parts",
     "voltrieve-kb": "docs",
@@ -71,10 +72,17 @@ class Run:
     error: str = ""
     answer: str = ""
     expected: list[str] = field(default_factory=list)
+    topic: str | None = None
+    expected_topic: str | None = None
+    final: bool = False
 
     @property
     def right(self) -> bool:
-        return not self.error and sorted(self.used) == sorted(self.expected)
+        return (
+            not self.error
+            and sorted(self.used) == sorted(self.expected)
+            and self.topic == self.expected_topic
+        )
 
     @property
     def vain(self) -> list[str]:
@@ -93,6 +101,9 @@ def overlap(calls: list[dict]) -> bool:
 
 def read_trace(run: Run, turn) -> None:
     server = [c for c in turn.trace("server_tool_called") if c.get("tool") in SOURCES]
+    run.topic = next((json.loads(c.get("arguments") or "{}").get("topic") for c in server
+                      if SOURCES[c["tool"]] == "curated"), None)
+    run.final = bool(turn.trace("final_answer_sent"))
     mcp = [c for c in turn.trace("mcp_tool_called") if c.get("server") in SOURCES]
     run.used = sorted({SOURCES[c["tool"]] for c in server} | {SOURCES[c["server"]] for c in mcp})
     run.calls = len(server) + len(mcp)
@@ -134,7 +145,8 @@ def message(question: dict, index: dict) -> str:
 
 
 def ask(url, token, backend: str, question: dict, repeat: int, index: dict) -> Run:
-    run = Run(backend, question["id"], question["group"], repeat, expected=question["expect"])
+    run = Run(backend, question["id"], question["group"], repeat, expected=question["expect"],
+              expected_topic=question.get("topic"))
     wanted = expected_articles(question, index)
     known = {p["article"] for p in index["parts"]}
     api = Api(url, token, backend)
@@ -171,7 +183,7 @@ def report(runs: list[Run], backends: list[str]) -> str:
     lines.append(f"{'backend':8}{'group':7}{'runs':>5}{'right':>7}{'vain':>6}{'missed':>8}"
                  f"{'together':>10}{'steps':>7}{'calls':>7}{'seconds':>9}")
     for backend in backends:
-        for group in ("none", "docs", "parts", "both"):
+        for group in ("curated", "none", "docs", "parts", "both"):
             rows = [r for r in runs if r.backend == backend and r.group == group]
             if not rows:
                 continue

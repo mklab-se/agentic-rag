@@ -1,0 +1,650 @@
+[
+ {
+  "backend": "loop",
+  "question": "greeting",
+  "seconds": 1.54,
+  "model_calls": 1,
+  "input_tokens": 920,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "price",
+  "seconds": 32.59,
+  "model_calls": 2,
+  "input_tokens": 1985,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "documents",
+  "seconds": 5.45,
+  "model_calls": 2,
+  "input_tokens": 4243,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "greeting",
+  "seconds": 1.32,
+  "model_calls": 1,
+  "input_tokens": 920,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "price",
+  "seconds": 3.2,
+  "model_calls": 2,
+  "input_tokens": 1991,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "documents",
+  "seconds": 8.14,
+  "model_calls": 2,
+  "input_tokens": 0,
+  "final": false,
+  "error": "model_error"
+ },
+ {
+  "backend": "loop",
+  "question": "greeting",
+  "seconds": 1.45,
+  "model_calls": 1,
+  "input_tokens": 920,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "price",
+  "seconds": 3.31,
+  "model_calls": 2,
+  "input_tokens": 2025,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "documents",
+  "seconds": 4.9,
+  "model_calls": 2,
+  "input_tokens": 4230,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "greeting",
+  "seconds": 1.26,
+  "model_calls": 1,
+  "input_tokens": 920,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "price",
+  "seconds": 3.37,
+  "model_calls": 2,
+  "input_tokens": 2020,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "documents",
+  "seconds": 4.56,
+  "model_calls": 2,
+  "input_tokens": 6181,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "greeting",
+  "seconds": 2.14,
+  "model_calls": 1,
+  "input_tokens": 920,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "price",
+  "seconds": 4.0,
+  "model_calls": 2,
+  "input_tokens": 2029,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "documents",
+  "seconds": 4.39,
+  "model_calls": 2,
+  "input_tokens": 6174,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "greeting",
+  "seconds": 3.06,
+  "model_calls": 1,
+  "input_tokens": 920,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "price",
+  "seconds": 2.93,
+  "model_calls": 2,
+  "input_tokens": 2014,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "documents",
+  "seconds": 4.16,
+  "model_calls": 2,
+  "input_tokens": 6176,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "greeting",
+  "seconds": 1.4,
+  "model_calls": 1,
+  "input_tokens": 920,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "price",
+  "seconds": 3.72,
+  "model_calls": 2,
+  "input_tokens": 2038,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "documents",
+  "seconds": 4.13,
+  "model_calls": 2,
+  "input_tokens": 6356,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "greeting",
+  "seconds": 2.04,
+  "model_calls": 1,
+  "input_tokens": 920,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "price",
+  "seconds": 3.61,
+  "model_calls": 2,
+  "input_tokens": 2000,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "loop",
+  "question": "documents",
+  "seconds": 4.36,
+  "model_calls": 2,
+  "input_tokens": 5280,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "greeting",
+  "seconds": 1.59,
+  "model_calls": 1,
+  "input_tokens": 2313,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "price",
+  "seconds": 32.3,
+  "model_calls": 2,
+  "input_tokens": 4863,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "documents",
+  "seconds": 4.73,
+  "model_calls": 1,
+  "input_tokens": 8497,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "greeting",
+  "seconds": 1.54,
+  "model_calls": 1,
+  "input_tokens": 2313,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "price",
+  "seconds": 4.2,
+  "model_calls": 2,
+  "input_tokens": 4840,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "documents",
+  "seconds": 5.33,
+  "model_calls": 1,
+  "input_tokens": 8501,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "greeting",
+  "seconds": 2.23,
+  "model_calls": 1,
+  "input_tokens": 2313,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "price",
+  "seconds": 4.26,
+  "model_calls": 2,
+  "input_tokens": 4939,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "documents",
+  "seconds": 4.29,
+  "model_calls": 1,
+  "input_tokens": 8514,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "greeting",
+  "seconds": 1.49,
+  "model_calls": 1,
+  "input_tokens": 2313,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "price",
+  "seconds": 5.09,
+  "model_calls": 2,
+  "input_tokens": 4824,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "documents",
+  "seconds": 4.73,
+  "model_calls": 1,
+  "input_tokens": 8502,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "greeting",
+  "seconds": 1.21,
+  "model_calls": 1,
+  "input_tokens": 2313,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "price",
+  "seconds": 4.17,
+  "model_calls": 2,
+  "input_tokens": 4871,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "documents",
+  "seconds": 4.54,
+  "model_calls": 1,
+  "input_tokens": 8493,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "greeting",
+  "seconds": 1.78,
+  "model_calls": 1,
+  "input_tokens": 2313,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "price",
+  "seconds": 3.94,
+  "model_calls": 2,
+  "input_tokens": 4811,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "documents",
+  "seconds": 4.48,
+  "model_calls": 1,
+  "input_tokens": 8501,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "greeting",
+  "seconds": 1.51,
+  "model_calls": 1,
+  "input_tokens": 2313,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "price",
+  "seconds": 3.38,
+  "model_calls": 2,
+  "input_tokens": 4812,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "documents",
+  "seconds": 4.95,
+  "model_calls": 1,
+  "input_tokens": 8504,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "greeting",
+  "seconds": 1.72,
+  "model_calls": 1,
+  "input_tokens": 2313,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "price",
+  "seconds": 4.38,
+  "model_calls": 2,
+  "input_tokens": 4802,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "prompt",
+  "question": "documents",
+  "seconds": 4.68,
+  "model_calls": 1,
+  "input_tokens": 8509,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "greeting",
+  "seconds": 6.22,
+  "model_calls": 1,
+  "input_tokens": 920,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "price",
+  "seconds": 22.79,
+  "model_calls": 2,
+  "input_tokens": 2021,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "documents",
+  "seconds": 9.73,
+  "model_calls": 2,
+  "input_tokens": 6175,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "greeting",
+  "seconds": 6.07,
+  "model_calls": 1,
+  "input_tokens": 920,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "price",
+  "seconds": 7.69,
+  "model_calls": 2,
+  "input_tokens": 2041,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "documents",
+  "seconds": 9.22,
+  "model_calls": 2,
+  "input_tokens": 5285,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "greeting",
+  "seconds": 6.37,
+  "model_calls": 1,
+  "input_tokens": 920,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "price",
+  "seconds": 9.33,
+  "model_calls": 2,
+  "input_tokens": 2019,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "documents",
+  "seconds": 8.64,
+  "model_calls": 2,
+  "input_tokens": 6720,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "greeting",
+  "seconds": 5.5,
+  "model_calls": 1,
+  "input_tokens": 920,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "price",
+  "seconds": 8.12,
+  "model_calls": 2,
+  "input_tokens": 2058,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "documents",
+  "seconds": 7.99,
+  "model_calls": 2,
+  "input_tokens": 6362,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "greeting",
+  "seconds": 6.11,
+  "model_calls": 1,
+  "input_tokens": 920,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "price",
+  "seconds": 7.77,
+  "model_calls": 2,
+  "input_tokens": 2001,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "documents",
+  "seconds": 9.27,
+  "model_calls": 2,
+  "input_tokens": 6183,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "greeting",
+  "seconds": 6.35,
+  "model_calls": 1,
+  "input_tokens": 920,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "price",
+  "seconds": 7.52,
+  "model_calls": 2,
+  "input_tokens": 1978,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "documents",
+  "seconds": 11.95,
+  "model_calls": 2,
+  "input_tokens": 6752,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "greeting",
+  "seconds": 5.54,
+  "model_calls": 1,
+  "input_tokens": 920,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "price",
+  "seconds": 8.27,
+  "model_calls": 2,
+  "input_tokens": 2022,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "documents",
+  "seconds": 10.01,
+  "model_calls": 2,
+  "input_tokens": 6174,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "greeting",
+  "seconds": 6.02,
+  "model_calls": 1,
+  "input_tokens": 920,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "price",
+  "seconds": 8.3,
+  "model_calls": 2,
+  "input_tokens": 2081,
+  "final": false,
+  "error": ""
+ },
+ {
+  "backend": "hosted",
+  "question": "documents",
+  "seconds": 9.68,
+  "model_calls": 2,
+  "input_tokens": 5290,
+  "final": false,
+  "error": ""
+ }
+]
