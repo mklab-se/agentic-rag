@@ -8,7 +8,7 @@ from dataclasses import dataclass
 
 from jsonschema import Draft202012Validator, FormatChecker
 
-from voltrieve_agent.events import Emit, trace
+from voltrieve_agent.events import WORKING, Emit, trace
 
 logger = logging.getLogger(__name__)
 
@@ -35,6 +35,8 @@ class ServerTool:
     # May run alongside other tools of the same model response. Reads may; a tool that changes
     # something waits for them and runs alone.
     concurrent: bool = True
+    # What the user is told while this runs: a stable code and a default text.
+    status: tuple[str, str] = WORKING
 
 
 @dataclass(frozen=True)
@@ -87,6 +89,10 @@ class ToolSet:
 
     def is_client(self, name: str) -> bool:
         return name in self._client
+
+    def status_of(self, name: str) -> tuple[str, str]:
+        tool = self._server.get(name)
+        return tool.status if tool is not None else WORKING
 
     def is_concurrent(self, name: str) -> bool:
         tool = self._server.get(name)

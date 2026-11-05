@@ -91,6 +91,7 @@ class Turn:
     conversation_id: str | None = None
     tool_runs: list[tuple[str, str, str]] = field(default_factory=list)  # name, arguments, output
     first_text_seconds: float | None = None
+    first_status_seconds: float | None = None
 
     @property
     def text(self) -> str:
@@ -161,6 +162,8 @@ class Api:
             pending = None
             for name, data in stream:
                 result.events.append((name, data))
+                if name == "status" and result.first_status_seconds is None:
+                    result.first_status_seconds = round(time.perf_counter() - began, 2)
                 if name == "delta" and result.first_text_seconds is None:
                     result.first_text_seconds = round(time.perf_counter() - began, 2)
                 result.conversation_id = data.get("conversation_id") or result.conversation_id

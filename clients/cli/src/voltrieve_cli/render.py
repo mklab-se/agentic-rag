@@ -67,6 +67,8 @@ class ChatView:
     def on_event(self, name: str, data: dict[str, Any]) -> None:
         if name == "trace":
             self.trace.append(format_trace(data))
+        elif name == "status":
+            self.trace.append(clean(f"{datetime.now():%H:%M:%S} [status] {data.get('message')}"))
         elif name == "delta":
             if self._agent_line != len(self.chat) - 1:
                 self.chat.append(Text("agent: "))
