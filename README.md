@@ -2,7 +2,7 @@
 
 **The same assistant built as an own loop, a Foundry prompt agent and a Foundry hosted agent, deployed side by side and measured with real runs.** See exactly who calls what, where each design wins, and where it fails.
 
-[![Step through a real prompt: a call map of the Web API, Foundry and Azure AI Search with numbered arrows and the real payload of each call](docs/assets/journey-map.png)](https://mklab-se.github.io/agentic-rag/assets/prompt-journey.html)
+[![Step through a real prompt: a call map of the Web API, Foundry and Azure AI Search with numbered arrows and the real payload of each call](docs/assets/journey-map.png)](https://mklab.se/agentic-rag/assets/prompt-journey.html)
 
 Most agent samples stop at "it answers". This one answers the questions you meet in the next meeting:
 
@@ -16,7 +16,7 @@ Most agent samples stop at "it answers". This one answers the questions you meet
 
 ## See it: the journey of a prompt
 
-**[Open the interactive journey](https://mklab-se.github.io/agentic-rag/assets/prompt-journey.html)**, or browse [the documentation site](https://mklab-se.github.io/agentic-rag/). Pick an architecture and a prompt, then step through every call: who makes it, what it carries and what comes back.
+**[Open the interactive journey](https://mklab.se/agentic-rag/assets/prompt-journey.html)**, or browse [the documentation site](https://mklab.se/agentic-rag/). Pick an architecture and a prompt, then step through every call: who makes it, what it carries and what comes back.
 
 - **Three architectures on one map.** The boxes stay in place and you can watch what moves.
 - **Seven real prompts,** from a greeting to a two-base spare parts job and a client-side tool.
