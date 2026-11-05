@@ -64,6 +64,14 @@ async function turn(res, body, backend) {
     await sleep(220);
     send("trace", { step, component, detail, elapsed_ms: at });
   }
+  if (/gauge/i.test(msg)) {
+    send("client_tool_calls", {
+      turn_id,
+      conversation_id,
+      calls: [{ call_id: "g1", name: "set_gauge", arguments: JSON.stringify({ value: Number(msg.match(/\d+/)?.[0] ?? 70) }) }],
+    });
+    return;
+  }
   if (/theme/i.test(msg)) {
     send("client_tool_calls", {
       turn_id,
@@ -96,7 +104,7 @@ createServer(async (req, res) => {
   if (req.method === "POST" && req.url === "/chat/tool-results") {
     for await (const _ of req);
     res.writeHead(200, { ...CORS, "Content-Type": "text/event-stream" });
-    res.write(`event: delta\ndata: ${JSON.stringify({ text: "Done, the theme is changed." })}\n\n`);
+    res.write(`event: delta\ndata: ${JSON.stringify({ text: "Done." })}\n\n`);
     res.end(`event: done\ndata: ${JSON.stringify({ conversation_id: "conv_mock", turn_id: "t", backend: "loop" })}\n\n`);
     return;
   }

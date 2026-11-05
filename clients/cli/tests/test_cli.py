@@ -74,7 +74,7 @@ def test_run_tool_accepts_json_string_and_reports_errors():
 
 
 def test_declared_tools():
-    assert [t["name"] for t in tools.CLIENT_TOOLS] == ["make_noise", "honk", "get_local_time", "show_banner"]
+    assert [t["name"] for t in tools.CLIENT_TOOLS] == ["make_noise", "honk", "get_local_time", "show_banner", "set_gauge"]
 
 
 def test_config_env_and_azd(monkeypatch):
@@ -125,7 +125,7 @@ def test_pause_and_continue_flow():
     assert outcome.conversation_id == "c1"
     assert events.count("tool_ran") == 2
     chat_call, results_call = seen
-    assert chat_call[1]["message"] == "beep" and len(chat_call[1]["client_tools"]) == 4
+    assert chat_call[1]["message"] == "beep" and len(chat_call[1]["client_tools"]) == 5
     assert chat_call[2] == "loop"
     assert results_call[0] == "/chat/tool-results"
     r = results_call[1]["results"]

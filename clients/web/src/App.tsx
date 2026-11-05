@@ -6,7 +6,7 @@ import { Header } from "./components/Header";
 import { ConfigMissing, Loading, SignIn } from "./components/Notices";
 import { Recorder } from "./components/Recorder";
 import { readConfig, type AppConfig } from "./config";
-import { runClientTool, type Theme } from "./tools";
+import { runClientTool, toolsFor, type Theme } from "./tools";
 import { chatReducer, initialChatState } from "./turns";
 import type { Backend, ClientToolCall } from "./types";
 
@@ -17,6 +17,14 @@ function initialTheme(): Theme {
   const set = document.documentElement.dataset.theme;
   if (set === "light" || set === "dark") return set;
   return matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
+function initialGaugeOn(): boolean {
+  try {
+    return localStorage.getItem("gauge") === "on";
+  } catch {
+    return false;
+  }
 }
 
 export function App() {
@@ -61,6 +69,8 @@ function Workspace({ config, auth, session }: { config: AppConfig; auth: Auth; s
   const [backend, setBackend] = useState<Backend>("loop");
   const [busy, setBusy] = useState(false);
   const [theme, setTheme] = useState<Theme>(initialTheme);
+  const [gauge, setGauge] = useState(0);
+  const [gaugeOn, setGaugeOn] = useState(initialGaugeOn);
   const [view, setView] = useState<"chat" | "recorder">("chat");
   const abort = useRef<AbortController | null>(null);
   const conversationId = useRef<string | undefined>(undefined);
@@ -91,7 +101,15 @@ function Workspace({ config, auth, session }: { config: AppConfig; auth: Auth; s
       try {
         const token = await auth.getToken();
         let events = streamChat(
-          { apiUrl: config.apiUrl, token, backend, conversationId: conversationId.current, message, correlationId },
+          {
+            apiUrl: config.apiUrl,
+            token,
+            backend,
+            conversationId: conversationId.current,
+            message,
+            correlationId,
+            clientTools: toolsFor(gaugeOn),
+          },
           ctrl.signal,
         );
         for (let round = 0; round <= MAX_TOOL_ROUNDS; round += 1) {
@@ -109,7 +127,7 @@ function Workspace({ config, auth, session }: { config: AppConfig; auth: Auth; s
           if (!paused) break;
           const results = paused.calls.map((call) => ({
             call_id: call.call_id,
-            output: runClientTool(call, { setTheme: applyTheme }),
+            output: runClientTool(call, { setTheme: applyTheme, setGauge }),
           }));
           events = streamToolResults(
             {
@@ -133,8 +151,18 @@ function Workspace({ config, auth, session }: { config: AppConfig; auth: Auth; s
         setBusy(false);
       }
     },
-    [applyTheme, auth, backend, config.apiUrl],
+    [applyTheme, auth, backend, config.apiUrl, gaugeOn],
   );
+
+  function toggleGauge() {
+    const next = !gaugeOn;
+    setGaugeOn(next);
+    try {
+      localStorage.setItem("gauge", next ? "on" : "off");
+    } catch {
+      /* storage may be unavailable */
+    }
+  }
 
   function toggleTheme() {
     applyTheme(theme === "dark" ? "light" : "dark");
@@ -149,6 +177,8 @@ function Workspace({ config, auth, session }: { config: AppConfig; auth: Auth; s
         onSignOut={() => void auth.signOut()}
         theme={theme}
         onToggleTheme={toggleTheme}
+        gaugeOn={gaugeOn}
+        onToggleGauge={toggleGauge}
         onNewChat={() => dispatch({ type: "reset" })}
         busy={busy}
       />
@@ -161,7 +191,7 @@ function Workspace({ config, auth, session }: { config: AppConfig; auth: Auth; s
         </button>
       </nav>
       <main className="panes">
-        <Chat state={state} busy={busy} onSend={(t) => void send(t)} />
+        <Chat state={state} busy={busy} gauge={gaugeOn ? gauge : undefined} onSend={(t) => void send(t)} />
         <Recorder state={state} />
       </main>
     </div>

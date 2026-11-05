@@ -212,12 +212,18 @@ async def test_model_failure_is_an_error_event_without_detail(run_scenario, name
     assert "secret" not in json.dumps(data)
 
 
+# A client tool the prompt agent was not defined with, so that the limit stays visible.
+LEFT_OUT_OF_THE_PROMPT_AGENT = {"set_gauge"}
+
+
 def test_the_cli_and_the_prompt_agent_declare_the_same_client_tools():
     """The CLI sends its tools with each request; the prompt agent has a copy in its definition
     (a prompt agent cannot take tools per request). The two copies must not drift."""
     cli = load_module("cli_tools", "clients/cli/src/voltrieve_cli/tools.py").CLIENT_TOOLS
     agent = load_module("create_agents", "agents/prompt/create_agents.py").CLI_TOOLS
-    assert cli == agent
-    from app.backends.prompt import CLI_AGENT_TOOL_NAMES
+    shared = [t for t in cli if t["name"] not in LEFT_OUT_OF_THE_PROMPT_AGENT]
+    assert shared == agent
+    from app.backends.prompt import CLI_AGENT_TOOL_NAMES, WEB_AGENT_TOOL_NAMES
 
-    assert {t["name"] for t in cli} == CLI_AGENT_TOOL_NAMES
+    assert {t["name"] for t in shared} == CLI_AGENT_TOOL_NAMES
+    assert not LEFT_OUT_OF_THE_PROMPT_AGENT & (CLI_AGENT_TOOL_NAMES | WEB_AGENT_TOOL_NAMES)

@@ -4,7 +4,8 @@ import io
 
 from rich.console import Console
 
-from voltrieve_cli.render import ChatView, bubble_width, split_sources
+from voltrieve_cli import tools
+from voltrieve_cli.render import ChatView, bubble_width, gauge_bar, split_sources
 
 
 def terminal(width=100, height=30):
@@ -168,3 +169,68 @@ def test_bubbles_leave_room_in_any_width():
     assert bubble_width(100) == 70
     assert bubble_width(50) == 46
     assert bubble_width(20) <= 20
+
+
+def test_the_gauge_bar_fills_with_its_value():
+    assert gauge_bar(0).plain == "  Gauge ▕" + "░" * 30 + "▏ 0"
+    assert gauge_bar(100).plain == "  Gauge ▕" + "█" * 30 + "▏ 100"
+    assert gauge_bar(50).plain.count("█") == 15
+    assert len(gauge_bar(33).plain) == len(gauge_bar(34).plain)
+
+
+def test_the_gauge_warms_up_as_it_rises():
+    colors = [gauge_bar(v).spans[1].style for v in (10, 70, 95)]
+    assert colors == ["green", "yellow", "red"]
+
+
+def test_set_gauge_refuses_values_outside_the_range():
+    shown = []
+    assert tools.set_gauge(70, show=shown.append) == "The gauge now shows 70."
+    for bad in (101, -1, 1.5, "70", True, None):
+        assert tools.set_gauge(bad, show=shown.append).startswith("error")
+    assert shown == [70]
+
+
+def test_the_gauge_moves_there_rather_than_jumping(monkeypatch):
+    now = {"t": 100.0}
+    monkeypatch.setattr("voltrieve_cli.render.time.monotonic", lambda: now["t"])
+    view = ChatView(terminal())
+    view.set_gauge(100)
+    assert view._gauge_now() == 0
+    now["t"] += 0.35
+    assert 0 < view._gauge_now() < 100
+    now["t"] += 1
+    assert view._gauge_now() == 100
+
+
+def test_the_gauge_stays_on_screen_during_a_turn():
+    console = terminal()
+    view = ChatView(console)
+    view.on_event("status", {"code": "a", "message": "Thinking"})
+    with console.capture() as capture:
+        console.print(view.renderable())
+    assert "Gauge" in strip_ansi(capture.get())
+
+
+def test_plain_output_reports_the_gauge_as_text():
+    console = Console(file=io.StringIO(), force_terminal=False, width=80)
+    view = ChatView(console)
+    view.set_gauge(42)
+    view.print_gauge()
+    assert console.file.getvalue() == "gauge: 42\n"
+
+
+def test_the_gauge_can_be_turned_off():
+    console = terminal()
+    view = ChatView(console, gauge_on=False)
+    view.print_gauge()
+    view.on_event("status", {"code": "a", "message": "Thinking"})
+    with console.capture() as capture:
+        console.print(view.renderable())
+    assert "Gauge" not in strip_ansi(capture.get()) and "Gauge" not in output(console)
+
+
+def test_set_gauge_is_only_offered_while_the_gauge_is_on():
+    names = lambda gauge_on: [t["name"] for t in tools.tools_for(gauge_on)]
+    assert "set_gauge" in names(True)
+    assert "set_gauge" not in names(False) and "honk" in names(False)

@@ -14,11 +14,13 @@ interface Props {
   onSignOut: () => void;
   theme: "light" | "dark";
   onToggleTheme: () => void;
+  gaugeOn: boolean;
+  onToggleGauge: () => void;
   onNewChat: () => void;
   busy: boolean;
 }
 
-export function Header({ backend, onBackend, session, onSignOut, theme, onToggleTheme, onNewChat, busy }: Props) {
+export function Header({ backend, onBackend, session, onSignOut, theme, onToggleTheme, gaugeOn, onToggleGauge, onNewChat, busy }: Props) {
   return (
     <header className="topbar">
       <div className="brand">
@@ -46,6 +48,15 @@ export function Header({ backend, onBackend, session, onSignOut, theme, onToggle
       <div className="actions">
         <button className="ghost" onClick={onNewChat} disabled={busy}>
           New chat
+        </button>
+        <button
+          className="ghost"
+          aria-pressed={gaugeOn}
+          onClick={onToggleGauge}
+          disabled={busy}
+          title="Show the gauge and offer the set_gauge tool. The prompt agent refuses that tool."
+        >
+          Gauge
         </button>
         <button className="ghost icon" onClick={onToggleTheme} aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`} title="Toggle theme">
           {theme === "dark" ? "☀" : "☾"}

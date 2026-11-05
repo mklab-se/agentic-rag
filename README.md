@@ -47,7 +47,7 @@ The diagram below is the whole system. The only thing that changes between backe
 ```mermaid
 flowchart LR
     CLI["CLI<br/>declares client tools"] --> API
-    SPA["SPA<br/>declares set_theme"] --> API
+    SPA["SPA<br/>declares set_theme, set_gauge"] --> API
     Entra["Entra ID"] -. tokens .-> CLI
     Entra -. tokens .-> SPA
     API["Web API<br/>contract, auth, turn state"]
@@ -99,7 +99,7 @@ uv run --project clients/cli voltrieve ask "Which Voltrieve charges fastest?" --
 uv run --project clients/cli voltrieve chat --backend hosted --az-token
 ```
 
-With [`just`](https://github.com/casey/just) installed, `just chat` does the same on the own loop, and `just chat hosted` picks a backend. `just open` opens the deployed web client, and `just web` runs it locally.
+With [`just`](https://github.com/casey/just) installed, `just chat` does the same on the own loop, and `just chat hosted` picks a backend. `just open` opens the deployed web client, and `just web` runs it locally. Add a gauge with `just chat loop --gauge` or `/gauge` in the chat, and with the Gauge button on the web.
 
 The chat shows message bubbles with rendered Markdown and one live status line. Add `--trace` to watch every step, or type `/trace` to see the last turn.
 
@@ -145,7 +145,7 @@ Verified live:
 - The prompt agent's 400.
 - The authorization denied path, on the loop backend, against real Foundry with a fake token validator.
 
-Offline tests pass: `agent_core` 79, `api` 118, `agents/hosted` 18, `tests/contract` 25, `clients/cli` 43, `services/dealer` 37, `search` 25, Entra setup 31, `clients/web` 39.
+Offline tests pass: `agent_core` 79, `api` 118, `agents/hosted` 18, `tests/contract` 25, `clients/cli` 51, `services/dealer` 37, `search` 25, Entra setup 31, `clients/web` 47.
 
 Not verified:
 
