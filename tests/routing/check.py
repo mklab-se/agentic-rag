@@ -73,6 +73,13 @@ class Run:
     answer: str = ""
     expected: list[str] = field(default_factory=list)
     topic: str | None = None
+    input_tokens: int = 0
+    cached_tokens: int = 0
+    output_tokens: int = 0
+    planning_input_tokens: int = 0
+    planning_output_tokens: int = 0
+    search_reasoning_tokens: int = 0
+    searches: int = 0
     expected_topic: str | None = None
     final: bool = False
 
@@ -104,6 +111,15 @@ def read_trace(run: Run, turn) -> None:
     run.topic = next((json.loads(c.get("arguments") or "{}").get("topic") for c in server
                       if SOURCES[c["tool"]] == "curated"), None)
     run.final = bool(turn.trace("final_answer_sent"))
+    usage = (turn.done or {}).get("usage", {})
+    run.input_tokens = usage.get("input_tokens", 0)
+    run.cached_tokens = (usage.get("input_tokens_details") or {}).get("cached_tokens", 0)
+    run.output_tokens = usage.get("output_tokens", 0)
+    retrieved = turn.trace("knowledge_base_retrieved")
+    run.planning_input_tokens = sum(k.get("planning_input_tokens", 0) for k in retrieved)
+    run.planning_output_tokens = sum(k.get("planning_output_tokens", 0) for k in retrieved)
+    run.search_reasoning_tokens = sum(k.get("search_reasoning_tokens", 0) for k in retrieved)
+    run.searches = len(retrieved) + len(turn.trace("mcp_tool_called"))
     mcp = [c for c in turn.trace("mcp_tool_called") if c.get("server") in SOURCES]
     run.used = sorted({SOURCES[c["tool"]] for c in server} | {SOURCES[c["server"]] for c in mcp})
     run.calls = len(server) + len(mcp)
@@ -228,6 +244,7 @@ def main() -> int:
     parser.add_argument("--only", default="")
     parser.add_argument("--workers", type=int, default=1)
     parser.add_argument("--no-save", action="store_true")
+    parser.add_argument("--label", default="", help="save only to docs/evidence/models/<label>.json")
     args = parser.parse_args()
 
     questions = yaml.safe_load(QUESTIONS.read_text(encoding="utf-8"))["questions"]
@@ -249,7 +266,14 @@ def main() -> int:
         runs = list(pool.map(timed, range(len(jobs)), jobs))
     text = report(runs, backends)
     print(text)
-    if not args.no_save:
+    if args.label:
+        folder = EVIDENCE / "models"
+        folder.mkdir(exist_ok=True)
+        (folder / f"{args.label}.json").write_text(
+            json.dumps([asdict(r) for r in runs], indent=1, ensure_ascii=False).replace("\u2014", "-") + "\n",
+            encoding="utf-8",
+        )
+    elif not args.no_save:
         write_evidence(EVIDENCE / "routing.txt", text)
         (EVIDENCE / "routing.json").write_text(
             json.dumps([asdict(r) for r in runs], indent=1, ensure_ascii=False).replace("\u2014", "-") + "\n",

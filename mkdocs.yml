@@ -1,0 +1,36 @@
+site_name: Agentic RAG on Azure, three ways
+site_description: The same assistant built as an own loop, a Foundry prompt agent and a Foundry hosted agent, deployed side by side and measured with real runs.
+docs_dir: docs
+site_dir: site
+exclude_docs: |
+  superpowers/
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - content.code.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      toggle: { icon: material/weather-night, name: Dark mode }
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      toggle: { icon: material/weather-sunny, name: Light mode }
+markdown_extensions:
+  - tables
+  - toc: { permalink: true }
+  - pymdownx.superfences:
+      custom_fences:
+        - { name: mermaid, class: mermaid, format: !!python/name:pymdownx.superfences.fence_code_format }
+nav:
+  - Home: index.md
+  - The interactive journey: assets/prompt-journey.html
+  - The journey of a prompt: prompt-journey.md
+  - Choosing a model: model-comparison.md
+  - Why Foundry: why-foundry.md
+  - Demo runbook: runbook.md
+  - Deployment: deploy.md
+  - Decisions: decisions.md
+  - Evidence: evidence/README.md

@@ -19,7 +19,7 @@ Numbers come from live runs on 2026-11-04 (`scripts/prompt_journey.py`, `docs/ev
 
 **The model never calls anything.** It only returns text, or a request to run a tool. In the own loop the Web API makes every real call, because the loop (`run_turn` in `agent_core/src/voltrieve_agent/loop.py`) runs inside the API process. The [visual page](assets/prompt-journey.html) lets you step through this arrow by arrow.
 
-This is the real run of a follow-up question, `prompt-trace.txt` in [evidence](evidence/). Solid arrows are calls and dotted arrows are what comes back:
+This is the real run of a follow-up question, `prompt-trace.txt` in [evidence](evidence/README.md). Solid arrows are calls and dotted arrows are what comes back:
 
 ```mermaid
 flowchart LR

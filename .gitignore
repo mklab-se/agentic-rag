@@ -7,3 +7,7 @@ node_modules/
 *.env
 .DS_Store
 clients/web/.env.production
+
+# Documentation site
+site/
+docs/index.md

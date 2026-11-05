@@ -51,6 +51,7 @@ class KnowledgeBase:
                     sub_queries=_sub_queries(result),
                     references=titles,
                     partial=result.partial,
+                    **_token_use(result),
                 )
             )
         return json.dumps(
@@ -87,6 +88,20 @@ def _sub_queries(result: RetrieveResult) -> list[str]:
         if item.get("type") == "searchIndex" and search:
             queries.append(search)
     return queries
+
+
+def _token_use(result: RetrieveResult) -> dict:
+    """What this retrieve cost: planning bills as model tokens, reasoning tokens through Search."""
+    planning = [a for a in result.activity if a.get("type") == "modelQueryPlanning"]
+    return {
+        "planning_input_tokens": sum(a.get("inputTokens", 0) for a in planning),
+        "planning_output_tokens": sum(a.get("outputTokens", 0) for a in planning),
+        "search_reasoning_tokens": sum(
+            a.get("reasoningTokens", 0)
+            for a in result.activity
+            if a.get("type") == "agenticReasoning"
+        ),
+    }
 
 
 def _reference_titles(result: RetrieveResult) -> list[str]:
