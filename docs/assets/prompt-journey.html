@@ -843,7 +843,7 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
   <div class="seg" role="group" aria-label="Architecture" id="seg"></div>
   <div class="tabs" role="tablist" aria-label="Prompt" id="tabs"></div>
   <div class="verdict" id="verdict"></div>
-  <p class="legend">Cards show the median of 3 runs at once on all backends, so a gap of a second or two is noise. The comparison table further down uses larger samples.</p>
+  <p class="legend">Cards show the median of 3 runs at once on all backends, so a gap of a second or two is noise. The comparison table further down uses larger samples. These times are to the last token. For time to first token, see <a href="../model-comparison/">Choosing a model</a>. While a user waits, the API sends status events such as "Searching the parts catalog", and the first arrives in about 0.1 s.</p>
   <div class="mapwrap" tabindex="0" aria-label="Map of the systems. Scroll sideways on a small screen."><svg class="map" id="map" viewBox="0 0 1290 760" role="img" aria-label="System map: client, Web API with routes, loop and tool table, Foundry with conversations and the model, the dealer service, and Azure AI Search with knowledge base, knowledge source, index, embedding model and semantic ranker. Numbered arrows show the calls of the selected prompt."></svg></div>
   <div class="stepbar" id="stepbar"></div>
   <div class="card" id="card" aria-live="polite"></div>
@@ -949,10 +949,11 @@ return await tool.handler(arguments, user)</pre>
 
 <section aria-labelledby="win-title">
   <h2 id="win-title">Where each one works better, and where it fails</h2>
-  <p>Green marks the best result on that row and red marks a real weakness. Figures are medians from the live runs in <code>docs/evidence/</code>.</p>
+  <p>Green marks the best result on that row and red marks a real weakness. Figures are medians from the live runs in <code>docs/evidence/</code>, with <code>gpt-5.4-mini</code>. Times are to the last token, unless a row says otherwise.</p>
   <div class="tablewrap"><table>
     <tr><th>What you care about</th><th>Own loop</th><th>Prompt agent</th><th>Hosted agent</th></tr>
-    <tr><td>Everyday question, such as a greeting</td><td class="win">1.6 s</td><td class="win">2.0 s</td><td class="fail">6.0 s. Every turn adds about 4.5 s for the hop into the agent session</td></tr>
+    <tr><td>Turns over 10 s to the first token</td><td class="win">3 of 48, or 0 of 48 on <code>gpt-6.1-terra</code></td><td>9 of 48, or 5 of 48 on <code>gpt-6.1-terra</code></td><td class="fail">13 of 48, or 7 of 48 on <code>gpt-6.1-terra</code></td></tr>
+<tr><td>Everyday question, such as a greeting</td><td class="win">1.6 s</td><td class="win">2.0 s</td><td class="fail">6.0 s. Every turn adds about 4.5 s for the hop into the agent session</td></tr>
 <tr><td>Question for two knowledge bases</td><td class="win">12.3 s, searches run together in 11 of 12</td><td>16.5 s, searches run one at a time in 12 of 12</td><td>17.2 s, searches run together in 12 of 12</td></tr>
 <tr><td>A client tool the server has never seen</td><td class="win">Works</td><td class="fail">Refused: tools must be in the agent definition</td><td class="win">Works, through Invocations</td></tr>
 <tr><td>Client tools from a fixed list</td><td class="win">Works</td><td class="win">Works</td><td class="win">Works</td></tr>
@@ -1283,7 +1284,7 @@ function drawVerdict(key){
   const r=J[b][key],note=(VERDICT[key]||{})[b]||[],state=note[0]||"",c=document.createElement("div");
   c.className="vc"+(state?" "+state:"")+(b===backend?" sel":"");c.setAttribute("role","button");c.tabIndex=0;c.onclick=()=>{backend=b;drawScen(scen)};
   const t=document.createElement("b");t.textContent=v.label;
-  const n=document.createElement("div");n.className="num";n.textContent=`${r.seconds.toFixed(1)} s · ${r.model_calls} ${r.model_calls===1?"request":"requests"} to Foundry · ${Math.round(r.tokens).toLocaleString("en-US")} tokens`;
+  const n=document.createElement("div");n.className="num";n.textContent=`${r.seconds.toFixed(1)} s total · ${r.model_calls} ${r.model_calls===1?"request":"requests"} to Foundry · ${Math.round(r.tokens).toLocaleString("en-US")} tokens`;
   const u=document.createElement("div");u.textContent="Used: "+pathText(r.paths);
   c.append(t,n,u);
   if(note[1]){const w=document.createElement("div");if(state){const g=document.createElement("span");g.className="tag";g.textContent=(state==="win"?"Works best: ":"Weakest: ");w.append(g)}w.append(document.createTextNode(note[1]));c.append(w)}

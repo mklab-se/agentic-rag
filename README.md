@@ -12,6 +12,7 @@ Most agent samples stop at "it answers". This one answers the questions you meet
 | **My client has its own tools. Now what?** | A prompt agent refuses per-request tools with a 400. An own loop or a hosted agent runs them, even one the server has never seen. | [Client tools](docs/why-foundry.md#1-what-happened-with-client-tools) |
 | **How does the agent decide to use RAG?** | No classifier exists. The model decides in its first call, from words you control. | [The journey of a prompt](docs/prompt-journey.md) |
 | **Can it use several knowledge bases without calling them in vain?** | Yes: all three reached the right bases in every run. Two of them run the searches at the same time. | [Two knowledge bases](docs/why-foundry.md#6-two-knowledge-bases-who-chooses-and-who-runs-them-together) |
+| **Which model should I use?** | Newer isn't always better. `gpt-6.1-terra` on an own loop was the only setup with every turn under 10 s to first token, and `gpt-6-luna` costs about a third of `gpt-5.4-mini`. | [Choosing a model](docs/model-comparison.md) |
 | **I need curated answers without slowing everything down.** | Pick the answer in the model call you already make, then skip the second one. Curated questions took under 2 s on two of the three, and other questions showed no measurable delay. | [Curated answers](docs/prompt-journey.md#curated-answers) |
 
 ## See it: the journey of a prompt
@@ -30,7 +31,7 @@ Prefer text? [docs/prompt-journey.md](docs/prompt-journey.md) has the same story
 
 | What you care about | Own loop | Prompt agent | Hosted agent |
 | --- | --- | --- | --- |
-| Everyday question | **1.6 s** | **2.0 s** | 6.0 s, about 4 s slower on every turn |
+| Everyday question, total time | **1.6 s** | **2.0 s** | 6.0 s, about 4 s slower on every turn |
 | Question for two knowledge bases | **12.3 s**, searches run together | 16.5 s, one at a time | 17.2 s, searches run together |
 | A client tool the server has never seen | **Works** | Refused | **Works** |
 | Curated answer, word for word | **1.7 s** | **1.8 s** | 6.4 s |
@@ -72,6 +73,7 @@ Choose per request with `X-Agent-Backend: prompt|loop|hosted`. Clients can't oth
 - **A shared agent loop** ([`agent_core/`](agent_core/)): parallel tool calls, roles on tools, schema checks, pause and resume for client tools.
 - **Client tools end to end**: a turn that pauses, runs on the user's machine and picks up again, with repair when a client disappears.
 - **Curated answers** ([`curated.py`](agent_core/src/voltrieve_agent/curated.py)): approved text, word for word, with no search on every turn.
+- **Status events**: tell users what's happening while they wait, on the stream they already have.
 - **Agentic retrieval as code** ([`search/definitions/`](search/definitions/)): knowledge bases, sources, indexes and skillsets, on the latest API version.
 - **Keyless Azure**: Entra and managed identities everywhere, deployed with one `azd up`.
 - **Routing tests** ([`tests/routing/`](tests/routing/)): prove that the model picks the right source, and catch calls in vain.
@@ -139,7 +141,7 @@ Verified live:
 - The prompt agent's 400.
 - The authorization denied path, on the loop backend, against real Foundry with a fake token validator.
 
-Offline tests pass: `agent_core` 68, `api` 118, `agents/hosted` 18, `tests/contract` 25, `clients/cli` 23, `services/dealer` 37, `search` 25, Entra setup 31, `clients/web` 28.
+Offline tests pass: `agent_core` 79, `api` 118, `agents/hosted` 18, `tests/contract` 25, `clients/cli` 23, `services/dealer` 37, `search` 25, Entra setup 31, `clients/web` 30.
 
 Not verified:
 

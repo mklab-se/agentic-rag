@@ -26,3 +26,8 @@ hosted  gpt-6.1-terra       48     48     78/78      7.3     34.4        7      
 
 USD/1000 is the estimated model and retrieval cost of 1000 turns of this question mix.
 It leaves out fixed costs such as Search Basic, and hosted agent session charges.
+Time to first status event, 12 runs per backend, recorded on 2026-11-05 with gpt-5.4-mini
+  loop    median 0.11 s, slowest 0.12 s
+  prompt  median 0.12 s, slowest 0.13 s
+  hosted  median 0.12 s, slowest 0.13 s
+Example, own loop: Thinking, Searching the documents, Searching the parts catalog, Reading the results
