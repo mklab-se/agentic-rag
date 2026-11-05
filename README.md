@@ -99,6 +99,8 @@ uv run --project clients/cli voltrieve ask "Which Voltrieve charges fastest?" --
 uv run --project clients/cli voltrieve chat --backend hosted --az-token
 ```
 
+The chat shows message bubbles with rendered Markdown and one live status line. Add `--trace` to watch every step, or type `/trace` to see the last turn.
+
 Check it with `uv run scripts/runbook.py` and `uv run tests/grounding/check.py`. Measure routing with `uv run tests/routing/check.py --repeats 1 --no-save`. The walkthrough is in [docs/runbook.md](docs/runbook.md).
 
 Tear down with `azd down --purge`. App registrations and the tester are not removed by azd: [docs/deploy.md](docs/deploy.md#teardown) shows how to delete them.
@@ -141,7 +143,7 @@ Verified live:
 - The prompt agent's 400.
 - The authorization denied path, on the loop backend, against real Foundry with a fake token validator.
 
-Offline tests pass: `agent_core` 79, `api` 118, `agents/hosted` 18, `tests/contract` 25, `clients/cli` 23, `services/dealer` 37, `search` 25, Entra setup 31, `clients/web` 29.
+Offline tests pass: `agent_core` 79, `api` 118, `agents/hosted` 18, `tests/contract` 25, `clients/cli` 36, `services/dealer` 37, `search` 25, Entra setup 31, `clients/web` 29.
 
 Not verified:
 

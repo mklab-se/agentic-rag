@@ -63,7 +63,7 @@ Cost is the tokens each turn reported, at list price: Global Standard, Sweden Ce
 
 - The prompt agent doesn't report planning tokens, so its searches use the own loop's average per search.
 - It leaves out fixed costs, such as about USD 80 a month for Search Basic and the registry, and hosted agent session charges, so the hosted agent is cheaper here than it really is.
-- Cache write charges are left out.
+- Cache write charges are left out, so the GPT-6 and `gpt-5.6-terra` figures are somewhat too low. A later trace on `gpt-6.1-terra` showed 5,064 cache write tokens in one turn. Terra charges USD 1.25 per million for those against USD 1.00 for input, so a turn like that adds about USD 0.0013, or up to USD 1.25 per 1,000 turns if every turn wrote that much.
 - The Search free monthly allowance isn't counted.
 
 ## How far to trust this

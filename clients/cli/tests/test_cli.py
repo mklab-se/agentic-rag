@@ -134,7 +134,7 @@ def test_chat_view_renders_narrow_and_wide():
     from rich.console import Console
     for width in (60, 140):
         console = Console(width=width, height=30, record=True, force_terminal=False)
-        with ChatView(console) as view:
+        with ChatView(console, show_trace=True) as view:
             view.user("hello")
             view.on_event("trace", {"step": "model", "component": "api", "detail": "called", "elapsed_ms": 5})
             view.on_event("delta", {"text": "hi there"})
@@ -254,7 +254,7 @@ def test_chat_view_cleans_control_characters_and_shows_the_correlation_id():
     from rich.console import Console
 
     console = Console(width=140, height=30, record=True, force_terminal=False)
-    with ChatView(console) as view:
+    with ChatView(console, show_trace=True) as view:
         view.user("hello")
         view.on_event("turn_started", {"correlation_id": "abc-123"})
         view.on_event("delta", {"text": "hi\x1b[2J there"})
