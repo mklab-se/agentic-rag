@@ -1,0 +1,12 @@
+One call to POST /knowledgebases/voltrieve-kb/retrieve, recorded on 2026-11-04.
+The message sent was the query the model wrote: all wheel drive AWD option price buyer's guide
+Activity from the response, shortened to the fields that matter:
+
+modelQueryPlanning  gpt-5.4-mini, 942 input tokens, 44 output tokens, 1376 ms
+searchIndex         voltrieve-docs-ks, "all wheel drive AWD option price buyer's guide", 6 results, 79 ms
+searchIndex         voltrieve-docs-ks, "AWD option price buyer's guide", 2 results, 60 ms
+searchIndex         voltrieve-docs-ks, "all wheel drive option price", 6 results, 36 ms
+agenticReasoning    16181 reasoning tokens, retrievalReasoningEffort low
+
+First reference: rerankerScore 2.562897, title voltrieve-buyers-guide.md
+The answer came back as 8 chunks, each with ref_id, title and content.
