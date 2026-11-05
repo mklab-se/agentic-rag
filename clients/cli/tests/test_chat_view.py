@@ -62,6 +62,31 @@ def test_split_sources_handles_a_sentence_inside_a_paragraph():
     assert body == "The figures are maximums.\n\nWhich size?"
 
 
+def test_a_source_in_brackets_moves_too():
+    body, sources = split_sources("Its range is 530 km. (Source: Voltrieve Ragn specifications)\n\nWhich terrain?")
+    assert sources == ["Voltrieve Ragn specifications"]
+    assert body == "Its range is 530 km.\n\nWhich terrain?"
+
+
+def test_a_title_holding_and_stays_whole():
+    _, sources = split_sources("Source: Voltrieve spare parts catalog: suspension and steering")
+    assert sources == ["Voltrieve spare parts catalog: suspension and steering"]
+
+
+def test_a_source_in_the_middle_of_a_sentence_stays_there():
+    text = "See it. (Source: guide) says more here."
+    assert split_sources(text) == (text, [])
+
+
+def test_a_short_answer_gets_a_small_bubble():
+    console = terminal()
+    view = ChatView(console)
+    with view:
+        view.on_event("delta", {"text": "Hi there"})
+    last_top = [line for line in output(console).splitlines() if "╭" in line][-1]
+    assert len(last_top.strip()) == len("Hi there") + 4
+
+
 def test_an_answer_without_sources_is_left_alone():
     assert split_sources("No sources here.") == ("No sources here.", [])
 

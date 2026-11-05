@@ -16,6 +16,7 @@ from typing import Any
 
 from rich import box
 from rich.align import Align
+from rich.cells import cell_len
 from rich.console import Console, ConsoleOptions, Group, RenderResult
 from rich.control import Control
 from rich.live import Live
@@ -32,7 +33,9 @@ AGENT_COLOR = "grey50"
 QUIET_SECONDS = 600
 # What the live region keeps free for the status line and the turn above it.
 RESERVED_LINES = 6
-_SOURCES = re.compile(r"(?:^|(?<=\s))[*_]{0,2}Sources?:[*_]{0,2}[ \t]*(?P<names>.+?)[ \t]*$", re.MULTILINE)
+_SOURCES = re.compile(
+    r"(?:^|(?<=\s))\(?[*_]{0,2}Sources?:[*_]{0,2}[ \t]*(?P<names>.+?)\)?\.?[ \t]*$", re.MULTILINE
+)
 
 # C0 control characters (except newline and tab), DEL and the C1 range. The model's text and
 # tool results reach the terminal; an ESC sequence in them could move the cursor, rewrite the
@@ -69,8 +72,11 @@ def split_sources(text: str) -> tuple[str, list[str]]:
     if not matches:
         return text, []
     last = matches[-1]
-    names = re.sub(r"[*_`]", "", last.group("names")).rstrip(".")
-    parts = [n.strip() for n in re.split(r",\s*(?:and\s+)?|\s+and\s+|\s+/\s+", names) if n.strip()]
+    if ") " in last.group("names"):  # the sentence goes on after the bracket: leave it alone
+        return text, []
+    # "and" only splits between marked names: a title can hold it, as in "suspension and steering".
+    pieces = re.split(r",\s*(?:and\s+)?|(?<=[*_`])\s+and\s+(?=[*_`])|\s+/\s+", last.group("names"))
+    parts = [name for piece in pieces if (name := re.sub(r"[*_`]", "", piece).strip(" ."))]
     body = (text[: last.start()].rstrip(" ") + text[last.end() :]).strip()
     return re.sub(r"\n{3,}", "\n\n", body), parts
 
@@ -136,7 +142,6 @@ class ChatView:
             self.console.print(f"you: {text}", markup=False, highlight=False)
             return
         self._time_heading()
-        self.console.print()
         width = bubble_width(self.console.width)
         self.console.print(Align.right(self._bubble(Text(text), USER_COLOR, self._fit(Text(text), width))))
 
@@ -214,7 +219,8 @@ class ChatView:
         """The bubble width that just holds this content."""
         inner = self.console.options.update(width=widest - 4)
         lines = self.console.render_lines(content, inner, pad=False)
-        return min(widest, max((Segment.get_line_length(line) for line in lines), default=1) + 4)
+        used = (cell_len("".join(segment.text for segment in line).rstrip()) for line in lines)
+        return min(widest, max(used, default=1) + 4)
 
     @staticmethod
     def _bubble(content, color: str, width: int | None = None, title: str | None = None) -> Panel:
