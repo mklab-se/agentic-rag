@@ -53,6 +53,12 @@ Each row gives the article number, the part, where it sits on the car, a short d
 | VP-11710 | Brake fluid reservoir | Bulkhead | Reservoir with level sensor and cap | 1 | Voltrieve Spark, Voltrieve Lumen |
 | VP-11736 | Bleed nipple kit | Not applicable | Set of 4 bleed nipples with dust caps | 1 | Voltrieve Spark, Voltrieve Lumen, Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
 
+### Voltrieve Spark: consumables for brake work
+
+| Article number | Part | Position | Description | Qty | Fits |
+|---|---|---|---|---|---|
+| VP-15168 | Brake fluid DOT 4 LV | Not applicable | 1 litre bottle | 1 | Voltrieve Spark, Voltrieve Lumen, Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
+
 ## Brake system: Voltrieve Lumen
 
 ### Voltrieve Lumen: front brakes
@@ -111,6 +117,12 @@ Each row gives the article number, the part, where it sits on the car, a short d
 | VP-11710 | Brake fluid reservoir | Bulkhead | Reservoir with level sensor and cap | 1 | Voltrieve Spark, Voltrieve Lumen |
 | VP-11736 | Bleed nipple kit | Not applicable | Set of 4 bleed nipples with dust caps | 1 | Voltrieve Spark, Voltrieve Lumen, Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
 
+### Voltrieve Lumen: consumables for brake work
+
+| Article number | Part | Position | Description | Qty | Fits |
+|---|---|---|---|---|---|
+| VP-15168 | Brake fluid DOT 4 LV | Not applicable | 1 litre bottle | 1 | Voltrieve Spark, Voltrieve Lumen, Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
+
 ## Brake system: Voltrieve Ragn
 
 ### Voltrieve Ragn: front brakes
@@ -165,6 +177,12 @@ Each row gives the article number, the part, where it sits on the car, a short d
 | VP-11697 | Stability control module | Front compartment | Hydraulic control unit with ABS and regenerative blending | 1 | Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
 | VP-11723 | Brake fluid reservoir | Bulkhead | Reservoir with level sensor and cap | 1 | Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
 | VP-11736 | Bleed nipple kit | Not applicable | Set of 4 bleed nipples with dust caps | 1 | Voltrieve Spark, Voltrieve Lumen, Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
+
+### Voltrieve Ragn: consumables for brake work
+
+| Article number | Part | Position | Description | Qty | Fits |
+|---|---|---|---|---|---|
+| VP-15168 | Brake fluid DOT 4 LV | Not applicable | 1 litre bottle | 1 | Voltrieve Spark, Voltrieve Lumen, Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
 
 ## Brake system: Voltrieve Fjord
 
@@ -228,6 +246,12 @@ Each row gives the article number, the part, where it sits on the car, a short d
 | VP-11723 | Brake fluid reservoir | Bulkhead | Reservoir with level sensor and cap | 1 | Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
 | VP-11736 | Bleed nipple kit | Not applicable | Set of 4 bleed nipples with dust caps | 1 | Voltrieve Spark, Voltrieve Lumen, Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
 
+### Voltrieve Fjord: consumables for brake work
+
+| Article number | Part | Position | Description | Qty | Fits |
+|---|---|---|---|---|---|
+| VP-15168 | Brake fluid DOT 4 LV | Not applicable | 1 litre bottle | 1 | Voltrieve Spark, Voltrieve Lumen, Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
+
 ## Brake system: Voltrieve Atlas
 
 ### Voltrieve Atlas: front brakes
@@ -280,3 +304,9 @@ Each row gives the article number, the part, where it sits on the car, a short d
 | VP-11697 | Stability control module | Front compartment | Hydraulic control unit with ABS and regenerative blending | 1 | Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
 | VP-11723 | Brake fluid reservoir | Bulkhead | Reservoir with level sensor and cap | 1 | Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
 | VP-11736 | Bleed nipple kit | Not applicable | Set of 4 bleed nipples with dust caps | 1 | Voltrieve Spark, Voltrieve Lumen, Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
+
+### Voltrieve Atlas: consumables for brake work
+
+| Article number | Part | Position | Description | Qty | Fits |
+|---|---|---|---|---|---|
+| VP-15168 | Brake fluid DOT 4 LV | Not applicable | 1 litre bottle | 1 | Voltrieve Spark, Voltrieve Lumen, Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |

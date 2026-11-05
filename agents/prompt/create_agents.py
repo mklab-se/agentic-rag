@@ -17,7 +17,7 @@ import os
 import sys
 
 from azure.ai.projects.models import FunctionTool, MCPTool, PromptAgentDefinition, Reasoning
-from voltrieve_agent.instructions import AGENT_INSTRUCTIONS
+from voltrieve_agent.instructions import PROMPT_AGENT_INSTRUCTIONS
 from voltrieve_agent.model import REASONING_EFFORT
 from voltrieve_agent.server_tools import (
     DOCS_DESCRIPTION,
@@ -110,7 +110,7 @@ def agent_definition(
         tools += cli_function_tools()
     return PromptAgentDefinition(
         model=chat_deployment,
-        instructions=AGENT_INSTRUCTIONS,
+        instructions=PROMPT_AGENT_INSTRUCTIONS,
         tools=tools,
         reasoning=Reasoning(effort=REASONING_EFFORT),
     )

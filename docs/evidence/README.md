@@ -13,6 +13,6 @@ Evidence holds no tokens, usernames or URLs.
 
 `runbook-table.txt` is the last full run on the final build.
 
-`routing.txt` and `routing.json` are the last full run of `tests/routing/check.py`, one question at a time. `routing-load.txt` is a run of the four brake questions with `--workers 4`. `parallel-setting.txt` comes from `agents/prompt/demo_parallel_setting.py`. `prompt-extra-steps.txt` holds traces of the prompt agent on job questions.
+`routing.txt` and `routing.json` are the last full run of `tests/routing/check.py`, one question at a time. `routing-after-catalog-fix.txt` is the brake questions after brake fluid moved into the brake catalog. `routing-load.txt` is a run of the four brake questions with `--workers 4`. `parallel-setting.txt` comes from `agents/prompt/demo_parallel_setting.py`. `prompt-extra-steps.txt` holds traces of the prompt agent on job questions.
 
 `prompt-journey.txt` comes from `scripts/prompt_journey.py`. `curated-latency.txt` and its two JSON files come from `scripts/curated_latency.py`. `journeys.json` comes from `scripts/record_journeys.py`, and the page in `docs/assets/` embeds it. `search-activity.txt` is one retrieve call and `prompt-trace.txt` is one run per prompt, both shortened by hand.

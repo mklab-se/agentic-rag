@@ -47,8 +47,8 @@ Each row gives the article number, the part, where it sits on the car, a short d
 | VP-12867 | Wheel bearing and hub, front right | Front right | Sealed hub unit with bolts | 1 | Voltrieve Spark, Voltrieve Lumen |
 | VP-12893 | Wheel bearing and hub, rear left | Rear left | Sealed hub unit with bolts | 1 | Voltrieve Spark, Voltrieve Lumen |
 | VP-12919 | Wheel bearing and hub, rear right | Rear right | Sealed hub unit with bolts | 1 | Voltrieve Spark, Voltrieve Lumen |
-| VP-13101 | Drive shaft, rear left | Rear left | Constant velocity drive shaft for the rear motor | 1 | Voltrieve Spark |
-| VP-13166 | Drive shaft, rear right | Rear right | Constant velocity drive shaft for the rear motor | 1 | Voltrieve Spark |
+| VP-13049 | Drive shaft, rear left | Rear left | Constant velocity drive shaft for the rear motor | 1 | Voltrieve Spark |
+| VP-13114 | Drive shaft, rear right | Rear right | Constant velocity drive shaft for the rear motor | 1 | Voltrieve Spark |
 
 ## Suspension and steering: Voltrieve Lumen
 
@@ -97,12 +97,10 @@ Each row gives the article number, the part, where it sits on the car, a short d
 | VP-12867 | Wheel bearing and hub, front right | Front right | Sealed hub unit with bolts | 1 | Voltrieve Spark, Voltrieve Lumen |
 | VP-12893 | Wheel bearing and hub, rear left | Rear left | Sealed hub unit with bolts | 1 | Voltrieve Spark, Voltrieve Lumen |
 | VP-12919 | Wheel bearing and hub, rear right | Rear right | Sealed hub unit with bolts | 1 | Voltrieve Spark, Voltrieve Lumen |
-| VP-12945 | Drive shaft, front left | Front left | Constant velocity drive shaft for the front motor | 1 | Voltrieve Lumen RWD |
-| VP-12958 | Drive shaft, front left | Front left | Constant velocity drive shaft for the front motor | 1 | Voltrieve Lumen AWD |
-| VP-13023 | Drive shaft, front right | Front right | Constant velocity drive shaft for the front motor | 1 | Voltrieve Lumen RWD |
-| VP-13036 | Drive shaft, front right | Front right | Constant velocity drive shaft for the front motor | 1 | Voltrieve Lumen AWD |
-| VP-13114 | Drive shaft, rear left | Rear left | Constant velocity drive shaft for the rear motor | 1 | Voltrieve Lumen |
-| VP-13179 | Drive shaft, rear right | Rear right | Constant velocity drive shaft for the rear motor | 1 | Voltrieve Lumen |
+| VP-12945 | Drive shaft, front left | Front left | Constant velocity drive shaft for the front motor | 1 | Voltrieve Lumen AWD |
+| VP-12997 | Drive shaft, front right | Front right | Constant velocity drive shaft for the front motor | 1 | Voltrieve Lumen AWD |
+| VP-13062 | Drive shaft, rear left | Rear left | Constant velocity drive shaft for the rear motor | 1 | Voltrieve Lumen |
+| VP-13127 | Drive shaft, rear right | Rear right | Constant velocity drive shaft for the rear motor | 1 | Voltrieve Lumen |
 
 ## Suspension and steering: Voltrieve Ragn
 
@@ -149,10 +147,10 @@ Each row gives the article number, the part, where it sits on the car, a short d
 | VP-12880 | Wheel bearing and hub, front right | Front right | Sealed hub unit with bolts | 1 | Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
 | VP-12906 | Wheel bearing and hub, rear left | Rear left | Sealed hub unit with bolts | 1 | Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
 | VP-12932 | Wheel bearing and hub, rear right | Rear right | Sealed hub unit with bolts | 1 | Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
-| VP-12971 | Drive shaft, front left | Front left | Constant velocity drive shaft for the front motor | 1 | Voltrieve Ragn |
-| VP-13049 | Drive shaft, front right | Front right | Constant velocity drive shaft for the front motor | 1 | Voltrieve Ragn |
-| VP-13127 | Drive shaft, rear left | Rear left | Constant velocity drive shaft for the rear motor | 1 | Voltrieve Ragn |
-| VP-13192 | Drive shaft, rear right | Rear right | Constant velocity drive shaft for the rear motor | 1 | Voltrieve Ragn |
+| VP-12958 | Drive shaft, front left | Front left | Constant velocity drive shaft for the front motor | 1 | Voltrieve Ragn |
+| VP-13010 | Drive shaft, front right | Front right | Constant velocity drive shaft for the front motor | 1 | Voltrieve Ragn |
+| VP-13075 | Drive shaft, rear left | Rear left | Constant velocity drive shaft for the rear motor | 1 | Voltrieve Ragn |
+| VP-13140 | Drive shaft, rear right | Rear right | Constant velocity drive shaft for the rear motor | 1 | Voltrieve Ragn |
 
 ## Suspension and steering: Voltrieve Fjord
 
@@ -200,12 +198,10 @@ Each row gives the article number, the part, where it sits on the car, a short d
 | VP-12880 | Wheel bearing and hub, front right | Front right | Sealed hub unit with bolts | 1 | Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
 | VP-12906 | Wheel bearing and hub, rear left | Rear left | Sealed hub unit with bolts | 1 | Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
 | VP-12932 | Wheel bearing and hub, rear right | Rear right | Sealed hub unit with bolts | 1 | Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
-| VP-12984 | Drive shaft, front left | Front left | Constant velocity drive shaft for the front motor | 1 | Voltrieve Fjord RWD |
-| VP-12997 | Drive shaft, front left | Front left | Constant velocity drive shaft for the front motor | 1 | Voltrieve Fjord AWD |
-| VP-13062 | Drive shaft, front right | Front right | Constant velocity drive shaft for the front motor | 1 | Voltrieve Fjord RWD |
-| VP-13075 | Drive shaft, front right | Front right | Constant velocity drive shaft for the front motor | 1 | Voltrieve Fjord AWD |
-| VP-13140 | Drive shaft, rear left | Rear left | Constant velocity drive shaft for the rear motor | 1 | Voltrieve Fjord |
-| VP-13205 | Drive shaft, rear right | Rear right | Constant velocity drive shaft for the rear motor | 1 | Voltrieve Fjord |
+| VP-12971 | Drive shaft, front left | Front left | Constant velocity drive shaft for the front motor | 1 | Voltrieve Fjord AWD |
+| VP-13023 | Drive shaft, front right | Front right | Constant velocity drive shaft for the front motor | 1 | Voltrieve Fjord AWD |
+| VP-13088 | Drive shaft, rear left | Rear left | Constant velocity drive shaft for the rear motor | 1 | Voltrieve Fjord |
+| VP-13153 | Drive shaft, rear right | Rear right | Constant velocity drive shaft for the rear motor | 1 | Voltrieve Fjord |
 
 ## Suspension and steering: Voltrieve Atlas
 
@@ -253,7 +249,7 @@ Each row gives the article number, the part, where it sits on the car, a short d
 | VP-12880 | Wheel bearing and hub, front right | Front right | Sealed hub unit with bolts | 1 | Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
 | VP-12906 | Wheel bearing and hub, rear left | Rear left | Sealed hub unit with bolts | 1 | Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
 | VP-12932 | Wheel bearing and hub, rear right | Rear right | Sealed hub unit with bolts | 1 | Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
-| VP-13010 | Drive shaft, front left | Front left | Constant velocity drive shaft for the front motor | 1 | Voltrieve Atlas |
-| VP-13088 | Drive shaft, front right | Front right | Constant velocity drive shaft for the front motor | 1 | Voltrieve Atlas |
-| VP-13153 | Drive shaft, rear left | Rear left | Constant velocity drive shaft for the rear motor | 1 | Voltrieve Atlas |
-| VP-13218 | Drive shaft, rear right | Rear right | Constant velocity drive shaft for the rear motor | 1 | Voltrieve Atlas |
+| VP-12984 | Drive shaft, front left | Front left | Constant velocity drive shaft for the front motor | 1 | Voltrieve Atlas |
+| VP-13036 | Drive shaft, front right | Front right | Constant velocity drive shaft for the front motor | 1 | Voltrieve Atlas |
+| VP-13101 | Drive shaft, rear left | Rear left | Constant velocity drive shaft for the rear motor | 1 | Voltrieve Atlas |
+| VP-13166 | Drive shaft, rear right | Rear right | Constant velocity drive shaft for the rear motor | 1 | Voltrieve Atlas |

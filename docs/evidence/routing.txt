@@ -2,44 +2,44 @@ Routing per backend and question group
 
 backend group   runs  right  vain  missed  together  steps  calls  seconds
 prompt  curated   27  100 %     0       0       n/a      1      1      1.8
-prompt  none      15  100 %     0       0       n/a      1      0      1.7
-prompt  docs       9  100 %     0       0       n/a      1      1      5.1
-prompt  parts      9  100 %     0       0       n/a      1      1      5.8
-prompt  both      12   41 %     7       0       0 %    3.5    4.0     27.4
-loop    curated   27  100 %     0       0       n/a      1      1      1.6
-loop    none      15  100 %     0       0       n/a      1      0      1.4
-loop    docs       9  100 %     0       0       n/a      2      1      4.7
-loop    parts      9  100 %     0       0       n/a      2      1      4.7
-loop    both      12  100 %     0       0      91 %    2.5    2.5     14.0
-hosted  curated   27  100 %     0       0       n/a      1      1      6.0
-hosted  none      15  100 %     0       0       n/a      1      0      5.7
-hosted  docs       9  100 %     0       0       n/a      2      1      9.3
-hosted  parts      9  100 %     0       0       n/a      2      1      9.2
-hosted  both      12  100 %     0       0     100 %    2.0    2.0     15.9
+prompt  none      15  100 %     0       0       n/a      1      0      2.0
+prompt  docs       9  100 %     0       0       n/a      1      1      4.6
+prompt  parts      9  100 %     0       0       n/a      1      1      5.2
+prompt  both      12  100 %     0       0       0 %    1.0    2.0     16.1
+loop    curated   27  100 %     0       0       n/a      1      1      1.7
+loop    none      15  100 %     0       0       n/a      1      0      1.6
+loop    docs       9  100 %     0       0       n/a      2      1      4.5
+loop    parts      9  100 %     0       0       n/a      2      1      5.2
+loop    both      12  100 %     0       0      91 %    3.0    3.0     14.9
+hosted  curated   27  100 %     0       0       n/a      1      1      6.4
+hosted  none      15  100 %     0       0       n/a      1      0      6.0
+hosted  docs       9  100 %     0       0       n/a      2      1      9.9
+hosted  parts      9  100 %     0       0       n/a      2      1      9.4
+hosted  both      12  100 %     0       0     100 %    2.5    2.5     17.0
 
 Article numbers in the answers
 
 prompt  117 of 117 found, 18 of 18 answers complete, 0 invented
-loop    114 of 117 found, 15 of 18 answers complete, 0 invented
-hosted  117 of 117 found, 18 of 18 answers complete, 0 invented
+loop    115 of 117 found, 16 of 18 answers complete, 0 invented
+hosted  116 of 117 found, 17 of 18 answers complete, 0 invented
 
-Parallel tool runs saved a median of 1.421 s over 32 turns (own loop and hosted agent).
+Parallel tool runs saved a median of 1.416 s over 23 turns (own loop and hosted agent).
 
 Runs that were not right
 
-prompt brakes-fjord #1: used ['curated', 'docs', 'parts'], expected ['docs', 'parts'], together False, articles 9/9, invented [], error none
+prompt brakes-fjord #1: used ['docs', 'parts'], expected ['docs', 'parts'], together False, articles 9/9, invented [], error none
+hosted brakes-fjord #1: used ['docs', 'parts'], expected ['docs', 'parts'], together True, articles 8/9, invented [], error none
 prompt brakes-spark #1: used ['docs', 'parts'], expected ['docs', 'parts'], together False, articles 8/8, invented [], error none
-loop brakes-spark #1: used ['docs', 'parts'], expected ['docs', 'parts'], together True, articles 7/8, invented [], error none
-prompt brakes-atlas #1: used ['curated', 'docs', 'parts'], expected ['docs', 'parts'], together False, articles 8/8, invented [], error none
+prompt brakes-atlas #1: used ['docs', 'parts'], expected ['docs', 'parts'], together False, articles 8/8, invented [], error none
+loop brakes-atlas #1: used ['docs', 'parts'], expected ['docs', 'parts'], together True, articles 7/8, invented [], error none
 prompt brakes-lumen #1: used ['docs', 'parts'], expected ['docs', 'parts'], together False, articles 12/12, invented [], error none
-prompt brakes-fjord #2: used ['curated', 'docs', 'parts'], expected ['docs', 'parts'], together False, articles 9/9, invented [], error none
-prompt brakes-spark #2: used ['curated', 'docs', 'parts'], expected ['docs', 'parts'], together False, articles 8/8, invented [], error none
-prompt brakes-atlas #2: used ['curated', 'docs', 'parts'], expected ['docs', 'parts'], together False, articles 8/8, invented [], error none
-loop brakes-atlas #2: used ['docs', 'parts'], expected ['docs', 'parts'], together False, articles 8/8, invented [], error none
+loop brakes-lumen #1: used ['docs', 'parts'], expected ['docs', 'parts'], together True, articles 11/12, invented [], error none
+prompt brakes-fjord #2: used ['docs', 'parts'], expected ['docs', 'parts'], together False, articles 9/9, invented [], error none
+prompt brakes-spark #2: used ['docs', 'parts'], expected ['docs', 'parts'], together False, articles 8/8, invented [], error none
+prompt brakes-atlas #2: used ['docs', 'parts'], expected ['docs', 'parts'], together False, articles 8/8, invented [], error none
 prompt brakes-lumen #2: used ['docs', 'parts'], expected ['docs', 'parts'], together False, articles 12/12, invented [], error none
+loop brakes-lumen #2: used ['docs', 'parts'], expected ['docs', 'parts'], together False, articles 12/12, invented [], error none
 prompt brakes-fjord #3: used ['docs', 'parts'], expected ['docs', 'parts'], together False, articles 9/9, invented [], error none
-loop brakes-fjord #3: used ['docs', 'parts'], expected ['docs', 'parts'], together True, articles 8/9, invented [], error none
-prompt brakes-spark #3: used ['curated', 'docs', 'parts'], expected ['docs', 'parts'], together False, articles 8/8, invented [], error none
+prompt brakes-spark #3: used ['docs', 'parts'], expected ['docs', 'parts'], together False, articles 8/8, invented [], error none
 prompt brakes-atlas #3: used ['docs', 'parts'], expected ['docs', 'parts'], together False, articles 8/8, invented [], error none
-loop brakes-atlas #3: used ['docs', 'parts'], expected ['docs', 'parts'], together True, articles 7/8, invented [], error none
-prompt brakes-lumen #3: used ['curated', 'docs', 'parts'], expected ['docs', 'parts'], together False, articles 12/12, invented [], error none
+prompt brakes-lumen #3: used ['docs', 'parts'], expected ['docs', 'parts'], together False, articles 12/12, invented [], error none
