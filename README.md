@@ -12,7 +12,7 @@ Most agent samples stop at "it answers". This one answers the questions you meet
 | **My client has its own tools. Now what?** | A prompt agent refuses per-request tools with a 400. An own loop or a hosted agent runs them, even one the server has never seen. | [Client tools](docs/why-foundry.md#1-what-happened-with-client-tools) |
 | **How does the agent decide to use RAG?** | No classifier exists. The model decides in its first call, from words you control. | [The journey of a prompt](docs/prompt-journey.md) |
 | **Can it use several knowledge bases without calling them in vain?** | Yes: all three reached the right bases in every run. Two of them run the searches at the same time. | [Two knowledge bases](docs/why-foundry.md#6-two-knowledge-bases-who-chooses-and-who-runs-them-together) |
-| **Which model should I use?** | Newer isn't always better. `gpt-6.1-terra` on an own loop was the only setup with every turn under 10 s to first token, and `gpt-6-luna` costs about a third of `gpt-5.4-mini`. | [Choosing a model](docs/model-comparison.md) |
+| **Which model should I use?** | Newer isn't always better. The own loop now runs `gpt-6.1-terra`, the only setup with every turn under 10 s to first token, and `gpt-6-luna` costs about a third of `gpt-5.4-mini`. | [Choosing a model](docs/model-comparison.md) |
 | **I need curated answers without slowing everything down.** | Pick the answer in the model call you already make, then skip the second one. Curated questions took under 2 s on two of the three, and other questions showed no measurable delay. | [Curated answers](docs/prompt-journey.md#curated-answers) |
 
 ## See it: the journey of a prompt

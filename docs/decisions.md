@@ -210,6 +210,10 @@ The tool list costs a few hundred tokens and no call. A check in front of the mo
 
 The instruction "call them all in the same step" made the prompt agent emit two parallel function calls before searching, because it cannot run MCP searches in parallel: 11 of 12 first responses. `parallel_tool_calls=False` on the request also stopped it, in 4 of 4 runs, but it would make a mixed curated question end early, so the instructions differ instead. Search, then catalog, and no other tool first: 0 of 7 first responses, then 1 of 27 job runs in the live checks.
 
+### The own loop runs gpt-6.1-terra
+
+Speed decides as long as quality holds, and this was the only combination with every turn under 10 seconds to the first token, at about the cost of `gpt-5.4-mini`. The other backends stay on `gpt-5.4-mini` for now. Search planning cannot move, because it refuses GPT-6 models. The figures are in `docs/model-comparison.md`.
+
 ### Brake fluid is listed in the brake catalog too
 
 All remaining article misses were brake fluid, which only sat among the service items, so a search for brake parts did not reach it. The brake catalog now has a section for consumables, and all 111 article numbers were found on all three backends. Regenerating also brought the catalog in line with the generator: 429 parts, and new article numbers from the old 433.

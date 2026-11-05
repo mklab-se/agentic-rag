@@ -5,6 +5,9 @@ param projectName string
 param appInsightsName string
 param chatModelName string
 param chatModelVersion string
+@description('The own loop\'s model. Search planning cannot use GPT-6, so it stays on the chat model.')
+param loopModelName string
+param loopModelVersion string
 param embeddingModelName string
 param embeddingModelVersion string
 
@@ -73,6 +76,23 @@ resource embeddingDeployment 'Microsoft.CognitiveServices/accounts/deployments@2
   }
 }
 
+resource loopDeployment 'Microsoft.CognitiveServices/accounts/deployments@2026-09-15-preview' = {
+  parent: account
+  name: loopModelName
+  dependsOn: [embeddingDeployment]
+  sku: {
+    name: 'GlobalStandard'
+    capacity: 150
+  }
+  properties: {
+    model: {
+      format: 'OpenAI'
+      name: loopModelName
+      version: loopModelVersion
+    }
+  }
+}
+
 // The App Insights connection string is an ingestion endpoint identifier, not a secret.
 resource appInsightsConnection 'Microsoft.CognitiveServices/accounts/projects/connections@2026-09-15-preview' = {
   parent: project
@@ -101,4 +121,5 @@ output projectEndpoint string = 'https://${account.name}.services.ai.azure.com/a
 output projectName string = project.name
 output projectPrincipalId string = project.identity.principalId
 output chatDeployment string = chatDeployment.name
+output loopDeployment string = loopDeployment.name
 output embeddingDeployment string = embeddingDeployment.name

@@ -1,5 +1,6 @@
 #!/bin/sh
-# Run the routing questions on all three backends with each model, then finish on gpt-5.4-mini.
+# Run the routing questions on all three backends with each model, then restore the defaults:
+# gpt-5.4-mini on the agents, gpt-6.1-terra on the own loop.
 #
 #   scripts/compare_architectures.sh gpt-6.1-terra gpt-6-luna gpt-5.4-mini
 #
@@ -27,4 +28,6 @@ for model in "$@"; do
     --label "arch-$model" 2>/dev/null | grep -E "^(loop|prompt|hosted) " | cut -c1-90
 done
 echo "== restoring gpt-5.4-mini"
-use_model gpt-5.4-mini > /dev/null 2>&1 && echo "restored $(date +%H:%M)"
+use_model gpt-5.4-mini > /dev/null 2>&1 && az containerapp update -g "$AZURE_RESOURCE_GROUP" \
+  -n ca-api-voltrieve-dev --set-env-vars "CHAT_DEPLOYMENT=gpt-6.1-terra" --only-show-errors -o none \
+  && echo "restored $(date +%H:%M)"
