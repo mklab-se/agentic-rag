@@ -81,17 +81,24 @@ export function chatReducer(state: ChatState, action: ChatAction): ChatState {
           }));
         case "delta":
           return updateLast(state, (t) => ({ ...t, answer: t.answer + ev.data.text }));
-        case "client_tool_calls": {
-          // This client declares no tools, so the API should never ask for any.
-          const names = ev.data.calls.map((c) => c.name).filter(Boolean).join(", ") || "unknown";
-          return updateLast(state, (t) =>
-            fail(
-              t,
-              "unexpected_client_tool_calls",
-              `The agent asked this client to run tools (${names}), but the web app declares none. The turn was stopped.`,
-            ),
-          );
-        }
+        case "client_tool_calls":
+          // The app runs the tools and continues the turn. Later requests need this id.
+          return {
+            ...updateLast(state, (t) => ({
+              ...t,
+              entries: [
+                ...t.entries,
+                ...ev.data.calls.map((c): TimelineEntry => ({
+                  kind: "trace",
+                  step: "client_tool_ran",
+                  component: "client",
+                  detail: c.name,
+                  elapsedMs: 0,
+                })),
+              ],
+            })),
+            conversationId: ev.data.conversation_id ?? state.conversationId,
+          };
         case "done":
           return {
             ...updateLast(state, (t) => ({

@@ -43,6 +43,7 @@ export function parseServerEvent(msg: SseMessage): ServerEvent | null {
         type: "client_tool_calls",
         data: {
           turn_id: typeof payload.turn_id === "string" ? payload.turn_id : undefined,
+          conversation_id: typeof payload.conversation_id === "string" ? payload.conversation_id : undefined,
           calls: calls.map((c) => ({
             call_id: String(c.call_id ?? ""),
             name: String(c.name ?? ""),

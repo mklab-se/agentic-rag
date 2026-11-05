@@ -27,6 +27,30 @@ def test_parse_sse_trailing_event_without_blank_line():
     assert list(parse_sse(["event: done", 'data: {"x": 1}'])) == [("done", {"x": 1})]
 
 
+def test_honk_plays_and_caps():
+    played = []
+
+    def play():
+        played.append(1)
+        return True
+
+    assert tools.honk(2, play=play) == "Honked 2 time(s)."
+    assert tools.honk(50, play=play) == f"Honked {tools.MAX_HONKS} time(s)."
+    assert len(played) == 2 + tools.MAX_HONKS
+    assert tools.honk("loud", play=play).startswith("error")
+
+
+def test_honk_falls_back_when_the_computer_has_no_sound(monkeypatch):
+    rung = []
+    monkeypatch.setattr(tools, "_bell", lambda: rung.append(1))
+    assert "cannot play sound" in tools.honk(1, play=lambda: False)
+    assert rung == [1]
+
+
+def test_the_horn_is_a_short_sound():
+    assert len(tools._horn_samples()) == int(tools.HONK_SECONDS * tools.SAMPLE_RATE) * 2
+
+
 def test_make_noise_caps_and_rejects():
     rung = []
     assert "10" in tools.make_noise(500, bell=lambda: rung.append(1))
@@ -50,7 +74,7 @@ def test_run_tool_accepts_json_string_and_reports_errors():
 
 
 def test_declared_tools():
-    assert [t["name"] for t in tools.CLIENT_TOOLS] == ["make_noise", "get_local_time", "show_banner"]
+    assert [t["name"] for t in tools.CLIENT_TOOLS] == ["make_noise", "honk", "get_local_time", "show_banner"]
 
 
 def test_config_env_and_azd(monkeypatch):
@@ -101,7 +125,7 @@ def test_pause_and_continue_flow():
     assert outcome.conversation_id == "c1"
     assert events.count("tool_ran") == 2
     chat_call, results_call = seen
-    assert chat_call[1]["message"] == "beep" and len(chat_call[1]["client_tools"]) == 3
+    assert chat_call[1]["message"] == "beep" and len(chat_call[1]["client_tools"]) == 4
     assert chat_call[2] == "loop"
     assert results_call[0] == "/chat/tool-results"
     r = results_call[1]["results"]

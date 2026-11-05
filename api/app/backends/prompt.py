@@ -27,7 +27,9 @@ logger = logging.getLogger(__name__)
 # The client tools the CLI agent is defined with. This must match CLI_TOOLS in
 # agents/prompt/create_agents.py (a test checks it): the CLI is a separate project, so the
 # agent definition carries its own copy of the schemas.
-CLI_AGENT_TOOL_NAMES = frozenset({"make_noise", "get_local_time", "show_banner"})
+CLI_AGENT_TOOL_NAMES = frozenset({"make_noise", "honk", "get_local_time", "show_banner"})
+# The same for the web agent and WEB_TOOLS.
+WEB_AGENT_TOOL_NAMES = frozenset({"set_theme"})
 
 CITATION_OPEN = "\u3010"  # the marks Foundry puts around a citation: 【5:0†file.pdf】
 CITATION_CLOSE = "\u3011"
@@ -101,10 +103,11 @@ class PromptBackend(LoopBackend):
         self._cli_model = cli_model
 
     def _model_for(self, ctx: TurnContext) -> ModelClient:
-        return self._cli_model if ctx.client_tools else self._model
+        return self._cli_model if {t.name for t in ctx.client_tools} & CLI_AGENT_TOOL_NAMES else self._model
 
     async def run_turn(self, ctx: TurnContext, emit: Emit) -> TurnOutcome:
-        unsupported = sorted({t.name for t in ctx.client_tools} - CLI_AGENT_TOOL_NAMES)
+        known = CLI_AGENT_TOOL_NAMES | WEB_AGENT_TOOL_NAMES
+        unsupported = sorted({t.name for t in ctx.client_tools} - known)
         if unsupported:
             names = ", ".join(unsupported)
             await emit(
@@ -121,7 +124,7 @@ class PromptBackend(LoopBackend):
                     {
                         "code": "unsupported_client_tool",
                         "message": "The prompt agent only supports the client tools in its "
-                        f"definition ({', '.join(sorted(CLI_AGENT_TOOL_NAMES))}). "
+                        f"definition ({', '.join(sorted(known))}). "
                         f"Not supported: {names}.",
                     },
                 )

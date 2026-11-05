@@ -1,5 +1,6 @@
 import { parseServerEvent } from "./events";
 import { createSseParser } from "./sse";
+import { CLIENT_TOOLS } from "./tools";
 import type { Backend, ServerEvent } from "./types";
 
 export interface ChatRequestInput {
@@ -12,15 +13,21 @@ export interface ChatRequestInput {
   correlationId: string;
 }
 
-/**
- * Build the POST /chat request. The body deliberately has no `client_tools`
- * key: this client exposes no tools, which is part of what the demo shows.
- */
-export function buildChatRequest(input: ChatRequestInput): { url: string; init: RequestInit } {
-  const body: { conversation_id?: string; message: string } = { message: input.message };
-  if (input.conversationId) body.conversation_id = input.conversationId;
+export interface ToolResultsInput {
+  apiUrl: string;
+  token: string;
+  backend: Backend;
+  conversationId: string;
+  turnId: string;
+  correlationId: string;
+  results: { call_id: string; output: string }[];
+}
+
+type Sendable = Pick<ChatRequestInput, "apiUrl" | "token" | "backend" | "correlationId">;
+
+function post(input: Sendable, path: string, body: unknown): { url: string; init: RequestInit } {
   return {
-    url: `${input.apiUrl.replace(/\/+$/, "")}/chat`,
+    url: `${input.apiUrl.replace(/\/+$/, "")}${path}`,
     init: {
       method: "POST",
       headers: {
@@ -35,6 +42,25 @@ export function buildChatRequest(input: ChatRequestInput): { url: string; init: 
   };
 }
 
+/** Build the POST /chat request, with the tools this client can run. */
+export function buildChatRequest(input: ChatRequestInput): { url: string; init: RequestInit } {
+  const body: { conversation_id?: string; message: string; client_tools: typeof CLIENT_TOOLS } = {
+    message: input.message,
+    client_tools: CLIENT_TOOLS,
+  };
+  if (input.conversationId) body.conversation_id = input.conversationId;
+  return post(input, "/chat", body);
+}
+
+/** Build the POST /chat/tool-results request that continues a paused turn. */
+export function buildToolResultsRequest(input: ToolResultsInput): { url: string; init: RequestInit } {
+  return post(input, "/chat/tool-results", {
+    conversation_id: input.conversationId,
+    turn_id: input.turnId,
+    results: input.results,
+  });
+}
+
 function httpError(status: number): ServerEvent {
   const message =
     status === 401
@@ -46,12 +72,29 @@ function httpError(status: number): ServerEvent {
 }
 
 /** POST /chat and yield typed events as they arrive. Never throws for network or HTTP errors. */
-export async function* streamChat(
+export function streamChat(
   input: ChatRequestInput,
   signal?: AbortSignal,
   fetchImpl: typeof fetch = fetch,
 ): AsyncGenerator<ServerEvent> {
-  const { url, init } = buildChatRequest(input);
+  return stream(input.apiUrl, buildChatRequest(input), signal, fetchImpl);
+}
+
+/** POST /chat/tool-results, with the same stream as /chat. */
+export function streamToolResults(
+  input: ToolResultsInput,
+  signal?: AbortSignal,
+  fetchImpl: typeof fetch = fetch,
+): AsyncGenerator<ServerEvent> {
+  return stream(input.apiUrl, buildToolResultsRequest(input), signal, fetchImpl);
+}
+
+async function* stream(
+  apiUrl: string,
+  { url, init }: { url: string; init: RequestInit },
+  signal: AbortSignal | undefined,
+  fetchImpl: typeof fetch,
+): AsyncGenerator<ServerEvent> {
   let res: Response;
   try {
     res = await fetchImpl(url, { ...init, signal });
@@ -59,7 +102,7 @@ export async function* streamChat(
     if (signal?.aborted) return;
     yield {
       type: "error",
-      data: { code: "network", message: `Could not reach the API at ${input.apiUrl}.` },
+      data: { code: "network", message: `Could not reach the API at ${apiUrl}.` },
     };
     return;
   }

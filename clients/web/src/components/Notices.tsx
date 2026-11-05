@@ -32,7 +32,7 @@ export function SignIn({ auth, error }: { auth: Auth; error?: string }) {
         <h1>Watch an agent work</h1>
         <p>
           Ask about Voltrieve vehicles and see every hop the agent takes: token check, model calls, retrieval, tools. This
-          web app declares no client tools of its own.
+          web app has one tool of its own: it can change its theme when you ask.
         </p>
         {error && <p className="notice error">{error}</p>}
         <button className="primary" onClick={() => void auth.signIn()}>
