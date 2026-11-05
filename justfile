@@ -14,3 +14,7 @@ trace backend="loop":
 # Ask one question
 ask question backend="loop":
     uv run --project clients/cli voltrieve ask "{{question}}" --backend {{backend}} --az-token
+
+# Run the web client locally against the deployed API, on http://localhost:5173
+web:
+    cd clients/web && npm ci --silent && npm run dev -- --mode production

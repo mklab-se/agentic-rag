@@ -38,7 +38,10 @@ function script(message, backend) {
   const answer =
     message.toLowerCase().includes("beep")
       ? "I can't beep: this client doesn't give me any tools to run on your device. I can only search Voltrieve documents and look up dealer stock from the server."
-      : "The Fjord can tow up to 1,600 kg braked with the 84 kWh battery, and 750 kg unbraked. The 63 kWh version is rated for 1,200 kg braked. [fjord-owners-manual p.41]";
+      : "The **Fjord** can tow up to 1,600 kg braked:\n\n" +
+        "| Battery | Braked | Unbraked |\n|---|---:|---:|\n" +
+        "| 84 kWh | 1,600 kg | 750 kg |\n| 63 kWh | 1,200 kg | 750 kg |\n\n" +
+        "Source: *voltrieve-fjord-specifications.pdf*";
   return { trace: t, answer };
 }
 

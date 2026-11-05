@@ -99,7 +99,7 @@ uv run --project clients/cli voltrieve ask "Which Voltrieve charges fastest?" --
 uv run --project clients/cli voltrieve chat --backend hosted --az-token
 ```
 
-With [`just`](https://github.com/casey/just) installed, `just chat` does the same on the own loop, and `just chat hosted` picks a backend.
+With [`just`](https://github.com/casey/just) installed, `just chat` does the same on the own loop, and `just chat hosted` picks a backend. `just web` runs the web client locally.
 
 The chat shows message bubbles with rendered Markdown and one live status line. Add `--trace` to watch every step, or type `/trace` to see the last turn.
 
@@ -145,7 +145,7 @@ Verified live:
 - The prompt agent's 400.
 - The authorization denied path, on the loop backend, against real Foundry with a fake token validator.
 
-Offline tests pass: `agent_core` 79, `api` 118, `agents/hosted` 18, `tests/contract` 25, `clients/cli` 40, `services/dealer` 37, `search` 25, Entra setup 31, `clients/web` 29.
+Offline tests pass: `agent_core` 79, `api` 118, `agents/hosted` 18, `tests/contract` 25, `clients/cli` 40, `services/dealer` 37, `search` 25, Entra setup 31, `clients/web` 34.
 
 Not verified:
 

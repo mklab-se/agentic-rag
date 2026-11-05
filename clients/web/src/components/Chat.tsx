@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from "react";
 import type { ChatState } from "../turns";
+import { Answer } from "./Answer";
 
 const STARTERS = [
   "What is the towing capacity of the Fjord?",
@@ -56,7 +57,7 @@ export function Chat({ state, busy, onSend }: Props) {
             <div className="bubble user">{t.userText}</div>
             <div className={`bubble agent ${t.status}`}>
               {t.answer ? (
-                <p className="answer">{t.answer}</p>
+                <Answer text={t.answer} />
               ) : t.status === "streaming" ? (
                 <p className="thinking" role="status" aria-label={t.activity ?? "Agent is working"}>
                   <i /><i /><i />
