@@ -33,7 +33,7 @@ azd auth login
 
 Search reaches Foundry and storage over public endpoints with Entra tokens.
 
-Do not move the chat model without checking availability: `gpt-5.4-mini` version `2026-03-17` is deployed as GlobalStandard with capacity 50. Capacity 10 caused rate limit failures in multi-question runs. On pay-per-token, capacity is a cap, not a cost.
+The own loop runs `gpt-6.1-terra` version `2026-10-26`, set with `loopModelName`. The prompt agents, the hosted agent and Search planning use the chat model, and Search refuses GPT-6 models for planning. Do not move the chat model without checking availability: `gpt-5.4-mini` version `2026-03-17` is deployed as GlobalStandard with capacity 50. Capacity 10 caused rate limit failures in multi-question runs. On pay-per-token, capacity is a cap, not a cost.
 
 ## Environment
 

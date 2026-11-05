@@ -6,7 +6,7 @@
     uv run scripts/compare_models.py gpt-5.4-mini gpt-6-luna [--repeats 2]
 
 Each model must have a deployment of the same name. This changes CHAT_DEPLOYMENT on the API
-container app for the length of the run, and restores gpt-5.4-mini at the end. Results land in
+container app for the length of the run, and restores gpt-6.1-terra at the end. Results land in
 docs/evidence/models/agent-<model>.json. Needs azd env values and `az login`.
 """
 
@@ -18,7 +18,7 @@ import time
 import urllib.request
 
 APP = "ca-api-voltrieve-dev"
-DEFAULT = "gpt-5.4-mini"
+DEFAULT = "gpt-6.1-terra"
 
 
 def set_model(model: str) -> None:

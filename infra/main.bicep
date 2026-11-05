@@ -31,6 +31,8 @@ param hostedAgentPrincipalId string = ''
 param hostedAgentName string = 'voltrieve-hosted'
 param chatModelName string = 'gpt-5.4-mini'
 param chatModelVersion string = '2026-03-17'
+param loopModelName string = 'gpt-6.1-terra'
+param loopModelVersion string = '2026-10-26'
 param embeddingModelName string = 'text-embedding-3-large'
 param embeddingModelVersion string = '1'
 
@@ -79,6 +81,8 @@ module foundry 'modules/foundry.bicep' = {
     appInsightsName: monitoring.outputs.appInsightsName
     chatModelName: chatModelName
     chatModelVersion: chatModelVersion
+    loopModelName: loopModelName
+    loopModelVersion: loopModelVersion
     embeddingModelName: embeddingModelName
     embeddingModelVersion: embeddingModelVersion
   }
@@ -198,7 +202,7 @@ module apiApp 'modules/api-app.bicep' = {
     dealerUrl: dealerApp.outputs.url
     dealerClientId: dealerClientId
     foundryProjectEndpoint: foundry.outputs.projectEndpoint
-    chatDeployment: foundry.outputs.chatDeployment
+    chatDeployment: foundry.outputs.loopDeployment
     searchEndpoint: search.outputs.endpoint
     promptAgentCli: 'voltrieve-prompt-cli'
     promptAgentWeb: 'voltrieve-prompt-web'
@@ -397,6 +401,7 @@ output FOUNDRY_PROJECT_ENDPOINT string = foundry.outputs.projectEndpoint
 output FOUNDRY_OPENAI_ENDPOINT string = foundry.outputs.openAiEndpoint
 output CHAT_DEPLOYMENT string = foundry.outputs.chatDeployment
 output CHAT_MODEL string = chatModelName
+output LOOP_DEPLOYMENT string = foundry.outputs.loopDeployment
 output FOUNDRY_PROJECT_NAME string = foundry.outputs.projectName
 output KB_CONNECTION_NAME string = kbConnection.outputs.name
 output PARTS_KB_CONNECTION_NAME string = partsKbConnection.outputs.name

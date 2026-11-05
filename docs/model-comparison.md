@@ -4,6 +4,8 @@ Which model should run the agent, and does it depend on the architecture? This p
 
 ## The result
 
+The own loop runs `gpt-6.1-terra` by default, chosen from these results. The prompt agent, hosted agent and Search planning run `gpt-5.4-mini`.
+
 | Architecture | Model | Median TTFT | Turns over 10 s | Two-base TTFT | Two-base total | USD per 1,000 turns |
 | --- | --- | --- | --- | --- | --- | --- |
 | **Own loop** | **`gpt-6.1-terra`** | **2.4 s** | **0 of 48** | **5.7 s** | **7.3 s** | 4.39 |
