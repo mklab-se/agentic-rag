@@ -1,5 +1,6 @@
 # /// script
 # requires-python = ">=3.12"
+# dependencies = ["httpx"]
 # ///
 """Compare the labelled routing runs in docs/evidence/models/: speed, quality and estimated cost.
 
@@ -27,6 +28,7 @@ PRICES = {
     "gpt-5.6-terra": (2.00, 0.20, 12.00),
     "gpt-6-luna": (0.10, 0.01, 0.50),
     "gpt-6.1-sol": (2.00, 0.10, 10.00),
+    "gpt-6.1-terra": (1.00, 0.05, 5.00),  # from the Azure OpenAI pricing page, not in the API
 }
 SEARCH_REASONING_PER_MILLION = 0.022
 
@@ -65,6 +67,8 @@ def main() -> int:
             f"{'median s':>9}{'simple s':>9}{'jobs s':>8}{'USD/1000':>10}")
     lines = ["Speed, quality and estimated cost per run", "", head]
     for label, runs in runs_by_label.items():
+        if label.startswith("arch-"):
+            continue
         parts = label.split("-", 1)
         kind, rest = parts[0], parts[1]
         agent, planner = rest, "gpt-5.4-mini"
@@ -89,6 +93,33 @@ def main() -> int:
             f"{sum(bool(r['error']) for r in runs):>7}{statistics.median(everything):>9.1f}"
             f"{statistics.median(simple or [0]):>9.1f}{statistics.median(jobs or [0]):>8.1f}{price}"
         )
+    lines += ["", "Each architecture and model. TTFT is time to first token, total is time to last.",
+              "", f"{'backend':8}{'model':16}{'turns':>6}{'right':>7}{'articles':>10}{'TTFT med':>9}"
+              f"{'TTFT max':>9}{'over 10s':>9}{'jobs TTFT':>10}{'total med':>10}{'jobs total':>11}{'USD/1000':>10}"]
+    for label, runs in runs_by_label.items():
+        if not label.startswith("arch-"):
+            continue
+        model = label.removeprefix("arch-")
+        for backend in ("loop", "prompt", "hosted"):
+            rows = [r for r in runs if r["backend"] == backend]
+            good = [r for r in rows if not r["error"]]
+            if not good:
+                continue
+            first = [r["first_text_seconds"] for r in good if r.get("first_text_seconds") is not None]
+            jobs = [r for r in good if r["group"] == "both"]
+            job_first = [r["first_text_seconds"] for r in jobs if r.get("first_text_seconds") is not None]
+            costs = [c for c in (turn_cost(r, model, "gpt-5.4-mini", borrowed) for r in rows) if c is not None]
+            right = sum(sorted(r["used"]) == sorted(r["expected"]) and r.get("topic") == r.get("expected_topic") for r in good)
+            found = sum(r["articles_found"] for r in rows)
+            wanted = sum(r["articles_expected"] for r in rows)
+            price = f"{1000 * statistics.mean(costs):>10.2f}" if costs else f"{'n/a':>10}"
+            lines.append(
+                f"{backend:8}{model:16}{len(rows):>6}{right:>7}{f'{found}/{wanted}':>10}"
+                f"{statistics.median(first or [0]):>9.1f}{max(first or [0]):>9.1f}"
+                f"{sum(t > 10 for t in first):>9}{statistics.median(job_first or [0]):>10.1f}"
+                f"{statistics.median(r['seconds'] for r in good):>10.1f}"
+                f"{statistics.median([r['seconds'] for r in jobs] or [0]):>11.1f}{price}"
+            )
     lines += ["", "USD/1000 is the estimated model and retrieval cost of 1000 turns of this question mix.",
               "It leaves out fixed costs such as Search Basic, and hosted agent session charges."]
     text = "\n".join(lines)

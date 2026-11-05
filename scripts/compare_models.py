@@ -22,13 +22,21 @@ DEFAULT = "gpt-5.4-mini"
 
 
 def set_model(model: str) -> None:
-    subprocess.run(
-        ["az", "containerapp", "update", "-g", os.environ["AZURE_RESOURCE_GROUP"], "-n", APP,
-         "--set-env-vars", f"CHAT_DEPLOYMENT={model}", "--only-show-errors", "-o", "none"],
-        check=True,
-    )
+    command = ["az", "containerapp", "update", "-g", os.environ["AZURE_RESOURCE_GROUP"], "-n", APP,
+               "--set-env-vars", f"CHAT_DEPLOYMENT={model}", "--only-show-errors", "-o", "none"]
+    for attempt in range(6):  # a laptop run outlives short network drops
+        if subprocess.run(command, stderr=subprocess.DEVNULL).returncode == 0:
+            break
+        time.sleep(30)
+    else:
+        raise RuntimeError(f"could not set {model} on {APP}: restore it by hand")
     time.sleep(45)  # the old revision serves until the new one is ready
-    urllib.request.urlopen(f"{os.environ['API_URL']}/healthz", timeout=120).read()
+    for attempt in range(6):
+        try:
+            urllib.request.urlopen(f"{os.environ['API_URL']}/healthz", timeout=120).read()
+            return
+        except OSError:
+            time.sleep(30)
 
 
 def main() -> int:

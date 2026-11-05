@@ -178,6 +178,7 @@ def ask(url, token, backend: str, question: dict, repeat: int, index: dict) -> R
     if turn.error:
         run.error = str(turn.error.get("code"))
     run.answer = turn.text
+    run.first_text_seconds = turn.first_text_seconds
     read_trace(run, turn)
     mentioned = set(ARTICLE.findall(turn.text))
     run.articles_expected = len(wanted)
