@@ -99,6 +99,8 @@ uv run --project clients/cli voltrieve ask "Which Voltrieve charges fastest?" --
 uv run --project clients/cli voltrieve chat --backend hosted --az-token
 ```
 
+With [`just`](https://github.com/casey/just) installed, `just chat` does the same on the own loop, and `just chat hosted` picks a backend.
+
 The chat shows message bubbles with rendered Markdown and one live status line. Add `--trace` to watch every step, or type `/trace` to see the last turn.
 
 Check it with `uv run scripts/runbook.py` and `uv run tests/grounding/check.py`. Measure routing with `uv run tests/routing/check.py --repeats 1 --no-save`. The walkthrough is in [docs/runbook.md](docs/runbook.md).
