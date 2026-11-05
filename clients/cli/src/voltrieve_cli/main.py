@@ -13,7 +13,8 @@ from rich.markup import escape
 from . import auth
 from .api import ApiClient, ApiError, run_turn
 from .config import ConfigError, load_settings
-from .render import USER_COLOR, ChatView, clean, json_line
+from .render import USER_COLOR, ChatView, clean, gauge_bar, json_line
+from .tools import tools_for
 
 app = typer.Typer(help="Voltrieve terminal client.", no_args_is_help=True)
 err = Console(stderr=True)
@@ -27,6 +28,7 @@ class Backend(str, Enum):
 
 BackendOpt = Annotated[Backend | None, typer.Option(help="Agent backend (X-Agent-Backend).")]
 AzOpt = Annotated[bool, typer.Option("--az-token", help="Use `az account get-access-token`.")]
+GaugeOpt = Annotated[bool, typer.Option("--gauge", help="Show the gauge and offer the set_gauge tool.")]
 DeviceOpt = Annotated[bool, typer.Option("--device-code", help="Device code sign-in.")]
 
 
@@ -71,7 +73,7 @@ def logout() -> None:
 
 @app.command()
 def ask(question: str, backend: BackendOpt = None, json_out: Annotated[bool, typer.Option("--json")] = False,
-        az_token: AzOpt = False) -> None:
+        az_token: AzOpt = False, gauge: GaugeOpt = False) -> None:
     """Ask one question. With --json, print every event as a JSON line."""
     client = _client(backend, az_token)
     out = Console()
@@ -98,7 +100,8 @@ def ask(question: str, backend: BackendOpt = None, json_out: Annotated[bool, typ
 
     try:
         outcome = run_turn(client, question, None, show,
-                           banner=lambda t: err.print(f"[bold black on yellow] {escape(clean(t))} [/]"))
+                           banner=lambda t: err.print(f"[bold black on yellow] {escape(clean(t))} [/]"),
+                           gauge=lambda v: err.print(gauge_bar(v)), tools=tools_for(gauge))
     except (ApiError, auth.AuthError) as exc:
         raise _fail(str(exc))
     finally:
@@ -110,15 +113,17 @@ def ask(question: str, backend: BackendOpt = None, json_out: Annotated[bool, typ
 
 
 @app.command()
-def chat(backend: BackendOpt = None, az_token: AzOpt = False,
+def chat(backend: BackendOpt = None, az_token: AzOpt = False, gauge: GaugeOpt = False,
          trace: Annotated[bool, typer.Option("--trace", help="Print the trace as it happens.")] = False) -> None:
-    """Chat in message bubbles. /trace shows the last turn. An empty line or Ctrl-D exits."""
+    """Chat in message bubbles. /trace shows the last turn, /gauge turns the gauge on or off. An
+    empty line or Ctrl-D exits."""
     client = _client(backend, az_token)
     console = Console()
-    view = ChatView(console, show_trace=trace)
+    view = ChatView(console, show_trace=trace, gauge_on=gauge)
     conversation_id: str | None = None
     try:
         while True:
+            view.print_gauge()
             try:
                 message = console.input(f"[bold {USER_COLOR}]› [/]").strip()
             except (EOFError, KeyboardInterrupt):
@@ -128,12 +133,16 @@ def chat(backend: BackendOpt = None, az_token: AzOpt = False,
             if message == "/trace":
                 view.print_trace()
                 continue
+            if message == "/gauge":
+                view.gauge_on = not view.gauge_on
+                continue
             view.erase_input(message)
             view.user(message)
             with view:
                 try:
                     outcome = run_turn(client, message, conversation_id, view.on_event,
-                                       banner=view.show_banner)
+                                       banner=view.show_banner, gauge=view.set_gauge,
+                                       tools=tools_for(view.gauge_on))
                 except (ApiError, auth.AuthError) as exc:
                     view.on_event("error", {"code": "client", "message": str(exc)})
                     continue

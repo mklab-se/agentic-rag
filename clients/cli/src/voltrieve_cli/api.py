@@ -105,6 +105,7 @@ def run_turn(client: ApiClient, message: str, conversation_id: str | None,
              on_event: Callable[[str, dict[str, Any]], None],
              banner: Callable[[str], None] | None = None,
              bell: Callable[[], None] | None = None,
+             gauge: Callable[[int], None] | None = None,
              tools: list[dict[str, Any]] | None = None,
              max_rounds: int = 8) -> TurnOutcome:
     """Send a message, run any requested client tools, post results, until done or error.
@@ -134,7 +135,8 @@ def run_turn(client: ApiClient, message: str, conversation_id: str | None,
             return outcome
         results = []
         for call in pending.get("calls", []):
-            output = run_tool(call.get("name", ""), call.get("arguments"), banner=banner, bell=bell)
+            output = run_tool(call.get("name", ""), call.get("arguments"), banner=banner, bell=bell,
+                              gauge=gauge)
             outcome.tool_runs.append((call.get("name", ""), output))
             on_event("tool_ran", {"name": call.get("name"), "output": output})
             results.append({"call_id": call.get("call_id", ""), "output": output})

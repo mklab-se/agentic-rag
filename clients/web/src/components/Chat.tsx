@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from "react";
 import type { ChatState } from "../turns";
 import { Answer } from "./Answer";
+import { Speedometer } from "./Speedometer";
 
 const STARTERS = [
   "What is the towing capacity of the Fjord?",
@@ -12,10 +13,12 @@ const STARTERS = [
 interface Props {
   state: ChatState;
   busy: boolean;
+  /** Undefined while the gauge is off. */
+  gauge?: number;
   onSend: (text: string) => void;
 }
 
-export function Chat({ state, busy, onSend }: Props) {
+export function Chat({ state, busy, gauge, onSend }: Props) {
   const [text, setText] = useState("");
   const endRef = useRef<HTMLDivElement>(null);
   const last = state.turns[state.turns.length - 1];
@@ -38,6 +41,7 @@ export function Chat({ state, busy, onSend }: Props) {
 
   return (
     <section className="chat" aria-label="Chat">
+      {gauge !== undefined && <Speedometer value={gauge} />}
       <div className="messages" aria-live="polite">
         {state.turns.length === 0 && (
           <div className="empty">

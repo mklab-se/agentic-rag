@@ -28,7 +28,7 @@ describe("buildChatRequest", () => {
     expect(url).toBe("https://api.example/chat");
     const body = JSON.parse(init.body as string);
     expect(body.message).toBe("hello");
-    expect(body.client_tools.map((t: { name: string }) => t.name)).toEqual(["set_theme"]);
+    expect(body.client_tools.map((t: { name: string }) => t.name)).toEqual(["set_gauge", "set_theme"]);
   });
 
   it("includes conversation_id on later turns, with the tools again", () => {
@@ -36,7 +36,7 @@ describe("buildChatRequest", () => {
     const body = JSON.parse(init.body as string);
     expect(body.conversation_id).toBe("c1");
     expect(body.message).toBe("hello");
-    expect(body.client_tools.map((t: { name: string }) => t.name)).toEqual(["set_theme"]);
+    expect(body.client_tools.map((t: { name: string }) => t.name)).toEqual(["set_gauge", "set_theme"]);
   });
 
   it("sets bearer auth and the backend header", () => {

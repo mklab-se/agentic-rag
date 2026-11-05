@@ -11,6 +11,8 @@ export interface ChatRequestInput {
   message: string;
   /** One id for the whole turn, sent on every request of it. */
   correlationId: string;
+  /** The tools to offer. All of them unless the caller narrows it. */
+  clientTools?: typeof CLIENT_TOOLS;
 }
 
 export interface ToolResultsInput {
@@ -46,7 +48,7 @@ function post(input: Sendable, path: string, body: unknown): { url: string; init
 export function buildChatRequest(input: ChatRequestInput): { url: string; init: RequestInit } {
   const body: { conversation_id?: string; message: string; client_tools: typeof CLIENT_TOOLS } = {
     message: input.message,
-    client_tools: CLIENT_TOOLS,
+    client_tools: input.clientTools ?? CLIENT_TOOLS,
   };
   if (input.conversationId) body.conversation_id = input.conversationId;
   return post(input, "/chat", body);

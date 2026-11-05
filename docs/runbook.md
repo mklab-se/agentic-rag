@@ -119,7 +119,7 @@ The same core runs in the Foundry container. The trace sequence matches backend 
 
 ## Step 10 in the SPA
 
-The SPA declares one client tool, `set_theme`, so "Switch to the dark theme." changes the theme on all three backends. It has no beep tool, so the same question should get an explanation that it cannot beep, with no `client_tool_calls` event. On `prompt` the API picks the web agent, which has no client tools. This was not tested in the browser.
+The SPA declares `set_theme` and `set_gauge`. The CLI declares `honk` and `set_gauge` among its tools. The gauge is off by default. Turn it on with the Gauge button in the SPA, with `--gauge` or with `/gauge` in the CLI. `set_gauge` is deliberately missing from the prompt agents, so while it is on, every request to `prompt` is refused with `unsupported_client_tool`, which shows that limit. On the other two backends, "Switch to the dark theme." changes the theme. It has no beep tool, so the same question should get an explanation that it cannot beep, with no `client_tool_calls` event. On `prompt` the API picks the web agent, which has no client tools. This was not tested in the browser.
 
 ## Sign in to the SPA
 

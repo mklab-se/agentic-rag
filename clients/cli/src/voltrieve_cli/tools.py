@@ -57,7 +57,24 @@ CLIENT_TOOLS: list[dict[str, Any]] = [
             "required": ["text"],
         },
     },
+    # Not in the prompt agent's definition, on purpose: that agent refuses tools it was not
+    # defined with, and this shows the limit.
+    {
+        "name": "set_gauge",
+        "description": "Set the gauge shown in the user's terminal to a value from 0 to 100. Use it "
+        "when the user asks to set or change the gauge.",
+        "parameters": {
+            "type": "object",
+            "properties": {"value": {"type": "integer", "minimum": 0, "maximum": 100}},
+            "required": ["value"],
+        },
+    },
 ]
+
+
+def tools_for(gauge_on: bool) -> list[dict[str, Any]]:
+    """The tools to offer: set_gauge only while the gauge is on."""
+    return [t for t in CLIENT_TOOLS if gauge_on or t["name"] != "set_gauge"]
 
 
 def make_noise(times: Any, bell: Callable[[], None] | None = None) -> str:
@@ -137,6 +154,13 @@ def show_banner(text: Any, show: Callable[[str], None] | None = None) -> str:
     return f"Showed banner: {text}"
 
 
+def set_gauge(value: Any, show: Callable[[int], None] | None = None) -> str:
+    if isinstance(value, bool) or not isinstance(value, int) or not 0 <= value <= 100:
+        return "error: value must be a whole number from 0 to 100"
+    (show or (lambda v: None))(value)
+    return f"The gauge now shows {value}."
+
+
 def parse_arguments(arguments: Any) -> dict[str, Any]:
     """Arguments may arrive as a dict or as a JSON string."""
     if isinstance(arguments, str):
@@ -147,7 +171,8 @@ def parse_arguments(arguments: Any) -> dict[str, Any]:
 
 
 def run_tool(name: str, arguments: Any, banner: Callable[[str], None] | None = None,
-             bell: Callable[[], None] | None = None, play: Callable[[], bool] | None = None) -> str:
+             bell: Callable[[], None] | None = None, play: Callable[[], bool] | None = None,
+             gauge: Callable[[int], None] | None = None) -> str:
     """Run one tool. Failures come back as an error string, never as an exception."""
     try:
         args = parse_arguments(arguments)
@@ -155,6 +180,8 @@ def run_tool(name: str, arguments: Any, banner: Callable[[str], None] | None = N
             return make_noise(args.get("times"), bell=bell)
         if name == "honk":
             return honk(args.get("times", 1), play=play)
+        if name == "set_gauge":
+            return set_gauge(args.get("value"), show=gauge)
         if name == "get_local_time":
             return get_local_time()
         if name == "show_banner":

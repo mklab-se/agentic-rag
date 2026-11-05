@@ -11,18 +11,18 @@
   --accent-soft: #d5ece2;
   --danger: #b4322a;
   --danger-soft: #f6dcd8;
-  --rec-bg: #17201c;
-  --rec-ink: #e6ede9;
-  --rec-ink-2: #9db0a8;
-  --rec-line: #2c3a34;
-  --f-auth: #d9a441;
-  --f-model: #b58cf0;
-  --f-search: #4fb3e8;
-  --f-tool: #f08a5d;
-  --f-agent: #3ddc9b;
-  --f-api: #8fa3ff;
-  --f-other: #9db0a8;
-  --f-error: #ff6b5e;
+  --rec-bg: #efebe2;
+  --rec-ink: #17201c;
+  --rec-ink-2: #55625b;
+  --rec-line: #d3cdbf;
+  --f-auth: #8a5f00;
+  --f-model: #6d3fc0;
+  --f-search: #0a6ea8;
+  --f-tool: #b34a17;
+  --f-agent: #0b7a57;
+  --f-api: #3f51c7;
+  --f-other: #55625b;
+  --f-error: #c22f25;
   --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
   --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   color-scheme: light;
@@ -46,6 +46,14 @@
     --rec-ink: #dbe6e0;
     --rec-ink-2: #86978f;
     --rec-line: #1f2c26;
+    --f-auth: #d9a441;
+    --f-model: #b58cf0;
+    --f-search: #4fb3e8;
+    --f-tool: #f08a5d;
+    --f-agent: #3ddc9b;
+    --f-api: #8fa3ff;
+    --f-other: #9db0a8;
+    --f-error: #ff6b5e;
     color-scheme: dark;
   }
 }
@@ -67,6 +75,14 @@
   --rec-ink: #dbe6e0;
   --rec-ink-2: #86978f;
   --rec-line: #1f2c26;
+  --f-auth: #d9a441;
+  --f-model: #b58cf0;
+  --f-search: #4fb3e8;
+  --f-tool: #f08a5d;
+  --f-agent: #3ddc9b;
+  --f-api: #8fa3ff;
+  --f-other: #9db0a8;
+  --f-error: #ff6b5e;
   color-scheme: dark;
 }
 
@@ -130,8 +146,8 @@ button:disabled { cursor: not-allowed; opacity: 0.5; }
 .panes { display: grid; grid-template-columns: minmax(0, 1fr) minmax(360px, 460px); min-height: 0; }
 
 /* Chat */
-.chat { display: grid; grid-template-rows: 1fr auto; min-height: 0; min-width: 0; }
-.messages { overflow-y: auto; padding: 24px clamp(16px, 4vw, 40px); display: flex; flex-direction: column; gap: 18px; }
+.chat { display: flex; flex-direction: column; min-height: 0; min-width: 0; }
+.messages { flex: 1; min-height: 0; overflow-y: auto; padding: 24px clamp(16px, 4vw, 40px); display: flex; flex-direction: column; gap: 18px; }
 .empty { margin: auto; max-width: 520px; display: grid; gap: 10px; text-align: center; justify-items: center; }
 .empty h2 { font-size: 22px; letter-spacing: -0.01em; }
 .starters { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 10px; }
@@ -240,4 +256,22 @@ button:disabled { cursor: not-allowed; opacity: 0.5; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; }
+}
+
+.ghost[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+
+/* The speedometer, moved by the set_gauge client tool. */
+.gauge { flex: none; display: flex; justify-content: center; padding: 8px 0 2px; border-bottom: 1px solid var(--line); }
+.gauge svg { width: 150px; height: auto; display: block; }
+.gauge path { fill: none; stroke-width: 7; stroke-linecap: round; }
+.gauge-track { stroke: var(--surface-2); }
+.gauge-fill { stroke: var(--accent); transition: stroke-dasharray 0.7s cubic-bezier(0.3, 1.4, 0.5, 1); }
+.gauge-tick { stroke: var(--ink-3); stroke-width: 1; }
+.gauge-label { fill: var(--ink-3); font: 500 7px var(--mono); }
+.gauge-needle { transform-origin: 60px 60px; transition: transform 0.7s cubic-bezier(0.3, 1.4, 0.5, 1); }
+.gauge-needle line { stroke: var(--danger); stroke-width: 2.2; stroke-linecap: round; }
+.gauge-hub { fill: var(--ink); }
+.gauge-value { fill: var(--ink); font: 700 13px var(--mono); }
+@media (prefers-reduced-motion: reduce) {
+  .gauge-fill, .gauge-needle { transition: none; }
 }
