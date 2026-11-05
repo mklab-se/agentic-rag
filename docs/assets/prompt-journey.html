@@ -1,0 +1,542 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Journey of a Prompt</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,700;112,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a swimlane transit map. Columns are systems, rows are the moments of one turn. */
+:root{
+  --bg:#f3f5f4;--panel:#ffffff;--ink:#16211f;--muted:#55645f;--line:#cfd8d5;
+  --accent:#00796b;--accent-soft:#d6efe9;--client:#3559b8;--api:#00796b;--llm:#8a3fb3;--dealer:#b85c00;--search:#b3264f;--store:#4d6470;
+  --display:"Archivo","Arial Narrow",system-ui,sans-serif;--body:"IBM Plex Sans",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#101716;--panel:#18211f;--ink:#e6eeec;--muted:#9db0aa;--line:#31403c;
+  --accent:#4fd1bb;--accent-soft:#143a34;--client:#8eabff;--api:#4fd1bb;--llm:#d29bf2;--dealer:#f5a95c;--search:#ff8fae;--store:#a3bac5;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#101716;--panel:#18211f;--ink:#e6eeec;--muted:#9db0aa;--line:#31403c;
+  --accent:#4fd1bb;--accent-soft:#143a34;--client:#8eabff;--api:#4fd1bb;--llm:#d29bf2;--dealer:#f5a95c;--search:#ff8fae;--store:#a3bac5;color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--body)}
+.wrap{max-width:1180px;margin:0 auto;padding-block:40px 72px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:44px}
+h1{font:800 clamp(30px,5vw,50px)/1.05 var(--display);margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font:700 25px/1.2 var(--display);margin:0;text-wrap:balance}
+h3{font:600 17px/1.3 var(--body);margin:0}
+p{margin:0;max-width:68ch}
+.eyebrow{font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+header{display:grid;gap:14px}
+.quote{font:500 19px/1.4 var(--mono);color:var(--ink);border-left:3px solid var(--accent);padding-left:14px}
+section{display:grid;gap:16px;min-width:0}
+.tabs{display:flex;flex-wrap:wrap;gap:8px}
+.tabs button{font:500 14px var(--body);padding:9px 13px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;text-align:left}
+.tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.scenario-note{display:grid;gap:4px;min-height:74px}
+.scenario-note strong{font-weight:600}
+.lanes-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--panel)}
+.lanes{min-width:980px;display:grid;grid-template-columns:48px repeat(6,minmax(0,1fr))}
+.lane-head{position:sticky;top:0;font:600 12.5px var(--body);padding:10px 8px;border-bottom:2px solid var(--line);background:var(--panel)}
+.lane-head small{display:block;font:400 11px var(--mono);color:var(--muted)}
+.c-client{--c:var(--client)}.c-api{--c:var(--api)}.c-llm{--c:var(--llm)}.c-dealer{--c:var(--dealer)}.c-search{--c:var(--search)}.c-store{--c:var(--store)}
+.lane-head{color:var(--c,var(--ink))}
+.n,.cell{border-bottom:1px solid var(--line);min-height:62px}
+.n{font:500 12px var(--mono);color:var(--muted);padding:12px 0 0 12px}
+.cell{border-left:1px dashed var(--line);padding:7px}
+.box{border:1px solid var(--c);border-left-width:4px;border-radius:5px;padding:6px 8px;font-size:13px;line-height:1.35;background:var(--panel)}
+.box b{display:block;font-weight:600}
+.box code,.box span{font:400 11.5px/1.4 var(--mono);color:var(--muted);overflow-wrap:anywhere}
+.row-off{display:none}
+.legend{font-size:14px;color:var(--muted)}
+.steps{display:grid;gap:10px}
+details{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 16px}
+summary{cursor:pointer;font-weight:600}
+details>div{display:grid;gap:10px;padding-top:10px}
+pre{margin:0;overflow-x:auto;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:12px;font:400 13px/1.5 var(--mono)}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+th{font-weight:600;text-align:left;background:var(--accent-soft)}
+th,td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+.rewrite{display:grid;gap:6px}
+.rewrite div{display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:6px}
+.rewrite small{font-size:13px;color:var(--muted)}
+.rewrite code{font:400 14px/1.45 var(--mono);overflow-wrap:anywhere}
+.answers{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:14px}
+.answers article{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px 16px;display:grid;gap:6px;align-content:start;min-width:0}
+.answers p{font-size:15px}
+@media (max-width:560px){.rewrite div{grid-template-columns:minmax(0,1fr);gap:2px}}
+
+.lead{font-size:18px;max-width:72ch}
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.mapwrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--panel)}
+svg.map{display:block;width:100%;min-width:960px;height:auto}
+svg text{fill:var(--ink);font-family:var(--body)}
+svg .t{font-size:14px;font-weight:600}
+svg .s{font-size:11.5px;fill:var(--muted);font-family:var(--mono)}
+svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
+.zone{fill:none;stroke:var(--line);stroke-width:1.5;stroke-dasharray:6 5}
+.zone.mine{stroke:var(--accent);stroke-width:2}
+.bx{fill:var(--panel);stroke:var(--c,var(--muted));stroke-width:1.5}
+.gr.idle{opacity:.38}
+.edge{fill:none;stroke:var(--muted);stroke-width:1.5;marker-end:url(#hm);display:none}
+.edge.used{display:inline}
+.edge.ret{stroke-dasharray:5 4}
+.edge.on{stroke:var(--accent);stroke-width:3.2;marker-end:url(#ha)}
+.badge{cursor:pointer}
+.badge circle{fill:var(--panel);stroke:var(--muted);stroke-width:1.2}
+.badge text{font:600 10.5px var(--mono);fill:var(--muted);text-anchor:middle}
+.badge.on circle{fill:var(--accent);stroke:var(--accent)}
+.badge.on text{fill:var(--bg)}
+.chip rect{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1}
+.chip text{font:500 12.5px var(--mono)}
+.row-t{font:400 11.5px var(--mono)}
+.row-bg{fill:transparent}
+.row-bg.on{fill:var(--accent-soft)}
+.stepbar{display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.stepbar button{font:500 13px var(--mono);min-width:34px;height:34px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.stepbar button.nav{font-family:var(--body);padding:0 12px}
+.stepbar button[aria-current="step"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.stepbar button:focus-visible,.badge:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.card{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:14px 16px;display:grid;gap:8px;min-height:230px;align-content:start;min-width:0}
+.card .who{font:600 16px var(--body)}
+.card .who small{font:500 12px var(--mono);color:var(--muted);display:block}
+.flow{width:100%;height:auto;display:block}
+.flowwrap{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:8px;overflow-x:auto}
+.flowwrap svg{min-width:560px}
+.fl{fill:none;stroke:var(--muted);stroke-width:1.5;marker-end:url(#fm)}
+.fl.hot{stroke:var(--accent);stroke-width:3;marker-end:url(#fa)}
+.fn{fill:var(--panel);stroke:var(--muted);stroke-width:1.4}
+.fn.hot{stroke:var(--accent);stroke-width:2.4;fill:var(--accent-soft)}
+.lbl{font-size:12px;font-weight:600;fill:var(--muted)}
+.lbl.hot{fill:var(--accent)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,540px),1fr));gap:16px;align-items:start}
+.cols3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px}
+.path{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px;display:grid;gap:8px;align-content:start;min-width:0}
+.chain{display:grid;gap:4px;font-size:13.5px}
+.chain div{border:1px solid var(--line);border-radius:5px;padding:5px 8px}
+.chain .m{border-left:4px solid var(--llm)}
+.chain .tl{border-left:4px solid var(--dealer)}
+.chain .sr{border-left:4px solid var(--search)}
+.chain .end{border-left:4px solid var(--accent);font-weight:600}
+.chain i{font-style:normal;color:var(--muted);text-align:center;font-size:12px}
+.stacks{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:14px}
+.stack{display:grid;gap:4px;align-content:start;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px;min-width:0}
+.stack h3{font-size:14.5px}
+.stack small{color:var(--muted);font-size:12.5px}
+.blk{font:400 12px/1.35 var(--mono);padding:5px 7px;border-radius:4px;overflow-wrap:anywhere}
+.blk.sent{background:var(--accent-soft);border:1px solid var(--accent)}
+.blk.hist{border:1px dashed var(--store);color:var(--muted)}
+.key{display:flex;flex-wrap:wrap;gap:14px;font-size:14px;color:var(--muted);align-items:center}
+.key span{display:inline-flex;gap:6px;align-items:center}
+.key .blk{padding:1px 8px}
+.bk{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px;display:grid;gap:8px;min-width:0}
+.bk svg{width:100%;height:auto;display:block}
+.bk p{font-size:14px}
+.btxt{font-size:12.5px;font-weight:600}
+.bsub{font-size:10.5px;fill:var(--muted);font-family:var(--mono)}
+.ba{fill:none;stroke:var(--accent);stroke-width:2;marker-end:url(#ba)}
+.ba2{fill:none;stroke:var(--muted);stroke-width:1.3;stroke-dasharray:4 3;marker-end:url(#bm)}
+.bx2{fill:var(--panel);stroke:var(--muted);stroke-width:1.2}
+.bx2.loop{fill:var(--accent-soft);stroke:var(--accent);stroke-width:2}
+.alab{font:500 10.5px var(--mono);fill:var(--accent)}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">Voltrieve · who calls whom · real runs 2026-11-05</div>
+  <h1>The journey of a prompt</h1>
+  <p class="lead">One rule explains most of this. <strong>The model never calls anything.</strong> It only returns text, or a request saying "please run this tool". Your code, in the Web API, makes every real call.</p>
+</header>
+
+<section aria-labelledby="map-title">
+  <h2 id="map-title">Follow a prompt, one arrow at a time</h2>
+  <p>This is the own loop. Pick a prompt, then step through it. Each number is one real call, and solid arrows are requests, dashed arrows are what comes back. Greyed systems are not touched by that prompt.</p>
+  <div class="tabs" role="tablist" aria-label="Prompt" id="tabs"></div>
+  <div class="mapwrap" tabindex="0" aria-label="Map of the systems. Scroll sideways on a small screen."><svg class="map" id="map" viewBox="0 0 1240 600" role="img" aria-label="System map: client, Web API with routes, loop and tool table, Foundry with conversations and the model, the dealer service, and Azure AI Search with planner and indexes. Numbered arrows show the calls of the selected prompt."></svg></div>
+  <div class="stepbar" id="stepbar"></div>
+  <div class="card" id="card" aria-live="polite"></div>
+</section>
+
+<section aria-labelledby="owner-title">
+  <h2 id="owner-title">Is the own loop in the Web API?</h2>
+  <p>Yes. The loop is the function <code>run_turn</code> in <code>agent_core/loop.py</code>, and the green box in the map runs inside the Web API process. The API does no thinking of its own, though. It repeats two steps: call the model, then run whatever the model asked for. It stops when the model asks for nothing.</p>
+</section>
+
+<section aria-labelledby="tool-title">
+  <h2 id="tool-title">What happens when the model says get_prices</h2>
+  <p>You guessed right: there's a table of registered tools, and the Web API looks the name up in it. The green path below is the real <code>get_prices</code> call. Every failure becomes text sent back to the model, which can then correct itself or tell the user.</p>
+  <div class="two">
+    <div class="flowwrap"><svg class="flow" id="flow" viewBox="0 0 780 800" role="img" aria-label="Flowchart of the loop in the Web API. A model response with tool calls is checked: client tool, then server table, role and arguments, then the handler runs and the output goes back to the model. A response with no tool calls ends the turn."></svg></div>
+    <div class="steps">
+      <h3>1. Registered when the API starts</h3>
+<pre>ServerTool(
+  "get_prices",
+  "Get the dealer's base price per model
+   for a market. It has no drive
+   configuration prices (such as AWD):
+   those are in the documents.",
+  schema({"market": {"enum": ["SE","EU"]}}),
+  get_prices,      # the Python function
+)</pre>
+      <p><code>build_server_tools()</code> returns six of these, and <code>ToolSet</code> stores them in a dictionary keyed by name.</p>
+      <h3>2. Described to the model on every call</h3>
+      <p>The name, description and schema go in <code>tools=[...]</code>. The Python function doesn't. The model sees only words, so those words are what steer its choice.</p>
+      <h3>3. Looked up when the model asks</h3>
+<pre>tool = self._server.get(name)
+if tool is None:
+    return "Error: unknown tool"
+...
+return await tool.handler(arguments, user)</pre>
+      <h3>4. The handler is a thin wrapper</h3>
+<pre>async def get_prices(args, user):
+    return await dealer.prices(
+        args.get("market", "SE"))</pre>
+      <p>So the prices are not in the tool. They live in the dealer service, and the tool just fetches them. That's how your prompt gets an answer without Azure AI Search.</p>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="rag-title">
+  <h2 id="rag-title">No RAG, simple RAG and agentic RAG</h2>
+  <p>The own loop never decides between these, because they aren't branches in the code. There's one check, <code>if not calls: return "done"</code>. The three names describe what the model happened to ask for, turn by turn.</p>
+  <div class="cols3">
+    <article class="path"><h3>No RAG</h3><p>"Good morning!"</p><div class="chain"><div class="m">Model call 1</div><i>no tool calls</i><div class="end">Answer</div></div><p class="legend">1 model call, 966 tokens, 1.4 s</p></article>
+    <article class="path"><h3>Simple RAG</h3><p>"And what about one with all wheel drive?"</p><div class="chain"><div class="m">Model call 1</div><i>asks for one search</i><div class="sr">search_voltrieve_docs</div><i>chunks go back</i><div class="m">Model call 2</div><i>no tool calls</i><div class="end">Answer</div></div><p class="legend">2 model calls, 7,441 tokens, 5.9 s</p></article>
+    <article class="path"><h3>Agentic RAG</h3><p>"...cheapest car with all wheel drive... in Sweden?"</p><div class="chain"><div class="m">Model call 1</div><i>asks for four tools at once</i><div class="tl">get_prices</div><div class="sr">search_voltrieve_docs × 3, all at once</div><i>outputs go back</i><div class="m">Model call 2</div><i>no tool calls, or asks again</i><div class="end">Answer</div></div><p class="legend">2 model calls, 15,756 tokens, 8.0 s</p></article>
+  </div>
+  <p>The difference is only that the model plans its own steps: several sources, or another search after reading the first result. Spare parts questions do the second one when an article number is missing. Separately, every Azure AI Search call uses agentic retrieval, so even "simple RAG" gets a query planner.</p>
+</section>
+
+<section aria-labelledby="ctx-title">
+  <h2 id="ctx-title">First message, second call, follow-up</h2>
+  <p>This shows what the model reads on each call. A turn can hold several model calls, so there are two kinds of "second" here: the second call in a message, and the second message in a conversation. The real run below is the same conversation from start to finish.</p>
+  <div class="key"><span><b class="blk sent">Sent by the Web API</b> on this call</span><span><b class="blk hist">Added by Foundry</b> from the stored conversation</span></div>
+  <div class="stacks" id="stacks"></div>
+  <p>The Web API never sends the history. It sends the conversation id, and Foundry does the rest. The difference at the API is small: a first message creates the conversation and stores your user id as owner, while a later message checks that owner. Instructions and tools are never stored, so a change applies on the next call.</p>
+</section>
+
+<section aria-labelledby="search-title">
+  <h2 id="search-title">What Azure AI Search receives</h2>
+  <p>Search is called only when the model asks for a search tool, and then the Web API makes the call. For your exact prompt that happened in 0 of 15 runs. Your words are never sent as they are, unless the model repeats them. This is the follow-up from the real run:</p>
+  <div class="rewrite">
+    <div><small>You type</small><code>And what about one with all wheel drive?</code></div>
+    <div><small>The model writes</small><code>all wheel drive AWD models price buyer's guide</code></div>
+    <div><small>Web API sends to Search</small><code>POST /knowledgebases/voltrieve-kb/retrieve, one message holding the model's text</code></div>
+    <div><small>Planner, sub-query 1</small><code>all wheel drive AWD models</code></div>
+    <div><small>Planner, sub-query 2</small><code>buyer's guide AWD price</code></div>
+    <div><small>Planner, sub-query 3</small><code>AWD model price</code></div>
+    <div><small>Search returns</small><code>{"chunks":[{"title":"voltrieve-buyers-guide.md","content":"..."}, ...]}</code></div>
+  </div>
+  <p>Search receives no history, no instructions and no user token. The model has to put everything needed into its query. The planner's own prompt to gpt-5.4-mini is written by Azure AI Search and isn't visible to us, so we only see the sub-queries it produced. Search returns text chunks and writes no answer.</p>
+</section>
+
+<section aria-labelledby="back-title">
+  <h2 id="back-title">Own loop, prompt agent, hosted agent</h2>
+  <p>Same systems in the same places. What moves is the green box, the loop, and with it the origin of the calls. Green arrows are the calls that differ, and the dashed arrow is the conversation, which the Web API always handles. All three ran the same prompt: "What is the cheapest car with all wheel drive that you can sell me in Sweden?"</p>
+  <div class="cols3" id="backends"></div>
+  <div class="tablewrap"><table>
+    <tr><th>Who does this?</th><th>Own loop</th><th>Prompt agent</th><th>Hosted agent</th></tr>
+    <tr><td>Checks token, role and owner</td><td>Web API</td><td>Web API</td><td>Web API</td></tr>
+    <tr><td>Creates the conversation</td><td>Web API</td><td>Web API</td><td>Web API</td></tr>
+    <tr><td>Holds instructions and tool list</td><td>Web API, sent on each call</td><td>Foundry, in the agent definition</td><td>Hosted container, sent on each call</td></tr>
+    <tr><td>Calls the model</td><td>Web API</td><td>Web API, sending only the agent's name</td><td>Hosted container</td></tr>
+    <tr><td>Calls Azure AI Search</td><td>Web API</td><td>Foundry, through MCP, inside the model call</td><td>Hosted container</td></tr>
+    <tr><td>Calls the dealer service</td><td>Web API</td><td>Web API</td><td>Hosted container</td></tr>
+    <tr><td>Runs tools at the same time</td><td>Yes, our code</td><td>Searches ran one at a time</td><td>Yes, same code</td></tr>
+    <tr><td>Accepts a new client tool per request</td><td>Yes</td><td>No, only those in the definition</td><td>Yes</td></tr>
+  </table></div>
+  <p>The surprise is the prompt agent: the Web API still runs a loop there, because the dealer tools are function tools, and Foundry hands those requests back for the caller to run. Only the searches run inside Foundry, which is why you lose control of them. The hosted agent is the own loop, unchanged, in a container that Foundry runs. The token figures are from one run each, so read them as an example and not as a benchmark.</p>
+</section>
+
+<section aria-labelledby="paths-title">
+  <h2 id="paths-title">How often each path was taken</h2>
+  <p>The model chooses again on every run, so the same words can take different paths. Measured with 15 runs of each prompt on the own loop.</p>
+  <div class="tablewrap"><table id="runs"><tr><th>Prompt</th><th>Runs</th><th>What the agent used</th><th>Result</th><th>Model calls</th><th>Median time</th></tr><tr><td>What is the cheapest car that you can sell me?</td><td class="num">8</td><td>get_prices twice, SE and EU</td><td>Spark, 289,000 SEK</td><td class="num">2</td><td class="num">4.4 s</td></tr><tr><td></td><td class="num">4</td><td>get_prices once</td><td>Spark, 289,000 SEK</td><td class="num">2</td><td class="num">3.8 s</td></tr><tr><td></td><td class="num">3</td><td>Nothing</td><td>Asked for the market</td><td class="num">1</td><td class="num">2.4 s</td></tr><tr><td>... in Sweden?</td><td class="num">15</td><td>get_prices once</td><td>Spark, 289,000 SEK</td><td class="num">2</td><td class="num">2.6 s</td></tr><tr><td>... with all wheel drive ... in Sweden?</td><td class="num">8</td><td>get_prices and 1 search</td><td>Lumen AWD, 419,000 SEK</td><td class="num">2</td><td class="num">6.5 s</td></tr><tr><td></td><td class="num">7</td><td>get_prices and 2 searches</td><td>Lumen AWD, 419,000 SEK</td><td class="num">2</td><td class="num">7.0 s</td></tr><tr><td>Good morning!</td><td class="num">15</td><td>Nothing</td><td>A greeting</td><td class="num">1</td><td class="num">0.8 s</td></tr></table></div>
+</section>
+</div>
+
+<script>
+const NS="http://www.w3.org/2000/svg";
+const el=(tag,attrs={},text)=>{const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!==undefined)e.textContent=text;return e};
+const SHORT="What is the cheapest car that you can sell me?",AWD="What is the cheapest car with all wheel drive that you can sell me in Sweden?",FOLLOW="And what about one with all wheel drive?";
+const CONV="conv_0960c5af81a2...";
+
+/* Edge geometry. a = chip anchor x, y; m = start, middle or end; v = up, down or mid. */
+const E={
+ c_r:{p:[[190,80],[420,80]],a:[305,66],m:"middle",v:"up"},
+ r_c:{p:[[420,100],[190,100]],a:[305,114],m:"middle",v:"down",ret:1},
+ r_v:{p:[[680,80],[920,80]],a:[800,66],m:"middle",v:"up"},
+ v_r:{p:[[920,100],[680,100]],a:[800,114],m:"middle",v:"down",ret:1},
+ r_l:{p:[[450,130],[450,185]],a:[482,157],m:"start",v:"mid"},
+ l_r:{p:[[468,185],[468,130]],a:[482,157],m:"start",v:"mid",ret:1},
+ l_m:{p:[[680,220],[920,220]],a:[800,206],m:"middle",v:"up"},
+ m_l:{p:[[920,240],[680,240]],a:[800,254],m:"middle",v:"down",ret:1},
+ v_m:{p:[[940,130],[940,185]],a:[954,157],m:"start",v:"mid"},
+ l_t:{p:[[450,275],[450,350]],a:[482,312],m:"start",v:"mid"},
+ t_l:{p:[[468,350],[468,275]],a:[482,312],m:"start",v:"mid",ret:1},
+ t_d:{p:[[680,360],[900,360]],a:[790,346],m:"middle",v:"up"},
+ d_t:{p:[[900,380],[680,380]],a:[790,394],m:"middle",v:"down",ret:1},
+ t_p:{p:[[680,510],[915,510]],a:[797,496],m:"middle",v:"up"},
+ p_t:{p:[[915,530],[680,530]],a:[797,544],m:"middle",v:"down",ret:1},
+ p_m:{p:[[1015,480],[1015,275]],a:[1044,350],m:"start",v:"mid"},
+ m_p:{p:[[1030,275],[1030,480]],a:[1044,350],m:"start",v:"mid",ret:1},
+ p_i:{p:[[1035,510],[1085,510]],a:[1040,452],m:"start",v:"mid"},
+ i_p:{p:[[1085,530],[1035,530]],a:[1040,452],m:"start",v:"mid",ret:1},
+};
+const S=(from,to,edges,chips,carry,why,hit)=>({from,to,edges:[].concat(edges),chips:[].concat(chips),carry,why,hit});
+const INSTR='instructions=AGENT_INSTRUCTIONS   # about 2300 characters\ntools=[6 tool definitions]';
+const FIRSTUP=(p,c)=>S("Client","Web API routes","c_r",`POST /chat "${p}"`,`POST /chat
+Authorization: Bearer <user's Entra token>
+X-Agent-Backend: loop
+
+{ "message": "${p}"${c?`,\n  "conversation_id": "${CONV}"`:""} }`,c?"A follow-up carries the conversation id, which the client got in the done event of the last message.":"A first message has no conversation id. The client only knows who is signed in and what was typed.");
+const CREATE=[S("Web API routes","Foundry Conversations","r_v","conversations.create(owner_oid)",`conversations.create(metadata={"owner_oid": "<user's oid>"})`,"The API has checked the token, scope and Chat.User role. Now it creates the conversation, signed in as its own managed identity, and stores the user as owner."),
+ S("Foundry Conversations","Web API routes","v_r",CONV,`{ "id": "${CONV}" }`,"An empty conversation. The API keeps this id for the rest of the turn.")];
+const OWNER=[S("Web API routes","Foundry Conversations",["r_v","v_r"],["Who owns this conversation?","owner_oid must match"],`In-memory cache first. If this API process hasn't seen it:
+conversations.retrieve("${CONV}")  ->  metadata.owner_oid`,"The owner must equal the oid in the token. A mismatch gets 403, the same answer as an unknown id, so ids can't be probed.")];
+const START=(p)=>S("Web API routes","run_turn loop","r_l","run_turn(prompt, conv id, user)",`TurnInput(user, conversation_id, turn_id, input="${p}", client_tools=[])`,"The words are passed on unchanged. No code reads or classifies them.");
+const MODEL=(n,input,why,chip)=>S("run_turn loop","gpt-5.4-mini in Foundry","l_m",chip,`responses.create(
+  model="gpt-5.4-mini",
+  ${INSTR.replace("\n","\n  ")}
+  conversation="${CONV}",
+  input=${input},
+  parallel_tool_calls=True,
+  reasoning={"effort": "medium"},
+  stream=True)`,why);
+const HIST=(chip,carry,why)=>S("Foundry Conversations","gpt-5.4-mini","v_m",chip,carry,why);
+const LOOKUP=(name,args,why)=>S("run_turn loop","ToolSet, the tool table","l_t",`execute("${name}")`,`toolset.execute("${name}", '${args}', user, emit)`,why,name);
+const UP=(chip,answer,why)=>S("gpt-5.4-mini","run_turn loop","m_l",chip,answer,why);
+const OUT=(text)=>S("run_turn loop, Web API routes","Client",["l_r","r_c"],["delta, delta, done","the answer, as it is written"],text,"No tool calls in this response, so the loop stops. The done event carries the conversation id, and the client keeps it for the next message.");
+const PRICES='{"market":"SE","currency":"SEK","prices":[\n  {"model":"spark","list_price":289000},\n  {"model":"lumen","list_price":379000},\n  {"model":"ragn","list_price":549000},\n  {"model":"fjord","list_price":529000},\n  {"model":"atlas","list_price":749000}]}';
+
+const SCEN={
+ yours:{tab:"Cheapest car",q:SHORT,steps:[
+  FIRSTUP(SHORT),...CREATE,START(SHORT),
+  MODEL(1,`"${SHORT}"`,"Model call 1, and the moment of decision. There is no separate classifier: everything the model uses to choose is in this one call.","instructions + 6 tools + prompt"),
+  HIST("history: empty","Conversation items before this prompt: none\nFoundry stores the prompt now.","Foundry does this by itself. Our code isn't involved."),
+  UP('function_call get_prices {}','{ "type": "function_call",\n  "name": "get_prices",\n  "arguments": "{}" }','The decision. A price question matches the get_prices description, and the instructions forbid answering from memory. This is only a request: the model runs nothing. It took 1.9 s.'),
+  LOOKUP("get_prices","{}","Why the Web API calls it: the model asked, and the name is in the table. See the flowchart further down."),
+  S("ToolSet","Dealer service","t_d","GET /prices?market=SE","GET /prices?market=SE\nAuthorization: Bearer <API's managed identity>\nX-Correlation-Id: <same id as the turn>","The model sent no market, so the handler used its default, SE. The user's token isn't forwarded.","get_prices"),
+  S("Dealer service","ToolSet","d_t",'spark 289000, lumen 379000...',PRICES,"This is where the price comes from: live data in the dealer service. It took 25 ms and Azure AI Search wasn't involved.","get_prices"),
+  S("ToolSet","run_turn loop","t_l","the same JSON, as text",PRICES,"Handlers return text, because text is all the model can read."),
+  MODEL(2,'[{ "type": "function_call_output",\n          "call_id": "call_...",\n          "output": "{\\"market\\":\\"SE\\",...}" }]',"Model call 2. The prompt isn't sent again: the input is just the tool output. Instructions and tools are sent again.","instructions + tools + prices"),
+  HIST("prompt + the get_prices call","Stored items: the prompt, the function_call\nFoundry adds the new output to them.","Our code didn't send the prompt, but the model still sees it, because it's stored in the conversation."),
+  UP('text, no tool calls',"In the SE market, the cheapest Voltrieve car is the Spark at 289,000 SEK.\n\nIf you meant the EU market instead, tell me and I can check that pricing too.","No tool calls this time, so this is the end of the turn. 3 of 15 runs asked "+'"SE or EU?"'+" here on call 1 and never reached the dealer."),
+  OUT('event: delta  {"text":"In the SE market, ..."}\nevent: done   {"conversation_id":"'+CONV+'", "usage":{...}}'),
+ ]},
+ follow:{tab:"Follow-up, simple RAG",q:FOLLOW,steps:[
+  FIRSTUP(FOLLOW,true),...OWNER,START(FOLLOW),
+  MODEL(1,`"${FOLLOW}"`,"The same call as before, with new words. The API sends nothing about the earlier question.","instructions + 6 tools + prompt"),
+  HIST("your earlier turn, 4 items",`Stored items:
+1. What is the cheapest car that you can sell me?
+2. function_call get_prices
+3. function_call_output (the price list)
+4. In the SE market, the cheapest ... Spark ...`,"This is how \"one with all wheel drive\" gets a meaning. Foundry adds the history, and the API never handles it."),
+  UP('search_voltrieve_docs(query=...)','{ "type": "function_call",\n  "name": "search_voltrieve_docs",\n  "arguments": "{\\"query\\":\\"all wheel drive AWD models price buyer\'s guide\\"}" }',"The decision again. The get_prices description says it has no AWD prices and points to the documents. The model also wrote the search text itself."),
+  LOOKUP("search_voltrieve_docs",`{"query":"all wheel drive AWD..."}`,"Same lookup as get_prices. This handler calls the knowledge base client."),
+  S("ToolSet","Azure AI Search","t_p","POST .../retrieve, the model's query",`POST /knowledgebases/voltrieve-kb/retrieve
+{ "messages": [{ "role": "user", "content": [{ "type": "text",
+    "text": "all wheel drive AWD models price buyer's guide" }] }],
+  "knowledgeSourceParams": [{ "knowledgeSourceName": "voltrieve-docs-ks", ... }],
+  "maxOutputSize": 5000, "includeActivity": true }`,"This is the one prompt Search gets. It holds only the model's text, with no history. It runs as the API's identity.","search_voltrieve_docs"),
+  S("Azure AI Search planner","gpt-5.4-mini","p_m","plan sub-queries","Prompt written by Azure AI Search, not visible to us.\nIn a recorded call: 942 input tokens, 44 output, 1.4 s.","Search calls the same deployment on its own. This is query planning, and it shares the token limit with the agent."),
+  S("gpt-5.4-mini","Azure AI Search planner","m_p","3 sub-queries","all wheel drive AWD models\nbuyer's guide AWD price\nAWD model price","Three shorter, sharper searches, taken from the real run."),
+  S("Planner","Search indexes","p_i","3 searches at once","Each sub-query runs on voltrieve-docs-ks with keyword and vector matching, then the semantic ranker.","In a recorded call these took 36 to 79 ms each."),
+  S("Search indexes","Planner","i_p","ranked chunks","Chunks of documents, best match first.\nTop document: voltrieve-buyers-guide.md","Results from the sub-queries are merged."),
+  S("Azure AI Search","ToolSet","p_t","chunks, no answer",'{ "chunks": [{ "ref_id": "0",\n    "title": "voltrieve-buyers-guide.md",\n    "content": "# Voltrieve buyer\'s guide ..." }, ...],\n  "partial": false }',"Search writes no answer. It returns raw text for the model to read.","search_voltrieve_docs"),
+  S("ToolSet","run_turn loop","t_l","chunks as text","The same JSON, as text.","Nothing is summarised on the way."),
+  MODEL(2,'[{ "type": "function_call_output", "output": "{\\"chunks\\":[...]}" }]',"Model call 2. The chunks go in as a tool output, and that's the whole of RAG: the text ends up in front of the model.","instructions + tools + chunks"),
+  HIST("all earlier items","Everything from before, plus the search call.","The model now has both your questions and the retrieved chunks."),
+  UP("text, no tool calls","In the SE market, the cheapest AWD Voltrieve is the Lumen AWD at 419,000 SEK. ...\nSource: voltrieve-buyers-guide.md","The answer cites the document because the instructions require it."),
+  OUT('event: delta  {"text":"In the SE market, ..."}\nevent: done   {"conversation_id":"'+CONV+'", "usage":{...}}'),
+ ]},
+ awd:{tab:"AWD in Sweden, agentic RAG",q:AWD,steps:[
+  FIRSTUP(AWD),...CREATE,START(AWD),
+  MODEL(1,`"${AWD}"`,"Model call 1. Parallel tool calls are switched on, so one response can hold several requests.","instructions + 6 tools + prompt"),
+  HIST("history: empty","Conversation items before this prompt: none","Same as any first message."),
+  UP("4 function calls in one response",`get_prices            {"market":"SE"}
+search_voltrieve_docs {"query":"all wheel drive AWD drive configurations prices Sweden buyer's guide models"}
+search_voltrieve_docs {"query":"AWD price model buyer's guide"}
+search_voltrieve_docs {"query":"all-wheel drive technical specifications pricing"}`,"The model plans several things at once. The instructions say a question about AWD needs the buyer's guide, and to call everything in the same step."),
+  LOOKUP("search_voltrieve_docs",`...`,"All four are looked up. They only read, so asyncio.gather starts them together. A booking would wait and run alone.","get_prices"),
+  S("ToolSet","Dealer service and Azure AI Search",["t_d","t_p"],["GET /prices?market=SE","3 × POST .../retrieve"],"GET /prices?market=SE\nPOST /knowledgebases/voltrieve-kb/retrieve  × 3, one per query","All four leave within 3 ms of each other. Each retrieve gets its own planner call and its own sub-queries.","search_voltrieve_docs"),
+  S("Search planner","gpt-5.4-mini",["p_m"],"plan sub-queries","Three planner calls, one per retrieve.\n3, 3 and 5 sub-queries came back.","The token cost is visible here: this turn used 15,756 tokens against 2,485 for the plain price question, mostly the retrieved chunks going back to the model."),
+  S("Dealer service and Azure AI Search","ToolSet",["d_t","p_t"],["spark 289000, lumen 379000...","chunks from buyer's guide + specs"],"Dealer: the base prices, in 35 ms\nSearch: chunks, including the AWD prices in voltrieve-buyers-guide.md","Together they took 2.0 s. One at a time they would have taken 5.3 s.","search_voltrieve_docs"),
+  S("ToolSet","run_turn loop","t_l","4 outputs, in call order","Four function_call_output items, in the order the model asked for them, whichever finished first.","The dealer list only has base prices, so the chunks are what make the answer possible."),
+  MODEL(2,'[4 function_call_output items]',"Model call 2. It could ask for more tools here. That's what makes this agentic: the model reads the results before it decides.","instructions + tools + 4 outputs"),
+  HIST("prompt + the 4 calls","Stored items: the prompt and the 4 function_calls.","Foundry again supplies what our code didn't resend."),
+  UP("text, no tool calls","The cheapest Voltrieve with all-wheel drive in Sweden is the Voltrieve Lumen AWD at 419,000 SEK. ...\nSource: voltrieve-buyers-guide.md","This time it was satisfied after one round."),
+  OUT('event: delta  {"text":"The cheapest Voltrieve ..."}\nevent: done   {"conversation_id":"conv_...", "usage":{...}}'),
+ ]},
+ hello:{tab:"Good morning, no RAG",q:"Good morning!",steps:[
+  FIRSTUP("Good morning!"),...CREATE,START("Good morning!"),
+  MODEL(1,'"Good morning!"',"Exactly the same call as for every other prompt. The API doesn't know this is only a greeting.","instructions + 6 tools + prompt"),
+  HIST("history: empty","Conversation items before this prompt: none","Nothing to add."),
+  UP("text, no tool calls","Good morning! How can I help with Voltrieve today?","The instructions list greetings under \"No search\", so the model just answers. 920 input tokens, nearly all of them instructions and tool definitions."),
+  OUT('event: delta  {"text":"Good morning! ..."}\nevent: done   {"conversation_id":"conv_...", "usage":{...}}'),
+ ]},
+};
+
+/* The map: boxes are fixed, arrows and numbers depend on the prompt. */
+const map=document.getElementById("map");
+const defs=el("defs");
+[["hm","var(--muted)"],["ha","var(--accent)"]].forEach(([id,c])=>{const m=el("marker",{id,viewBox:"0 0 10 10",refX:9,refY:5,markerWidth:6,markerHeight:6,orient:"auto-start-reverse",markerUnits:"userSpaceOnUse"});m.setAttribute("markerWidth",id==="ha"?12:9);m.setAttribute("markerHeight",id==="ha"?12:9);const p=el("path",{d:"M0 0L10 5L0 10z"});p.style.fill=c;m.append(p);defs.append(m)});
+map.append(defs);
+const GROUPS={};
+const group=id=>{const g=el("g",{class:"gr"});GROUPS[id]=g;map.append(g);return g};
+const box=(g,x,y,w,h,c,t,subs)=>{const r=el("rect",{class:"bx",x,y,width:w,height:h,rx:6});r.style.setProperty("--c",c);g.append(r,el("text",{class:"t",x:x+12,y:y+24},t));(subs||[]).forEach((s,i)=>g.append(el("text",{class:"s",x:x+12,y:y+43+i*16},s)))};
+const zoneG=map.appendChild(el("g"));
+const zone=(x,y,w,h,label,mine)=>{zoneG.append(el("rect",{class:"zone"+(mine?" mine":""),x,y,width:w,height:h,rx:10}),el("text",{class:"zl",x:x+14,y:y+19},label))};
+zone(400,14,300,572,"Web API, Container App",true);
+zone(900,14,320,281,"Microsoft Foundry");
+zone(900,430,320,156,"Azure AI Search");
+box(group("client"),20,50,170,80,"var(--client)","Client",["web app or CLI","keeps the conv id"]);
+box(group("routes"),420,50,260,80,"var(--api)","Routes",["token, role, owner check","routes.py, turns.py"]);
+box(group("loop"),420,185,260,90,"var(--api)","run_turn loop",["agent_core/loop.py","repeat until no tool calls,","at most 8 model calls"]);
+const toolG=group("tools");box(toolG,420,350,260,216,"var(--api)","ToolSet: the tool table",[]);
+const ROWS=[["search_voltrieve_docs","Search"],["search_spare_parts","Search"],["get_prices","Dealer"],["check_stock","Dealer"],["book_test_drive","Dealer"],["get_current_date","clock"]];
+const rowBg={};ROWS.forEach(([n,w],i)=>{const y=384+i*29;const r=el("rect",{class:"row-bg",x:428,y,width:244,height:26,rx:3});rowBg[n]=r;toolG.append(r,el("text",{class:"row-t",x:434,y:y+17},n),el("text",{class:"row-t",x:664,y:y+17,"text-anchor":"end"},"→ "+w))});
+box(group("conv"),920,50,280,80,"var(--store)","Conversations",["messages, tool calls, owner"]);
+box(group("model"),920,185,280,90,"var(--llm)","gpt-5.4-mini",["returns text or tool requests,","never calls anything itself"]);
+box(group("dealer"),900,330,105,74,"var(--dealer)","Dealer",["prices and","stock"]);
+box(group("planner"),915,480,120,88,"var(--search)","Planner",["writes","sub-queries"]);
+box(group("index"),1085,480,120,88,"var(--search)","Indexes",["hybrid search,","reranker"]);
+const edgeG=map.appendChild(el("g")),badgeG=map.appendChild(el("g")),chipG=map.appendChild(el("g"));
+const edges={};Object.entries(E).forEach(([id,e])=>{const l=el("polyline",{class:"edge"+(e.ret?" ret":""),points:e.p.join(" ")});edges[id]=l;edgeG.append(l)});
+const USES={c_r:["client","routes"],r_c:["client","routes"],r_v:["routes","conv"],v_r:["routes","conv"],r_l:["routes","loop"],l_r:["routes","loop"],l_m:["loop","model"],m_l:["loop","model"],v_m:["conv","model"],l_t:["loop","tools"],t_l:["loop","tools"],t_d:["tools","dealer"],d_t:["tools","dealer"],t_p:["tools","planner"],p_t:["tools","planner"],p_m:["planner","model"],m_p:["planner","model"],p_i:["planner","index"],i_p:["planner","index"]};
+
+let scen="yours",cur=0,badges=[];
+const tabs=document.getElementById("tabs"),bar=document.getElementById("stepbar"),card=document.getElementById("card");
+function wrap(t,n){const out=[];let line="";t.split(" ").forEach(w=>{if(line&&(line+" "+w).length>n){out.push(line);line=w}else line=line?line+" "+w:w});if(line)out.push(line);return out}
+function drawChip(id,text){
+ const e=E[id],narrow=e.m==="start",max=narrow?(e.a[0]>1000?24:27):30,lines=wrap(text,max).slice(0,3);
+ const cw=7.6,w=Math.max(...lines.map(l=>l.length))*cw+14,h=lines.length*17+8;
+ let x=e.a[0],y=e.a[1];
+ if(e.m==="middle")x-=w/2;
+ if(e.v==="up")y-=h;else if(e.v==="mid")y-=h/2;
+ const g=el("g",{class:"chip"});g.append(el("rect",{x,y,width:w,height:h,rx:4}));
+ lines.forEach((l,i)=>g.append(el("text",{x:x+7,y:y+17+i*17},l)));chipG.append(g);
+}
+function select(i){
+ const s=SCEN[scen].steps;cur=Math.max(0,Math.min(s.length-1,i));
+ const st=s[cur];
+ Object.values(edges).forEach(l=>l.classList.remove("on"));
+ st.edges.forEach(id=>edges[id].classList.add("on"));
+ chipG.replaceChildren();st.edges.forEach((id,k)=>drawChip(id,st.chips[k]||st.chips[0]));
+ badges.forEach(b=>b.g.classList.toggle("on",b.i===cur));
+ Object.values(rowBg).forEach(r=>r.classList.remove("on"));
+ const hits=[...new Set(s.slice(0,cur+1).map(x=>x.hit).filter(Boolean))];
+ hits.forEach(h=>rowBg[h]&&rowBg[h].classList.add("on"));
+ [...bar.querySelectorAll("button[data-i]")].forEach(b=>{if(+b.dataset.i===cur)b.setAttribute("aria-current","step");else b.removeAttribute("aria-current")});
+ card.replaceChildren();
+ const who=document.createElement("div");who.className="who";const sm=document.createElement("small");sm.textContent="Step "+(cur+1)+" of "+s.length;who.append(sm,document.createTextNode(st.from+" → "+st.to));
+ const pre=document.createElement("pre");pre.textContent=st.carry;const p=document.createElement("p");p.textContent=st.why;card.append(who,pre,p);
+}
+function drawScen(key){
+ scen=key;const s=SCEN[key].steps;
+ [...tabs.children].forEach(b=>b.setAttribute("aria-selected",b.dataset.k===key));
+ const per={};s.forEach((st,i)=>st.edges.forEach(id=>(per[id]=per[id]||[]).push(i)));
+ Object.entries(edges).forEach(([id,l])=>l.classList.toggle("used",!!per[id]));
+ const touched=new Set(Object.keys(per).flatMap(id=>USES[id]));
+ Object.entries(GROUPS).forEach(([id,g])=>g.classList.toggle("idle",!touched.has(id)));
+ badgeG.replaceChildren();badges=[];
+ Object.entries(per).forEach(([id,list])=>{
+  const[[x1,y1],[x2,y2]]=E[id].p,short=Math.hypot(x2-x1,y2-y1)<80;
+  list.forEach((i,k)=>{
+   const t=short?.5:(k+1)/(list.length+1);
+   let x=x1+(x2-x1)*t,y=y1+(y2-y1)*t;
+   if(short&&list.length>1){const o=(k-(list.length-1)/2)*19;if(x1===x2)y+=o;else x+=o}
+   const g=el("g",{class:"badge",role:"button","aria-label":"Step "+(i+1)});
+   g.append(el("circle",{cx:x,cy:y,r:9.5}),el("text",{x,y:y+3.8},String(i+1)));
+   g.addEventListener("click",()=>select(i));badgeG.append(g);badges.push({g,i});
+  });
+ });
+ bar.replaceChildren();
+ const nav=(t,d)=>{const b=document.createElement("button");b.type="button";b.className="nav";b.textContent=t;b.onclick=()=>select(cur+d);bar.append(b)};
+ nav("Previous",-1);
+ s.forEach((_,i)=>{const b=document.createElement("button");b.type="button";b.dataset.i=i;b.textContent=i+1;b.setAttribute("aria-label","Step "+(i+1));b.onclick=()=>select(i);bar.append(b)});
+ nav("Next",1);
+ select(0);
+}
+Object.entries(SCEN).forEach(([k,s])=>{const b=document.createElement("button");b.type="button";b.role="tab";b.dataset.k=k;b.textContent=s.tab;b.title=s.q;b.onclick=()=>drawScen(k);tabs.append(b)});
+drawScen("yours");
+
+/* The dispatch flowchart. */
+(function(){
+ const f=document.getElementById("flow"),d=el("defs");
+ [["fm","var(--muted)"],["fa","var(--accent)"]].forEach(([id,c])=>{const m=el("marker",{id,viewBox:"0 0 10 10",refX:9,refY:5,markerWidth:9,markerHeight:9,orient:"auto",markerUnits:"userSpaceOnUse"});const p=el("path",{d:"M0 0L10 5L0 10z"});p.style.fill=c;m.append(p);d.append(m)});f.append(d);
+ const line=(pts,hot)=>f.append(el("polyline",{class:"fl"+(hot?" hot":""),points:pts.join(" ")}));
+ const label=(x,y,t,hot)=>f.append(el("text",{class:"lbl"+(hot?" hot":""),x,y},t));
+ const node=(x,y,w,h,t,sub,hot)=>{f.append(el("rect",{class:"fn"+(hot?" hot":""),x:x-w/2,y:y-h/2,width:w,height:h,rx:6}));f.append(el("text",{class:"t",x,y:y+(sub?-4:5),"text-anchor":"middle"},t));if(sub)f.append(el("text",{class:"s",x,y:y+14,"text-anchor":"middle"},sub))};
+ const dia=(x,y,t,hot)=>{f.append(el("polygon",{class:"fn"+(hot?" hot":""),points:`${x},${y-36} ${x+130},${y} ${x},${y+36} ${x-130},${y}`}));f.append(el("text",{class:"t",x,y:y+5,"text-anchor":"middle",style:"font-size:13px"},t))};
+ const X=240,R=620;
+ line([[X,70],[X,104]],1);line([[X,176],[X,214]],1);line([[X,286],[X,324]],1);line([[X,396],[X,434]],1);line([[X,506],[X,544]],1);line([[X,616],[X,648]],1);line([[X,700],[X,728]],1);
+ [[140,"no"],[250,"yes"],[360,"no"],[470,"no"],[580,"no"]].forEach(([y,t])=>{line([[X+130,y],[R-110,y]]);label(X+150,y-8,t)});
+ line([[R,392],[R,752],[X+130,752]]);
+ line([[X-130,752],[30,752],[30,44],[X-130,44]],1);
+ label(38,400,"model call 2",1);
+ label(X+8,198,"yes",1);label(X+8,308,"no",1);label(X+8,418,"yes",1);label(X+8,528,"yes",1);label(X+8,632,"yes",1);
+ node(X,44,260,52,"The model's response",'get_prices, arguments "{}"',1);
+ dia(X,140,"Any tool calls?",1);dia(X,250,"Sent by the client?",1);dia(X,360,"In the server table?",1);dia(X,470,"User has the role?",1);dia(X,580,"Arguments match?",1);
+ node(X,674,260,52,"Run the handler",'GET /prices?market=SE',1);
+ node(X,752,260,48,"Send outputs to the model",'function_call_output',1);
+ node(R,140,210,52,"Turn ends","stream the done event");
+ node(R,250,210,62,"Pause","client runs it, then POST");
+ node(R,360,210,52,"Error: unknown tool","text for the model");
+ node(R,470,210,52,"Refused: role missing","text for the model");
+ node(R,580,210,52,"Error: invalid arguments","text for the model");
+})();
+
+/* What the model reads on each call. */
+(function(){
+ const I=[["sent","instructions"],["sent","6 tool definitions"]];
+ const COL=[
+  ["Message 1, call 1","First model call. It chooses get_prices.",[...I,["sent","What is the cheapest car...?"]]],
+  ["Message 1, call 2","Our input is only the tool output.",[...I,["hist","What is the cheapest car...?"],["hist","call: get_prices {}"],["sent","output: the price list"]]],
+  ["Message 2, call 1","A new message in the same conversation.",[...I,["hist","What is the cheapest car...?"],["hist","call: get_prices {}"],["hist","output: the price list"],["hist","answer: Spark, 289,000 SEK"],["sent","And what about one with all wheel drive?"]]],
+  ["Message 2, call 2","The search result is added.",[...I,["hist","What is the cheapest car...?"],["hist","call: get_prices {}"],["hist","output: the price list"],["hist","answer: Spark, 289,000 SEK"],["hist","And what about one with all wheel drive?"],["hist","call: search_voltrieve_docs"],["sent","output: chunks from the buyer's guide"]]],
+ ];
+ const host=document.getElementById("stacks");
+ COL.forEach(([t,n,items])=>{const c=document.createElement("article");c.className="stack";const h=document.createElement("h3");h.textContent=t;const s=document.createElement("small");s.textContent=n;c.append(h,s);items.forEach(([k,x])=>{const b=document.createElement("div");b.className="blk "+k;b.textContent=x;c.append(b)});host.append(c)});
+})();
+
+/* Three backends on the same map. */
+(function(){
+ const host=document.getElementById("backends");
+ const hm=(id,c)=>{const m=el("marker",{id,viewBox:"0 0 10 10",refX:9,refY:5,markerWidth:8,markerHeight:8,orient:"auto",markerUnits:"userSpaceOnUse"});const p=el("path",{d:"M0 0L10 5L0 10z"});p.style.fill=c;m.append(p);return m};
+ const B=[
+  {t:"Own loop",api:["Web API","run_turn loop + tool table"],apiLoop:1,hosted:0,
+   arrows:[[[300,92],[300,214]],[[20,92],[20,300]],[[360,92],[360,300]]],
+   labs:[[294,124,"responses.create","end"],[26,124,"GET /prices"],[354,285,"retrieve","end"]],
+   run:"Real run: get_prices and 3 searches, all at once. 8.0 s, 15,756 tokens."},
+  {t:"Prompt agent",api:["Web API","loop for dealer and client tools"],apiLoop:1,agent:1,hosted:0,
+   arrows:[[[300,92],[300,214]],[[20,92],[20,300]],[[290,262],[290,300]]],
+   labs:[[294,124,"agent name only","end"],[26,124,"GET /prices"],[284,285,"MCP, from Foundry","end"]],
+   run:"Real run: 1 search through MCP, no dealer call. 8.2 s, 12,784 tokens."},
+  {t:"Hosted agent",api:["Web API","auth and conversations only"],apiLoop:0,hosted:1,
+   arrows:[[[190,92],[190,160]],[[270,202],[270,214]],[[330,190],[360,190],[360,300]],[[180,202],[180,285],[100,285],[100,300]]],
+   labs:[[196,124,"Invocations"],[354,285,"retrieve","end"],[106,279,"GET /prices"]],
+   run:"Real run: get_prices and 1 search at once. 13.4 s including a 4.2 s session start, 7,873 tokens."},
+ ];
+ B.forEach((b,i)=>{
+  const a=document.createElement("article");a.className="bk";const h=document.createElement("h3");h.textContent=b.t;a.append(h);
+  const s=el("svg",{viewBox:"0 0 380 370",role:"img","aria-label":b.t+": which system makes each call"});
+  const d=el("defs");d.append(hm("ba","var(--accent)"),hm("bm","var(--muted)"));
+  if(i){d.querySelectorAll("marker").forEach(m=>m.id=m.id+i)}
+  s.append(d);
+  const rect=(x,y,w,h,t,sub,loop)=>{s.append(el("rect",{class:"bx2"+(loop?" loop":""),x,y,width:w,height:h,rx:5}),el("text",{class:"btxt",x:x+w/2,y:y+(sub?h/2-3:h/2+4),"text-anchor":"middle"},t));if(sub)s.append(el("text",{class:"bsub",x:x+w/2,y:y+h/2+13,"text-anchor":"middle"},sub))};
+  s.append(el("rect",{class:"zone",x:40,y:136,width:300,height:132,rx:8}),el("text",{class:"zl",x:b.hosted?50:130,y:152},"Microsoft Foundry"));
+  rect(8,18,364,74,b.api[0],b.api[1],b.apiLoop);
+  rect(50,214,130,46,"Conversations");
+  rect(200,214,130,46,b.agent?"Agent + model":"gpt-5.4-mini",b.agent?"instructions, tools":"");
+  if(b.hosted)rect(130,160,200,42,"Hosted container","run_turn + tool table",1);
+  rect(8,300,172,56,"Dealer service");
+  rect(200,300,172,56,"Azure AI Search");
+  const dash=el("polyline",{class:"ba2",points:b.hosted?"60,92 60,214":"110,92 110,214"});dash.style.markerEnd=`url(#bm${i||""})`;s.append(dash);
+  b.arrows.forEach(p=>{const l=el("polyline",{class:"ba",points:p.join(" ")});l.style.markerEnd=`url(#ba${i||""})`;s.append(l)});
+  b.labs.forEach(([x,y,t,a])=>s.append(el("text",{class:"alab",x,y,"text-anchor":a||"start"},t)));
+  a.append(s);const p=document.createElement("p");p.textContent=b.run;a.append(p);host.append(a);
+ });
+})();
+</script>

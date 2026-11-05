@@ -12,6 +12,8 @@ It ships three backends behind one Web API, a CLI that declares its own tools, a
 
 The full argument, with evidence and line counts, is in [docs/why-foundry.md](docs/why-foundry.md).
 
+[docs/prompt-journey.md](docs/prompt-journey.md) follows one prompt through every system, with flow diagrams and what is sent at each hop.
+
 ## Architecture
 
 ```mermaid

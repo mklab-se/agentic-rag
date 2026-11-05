@@ -1,0 +1,26 @@
+One run per prompt against the deployed API on 2026-11-05, read from the trace events and shortened by hand.
+docs/assets/prompt-journey.html shows these values. Other runs take other paths: see prompt-journey.txt.
+
+Own loop, one conversation
+  Message 1: What is the cheapest car that you can sell me?
+    model call 1  1.9 s  -> get_prices arguments {}
+    get_prices    25 ms  -> spark 289000, lumen 379000, ragn 549000, fjord 529000, atlas 749000 (market SE)
+    model call 2         -> In the SE market, the cheapest Voltrieve car is the Spark at 289,000 SEK.
+    2485 tokens, 4.2 s
+  Message 2: And what about one with all wheel drive?
+    model call 1  1.7 s  -> search_voltrieve_docs query "all wheel drive AWD models price buyer's guide"
+    sub-queries          -> all wheel drive AWD models / buyer's guide AWD price / AWD model price
+    top reference        -> voltrieve-buyers-guide.md
+    model call 2         -> In the SE market, the cheapest AWD Voltrieve is the Lumen AWD at 419,000 SEK.
+    7441 tokens, 5.9 s
+
+What is the cheapest car with all wheel drive that you can sell me in Sweden?
+  Own loop      8.0 s, 15756 tokens. One response asked for get_prices {"market":"SE"} and 3 searches.
+                They ran together: 2045 ms, against 5317 ms one at a time. Sub-queries per search: 3, 3, 5.
+  Prompt agent  8.2 s, 12784 tokens. 1 voltrieve-kb MCP call, no dealer call.
+  Hosted agent  13.4 s, 7873 tokens. get_prices and 1 search together, 1585 ms against 1936 ms.
+                4.2 s passed before the first model call, starting the session.
+  All three: Lumen AWD, 419,000 SEK.
+
+Good morning! (own loop)
+  1 model call, no tool, 920 input tokens, 966 tokens, 1.4 s.

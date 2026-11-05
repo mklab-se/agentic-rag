@@ -1,0 +1,27 @@
+Your prompt: What is the cheapest car that you can sell me?
+  15 runs
+    8 x  get_prices x2  ->  Spark 289,000 SEK  (median 2 model calls, 2922 tokens, 4.4 s)
+    4 x  get_prices x1  ->  Spark 289,000 SEK  (median 2 model calls, 2638 tokens, 3.8 s)
+    3 x  no tool  ->  asked for the market  (median 1 model calls, 1230 tokens, 2.4 s)
+
+Market given: What is the cheapest car that you can sell me in Sweden?
+  15 runs
+   15 x  get_prices x1  ->  Spark 289,000 SEK  (median 2 model calls, 2283 tokens, 2.6 s)
+
+AWD, market given: What is the cheapest car with all wheel drive that you can sell me in Sweden?
+  15 runs
+    8 x  get_prices x1 + search_voltrieve_docs x1  ->  Lumen AWD 419,000 SEK  (median 2 model calls, 6104 tokens, 6.5 s)
+    7 x  get_prices x1 + search_voltrieve_docs x2  ->  Lumen AWD 419,000 SEK  (median 2 model calls, 10055 tokens, 7.0 s)
+
+Greeting: Good morning!
+  15 runs
+   15 x  no tool  ->  other  (median 1 model calls, 952 tokens, 0.8 s)
+
+Follow-up in the same conversation: And what about one with all wheel drive?
+  15 runs
+    7 x  search_voltrieve_docs x1  ->  Lumen AWD 419,000 SEK  (median 2 model calls, 6646 tokens, 5.8 s)
+    4 x  no tool  ->  asked for the market  (median 1 model calls, 1438 tokens, 3.5 s)
+    1 x  search_voltrieve_docs x3  ->  Lumen AWD 419,000 SEK  (median 2 model calls, 16815 tokens, 8.2 s)
+    1 x  search_voltrieve_docs x2  ->  Lumen AWD 419,000 SEK  (median 2 model calls, 11358 tokens, 8.4 s)
+    1 x  get_prices x1 + search_voltrieve_docs x1  ->  Lumen AWD 419,000 SEK  (median 2 model calls, 4405 tokens, 10.7 s)
+    1 x  get_prices x2 + search_voltrieve_docs x1  ->  Lumen AWD 419,000 SEK  (median 2 model calls, 8945 tokens, 7.1 s)
