@@ -17,6 +17,7 @@ from __future__ import annotations
 import argparse
 import sys
 import time
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 import httpx
@@ -64,12 +65,22 @@ def main() -> int:
     url = api_url()
     dealer = azd_value("DEALER_URL").rstrip("/")
     services = {"API": f"{url}/healthz", "dealer": f"{dealer}/healthz"}
-    results = [ping(name, target) for name, target in services.items()]
-    results.append(ping("web client", azd_value("WEB_URL")))
     token = cached_token(api_token)
-    for backend in BACKENDS:
-        results.append(turn(url, token, backend, "search", SEARCH_QUESTION))
-        results.append(turn(url, token, backend, "dealer", STOCK_QUESTION))
+    token()  # one sign-in, before the threads need it
+    began = time.perf_counter()
+
+    def backend_turns(backend: str) -> bool:
+        searched = turn(url, token, backend, "search", SEARCH_QUESTION)
+        return turn(url, token, backend, "dealer", STOCK_QUESTION) and searched
+
+    # The services wake on their own, so nothing here has to wait for anything else. The
+    # questions wait for the pings only to keep the timings readable.
+    targets = {**services, "web client": azd_value("WEB_URL")}
+    with ThreadPoolExecutor(len(targets)) as pool:
+        results = list(pool.map(ping, targets, targets.values()))
+    with ThreadPoolExecutor(len(BACKENDS)) as pool:
+        results += pool.map(backend_turns, BACKENDS)
+    print(f"Took {time.perf_counter() - began:.1f} s.", flush=True)
     print("All warm." if all(results) else "Something is not healthy: see the lines above.", flush=True)
     if not args.keep_warm:
         return 0 if all(results) else 1
