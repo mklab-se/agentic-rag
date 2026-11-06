@@ -1014,10 +1014,10 @@ const E={
  d_t:{p:[[900,380],[680,380]],a:[790,394],m:"middle",v:"down",ret:1},
  t_p:{p:[[680,486],[915,486]],a:[797,472],m:"middle",v:"up"},
  p_t:{p:[[915,506],[680,506]],a:[797,520],m:"middle",v:"down",ret:1},
- p_m:{p:[[1015,462],[1015,275]],a:[1102,350],m:"start",v:"mid"},
- m_p:{p:[[1030,275],[1030,462]],a:[1102,350],m:"start",v:"mid",ret:1},
- m_k:{p:[[1070,275],[1070,462]],a:[1102,350],m:"start",v:"mid"},
- k_m:{p:[[1086,462],[1086,275]],a:[1102,350],m:"start",v:"mid",ret:1},
+ p_m:{p:[[1030,462],[1030,420],[1170,420],[1170,392]],a:[1106,445],m:"start",v:"mid"},
+ m_p:{p:[[1190,392],[1190,434],[1046,434],[1046,462]],a:[1106,445],m:"start",v:"mid",ret:1},
+ m_k:{p:[[1070,275],[1070,462]],a:[1102,308],m:"start",v:"mid"},
+ k_m:{p:[[1086,462],[1086,275]],a:[1102,308],m:"start",v:"mid",ret:1},
  kb_ks:{p:[[990,528],[990,566]],a:[1022,547],m:"start",v:"mid"},
  ks_kb:{p:[[1006,566],[1006,528]],a:[1022,547],m:"start",v:"mid",ret:1},
  ks_ix:{p:[[990,626],[990,664]],a:[1022,645],m:"start",v:"mid"},
@@ -1298,7 +1298,7 @@ function applyBackend(){
  zHost.r.style.display=zHost.t.style.display=hosted?"":"none";
  setRoutes("Routes",hosted?["token, role, owner check,","conversations"]:["token, role, owner check","routes.py, turns.py"]);
  setLoop(prompt?"Loop, function tools only":"run_turn loop",hosted?["the same code as the own loop,","in Foundry's container","repeat until no tool calls"]:prompt?["sends only the agent's name,","runs dealer and curated tools","searches happen in Foundry"]:["agent_core/loop.py","repeat until no tool calls,","at most 8 model calls"]);
- setModel(prompt?"Prompt agent + gpt-5.4-mini":hosted?"gpt-5.4-mini":"gpt-6.1-terra",prompt?["holds instructions and tools, and","runs the searches through MCP"]:["returns text or tool requests, never","calls anything. Search plans on gpt-5.4-mini"]);
+ setModel(prompt?"Prompt agent + gpt-5.4-mini":hosted?"gpt-5.4-mini":"gpt-6.1-terra",prompt?["holds instructions and tools, and","runs the searches through MCP"]:["returns text or tool requests,","never calls anything itself"]);
  rowTo.search_voltrieve_docs.textContent=rowTo.search_spare_parts.textContent=prompt?"→ Foundry":"→ Search";
 }
 const VERDICT={
@@ -1345,8 +1345,9 @@ const toolG=group("tools");box(toolG,420,350,260,216,"var(--api)","ToolSet: the 
 const ROWS=[["search_voltrieve_docs","Search"],["search_spare_parts","Search"],["get_prices","Dealer"],["check_stock","Dealer"],["book_test_drive","Dealer"],["get_current_date","clock"],["get_curated_answer","stored"]];
 const rowBg={},rowTo={};ROWS.forEach(([n,w],i)=>{const y=382+i*26;const g=el("g");const r=el("rect",{class:"row-bg",x:428,y,width:244,height:24,rx:3});rowBg[n]=r;const to=el("text",{class:"row-t",x:664,y:y+16,"text-anchor":"end"},"→ "+w);rowTo[n]=to;g.append(r,el("text",{class:"row-t",x:434,y:y+16},n),to);toolG.append(g)});
 box(group("conv"),920,50,330,80,"var(--store)","Conversations",["messages, tool calls, owner"]);
-const setModel=box(group("model"),920,185,330,90,"var(--llm)","gpt-6.1-terra",["returns text or tool requests, never","calls anything. Search plans on gpt-5.4-mini"]);
+const setModel=box(group("model"),920,185,330,90,"var(--llm)","gpt-6.1-terra",["returns text or tool requests,","never calls anything itself"]);
 box(group("dealer"),900,330,105,74,"var(--dealer)","Dealer",["prices and","stock"]);
+box(group("planmodel"),1104,326,160,66,"var(--llm)","gpt-5.4-mini",["Search's planning","model, in Foundry"]);
 const setKb=box(group("kb"),915,462,185,66,"var(--search)","Knowledge base",["plans sub-queries,","merges results"]);
 box(group("ks"),915,566,185,60,"var(--search)","Knowledge source",["points at one index"]);
 box(group("ix"),915,664,185,66,"var(--search)","Index",["chunks with vectors,","hybrid search"]);
@@ -1354,7 +1355,7 @@ box(group("em"),1125,566,130,60,"var(--search)","Embedding",["text-embedding","-
 box(group("rk"),1125,664,130,66,"var(--search)","Semantic",["ranker: reorders","the results"]);
 const edgeG=map.appendChild(el("g")),badgeG=map.appendChild(el("g")),chipG=map.appendChild(el("g"));
 const edges={};Object.entries(E).forEach(([id,e])=>{const l=el("polyline",{class:"edge"+(e.ret?" ret":""),points:e.p.join(" ")});edges[id]=l;edgeG.append(l)});
-const USES={c_r:["client","routes"],r_c:["client","routes"],r_v:["routes","conv"],v_r:["routes","conv"],r_l:["routes","loop"],l_r:["routes","loop"],l_m:["loop","model"],m_l:["loop","model"],v_m:["conv","model"],l_t:["loop","tools"],t_l:["loop","tools"],t_d:["tools","dealer"],d_t:["tools","dealer"],t_p:["tools","kb"],p_t:["tools","kb"],p_m:["kb","model"],m_p:["kb","model"],m_k:["kb","model"],k_m:["kb","model"],kb_ks:["kb","ks"],ks_kb:["kb","ks"],ks_ix:["ks","ix"],ix_ks:["ks","ix"],ix_em:["ix","em"],em_ix:["ix","em"],ix_r:["ix","rk"],r_ix:["ix","rk"],c_c:["client"],m_m:["model"],l_v:["loop","conv"]};
+const USES={c_r:["client","routes"],r_c:["client","routes"],r_v:["routes","conv"],v_r:["routes","conv"],r_l:["routes","loop"],l_r:["routes","loop"],l_m:["loop","model"],m_l:["loop","model"],v_m:["conv","model"],l_t:["loop","tools"],t_l:["loop","tools"],t_d:["tools","dealer"],d_t:["tools","dealer"],t_p:["tools","kb"],p_t:["tools","kb"],p_m:["kb","planmodel"],m_p:["kb","planmodel"],m_k:["kb","model"],k_m:["kb","model"],kb_ks:["kb","ks"],ks_kb:["kb","ks"],ks_ix:["ks","ix"],ix_ks:["ks","ix"],ix_em:["ix","em"],em_ix:["ix","em"],ix_r:["ix","rk"],r_ix:["ix","rk"],c_c:["client"],m_m:["model"],l_v:["loop","conv"]};
 
 let scen="yours",cur=0,badges=[];
 const tabs=document.getElementById("tabs"),bar=document.getElementById("stepbar"),card=document.getElementById("card");
