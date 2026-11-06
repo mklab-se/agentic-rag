@@ -13,7 +13,8 @@ Numbers come from live runs on 2026-11-04 (`scripts/prompt_journey.py`, `docs/ev
 - **The API sends the prompt to the model unchanged.** It never rewrites it, and it never loads history into the request.
 - **History lives in Foundry.** The API sends a conversation id, and Foundry supplies the earlier turns to the model.
 - **The user's words never go to Azure AI Search as they are.** The model writes a search query. Search then uses a second model call to turn that query into sub-queries.
-- **One chat deployment does both jobs**, `gpt-5.4-mini`. An embedding model is also used, by Search.
+- **Two chat models are at work.** The own loop runs `gpt-6.1-terra`, and Search plans with `gpt-5.4-mini`, because it refuses GPT-6 models. The prompt agent and hosted agent run `gpt-5.4-mini` too. An embedding model is also used, by Search.
+- **The recorded runs below used `gpt-5.4-mini` as the agent.** The path is the same on `gpt-6.1-terra`, but the times and tokens differ. See [Choosing a model](model-comparison.md).
 
 ## Who calls whom
 
@@ -31,7 +32,7 @@ flowchart LR
     end
     subgraph F["Microsoft Foundry"]
         V[("Conversations")]
-        M["gpt-5.4-mini"]
+        M["gpt-6.1-terra<br/>(Search plans with gpt-5.4-mini)"]
     end
     subgraph S["Azure AI Search"]
         P["Planner"]
@@ -147,7 +148,7 @@ The interactive page has a Detailed RAG tab. This is the same path as a diagram,
 
 ```mermaid
 flowchart TD
-    M["gpt-5.4-mini<br/>writes one query per base"] --> T["ToolSet: search_voltrieve_docs<br/>and search_spare_parts, together"]
+    M["gpt-6.1-terra<br/>writes one query per base"] --> T["ToolSet: search_voltrieve_docs<br/>and search_spare_parts, together"]
     T -->|"POST /knowledgebases/voltrieve-kb/retrieve<br/>one message: the model's query"| KB["Knowledge base voltrieve-kb<br/>planning model, retrieval instructions"]
     KB -->|"946 tokens in, about 0.8 s"| P["Query planning on gpt-5.4-mini"]
     P -->|"3 sub-queries"| KB
@@ -194,7 +195,7 @@ flowchart TD
     O -->|Yes| M
     N --> M["Model call to Foundry, Responses API<br/>instructions + tool definitions<br/>+ conversation id + the prompt, unchanged"]
     H[("Foundry Conversations<br/>earlier turns")] -. "Foundry loads history" .-> M
-    M --> D{"gpt-5.4-mini reasons<br/>and chooses"}
+    M --> D{"gpt-6.1-terra reasons<br/>and chooses"}
     D -->|"Text only"| T["Stream the answer to the client"]
     D -->|"Dealer tool"| P["get_prices or check_stock<br/>on the dealer service"]
     D -->|"Knowledge base tool"| S["Search tool with a query<br/>written by the model"]
@@ -253,7 +254,7 @@ sequenceDiagram
     participant Client as Web app or CLI
     participant API as Web API
     participant Conv as Foundry Conversations
-    participant LLM as gpt-5.4-mini (agent)
+    participant LLM as gpt-6.1-terra (agent)
     participant Dealer as Dealer service
     participant KB as AI Search knowledge base
     participant Plan as gpt-5.4-mini (planner)
@@ -335,7 +336,7 @@ Every iteration is one Responses API call (`agent_core/src/voltrieve_agent/model
 
 ```python
 client.responses.create(
-    model="gpt-5.4-mini",
+    model="gpt-6.1-terra",
     instructions=AGENT_INSTRUCTIONS,   # about 2300 characters
     conversation="conv_...",           # Foundry adds the history
     input="What is the cheapest car that you can sell me?",   # unchanged
@@ -376,12 +377,12 @@ There is no router model and no classification step. One extra call on every tur
 
 | Model | Called by | Job | Sees |
 | --- | --- | --- | --- |
-| `gpt-5.4-mini` as the agent | The Web API | Decide, write search queries, write the answer | Instructions, tools, full conversation |
+| `gpt-6.1-terra` as the agent, on the own loop | The Web API | Decide, write search queries, write the answer | Instructions, tools, full conversation |
 | `gpt-5.4-mini` as the query planner | Azure AI Search, with its own identity | Turn one query into sub-queries | The knowledge base's retrieval instructions and the query we send |
 | `text-embedding-3-large` | Azure AI Search | Turn sub-queries into vectors. It also embedded the documents at indexing time | Sub-query text |
 | Semantic ranker | Azure AI Search | Rerank results | Sub-queries and chunks |
 
-The two `gpt-5.4-mini` roles use the same deployment and share its limit of 150k tokens a minute. No model is reserved for decisions.
+Each deployment has a limit of 150k tokens a minute, so on the own loop the agent and the planner no longer share one. On the prompt agent and hosted agent they do, because both run `gpt-5.4-mini`. No model is reserved for decisions.
 
 ### 7. The tools run
 
