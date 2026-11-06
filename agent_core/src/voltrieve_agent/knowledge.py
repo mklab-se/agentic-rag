@@ -2,6 +2,7 @@
 
 import asyncio
 import json
+import logging
 from dataclasses import asdict
 
 from voltrieve_search.client import SearchApiError, SearchRestClient
@@ -16,11 +17,17 @@ from voltrieve_search.retrieve import (
 from voltrieve_agent.events import RETRYING, status, trace
 from voltrieve_agent.tools import current_emit
 
+logger = logging.getLogger(__name__)
+
 KNOWLEDGE_BASE_NAME = "voltrieve-kb"
 SEARCH_SCOPE = "https://search.azure.com/.default"
 # Query planning spends model tokens, so a busy deployment answers a retrieve with 429.
 RATE_LIMIT_RETRIES = 2
 RATE_LIMIT_DELAY_SECONDS = 10.0
+QUOTA_MESSAGE = (
+    "Error: the search allowance of this service is used up, so nothing could be searched. Tell "
+    "the user this, and that it is a limit of the service and not a problem with the documents."
+)
 
 
 class KnowledgeBase:
@@ -38,7 +45,16 @@ class KnowledgeBase:
         self._knowledge_source = knowledge_source
 
     async def search(self, query: str) -> str:
-        result = await self._retrieve(query)
+        try:
+            result = await self._retrieve(query)
+        except SearchApiError as exc:
+            if exc.status != 402:
+                raise
+            logger.error("Search refused %s: %s", self._kb_name, exc.message)
+            emit = current_emit.get()
+            if emit is not None:
+                await emit(trace("search_quota_exhausted", "search", self._kb_name))
+            return QUOTA_MESSAGE
         titles = _reference_titles(result)
         emit = current_emit.get()
         if emit is not None:

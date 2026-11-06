@@ -13,6 +13,8 @@ resource search 'Microsoft.Search/searchServices@2026-09-01-preview' = {
     partitionCount: 1
     hostingMode: 'Default'
     semanticSearch: 'standard'
+    // The free plan refuses every retrieve with 402 once its monthly allowance is used.
+    knowledgeRetrieval: 'standard'
     disableLocalAuth: true
     publicNetworkAccess: 'enabled'
   }
