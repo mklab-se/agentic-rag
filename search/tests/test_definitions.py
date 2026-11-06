@@ -14,8 +14,8 @@ VALUES = {
     "EMBEDDING_DEPLOYMENT": "emb",
     "EMBEDDING_MODEL": "text-embedding-3-large",
     "FOUNDRY_OPENAI_ENDPOINT": "https://f.openai.azure.com",
-    "CHAT_DEPLOYMENT": "chat",
-    "CHAT_MODEL": "gpt-5.4-mini",
+    "PLANNING_DEPLOYMENT": "chat",
+    "PLANNING_MODEL": "gpt-5.4-mini",
 }
 
 

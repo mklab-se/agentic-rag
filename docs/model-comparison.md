@@ -4,7 +4,15 @@ Which model should run the agent, and does it depend on the architecture? This p
 
 ## The result
 
-The own loop runs `gpt-6.1-terra` by default, chosen from these results. The prompt agent, hosted agent and Search planning run `gpt-5.4-mini`.
+All three backends run `gpt-6.1-terra`, chosen from these results, and Search plans with `gpt-5.4-mini`. A last run on that setup, 48 turns per backend:
+
+| Architecture | Median TTFT | Turns over 10 s | Two-base total | Article numbers |
+| --- | --- | --- | --- | --- |
+| Own loop | 1.9 s | 1 of 48 | 7.8 s | 78 of 78 |
+| Prompt agent | 2.1 s | 3 of 48 | 10.9 s | 78 of 78 |
+| Hosted agent | 7.5 s | 9 of 48 | 12.8 s | 78 of 78 |
+
+All three reached the right sources in all 48 runs, with no tool called in vain. The comparison between models:
 
 | Architecture | Model | Median TTFT | Turns over 10 s | Two-base TTFT | Two-base total | USD per 1,000 turns |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -20,7 +28,7 @@ The own loop runs `gpt-6.1-terra` by default, chosen from these results. The pro
 
 TTFT is time to first token, and total is time to last token. All nine combinations found 78 of 78 article numbers. All reached the right sources in every run, except one prompt agent run on `gpt-5.4-mini`.
 
-- **Fastest:** the own loop with `gpt-6.1-terra`, the only combination that stayed under 10 seconds on every turn. Its slowest TTFT was 9.5 seconds.
+- **Fastest:** the own loop with `gpt-6.1-terra`. In this run its slowest TTFT was 9.5 seconds. It isn't a guarantee: the last run above had one turn at 13.6 seconds.
 - **Cheapest:** `gpt-6-luna`, at about a third of the cost of `gpt-5.4-mini`, and still a little faster than it.
 - **The hosted agent** pays about 5 seconds on every turn for the hop into its session, whichever model it runs.
 - **The prompt agent** had a few very slow turns, up to 84 seconds. These runs used all three backends at once, so a rate limit retry is a likely cause, but this wasn't confirmed.
