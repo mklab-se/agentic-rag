@@ -13,7 +13,7 @@ class Settings(BaseSettings):
 
     # Needed by the loop backend; read lazily, so the API starts without them.
     foundry_project_endpoint: str = ""
-    chat_deployment: str = "gpt-5.4-mini"
+    chat_deployment: str = "gpt-6.1-terra"
     search_endpoint: str = ""
     dealer_url: str = ""
     dealer_client_id: str = ""

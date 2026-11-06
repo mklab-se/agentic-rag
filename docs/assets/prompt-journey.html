@@ -843,7 +843,7 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
   <div class="seg" role="group" aria-label="Architecture" id="seg"></div>
   <div class="tabs" role="tablist" aria-label="Prompt" id="tabs"></div>
   <div class="verdict" id="verdict"></div>
-  <p class="legend">Cards show the median of 3 runs at once on all backends, so a gap of a second or two is noise. The comparison table further down uses larger samples. These times are to the last token. For time to first token, see <a href="../model-comparison/">Choosing a model</a>. While a user waits, the API sends status events such as "Searching the parts catalog", and the first arrives in about 0.1 s.</p>
+  <p class="legend">Cards show the median of 3 runs at once on all backends, recorded with <code>gpt-5.4-mini</code> as the agent, so a gap of a second or two is noise. The comparison table further down uses larger samples. These times are to the last token. For time to first token, see <a href="../model-comparison/">Choosing a model</a>. While a user waits, the API sends status events such as "Searching the parts catalog", and the first arrives in about 0.1 s.</p>
   <div class="mapwrap" tabindex="0" aria-label="Map of the systems. Scroll sideways on a small screen."><svg class="map" id="map" viewBox="0 0 1290 760" role="img" aria-label="System map: client, Web API with routes, loop and tool table, Foundry with conversations and the model, the dealer service, and Azure AI Search with knowledge base, knowledge source, index, embedding model and semantic ranker. Numbered arrows show the calls of the selected prompt."></svg></div>
   <div class="stepbar" id="stepbar"></div>
   <div class="card" id="card" aria-live="polite"></div>
@@ -949,7 +949,7 @@ return await tool.handler(arguments, user)</pre>
 
 <section aria-labelledby="win-title">
   <h2 id="win-title">Where each one works better, and where it fails</h2>
-  <p>Green marks the best result on that row and red marks a real weakness. Figures are medians from the live runs in <code>docs/evidence/</code>, with <code>gpt-5.4-mini</code>. Times are to the last token, unless a row says otherwise.</p>
+  <p>Green marks the best result on that row and red marks a real weakness. Figures are medians from the live runs in <code>docs/evidence/</code>, all with <code>gpt-5.4-mini</code> as the agent. The own loop now runs <code>gpt-6.1-terra</code>, which is faster: see <a href="../model-comparison/">Choosing a model</a>. Times are to the last token, unless a row says otherwise.</p>
   <div class="tablewrap"><table>
     <tr><th>What you care about</th><th>Own loop</th><th>Prompt agent</th><th>Hosted agent</th></tr>
     <tr><td>Turns over 10 s to the first token</td><td class="win">3 of 48, or 0 of 48 on <code>gpt-6.1-terra</code></td><td>9 of 48, or 5 of 48 on <code>gpt-6.1-terra</code></td><td class="fail">13 of 48, or 7 of 48 on <code>gpt-6.1-terra</code></td></tr>
@@ -1042,17 +1042,17 @@ const CREATE=[S("Web API routes","Foundry Conversations","r_v","conversations.cr
 const OWNER=[S("Web API routes","Foundry Conversations",["r_v","v_r"],["Who owns this conversation?","owner_oid must match"],`In-memory cache first. If this API process hasn't seen it:
 conversations.retrieve("${CONV}")  ->  metadata.owner_oid`,"The owner must equal the oid in the token. A mismatch gets 403, the same answer as an unknown id, so ids can't be probed.")];
 const START=(p)=>S("Web API routes","run_turn loop","r_l","run_turn(prompt, conv id, user)",`TurnInput(user, conversation_id, turn_id, input="${p}", client_tools=[])`,"The words are passed on unchanged. No code reads or classifies them.");
-const MODEL=(n,input,why,chip,tools)=>Object.assign(S("run_turn loop","gpt-5.4-mini in Foundry","l_m",chip,`responses.create(
-  model="gpt-5.4-mini",
+const MODEL=(n,input,why,chip,tools)=>Object.assign(S("run_turn loop","gpt-6.1-terra in Foundry","l_m",chip,`responses.create(
+  model="gpt-6.1-terra",
   ${INSTR.replace("6 tool definitions",tools||"6 tool definitions").replace("\n","\n  ")}
   conversation="${CONV}",
   input=${input},
   parallel_tool_calls=True,
   reasoning={"effort": "medium"},
   stream=True)`,why),{isModel:true,input,n});
-const HIST=(chip,carry,why)=>S("Foundry Conversations","gpt-5.4-mini","v_m",chip,carry,why);
+const HIST=(chip,carry,why)=>S("Foundry Conversations","gpt-6.1-terra","v_m",chip,carry,why);
 const LOOKUP=(name,args,why)=>S("run_turn loop","ToolSet, the tool table","l_t",`execute("${name}")`,`toolset.execute("${name}", '${args}', user, emit)`,why,name);
-const UP=(chip,answer,why)=>S("gpt-5.4-mini","run_turn loop","m_l",chip,answer,why);
+const UP=(chip,answer,why)=>S("gpt-6.1-terra","run_turn loop","m_l",chip,answer,why);
 const OUT=(text)=>S("run_turn loop, Web API routes","Client",["l_r","r_c"],["delta, delta, done","the answer, as it is written"],text,"No tool calls in this response, so the loop stops. The done event carries the conversation id, and the client keeps it for the next message.");
 const PRICES='{"market":"SE","currency":"SEK","prices":[\n  {"model":"spark","list_price":289000},\n  {"model":"lumen","list_price":379000},\n  {"model":"ragn","list_price":549000},\n  {"model":"fjord","list_price":529000},\n  {"model":"atlas","list_price":749000}]}';
 
@@ -1091,7 +1091,7 @@ const SCEN={
     "text": "all wheel drive AWD models price buyer's guide" }] }],
   "knowledgeSourceParams": [{ "knowledgeSourceName": "voltrieve-docs-ks", ... }],
   "maxOutputSize": 5000, "includeActivity": true }`,"This is the one prompt Search gets. It holds only the model's text, with no history. It runs as the API's identity.","search_voltrieve_docs"),
-  S("Knowledge base planner","gpt-5.4-mini","p_m","plan sub-queries","Prompt written by Azure AI Search, not visible to us.\nIn a recorded call: 942 input tokens, 44 output, 1.4 s.","Search calls the same deployment on its own. This is query planning, and it shares the token limit with the agent."),
+  S("Knowledge base planner","gpt-5.4-mini","p_m","plan sub-queries","Prompt written by Azure AI Search, not visible to us.\nIn a recorded call: 942 input tokens, 44 output, 1.4 s.","Search calls its own model, gpt-5.4-mini, because it refuses GPT-6 models. This is query planning."),
   S("gpt-5.4-mini","Knowledge base planner","m_p","3 sub-queries","all wheel drive AWD models\nbuyer's guide AWD price\nAWD model price","Three shorter, sharper searches, taken from the real run."),
   S("Knowledge base","Knowledge source, index",["kb_ks","ks_ix"],["3 sub-queries","searches voltrieve-docs-index"],"The knowledge base hands each sub-query to its knowledge source, voltrieve-docs-ks, which searches voltrieve-docs-index with keyword and vector matching, then the semantic ranker. The Detailed RAG tab shows each of these.","In a recorded call these took 36 to 79 ms each."),
   S("Index, knowledge source","Knowledge base",["ix_ks","ks_kb"],["ranked chunks","best chunks merged"],"Chunks of documents, best match first.\nTop document: voltrieve-buyers-guide.md","Results from the sub-queries are merged."),
@@ -1179,8 +1179,9 @@ const BACKENDS={loop:{label:"Own loop"},prompt:{label:"Prompt agent"},hosted:{la
 const cache={};
 function stepsFor(key){const k=backend+key;return cache[k]||(cache[k]=backend==="loop"?SCEN[key].steps:backend==="hosted"?hostedSteps(SCEN[key].steps):promptSteps(key))}
 const HOST=t=>t.replace(/API's managed identity/g,"hosted agent's managed identity").replace(/the API's identity/g,"the hosted agent's identity");
+const MINI=t=>t.replace(/gpt-6\.1-terra/g,"gpt-5.4-mini");
 function hostedSteps(list){return list.map(st=>{
- const c={...st,chips:[...st.chips],from:st.from.replace("run_turn loop","Hosted run_turn").replace("ToolSet","Hosted ToolSet"),to:st.to.replace("run_turn loop","Hosted run_turn").replace("ToolSet","Hosted ToolSet"),carry:HOST(st.carry),why:HOST(st.why)};
+ const c={...st,chips:[...st.chips],from:MINI(st.from).replace("run_turn loop","Hosted run_turn").replace("ToolSet","Hosted ToolSet"),to:MINI(st.to).replace("run_turn loop","Hosted run_turn").replace("ToolSet","Hosted ToolSet"),carry:MINI(HOST(st.carry)),why:HOST(st.why)};
  if(st.edges.includes("r_l")){c.from="Web API";c.to="Hosted container in Foundry";c.chips=["POST .../invocations"];c.carry=`POST <project>/agents/voltrieve-hosted/endpoint/protocols/invocations
 Authorization: Bearer <API's managed identity>
 
@@ -1191,7 +1192,7 @@ Authorization: Bearer <API's managed identity>
  return c})}
 function promptSteps(key){
  const name=key==="client"?"voltrieve-prompt-cli":"voltrieve-prompt-web",ex=J.prompt[key].example;
- const conv=st=>{let c=st;if(st.isModel)c={...st,from:"Web API loop",to:"Prompt agent in Foundry",chips:[typeof st.input==="string"&&st.input.startsWith('"')?"agent name + prompt":"agent name + tool output"],carry:`responses.create(
+ const conv=st0=>{const st={...st0,from:MINI(st0.from),to:MINI(st0.to)};let c=st;if(st.isModel)c={...st,from:"Web API loop",to:"Prompt agent in Foundry",chips:[typeof st.input==="string"&&st.input.startsWith('"')?"agent name + prompt":"agent name + tool output"],carry:`responses.create(
   conversation="${CONV}",
   input=${st.input},
   extra_body={"agent_reference": {
@@ -1242,7 +1243,7 @@ function DETAIL_STEPS(){
 "Answer questions about Voltrieve electric cars. Compare models by
  searching for each one separately. Prices are only in the buyer's guide."
 retrievalReasoningEffort: low
-A recorded call: 946 input tokens, 44 to 61 output tokens, about 800 ms`,"Query planning, the agentic part of agentic retrieval. It uses the same gpt-5.4-mini deployment as the agent, so they share a token limit."),
+A recorded call: 946 input tokens, 44 to 61 output tokens, about 800 ms`,"Query planning, the agentic part of agentic retrieval. It runs on gpt-5.4-mini, because Search refuses GPT-6 models."),
   S("gpt-5.4-mini","Knowledge base planner","m_p",(know.sub_queries||[]).length+" sub-queries",(know.sub_queries||[]).join("\n"),"Real sub-queries from this run. The planner decides how many."),
   S("Knowledge base","Knowledge source voltrieve-docs-ks","kb_ks","each sub-query",`knowledgeSourceName: voltrieve-docs-ks   (kind: searchIndex)
 searchIndexName:     voltrieve-docs-index
@@ -1297,7 +1298,7 @@ function applyBackend(){
  zHost.r.style.display=zHost.t.style.display=hosted?"":"none";
  setRoutes("Routes",hosted?["token, role, owner check,","conversations"]:["token, role, owner check","routes.py, turns.py"]);
  setLoop(prompt?"Loop, function tools only":"run_turn loop",hosted?["the same code as the own loop,","in Foundry's container","repeat until no tool calls"]:prompt?["sends only the agent's name,","runs dealer and curated tools","searches happen in Foundry"]:["agent_core/loop.py","repeat until no tool calls,","at most 8 model calls"]);
- setModel(prompt?"Prompt agent + gpt-5.4-mini":"gpt-5.4-mini",prompt?["holds instructions and tools, and","runs the searches through MCP"]:["returns text or tool requests,","never calls anything itself"]);
+ setModel(prompt?"Prompt agent + gpt-5.4-mini":hosted?"gpt-5.4-mini":"gpt-6.1-terra",prompt?["holds instructions and tools, and","runs the searches through MCP"]:["returns text or tool requests, never","calls anything. Search plans on gpt-5.4-mini"]);
  rowTo.search_voltrieve_docs.textContent=rowTo.search_spare_parts.textContent=prompt?"→ Foundry":"→ Search";
 }
 const VERDICT={
@@ -1344,7 +1345,7 @@ const toolG=group("tools");box(toolG,420,350,260,216,"var(--api)","ToolSet: the 
 const ROWS=[["search_voltrieve_docs","Search"],["search_spare_parts","Search"],["get_prices","Dealer"],["check_stock","Dealer"],["book_test_drive","Dealer"],["get_current_date","clock"],["get_curated_answer","stored"]];
 const rowBg={},rowTo={};ROWS.forEach(([n,w],i)=>{const y=382+i*26;const g=el("g");const r=el("rect",{class:"row-bg",x:428,y,width:244,height:24,rx:3});rowBg[n]=r;const to=el("text",{class:"row-t",x:664,y:y+16,"text-anchor":"end"},"→ "+w);rowTo[n]=to;g.append(r,el("text",{class:"row-t",x:434,y:y+16},n),to);toolG.append(g)});
 box(group("conv"),920,50,330,80,"var(--store)","Conversations",["messages, tool calls, owner"]);
-const setModel=box(group("model"),920,185,330,90,"var(--llm)","gpt-5.4-mini",["returns text or tool requests,","never calls anything itself"]);
+const setModel=box(group("model"),920,185,330,90,"var(--llm)","gpt-6.1-terra",["returns text or tool requests, never","calls anything. Search plans on gpt-5.4-mini"]);
 box(group("dealer"),900,330,105,74,"var(--dealer)","Dealer",["prices and","stock"]);
 const setKb=box(group("kb"),915,462,185,66,"var(--search)","Knowledge base",["plans sub-queries,","merges results"]);
 box(group("ks"),915,566,185,60,"var(--search)","Knowledge source",["points at one index"]);
@@ -1480,7 +1481,7 @@ drawScen("yours");
   s.append(el("rect",{class:"zone",x:40,y:136,width:300,height:132,rx:8}),el("text",{class:"zl",x:b.hosted?50:130,y:152},"Microsoft Foundry"));
   rect(8,18,364,74,b.api[0],b.api[1],b.apiLoop);
   rect(50,214,130,46,"Conversations");
-  rect(200,214,130,46,b.agent?"Agent + model":"gpt-5.4-mini",b.agent?"instructions, tools":"");
+  rect(200,214,130,46,b.agent?"Agent + model":i===0?"gpt-6.1-terra":"gpt-5.4-mini",b.agent?"instructions, tools":"");
   if(b.hosted)rect(130,160,200,42,"Hosted container","run_turn + tool table",1);
   rect(8,300,172,56,"Dealer service");
   rect(200,300,172,56,"Azure AI Search");

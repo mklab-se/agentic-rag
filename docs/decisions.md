@@ -52,7 +52,7 @@ The skillset splits extracted text into character-based chunks, and extraction g
 
 ## Models
 
-- Chat: `gpt-5.4-mini` version `2026-03-17`, GlobalStandard, capacity 50.
+- Chat: `gpt-5.4-mini` version `2026-03-17`, GlobalStandard, capacity 50. The own loop later moved to `gpt-6.1-terra`: see below.
 - Embeddings: `text-embedding-3-large` version 1, GlobalStandard, capacity 10.
 - Capacity 10 on chat broke multi-question runs with rate limits. On pay-per-token, capacity is a cap, not a cost, so it was raised to 50.
 
