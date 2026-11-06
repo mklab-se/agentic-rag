@@ -1,8 +1,7 @@
 #!/bin/sh
-# Run the routing questions on all three backends with each model, then restore the defaults:
-# gpt-5.4-mini on the agents, gpt-6.1-terra on the own loop.
+# Run the routing questions on all three backends with each model, then restore gpt-6.1-terra.
 #
-#   scripts/compare_architectures.sh gpt-6.1-terra gpt-6-luna gpt-5.4-mini
+#   scripts/compare_architectures.sh gpt-5.4-mini gpt-6-luna gpt-6.1-terra
 #
 # For each model this updates the prompt agents and the hosted agent, then the API, so the API's
 # restart drops sessions of the old agent version. Results land in
@@ -27,7 +26,5 @@ for model in "$@"; do
   uv run tests/routing/check.py --backends loop,prompt,hosted --repeats 2 --workers 3 \
     --label "arch-$model" 2>/dev/null | grep -E "^(loop|prompt|hosted) " | cut -c1-90
 done
-echo "== restoring gpt-5.4-mini"
-use_model gpt-5.4-mini > /dev/null 2>&1 && az containerapp update -g "$AZURE_RESOURCE_GROUP" \
-  -n ca-api-voltrieve-dev --set-env-vars "CHAT_DEPLOYMENT=gpt-6.1-terra" --only-show-errors -o none \
-  && echo "restored $(date +%H:%M)"
+echo "== restoring gpt-6.1-terra"
+use_model gpt-6.1-terra > /dev/null 2>&1 && echo "restored $(date +%H:%M)"

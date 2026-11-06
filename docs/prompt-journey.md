@@ -9,12 +9,12 @@ Numbers come from live runs on 2026-11-04 (`scripts/prompt_journey.py`, `docs/ev
 ## The short version
 
 - **Nothing classifies the prompt.** No code and no separate model decides whether it needs RAG. The chat model decides, while it reasons inside the first model call, by choosing to answer or to call tools.
-- **Your exact prompt does not reach a knowledge base.** In 15 runs, 12 used the dealer price tool and 3 asked which market the user meant. Adding "with all wheel drive" is what moves it onto the RAG path.
+- **Your exact prompt uses a tool and a knowledge base.** In 15 of 15 runs the model asked for the dealer price list and a search of the documents in the same response. On `gpt-5.4-mini` it never searched for this prompt, so the model choice changes the route.
 - **The API sends the prompt to the model unchanged.** It never rewrites it, and it never loads history into the request.
 - **History lives in Foundry.** The API sends a conversation id, and Foundry supplies the earlier turns to the model.
 - **The user's words never go to Azure AI Search as they are.** The model writes a search query. Search then uses a second model call to turn that query into sub-queries.
-- **Two chat models are at work.** The own loop runs `gpt-6.1-terra`, and Search plans with `gpt-5.4-mini`, because it refuses GPT-6 models. The prompt agent and hosted agent run `gpt-5.4-mini` too. An embedding model is also used, by Search.
-- **The recorded runs below used `gpt-5.4-mini` as the agent.** The path is the same on `gpt-6.1-terra`, but the times and tokens differ. See [Choosing a model](model-comparison.md).
+- **Two chat models are at work.** All three backends run `gpt-6.1-terra`, and Search plans with `gpt-5.4-mini`, because it refuses GPT-6 models. An embedding model is also used, by Search.
+- **The figures below were recorded with `gpt-6.1-terra`,** except where a section names another model. See [Choosing a model](model-comparison.md).
 
 ## Who calls whom
 
@@ -59,7 +59,7 @@ flowchart LR
     T -. "get_prices: GET /prices" .-> D
 ```
 
-For "What is the cheapest car that you can sell me?", steps 7 to 12 are replaced by `GET /prices?market=SE` to the dealer service. That's why it can answer without Azure AI Search: the prices are live data in the dealer service, and `get_prices` is a thin function that fetches them. The model chooses it because of its description and the instructions, and the Web API runs it.
+For "What is the cheapest car that you can sell me?", the model also asks for `get_prices` in the same response, so `GET /prices?market=SE` runs alongside the search. The prices are live data in the dealer service, and `get_prices` is a thin function that fetches them. The model chooses it because of its description and the instructions, and the Web API runs it.
 
 ### What happens when the model names a tool
 
@@ -169,11 +169,11 @@ The spare parts base runs the same path at the same time, through `voltrieve-par
 
 | What you care about | Own loop | Prompt agent | Hosted agent |
 | --- | --- | --- | --- |
-| Everyday question | 1.6 s | 2.0 s | 6.0 s, the hop into the agent session adds about 4 s |
-| Two knowledge bases | 12.3 s, together | 16.5 s, one at a time | 17.2 s, together |
+| Everyday question | 1.5 s | 1.8 s | 6.5 s, the hop into the agent session adds about 5 s |
+| Two knowledge bases | 7.8 s, together | 10.9 s, one at a time | 12.8 s, together |
 | A client tool the server has never seen | Works | Refused | Works |
-| Staying on task | No tool in vain | Fixed with its own instructions: 1 of 27 job runs still made needless calls | No tool in vain |
-| Input tokens for a greeting | About 1,200 | About 2,550 | About 1,200 |
+| Staying on task | No tool in vain | No tool in vain in 48 runs, after its own instructions fixed this | No tool in vain |
+| Input tokens for a greeting | About 1,270 | About 2,680 | About 1,270 |
 | Control over each search | Full | Little, it runs inside Foundry's agent run | Full |
 | Code for searching | A client and a tool per base | None, an MCP tool per base | A client and a tool per base |
 | Change instructions without shipping code | No | Yes, a new agent version | No |
@@ -218,34 +218,25 @@ flowchart TD
 
 ## What actually happens to this prompt
 
-The model takes one of these paths. The prompt is the same each time, so the variation comes from the model.
+Measured with `scripts/prompt_journey.py` on the own loop, 15 runs of each prompt on `gpt-6.1-terra`. The raw counts are in [prompt-journey.txt](evidence/prompt-journey.txt).
 
 | Prompt | Runs | What the agent used | Result | Model calls | Median time |
-| --- | ---: | --- | --- | ---: | ---: |
-| What is the cheapest car that you can sell me? | 8 | `get_prices` twice, SE and EU | Spark, 289,000 SEK | 2 | 4.4 s |
-| | 4 | `get_prices` once | Spark, 289,000 SEK | 2 | 3.8 s |
-| | 3 | Nothing | Asked for the market | 1 | 2.4 s |
-| ... in Sweden? | 15 | `get_prices` once | Spark, 289,000 SEK | 2 | 2.6 s |
-| ... with all wheel drive ... in Sweden? | 8 | `get_prices` and 1 search | Lumen AWD, 419,000 SEK | 2 | 6.5 s |
-| | 7 | `get_prices` and 2 searches | Lumen AWD, 419,000 SEK | 2 | 7.0 s |
-| Good morning! | 15 | Nothing | A greeting | 1 | 0.8 s |
+| --- | --- | --- | --- | --- | --- |
+| What is the cheapest car that you can sell me? | 15 | `get_prices` and 1 search | Spark, 289,000 SEK | 2 | 5.7 s |
+| ... in Sweden? | 13 | `get_prices` and 1 search | Spark, 289,000 SEK | 2 | 5.6 s |
+| | 2 | `get_prices` once | Spark, 289,000 SEK | 2 | 3.1 s |
+| ... with all wheel drive ... in Sweden? | 15 | `get_prices` and 1 search | Lumen AWD, 419,000 SEK | 2 | 5.6 s |
+| Good morning! | 15 | Nothing | A greeting | 1 | 1.3 s |
 
-The follow-up "And what about one with all wheel drive?" after your prompt, in the same conversation:
+After the first question, the follow-up "And what about one with all wheel drive?" gave the Lumen AWD at 419,000 SEK in all 15 runs. 11 searched, and 4 answered from what the conversation already held.
 
-| Runs | What the agent used | Result |
-| ---: | --- | --- |
-| 11 | 1 to 3 searches, in 2 of these with `get_prices` | Lumen AWD, 419,000 SEK |
-| 4 | Nothing | Asked for the market |
+The same words can take different paths, because the model chooses again on every run. The instructions say to use the price tool when the user asks about prices, and to use the documentation for anything about the vehicles, including what they cost. So `gpt-6.1-terra` usually does both. `gpt-5.4-mini` read the same instructions differently: for the first prompt it never searched, and in 3 of 15 runs it asked for the market instead.
 
-The two search calls in a run came in one model response, so they ran together. A turn with two searches cost about 10,000 tokens against about 6,000 with one.
-
-The instructions say to use the price tool only when the user asks about prices, and this user does. They also say the dealer price list only holds base prices, so a question about AWD needs the buyer's guide. That one sentence is why the words "with all wheel drive" move the same prompt onto the agentic RAG path.
-
-`market` is optional in the tool definition, and the API sends `SE` when the model gives none. In 3 of 15 runs the model chose to ask instead. Nothing in the instructions tells it to do either.
+`market` is optional in the tool definition, and the API sends `SE` when the model gives none.
 
 ## Step by step
 
-This is the path of the AWD question, since it uses every part. Your prompt follows the same steps with the dealer tool instead of the search tool.
+This is the path of the AWD question, since it uses every part. Your prompt follows the same steps.
 
 ```mermaid
 sequenceDiagram
@@ -377,12 +368,12 @@ There is no router model and no classification step. One extra call on every tur
 
 | Model | Called by | Job | Sees |
 | --- | --- | --- | --- |
-| `gpt-6.1-terra` as the agent, on the own loop | The Web API | Decide, write search queries, write the answer | Instructions, tools, full conversation |
+| `gpt-6.1-terra` as the agent | The Web API, or the hosted container | Decide, write search queries, write the answer | Instructions, tools, full conversation |
 | `gpt-5.4-mini` as the query planner | Azure AI Search, with its own identity | Turn one query into sub-queries | The knowledge base's retrieval instructions and the query we send |
 | `text-embedding-3-large` | Azure AI Search | Turn sub-queries into vectors. It also embedded the documents at indexing time | Sub-query text |
 | Semantic ranker | Azure AI Search | Rerank results | Sub-queries and chunks |
 
-Each deployment has a limit of 150k tokens a minute, so on the own loop the agent and the planner no longer share one. On the prompt agent and hosted agent they do, because both run `gpt-5.4-mini`. No model is reserved for decisions.
+Each deployment has a limit of 150k tokens a minute, so the agent and the planner don't share one. No model is reserved for decisions.
 
 ### 7. The tools run
 

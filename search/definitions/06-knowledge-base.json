@@ -11,8 +11,8 @@
       "kind": "azureOpenAI",
       "azureOpenAIParameters": {
         "resourceUri": "{{FOUNDRY_OPENAI_ENDPOINT}}",
-        "deploymentId": "{{CHAT_DEPLOYMENT}}",
-        "modelName": "{{CHAT_MODEL}}"
+        "deploymentId": "{{PLANNING_DEPLOYMENT}}",
+        "modelName": "{{PLANNING_MODEL}}"
       }
     }
   ],

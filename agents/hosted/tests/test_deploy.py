@@ -7,7 +7,7 @@ import pytest
 import deploy
 
 ENV = {
-    "CHAT_DEPLOYMENT": "gpt-5.4-mini",
+    "CHAT_DEPLOYMENT": "gpt-6.1-terra",
     "SEARCH_ENDPOINT": "https://srch.example",
     "DEALER_URL": "https://dealer.example",
     "DEALER_CLIENT_ID": "dealer-id",
@@ -30,7 +30,7 @@ def test_environment_has_no_reserved_names_and_defaults_the_caller_to_the_api():
     assert env["ALLOWED_CALLER_OID"] == "api-oid"
     assert env["PYTHONNOUSERSITE"] == "1"
     assert env["AZURE_EXPERIMENTAL_ENABLE_GENAI_TRACING"] == "true"
-    assert env["MODEL_DEPLOYMENT_NAME"] == "gpt-5.4-mini"
+    assert env["MODEL_DEPLOYMENT_NAME"] == "gpt-6.1-terra"
 
 
 def test_allowed_caller_can_be_overridden_but_never_empty():

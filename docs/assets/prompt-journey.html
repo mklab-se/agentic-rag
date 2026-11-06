@@ -168,51 +168,69 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
   "yours": {
    "runs": 3,
    "errors": 0,
-   "seconds": 5.41,
+   "seconds": 6.46,
    "model_calls": 2,
-   "tokens": 3299,
+   "tokens": 7758,
    "paths": {
-    "get_prices": 2,
-    "get_prices + get_prices": 1
+    "get_prices + search_voltrieve_docs": 3
    },
    "example": {
     "server_tools": [
      {
       "tool": "get_prices",
-      "arguments": "{\"market\":\"SE\"}",
+      "arguments": "{}",
       "iteration": 1
      },
      {
-      "tool": "get_prices",
-      "arguments": "{\"market\":\"EU\"}",
+      "tool": "search_voltrieve_docs",
+      "arguments": "{\"query\":\"Buyer’s guide base prices of all Voltrieve models cheapest car Spark Lumen Ragn Fjord Atlas\"}",
       "iteration": 1
      }
     ],
     "mcp": [],
-    "knowledge": [],
-    "parallel": [
+    "knowledge": [
      {
-      "wall_ms": 32,
-      "one_by_one_ms": 58
+      "base": "voltrieve-kb",
+      "sub_queries": [
+       "buyer’s guide base price Voltrieve Spark",
+       "buyer’s guide base price Voltrieve Lumen",
+       "buyer’s guide base price Voltrieve Ragn",
+       "buyer’s guide base price Voltrieve Fjord",
+       "buyer’s guide base price Voltrieve Atlas",
+       "buyer’s guide all Voltrieve models base prices"
+      ],
+      "references": [
+       "voltrieve-buyers-guide.md",
+       "voltrieve-service-guide.md",
+       "voltrieve-lumen-brochure.docx",
+       "voltrieve-spark-brochure.docx"
+      ]
      }
     ],
-    "answer": "The cheapest Voltrieve car is the **Spark**.\n\n- **Sweden (SE):** **289,000 SEK**\n- **EU:** **26,500 EUR**\n\nIf you want, I can also list the prices for all models in your market."
+    "parallel": [
+     {
+      "wall_ms": 1870,
+      "one_by_one_ms": 1897
+     }
+    ],
+    "answer": "The **Voltrieve Spark** is the least expensive model, starting at **289,000 SEK in Sweden** or **€26,500 in the EU**. It’s a rear-wheel-drive city car with up to 310 km of WLTP range. (Source: *Voltrieve buyer’s guide*)"
    }
   },
   "follow": {
    "runs": 3,
    "errors": 0,
-   "seconds": 7.97,
+   "seconds": 5.2,
    "model_calls": 2,
-   "tokens": 8451,
+   "tokens": 15679,
    "paths": {
-    "search_voltrieve_docs": 3
+    "get_prices + search_voltrieve_docs": 2,
+    "search_voltrieve_docs": 1
    },
    "example": {
     "server_tools": [
      {
       "tool": "search_voltrieve_docs",
-      "arguments": "{\"query\":\"all wheel drive AWD price model buyer's guide technical specification guide\"}",
+      "arguments": "{\"query\":\"Voltrieve buyer's guide prices AWD cheapest all wheel drive model Sweden SEK EU EUR comparison\"}",
       "iteration": 1
      }
     ],
@@ -221,42 +239,41 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
      {
       "base": "voltrieve-kb",
       "sub_queries": [
-       "all wheel drive AWD buyer's guide price",
-       "all wheel drive AWD technical specification guide",
-       "AWD model price"
+       "Voltrieve buyer's guide AWD all wheel drive models Sweden SEK EUR price",
+       "Voltrieve buyer's guide all wheel drive cheapest model Sweden",
+       "Voltrieve buyer's guide Europe EUR Sweden SEK AWD pricing"
       ],
       "references": [
        "voltrieve-buyers-guide.md",
-       "voltrieve-fjord-specifications.pdf",
-       "voltrieve-atlas-specifications.pdf",
-       "voltrieve-ragn-specifications.pdf"
+       "voltrieve-atlas-brochure.docx",
+       "voltrieve-ragn-brochure.docx",
+       "voltrieve-fjord-brochure.docx"
       ]
      }
     ],
     "parallel": [],
-    "answer": "Among the AWD options in the SE price list, the **Voltrieve Lumen AWD** is the cheapest at **419,000 SEK**. The buyer’s guide lists the Lumen as available with **RWD or AWD** and shows its **price with AWD** as **419,000 SEK**. [voltrieve-buyers-guide.md]\n\nIf you want, I can also check the **EU** AWD prices."
+    "answer": "The cheapest all-wheel-drive option is the **Voltrieve Lumen AWD**, at **419,000 SEK** in Sweden or **€38,100** in the EU. The Spark isn’t available with all-wheel drive. (*Voltrieve buyer’s guide*)"
    }
   },
   "awd": {
    "runs": 3,
    "errors": 0,
-   "seconds": 9.2,
+   "seconds": 7.47,
    "model_calls": 2,
-   "tokens": 8299,
+   "tokens": 5327,
    "paths": {
-    "get_prices + search_voltrieve_docs + search_voltrieve_docs": 2,
-    "get_prices + search_voltrieve_docs": 1
+    "get_prices + search_voltrieve_docs": 3
    },
    "example": {
     "server_tools": [
      {
-      "tool": "get_prices",
-      "arguments": "{\"market\":\"SE\"}",
+      "tool": "search_voltrieve_docs",
+      "arguments": "{\"query\":\"Buyer's guide Sweden prices all-wheel drive AWD models and drive configurations cheapest pricing\"}",
       "iteration": 1
      },
      {
-      "tool": "search_voltrieve_docs",
-      "arguments": "{\"query\":\"AWD drive configuration prices Sweden buyer's guide models and price\"}",
+      "tool": "get_prices",
+      "arguments": "{\"market\":\"SE\"}",
       "iteration": 1
      }
     ],
@@ -265,33 +282,33 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
      {
       "base": "voltrieve-kb",
       "sub_queries": [
-       "AWD drive configuration Sweden buyer's guide price",
-       "AWD Sweden models price buyer's guide",
-       "all-wheel drive Sweden buyer's guide Voltrieve"
+       "buyer’s guide Sweden prices all-wheel drive AWD models drive configurations cheapest pricing",
+       "Sweden buyer’s guide AWD drive configuration prices",
+       "all-wheel drive AWD buyer’s guide Sweden"
       ],
       "references": [
-       "voltrieve-fjord-brochure.docx",
        "voltrieve-ragn-brochure.docx",
        "voltrieve-atlas-brochure.docx",
-       "voltrieve-lumen-brochure.docx"
+       "voltrieve-lumen-brochure.docx",
+       "voltrieve-fjord-brochure.docx"
       ]
      }
     ],
     "parallel": [
      {
-      "wall_ms": 1371,
-      "one_by_one_ms": 1415
+      "wall_ms": 1513,
+      "one_by_one_ms": 1531
      }
     ],
-    "answer": "The cheapest Voltrieve with AWD in Sweden is the **Voltrieve Lumen**, at **419,000 SEK** with AWD. It is a **hatchback** and is available with **RWD or AWD**.  \nSource: **voltrieve-buyers-guide.md**"
+    "answer": "The **Voltrieve Lumen AWD** is the cheapest all-wheel-drive model in Sweden, at **419,000 SEK**. That includes the 40,000 SEK AWD surcharge over the base Lumen price. (Source: *Voltrieve buyer’s guide*)"
    }
   },
   "detail": {
    "runs": 3,
    "errors": 0,
-   "seconds": 11.05,
+   "seconds": 7.57,
    "model_calls": 2,
-   "tokens": 12434,
+   "tokens": 12212,
    "paths": {
     "search_spare_parts + search_voltrieve_docs": 3
    },
@@ -299,12 +316,12 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
     "server_tools": [
      {
       "tool": "search_voltrieve_docs",
-      "arguments": "{\"query\":\"Fjord AWD front left brake replacement service guide components brake job what parts needed front axle left front\"}",
+      "arguments": "{\"query\":\"Voltrieve Fjord AWD complete front left brake replacement service guide all components required brake pads discs caliper bolts hardware\"}",
       "iteration": 1
      },
      {
       "tool": "search_spare_parts",
-      "arguments": "{\"query\":\"Fjord AWD AWD front left brake components front left brake disc pads caliper\"}",
+      "arguments": "{\"query\":\"Voltrieve Fjord AWD complete front left brake replacement parts brake pads rotor disc caliper hardware bolts all related parts article numbers\"}",
       "iteration": 1
      }
     ],
@@ -313,43 +330,46 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
      {
       "base": "voltrieve-parts-kb",
       "sub_queries": [
-       "Fjord AWD front left brake disc pads caliper front left",
-       "Fjord AWD front left brake components front left",
-       "Fjord AWD AWD front left brake disc pads caliper"
+       "Voltrieve Fjord AWD front left brake replacement brake pads rotor disc caliper hardware bolts complete related parts article numbers",
+       "Voltrieve Fjord AWD front left brake pads article number",
+       "Voltrieve Fjord AWD front left brake rotor disc caliper hardware bolts article number"
       ],
       "references": [
        "voltrieve-parts-brakes.md",
-       "voltrieve-parts-body-glass-lighting.md"
+       "voltrieve-parts-service-items.md",
+       "voltrieve-parts-electrical-charging.md"
       ]
      },
      {
       "base": "voltrieve-kb",
       "sub_queries": [
-       "Fjord AWD front left brake replacement service guide components front axle left front brake job parts needed",
-       "Fjord AWD brake replacement buyer's guide front axle left front components",
-       "Fjord AWD service guide front left brake replacement parts"
+       "Voltrieve Fjord AWD front left brake replacement service guide components brake pads discs caliper bolts hardware",
+       "Voltrieve Fjord AWD brake replacement front left service guide",
+       "Voltrieve Fjord AWD buyer's guide brake parts front left"
       ],
       "references": [
        "voltrieve-service-guide.md",
-       "voltrieve-fjord-specifications.pdf"
+       "voltrieve-fjord-specifications.pdf",
+       "voltrieve-buyers-guide.md",
+       "voltrieve-lumen-specifications.pdf"
       ]
      }
     ],
     "parallel": [
      {
-      "wall_ms": 1856,
-      "one_by_one_ms": 3338
+      "wall_ms": 1832,
+      "one_by_one_ms": 3619
      }
     ],
-    "answer": "For a **Voltrieve Fjord AWD** **complete front brake replacement on the left front side**, the service guide says the job needs these parts, and that **pads are renewed as an axle set** even when only one side is being worked on. It also says the Fjord’s front brake parts are **370 mm on AWD**. (voltrieve-service-guide.md)\n\nHere are the spare parts from the catalog:\n\n- **VP-10072** - Brake disc, front left, **370 mm** ventilated brake disc. (voltrieve-parts-brakes.md)\n- **VP-10254** - Brake pad set, front axle, set for the **370 mm** disc; covers both sides of the axle. (voltrieve-parts-brakes.md)\n- **VP-10345** - Brake caliper, front left, twin piston floating caliper for the **370 mm** disc. (voltrieve-parts-brakes.md)\n- **VP-10527** - Caliper carrier, front left. (voltrieve-parts-brakes.md)\n- **VP-10631** - Brake hose, front left. (voltrieve-parts-brakes.md)\n- **VP-10670** - Pad wear "
+    "answer": "For a complete **front-left brake replacement** on your Fjord AWD, the service guide specifies the following. Each quantity is one. The AWD uses a 370 mm front disc. (*voltrieve-service-guide.md*)\n\n| Part | Article number |\n|---|---|\n| Front-left brake disc, 370 mm | **VP-10072** |\n| Front brake pad set | **VP-10254** |\n| Front-left brake caliper | **VP-10345** |\n| Front-left caliper carrier | **VP-10527** |\n| Front-left brake hose | **VP-10631** |\n| Front-left pad wear sensor | **VP-10670** |\n| Front caliper fitting kit | **VP-10709** |\n| Front-left brake dust shield | **VP-10761** |\n| DOT 4 LV brake fluid, 1-litre bottle | **VP-15168** |\n\nThe pad set covers **both sides of the front axle**, and the guide says pads are renewed as an axle set. The fluid is for bleeding the circuit afterwards. (*voltrieve-service-guide.md; voltrieve-parts-brakes.md*)\n\nBefore work under the car, the guide "
    }
   },
   "hello": {
    "runs": 3,
    "errors": 0,
-   "seconds": 1.67,
+   "seconds": 1.83,
    "model_calls": 1,
-   "tokens": 1255,
+   "tokens": 1282,
    "paths": {
     "no tool": 3
    },
@@ -358,15 +378,15 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
     "mcp": [],
     "knowledge": [],
     "parallel": [],
-    "answer": "Good morning! How can I help with Voltrieve today?"
+    "answer": "Good morning! How can I help you with Voltrieve today?"
    }
   },
   "client": {
    "runs": 3,
    "errors": 0,
-   "seconds": 3.28,
+   "seconds": 3.2,
    "model_calls": 2,
-   "tokens": 2628,
+   "tokens": 2679,
    "paths": {
     "get_local_time": 3
    },
@@ -375,15 +395,15 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
     "mcp": [],
     "knowledge": [],
     "parallel": [],
-    "answer": "It’s 16:42 on your computer right now, in Europe/Stockholm time."
+    "answer": "It’s 4:42 PM on your computer (Europe/Stockholm time zone)."
    }
   },
   "curated": {
    "runs": 3,
    "errors": 0,
-   "seconds": 3.89,
+   "seconds": 1.6,
    "model_calls": 1,
-   "tokens": 1271,
+   "tokens": 1291,
    "paths": {
     "get_curated_answer": 3
    },
@@ -406,42 +426,34 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
   "yours": {
    "runs": 3,
    "errors": 0,
-   "seconds": 10.33,
+   "seconds": 7.57,
    "model_calls": 2,
-   "tokens": 6353,
+   "tokens": 13367,
    "paths": {
-    "get_prices + get_prices": 3
+    "MCP voltrieve-kb + get_prices + get_prices": 2,
+    "MCP voltrieve-kb": 1
    },
    "example": {
-    "server_tools": [
+    "server_tools": [],
+    "mcp": [
      {
-      "tool": "get_prices",
-      "arguments": "{\"market\":\"SE\"}",
-      "iteration": 1
-     },
-     {
-      "tool": "get_prices",
-      "arguments": "{\"market\":\"EU\"}",
-      "iteration": 1
+      "server": "voltrieve-kb",
+      "arguments": "{\"query_variants\":[\"What is the cheapest Voltrieve car that you can sell me?\"]}",
+      "started_ms": 1484,
+      "finished_ms": 4149
      }
     ],
-    "mcp": [],
     "knowledge": [],
-    "parallel": [
-     {
-      "wall_ms": 13,
-      "one_by_one_ms": 23
-     }
-    ],
-    "answer": "The cheapest Voltrieve car is the **Spark**.\n\n- **Sweden:** **289,000 SEK**\n- **EU:** **€26,500**\n\nIf you want, I can also compare the full price list for all models."
+    "parallel": [],
+    "answer": "The **Voltrieve Spark** is the least expensive model, starting at **289,000 SEK in Sweden** or **€26,500 in the EU**. It’s a rear-wheel-drive city car with up to 310 km of WLTP range.  (voltrieve-buyers-guide.md)\n\nAvailability isn’t confirmed."
    }
   },
   "follow": {
    "runs": 3,
    "errors": 0,
-   "seconds": 6.28,
+   "seconds": 5.29,
    "model_calls": 1,
-   "tokens": 12855,
+   "tokens": 16359,
    "paths": {
     "MCP voltrieve-kb": 3
    },
@@ -450,25 +462,24 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
     "mcp": [
      {
       "server": "voltrieve-kb",
-      "arguments": "{\"query_variants\":[\"Which Voltrieve model is the cheapest with all wheel drive (AWD), and what does AWD cost for each model that offers it?\"]}",
-      "started_ms": 842,
-      "finished_ms": 3165
+      "arguments": "{\"query_variants\":[\"What is the cheapest Voltrieve car with all wheel drive, and what does it cost?\"]}",
+      "started_ms": 712,
+      "finished_ms": 3982
      }
     ],
     "knowledge": [],
     "parallel": [],
-    "answer": "The **cheapest AWD Voltrieve is the Lumen**.\n\n- **SE:** **419,000 SEK** with AWD\n- **EU:** **38,100 EUR** with AWD (voltrieve-buyers-guide.md)\n\nFor comparison, the other AWD models are priced higher in the buyer’s guide: **Ragn** 549,000 SEK / 49,900 EUR, **Fjord** 569,000 SEK / 51,500 EUR, and **Atlas** 749,000 SEK / 67,900 EUR (voltrieve-buyers-guide.md).\n\nIf you want, I can also tell you which models come with AWD at all."
+    "answer": "The cheapest all-wheel-drive model is the **Voltrieve Lumen AWD**, at **419,000 SEK** in Sweden or **€38,100** in the EU. The Spark isn’t available with all-wheel drive.  (voltrieve-buyers-guide.md)"
    }
   },
   "awd": {
    "runs": 3,
    "errors": 0,
-   "seconds": 10.08,
-   "model_calls": 2,
-   "tokens": 15804,
+   "seconds": 5.98,
+   "model_calls": 1,
+   "tokens": 12599,
    "paths": {
-    "MCP voltrieve-kb": 1,
-    "MCP voltrieve-kb + check_stock + get_current_date + get_prices": 1,
+    "MCP voltrieve-kb": 2,
     "MCP voltrieve-kb + get_current_date + get_prices": 1
    },
    "example": {
@@ -487,65 +498,57 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
     "mcp": [
      {
       "server": "voltrieve-kb",
-      "arguments": "{\"query_variants\":[\"Which Voltrieve model(s) available in Sweden have all wheel drive, and what is the AWD option price for each one?\"]}",
-      "started_ms": 312,
-      "finished_ms": 3572
+      "arguments": "{\"query_variants\":[\"What is the cheapest Voltrieve car with all wheel drive that you can sell me in Sweden?\"]}",
+      "started_ms": 475,
+      "finished_ms": 2994
      }
     ],
     "knowledge": [],
     "parallel": [
      {
-      "wall_ms": 24,
-      "one_by_one_ms": 23
+      "wall_ms": 29,
+      "one_by_one_ms": 28
      }
     ],
-    "answer": "The cheapest Voltrieve with all-wheel drive in Sweden is the **Lumen with AWD**, priced at **419,000 SEK**. (voltrieve-buyers-guide.md)\n\nFor comparison, the other AWD models are **Ragn** at **549,000 SEK**, **Fjord** at **569,000 SEK**, and **Atlas** at **749,000 SEK**, so the Lumen is the cheapest AWD option. (voltrieve-buyers-guide.md)"
+    "answer": "The cheapest all-wheel-drive Voltrieve in Sweden is the **Lumen AWD, at 419,000 SEK**. That includes the 40,000 SEK AWD surcharge over the rear-wheel-drive base model.  (voltrieve-buyers-guide.md)"
    }
   },
   "detail": {
    "runs": 3,
    "errors": 0,
-   "seconds": 27.95,
+   "seconds": 12.52,
    "model_calls": 1,
-   "tokens": 38902,
+   "tokens": 23923,
    "paths": {
-    "MCP voltrieve-kb + MCP voltrieve-parts-kb": 1,
-    "MCP voltrieve-kb + MCP voltrieve-parts-kb + check_stock + get_curated_answer + get_curated_answer + get_prices": 1,
-    "MCP voltrieve-kb + MCP voltrieve-parts-kb + MCP voltrieve-parts-kb": 1
+    "MCP voltrieve-kb + MCP voltrieve-parts-kb": 3
    },
    "example": {
     "server_tools": [],
     "mcp": [
      {
       "server": "voltrieve-kb",
-      "arguments": "{\"query_variants\":[\"I have a Voltrieve Fjord AWD. I want to completely change the brakes on the left front side. Which spare parts do I need?\"]}",
-      "started_ms": 1602,
-      "finished_ms": 4054
+      "arguments": "{\"query_variants\":[\"For a Voltrieve Fjord AWD, which spare parts are needed to completely change the brakes on the left front side?\"]}",
+      "started_ms": 458,
+      "finished_ms": 3607
      },
      {
       "server": "voltrieve-parts-kb",
-      "arguments": "{\"query_variants\":[\"Which spare parts are needed for a complete front brake replacement on one side on a Voltrieve Fjord AWD, including the 370 mm front brake parts?\"]}",
-      "started_ms": 5959,
-      "finished_ms": 9005
-     },
-     {
-      "server": "voltrieve-parts-kb",
-      "arguments": "{\"query_variants\":[\"What is the article number for the brake dust shield, front left, for Voltrieve Fjord AWD?\"]}",
-      "started_ms": 12455,
-      "finished_ms": 24785
+      "arguments": "{\"query_variants\":[\"For a Voltrieve Fjord AWD, which spare parts and article numbers are needed to completely change the brakes on the left front side, including the brake disc, brake pad set, brake caliper, caliper carrier, brake hose, pad wear sensor, caliper fitting kit, brake dust shield and brake fluid DOT 4 LV?\"]}",
+      "started_ms": 3608,
+      "finished_ms": 7500
      }
     ],
     "knowledge": [],
     "parallel": [],
-    "answer": "For a **Voltrieve Fjord AWD**, a **complete front brake replacement on one side** needs:\n\n- 1 brake disc for the side being worked on\n- 1 brake pad set for the front axle\n- 1 brake caliper for the side being worked on\n- 1 caliper carrier for the side being worked on\n- 1 brake hose for the side being worked on\n- 1 pad wear sensor for the side being worked on\n- 1 caliper fitting kit for the front axle\n- 1 brake dust shield for the side being worked on\n- 1 bottle of brake fluid DOT 4 LV for bleeding afterwards (voltrieve-service-guide.md)\n\nFor the **left front** side, the spare parts catalog lists these article numbers:\n\n- **VP-10072** - Brake disc, front left, 370 mm ventilated brake disc, fits **Voltrieve Fjord AWD** (voltrieve-parts-brakes.md)\n- **VP-10254** - Brake pad set, front axle, for the 370 mm disc (voltrieve-parts-brakes.md)\n- **VP-10345** - Brake caliper, front left, twin pisto"
+    "answer": "For a complete **left-front brake replacement** on your Voltrieve Fjord AWD, the service guide specifies the following. The AWD uses a 370 mm front disc.  (voltrieve-service-guide.md)\n\n| Qty | Part | Article number |\n|---|---|---|\n| 1 | Front-left brake disc, 370 mm | VP-10072 |\n| 1 | Front brake pad set, both sides | VP-10254 |\n| 1 | Front-left brake caliper | VP-10345 |\n| 1 | Front-left caliper carrier | VP-10527 |\n| 1 | Front-left brake hose | VP-10631 |\n| 1 | Front-left pad wear sensor | VP-10670 |\n| 1 | Front caliper fitting kit | VP-10709 |\n| 1 | Front-left brake dust shield | VP-10761 |\n| 1 bottle | Brake fluid DOT 4 LV, 1 litre | VP-15168 |\n\nArticle numbers are from the brake and service-item catalogs.  (voltrieve-parts-brakes.md) (voltrieve-parts-brakes.md) (voltrieve-parts-service-items.md)\n\n**The pads must be renewed on both sides of the front axle**, even though the other lis"
    }
   },
   "hello": {
    "runs": 3,
    "errors": 0,
-   "seconds": 1.55,
+   "seconds": 1.38,
    "model_calls": 1,
-   "tokens": 2646,
+   "tokens": 2696,
    "paths": {
     "no tool": 3
    },
@@ -554,15 +557,15 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
     "mcp": [],
     "knowledge": [],
     "parallel": [],
-    "answer": "Good morning! How can I help with Voltrieve today?"
+    "answer": "Good morning! How can I help you with Voltrieve today?"
    }
   },
   "client": {
    "runs": 3,
    "errors": 0,
-   "seconds": 2.92,
+   "seconds": 3.71,
    "model_calls": 2,
-   "tokens": 5532,
+   "tokens": 5701,
    "paths": {
     "get_local_time": 3
    },
@@ -571,15 +574,15 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
     "mcp": [],
     "knowledge": [],
     "parallel": [],
-    "answer": "It’s 2026-11-05 16:42:10 in Europe/Stockholm."
+    "answer": "It’s 4:42 p.m. on your computer (Europe/Stockholm time)."
    }
   },
   "curated": {
    "runs": 3,
    "errors": 0,
-   "seconds": 1.76,
+   "seconds": 1.86,
    "model_calls": 1,
-   "tokens": 2659,
+   "tokens": 2705,
    "paths": {
     "get_curated_answer": 3
    },
@@ -602,12 +605,11 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
   "yours": {
    "runs": 3,
    "errors": 0,
-   "seconds": 12.15,
+   "seconds": 9.74,
    "model_calls": 2,
-   "tokens": 3146,
+   "tokens": 6454,
    "paths": {
-    "get_prices": 2,
-    "get_prices + get_prices": 1
+    "get_prices + search_voltrieve_docs": 3
    },
    "example": {
     "server_tools": [
@@ -615,29 +617,53 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
       "tool": "get_prices",
       "arguments": "{}",
       "iteration": 1
+     },
+     {
+      "tool": "search_voltrieve_docs",
+      "arguments": "{\"query\":\"Voltrieve model prices cheapest starting price all models buyer's guide base price\"}",
+      "iteration": 1
      }
     ],
     "mcp": [],
-    "knowledge": [],
-    "parallel": [],
-    "answer": "The cheapest car in the SE price list is the **Voltrieve Spark**, at **289,000 SEK**."
+    "knowledge": [
+     {
+      "base": "voltrieve-kb",
+      "sub_queries": [
+       "buyer’s guide base price all models starting price",
+       "model prices cheapest starting price buyer's guide",
+       "base price Voltrieve models buyer's guide"
+      ],
+      "references": [
+       "voltrieve-buyers-guide.md",
+       "voltrieve-spark-brochure.docx",
+       "voltrieve-lumen-brochure.docx",
+       "voltrieve-ragn-brochure.docx"
+      ]
+     }
+    ],
+    "parallel": [
+     {
+      "wall_ms": 1604,
+      "one_by_one_ms": 1699
+     }
+    ],
+    "answer": "The **Voltrieve Spark** is the cheapest model, with a base price of **289,000 SEK** in Sweden or **€26,500** in the EU. It’s a rear-wheel-drive city car with a range of up to 310 km (WLTP).\n\nSource: *Voltrieve buyer’s guide*"
    }
   },
   "follow": {
    "runs": 3,
    "errors": 0,
-   "seconds": 9.37,
+   "seconds": 5.64,
    "model_calls": 2,
-   "tokens": 7052,
+   "tokens": 14157,
    "paths": {
-    "search_voltrieve_docs": 2,
-    "get_prices + search_voltrieve_docs": 1
+    "search_voltrieve_docs": 3
    },
    "example": {
     "server_tools": [
      {
       "tool": "search_voltrieve_docs",
-      "arguments": "{\"query\":\"all wheel drive AWD availability and price for each model buyer's guide\"}",
+      "arguments": "{\"query\":\"buyer's guide all models prices AWD cheapest all wheel drive Sweden EU Lumen Fjord Ragn Atlas\"}",
       "iteration": 1
      }
     ],
@@ -646,42 +672,41 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
      {
       "base": "voltrieve-kb",
       "sub_queries": [
-       "buyer's guide all wheel drive AWD availability price for each model",
-       "AWD availability buyer's guide model price",
-       "all wheel drive price model buyer's guide"
+       "buyer's guide prices all models AWD cheapest all wheel drive Sweden EU Lumen Fjord Ragn Atlas",
+       "buyer guide all wheel drive AWD Sweden EU price Lumen Fjord Ragn Atlas",
+       "all models prices buyer's guide Sweden EU AWD Voltrieve"
       ],
       "references": [
        "voltrieve-buyers-guide.md",
-       "voltrieve-atlas-brochure.docx",
-       "voltrieve-fjord-specifications.pdf",
-       "voltrieve-atlas-specifications.pdf"
+       "voltrieve-fjord-brochure.docx",
+       "voltrieve-lumen-brochure.docx",
+       "voltrieve-fjord-specifications.pdf"
       ]
      }
     ],
     "parallel": [],
-    "answer": "The cheapest Voltrieve with AWD is the **Voltrieve Lumen**, at **419,000 SEK** in SE. The **Spark** does not offer AWD.  \nSource: **voltrieve-buyers-guide.md**"
+    "answer": "The cheapest all-wheel-drive model is the **Voltrieve Lumen AWD**, at **419,000 SEK** in Sweden or **€38,100** in the EU. The Spark isn’t available with AWD.\n\nSource: *Voltrieve buyer’s guide*"
    }
   },
   "awd": {
    "runs": 3,
    "errors": 0,
-   "seconds": 13.35,
+   "seconds": 9.71,
    "model_calls": 2,
-   "tokens": 8563,
+   "tokens": 6249,
    "paths": {
-    "get_prices + search_voltrieve_docs + search_voltrieve_docs + search_voltrieve_docs": 1,
-    "get_prices + search_voltrieve_docs": 2
+    "get_prices + search_voltrieve_docs": 3
    },
    "example": {
     "server_tools": [
      {
-      "tool": "get_prices",
-      "arguments": "{\"market\":\"SE\"}",
+      "tool": "search_voltrieve_docs",
+      "arguments": "{\"query\":\"Sweden buyer's guide all models all-wheel drive AWD prices cheapest configurations SEK\"}",
       "iteration": 1
      },
      {
-      "tool": "search_voltrieve_docs",
-      "arguments": "{\"query\":\"all wheel drive AWD drive configuration prices Sweden models buyer's guide\"}",
+      "tool": "get_prices",
+      "arguments": "{\"market\":\"SE\"}",
       "iteration": 1
      }
     ],
@@ -690,33 +715,31 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
      {
       "base": "voltrieve-kb",
       "sub_queries": [
-       "all wheel drive AWD drive configuration buyer's guide Sweden price",
-       "AWD models buyer's guide Sweden",
-       "all wheel drive electric car models price Sweden"
+       "Sweden buyer's guide all models all-wheel drive AWD prices cheapest configurations SEK",
+       "Sweden buyer's guide AWD all models price SEK",
+       "buyer's guide Sweden all-wheel drive prices"
       ],
       "references": [
        "voltrieve-buyers-guide.md",
-       "voltrieve-atlas-brochure.docx",
-       "voltrieve-ragn-brochure.docx",
        "voltrieve-fjord-brochure.docx"
       ]
      }
     ],
     "parallel": [
      {
-      "wall_ms": 1576,
-      "one_by_one_ms": 1650
+      "wall_ms": 1734,
+      "one_by_one_ms": 1855
      }
     ],
-    "answer": "The cheapest AWD Voltrieve you can buy in Sweden is the **Voltrieve Lumen AWD**, priced at **419,000 SEK**. The **Voltrieve buyer's guide** lists the Lumen as available with **RWD or AWD** and shows its **SE price with AWD** as **419,000 SEK**."
+    "answer": "The cheapest all-wheel-drive Voltrieve in Sweden is the **Lumen AWD**, at **419,000 SEK**. That includes the 40,000 SEK AWD surcharge over the base Lumen. Source: *Voltrieve buyer’s guide*."
    }
   },
   "detail": {
    "runs": 3,
    "errors": 0,
-   "seconds": 13.71,
+   "seconds": 16.06,
    "model_calls": 2,
-   "tokens": 12542,
+   "tokens": 12770,
    "paths": {
     "search_spare_parts + search_voltrieve_docs": 3
    },
@@ -724,12 +747,12 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
     "server_tools": [
      {
       "tool": "search_voltrieve_docs",
-      "arguments": "{\"query\":\"Fjord AWD front left brake replacement service guide parts needed brake pads brake disc caliper\"}",
+      "arguments": "{\"query\":\"Voltrieve Fjord AWD complete front left brake replacement service guide all components required brake change\"}",
       "iteration": 1
      },
      {
       "tool": "search_spare_parts",
-      "arguments": "{\"query\":\"Fjord AWD front left brake parts brake pads brake disc caliper\"}",
+      "arguments": "{\"query\":\"Voltrieve Fjord AWD front left complete brake replacement all brake components pads disc caliper hardware sensors fasteners\"}",
       "iteration": 1
      }
     ],
@@ -738,44 +761,47 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
      {
       "base": "voltrieve-kb",
       "sub_queries": [
-       "Fjord AWD brake replacement service guide front left brake pads brake disc caliper",
-       "Fjord AWD buyer's guide brake parts front left brake pads brake disc caliper",
-       "Fjord AWD technical specification brake pad brake disc caliper front left"
+       "Voltrieve Fjord AWD front left brake replacement service guide components required brake change",
+       "Voltrieve Fjord AWD brake replacement guide front left",
+       "Voltrieve Fjord AWD brake change components front left"
       ],
       "references": [
        "voltrieve-service-guide.md",
        "voltrieve-fjord-specifications.pdf",
-       "voltrieve-buyers-guide.md"
+       "voltrieve-buyers-guide.md",
+       "voltrieve-fjord-brochure.docx"
       ]
      },
      {
       "base": "voltrieve-parts-kb",
       "sub_queries": [
-       "Fjord AWD front left brake pads",
-       "Fjord AWD front left brake disc",
-       "Fjord AWD front left caliper"
+       "Voltrieve Fjord AWD front left complete brake replacement pads disc caliper hardware sensors fasteners",
+       "Voltrieve Fjord AWD front left brake pads disc caliper hardware sensors fasteners",
+       "Voltrieve Fjord AWD front left brake components"
       ],
       "references": [
        "voltrieve-parts-brakes.md",
-       "voltrieve-parts-suspension-steering.md"
+       "voltrieve-parts-service-items.md",
+       "voltrieve-parts-body-glass-lighting.md",
+       "voltrieve-parts-electrical-charging.md"
       ]
      }
     ],
     "parallel": [
      {
-      "wall_ms": 1764,
-      "one_by_one_ms": 2962
+      "wall_ms": 1677,
+      "one_by_one_ms": 3300
      }
     ],
-    "answer": "For a **complete front brake replacement on the left front side** of a **Voltrieve Fjord AWD**, the documentation says you need these parts:\n\n- **Brake disc, front left** - **VP-10072** - 370 mm ventilated brake disc, fits **Voltrieve Fjord AWD**. [voltrieve-parts-brakes.md]\n- **Brake pad set, front axle** - **VP-10254** - set of 4 pads for the 370 mm disc; it covers both sides of the front axle. [voltrieve-parts-brakes.md]\n- **Brake caliper, front left** - **VP-10345** - twin piston floating caliper for the 370 mm disc. [voltrieve-parts-brakes.md]\n- **Caliper carrier, front left** - **VP-10527** - carrier bracket for the floating caliper. [voltrieve-parts-brakes.md]\n- **Brake hose, front left** - **VP-10631** - reinforced flexible hose with banjo fitting. [voltrieve-parts-brakes.md]\n- **Pad wear sensor, front left** - **VP-10670** - electrical pad wear sensor. [voltrieve-parts-brakes.md"
+    "answer": "For a complete **front-left brake replacement** on your Fjord AWD, the service guide calls for the following. The AWD uses a 370 mm front disc. (Source: *voltrieve-service-guide.md*)\n\n| Qty | Part | Article number |\n|---|---|---|\n| 1 | Front-left brake disc, 370 mm | **VP-10072** |\n| 1 | Front axle brake pad set | **VP-10254** |\n| 1 | Front-left brake caliper | **VP-10345** |\n| 1 | Front-left caliper carrier | **VP-10527** |\n| 1 | Front-left brake hose | **VP-10631** |\n| 1 | Front-left pad wear sensor | **VP-10670** |\n| 1 | Front caliper fitting kit | **VP-10709** |\n| 1 | Front-left brake dust shield | **VP-10761** |\n| 1 | DOT 4 LV brake fluid, 1-litre bottle | **VP-15168** |\n\nThe pad set covers **both sides of the front axle**; the service guide says to renew pads as an axle set. The fitting kit supplies hardware for one side. (Sources: *voltrieve-service-guide.md*, *voltrieve-parts-bra"
    }
   },
   "hello": {
    "runs": 3,
    "errors": 0,
-   "seconds": 5.67,
+   "seconds": 5.95,
    "model_calls": 1,
-   "tokens": 1266,
+   "tokens": 1282,
    "paths": {
     "no tool": 3
    },
@@ -784,15 +810,15 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
     "mcp": [],
     "knowledge": [],
     "parallel": [],
-    "answer": "Good morning! How can I help with Voltrieve today?"
+    "answer": "Good morning! How can I help you with Voltrieve today?"
    }
   },
   "client": {
    "runs": 3,
    "errors": 0,
-   "seconds": 7.41,
+   "seconds": 7.54,
    "model_calls": 2,
-   "tokens": 2622,
+   "tokens": 2676,
    "paths": {
     "get_local_time": 3
    },
@@ -801,15 +827,15 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
     "mcp": [],
     "knowledge": [],
     "parallel": [],
-    "answer": "Your computer’s local time is 2026-11-05 16:42:10 in Europe/Stockholm."
+    "answer": "It’s **16:42** (4:42 p.m.) on your computer, in the Europe/Stockholm time zone."
    }
   },
   "curated": {
    "runs": 3,
    "errors": 0,
-   "seconds": 5.89,
+   "seconds": 5.9,
    "model_calls": 1,
-   "tokens": 1269,
+   "tokens": 1291,
    "paths": {
     "get_curated_answer": 3
    },
@@ -843,7 +869,7 @@ svg .zl{font-size:12.5px;font-weight:600;fill:var(--muted)}
   <div class="seg" role="group" aria-label="Architecture" id="seg"></div>
   <div class="tabs" role="tablist" aria-label="Prompt" id="tabs"></div>
   <div class="verdict" id="verdict"></div>
-  <p class="legend">Cards show the median of 3 runs at once on all backends, recorded with <code>gpt-5.4-mini</code> as the agent, so a gap of a second or two is noise. The comparison table further down uses larger samples. These times are to the last token. For time to first token, see <a href="../model-comparison/">Choosing a model</a>. While a user waits, the API sends status events such as "Searching the parts catalog", and the first arrives in about 0.1 s.</p>
+  <p class="legend">Cards show the median of 3 runs at once on all backends, recorded with <code>gpt-6.1-terra</code> as the agent, so a gap of a second or two is noise. The comparison table further down uses larger samples. The steps below show one example, and the model can choose differently from run to run. These times are to the last token. For time to first token, see <a href="../model-comparison/">Choosing a model</a>. While a user waits, the API sends status events such as "Searching the parts catalog", and the first arrives in about 0.1 s.</p>
   <div class="mapwrap" tabindex="0" aria-label="Map of the systems. Scroll sideways on a small screen."><svg class="map" id="map" viewBox="0 0 1290 760" role="img" aria-label="System map: client, Web API with routes, loop and tool table, Foundry with conversations and the model, the dealer service, and Azure AI Search with knowledge base, knowledge source, index, embedding model and semantic ranker. Numbered arrows show the calls of the selected prompt."></svg></div>
   <div class="stepbar" id="stepbar"></div>
   <div class="card" id="card" aria-live="polite"></div>
@@ -883,7 +909,7 @@ return await tool.handler(arguments, user)</pre>
 <pre>async def get_prices(args, user):
     return await dealer.prices(
         args.get("market", "SE"))</pre>
-      <p>So the prices are not in the tool. They live in the dealer service, and the tool just fetches them. That's how your prompt gets an answer without Azure AI Search.</p>
+      <p>So the prices are not in the tool. They live in the dealer service, and the tool just fetches them. Azure AI Search isn't needed for a live price, but the model usually checks the buyer's guide as well.</p>
     </div>
   </div>
 </section>
@@ -892,9 +918,9 @@ return await tool.handler(arguments, user)</pre>
   <h2 id="rag-title">No RAG, simple RAG and agentic RAG</h2>
   <p>The own loop never decides between these, because they aren't branches in the code. There's one check, <code>if not calls: return "done"</code>. The three names describe what the model happened to ask for, turn by turn.</p>
   <div class="cols3">
-    <article class="path"><h3>No RAG</h3><p>"Good morning!"</p><div class="chain"><div class="m">Model call 1</div><i>no tool calls</i><div class="end">Answer</div></div><p class="legend">1 model call, 966 tokens, 1.4 s</p></article>
-    <article class="path"><h3>Simple RAG</h3><p>"And what about one with all wheel drive?"</p><div class="chain"><div class="m">Model call 1</div><i>asks for one search</i><div class="sr">search_voltrieve_docs</div><i>chunks go back</i><div class="m">Model call 2</div><i>no tool calls</i><div class="end">Answer</div></div><p class="legend">2 model calls, 7,441 tokens, 5.9 s</p></article>
-    <article class="path"><h3>Agentic RAG</h3><p>"...cheapest car with all wheel drive... in Sweden?"</p><div class="chain"><div class="m">Model call 1</div><i>asks for four tools at once</i><div class="tl">get_prices</div><div class="sr">search_voltrieve_docs × 3, all at once</div><i>outputs go back</i><div class="m">Model call 2</div><i>no tool calls, or asks again</i><div class="end">Answer</div></div><p class="legend">2 model calls, 15,756 tokens, 8.0 s</p></article>
+    <article class="path"><h3>No RAG</h3><p>"Good morning!"</p><div class="chain"><div class="m">Model call 1</div><i>no tool calls</i><div class="end">Answer</div></div><p class="legend">1 model call, 1,282 tokens, 1.3 s</p></article>
+    <article class="path"><h3>Simple RAG</h3><p>"And what about one with all wheel drive?"</p><div class="chain"><div class="m">Model call 1</div><i>asks for one search</i><div class="sr">search_voltrieve_docs</div><i>chunks go back</i><div class="m">Model call 2</div><i>no tool calls</i><div class="end">Answer</div></div><p class="legend">2 model calls, 13,413 tokens, 6.0 s</p></article>
+    <article class="path"><h3>Agentic RAG</h3><p>"...cheapest car with all wheel drive... in Sweden?"</p><div class="chain"><div class="m">Model call 1</div><i>asks for two tools at once</i><div class="tl">get_prices</div><div class="sr">search_voltrieve_docs</div><i>outputs go back</i><div class="m">Model call 2</div><i>no tool calls, or asks again</i><div class="end">Answer</div></div><p class="legend">2 model calls, 7,782 tokens, 5.6 s</p></article>
   </div>
   <p>The difference is only that the model plans its own steps: several sources, or another search after reading the first result. Spare parts questions do the second one when an article number is missing. Separately, every Azure AI Search call uses agentic retrieval, so even "simple RAG" gets a query planner.</p>
 </section>
@@ -915,14 +941,14 @@ return await tool.handler(arguments, user)</pre>
 
 <section aria-labelledby="search-title">
   <h2 id="search-title">What Azure AI Search receives</h2>
-  <p>Search is called only when the model asks for a search tool, and then the Web API makes the call. For your exact prompt that happened in 0 of 15 runs. Your words are never sent as they are, unless the model repeats them. This is the follow-up from the real run:</p>
+  <p>Search is called only when the model asks for a search tool, and then the Web API makes the call. On <code>gpt-6.1-terra</code> the model asked for one in all 15 runs of the cheapest car question, alongside the price list. Your words are never sent as they are, unless the model repeats them. This is a follow-up from a real run:</p>
   <div class="rewrite">
     <div><small>You type</small><code>And what about one with all wheel drive?</code></div>
-    <div><small>The model writes</small><code>all wheel drive AWD models price buyer's guide</code></div>
+    <div><small>The model writes</small><code>Voltrieve buyer's guide prices AWD cheapest all wheel drive model Sweden SEK EU EUR comparison</code></div>
     <div><small>Web API sends to Search</small><code>POST /knowledgebases/voltrieve-kb/retrieve, one message holding the model's text</code></div>
-    <div><small>Planner, sub-query 1</small><code>all wheel drive AWD models</code></div>
-    <div><small>Planner, sub-query 2</small><code>buyer's guide AWD price</code></div>
-    <div><small>Planner, sub-query 3</small><code>AWD model price</code></div>
+    <div><small>Planner, sub-query 1</small><code>Voltrieve buyer's guide AWD all wheel drive models Sweden SEK EUR price</code></div>
+    <div><small>Planner, sub-query 2</small><code>Voltrieve buyer's guide all wheel drive cheapest model Sweden</code></div>
+    <div><small>Planner, sub-query 3</small><code>Voltrieve buyer's guide Europe EUR Sweden SEK AWD pricing</code></div>
     <div><small>Search returns</small><code>{"chunks":[{"title":"voltrieve-buyers-guide.md","content":"..."}, ...]}</code></div>
   </div>
   <p>Search receives no history, no instructions and no user token. The model has to put everything needed into its query. The planner's own prompt to gpt-5.4-mini is written by Azure AI Search and isn't visible to us, so we only see the sub-queries it produced. Search returns text chunks and writes no answer.</p>
@@ -949,19 +975,19 @@ return await tool.handler(arguments, user)</pre>
 
 <section aria-labelledby="win-title">
   <h2 id="win-title">Where each one works better, and where it fails</h2>
-  <p>Green marks the best result on that row and red marks a real weakness. Figures are medians from the live runs in <code>docs/evidence/</code>, all with <code>gpt-5.4-mini</code> as the agent. The own loop now runs <code>gpt-6.1-terra</code>, which is faster: see <a href="../model-comparison/">Choosing a model</a>. Times are to the last token, unless a row says otherwise.</p>
+  <p>Green marks the best result on that row and red marks a real weakness. Figures are medians from 48 live runs per backend, all with <code>gpt-6.1-terra</code> as the agent and <code>gpt-5.4-mini</code> for Search planning. For other models, see <a href="../model-comparison/">Choosing a model</a>. Times are to the last token, unless a row says otherwise.</p>
   <div class="tablewrap"><table>
     <tr><th>What you care about</th><th>Own loop</th><th>Prompt agent</th><th>Hosted agent</th></tr>
-    <tr><td>Turns over 10 s to the first token</td><td class="win">3 of 48, or 0 of 48 on <code>gpt-6.1-terra</code></td><td>9 of 48, or 5 of 48 on <code>gpt-6.1-terra</code></td><td class="fail">13 of 48, or 7 of 48 on <code>gpt-6.1-terra</code></td></tr>
-<tr><td>Everyday question, such as a greeting</td><td class="win">1.6 s</td><td class="win">2.0 s</td><td class="fail">6.0 s. Every turn adds about 4.5 s for the hop into the agent session</td></tr>
-<tr><td>Question for two knowledge bases</td><td class="win">12.3 s, searches run together in 11 of 12</td><td>16.5 s, searches run one at a time in 12 of 12</td><td>17.2 s, searches run together in 12 of 12</td></tr>
+<tr><td>Turns over 10 s to the first token</td><td class="win">1 of 48</td><td>3 of 48</td><td class="fail">9 of 48</td></tr>
+<tr><td>Everyday question, such as a greeting</td><td class="win">1.5 s</td><td class="win">1.8 s</td><td class="fail">6.5 s. Every turn adds about 5 s for the hop into the agent session</td></tr>
+<tr><td>Question for two knowledge bases</td><td class="win">7.8 s, searches run together in 8 of 8</td><td>10.9 s, searches run one at a time in 8 of 8</td><td>12.8 s, searches run together in 8 of 8</td></tr>
 <tr><td>A client tool the server has never seen</td><td class="win">Works</td><td class="fail">Refused: tools must be in the agent definition</td><td class="win">Works, through Invocations</td></tr>
 <tr><td>Client tools from a fixed list</td><td class="win">Works</td><td class="win">Works</td><td class="win">Works</td></tr>
-<tr><td>Curated answer, word for word</td><td class="win">1.7 s, 27 of 27 right</td><td class="win">1.8 s, 27 of 27 right</td><td>6.4 s, 27 of 27 right</td></tr>
-<tr><td>Staying on task</td><td class="win">No tool called in vain</td><td>Fixed with its own instructions: 1 of 27 job runs still made needless calls</td><td class="win">No tool called in vain</td></tr>
-<tr><td>Tokens for "Good morning!"</td><td class="win">About 1,200 input tokens</td><td class="fail">About 2,550 input tokens</td><td class="win">About 1,200 input tokens</td></tr>
+<tr><td>Curated answer, word for word</td><td class="win">1.5 s, 18 of 18 right</td><td class="win">1.7 s, 18 of 18 right</td><td>6.3 s, 18 of 18 right</td></tr>
+<tr><td>Staying on task</td><td class="win">No tool in vain in 48 runs</td><td class="win">No tool in vain in 48 runs, after its own instructions fixed this</td><td class="win">No tool in vain in 48 runs</td></tr>
+<tr><td>Input tokens for "Good morning!"</td><td class="win">About 1,270</td><td class="fail">About 2,680</td><td class="win">About 1,270</td></tr>
 <tr><td>Control over each search</td><td class="win">Full: retries, timing, parallel runs</td><td class="fail">Little: it happens inside Foundry's agent run, and a rate limit after a search isn't retried</td><td class="win">Full, same code</td></tr>
-<tr><td>Article numbers found on brake jobs</td><td class="win">All, none invented</td><td class="win">All, none invented</td><td class="win">All, none invented</td></tr>
+<tr><td>Article numbers found on brake jobs</td><td class="win">78 of 78, none invented</td><td class="win">78 of 78, none invented</td><td class="win">78 of 78, none invented</td></tr>
 <tr><td>Code you own for searching</td><td>A client and a tool per base</td><td class="win">None: declare the base as an MCP tool</td><td>A client and a tool per base</td></tr>
 <tr><td>Agent identity and versions in Foundry</td><td class="fail">No, it's your API</td><td class="win">Yes</td><td class="win">Yes</td></tr>
 <tr><td>Change instructions without shipping code</td><td class="fail">No, redeploy the API</td><td class="win">Yes, a new agent version</td><td class="fail">No, build a new image</td></tr>
@@ -984,8 +1010,8 @@ return await tool.handler(arguments, user)</pre>
 
 <section aria-labelledby="paths-title">
   <h2 id="paths-title">How often each path was taken</h2>
-  <p>The model chooses again on every run, so the same words can take different paths. Measured with 15 runs of each prompt on the own loop.</p>
-  <div class="tablewrap"><table id="runs"><tr><th>Prompt</th><th>Runs</th><th>What the agent used</th><th>Result</th><th>Model calls</th><th>Median time</th></tr><tr><td>What is the cheapest car that you can sell me?</td><td class="num">8</td><td>get_prices twice, SE and EU</td><td>Spark, 289,000 SEK</td><td class="num">2</td><td class="num">4.4 s</td></tr><tr><td></td><td class="num">4</td><td>get_prices once</td><td>Spark, 289,000 SEK</td><td class="num">2</td><td class="num">3.8 s</td></tr><tr><td></td><td class="num">3</td><td>Nothing</td><td>Asked for the market</td><td class="num">1</td><td class="num">2.4 s</td></tr><tr><td>... in Sweden?</td><td class="num">15</td><td>get_prices once</td><td>Spark, 289,000 SEK</td><td class="num">2</td><td class="num">2.6 s</td></tr><tr><td>... with all wheel drive ... in Sweden?</td><td class="num">8</td><td>get_prices and 1 search</td><td>Lumen AWD, 419,000 SEK</td><td class="num">2</td><td class="num">6.5 s</td></tr><tr><td></td><td class="num">7</td><td>get_prices and 2 searches</td><td>Lumen AWD, 419,000 SEK</td><td class="num">2</td><td class="num">7.0 s</td></tr><tr><td>Good morning!</td><td class="num">15</td><td>Nothing</td><td>A greeting</td><td class="num">1</td><td class="num">0.8 s</td></tr></table></div>
+  <p>The model chooses again on every run, so the same words can take different paths. Measured with 15 runs of each prompt on the own loop, on <code>gpt-6.1-terra</code>.</p>
+  <div class="tablewrap"><table id="runs"><tr><th>Prompt</th><th>Runs</th><th>What the agent used</th><th>Result</th><th>Model calls</th><th>Median time</th></tr><tr><td>What is the cheapest car that you can sell me?</td><td class="num">15</td><td>get_prices and 1 search</td><td>Spark, 289,000 SEK</td><td class="num">2</td><td class="num">5.7 s</td></tr><tr><td>... in Sweden?</td><td class="num">13</td><td>get_prices and 1 search</td><td>Spark, 289,000 SEK</td><td class="num">2</td><td class="num">5.6 s</td></tr><tr><td></td><td class="num">2</td><td>get_prices once</td><td>Spark, 289,000 SEK</td><td class="num">2</td><td class="num">3.1 s</td></tr><tr><td>... with all wheel drive ... in Sweden?</td><td class="num">15</td><td>get_prices and 1 search</td><td>Lumen AWD, 419,000 SEK</td><td class="num">2</td><td class="num">5.6 s</td></tr><tr><td>Good morning!</td><td class="num">15</td><td>Nothing</td><td>A greeting</td><td class="num">1</td><td class="num">1.3 s</td></tr></table></div>
 </section>
 </div>
 
@@ -1014,10 +1040,10 @@ const E={
  d_t:{p:[[900,380],[680,380]],a:[790,394],m:"middle",v:"down",ret:1},
  t_p:{p:[[680,486],[915,486]],a:[797,472],m:"middle",v:"up"},
  p_t:{p:[[915,506],[680,506]],a:[797,520],m:"middle",v:"down",ret:1},
- p_m:{p:[[1030,462],[1030,420],[1170,420],[1170,392]],a:[1106,445],m:"start",v:"mid"},
- m_p:{p:[[1190,392],[1190,434],[1046,434],[1046,462]],a:[1106,445],m:"start",v:"mid",ret:1},
- m_k:{p:[[1070,275],[1070,462]],a:[1102,308],m:"start",v:"mid"},
- k_m:{p:[[1086,462],[1086,275]],a:[1102,308],m:"start",v:"mid",ret:1},
+ p_m:{p:[[1015,462],[1015,420],[1170,420],[1170,275]],a:[1102,350],m:"start",v:"mid"},
+ m_p:{p:[[1190,275],[1190,434],[1030,434],[1030,462]],a:[1102,350],m:"start",v:"mid",ret:1},
+ m_k:{p:[[1070,275],[1070,462]],a:[1102,350],m:"start",v:"mid"},
+ k_m:{p:[[1086,462],[1086,275]],a:[1102,350],m:"start",v:"mid",ret:1},
  kb_ks:{p:[[990,528],[990,566]],a:[1022,547],m:"start",v:"mid"},
  ks_kb:{p:[[1006,566],[1006,528]],a:[1022,547],m:"start",v:"mid",ret:1},
  ks_ix:{p:[[990,626],[990,664]],a:[1022,645],m:"start",v:"mid"},
@@ -1031,7 +1057,7 @@ const E={
  l_v:{p:[[680,200],[760,200],[760,116],[920,116]],a:[770,156],m:"start",v:"mid"},
 };
 const S=(from,to,edges,chips,carry,why,hit)=>({from,to,edges:[].concat(edges),chips:[].concat(chips),carry,why,hit});
-const INSTR='instructions=AGENT_INSTRUCTIONS   # about 2300 characters\ntools=[6 tool definitions]';
+const INSTR='instructions=AGENT_INSTRUCTIONS   # about 2300 characters\ntools=[7 tool definitions]';
 const FIRSTUP=(p,c)=>S("Client","Web API routes","c_r",`POST /chat "${p}"`,`POST /chat
 Authorization: Bearer <user's Entra token>
 X-Agent-Backend: loop
@@ -1044,7 +1070,7 @@ conversations.retrieve("${CONV}")  ->  metadata.owner_oid`,"The owner must equal
 const START=(p)=>S("Web API routes","run_turn loop","r_l","run_turn(prompt, conv id, user)",`TurnInput(user, conversation_id, turn_id, input="${p}", client_tools=[])`,"The words are passed on unchanged. No code reads or classifies them.");
 const MODEL=(n,input,why,chip,tools)=>Object.assign(S("run_turn loop","gpt-6.1-terra in Foundry","l_m",chip,`responses.create(
   model="gpt-6.1-terra",
-  ${INSTR.replace("6 tool definitions",tools||"6 tool definitions").replace("\n","\n  ")}
+  ${INSTR.replace("7 tool definitions",tools||"7 tool definitions").replace("\n","\n  ")}
   conversation="${CONV}",
   input=${input},
   parallel_tool_calls=True,
@@ -1061,69 +1087,46 @@ const CONTACT="You can call Voltrieve customer care on 020-000 000 or write to\n
 const CTOOL=`{ "name": "get_local_time",
   "description": "Get the local time and timezone of the user's machine.",
   "parameters": { "type": "object", "properties": {} } }`;
+function toolSteps(key,prompt,opening,firstWhy,history,decisionWhy){
+ const ex=J.loop[key].example,dealer=ex.server_tools.find(t=>t.tool==="get_prices"||t.tool==="check_stock"),searches=ex.server_tools.filter(t=>t.tool.startsWith("search_"));
+ const query=t=>{try{return JSON.parse(t.arguments).query}catch{return t.arguments}};
+ const know=ex.knowledge[0]||{sub_queries:[]},market=dealer?(JSON.parse(dealer.arguments||"{}").market||"SE"):"SE";
+ const list=ex.server_tools.map(t=>`${t.tool}  ${t.arguments}`).join("\n");
+ const both=dealer&&searches.length;
+ const retrieve=searches.map(t=>`POST /knowledgebases/voltrieve-kb/retrieve\n{ "messages": [{ "role": "user", "content": [{ "type": "text",\n    "text": "${query(t)}" }] }], ... }`).join("\n\n");
+ const out=[...opening,MODEL(1,`"${prompt}"`,firstWhy,"instructions + 7 tools + prompt","7 tool definitions"),HIST(...history),
+  UP(ex.server_tools.length>1?ex.server_tools.length+" tools in one response":ex.server_tools[0].tool+"(query=...)",list,decisionWhy),
+  LOOKUP(ex.server_tools[0].tool,"...",both?"The names are in the table, and both only read, so they start together. A booking would wait and run alone.":"Same lookup as every tool. This handler calls the knowledge base client.")];
+ const hit=searches[0]&&searches[0].tool;
+ out.push(S("ToolSet",both?"Dealer service and knowledge base":"Knowledge base voltrieve-kb",both?["t_d","t_p"]:"t_p",both?[`GET /prices?market=${market}`,"POST .../retrieve, the model's query"]:"POST .../retrieve, the model's query",both?`GET /prices?market=${market}\nAuthorization: Bearer <API's managed identity>\n\n${retrieve}`:retrieve,"Search gets only the model's text, with no history. It runs as the API's identity, and the user's token isn't forwarded.",hit));
+ out.push(S("Knowledge base planner","gpt-5.4-mini",["p_m","m_p"],["plan: "+(know.sub_queries||[]).length+" sub-queries back",""],(know.sub_queries||[]).join("\n"),"Search calls its own model, gpt-5.4-mini, because it refuses GPT-6 models. These are the real sub-queries of this run. The prompt it sends is written by Azure AI Search and isn't visible to us."));
+ out.push(S("Knowledge base","Knowledge source, index",["kb_ks","ks_ix"],["each sub-query","hybrid search"],"Each sub-query runs on voltrieve-docs-ks with keyword and vector matching, then the semantic ranker.","The Detailed RAG tab shows each of these."));
+ out.push(S("Index, knowledge source","Knowledge base",["ix_ks","ks_kb"],["ranked chunks","best chunks merged"],"Chunks of documents, best match first.\nDocuments: "+(know.references||[]).join(", "),"Results from the sub-queries are merged."));
+ out.push(S(both?"Dealer service and knowledge base":"Knowledge base voltrieve-kb","ToolSet",both?["d_t","p_t"]:"p_t",both?["spark 289000, lumen 379000...","chunks, no answer"]:"chunks, no answer",both?PRICES+'\n\n{ "chunks": [{ "title": "voltrieve-buyers-guide.md", "content": "..." }, ...] }':'{ "chunks": [{ "title": "voltrieve-buyers-guide.md", "content": "..." }, ...] }',both?"The prices are live data in the dealer service. The AWD prices and option details only exist in the documents. Search writes no answer.":"Search writes no answer. It returns raw text for the model to read.",hit));
+ out.push(S("ToolSet","run_turn loop","t_l","outputs, in call order","function_call_output items, as text, in the order the model asked for them.","Handlers return text, because text is all the model can read."));
+ out.push(MODEL(2,'[function_call_output items]',"Model call 2. The prompt isn't sent again: the input is just the tool output. It could ask for more tools here, and that's what makes a loop agentic.","instructions + tools + outputs","7 tool definitions"));
+ out.push(HIST("all earlier items","Everything from before, plus the tool calls.","Our code didn't resend the prompt, but the model still sees it, because it's stored in the conversation."));
+ out.push(UP("text, no tool calls",ex.answer.slice(0,300)+(ex.answer.length>300?" ...":""),"No tool calls this time, so this is the end of the turn."));
+ out.push(OUT(`event: delta  {"text":"..."}\nevent: done   {"conversation_id":"${CONV}", "usage":{...}}`));
+ return out}
 const SCEN={
- yours:{tab:"Cheapest car",q:SHORT,steps:[
-  FIRSTUP(SHORT),...CREATE,START(SHORT),
-  MODEL(1,`"${SHORT}"`,"Model call 1, and the moment of decision. There is no separate classifier: everything the model uses to choose is in this one call.","instructions + 6 tools + prompt"),
-  HIST("history: empty","Conversation items before this prompt: none\nFoundry stores the prompt now.","Foundry does this by itself. Our code isn't involved."),
-  UP('function_call get_prices {}','{ "type": "function_call",\n  "name": "get_prices",\n  "arguments": "{}" }','The decision. A price question matches the get_prices description, and the instructions forbid answering from memory. This is only a request: the model runs nothing. It took 1.9 s.'),
-  LOOKUP("get_prices","{}","Why the Web API calls it: the model asked, and the name is in the table. See the flowchart further down."),
-  S("ToolSet","Dealer service","t_d","GET /prices?market=SE","GET /prices?market=SE\nAuthorization: Bearer <API's managed identity>\nX-Correlation-Id: <same id as the turn>","The model sent no market, so the handler used its default, SE. The user's token isn't forwarded.","get_prices"),
-  S("Dealer service","ToolSet","d_t",'spark 289000, lumen 379000...',PRICES,"This is where the price comes from: live data in the dealer service. It took 25 ms and Azure AI Search wasn't involved.","get_prices"),
-  S("ToolSet","run_turn loop","t_l","the same JSON, as text",PRICES,"Handlers return text, because text is all the model can read."),
-  MODEL(2,'[{ "type": "function_call_output",\n          "call_id": "call_...",\n          "output": "{\\"market\\":\\"SE\\",...}" }]',"Model call 2. The prompt isn't sent again: the input is just the tool output. Instructions and tools are sent again.","instructions + tools + prices"),
-  HIST("prompt + the get_prices call","Stored items: the prompt, the function_call\nFoundry adds the new output to them.","Our code didn't send the prompt, but the model still sees it, because it's stored in the conversation."),
-  UP('text, no tool calls',"In the SE market, the cheapest Voltrieve car is the Spark at 289,000 SEK.\n\nIf you meant the EU market instead, tell me and I can check that pricing too.","No tool calls this time, so this is the end of the turn. 3 of 15 runs asked "+'"SE or EU?"'+" here on call 1 and never reached the dealer."),
-  OUT('event: delta  {"text":"In the SE market, ..."}\nevent: done   {"conversation_id":"'+CONV+'", "usage":{...}}'),
- ]},
- follow:{tab:"Follow-up, simple RAG",q:FOLLOW,steps:[
-  FIRSTUP(FOLLOW,true),...OWNER,START(FOLLOW),
-  MODEL(1,`"${FOLLOW}"`,"The same call as before, with new words. The API sends nothing about the earlier question.","instructions + 6 tools + prompt"),
-  HIST("your earlier turn, 4 items",`Stored items:
-1. What is the cheapest car that you can sell me?
-2. function_call get_prices
-3. function_call_output (the price list)
-4. In the SE market, the cheapest ... Spark ...`,"This is how \"one with all wheel drive\" gets a meaning. Foundry adds the history, and the API never handles it."),
-  UP('search_voltrieve_docs(query=...)','{ "type": "function_call",\n  "name": "search_voltrieve_docs",\n  "arguments": "{\\"query\\":\\"all wheel drive AWD models price buyer\'s guide\\"}" }',"The decision again. The get_prices description says it has no AWD prices and points to the documents. The model also wrote the search text itself."),
-  LOOKUP("search_voltrieve_docs",`{"query":"all wheel drive AWD..."}`,"Same lookup as get_prices. This handler calls the knowledge base client."),
-  S("ToolSet","Knowledge base voltrieve-kb","t_p","POST .../retrieve, the model's query",`POST /knowledgebases/voltrieve-kb/retrieve
-{ "messages": [{ "role": "user", "content": [{ "type": "text",
-    "text": "all wheel drive AWD models price buyer's guide" }] }],
-  "knowledgeSourceParams": [{ "knowledgeSourceName": "voltrieve-docs-ks", ... }],
-  "maxOutputSize": 5000, "includeActivity": true }`,"This is the one prompt Search gets. It holds only the model's text, with no history. It runs as the API's identity.","search_voltrieve_docs"),
-  S("Knowledge base planner","gpt-5.4-mini","p_m","plan sub-queries","Prompt written by Azure AI Search, not visible to us.\nIn a recorded call: 942 input tokens, 44 output, 1.4 s.","Search calls its own model, gpt-5.4-mini, because it refuses GPT-6 models. This is query planning."),
-  S("gpt-5.4-mini","Knowledge base planner","m_p","3 sub-queries","all wheel drive AWD models\nbuyer's guide AWD price\nAWD model price","Three shorter, sharper searches, taken from the real run."),
-  S("Knowledge base","Knowledge source, index",["kb_ks","ks_ix"],["3 sub-queries","searches voltrieve-docs-index"],"The knowledge base hands each sub-query to its knowledge source, voltrieve-docs-ks, which searches voltrieve-docs-index with keyword and vector matching, then the semantic ranker. The Detailed RAG tab shows each of these.","In a recorded call these took 36 to 79 ms each."),
-  S("Index, knowledge source","Knowledge base",["ix_ks","ks_kb"],["ranked chunks","best chunks merged"],"Chunks of documents, best match first.\nTop document: voltrieve-buyers-guide.md","Results from the sub-queries are merged."),
-  S("Knowledge base voltrieve-kb","ToolSet","p_t","chunks, no answer",'{ "chunks": [{ "ref_id": "0",\n    "title": "voltrieve-buyers-guide.md",\n    "content": "# Voltrieve buyer\'s guide ..." }, ...],\n  "partial": false }',"Search writes no answer. It returns raw text for the model to read.","search_voltrieve_docs"),
-  S("ToolSet","run_turn loop","t_l","chunks as text","The same JSON, as text.","Nothing is summarised on the way."),
-  MODEL(2,'[{ "type": "function_call_output", "output": "{\\"chunks\\":[...]}" }]',"Model call 2. The chunks go in as a tool output, and that's the whole of RAG: the text ends up in front of the model.","instructions + tools + chunks"),
-  HIST("all earlier items","Everything from before, plus the search call.","The model now has both your questions and the retrieved chunks."),
-  UP("text, no tool calls","In the SE market, the cheapest AWD Voltrieve is the Lumen AWD at 419,000 SEK. ...\nSource: voltrieve-buyers-guide.md","The answer cites the document because the instructions require it."),
-  OUT('event: delta  {"text":"In the SE market, ..."}\nevent: done   {"conversation_id":"'+CONV+'", "usage":{...}}'),
- ]},
- awd:{tab:"AWD in Sweden, agentic RAG",q:AWD,steps:[
-  FIRSTUP(AWD),...CREATE,START(AWD),
-  MODEL(1,`"${AWD}"`,"Model call 1. Parallel tool calls are switched on, so one response can hold several requests.","instructions + 6 tools + prompt"),
-  HIST("history: empty","Conversation items before this prompt: none","Same as any first message."),
-  UP("4 function calls in one response",`get_prices            {"market":"SE"}
-search_voltrieve_docs {"query":"all wheel drive AWD drive configurations prices Sweden buyer's guide models"}
-search_voltrieve_docs {"query":"AWD price model buyer's guide"}
-search_voltrieve_docs {"query":"all-wheel drive technical specifications pricing"}`,"The model plans several things at once. The instructions say a question about AWD needs the buyer's guide, and to call everything in the same step."),
-  LOOKUP("search_voltrieve_docs",`...`,"All four are looked up. They only read, so asyncio.gather starts them together. A booking would wait and run alone.","get_prices"),
-  S("ToolSet","Dealer service and Azure AI Search",["t_d","t_p"],["GET /prices?market=SE","3 × POST .../retrieve"],"GET /prices?market=SE\nPOST /knowledgebases/voltrieve-kb/retrieve  × 3, one per query","All four leave within 3 ms of each other. Each retrieve gets its own planner call and its own sub-queries.","search_voltrieve_docs"),
-  S("Knowledge base planner","gpt-5.4-mini",["p_m"],"plan sub-queries","Three planner calls, one per retrieve.\n3, 3 and 5 sub-queries came back.","The token cost is visible here: this turn used 15,756 tokens against 2,485 for the plain price question, mostly the retrieved chunks going back to the model."),
-  S("Dealer service and Azure AI Search","ToolSet",["d_t","p_t"],["spark 289000, lumen 379000...","chunks from buyer's guide + specs"],"Dealer: the base prices, in 35 ms\nSearch: chunks, including the AWD prices in voltrieve-buyers-guide.md","Together they took 2.0 s. One at a time they would have taken 5.3 s.","search_voltrieve_docs"),
-  S("ToolSet","run_turn loop","t_l","4 outputs, in call order","Four function_call_output items, in the order the model asked for them, whichever finished first.","The dealer list only has base prices, so the chunks are what make the answer possible."),
-  MODEL(2,'[4 function_call_output items]',"Model call 2. It could ask for more tools here. That's what makes this agentic: the model reads the results before it decides.","instructions + tools + 4 outputs"),
-  HIST("prompt + the 4 calls","Stored items: the prompt and the 4 function_calls.","Foundry again supplies what our code didn't resend."),
-  UP("text, no tool calls","The cheapest Voltrieve with all-wheel drive in Sweden is the Voltrieve Lumen AWD at 419,000 SEK. ...\nSource: voltrieve-buyers-guide.md","This time it was satisfied after one round."),
-  OUT('event: delta  {"text":"The cheapest Voltrieve ..."}\nevent: done   {"conversation_id":"conv_...", "usage":{...}}'),
- ]},
+ yours:{tab:"Cheapest car",q:SHORT,steps:toolSteps("yours",SHORT,[FIRSTUP(SHORT),...CREATE,START(SHORT)],
+  "Model call 1, and the moment of decision. There is no separate classifier: everything the model uses to choose is in this one call.",
+  ["history: empty","Conversation items before this prompt: none\nFoundry stores the prompt now.","Foundry does this by itself. Our code isn't involved."],
+  "The decision. It asks for two things at once: the live price list, and the buyer's guide, because the instructions say prices belong in the documents too. This is only a request: the model runs nothing.")},
+ follow:{tab:"Follow-up, simple RAG",q:FOLLOW,steps:toolSteps("follow",FOLLOW,[FIRSTUP(FOLLOW,true),...OWNER,START(FOLLOW)],
+  "The same call as before, with new words. The API sends nothing about the earlier question.",
+  ["your earlier turn",`Stored items from the first question:
+the prompt, the tool calls, their outputs and the answer`,"This is how \"one with all wheel drive\" gets a meaning. Foundry adds the history, and the API never handles it."],
+  "The decision again. The get_prices description says it has no AWD prices and points to the documents. The model also wrote the search text itself.")},
+ awd:{tab:"AWD in Sweden, agentic RAG",q:AWD,steps:toolSteps("awd",AWD,[FIRSTUP(AWD),...CREATE,START(AWD)],
+  "Model call 1. Parallel tool calls are switched on, so one response can hold several requests.",
+  ["history: empty","Conversation items before this prompt: none","Same as any first message."],
+  "The model plans several things at once. The instructions say a question about AWD needs the buyer's guide, and to call everything in the same step.")},
  detail:{tab:"Detailed RAG",q:DETAILQ,steps:DETAIL_STEPS()},
  hello:{tab:"Good morning, no RAG",q:"Good morning!",steps:[
   FIRSTUP("Good morning!"),...CREATE,START("Good morning!"),
-  MODEL(1,'"Good morning!"',"Exactly the same call as for every other prompt. The API doesn't know this is only a greeting.","instructions + 6 tools + prompt"),
+  MODEL(1,'"Good morning!"',"Exactly the same call as for every other prompt. The API doesn't know this is only a greeting.","instructions + 7 tools + prompt"),
   HIST("history: empty","Conversation items before this prompt: none","Nothing to add."),
   UP("text, no tool calls","Good morning! How can I help with Voltrieve today?","The instructions list greetings under \"No search\", so the model just answers. 920 input tokens, nearly all of them instructions and tool definitions."),
   OUT('event: delta  {"text":"Good morning! ..."}\nevent: done   {"conversation_id":"conv_...", "usage":{...}}'),
@@ -1135,8 +1138,8 @@ X-Agent-Backend: loop
 
 { "message": "${TIMEQ}",
   "client_tools": [${CTOOL.replace(/\n/g,"\n    ")}] }`,"The CLI brings its own tool in the request. The server has never seen it before, and that's the point: only the client's own machine can answer this."),
-  ...CREATE,{...START(TIMEQ),chips:["run_turn(prompt, ..., client_tools)"],carry:`TurnInput(user, conversation_id, turn_id, input="${TIMEQ}",\n          client_tools=[get_local_time])`,why:"The client's tool joins the six server tools for this turn only."},
-  MODEL(1,`"${TIMEQ}"`,"The model sees seven tools and can't tell which kind each one is. To the model, a client tool looks exactly like a server tool.","instructions + 6 + 1 tools + prompt","6 server tools + 1 client tool"),
+  ...CREATE,{...START(TIMEQ),chips:["run_turn(prompt, ..., client_tools)"],carry:`TurnInput(user, conversation_id, turn_id, input="${TIMEQ}",\n          client_tools=[get_local_time])`,why:"The client's tool joins the seven server tools for this turn only."},
+  MODEL(1,`"${TIMEQ}"`,"The model sees eight tools and can't tell which kind each one is. To the model, a client tool looks exactly like a server tool.","instructions + 7 + 1 tools + prompt","7 server tools + 1 client tool"),
   HIST("history: empty","Conversation items before this prompt: none","Same as any first message."),
   UP("function_call get_local_time {}",'{ "type": "function_call",\n  "name": "get_local_time",\n  "arguments": "{}",\n  "call_id": "call_WjdfVzkPh..." }',"The same kind of response as for get_prices. The difference only appears on the next step."),
   S("run_turn loop","ToolSet, the tool table","l_t","is_client(\"get_local_time\")? yes",`toolset.is_client("get_local_time")          # True
@@ -1155,14 +1158,14 @@ toolset.validate_client("get_local_time", "{}")   # None, so it's valid`,"The na
   S("Web API routes","run_turn loop","r_l","resume with the tool output",`input=[{ "type": "function_call_output",
          "call_id": "call_WjdfVzkPh...",
          "output": "{\\"local_time\\":...}" }]`,"From here it's a normal loop again. The client tool is sent to the model again too, because tools are never stored."),
-  MODEL(2,'[{ "type": "function_call_output", "output": "{\\"local_time\\":...}" }]',"Model call 2, exactly as for a server tool. The model can't tell where the output came from.","instructions + tools + the time","6 server tools + 1 client tool"),
+  MODEL(2,'[{ "type": "function_call_output", "output": "{\\"local_time\\":...}" }]',"Model call 2, exactly as for a server tool. The model can't tell where the output came from.","instructions + tools + the time","7 server tools + 1 client tool"),
   HIST("prompt + the tool call","Stored items: the prompt, the function_call","The conversation lived in Foundry the whole time, so a pause loses nothing."),
   UP("text, no tool calls","Your computer's local time is 2026-11-05 16:42:10, in the Europe/Stockholm timezone.","No tool calls, so the turn ends."),
   OUT('event: delta  {"text":"Your computer\'s local time ..."}\nevent: done   {"conversation_id":"conv_027829ef0b...", "usage":{...}}'),
  ]},
  curated:{tab:"Curated answer",proposed:1,q:PHONE,steps:[
   FIRSTUP(PHONE),...CREATE,START(PHONE),
-  MODEL(1,`"${PHONE}"`,"The normal first model call. The only change is one more tool in the list, whose topic must be one of a fixed set. No extra call happens, so every other question stays as it is today.","instructions + 7 tools + prompt","6 tools + get_curated_answer"),
+  MODEL(1,`"${PHONE}"`,"The normal first model call. The only change is one more tool in the list, whose topic must be one of a fixed set. No extra call happens, so every other question stays as it is today.","instructions + 7 tools + prompt","7 tool definitions"),
   HIST("history: empty","Conversation items before this prompt: none","Same as any first message."),
   UP("get_curated_answer(topic=contact)",'{ "type": "function_call",\n  "name": "get_curated_answer",\n  "arguments": "{\\"topic\\":\\"contact\\"}" }',"The model understands the question, so \"How can I reach you?\" picks the same topic. It knows the topics but not the answers, so it has nothing to reword. This is the first call, as for any question."),
   S("run_turn loop","ToolSet, the tool table","l_t",'execute("get_curated_answer")',`toolset.execute("get_curated_answer", '{"topic":"contact"}', user, emit)`,"The same table lookup as every other tool.","get_curated_answer"),
@@ -1179,9 +1182,8 @@ const BACKENDS={loop:{label:"Own loop"},prompt:{label:"Prompt agent"},hosted:{la
 const cache={};
 function stepsFor(key){const k=backend+key;return cache[k]||(cache[k]=backend==="loop"?SCEN[key].steps:backend==="hosted"?hostedSteps(SCEN[key].steps):promptSteps(key))}
 const HOST=t=>t.replace(/API's managed identity/g,"hosted agent's managed identity").replace(/the API's identity/g,"the hosted agent's identity");
-const MINI=t=>t.replace(/gpt-6\.1-terra/g,"gpt-5.4-mini");
 function hostedSteps(list){return list.map(st=>{
- const c={...st,chips:[...st.chips],from:MINI(st.from).replace("run_turn loop","Hosted run_turn").replace("ToolSet","Hosted ToolSet"),to:MINI(st.to).replace("run_turn loop","Hosted run_turn").replace("ToolSet","Hosted ToolSet"),carry:MINI(HOST(st.carry)),why:HOST(st.why)};
+ const c={...st,chips:[...st.chips],from:st.from.replace("run_turn loop","Hosted run_turn").replace("ToolSet","Hosted ToolSet"),to:st.to.replace("run_turn loop","Hosted run_turn").replace("ToolSet","Hosted ToolSet"),carry:HOST(st.carry),why:HOST(st.why)};
  if(st.edges.includes("r_l")){c.from="Web API";c.to="Hosted container in Foundry";c.chips=["POST .../invocations"];c.carry=`POST <project>/agents/voltrieve-hosted/endpoint/protocols/invocations
 Authorization: Bearer <API's managed identity>
 
@@ -1192,7 +1194,7 @@ Authorization: Bearer <API's managed identity>
  return c})}
 function promptSteps(key){
  const name=key==="client"?"voltrieve-prompt-cli":"voltrieve-prompt-web",ex=J.prompt[key].example;
- const conv=st0=>{const st={...st0,from:MINI(st0.from),to:MINI(st0.to)};let c=st;if(st.isModel)c={...st,from:"Web API loop",to:"Prompt agent in Foundry",chips:[typeof st.input==="string"&&st.input.startsWith('"')?"agent name + prompt":"agent name + tool output"],carry:`responses.create(
+ const conv=st=>{let c=st;if(st.isModel)c={...st,from:"Web API loop",to:"Prompt agent in Foundry",chips:[typeof st.input==="string"&&st.input.startsWith('"')?"agent name + prompt":"agent name + tool output"],carry:`responses.create(
   conversation="${CONV}",
   input=${st.input},
   extra_body={"agent_reference": {
@@ -1209,11 +1211,11 @@ function promptSteps(key){
   out.push(S("ToolSet","Web API loop","t_l","the outputs","function_call_output items","Each round goes back to the agent as a new model call."),conv(MODEL(2,"[function_call_output items]","This call only exists because of the tool calls before it.","tool output","")))}
  ex.mcp.forEach((m,i)=>{const nm=m.server||"voltrieve-kb",t=(m.started_ms!=null&&m.finished_ms!=null)?` It took ${((m.finished_ms-m.started_ms)/1000).toFixed(1)} s.`:"";
   out.push(S("Prompt agent in Foundry","Knowledge base "+nm,"m_k","MCP knowledge_base_retrieve",`server: ${nm}\narguments: ${m.arguments||"{}"}`,(i?"This search starts only after the one before it has finished. Foundry ran them one at a time, and nothing in our code can change that. ":"This arrow starts inside Foundry, not in the Web API. Our code doesn't make this call and can't retry it or run it alongside another. It goes through a project connection.")+t),
-  S("Knowledge base planner","gpt-5.4-mini",["p_m","m_p"],["plan sub-queries","sub-queries"],"Same planning as in the other backends.","The MCP server is the knowledge base itself, so planning works as usual."),
+  S("Knowledge base planner","gpt-5.4-mini",["p_m","m_p"],["plan sub-queries",""],"Same planning as in the other backends.","The MCP server is the knowledge base itself, so planning works as usual."),
   S("Knowledge base","Index",["kb_ks","ks_ix"],["each sub-query","hybrid search"],"Knowledge source, then index, as in the other backends.","Search does the same work whoever calls it."),
   S("Index","Knowledge base",["ix_ks","ks_kb"],["ranked chunks","merged"],"Chunks, best match first.","Nothing has reached our code yet."),
   S("Knowledge base "+nm,"Prompt agent in Foundry","k_m","documents",'{ "documents": [{ "id": "...", "content": "{ \\"chunk_id\\": ..., \\"title\\": ..., \\"chunk\\": ... }" }, ...] }',"The Web API only sees this go by afterwards, as an mcp_call item in the stream."),
-  S("Foundry's agent run","gpt-5.4-mini","m_m","Foundry calls the model again",`Foundry's own loop, not ours:
+  S("Foundry's agent run","gpt-6.1-terra","m_m","Foundry calls the model again",`Foundry's own loop, not ours:
 1. The model asks for the search
 2. Foundry runs it through MCP
 3. Foundry calls the model again, now with the documents`,"This is the same work as the second model call in the own loop, but Foundry does it, so our code can't see or count it. It shows up in the token total."))});
@@ -1298,15 +1300,15 @@ function applyBackend(){
  zHost.r.style.display=zHost.t.style.display=hosted?"":"none";
  setRoutes("Routes",hosted?["token, role, owner check,","conversations"]:["token, role, owner check","routes.py, turns.py"]);
  setLoop(prompt?"Loop, function tools only":"run_turn loop",hosted?["the same code as the own loop,","in Foundry's container","repeat until no tool calls"]:prompt?["sends only the agent's name,","runs dealer and curated tools","searches happen in Foundry"]:["agent_core/loop.py","repeat until no tool calls,","at most 8 model calls"]);
- setModel(prompt?"Prompt agent + gpt-5.4-mini":hosted?"gpt-5.4-mini":"gpt-6.1-terra",prompt?["holds instructions and tools, and","runs the searches through MCP"]:["returns text or tool requests,","never calls anything itself"]);
+ setModel("gpt-6.1-terra",prompt?["the prompt agent: holds","instructions and tools,","searches through MCP"]:["returns text or tool","requests, never calls","anything itself"]);
  rowTo.search_voltrieve_docs.textContent=rowTo.search_spare_parts.textContent=prompt?"→ Foundry":"→ Search";
 }
 const VERDICT={
- yours:{loop:["win","Fastest for a price question."],prompt:["","Same path as the own loop, at about twice the tokens."],hosted:["fail","Same path and same code, about 5 s slower."]},
- follow:{loop:["","About level with the others. In 1 of 3 runs it asked for the market instead of searching."],prompt:["","No real speed gain: on document questions over 9 runs it was slightly slower than the own loop. Our code makes one request, but Foundry still calls the model at least twice, and this path costs the most tokens."],hosted:["","Same path as the own loop, plus the hop into Foundry."]},
- awd:{loop:["win","Fastest, with the fewest tokens."],prompt:["fail","Still calls tools it doesn't need here, such as get_current_date, at almost twice the tokens."],hosted:["","Same path as the own loop, plus the hop into Foundry."]},
- detail:{loop:["win","Both bases searched at the same time, in 2 model calls."],prompt:["fail","Searches one base at a time, so it depends most on how many searches the model makes. Across 12 larger runs it took 16.5 s, about the same as the hosted agent."],hosted:["","Both bases at the same time, plus the hop into Foundry."]},
- hello:{loop:["win","No tool and one model call."],prompt:["","As fast, at about twice the tokens."],hosted:["fail","About 4 s slower, for the hop into the agent session."]},
+ yours:{loop:["win","Fastest here."],prompt:["","About level on time, at about twice the tokens."],hosted:["fail","Same path and same code, about 3 s slower."]},
+ follow:{loop:["","All three are level on this one."],prompt:["","Our code makes one request, but Foundry still calls the model at least twice."],hosted:["","About level here."]},
+ awd:{loop:["","Checks the price list and the documents, with the fewest tokens."],prompt:["","Only searched the documents here, at over twice the tokens."],hosted:["","Same path as the own loop, plus the hop into Foundry."]},
+ detail:{loop:["win","Both bases searched at the same time, in 2 model calls."],prompt:["fail","Searches one base at a time, at about twice the tokens."],hosted:["","Both bases at the same time, plus the hop into Foundry."]},
+ hello:{loop:["win","No tool and one model call."],prompt:["win","As fast, at about twice the tokens."],hosted:["fail","About 4 s slower, for the hop into the agent session."]},
  client:{loop:["win","Accepts any tool, even one the server has never seen."],prompt:["fail","Works here only because the tool is in the agent definition. A new tool is refused."],hosted:["","Accepts any tool too, plus the hop into Foundry."]},
  curated:{loop:["win","Word for word in 1 model call."],prompt:["win","Word for word in 1 model call."],hosted:["fail","Word for word, but about 4 s slower."]},
 };
@@ -1345,9 +1347,9 @@ const toolG=group("tools");box(toolG,420,350,260,216,"var(--api)","ToolSet: the 
 const ROWS=[["search_voltrieve_docs","Search"],["search_spare_parts","Search"],["get_prices","Dealer"],["check_stock","Dealer"],["book_test_drive","Dealer"],["get_current_date","clock"],["get_curated_answer","stored"]];
 const rowBg={},rowTo={};ROWS.forEach(([n,w],i)=>{const y=382+i*26;const g=el("g");const r=el("rect",{class:"row-bg",x:428,y,width:244,height:24,rx:3});rowBg[n]=r;const to=el("text",{class:"row-t",x:664,y:y+16,"text-anchor":"end"},"→ "+w);rowTo[n]=to;g.append(r,el("text",{class:"row-t",x:434,y:y+16},n),to);toolG.append(g)});
 box(group("conv"),920,50,330,80,"var(--store)","Conversations",["messages, tool calls, owner"]);
-const setModel=box(group("model"),920,185,330,90,"var(--llm)","gpt-6.1-terra",["returns text or tool requests,","never calls anything itself"]);
+const setModel=box(group("model"),920,185,195,90,"var(--llm)","gpt-6.1-terra",["returns text or tool","requests, never calls","anything itself"]);
 box(group("dealer"),900,330,105,74,"var(--dealer)","Dealer",["prices and","stock"]);
-box(group("planmodel"),1104,326,160,66,"var(--llm)","gpt-5.4-mini",["Search's planning","model, in Foundry"]);
+box(group("planmodel"),1125,185,130,90,"var(--llm)","gpt-5.4-mini",["Search's query","planning model"]);
 const setKb=box(group("kb"),915,462,185,66,"var(--search)","Knowledge base",["plans sub-queries,","merges results"]);
 box(group("ks"),915,566,185,60,"var(--search)","Knowledge source",["points at one index"]);
 box(group("ix"),915,664,185,66,"var(--search)","Index",["chunks with vectors,","hybrid search"]);
@@ -1374,7 +1376,7 @@ function select(i){
  const st=s[cur];
  Object.values(edges).forEach(l=>l.classList.remove("on"));
  st.edges.forEach(id=>edges[id].classList.add("on"));
- chipG.replaceChildren();st.edges.forEach((id,k)=>drawChip(id,st.chips[k]||st.chips[0]));
+ chipG.replaceChildren();st.edges.forEach((id,k)=>{const chip=st.chips[k]??st.chips[0];if(chip)drawChip(id,chip)});
  badges.forEach(b=>b.g.classList.toggle("on",b.i===cur));
  Object.values(rowBg).forEach(r=>r.classList.remove("on"));
  const hits=[...new Set(s.slice(0,cur+1).map(x=>x.hit).filter(Boolean))];
@@ -1443,12 +1445,12 @@ drawScen("yours");
 
 /* What the model reads on each call. */
 (function(){
- const I=[["sent","instructions"],["sent","6 tool definitions"]];
+ const I=[["sent","instructions"],["sent","7 tool definitions"]];
  const COL=[
-  ["Message 1, call 1","First model call. It chooses get_prices.",[...I,["sent","What is the cheapest car...?"]]],
-  ["Message 1, call 2","Our input is only the tool output.",[...I,["hist","What is the cheapest car...?"],["hist","call: get_prices {}"],["sent","output: the price list"]]],
-  ["Message 2, call 1","A new message in the same conversation.",[...I,["hist","What is the cheapest car...?"],["hist","call: get_prices {}"],["hist","output: the price list"],["hist","answer: Spark, 289,000 SEK"],["sent","And what about one with all wheel drive?"]]],
-  ["Message 2, call 2","The search result is added.",[...I,["hist","What is the cheapest car...?"],["hist","call: get_prices {}"],["hist","output: the price list"],["hist","answer: Spark, 289,000 SEK"],["hist","And what about one with all wheel drive?"],["hist","call: search_voltrieve_docs"],["sent","output: chunks from the buyer's guide"]]],
+  ["Message 1, call 1","First model call. It chooses get_prices and a search.",[...I,["sent","What is the cheapest car...?"]]],
+  ["Message 1, call 2","Our input is only the tool output.",[...I,["hist","What is the cheapest car...?"],["hist","calls: get_prices, search"],["sent","outputs: price list, chunks"]]],
+  ["Message 2, call 1","A new message in the same conversation.",[...I,["hist","What is the cheapest car...?"],["hist","calls: get_prices, search"],["hist","outputs: price list, chunks"],["hist","answer: Spark, 289,000 SEK"],["sent","And what about one with all wheel drive?"]]],
+  ["Message 2, call 2","The search result is added.",[...I,["hist","What is the cheapest car...?"],["hist","calls: get_prices, search"],["hist","outputs: price list, chunks"],["hist","answer: Spark, 289,000 SEK"],["hist","And what about one with all wheel drive?"],["hist","call: search_voltrieve_docs"],["sent","output: chunks from the buyer's guide"]]],
  ];
  const host=document.getElementById("stacks");
  COL.forEach(([t,n,items])=>{const c=document.createElement("article");c.className="stack";const h=document.createElement("h3");h.textContent=t;const s=document.createElement("small");s.textContent=n;c.append(h,s);items.forEach(([k,x])=>{const b=document.createElement("div");b.className="blk "+k;b.textContent=x;c.append(b)});host.append(c)});
@@ -1462,15 +1464,15 @@ drawScen("yours");
   {t:"Own loop",api:["Web API","run_turn loop + tool table"],apiLoop:1,hosted:0,
    arrows:[[[300,92],[300,214]],[[20,92],[20,300]],[[360,92],[360,300]]],
    labs:[[294,124,"responses.create","end"],[26,124,"GET /prices"],[354,285,"retrieve","end"]],
-   run:"Real run: get_prices and 3 searches, all at once. 8.0 s, 15,756 tokens."},
+   run:"awd"},
   {t:"Prompt agent",api:["Web API","loop for dealer and client tools"],apiLoop:1,agent:1,hosted:0,
    arrows:[[[300,92],[300,214]],[[20,92],[20,300]],[[290,262],[290,300]]],
    labs:[[294,124,"agent name only","end"],[26,124,"GET /prices"],[284,285,"MCP, from Foundry","end"]],
-   run:"Real run: 1 search through MCP, no dealer call. 8.2 s, 12,784 tokens."},
+   run:"awd"},
   {t:"Hosted agent",api:["Web API","auth and conversations only"],apiLoop:0,hosted:1,
    arrows:[[[190,92],[190,160]],[[270,202],[270,214]],[[330,190],[360,190],[360,300]],[[180,202],[180,285],[100,285],[100,300]]],
    labs:[[196,124,"Invocations"],[354,285,"retrieve","end"],[106,279,"GET /prices"]],
-   run:"Real run: get_prices and 1 search at once. 13.4 s including a 4.2 s session start, 7,873 tokens."},
+   run:"awd"},
  ];
  B.forEach((b,i)=>{
   const a=document.createElement("article");a.className="bk";const h=document.createElement("h3");h.textContent=b.t;a.append(h);
@@ -1482,14 +1484,14 @@ drawScen("yours");
   s.append(el("rect",{class:"zone",x:40,y:136,width:300,height:132,rx:8}),el("text",{class:"zl",x:b.hosted?50:130,y:152},"Microsoft Foundry"));
   rect(8,18,364,74,b.api[0],b.api[1],b.apiLoop);
   rect(50,214,130,46,"Conversations");
-  rect(200,214,130,46,b.agent?"Agent + model":i===0?"gpt-6.1-terra":"gpt-5.4-mini",b.agent?"instructions, tools":"");
+  rect(200,214,130,46,b.agent?"Prompt agent":"gpt-6.1-terra",b.agent?"gpt-6.1-terra":"");
   if(b.hosted)rect(130,160,200,42,"Hosted container","run_turn + tool table",1);
   rect(8,300,172,56,"Dealer service");
   rect(200,300,172,56,"Azure AI Search");
   const dash=el("polyline",{class:"ba2",points:b.hosted?"60,92 60,214":"110,92 110,214"});dash.style.markerEnd=`url(#bm${i||""})`;s.append(dash);
   b.arrows.forEach(p=>{const l=el("polyline",{class:"ba",points:p.join(" ")});l.style.markerEnd=`url(#ba${i||""})`;s.append(l)});
   b.labs.forEach(([x,y,t,a])=>s.append(el("text",{class:"alab",x,y,"text-anchor":a||"start"},t)));
-  a.append(s);const p=document.createElement("p");p.textContent=b.run;a.append(p);host.append(a);
+  a.append(s);const p=document.createElement("p");const rec=J[["loop","prompt","hosted"][i]].awd;p.textContent=`Real run: ${pathText(rec.paths)}. ${rec.seconds.toFixed(1)} s, ${Math.round(rec.tokens).toLocaleString("en-US")} tokens.`;a.append(p);host.append(a);
  });
 })();
 </script>

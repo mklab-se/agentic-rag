@@ -52,7 +52,7 @@ The skillset splits extracted text into character-based chunks, and extraction g
 
 ## Models
 
-- Chat: `gpt-5.4-mini` version `2026-03-17`, GlobalStandard, capacity 50. The own loop later moved to `gpt-6.1-terra`: see below.
+- Chat: `gpt-5.4-mini` version `2026-03-17`, GlobalStandard, capacity 50. The agents later moved to `gpt-6.1-terra`: see below.
 - Embeddings: `text-embedding-3-large` version 1, GlobalStandard, capacity 10.
 - Capacity 10 on chat broke multi-question runs with rate limits. On pay-per-token, capacity is a cap, not a cost, so it was raised to 50.
 
@@ -210,9 +210,9 @@ The tool list costs a few hundred tokens and no call. A check in front of the mo
 
 The instruction "call them all in the same step" made the prompt agent emit two parallel function calls before searching, because it cannot run MCP searches in parallel: 11 of 12 first responses. `parallel_tool_calls=False` on the request also stopped it, in 4 of 4 runs, but it would make a mixed curated question end early, so the instructions differ instead. Search, then catalog, and no other tool first: 0 of 7 first responses, then 1 of 27 job runs in the live checks.
 
-### The own loop runs gpt-6.1-terra
+### All backends run gpt-6.1-terra
 
-Speed decides as long as quality holds, and this was the only combination with every turn under 10 seconds to the first token, at about the cost of `gpt-5.4-mini`. The other backends stay on `gpt-5.4-mini` for now. Search planning cannot move, because it refuses GPT-6 models. The figures are in `docs/model-comparison.md`.
+Speed decides as long as quality holds. `gpt-6.1-terra` had the fewest turns over 10 seconds to the first token, or tied for the fewest, on every backend, at about the cost of `gpt-5.4-mini`. Search planning stays on `gpt-5.4-mini`, because Search refuses GPT-6 models. So there are two chat deployments, which also stops the agent and the planner sharing a token limit. The figures are in `docs/model-comparison.md`.
 
 ### Brake fluid is listed in the brake catalog too
 

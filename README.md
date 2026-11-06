@@ -12,7 +12,7 @@ Most agent samples stop at "it answers". This one answers the questions you meet
 | **My client has its own tools. Now what?** | A prompt agent refuses per-request tools with a 400. An own loop or a hosted agent runs them, even one the server has never seen. | [Client tools](docs/why-foundry.md#1-what-happened-with-client-tools) |
 | **How does the agent decide to use RAG?** | No classifier exists. The model decides in its first call, from words you control. | [The journey of a prompt](docs/prompt-journey.md) |
 | **Can it use several knowledge bases without calling them in vain?** | Yes: all three reached the right bases in every run. Two of them run the searches at the same time. | [Two knowledge bases](docs/why-foundry.md#6-two-knowledge-bases-who-chooses-and-who-runs-them-together) |
-| **Which model should I use?** | Newer isn't always better. The own loop now runs `gpt-6.1-terra`, the only setup with every turn under 10 s to first token, and `gpt-6-luna` costs about a third of `gpt-5.4-mini`. | [Choosing a model](docs/model-comparison.md) |
+| **Which model should I use?** | Newer isn't always better. `gpt-6.1-terra` runs all three backends, with 1 of 48 turns over 10 s to first token on the own loop. `gpt-6-luna` costs about a third of `gpt-5.4-mini`, and Search planning still needs a GPT-5 model. | [Choosing a model](docs/model-comparison.md) |
 | **I need curated answers without slowing everything down.** | Pick the answer in the model call you already make, then skip the second one. Curated questions took under 2 s on two of the three, and other questions showed no measurable delay. | [Curated answers](docs/prompt-journey.md#curated-answers) |
 
 ## See it: the journey of a prompt
@@ -27,14 +27,14 @@ Prefer text? [docs/prompt-journey.md](docs/prompt-journey.md) has the same story
 
 ## Three architectures compared
 
-![Verdict cards for a spare parts question: own loop 11.1 s, prompt agent 27.9 s, hosted agent 13.7 s](docs/assets/journey-verdict.png)
+![Verdict cards for a spare parts question: own loop 7.6 s, prompt agent 12.5 s, hosted agent 16.1 s](docs/assets/journey-verdict.png)
 
 | What you care about | Own loop | Prompt agent | Hosted agent |
 | --- | --- | --- | --- |
-| Everyday question, total time | **1.6 s** | **2.0 s** | 6.0 s, about 4 s slower on every turn |
-| Question for two knowledge bases | **12.3 s**, searches run together | 16.5 s, one at a time | 17.2 s, searches run together |
+| Everyday question, total time | **1.5 s** | **1.8 s** | 6.5 s, about 5 s slower on every turn |
+| Question for two knowledge bases | **7.8 s**, searches run together | 10.9 s, one at a time | 12.8 s, searches run together |
 | A client tool the server has never seen | **Works** | Refused | **Works** |
-| Curated answer, word for word | **1.7 s** | **1.8 s** | 6.4 s |
+| Curated answer, word for word | **1.5 s** | **1.7 s** | 6.3 s |
 | Control over each search | **Full** | Little, it runs inside Foundry's agent run | **Full** |
 | Code you own for searching | A client per base | **None, declare an MCP tool** | A client per base |
 | Agent identity and versions in Foundry | No | **Yes** | **Yes** |

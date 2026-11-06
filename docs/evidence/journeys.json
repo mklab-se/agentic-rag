@@ -3,51 +3,69 @@
   "yours": {
    "runs": 3,
    "errors": 0,
-   "seconds": 5.41,
+   "seconds": 6.46,
    "model_calls": 2,
-   "tokens": 3299,
+   "tokens": 7758,
    "paths": {
-    "get_prices": 2,
-    "get_prices + get_prices": 1
+    "get_prices + search_voltrieve_docs": 3
    },
    "example": {
     "server_tools": [
      {
       "tool": "get_prices",
-      "arguments": "{\"market\":\"SE\"}",
+      "arguments": "{}",
       "iteration": 1
      },
      {
-      "tool": "get_prices",
-      "arguments": "{\"market\":\"EU\"}",
+      "tool": "search_voltrieve_docs",
+      "arguments": "{\"query\":\"Buyer’s guide base prices of all Voltrieve models cheapest car Spark Lumen Ragn Fjord Atlas\"}",
       "iteration": 1
      }
     ],
     "mcp": [],
-    "knowledge": [],
-    "parallel": [
+    "knowledge": [
      {
-      "wall_ms": 32,
-      "one_by_one_ms": 58
+      "base": "voltrieve-kb",
+      "sub_queries": [
+       "buyer’s guide base price Voltrieve Spark",
+       "buyer’s guide base price Voltrieve Lumen",
+       "buyer’s guide base price Voltrieve Ragn",
+       "buyer’s guide base price Voltrieve Fjord",
+       "buyer’s guide base price Voltrieve Atlas",
+       "buyer’s guide all Voltrieve models base prices"
+      ],
+      "references": [
+       "voltrieve-buyers-guide.md",
+       "voltrieve-service-guide.md",
+       "voltrieve-lumen-brochure.docx",
+       "voltrieve-spark-brochure.docx"
+      ]
      }
     ],
-    "answer": "The cheapest Voltrieve car is the **Spark**.\n\n- **Sweden (SE):** **289,000 SEK**\n- **EU:** **26,500 EUR**\n\nIf you want, I can also list the prices for all models in your market."
+    "parallel": [
+     {
+      "wall_ms": 1870,
+      "one_by_one_ms": 1897
+     }
+    ],
+    "answer": "The **Voltrieve Spark** is the least expensive model, starting at **289,000 SEK in Sweden** or **€26,500 in the EU**. It’s a rear-wheel-drive city car with up to 310 km of WLTP range. (Source: *Voltrieve buyer’s guide*)"
    }
   },
   "follow": {
    "runs": 3,
    "errors": 0,
-   "seconds": 7.97,
+   "seconds": 5.2,
    "model_calls": 2,
-   "tokens": 8451,
+   "tokens": 15679,
    "paths": {
-    "search_voltrieve_docs": 3
+    "get_prices + search_voltrieve_docs": 2,
+    "search_voltrieve_docs": 1
    },
    "example": {
     "server_tools": [
      {
       "tool": "search_voltrieve_docs",
-      "arguments": "{\"query\":\"all wheel drive AWD price model buyer's guide technical specification guide\"}",
+      "arguments": "{\"query\":\"Voltrieve buyer's guide prices AWD cheapest all wheel drive model Sweden SEK EU EUR comparison\"}",
       "iteration": 1
      }
     ],
@@ -56,42 +74,41 @@
      {
       "base": "voltrieve-kb",
       "sub_queries": [
-       "all wheel drive AWD buyer's guide price",
-       "all wheel drive AWD technical specification guide",
-       "AWD model price"
+       "Voltrieve buyer's guide AWD all wheel drive models Sweden SEK EUR price",
+       "Voltrieve buyer's guide all wheel drive cheapest model Sweden",
+       "Voltrieve buyer's guide Europe EUR Sweden SEK AWD pricing"
       ],
       "references": [
        "voltrieve-buyers-guide.md",
-       "voltrieve-fjord-specifications.pdf",
-       "voltrieve-atlas-specifications.pdf",
-       "voltrieve-ragn-specifications.pdf"
+       "voltrieve-atlas-brochure.docx",
+       "voltrieve-ragn-brochure.docx",
+       "voltrieve-fjord-brochure.docx"
       ]
      }
     ],
     "parallel": [],
-    "answer": "Among the AWD options in the SE price list, the **Voltrieve Lumen AWD** is the cheapest at **419,000 SEK**. The buyer’s guide lists the Lumen as available with **RWD or AWD** and shows its **price with AWD** as **419,000 SEK**. [voltrieve-buyers-guide.md]\n\nIf you want, I can also check the **EU** AWD prices."
+    "answer": "The cheapest all-wheel-drive option is the **Voltrieve Lumen AWD**, at **419,000 SEK** in Sweden or **€38,100** in the EU. The Spark isn’t available with all-wheel drive. (*Voltrieve buyer’s guide*)"
    }
   },
   "awd": {
    "runs": 3,
    "errors": 0,
-   "seconds": 9.2,
+   "seconds": 7.47,
    "model_calls": 2,
-   "tokens": 8299,
+   "tokens": 5327,
    "paths": {
-    "get_prices + search_voltrieve_docs + search_voltrieve_docs": 2,
-    "get_prices + search_voltrieve_docs": 1
+    "get_prices + search_voltrieve_docs": 3
    },
    "example": {
     "server_tools": [
      {
-      "tool": "get_prices",
-      "arguments": "{\"market\":\"SE\"}",
+      "tool": "search_voltrieve_docs",
+      "arguments": "{\"query\":\"Buyer's guide Sweden prices all-wheel drive AWD models and drive configurations cheapest pricing\"}",
       "iteration": 1
      },
      {
-      "tool": "search_voltrieve_docs",
-      "arguments": "{\"query\":\"AWD drive configuration prices Sweden buyer's guide models and price\"}",
+      "tool": "get_prices",
+      "arguments": "{\"market\":\"SE\"}",
       "iteration": 1
      }
     ],
@@ -100,33 +117,33 @@
      {
       "base": "voltrieve-kb",
       "sub_queries": [
-       "AWD drive configuration Sweden buyer's guide price",
-       "AWD Sweden models price buyer's guide",
-       "all-wheel drive Sweden buyer's guide Voltrieve"
+       "buyer’s guide Sweden prices all-wheel drive AWD models drive configurations cheapest pricing",
+       "Sweden buyer’s guide AWD drive configuration prices",
+       "all-wheel drive AWD buyer’s guide Sweden"
       ],
       "references": [
-       "voltrieve-fjord-brochure.docx",
        "voltrieve-ragn-brochure.docx",
        "voltrieve-atlas-brochure.docx",
-       "voltrieve-lumen-brochure.docx"
+       "voltrieve-lumen-brochure.docx",
+       "voltrieve-fjord-brochure.docx"
       ]
      }
     ],
     "parallel": [
      {
-      "wall_ms": 1371,
-      "one_by_one_ms": 1415
+      "wall_ms": 1513,
+      "one_by_one_ms": 1531
      }
     ],
-    "answer": "The cheapest Voltrieve with AWD in Sweden is the **Voltrieve Lumen**, at **419,000 SEK** with AWD. It is a **hatchback** and is available with **RWD or AWD**.  \nSource: **voltrieve-buyers-guide.md**"
+    "answer": "The **Voltrieve Lumen AWD** is the cheapest all-wheel-drive model in Sweden, at **419,000 SEK**. That includes the 40,000 SEK AWD surcharge over the base Lumen price. (Source: *Voltrieve buyer’s guide*)"
    }
   },
   "detail": {
    "runs": 3,
    "errors": 0,
-   "seconds": 11.05,
+   "seconds": 7.57,
    "model_calls": 2,
-   "tokens": 12434,
+   "tokens": 12212,
    "paths": {
     "search_spare_parts + search_voltrieve_docs": 3
    },
@@ -134,12 +151,12 @@
     "server_tools": [
      {
       "tool": "search_voltrieve_docs",
-      "arguments": "{\"query\":\"Fjord AWD front left brake replacement service guide components brake job what parts needed front axle left front\"}",
+      "arguments": "{\"query\":\"Voltrieve Fjord AWD complete front left brake replacement service guide all components required brake pads discs caliper bolts hardware\"}",
       "iteration": 1
      },
      {
       "tool": "search_spare_parts",
-      "arguments": "{\"query\":\"Fjord AWD AWD front left brake components front left brake disc pads caliper\"}",
+      "arguments": "{\"query\":\"Voltrieve Fjord AWD complete front left brake replacement parts brake pads rotor disc caliper hardware bolts all related parts article numbers\"}",
       "iteration": 1
      }
     ],
@@ -148,43 +165,46 @@
      {
       "base": "voltrieve-parts-kb",
       "sub_queries": [
-       "Fjord AWD front left brake disc pads caliper front left",
-       "Fjord AWD front left brake components front left",
-       "Fjord AWD AWD front left brake disc pads caliper"
+       "Voltrieve Fjord AWD front left brake replacement brake pads rotor disc caliper hardware bolts complete related parts article numbers",
+       "Voltrieve Fjord AWD front left brake pads article number",
+       "Voltrieve Fjord AWD front left brake rotor disc caliper hardware bolts article number"
       ],
       "references": [
        "voltrieve-parts-brakes.md",
-       "voltrieve-parts-body-glass-lighting.md"
+       "voltrieve-parts-service-items.md",
+       "voltrieve-parts-electrical-charging.md"
       ]
      },
      {
       "base": "voltrieve-kb",
       "sub_queries": [
-       "Fjord AWD front left brake replacement service guide components front axle left front brake job parts needed",
-       "Fjord AWD brake replacement buyer's guide front axle left front components",
-       "Fjord AWD service guide front left brake replacement parts"
+       "Voltrieve Fjord AWD front left brake replacement service guide components brake pads discs caliper bolts hardware",
+       "Voltrieve Fjord AWD brake replacement front left service guide",
+       "Voltrieve Fjord AWD buyer's guide brake parts front left"
       ],
       "references": [
        "voltrieve-service-guide.md",
-       "voltrieve-fjord-specifications.pdf"
+       "voltrieve-fjord-specifications.pdf",
+       "voltrieve-buyers-guide.md",
+       "voltrieve-lumen-specifications.pdf"
       ]
      }
     ],
     "parallel": [
      {
-      "wall_ms": 1856,
-      "one_by_one_ms": 3338
+      "wall_ms": 1832,
+      "one_by_one_ms": 3619
      }
     ],
-    "answer": "For a **Voltrieve Fjord AWD** **complete front brake replacement on the left front side**, the service guide says the job needs these parts, and that **pads are renewed as an axle set** even when only one side is being worked on. It also says the Fjord’s front brake parts are **370 mm on AWD**. (voltrieve-service-guide.md)\n\nHere are the spare parts from the catalog:\n\n- **VP-10072** - Brake disc, front left, **370 mm** ventilated brake disc. (voltrieve-parts-brakes.md)\n- **VP-10254** - Brake pad set, front axle, set for the **370 mm** disc; covers both sides of the axle. (voltrieve-parts-brakes.md)\n- **VP-10345** - Brake caliper, front left, twin piston floating caliper for the **370 mm** disc. (voltrieve-parts-brakes.md)\n- **VP-10527** - Caliper carrier, front left. (voltrieve-parts-brakes.md)\n- **VP-10631** - Brake hose, front left. (voltrieve-parts-brakes.md)\n- **VP-10670** - Pad wear "
+    "answer": "For a complete **front-left brake replacement** on your Fjord AWD, the service guide specifies the following. Each quantity is one. The AWD uses a 370 mm front disc. (*voltrieve-service-guide.md*)\n\n| Part | Article number |\n|---|---|\n| Front-left brake disc, 370 mm | **VP-10072** |\n| Front brake pad set | **VP-10254** |\n| Front-left brake caliper | **VP-10345** |\n| Front-left caliper carrier | **VP-10527** |\n| Front-left brake hose | **VP-10631** |\n| Front-left pad wear sensor | **VP-10670** |\n| Front caliper fitting kit | **VP-10709** |\n| Front-left brake dust shield | **VP-10761** |\n| DOT 4 LV brake fluid, 1-litre bottle | **VP-15168** |\n\nThe pad set covers **both sides of the front axle**, and the guide says pads are renewed as an axle set. The fluid is for bleeding the circuit afterwards. (*voltrieve-service-guide.md; voltrieve-parts-brakes.md*)\n\nBefore work under the car, the guide "
    }
   },
   "hello": {
    "runs": 3,
    "errors": 0,
-   "seconds": 1.67,
+   "seconds": 1.83,
    "model_calls": 1,
-   "tokens": 1255,
+   "tokens": 1282,
    "paths": {
     "no tool": 3
    },
@@ -193,15 +213,15 @@
     "mcp": [],
     "knowledge": [],
     "parallel": [],
-    "answer": "Good morning! How can I help with Voltrieve today?"
+    "answer": "Good morning! How can I help you with Voltrieve today?"
    }
   },
   "client": {
    "runs": 3,
    "errors": 0,
-   "seconds": 3.28,
+   "seconds": 3.2,
    "model_calls": 2,
-   "tokens": 2628,
+   "tokens": 2679,
    "paths": {
     "get_local_time": 3
    },
@@ -210,15 +230,15 @@
     "mcp": [],
     "knowledge": [],
     "parallel": [],
-    "answer": "It’s 16:42 on your computer right now, in Europe/Stockholm time."
+    "answer": "It’s 4:42 PM on your computer (Europe/Stockholm time zone)."
    }
   },
   "curated": {
    "runs": 3,
    "errors": 0,
-   "seconds": 3.89,
+   "seconds": 1.6,
    "model_calls": 1,
-   "tokens": 1271,
+   "tokens": 1291,
    "paths": {
     "get_curated_answer": 3
    },
@@ -241,42 +261,34 @@
   "yours": {
    "runs": 3,
    "errors": 0,
-   "seconds": 10.33,
+   "seconds": 7.57,
    "model_calls": 2,
-   "tokens": 6353,
+   "tokens": 13367,
    "paths": {
-    "get_prices + get_prices": 3
+    "MCP voltrieve-kb + get_prices + get_prices": 2,
+    "MCP voltrieve-kb": 1
    },
    "example": {
-    "server_tools": [
+    "server_tools": [],
+    "mcp": [
      {
-      "tool": "get_prices",
-      "arguments": "{\"market\":\"SE\"}",
-      "iteration": 1
-     },
-     {
-      "tool": "get_prices",
-      "arguments": "{\"market\":\"EU\"}",
-      "iteration": 1
+      "server": "voltrieve-kb",
+      "arguments": "{\"query_variants\":[\"What is the cheapest Voltrieve car that you can sell me?\"]}",
+      "started_ms": 1484,
+      "finished_ms": 4149
      }
     ],
-    "mcp": [],
     "knowledge": [],
-    "parallel": [
-     {
-      "wall_ms": 13,
-      "one_by_one_ms": 23
-     }
-    ],
-    "answer": "The cheapest Voltrieve car is the **Spark**.\n\n- **Sweden:** **289,000 SEK**\n- **EU:** **€26,500**\n\nIf you want, I can also compare the full price list for all models."
+    "parallel": [],
+    "answer": "The **Voltrieve Spark** is the least expensive model, starting at **289,000 SEK in Sweden** or **€26,500 in the EU**. It’s a rear-wheel-drive city car with up to 310 km of WLTP range.  (voltrieve-buyers-guide.md)\n\nAvailability isn’t confirmed."
    }
   },
   "follow": {
    "runs": 3,
    "errors": 0,
-   "seconds": 6.28,
+   "seconds": 5.29,
    "model_calls": 1,
-   "tokens": 12855,
+   "tokens": 16359,
    "paths": {
     "MCP voltrieve-kb": 3
    },
@@ -285,25 +297,24 @@
     "mcp": [
      {
       "server": "voltrieve-kb",
-      "arguments": "{\"query_variants\":[\"Which Voltrieve model is the cheapest with all wheel drive (AWD), and what does AWD cost for each model that offers it?\"]}",
-      "started_ms": 842,
-      "finished_ms": 3165
+      "arguments": "{\"query_variants\":[\"What is the cheapest Voltrieve car with all wheel drive, and what does it cost?\"]}",
+      "started_ms": 712,
+      "finished_ms": 3982
      }
     ],
     "knowledge": [],
     "parallel": [],
-    "answer": "The **cheapest AWD Voltrieve is the Lumen**.\n\n- **SE:** **419,000 SEK** with AWD\n- **EU:** **38,100 EUR** with AWD (voltrieve-buyers-guide.md)\n\nFor comparison, the other AWD models are priced higher in the buyer’s guide: **Ragn** 549,000 SEK / 49,900 EUR, **Fjord** 569,000 SEK / 51,500 EUR, and **Atlas** 749,000 SEK / 67,900 EUR (voltrieve-buyers-guide.md).\n\nIf you want, I can also tell you which models come with AWD at all."
+    "answer": "The cheapest all-wheel-drive model is the **Voltrieve Lumen AWD**, at **419,000 SEK** in Sweden or **€38,100** in the EU. The Spark isn’t available with all-wheel drive.  (voltrieve-buyers-guide.md)"
    }
   },
   "awd": {
    "runs": 3,
    "errors": 0,
-   "seconds": 10.08,
-   "model_calls": 2,
-   "tokens": 15804,
+   "seconds": 5.98,
+   "model_calls": 1,
+   "tokens": 12599,
    "paths": {
-    "MCP voltrieve-kb": 1,
-    "MCP voltrieve-kb + check_stock + get_current_date + get_prices": 1,
+    "MCP voltrieve-kb": 2,
     "MCP voltrieve-kb + get_current_date + get_prices": 1
    },
    "example": {
@@ -322,65 +333,57 @@
     "mcp": [
      {
       "server": "voltrieve-kb",
-      "arguments": "{\"query_variants\":[\"Which Voltrieve model(s) available in Sweden have all wheel drive, and what is the AWD option price for each one?\"]}",
-      "started_ms": 312,
-      "finished_ms": 3572
+      "arguments": "{\"query_variants\":[\"What is the cheapest Voltrieve car with all wheel drive that you can sell me in Sweden?\"]}",
+      "started_ms": 475,
+      "finished_ms": 2994
      }
     ],
     "knowledge": [],
     "parallel": [
      {
-      "wall_ms": 24,
-      "one_by_one_ms": 23
+      "wall_ms": 29,
+      "one_by_one_ms": 28
      }
     ],
-    "answer": "The cheapest Voltrieve with all-wheel drive in Sweden is the **Lumen with AWD**, priced at **419,000 SEK**. (voltrieve-buyers-guide.md)\n\nFor comparison, the other AWD models are **Ragn** at **549,000 SEK**, **Fjord** at **569,000 SEK**, and **Atlas** at **749,000 SEK**, so the Lumen is the cheapest AWD option. (voltrieve-buyers-guide.md)"
+    "answer": "The cheapest all-wheel-drive Voltrieve in Sweden is the **Lumen AWD, at 419,000 SEK**. That includes the 40,000 SEK AWD surcharge over the rear-wheel-drive base model.  (voltrieve-buyers-guide.md)"
    }
   },
   "detail": {
    "runs": 3,
    "errors": 0,
-   "seconds": 27.95,
+   "seconds": 12.52,
    "model_calls": 1,
-   "tokens": 38902,
+   "tokens": 23923,
    "paths": {
-    "MCP voltrieve-kb + MCP voltrieve-parts-kb": 1,
-    "MCP voltrieve-kb + MCP voltrieve-parts-kb + check_stock + get_curated_answer + get_curated_answer + get_prices": 1,
-    "MCP voltrieve-kb + MCP voltrieve-parts-kb + MCP voltrieve-parts-kb": 1
+    "MCP voltrieve-kb + MCP voltrieve-parts-kb": 3
    },
    "example": {
     "server_tools": [],
     "mcp": [
      {
       "server": "voltrieve-kb",
-      "arguments": "{\"query_variants\":[\"I have a Voltrieve Fjord AWD. I want to completely change the brakes on the left front side. Which spare parts do I need?\"]}",
-      "started_ms": 1602,
-      "finished_ms": 4054
+      "arguments": "{\"query_variants\":[\"For a Voltrieve Fjord AWD, which spare parts are needed to completely change the brakes on the left front side?\"]}",
+      "started_ms": 458,
+      "finished_ms": 3607
      },
      {
       "server": "voltrieve-parts-kb",
-      "arguments": "{\"query_variants\":[\"Which spare parts are needed for a complete front brake replacement on one side on a Voltrieve Fjord AWD, including the 370 mm front brake parts?\"]}",
-      "started_ms": 5959,
-      "finished_ms": 9005
-     },
-     {
-      "server": "voltrieve-parts-kb",
-      "arguments": "{\"query_variants\":[\"What is the article number for the brake dust shield, front left, for Voltrieve Fjord AWD?\"]}",
-      "started_ms": 12455,
-      "finished_ms": 24785
+      "arguments": "{\"query_variants\":[\"For a Voltrieve Fjord AWD, which spare parts and article numbers are needed to completely change the brakes on the left front side, including the brake disc, brake pad set, brake caliper, caliper carrier, brake hose, pad wear sensor, caliper fitting kit, brake dust shield and brake fluid DOT 4 LV?\"]}",
+      "started_ms": 3608,
+      "finished_ms": 7500
      }
     ],
     "knowledge": [],
     "parallel": [],
-    "answer": "For a **Voltrieve Fjord AWD**, a **complete front brake replacement on one side** needs:\n\n- 1 brake disc for the side being worked on\n- 1 brake pad set for the front axle\n- 1 brake caliper for the side being worked on\n- 1 caliper carrier for the side being worked on\n- 1 brake hose for the side being worked on\n- 1 pad wear sensor for the side being worked on\n- 1 caliper fitting kit for the front axle\n- 1 brake dust shield for the side being worked on\n- 1 bottle of brake fluid DOT 4 LV for bleeding afterwards (voltrieve-service-guide.md)\n\nFor the **left front** side, the spare parts catalog lists these article numbers:\n\n- **VP-10072** - Brake disc, front left, 370 mm ventilated brake disc, fits **Voltrieve Fjord AWD** (voltrieve-parts-brakes.md)\n- **VP-10254** - Brake pad set, front axle, for the 370 mm disc (voltrieve-parts-brakes.md)\n- **VP-10345** - Brake caliper, front left, twin pisto"
+    "answer": "For a complete **left-front brake replacement** on your Voltrieve Fjord AWD, the service guide specifies the following. The AWD uses a 370 mm front disc.  (voltrieve-service-guide.md)\n\n| Qty | Part | Article number |\n|---|---|---|\n| 1 | Front-left brake disc, 370 mm | VP-10072 |\n| 1 | Front brake pad set, both sides | VP-10254 |\n| 1 | Front-left brake caliper | VP-10345 |\n| 1 | Front-left caliper carrier | VP-10527 |\n| 1 | Front-left brake hose | VP-10631 |\n| 1 | Front-left pad wear sensor | VP-10670 |\n| 1 | Front caliper fitting kit | VP-10709 |\n| 1 | Front-left brake dust shield | VP-10761 |\n| 1 bottle | Brake fluid DOT 4 LV, 1 litre | VP-15168 |\n\nArticle numbers are from the brake and service-item catalogs.  (voltrieve-parts-brakes.md) (voltrieve-parts-brakes.md) (voltrieve-parts-service-items.md)\n\n**The pads must be renewed on both sides of the front axle**, even though the other lis"
    }
   },
   "hello": {
    "runs": 3,
    "errors": 0,
-   "seconds": 1.55,
+   "seconds": 1.38,
    "model_calls": 1,
-   "tokens": 2646,
+   "tokens": 2696,
    "paths": {
     "no tool": 3
    },
@@ -389,15 +392,15 @@
     "mcp": [],
     "knowledge": [],
     "parallel": [],
-    "answer": "Good morning! How can I help with Voltrieve today?"
+    "answer": "Good morning! How can I help you with Voltrieve today?"
    }
   },
   "client": {
    "runs": 3,
    "errors": 0,
-   "seconds": 2.92,
+   "seconds": 3.71,
    "model_calls": 2,
-   "tokens": 5532,
+   "tokens": 5701,
    "paths": {
     "get_local_time": 3
    },
@@ -406,15 +409,15 @@
     "mcp": [],
     "knowledge": [],
     "parallel": [],
-    "answer": "It’s 2026-11-05 16:42:10 in Europe/Stockholm."
+    "answer": "It’s 4:42 p.m. on your computer (Europe/Stockholm time)."
    }
   },
   "curated": {
    "runs": 3,
    "errors": 0,
-   "seconds": 1.76,
+   "seconds": 1.86,
    "model_calls": 1,
-   "tokens": 2659,
+   "tokens": 2705,
    "paths": {
     "get_curated_answer": 3
    },
@@ -437,12 +440,11 @@
   "yours": {
    "runs": 3,
    "errors": 0,
-   "seconds": 12.15,
+   "seconds": 9.74,
    "model_calls": 2,
-   "tokens": 3146,
+   "tokens": 6454,
    "paths": {
-    "get_prices": 2,
-    "get_prices + get_prices": 1
+    "get_prices + search_voltrieve_docs": 3
    },
    "example": {
     "server_tools": [
@@ -450,29 +452,53 @@
       "tool": "get_prices",
       "arguments": "{}",
       "iteration": 1
+     },
+     {
+      "tool": "search_voltrieve_docs",
+      "arguments": "{\"query\":\"Voltrieve model prices cheapest starting price all models buyer's guide base price\"}",
+      "iteration": 1
      }
     ],
     "mcp": [],
-    "knowledge": [],
-    "parallel": [],
-    "answer": "The cheapest car in the SE price list is the **Voltrieve Spark**, at **289,000 SEK**."
+    "knowledge": [
+     {
+      "base": "voltrieve-kb",
+      "sub_queries": [
+       "buyer’s guide base price all models starting price",
+       "model prices cheapest starting price buyer's guide",
+       "base price Voltrieve models buyer's guide"
+      ],
+      "references": [
+       "voltrieve-buyers-guide.md",
+       "voltrieve-spark-brochure.docx",
+       "voltrieve-lumen-brochure.docx",
+       "voltrieve-ragn-brochure.docx"
+      ]
+     }
+    ],
+    "parallel": [
+     {
+      "wall_ms": 1604,
+      "one_by_one_ms": 1699
+     }
+    ],
+    "answer": "The **Voltrieve Spark** is the cheapest model, with a base price of **289,000 SEK** in Sweden or **€26,500** in the EU. It’s a rear-wheel-drive city car with a range of up to 310 km (WLTP).\n\nSource: *Voltrieve buyer’s guide*"
    }
   },
   "follow": {
    "runs": 3,
    "errors": 0,
-   "seconds": 9.37,
+   "seconds": 5.64,
    "model_calls": 2,
-   "tokens": 7052,
+   "tokens": 14157,
    "paths": {
-    "search_voltrieve_docs": 2,
-    "get_prices + search_voltrieve_docs": 1
+    "search_voltrieve_docs": 3
    },
    "example": {
     "server_tools": [
      {
       "tool": "search_voltrieve_docs",
-      "arguments": "{\"query\":\"all wheel drive AWD availability and price for each model buyer's guide\"}",
+      "arguments": "{\"query\":\"buyer's guide all models prices AWD cheapest all wheel drive Sweden EU Lumen Fjord Ragn Atlas\"}",
       "iteration": 1
      }
     ],
@@ -481,42 +507,41 @@
      {
       "base": "voltrieve-kb",
       "sub_queries": [
-       "buyer's guide all wheel drive AWD availability price for each model",
-       "AWD availability buyer's guide model price",
-       "all wheel drive price model buyer's guide"
+       "buyer's guide prices all models AWD cheapest all wheel drive Sweden EU Lumen Fjord Ragn Atlas",
+       "buyer guide all wheel drive AWD Sweden EU price Lumen Fjord Ragn Atlas",
+       "all models prices buyer's guide Sweden EU AWD Voltrieve"
       ],
       "references": [
        "voltrieve-buyers-guide.md",
-       "voltrieve-atlas-brochure.docx",
-       "voltrieve-fjord-specifications.pdf",
-       "voltrieve-atlas-specifications.pdf"
+       "voltrieve-fjord-brochure.docx",
+       "voltrieve-lumen-brochure.docx",
+       "voltrieve-fjord-specifications.pdf"
       ]
      }
     ],
     "parallel": [],
-    "answer": "The cheapest Voltrieve with AWD is the **Voltrieve Lumen**, at **419,000 SEK** in SE. The **Spark** does not offer AWD.  \nSource: **voltrieve-buyers-guide.md**"
+    "answer": "The cheapest all-wheel-drive model is the **Voltrieve Lumen AWD**, at **419,000 SEK** in Sweden or **€38,100** in the EU. The Spark isn’t available with AWD.\n\nSource: *Voltrieve buyer’s guide*"
    }
   },
   "awd": {
    "runs": 3,
    "errors": 0,
-   "seconds": 13.35,
+   "seconds": 9.71,
    "model_calls": 2,
-   "tokens": 8563,
+   "tokens": 6249,
    "paths": {
-    "get_prices + search_voltrieve_docs + search_voltrieve_docs + search_voltrieve_docs": 1,
-    "get_prices + search_voltrieve_docs": 2
+    "get_prices + search_voltrieve_docs": 3
    },
    "example": {
     "server_tools": [
      {
-      "tool": "get_prices",
-      "arguments": "{\"market\":\"SE\"}",
+      "tool": "search_voltrieve_docs",
+      "arguments": "{\"query\":\"Sweden buyer's guide all models all-wheel drive AWD prices cheapest configurations SEK\"}",
       "iteration": 1
      },
      {
-      "tool": "search_voltrieve_docs",
-      "arguments": "{\"query\":\"all wheel drive AWD drive configuration prices Sweden models buyer's guide\"}",
+      "tool": "get_prices",
+      "arguments": "{\"market\":\"SE\"}",
       "iteration": 1
      }
     ],
@@ -525,33 +550,31 @@
      {
       "base": "voltrieve-kb",
       "sub_queries": [
-       "all wheel drive AWD drive configuration buyer's guide Sweden price",
-       "AWD models buyer's guide Sweden",
-       "all wheel drive electric car models price Sweden"
+       "Sweden buyer's guide all models all-wheel drive AWD prices cheapest configurations SEK",
+       "Sweden buyer's guide AWD all models price SEK",
+       "buyer's guide Sweden all-wheel drive prices"
       ],
       "references": [
        "voltrieve-buyers-guide.md",
-       "voltrieve-atlas-brochure.docx",
-       "voltrieve-ragn-brochure.docx",
        "voltrieve-fjord-brochure.docx"
       ]
      }
     ],
     "parallel": [
      {
-      "wall_ms": 1576,
-      "one_by_one_ms": 1650
+      "wall_ms": 1734,
+      "one_by_one_ms": 1855
      }
     ],
-    "answer": "The cheapest AWD Voltrieve you can buy in Sweden is the **Voltrieve Lumen AWD**, priced at **419,000 SEK**. The **Voltrieve buyer's guide** lists the Lumen as available with **RWD or AWD** and shows its **SE price with AWD** as **419,000 SEK**."
+    "answer": "The cheapest all-wheel-drive Voltrieve in Sweden is the **Lumen AWD**, at **419,000 SEK**. That includes the 40,000 SEK AWD surcharge over the base Lumen. Source: *Voltrieve buyer’s guide*."
    }
   },
   "detail": {
    "runs": 3,
    "errors": 0,
-   "seconds": 13.71,
+   "seconds": 16.06,
    "model_calls": 2,
-   "tokens": 12542,
+   "tokens": 12770,
    "paths": {
     "search_spare_parts + search_voltrieve_docs": 3
    },
@@ -559,12 +582,12 @@
     "server_tools": [
      {
       "tool": "search_voltrieve_docs",
-      "arguments": "{\"query\":\"Fjord AWD front left brake replacement service guide parts needed brake pads brake disc caliper\"}",
+      "arguments": "{\"query\":\"Voltrieve Fjord AWD complete front left brake replacement service guide all components required brake change\"}",
       "iteration": 1
      },
      {
       "tool": "search_spare_parts",
-      "arguments": "{\"query\":\"Fjord AWD front left brake parts brake pads brake disc caliper\"}",
+      "arguments": "{\"query\":\"Voltrieve Fjord AWD front left complete brake replacement all brake components pads disc caliper hardware sensors fasteners\"}",
       "iteration": 1
      }
     ],
@@ -573,44 +596,47 @@
      {
       "base": "voltrieve-kb",
       "sub_queries": [
-       "Fjord AWD brake replacement service guide front left brake pads brake disc caliper",
-       "Fjord AWD buyer's guide brake parts front left brake pads brake disc caliper",
-       "Fjord AWD technical specification brake pad brake disc caliper front left"
+       "Voltrieve Fjord AWD front left brake replacement service guide components required brake change",
+       "Voltrieve Fjord AWD brake replacement guide front left",
+       "Voltrieve Fjord AWD brake change components front left"
       ],
       "references": [
        "voltrieve-service-guide.md",
        "voltrieve-fjord-specifications.pdf",
-       "voltrieve-buyers-guide.md"
+       "voltrieve-buyers-guide.md",
+       "voltrieve-fjord-brochure.docx"
       ]
      },
      {
       "base": "voltrieve-parts-kb",
       "sub_queries": [
-       "Fjord AWD front left brake pads",
-       "Fjord AWD front left brake disc",
-       "Fjord AWD front left caliper"
+       "Voltrieve Fjord AWD front left complete brake replacement pads disc caliper hardware sensors fasteners",
+       "Voltrieve Fjord AWD front left brake pads disc caliper hardware sensors fasteners",
+       "Voltrieve Fjord AWD front left brake components"
       ],
       "references": [
        "voltrieve-parts-brakes.md",
-       "voltrieve-parts-suspension-steering.md"
+       "voltrieve-parts-service-items.md",
+       "voltrieve-parts-body-glass-lighting.md",
+       "voltrieve-parts-electrical-charging.md"
       ]
      }
     ],
     "parallel": [
      {
-      "wall_ms": 1764,
-      "one_by_one_ms": 2962
+      "wall_ms": 1677,
+      "one_by_one_ms": 3300
      }
     ],
-    "answer": "For a **complete front brake replacement on the left front side** of a **Voltrieve Fjord AWD**, the documentation says you need these parts:\n\n- **Brake disc, front left** - **VP-10072** - 370 mm ventilated brake disc, fits **Voltrieve Fjord AWD**. [voltrieve-parts-brakes.md]\n- **Brake pad set, front axle** - **VP-10254** - set of 4 pads for the 370 mm disc; it covers both sides of the front axle. [voltrieve-parts-brakes.md]\n- **Brake caliper, front left** - **VP-10345** - twin piston floating caliper for the 370 mm disc. [voltrieve-parts-brakes.md]\n- **Caliper carrier, front left** - **VP-10527** - carrier bracket for the floating caliper. [voltrieve-parts-brakes.md]\n- **Brake hose, front left** - **VP-10631** - reinforced flexible hose with banjo fitting. [voltrieve-parts-brakes.md]\n- **Pad wear sensor, front left** - **VP-10670** - electrical pad wear sensor. [voltrieve-parts-brakes.md"
+    "answer": "For a complete **front-left brake replacement** on your Fjord AWD, the service guide calls for the following. The AWD uses a 370 mm front disc. (Source: *voltrieve-service-guide.md*)\n\n| Qty | Part | Article number |\n|---|---|---|\n| 1 | Front-left brake disc, 370 mm | **VP-10072** |\n| 1 | Front axle brake pad set | **VP-10254** |\n| 1 | Front-left brake caliper | **VP-10345** |\n| 1 | Front-left caliper carrier | **VP-10527** |\n| 1 | Front-left brake hose | **VP-10631** |\n| 1 | Front-left pad wear sensor | **VP-10670** |\n| 1 | Front caliper fitting kit | **VP-10709** |\n| 1 | Front-left brake dust shield | **VP-10761** |\n| 1 | DOT 4 LV brake fluid, 1-litre bottle | **VP-15168** |\n\nThe pad set covers **both sides of the front axle**; the service guide says to renew pads as an axle set. The fitting kit supplies hardware for one side. (Sources: *voltrieve-service-guide.md*, *voltrieve-parts-bra"
    }
   },
   "hello": {
    "runs": 3,
    "errors": 0,
-   "seconds": 5.67,
+   "seconds": 5.95,
    "model_calls": 1,
-   "tokens": 1266,
+   "tokens": 1282,
    "paths": {
     "no tool": 3
    },
@@ -619,15 +645,15 @@
     "mcp": [],
     "knowledge": [],
     "parallel": [],
-    "answer": "Good morning! How can I help with Voltrieve today?"
+    "answer": "Good morning! How can I help you with Voltrieve today?"
    }
   },
   "client": {
    "runs": 3,
    "errors": 0,
-   "seconds": 7.41,
+   "seconds": 7.54,
    "model_calls": 2,
-   "tokens": 2622,
+   "tokens": 2676,
    "paths": {
     "get_local_time": 3
    },
@@ -636,15 +662,15 @@
     "mcp": [],
     "knowledge": [],
     "parallel": [],
-    "answer": "Your computer’s local time is 2026-11-05 16:42:10 in Europe/Stockholm."
+    "answer": "It’s **16:42** (4:42 p.m.) on your computer, in the Europe/Stockholm time zone."
    }
   },
   "curated": {
    "runs": 3,
    "errors": 0,
-   "seconds": 5.89,
+   "seconds": 5.9,
    "model_calls": 1,
-   "tokens": 1269,
+   "tokens": 1291,
    "paths": {
     "get_curated_answer": 3
    },
