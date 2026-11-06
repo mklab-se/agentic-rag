@@ -22,3 +22,11 @@ web:
 # Open the deployed web client in your browser
 open:
     open "$(azd env get-value WEB_URL)"
+
+# Wake every service before a demo. They sleep again after 5 idle minutes
+warm-up:
+    uv run scripts/warm_up.py
+
+# Wake every service and keep them awake until Ctrl-C
+keep-warm:
+    uv run scripts/warm_up.py --keep-warm

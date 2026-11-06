@@ -139,6 +139,14 @@ Approximate:
 
 Search is the cost that matters. Tear down when you are done.
 
+## Before a demo
+
+The API and the dealer scale to zero after 5 idle minutes. A cold start took 34 seconds for the API and 30 for the dealer in a measured run, which is far over the 10 second limit for the first token. `just warm-up` wakes everything and asks a real question on each backend. `just keep-warm` does the same, then pings `/healthz` every 2 minutes until Ctrl-C, which costs no tokens.
+
+## Budget alert
+
+The resource group has a budget named `voltrieve-monthly` of 990 SEK a month, which is about USD 100, because the subscription bills in SEK. It sends an email when actual cost goes over the budget. It was created by hand, so it is not part of `azd up`. An alert does not stop any spending, and cost data can lag by up to a day.
+
 ## Teardown
 
 ```sh
