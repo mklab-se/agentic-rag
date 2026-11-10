@@ -5,6 +5,7 @@ from typing import Literal
 
 from voltrieve_data.load import load_catalog
 from voltrieve_data.parts_catalog import write_parts_documents, write_parts_index
+from voltrieve_data.parts_stock import write_parts_stock
 from voltrieve_data.sales.pdf import INK, write_pdf
 from voltrieve_data.sales.render import BRAND_DOC_TYPES, DOC_TYPES_PER_MODEL, render_markdown
 from voltrieve_data.service_guide import write_service_guide
@@ -49,7 +50,11 @@ def _write_sales(catalog, out_dir: Path, images_dir: Path) -> list[GeneratedDoc]
     return docs
 
 
-def generate_all(catalog_path: Path, out_dir: Path, images_dir: Path = DEFAULT_IMAGES) -> list[GeneratedDoc]:
+def generate_all(
+    catalog_path: Path, out_dir: Path, images_dir: Path = DEFAULT_IMAGES,
+    parts_stock_path: Path | None = None,
+) -> list[GeneratedDoc]:
+    """With parts_stock_path, also write the dealer's parts stock there (the CLI does)."""
     catalog = load_catalog(catalog_path)
     out_dir.mkdir(parents=True, exist_ok=True)
 
@@ -57,6 +62,8 @@ def generate_all(catalog_path: Path, out_dir: Path, images_dir: Path = DEFAULT_I
     docs.append(GeneratedDoc(write_service_guide(catalog, out_dir), None, "service"))
     docs += [GeneratedDoc(p, None, "parts", "parts") for p in write_parts_documents(catalog, out_dir)]
     write_parts_index(catalog, out_dir)
+    if parts_stock_path is not None:
+        write_parts_stock(catalog, parts_stock_path)
 
     manifest = [
         {

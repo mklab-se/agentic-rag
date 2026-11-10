@@ -4,6 +4,7 @@ from pathlib import Path
 from voltrieve_data.car_images import contact_sheet, generate_images, load_identities
 from voltrieve_data.generate import generate_all
 from voltrieve_data.load import load_catalog
+from voltrieve_data.parts_stock import DEFAULT_PARTS_STOCK
 
 
 def main() -> None:
@@ -12,6 +13,8 @@ def main() -> None:
     gen = sub.add_parser("generate", help="Generate the Voltrieve document corpus")
     gen.add_argument("--catalog", type=Path, default=Path("data/voltrieve.yaml"))
     gen.add_argument("--out", type=Path, default=Path("data/generated"))
+    gen.add_argument("--parts-stock", type=Path, default=DEFAULT_PARTS_STOCK,
+                     help="where the dealer service reads its parts stock")
     img = sub.add_parser("images", help="Generate missing car images with ailloy (existing files are kept)")
     img.add_argument("--shots", default="master_front,master_rear",
                      help='comma-separated shots, or "all" for every shot including color and wheel variants')
@@ -21,7 +24,7 @@ def main() -> None:
     args = parser.parse_args()
 
     if args.command == "generate":
-        docs = generate_all(args.catalog, args.out)
+        docs = generate_all(args.catalog, args.out, parts_stock_path=args.parts_stock)
         print(f"Generated {len(docs)} documents in {args.out}")
     elif args.command == "images":
         cars = load_identities(catalog=load_catalog(args.catalog))

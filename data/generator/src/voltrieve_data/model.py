@@ -208,6 +208,13 @@ class CarModel(BaseModel):
         return self
 
 
+class StockPin(BaseModel):
+    """Fixed parts stock for one part, so a demo question always has the same answer."""
+    key: str
+    model: str  # model slug
+    stock: dict[str, int]  # city -> pieces
+
+
 class Catalog(BaseModel):
     company: Company
     markets: list[Market]
@@ -223,6 +230,8 @@ class Catalog(BaseModel):
     electricity: dict[str, Electricity]  # example prices per market for the charging guide
     price_list_valid_from: str
     not_documented: list[str]
+    dealer_distances_km: dict[str, dict[str, int]]  # road distance, each pair listed once
+    parts_stock_pins: list[StockPin]
 
     @model_validator(mode="after")
     def _accessories_exist(self) -> "Catalog":

@@ -426,3 +426,15 @@ not_documented:
   - crash test
   - factory
   - production
+
+# Approximate road distances between the dealers, each pair once. The agent only ever states a
+# distance between two dealers, never from the customer.
+dealer_distances_km:
+  Stockholm: { Uppsala: 70, Göteborg: 470, Malmö: 615 }
+  Uppsala: { Göteborg: 455, Malmö: 680 }
+  Göteborg: { Malmö: 270 }
+
+# Parts stock is generated; these parts have fixed stock so a demo question always gives the same
+# answer. The Spark's right door mirror is out in Stockholm and in stock in Uppsala.
+parts_stock_pins:
+  - { key: door_mirror_right, model: spark, stock: { Stockholm: 0, Göteborg: 1, Malmö: 0, Uppsala: 2 } }
