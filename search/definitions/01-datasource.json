@@ -1,6 +1,6 @@
 {
   "name": "voltrieve-docs-ds",
-  "description": "Voltrieve brochures, specification guides and the buyer's guide in blob storage.",
+  "description": "Voltrieve sales folders per model (brochure, price list, specifications, accessories), the buyer's guide, charging guide, warranty and service guide, in blob storage.",
   "type": "azureblob",
   "credentials": {
     "connectionString": "ResourceId={{STORAGE_RESOURCE_ID}};"

@@ -173,7 +173,7 @@ async def test_current_date_is_the_date_in_stockholm(tools, user, events, monkey
 
 def test_routing_descriptions_say_what_each_base_does_not_hold():
     tools = {t.name: t for t in build_server_tools(None, None)}
-    assert "no article numbers" in tools["search_voltrieve_docs"].description
+    assert "spare part article numbers are not here" in tools["search_voltrieve_docs"].description
     assert "does not say which parts a job needs" in tools["search_spare_parts"].description
 
 
@@ -271,3 +271,10 @@ async def test_search_does_not_retry_other_failures(monkeypatch):
     with pytest.raises(SearchApiError):
         await knowledge.KnowledgeBase("https://s.test", _NoToken()).search("q")
     assert len(calls) == 1
+
+
+def test_docs_description_names_every_sales_document():
+    docs = next(t for t in build_server_tools(None, None) if t.name == "search_voltrieve_docs").description
+    for kind in ("brochure", "price list", "technical specifications", "accessories catalog",
+                 "buyer's guide", "charging guide", "warranty", "service guide", "financing"):
+        assert kind in docs, kind

@@ -89,3 +89,14 @@ def test_knowledge_base_plans_queries_with_the_chat_model():
         "modelName": "gpt-5.4-mini",
     }
     assert kb["retrievalReasoningEffort"]["kind"] == "low"
+
+
+def test_documents_descriptions_name_the_sales_folders():
+    import json
+    from pathlib import Path
+
+    folder = Path(__file__).resolve().parents[1] / "definitions"
+    for name in ("01-datasource.json", "02-index.json", "05-knowledge-source.json", "06-knowledge-base.json"):
+        description = json.loads((folder / name).read_text(encoding="utf-8"))["description"]
+        for kind in ("price list", "accessories", "warranty", "charging guide", "service guide"):
+            assert kind in description, (name, kind)

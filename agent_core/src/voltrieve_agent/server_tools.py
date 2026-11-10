@@ -20,10 +20,13 @@ PARTS_SEARCH_TOOL = "search_spare_parts"
 KB_SEARCH_TOOLS = (KB_SEARCH_TOOL, PARTS_SEARCH_TOOL)
 # The model routes on these words alone, so each says what its base holds and what it does not.
 DOCS_DESCRIPTION = (
-    "The Voltrieve product and workshop documents: sales brochures, technical specification "
-    "guides, the buyer's guide and the service guide. Use for features, specifications, "
-    "prices, option packs and what a repair or service job consists of. It has no article "
-    "numbers."
+    "The Voltrieve product and workshop documents. Per model: the sales brochure, the price list "
+    "(trims, colors, wheels, option packs and a financing example), the technical specifications "
+    "and the accessories catalog. For all models: the buyer's guide, the charging guide, the "
+    "warranty and service plans, and the service guide. Use for features, specifications, "
+    "prices, equipment per trim, accessories, financing, warranty, charging and what a repair or "
+    "service job consists of. It lists article numbers only for accessories; spare part article "
+    "numbers are not here."
 )
 PARTS_DESCRIPTION = (
     "The Voltrieve spare parts catalogs: article numbers, part descriptions, positions on the "

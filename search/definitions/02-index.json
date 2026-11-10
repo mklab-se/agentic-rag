@@ -1,6 +1,6 @@
 {
   "name": "voltrieve-docs-index",
-  "description": "Voltrieve electric car brochures, technical specification guides and the buyer's guide.",
+  "description": "Voltrieve sales folders per model (brochure, price list, technical specifications, accessories catalog), the buyer's guide, the charging guide, the warranty and service plans, and the service guide.",
   "fields": [
     { "name": "chunk_id", "type": "Edm.String", "key": true, "analyzer": "keyword", "filterable": true, "sortable": true },
     { "name": "parent_id", "type": "Edm.String", "filterable": true },
