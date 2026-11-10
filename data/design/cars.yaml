@@ -1,0 +1,171 @@
+# Image prompt text for the five Voltrieve cars. Every image prompt is built from this file
+# (common text, then the car, then the shot), so a car looks the same in every picture.
+# Color and wheel names and prices live in data/voltrieve.yaml; this file describes looks only.
+
+common: >-
+  Photorealistic professional automotive press photograph, shot on a full-frame camera with real
+  light, accurate reflections, realistic paint, glass, rubber and tire sidewall detail, no CGI look.
+  The car is from a fictional Scandinavian electric car brand called Voltrieve: no real
+  manufacturer logos, no front grille, a small backlit chevron-shaped V emblem centered on the
+  front and on the tailgate. White EU-style license plates with a blue band on the left, text
+  exactly as given. No people in focus, no real brand names or logos anywhere in the scene, no
+  text other than the license plate, no watermarks.
+
+cars:
+  spark:
+    shape: >-
+      Voltrieve Spark, a small 3.7 m five-door electric city car with a tall, upright, rounded-box
+      shape like a pebble, very short overhangs, wheels pushed to the corners and a nearly
+      vertical tailgate.
+    front_signature: >-
+      Two large perfectly round headlamps, each a thin glowing white LED ring with a dark center,
+      set wide apart in a smooth closed body-colored front panel.
+    rear_signature: >-
+      Two round tail lamps on the vertical tailgate, each a thin glowing red LED ring matching the
+      round headlamps, with the V emblem between them.
+    paint: >-
+      Warm saffron yellow solid paint, with a contrasting gloss white roof and white mirror caps.
+    cladding: Thick matte black protective cladding along the lower doors and wheel arches.
+    wheels: >-
+      17 inch flat aero wheel covers in white and light grey with five small round holes near the
+      rim and a small V in the center, on narrow tires.
+    interior: >-
+      Light grey recycled textile seats, a pale wood strip across the dashboard, a small round
+      driver display and a central touchscreen.
+    landscape: >-
+      a cobblestone street in Stockholm's old town with ochre and red facades and a cafe with
+      bicycles, early morning soft sunlight
+    plate: SPARK
+
+  lumen:
+    shape: >-
+      Voltrieve Lumen, a compact 4.3 m five-door electric hatchback with a short rear overhang and
+      a hatchback tailgate, a low sloping fastback roofline, a sculpted hood and frameless door
+      glass. Compact and nimble, clearly smaller than a large sedan.
+    front_signature: >-
+      Two very thin parallel horizontal white LED light lines stacked one above the other across
+      the entire front width, with no separate headlamp housings.
+    rear_signature: >-
+      The same two very thin parallel horizontal LED lines in red across the entire width of the
+      hatchback tailgate, with the V emblem between them.
+    paint: >-
+      Coral red-orange metallic paint with visible metallic flake, a gloss black glass roof and
+      black mirror caps.
+    cladding: Slim gloss black side sills.
+    wheels: >-
+      19 inch alloy wheels with ten thin twisted turbine spokes, two-tone diamond-cut silver and
+      gloss black.
+    interior: >-
+      Black seats with coral stitching, a slim wide driver display, a floating central
+      touchscreen and a thin coral ambient light line across the dashboard.
+    landscape: >-
+      a winding coastal road on the Swedish west coast with smooth granite rocks and the sea,
+      late golden evening light
+    plate: LUMEN
+
+  ragn:
+    shape: >-
+      Voltrieve Ragn, a rugged 4.6 m electric crossover with a tall, chunky, boxy body, squared
+      wheel arches, raised ground clearance and black roof rails.
+    front_signature: >-
+      Four square pixel-style headlamps, two side by side on each side, set into a flat black
+      front band, and two bright orange recovery tow hooks in the lower bumper.
+    rear_signature: >-
+      Four square pixel-style red tail lamps, two side by side on each side, set into a flat black
+      band across the tailgate, and one bright orange tow eye in the lower bumper.
+    paint: Deep olive moss green paint with a satin finish.
+    cladding: Wide matte black textured cladding on all wheel arches and sills.
+    wheels: >-
+      19 inch dark gunmetal grey alloy wheels with five thick spokes and large openings, on chunky
+      all-terrain tires with plain black sidewalls.
+    interior: >-
+      Washable dark grey textile seats, rubberized floor mats, chunky physical knobs and orange
+      pull loops on the doors and seats.
+    landscape: >-
+      a forest gravel road in Jämtland with tall pines, a little mist and a lake in the distance,
+      overcast morning light
+    plate: RAGN
+
+  fjord:
+    shape: >-
+      Voltrieve Fjord, a long, low, elegant 4.9 m electric estate car (station wagon) with a long
+      flat roof, a gently sloping rear window, slim satin aluminium roof rails and satin aluminium
+      window trim.
+    front_signature: >-
+      One thin continuous white LED light line across the full front width that dips into a
+      shallow V shape in the center where the emblem sits, like the outline of a fjord valley.
+    rear_signature: >-
+      One thin continuous red LED light line across the full width of the tailgate with the same
+      shallow V dip in the center around the emblem, ending in short horizontal light blades that
+      wrap around the rear corners. All rear lights are horizontal.
+    paint: Deep glacier blue metallic paint.
+    cladding: Body-colored lower bumpers with a thin satin aluminium sill strip.
+    wheels: >-
+      20 inch alloy wheels with fifteen thin straight spokes in bright diamond-cut silver, like a
+      fern pattern.
+    interior: >-
+      Light wool blend seats, pale ash wood trim, a wide calm dashboard with a slim driver display
+      and a portrait central touchscreen.
+    landscape: >-
+      a narrow road along a Norwegian fjord with steep green mountains and calm water, soft
+      overcast late afternoon light with a little sun breaking through
+    plate: FJORD
+
+  atlas:
+    shape: >-
+      Voltrieve Atlas, a large, imposing 5.1 m seven-seat electric SUV with an upright stance, a
+      long flat clamshell hood, a tall flat roof and a floating roof look with all window pillars
+      blacked out.
+    front_signature: >-
+      Tall vertical bracket-shaped white LED light columns at each front corner, like a square
+      bracket [ on the left and ] on the right, framing a wide smooth closed front panel.
+    rear_signature: >-
+      Tall vertical bracket-shaped red LED light columns at each rear corner, like ] on the left
+      and [ on the right seen from behind, framing a wide flat tailgate.
+    paint: >-
+      Glacier white pearl paint with a gloss black roof and subtle brushed copper accents on the
+      lower front bumper and side sills.
+    cladding: Gloss black lower trim with brushed copper accent strips.
+    wheels: >-
+      22 inch two-tone alloy wheels with six wide flat aerodynamic spokes, gloss black with
+      machined silver spoke faces.
+    interior: >-
+      Cognac leather seats in three rows, a wide wood and aluminium dashboard, a large driver
+      display and a central touchscreen.
+    landscape: >-
+      outside a timber mountain lodge in winter with snow-covered spruce trees and mountains,
+      clear cold blue-hour light with warm windows
+    plate: ATLAS
+
+# Scene text per shot. {landscape} is replaced with the car's home landscape.
+shots:
+  master_front: >-
+    Front three-quarter view from the front left, eye level, 50mm lens, the whole car in frame,
+    in a clean light grey studio cyclorama with soft large overhead lights and a subtle floor
+    reflection.
+  master_rear: >-
+    Rear three-quarter view from the rear right, eye level, 50mm lens, the whole car in frame, in
+    a clean light grey studio cyclorama with soft large overhead lights and a subtle floor
+    reflection.
+  hero: >-
+    Wide hero shot, front three-quarter view, the car parked in {landscape}, 35mm lens, the car
+    filling about a third of the frame.
+  front_outdoor: >-
+    Front three-quarter view from the front right, the car parked in {landscape}, 50mm lens.
+  rear_outdoor: >-
+    Rear three-quarter view from the rear left, the car parked in {landscape}, 50mm lens.
+  side_studio: >-
+    Exact side profile from the left, camera at wheel-hub height, 85mm lens, the whole car in
+    frame, clean light grey studio cyclorama.
+  interior: >-
+    Interior seen from the rear seat over the driver's shoulder, showing the dashboard, the
+    displays and the front seats, daylight through the windows from {landscape}, 24mm lens.
+  light_detail: >-
+    Close-up of the front light signature, glowing, at dusk, the car parked in {landscape},
+    shallow depth of field, 85mm lens.
+  charging: >-
+    The car charging at a modern generic public DC charger with a small Voltrieve V on it, the
+    cable plugged into the charge port, at a clean charging plaza near {landscape}, 35mm lens.
+  practical: >-
+    Rear view with the tailgate open, the boot neatly loaded with weekend bags and outdoor gear,
+    the car parked in {landscape}, 35mm lens.
