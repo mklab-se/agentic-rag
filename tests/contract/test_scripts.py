@@ -258,3 +258,77 @@ def test_pack_check_fails_an_answer_that_includes_the_wrong_trim():
     pack = {"type": "pack_trims", "model": "fjord", "pack": "Sound"}
     assert not facts.check(pack, "The Sound pack is included on the Fjord Plus and Prime, and is not on the Pure.")[0]
     assert facts.check(pack, "It is standard on the Fjord Prime, and not available as standard on Pure or Plus.")[0]
+
+
+def test_routing_needs_every_listed_tool():
+    routing = _routing()
+    run = routing.Run("loop", "q", "parts", 1, expected=["parts"], expected_tools=["check_part_stock"])
+    routing.read_trace(run, _Trace(("server_tool_called", {"tool": "search_spare_parts", "iteration": 1})))
+    assert not run.right
+    routing.read_trace(run, _Trace(
+        ("server_tool_called", {"tool": "search_spare_parts", "iteration": 1}),
+        ("server_tool_called", {"tool": "check_part_stock", "iteration": 2}),
+    ))
+    assert run.right and run.used == ["parts"] and run.tools == ["check_part_stock", "search_spare_parts"]
+
+
+def _parts(facts, cat, model: str, key: str) -> list[dict]:
+    name = cat.by_slug(model).name
+    return [p for p in facts.load_parts_index()["parts"]
+            if p["key"] == key and any(f == name or f.startswith(name + " ") for f in p["fits"])]
+
+
+def test_part_stock_check_names_the_closest_dealer_with_stock():
+    facts, cat = _facts()
+    stock = facts.load_parts_stock()
+    expect = {"type": "part_stock", "model": "spark", "key": "door_mirror_right", "city": "Stockholm"}
+    article = _parts(facts, cat, "spark", "door_mirror_right")[0]["article"]
+    assert stock["stock"][article]["Stockholm"] == 0
+    km = stock["distances_km"]["Stockholm"]["Uppsala"]
+    n = stock["stock"][article]["Uppsala"]
+    assert facts.check(expect, f"None in Stockholm. Uppsala, {km} km from Stockholm, has {n}.")[0]
+    assert not facts.check(expect, f"Göteborg has {stock['stock'][article]['Göteborg']}.")[0]
+
+
+def test_part_stock_check_for_a_part_no_dealer_has():
+    facts, _ = _facts()
+    expect = {"type": "part_stock", "pick": "out_everywhere", "city": "Malmö"}
+    values = facts.ask_values(expect)
+    assert facts.load_parts_stock()["stock"][values["article"]] == dict.fromkeys(facts.load_parts_stock()["cities"], 0)
+    assert facts.check(expect, "No Voltrieve dealer has that part in stock right now.")[0]
+    assert not facts.check(expect, "Malmö has 2 in stock.")[0]
+
+
+def test_article_and_both_sides_checks():
+    facts, cat = _facts()
+    wiper = _parts(facts, cat, "fjord", "wiper_blade_front")[0]["article"]
+    assert facts.check({"type": "article", "model": "fjord", "key": "wiper_blade_front"}, f"Use {wiper}.")[0]
+    assert not facts.check({"type": "article", "model": "fjord", "key": "wiper_blade_front"}, "Use VP-99999.")[0]
+    left = _parts(facts, cat, "spark", "door_mirror_left")[0]["article"]
+    right = _parts(facts, cat, "spark", "door_mirror_right")[0]["article"]
+    both = {"type": "both_sides", "model": "spark", "key": "door_mirror"}
+    assert facts.check(both, f"Left {left}, right {right}.")[0]
+    assert not facts.check(both, f"Right {right}.")[0]
+
+
+def test_tyre_check_follows_the_trim_wheel():
+    facts, cat = _facts()
+    fjord = cat.by_slug("fjord")
+    plus = next(t for t in fjord.trims if t.name == "Plus")
+    size = next(w.tyre_size for w in fjord.wheels if w.key == plus.wheel)
+    tyre = next(p["article"] for p in _parts(facts, cat, "fjord", "tyre_winter_studless") if plus.wheel in p["wheels"])
+    expect = {"type": "tyre", "model": "fjord", "season": "winter", "trim": "Plus"}
+    assert facts.check(expect, f"The Plus has {size} tyres: studless {tyre}.")[0]
+    other = next(w.tyre_size for w in fjord.wheels if w.key != plus.wheel)
+    assert not facts.check(expect, f"Use {other}.")[0]
+    sizes = {"type": "tyre", "model": "fjord", "season": "winter"}
+    assert facts.check(sizes, f"Pure {other}, Plus and Prime {size}.")[0]
+    assert not facts.check(sizes, f"{size}.")[0]
+
+
+def test_no_engine_oil_check():
+    facts, cat = _facts()
+    oil = _parts(facts, cat, "ragn", "reduction_oil")[0]["article"]
+    expect = {"type": "no_engine_oil", "model": "ragn"}
+    assert facts.check(expect, f"The Ragn does not use engine oil. Its only oil is reduction gear oil, {oil}.")[0]
+    assert not facts.check(expect, "Use engine oil VP-12345.")[0]

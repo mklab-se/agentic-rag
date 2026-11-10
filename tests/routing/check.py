@@ -7,7 +7,8 @@
 Each question says which sources it needs. For every backend and repeat this asks the deployed
 API and reads the trace:
 
-  right     the sources used are exactly the expected ones
+  right     the sources used are exactly the expected ones, and every tool the question lists
+            (such as check_part_stock) was called
   vain      a source was used that the question did not need
   missed    a needed source was not used
   together  a two source question reached both within one model step, with overlapping calls
@@ -83,6 +84,8 @@ class Run:
     searches: int = 0
     expected_topic: str | None = None
     final: bool = False
+    tools: list[str] = field(default_factory=list)  # every server tool the turn called
+    expected_tools: list[str] = field(default_factory=list)  # tools the question needs, not searches
 
     @property
     def right(self) -> bool:
@@ -90,6 +93,7 @@ class Run:
             not self.error
             and sorted(self.used) == sorted(self.expected)
             and self.topic == self.expected_topic
+            and set(self.expected_tools) <= set(self.tools)
         )
 
     @property
@@ -108,6 +112,7 @@ def overlap(calls: list[dict]) -> bool:
 
 
 def read_trace(run: Run, turn) -> None:
+    run.tools = sorted({c["tool"] for c in turn.trace("server_tool_called") if c.get("tool")})
     server = [c for c in turn.trace("server_tool_called") if c.get("tool") in SOURCES]
     run.topic = next((json.loads(c.get("arguments") or "{}").get("topic") for c in server
                       if SOURCES[c["tool"]] == "curated"), None)
@@ -151,7 +156,13 @@ def expected_articles(question: dict, index: dict) -> set[str]:
     return wanted
 
 
+STOCK = ROOT / "services" / "dealer" / "app" / "parts-stock.json"
+
+
 def message(question: dict, index: dict) -> str:
+    if question.get("pick") == "out_everywhere":
+        stock = json.loads(STOCK.read_text(encoding="utf-8"))["stock"]
+        return question["ask"].format(article=next(a for a, by in stock.items() if not any(by.values())))
     reverse = question.get("reverse")
     if not reverse:
         return question["ask"]
@@ -163,7 +174,7 @@ def message(question: dict, index: dict) -> str:
 
 def ask(url, token, backend: str, question: dict, repeat: int, index: dict) -> Run:
     run = Run(backend, question["id"], question["group"], repeat, expected=question["expect"],
-              expected_topic=question.get("topic"))
+              expected_topic=question.get("topic"), expected_tools=question.get("tools", []))
     wanted = expected_articles(question, index)
     known = {p["article"] for p in index["parts"]}
     api = Api(url, token, backend)
@@ -202,7 +213,7 @@ def report(runs: list[Run], backends: list[str]) -> str:
     lines.append(f"{'backend':8}{'group':7}{'runs':>5}{'right':>7}{'vain':>6}{'missed':>8}"
                  f"{'together':>10}{'steps':>7}{'calls':>7}{'seconds':>9}")
     for backend in backends:
-        for group in ("curated", "none", "docs", "parts", "both"):
+        for group in ("curated", "none", "docs", "parts", "both", "stock"):
             rows = [r for r in runs if r.backend == backend and r.group == group]
             if not rows:
                 continue

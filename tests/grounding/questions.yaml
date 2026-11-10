@@ -70,6 +70,43 @@ questions:
     ask: "Compare the Lumen and the Ragn on range, starting price in Sweden and boot size."
     expect: { type: fields, models: [lumen, ragn], fields: [range_km, price.SE, dimensions.boot_l] }
 
+  # Spare parts and their stock: the parts index and the dealer's parts stock file.
+  - id: spark-mirror-stockholm
+    ask: "I've broken my right side mirror on my Voltrieve Spark. Do you have one in stock in Stockholm?"
+    expect: { type: part_stock, model: spark, key: door_mirror_right, city: Stockholm }
+
+  - id: part-out-everywhere
+    ask: "Is article {article} in stock in {city}?"
+    expect: { type: part_stock, pick: out_everywhere, city: Malmö }
+
+  - id: spark-mirror-no-side
+    ask: "The mirror on my Voltrieve Spark is broken. Which part do I need?"
+    expect: { type: both_sides, model: spark, key: door_mirror }
+
+  - id: fjord-wipers
+    ask: "My windshield wipers on my Voltrieve Fjord need replacing. What is the article number?"
+    expect: { type: article, model: fjord, key: wiper_blade_front }
+
+  - id: fjord-plus-winter-tyres
+    ask: "Which winter tyres fit my Voltrieve Fjord Plus?"
+    expect: { type: tyre, model: fjord, season: winter, trim: Plus }
+
+  - id: fjord-winter-tyres
+    ask: "Which winter tyres do you have for the Voltrieve Fjord?"
+    expect: { type: tyre, model: fjord, season: winter }
+
+  - id: lumen-window-switch
+    ask: "I need a new window switch for the rear left door of my Voltrieve Lumen. What is the article number?"
+    expect: { type: article, model: lumen, key: window_switch_rear_left }
+
+  - id: atlas-indicator
+    ask: "The front right blinker on my Voltrieve Atlas is broken. Which part do I need?"
+    expect: { type: article, model: atlas, key: indicator_front_right }
+
+  - id: ragn-engine-oil
+    ask: "Which engine oil should I use in my Voltrieve Ragn?"
+    expect: { type: no_engine_oil, model: ragn }
+
   # Grounding only: not in the documents at all, the answer must not invent a value.
 
   - id: fjord-crash-test

@@ -18,6 +18,10 @@ DATA_FILE = ROOT / "data" / "voltrieve.yaml"
 DEALER_FILE = ROOT / "services" / "dealer" / "app" / "data.json"
 QUESTIONS_FILE = ROOT / "tests" / "grounding" / "questions.yaml"
 GENERATOR_SRC = ROOT / "data" / "generator" / "src"
+PARTS_INDEX_FILE = ROOT / "data" / "generated" / "parts-index.json"
+PARTS_STOCK_FILE = ROOT / "services" / "dealer" / "app" / "parts-stock.json"
+ARTICLE = re.compile(r"VP-\d{5}")
+PARTS_TYPES = ("part_stock", "article", "both_sides", "tyre", "no_engine_oil")
 
 # Phrases of an answer that declines to give a figure.
 NEGATIVE = (
@@ -44,6 +48,34 @@ def load_catalog():
     from voltrieve_data.load import load_catalog as load
 
     return load(DATA_FILE)
+
+
+def load_parts_index() -> dict:
+    return json.loads(PARTS_INDEX_FILE.read_text(encoding="utf-8"))
+
+
+def load_parts_stock() -> dict:
+    return json.loads(PARTS_STOCK_FILE.read_text(encoding="utf-8"))
+
+
+def _part_rows(cat, model: str, key: str) -> list[dict]:
+    name = cat.by_slug(model).name
+    return [p for p in load_parts_index()["parts"]
+            if p["key"] == key and any(f == name or f.startswith(name + " ") for f in p["fits"])]
+
+
+def _stock_article(expect: dict, cat) -> str:
+    if expect.get("pick") == "out_everywhere":
+        stock = load_parts_stock()["stock"]
+        return next(a for a, by_city in stock.items() if not any(by_city.values()))
+    return _part_rows(cat, expect["model"], expect["key"])[0]["article"]
+
+
+def ask_values(expect: dict) -> dict:
+    """Values a question's text needs, such as {article}, derived from the data like the answers."""
+    if expect.get("type") == "part_stock":
+        return {"article": _stock_article(expect, load_catalog()), "city": expect.get("city", "")}
+    return {}
 
 
 def load_questions() -> list[dict]:
@@ -142,6 +174,8 @@ def check(expect: dict, answer: str, data: dict | None = None, dealer: dict | No
         return ok, f"{expect['model']} in {expect['city']}: {count}"
     if kind in ("trim_price", "trim_adds", "pack_trims", "financing", "fields", "wheels"):
         return _check_sales(expect, answer, load_catalog())
+    if kind in PARTS_TYPES:
+        return _check_parts(expect, answer, load_catalog())
     raise ValueError(f"unknown expectation type {kind!r}")
 
 
@@ -193,4 +227,50 @@ def _check_sales(expect: dict, answer: str, cat) -> tuple[bool, str]:
     if kind == "wheels":
         ok = all(has_number(answer, w.inches) and w.name.lower() in lowered for w in model.wheels)
         return ok, ", ".join(f"{w.inches} inch {w.name}" for w in model.wheels)
+    raise ValueError(f"unknown expectation type {kind!r}")
+
+
+def _check_parts(expect: dict, answer: str, cat) -> tuple[bool, str]:
+    """Checks for the spare parts and their stock, with values from the parts index and stock."""
+    kind = expect["type"]
+    lowered = answer.lower()
+    mentioned = set(ARTICLE.findall(answer))
+    if kind == "part_stock":
+        data = load_parts_stock()
+        article = _stock_article(expect, cat)
+        by_city = data["stock"][article]
+        city = expect["city"]
+        if not any(by_city.values()):
+            says_none = declines(answer) or re.search(r"\bno\b|\bnone\b|out of stock", lowered)
+            claims = re.search(r"\b[1-9]\d*\s+(in stock|pieces|available)|\bhas [1-9]", lowered)
+            return bool(says_none) and not claims, f"{article}: no dealer has it, say so"
+        if by_city[city]:
+            return has_number(answer, by_city[city]), f"{article}: {by_city[city]} in {city}"
+        closest = min((c for c in by_city if by_city[c]), key=lambda c: data["distances_km"][city][c])
+        km = data["distances_km"][city][closest]
+        ok = closest.lower() in lowered and has_number(answer, by_city[closest]) and has_number(answer, km)
+        return ok, f"{article}: none in {city}; closest {closest}, {by_city[closest]} in stock, {km} km from {city}"
+    if kind == "article":
+        articles = {p["article"] for p in _part_rows(cat, expect["model"], expect["key"])}
+        return bool(articles & mentioned), f"{expect['key']} for {expect['model']}: {', '.join(sorted(articles))}"
+    if kind == "both_sides":
+        left = {p["article"] for p in _part_rows(cat, expect["model"], f"{expect['key']}_left")}
+        right = {p["article"] for p in _part_rows(cat, expect["model"], f"{expect['key']}_right")}
+        ok = bool(left & mentioned) and bool(right & mentioned)
+        return ok, f"{expect['key']} for {expect['model']}: left {sorted(left)}, right {sorted(right)}"
+    if kind == "tyre":
+        model = cat.by_slug(expect["model"])
+        keys = ("tyre_winter_studless", "tyre_winter_studded") if expect["season"] == "winter" else ("tyre_summer",)
+        if "trim" in expect:
+            wheel = next(t.wheel for t in model.trims if t.name == expect["trim"])
+            size = next(w.tyre_size for w in model.wheels if w.key == wheel)
+            articles = {p["article"] for k in keys for p in _part_rows(cat, model.slug, k) if wheel in p["wheels"]}
+            ok = size.lower() in lowered and bool(articles & mentioned)
+            return ok, f"{model.name} {expect['trim']}: {size}, one of {sorted(articles)}"
+        sizes = sorted({w.tyre_size for w in model.wheels})
+        return all(sz.lower() in lowered for sz in sizes), f"{model.name}: every size, {', '.join(sizes)}"
+    if kind == "no_engine_oil":
+        oil = {p["article"] for p in _part_rows(cat, expect["model"], "reduction_oil")}
+        ok = declines(answer) and mentioned <= oil
+        return ok, f"no engine oil; only the reduction gear oil {sorted(oil)} may be named"
     raise ValueError(f"unknown expectation type {kind!r}")

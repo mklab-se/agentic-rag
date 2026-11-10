@@ -25,7 +25,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "scripts"))
 
 from voltrieve_client import Api, ApiError, api_token, api_url, cached_token, write_evidence  # noqa: E402
-from voltrieve_facts import check, load_data, load_dealer, load_questions  # noqa: E402
+from voltrieve_facts import ask_values, check, load_data, load_dealer, load_questions  # noqa: E402
 
 
 def main() -> int:
@@ -55,7 +55,8 @@ def main() -> int:
         try:
             for q in questions:
                 try:
-                    turn = api.turn(q["ask"], correlation_id=f"grounding-{backend}-{q['id']}")
+                    ask = q["ask"].format(**ask_values(q["expect"]))
+                    turn = api.turn(ask, correlation_id=f"grounding-{backend}-{q['id']}")
                 except ApiError as exc:
                     say(f"MISS {q['id']}: {exc}")
                     misses += 1
@@ -65,7 +66,7 @@ def main() -> int:
                 else:
                     ok, expected = check(q["expect"], turn.text, data, dealer)
                 misses += not ok
-                say(f"{'PASS' if ok else 'MISS'} {q['id']}: {q['ask']}")
+                say(f"{'PASS' if ok else 'MISS'} {q['id']}: {ask}")
                 say(f"     expected: {expected}")
                 say(f"     answer:   {' '.join(turn.text.split())[:400]}")
         finally:
