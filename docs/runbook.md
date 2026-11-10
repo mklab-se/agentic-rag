@@ -204,3 +204,22 @@ cd clients/web
 cp .env.production .env.local     # written by azd; edit VITE_API_URL if needed
 npm ci && npm run dev             # http://localhost:5173, a registered redirect URI
 ```
+
+## Rebuild the documents
+
+The documents in `data/generated/` are built from `data/voltrieve.yaml` by the generator in
+`data/generator`. The sales folders are printed to PDF by headless Chromium, which Playwright
+installs once per machine:
+
+```bash
+uv run --project data/generator playwright install chromium
+```
+
+Car images live in `data/design/images/` and are made with ailloy from `data/design/cars.yaml`.
+Existing images are never generated again, so a rerun costs nothing unless you delete a file:
+
+```bash
+uv run --project data/generator voltrieve-data images --shots master_front,master_rear
+```
+
+The PDFs embed each image as a 1600 px JPEG, cached next to its PNG master (not committed).

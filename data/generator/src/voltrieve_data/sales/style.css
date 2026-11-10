@@ -1,0 +1,99 @@
+/* Voltrieve sales folder: a clean Nordic style. One family, thin rules, lots of white space. */
+
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body {
+  margin: 0;
+  font-family: 'Hanken Grotesk', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  color: #16181d;
+  font-size: 9.5pt;
+  line-height: 1.45;
+}
+h1, h2, h3 { font-weight: 500; line-height: 1.15; margin: 0 0 0.5em; letter-spacing: -0.01em; }
+h1 { font-size: 26pt; }
+h2 { font-size: 15pt; color: var(--accent); margin-top: 1.4em; }
+h3 { font-size: 11pt; margin-top: 1.1em; }
+p { margin: 0 0 0.75em; }
+strong { font-weight: 500; }
+ul { margin: 0 0 0.9em; padding-left: 1.1em; }
+li { margin: 0.12em 0; }
+li::marker { color: var(--accent); }
+hr { display: none; }
+
+table { width: 100%; border-collapse: collapse; margin: 0.4em 0 1.1em; font-size: 8.6pt; break-inside: auto; }
+thead th {
+  text-align: left; font-weight: 500; color: var(--accent);
+  border-bottom: 1.2pt solid var(--accent); padding: 4pt 6pt 4pt 0;
+}
+td { border-bottom: 0.4pt solid #d5d8dc; padding: 3.5pt 6pt 3.5pt 0; vertical-align: top; }
+tr { break-inside: avoid; }
+
+figure { margin: 0; }
+figure img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.placeholder {
+  display: flex; align-items: center; justify-content: center;
+  background: #e6e8eb; color: #7b8088; font-size: 8pt; letter-spacing: 0.04em;
+}
+
+.brand { display: flex; align-items: center; gap: 6pt; color: var(--accent); }
+.brand span { font-weight: 500; letter-spacing: 0.32em; font-size: 8pt; color: #16181d; }
+.emblem { width: 16pt; height: 11pt; }
+
+/* Portrait documents: price list, specifications, accessories, brand documents. */
+.document .brand { margin-bottom: 10mm; }
+.document h1 {
+  border-top: 4pt solid var(--accent); padding-top: 8pt; margin-bottom: 4pt;
+}
+.document h1 + p { color: #50555d; margin-bottom: 6mm; }
+.document .flow figure { height: 70mm; margin: 2mm 0 6mm; }
+.document h2 { break-after: avoid; }
+.document h3 { break-after: avoid; }
+.document table { break-inside: avoid; }
+.document ul { break-inside: avoid; }
+
+/* The brochure: landscape A4, one section per page. */
+.brochure { font-size: 11.5pt; }
+.brochure .brand { position: absolute; top: 11mm; left: 14mm; z-index: 3; }
+.brochure .page {
+  position: relative; width: 297mm; height: 210mm; overflow: hidden;
+  break-after: page; display: grid; grid-template-columns: 124mm 1fr; gap: 0;
+}
+.brochure .page:last-child { break-after: auto; }
+.brochure .page .text { padding: 26mm 12mm 14mm 14mm; }
+.brochure .page h2 { margin-top: 0; font-size: 20pt; }
+.brochure .page .media { display: grid; gap: 3mm; padding: 0; }
+.brochure .page.one-image .media figure { height: 210mm; }
+.brochure .page.two-images .media { grid-template-rows: 1fr 1fr; }
+.brochure .page.two-images .media figure { height: 103.5mm; }
+.brochure .page.many-images .media { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+.brochure .page.many-images .media figure { height: 103.5mm; }
+.brochure .page.many-images .media figcaption { display: none; }
+.brochure .page.text-only { grid-template-columns: 1fr; }
+.brochure .page.text-only .text { padding: 28mm 22mm 14mm 22mm; columns: 2; column-gap: 16mm; font-size: 12.5pt; }
+.brochure .page.text-only .text h2 { column-span: all; }
+.brochure .page.three-columns .text { columns: 3; column-gap: 10mm; font-size: 9pt; }
+.brochure .page.three-columns .text h3 { break-before: column; margin-top: 0; color: var(--accent); }
+.brochure .page.three-columns .text h3:first-of-type { break-before: auto; }
+.brochure .page.text-only .text > p:first-of-type { column-span: all; }
+.brochure .page table { font-size: 8.8pt; table-layout: fixed; }
+.brochure .page li, .brochure .page p { break-inside: avoid; }
+
+.brochure .cover { display: block; color: #fff; }
+.brochure .cover figure { position: absolute; inset: 0; height: 210mm; }
+.brochure .cover::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(10, 12, 16, 0.55) 0%, rgba(10, 12, 16, 0) 38%,
+    rgba(10, 12, 16, 0) 62%, rgba(10, 12, 16, 0.6) 100%);
+}
+.brochure .cover-text { position: absolute; inset: 0; z-index: 2; padding: 24mm 14mm 12mm; }
+.brochure .cover-text h1 { font-size: 40pt; color: #fff; margin: 0; }
+.brochure .cover-text h1 + p { font-size: 15pt; color: #fff; margin-top: 2mm; }
+.brochure .cover-text table {
+  position: absolute; left: 14mm; bottom: 12mm; width: calc(100% - 28mm); color: #fff; font-size: 9pt; table-layout: fixed;
+}
+.brochure .cover-text thead th { color: rgba(255, 255, 255, 0.8); border-bottom: 0.6pt solid rgba(255, 255, 255, 0.6); font-weight: 300; }
+.brochure .cover-text td { border: 0; font-size: 18pt; font-weight: 500; padding-top: 3pt; }
+.brochure:has(.cover) > .brand { color: #fff; }
+.brochure:has(.cover) > .brand span { color: #fff; }
+.brochure .cover .placeholder { color: #7b8088; }

@@ -11,3 +11,6 @@ clients/web/.env.production
 # Documentation site
 site/
 docs/index.md
+
+# JPEG copies of the car images, made by the PDF step
+data/design/images/*/*.jpg

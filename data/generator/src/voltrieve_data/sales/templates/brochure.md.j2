@@ -135,6 +135,11 @@ Wheels: {{ wheel[t.wheel].inches }} inch {{ wheel[t.wheel].name }}. Interior: {{
 - **{{ w.inches }} inch {{ w.name }}:** {{ w.description }}. On {{ m.trims | selectattr("wheel", "equalto", w.key) | map(attribute="name") | join(" and ") }}.
 {% endfor %}
 
+{% for c in m.colors %}
+![The {{ m.name }} in {{ c.name }}]({{ img("master_front" if c.hero else "color_" ~ c.key) }})
+
+{% endfor %}
+
 {{ PAGE_BREAK }}
 
 ## Questions and answers

@@ -10,6 +10,8 @@ dependencies = [
     "fpdf2",
     "pillow",
     "jinja2",
+    "markdown-it-py",
+    "playwright",
 ]
 
 [dependency-groups]
