@@ -12,6 +12,8 @@ numbers it becomes:
 Numbers are assigned in template order, so the output is the same on every run. Article numbers
 never change once published: the first-edition templates are numbered first, then the templates
 in ADDED, in the order they were added. New templates go at the end of ADDED, nowhere else.
+When new parts are published, refresh tests/fixtures/parts-index-published.json from
+data/generated/parts-index.json: the test then holds every published number to its part.
 """
 
 from collections.abc import Callable

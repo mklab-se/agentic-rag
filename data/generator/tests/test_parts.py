@@ -107,18 +107,6 @@ def test_index_records_the_expected_articles_of_each_job(tmp_path):
     assert len(index["parts"]) == index["count"]
 
 
-FROZEN_INDEX = Path(__file__).parent / "fixtures" / "parts-index-2026-11-10.json"
-
-
-def test_existing_article_numbers_never_change(parts):
-    """Article numbers are in indexed catalogs, sales folders and people's notes: never renumber."""
-    now = {p.article: p for p in parts}
-    for old in json.loads(FROZEN_INDEX.read_text(encoding="utf-8"))["parts"]:
-        part = now.get(old["article"])
-        assert part is not None, old["article"]
-        assert (part.key, [f.name for f in part.fits]) == (old["key"], old["fits"]), old["article"]
-
-
 TYRES = ("tyre_summer", "tyre_winter_studless", "tyre_winter_studded")
 
 
@@ -222,3 +210,17 @@ def test_catalogs_say_there_is_no_engine_oil_and_no_gear_lever(tmp_path):
 
 def test_no_engine_oil_part(parts):
     assert not any("engine oil" in p.name.lower() for p in parts)
+
+
+PUBLISHED_INDEX = Path(__file__).parent / "fixtures" / "parts-index-published.json"
+
+
+def test_published_article_numbers_never_change(parts):
+    """Every published article keeps its key, fits and tyre wheels. When parts are added and
+    published, refresh the fixture from data/generated/parts-index.json; never edit old rows."""
+    now = {p.article: p for p in parts}
+    for old in json.loads(PUBLISHED_INDEX.read_text(encoding="utf-8"))["parts"]:
+        part = now.get(old["article"])
+        assert part is not None, old["article"]
+        assert (part.key, [f.name for f in part.fits], list(part.wheels)) == (
+            old["key"], old["fits"], old["wheels"]), old["article"]

@@ -1,5 +1,5 @@
 {
-  "count": 429,
+  "count": 759,
   "jobs": {
     "spark/RWD/front/left": [
       "VP-10007",
@@ -304,7 +304,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10020",
@@ -313,7 +314,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Lumen RWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10033",
@@ -322,7 +324,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Lumen AWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10046",
@@ -331,7 +334,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10059",
@@ -340,7 +344,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Fjord RWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10072",
@@ -349,7 +354,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Fjord AWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10085",
@@ -358,7 +364,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10098",
@@ -367,7 +374,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10111",
@@ -376,7 +384,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Lumen RWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10124",
@@ -385,7 +394,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Lumen AWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10137",
@@ -394,7 +404,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10150",
@@ -403,7 +414,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Fjord RWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10163",
@@ -412,7 +424,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Fjord AWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10176",
@@ -421,7 +434,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10189",
@@ -430,7 +444,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10202",
@@ -439,7 +454,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Lumen RWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10215",
@@ -448,7 +464,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Lumen AWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10228",
@@ -457,7 +474,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10241",
@@ -466,7 +484,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Fjord RWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10254",
@@ -475,7 +494,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Fjord AWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10267",
@@ -484,7 +504,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10280",
@@ -493,7 +514,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10293",
@@ -502,7 +524,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Lumen RWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10306",
@@ -511,7 +534,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Lumen AWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10319",
@@ -520,7 +544,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10332",
@@ -529,7 +554,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Fjord RWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10345",
@@ -538,7 +564,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Fjord AWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10358",
@@ -547,7 +574,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10371",
@@ -556,7 +584,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10384",
@@ -565,7 +594,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Lumen RWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10397",
@@ -574,7 +604,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Lumen AWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10410",
@@ -583,7 +614,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10423",
@@ -592,7 +624,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Fjord RWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10436",
@@ -601,7 +634,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Fjord AWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10449",
@@ -610,7 +644,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10462",
@@ -619,7 +654,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10475",
@@ -628,7 +664,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Lumen RWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10488",
@@ -637,7 +674,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Lumen AWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10501",
@@ -646,7 +684,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10514",
@@ -655,7 +694,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Fjord RWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10527",
@@ -664,7 +704,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Fjord AWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10540",
@@ -673,7 +714,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10553",
@@ -682,7 +724,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Lumen RWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10566",
@@ -691,7 +734,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Lumen AWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10579",
@@ -700,7 +744,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10592",
@@ -709,7 +754,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Fjord RWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10605",
@@ -718,7 +764,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Fjord AWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10618",
@@ -728,7 +775,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10631",
@@ -739,7 +787,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10644",
@@ -749,7 +798,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10657",
@@ -760,7 +810,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10670",
@@ -771,7 +822,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10683",
@@ -782,7 +834,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10696",
@@ -792,7 +845,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10709",
@@ -803,7 +857,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10722",
@@ -812,7 +867,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10735",
@@ -821,7 +877,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10748",
@@ -830,7 +887,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10761",
@@ -839,7 +897,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10774",
@@ -848,7 +907,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10787",
@@ -857,7 +917,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10800",
@@ -866,7 +927,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10813",
@@ -875,7 +937,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10826",
@@ -884,7 +947,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10839",
@@ -893,7 +957,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10852",
@@ -902,7 +967,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10865",
@@ -911,7 +977,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10878",
@@ -920,7 +987,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10891",
@@ -929,7 +997,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10904",
@@ -938,7 +1007,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10917",
@@ -947,7 +1017,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10930",
@@ -956,7 +1027,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10943",
@@ -965,7 +1037,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10956",
@@ -974,7 +1047,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10969",
@@ -983,7 +1057,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10982",
@@ -992,7 +1067,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-10995",
@@ -1001,7 +1077,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11008",
@@ -1010,7 +1087,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11021",
@@ -1019,7 +1097,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11034",
@@ -1028,7 +1107,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11047",
@@ -1037,7 +1117,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11060",
@@ -1046,7 +1127,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11073",
@@ -1055,7 +1137,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11086",
@@ -1064,7 +1147,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11099",
@@ -1073,7 +1157,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11112",
@@ -1082,7 +1167,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11125",
@@ -1091,7 +1177,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11138",
@@ -1100,7 +1187,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11151",
@@ -1109,7 +1197,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11164",
@@ -1118,7 +1207,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11177",
@@ -1128,7 +1218,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11190",
@@ -1139,7 +1230,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11203",
@@ -1149,7 +1241,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11216",
@@ -1160,7 +1253,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11229",
@@ -1170,7 +1264,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11242",
@@ -1181,7 +1276,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11255",
@@ -1191,7 +1287,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11268",
@@ -1202,7 +1299,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11281",
@@ -1213,7 +1311,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11294",
@@ -1224,7 +1323,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11307",
@@ -1234,7 +1334,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11320",
@@ -1245,7 +1346,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11333",
@@ -1254,7 +1356,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11346",
@@ -1263,7 +1366,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11359",
@@ -1272,7 +1376,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11372",
@@ -1281,7 +1386,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11385",
@@ -1290,7 +1396,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11398",
@@ -1299,7 +1406,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11411",
@@ -1308,7 +1416,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11424",
@@ -1317,7 +1426,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11437",
@@ -1326,7 +1436,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11450",
@@ -1335,7 +1446,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11463",
@@ -1345,7 +1457,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11476",
@@ -1356,7 +1469,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11489",
@@ -1366,7 +1480,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11502",
@@ -1377,7 +1492,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11515",
@@ -1387,7 +1503,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11528",
@@ -1398,7 +1515,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11541",
@@ -1408,7 +1526,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11554",
@@ -1419,7 +1538,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11567",
@@ -1429,7 +1549,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11580",
@@ -1440,7 +1561,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11593",
@@ -1450,7 +1572,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11606",
@@ -1461,7 +1584,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11619",
@@ -1470,7 +1594,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11632",
@@ -1479,7 +1604,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11645",
@@ -1488,7 +1614,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11658",
@@ -1497,7 +1624,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11671",
@@ -1506,7 +1634,8 @@
       "document": "voltrieve-parts-brakes.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11684",
@@ -1516,7 +1645,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11697",
@@ -1527,7 +1657,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11710",
@@ -1537,7 +1668,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11723",
@@ -1548,7 +1680,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11736",
@@ -1561,7 +1694,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11749",
@@ -1570,7 +1704,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11762",
@@ -1579,7 +1714,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Lumen RWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11775",
@@ -1588,7 +1724,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Lumen AWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11788",
@@ -1597,7 +1734,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11801",
@@ -1606,7 +1744,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11814",
@@ -1615,7 +1754,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11827",
@@ -1624,7 +1764,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Lumen RWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11840",
@@ -1633,7 +1774,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Lumen AWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11853",
@@ -1642,7 +1784,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11866",
@@ -1651,7 +1794,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11879",
@@ -1660,7 +1804,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Fjord RWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11892",
@@ -1669,7 +1814,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Fjord AWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11905",
@@ -1678,7 +1824,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Fjord RWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11918",
@@ -1687,7 +1834,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Fjord AWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11931",
@@ -1696,7 +1844,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11944",
@@ -1705,7 +1854,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11957",
@@ -1714,7 +1864,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11970",
@@ -1723,7 +1874,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11983",
@@ -1732,7 +1884,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-11996",
@@ -1741,7 +1894,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12009",
@@ -1750,7 +1904,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12022",
@@ -1759,7 +1914,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12035",
@@ -1768,7 +1924,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12048",
@@ -1777,7 +1934,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12061",
@@ -1786,7 +1944,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12074",
@@ -1795,7 +1954,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12087",
@@ -1804,7 +1964,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12100",
@@ -1813,7 +1974,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12113",
@@ -1822,7 +1984,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12126",
@@ -1831,7 +1994,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12139",
@@ -1840,7 +2004,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12152",
@@ -1849,7 +2014,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12165",
@@ -1858,7 +2024,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12178",
@@ -1868,7 +2035,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12191",
@@ -1879,7 +2047,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12204",
@@ -1889,7 +2058,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12217",
@@ -1900,7 +2070,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12230",
@@ -1910,7 +2081,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12243",
@@ -1921,7 +2093,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12256",
@@ -1931,7 +2104,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12269",
@@ -1942,7 +2116,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12282",
@@ -1952,7 +2127,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12295",
@@ -1963,7 +2139,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12308",
@@ -1973,7 +2150,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12321",
@@ -1984,7 +2162,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12334",
@@ -1994,7 +2173,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12347",
@@ -2005,7 +2185,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12360",
@@ -2015,7 +2196,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12373",
@@ -2026,7 +2208,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12386",
@@ -2036,7 +2219,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12399",
@@ -2047,7 +2231,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12412",
@@ -2057,7 +2242,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12425",
@@ -2068,7 +2254,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12438",
@@ -2077,7 +2264,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12451",
@@ -2086,7 +2274,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12464",
@@ -2095,7 +2284,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12477",
@@ -2104,7 +2294,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12490",
@@ -2113,7 +2304,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12503",
@@ -2122,7 +2314,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12516",
@@ -2131,7 +2324,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12529",
@@ -2140,7 +2334,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12542",
@@ -2149,7 +2344,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12555",
@@ -2158,7 +2354,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12568",
@@ -2168,7 +2365,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12581",
@@ -2179,7 +2377,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12594",
@@ -2189,7 +2388,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12607",
@@ -2200,7 +2400,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12620",
@@ -2210,7 +2411,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12633",
@@ -2221,7 +2423,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12646",
@@ -2231,7 +2434,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12659",
@@ -2242,7 +2446,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12672",
@@ -2252,7 +2457,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12685",
@@ -2263,7 +2469,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12698",
@@ -2272,7 +2479,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12711",
@@ -2281,7 +2489,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12724",
@@ -2290,7 +2499,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12737",
@@ -2299,7 +2509,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12750",
@@ -2308,7 +2519,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12763",
@@ -2317,7 +2529,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12776",
@@ -2326,7 +2539,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12789",
@@ -2335,7 +2549,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12802",
@@ -2344,7 +2559,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12815",
@@ -2353,7 +2569,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12828",
@@ -2362,7 +2579,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12841",
@@ -2372,7 +2590,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12854",
@@ -2383,7 +2602,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12867",
@@ -2393,7 +2613,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12880",
@@ -2404,7 +2625,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12893",
@@ -2414,7 +2636,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12906",
@@ -2425,7 +2648,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12919",
@@ -2435,7 +2659,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12932",
@@ -2446,7 +2671,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12945",
@@ -2455,7 +2681,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Lumen AWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12958",
@@ -2464,7 +2691,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12971",
@@ -2473,7 +2701,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Fjord AWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12984",
@@ -2482,7 +2711,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-12997",
@@ -2491,7 +2721,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Lumen AWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13010",
@@ -2500,7 +2731,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13023",
@@ -2509,7 +2741,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Fjord AWD"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13036",
@@ -2518,7 +2751,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13049",
@@ -2527,7 +2761,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13062",
@@ -2536,7 +2771,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13075",
@@ -2545,7 +2781,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13088",
@@ -2554,7 +2791,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13101",
@@ -2563,7 +2801,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13114",
@@ -2572,7 +2811,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13127",
@@ -2581,7 +2821,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13140",
@@ -2590,7 +2831,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13153",
@@ -2599,7 +2841,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13166",
@@ -2608,7 +2851,8 @@
       "document": "voltrieve-parts-suspension-steering.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13179",
@@ -2617,7 +2861,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13192",
@@ -2626,7 +2871,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13205",
@@ -2635,7 +2881,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13218",
@@ -2644,7 +2891,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13231",
@@ -2653,7 +2901,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13244",
@@ -2662,7 +2911,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13257",
@@ -2671,7 +2921,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13270",
@@ -2680,7 +2931,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13283",
@@ -2689,7 +2941,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13296",
@@ -2698,7 +2951,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13309",
@@ -2707,7 +2961,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13322",
@@ -2716,7 +2971,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13335",
@@ -2725,7 +2981,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13348",
@@ -2734,7 +2991,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13361",
@@ -2743,7 +3001,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13374",
@@ -2752,7 +3011,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13387",
@@ -2761,7 +3021,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13400",
@@ -2770,7 +3031,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13413",
@@ -2779,7 +3041,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13426",
@@ -2788,7 +3051,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13439",
@@ -2797,7 +3061,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13452",
@@ -2806,7 +3071,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13465",
@@ -2815,7 +3081,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13478",
@@ -2824,7 +3091,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13491",
@@ -2833,7 +3101,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13504",
@@ -2842,7 +3111,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13517",
@@ -2851,7 +3121,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13530",
@@ -2860,7 +3131,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13543",
@@ -2869,7 +3141,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13556",
@@ -2878,7 +3151,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13569",
@@ -2887,7 +3161,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13582",
@@ -2896,7 +3171,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13595",
@@ -2905,7 +3181,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13608",
@@ -2914,7 +3191,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13621",
@@ -2923,7 +3201,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13634",
@@ -2932,7 +3211,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13647",
@@ -2941,7 +3221,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13660",
@@ -2950,7 +3231,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13673",
@@ -2959,7 +3241,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13686",
@@ -2968,7 +3251,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13699",
@@ -2977,7 +3261,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13712",
@@ -2986,7 +3271,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13725",
@@ -2995,7 +3281,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13738",
@@ -3004,7 +3291,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13751",
@@ -3013,7 +3301,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13764",
@@ -3022,7 +3311,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13777",
@@ -3031,7 +3321,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13790",
@@ -3040,7 +3331,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13803",
@@ -3049,7 +3341,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13816",
@@ -3058,7 +3351,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13829",
@@ -3068,7 +3362,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13842",
@@ -3079,7 +3374,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13855",
@@ -3089,7 +3385,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13868",
@@ -3100,7 +3397,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13881",
@@ -3110,7 +3408,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13894",
@@ -3121,7 +3420,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13907",
@@ -3131,7 +3431,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13920",
@@ -3142,7 +3443,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13933",
@@ -3151,7 +3453,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13946",
@@ -3160,7 +3463,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13959",
@@ -3169,7 +3473,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13972",
@@ -3178,7 +3483,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13985",
@@ -3187,7 +3493,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-13998",
@@ -3196,7 +3503,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14011",
@@ -3205,7 +3513,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14024",
@@ -3214,7 +3523,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14037",
@@ -3223,7 +3533,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14050",
@@ -3232,7 +3543,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14063",
@@ -3241,7 +3553,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14076",
@@ -3250,7 +3563,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14089",
@@ -3259,7 +3573,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14102",
@@ -3268,7 +3583,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14115",
@@ -3277,7 +3593,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14128",
@@ -3286,7 +3603,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14141",
@@ -3295,7 +3613,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14154",
@@ -3304,7 +3623,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14167",
@@ -3313,7 +3633,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14180",
@@ -3322,7 +3643,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14193",
@@ -3331,7 +3653,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14206",
@@ -3340,7 +3663,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14219",
@@ -3349,7 +3673,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14232",
@@ -3358,7 +3683,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14245",
@@ -3367,7 +3693,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14258",
@@ -3376,7 +3703,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14271",
@@ -3385,7 +3713,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14284",
@@ -3394,7 +3723,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14297",
@@ -3403,7 +3733,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14310",
@@ -3412,7 +3743,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14323",
@@ -3422,7 +3754,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14336",
@@ -3433,7 +3766,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14349",
@@ -3443,7 +3777,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14362",
@@ -3454,7 +3789,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14375",
@@ -3463,7 +3799,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14388",
@@ -3472,7 +3809,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14401",
@@ -3481,7 +3819,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14414",
@@ -3490,7 +3829,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14427",
@@ -3499,7 +3839,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14440",
@@ -3508,7 +3849,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14453",
@@ -3517,7 +3859,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14466",
@@ -3526,7 +3869,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14479",
@@ -3535,7 +3879,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14492",
@@ -3544,7 +3889,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14505",
@@ -3553,7 +3899,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14518",
@@ -3562,7 +3909,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14531",
@@ -3571,7 +3919,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14544",
@@ -3580,7 +3929,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14557",
@@ -3589,7 +3939,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14570",
@@ -3598,7 +3949,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14583",
@@ -3607,7 +3959,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14596",
@@ -3616,7 +3969,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14609",
@@ -3625,7 +3979,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14622",
@@ -3634,7 +3989,8 @@
       "document": "voltrieve-parts-body-glass-lighting.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14635",
@@ -3644,7 +4000,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14648",
@@ -3655,7 +4012,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14661",
@@ -3668,7 +4026,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14674",
@@ -3678,7 +4037,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14687",
@@ -3689,7 +4049,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14700",
@@ -3698,7 +4059,8 @@
       "document": "voltrieve-parts-electrical-charging.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14713",
@@ -3707,7 +4069,8 @@
       "document": "voltrieve-parts-electrical-charging.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14726",
@@ -3716,7 +4079,8 @@
       "document": "voltrieve-parts-electrical-charging.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14739",
@@ -3725,7 +4089,8 @@
       "document": "voltrieve-parts-electrical-charging.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14752",
@@ -3734,7 +4099,8 @@
       "document": "voltrieve-parts-electrical-charging.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14765",
@@ -3744,7 +4110,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14778",
@@ -3755,7 +4122,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14791",
@@ -3768,7 +4136,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14804",
@@ -3781,7 +4150,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14817",
@@ -3791,7 +4161,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14830",
@@ -3802,7 +4173,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14843",
@@ -3812,7 +4184,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14856",
@@ -3823,7 +4196,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14869",
@@ -3833,7 +4207,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14882",
@@ -3844,7 +4219,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14895",
@@ -3854,7 +4230,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14908",
@@ -3865,7 +4242,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14921",
@@ -3875,7 +4253,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14934",
@@ -3886,7 +4265,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14947",
@@ -3895,7 +4275,8 @@
       "document": "voltrieve-parts-electrical-charging.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14960",
@@ -3904,7 +4285,8 @@
       "document": "voltrieve-parts-electrical-charging.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14973",
@@ -3913,7 +4295,8 @@
       "document": "voltrieve-parts-electrical-charging.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14986",
@@ -3922,7 +4305,8 @@
       "document": "voltrieve-parts-electrical-charging.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-14999",
@@ -3931,7 +4315,8 @@
       "document": "voltrieve-parts-electrical-charging.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15012",
@@ -3941,7 +4326,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15025",
@@ -3952,7 +4338,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15038",
@@ -3962,7 +4349,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15051",
@@ -3973,7 +4361,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15064",
@@ -3983,7 +4372,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15077",
@@ -3994,7 +4384,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15090",
@@ -4004,7 +4395,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15103",
@@ -4015,7 +4407,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15116",
@@ -4025,7 +4418,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15129",
@@ -4036,7 +4430,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15142",
@@ -4047,7 +4442,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15155",
@@ -4060,7 +4456,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15168",
@@ -4073,7 +4470,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15181",
@@ -4086,7 +4484,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15194",
@@ -4099,7 +4498,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15207",
@@ -4109,7 +4509,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15220",
@@ -4120,7 +4521,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15233",
@@ -4133,7 +4535,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15246",
@@ -4142,7 +4545,8 @@
       "document": "voltrieve-parts-service-items.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15259",
@@ -4151,7 +4555,8 @@
       "document": "voltrieve-parts-service-items.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15272",
@@ -4160,7 +4565,8 @@
       "document": "voltrieve-parts-service-items.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15285",
@@ -4169,7 +4575,8 @@
       "document": "voltrieve-parts-service-items.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15298",
@@ -4178,7 +4585,8 @@
       "document": "voltrieve-parts-service-items.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15311",
@@ -4187,7 +4595,8 @@
       "document": "voltrieve-parts-service-items.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15324",
@@ -4196,7 +4605,8 @@
       "document": "voltrieve-parts-service-items.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15337",
@@ -4205,7 +4615,8 @@
       "document": "voltrieve-parts-service-items.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15350",
@@ -4214,7 +4625,8 @@
       "document": "voltrieve-parts-service-items.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15363",
@@ -4223,7 +4635,8 @@
       "document": "voltrieve-parts-service-items.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15376",
@@ -4233,7 +4646,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15389",
@@ -4244,7 +4658,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15402",
@@ -4254,7 +4669,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15415",
@@ -4265,7 +4681,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15428",
@@ -4275,7 +4692,8 @@
       "fits": [
         "Voltrieve Spark",
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15441",
@@ -4286,7 +4704,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15454",
@@ -4299,7 +4718,8 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15467",
@@ -4308,7 +4728,8 @@
       "document": "voltrieve-parts-service-items.md",
       "fits": [
         "Voltrieve Spark"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15480",
@@ -4317,7 +4738,8 @@
       "document": "voltrieve-parts-service-items.md",
       "fits": [
         "Voltrieve Lumen"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15493",
@@ -4326,7 +4748,8 @@
       "document": "voltrieve-parts-service-items.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15506",
@@ -4335,7 +4758,8 @@
       "document": "voltrieve-parts-service-items.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15519",
@@ -4344,7 +4768,8 @@
       "document": "voltrieve-parts-service-items.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15532",
@@ -4353,7 +4778,8 @@
       "document": "voltrieve-parts-service-items.md",
       "fits": [
         "Voltrieve Ragn"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15545",
@@ -4362,7 +4788,8 @@
       "document": "voltrieve-parts-service-items.md",
       "fits": [
         "Voltrieve Fjord"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15558",
@@ -4371,7 +4798,8 @@
       "document": "voltrieve-parts-service-items.md",
       "fits": [
         "Voltrieve Atlas"
-      ]
+      ],
+      "wheels": []
     },
     {
       "article": "VP-15571",
@@ -4382,7 +4810,3476 @@
         "Voltrieve Ragn",
         "Voltrieve Fjord",
         "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-15584",
+      "key": "tyre_summer",
+      "name": "Summer tyre",
+      "document": "voltrieve-parts-wheels-tyres.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": [
+        "pebble_white",
+        "pebble_graphite"
       ]
+    },
+    {
+      "article": "VP-15597",
+      "key": "tyre_summer",
+      "name": "Summer tyre",
+      "document": "voltrieve-parts-wheels-tyres.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": [
+        "arc_18"
+      ]
+    },
+    {
+      "article": "VP-15610",
+      "key": "tyre_summer",
+      "name": "Summer tyre",
+      "document": "voltrieve-parts-wheels-tyres.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": [
+        "turbine_19"
+      ]
+    },
+    {
+      "article": "VP-15623",
+      "key": "tyre_summer",
+      "name": "Summer tyre",
+      "document": "voltrieve-parts-wheels-tyres.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": [
+        "trail_19"
+      ]
+    },
+    {
+      "article": "VP-15636",
+      "key": "tyre_summer",
+      "name": "Summer tyre",
+      "document": "voltrieve-parts-wheels-tyres.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": [
+        "trail_20"
+      ]
+    },
+    {
+      "article": "VP-15649",
+      "key": "tyre_summer",
+      "name": "Summer tyre",
+      "document": "voltrieve-parts-wheels-tyres.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": [
+        "birch_19"
+      ]
+    },
+    {
+      "article": "VP-15662",
+      "key": "tyre_summer",
+      "name": "Summer tyre",
+      "document": "voltrieve-parts-wheels-tyres.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": [
+        "fern_20"
+      ]
+    },
+    {
+      "article": "VP-15675",
+      "key": "tyre_summer",
+      "name": "Summer tyre",
+      "document": "voltrieve-parts-wheels-tyres.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": [
+        "monolith_21"
+      ]
+    },
+    {
+      "article": "VP-15688",
+      "key": "tyre_summer",
+      "name": "Summer tyre",
+      "document": "voltrieve-parts-wheels-tyres.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": [
+        "monolith_22"
+      ]
+    },
+    {
+      "article": "VP-15701",
+      "key": "tyre_winter_studless",
+      "name": "Winter tyre, studless",
+      "document": "voltrieve-parts-wheels-tyres.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": [
+        "pebble_white",
+        "pebble_graphite"
+      ]
+    },
+    {
+      "article": "VP-15714",
+      "key": "tyre_winter_studless",
+      "name": "Winter tyre, studless",
+      "document": "voltrieve-parts-wheels-tyres.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": [
+        "arc_18"
+      ]
+    },
+    {
+      "article": "VP-15727",
+      "key": "tyre_winter_studless",
+      "name": "Winter tyre, studless",
+      "document": "voltrieve-parts-wheels-tyres.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": [
+        "turbine_19"
+      ]
+    },
+    {
+      "article": "VP-15740",
+      "key": "tyre_winter_studless",
+      "name": "Winter tyre, studless",
+      "document": "voltrieve-parts-wheels-tyres.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": [
+        "trail_19"
+      ]
+    },
+    {
+      "article": "VP-15753",
+      "key": "tyre_winter_studless",
+      "name": "Winter tyre, studless",
+      "document": "voltrieve-parts-wheels-tyres.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": [
+        "trail_20"
+      ]
+    },
+    {
+      "article": "VP-15766",
+      "key": "tyre_winter_studless",
+      "name": "Winter tyre, studless",
+      "document": "voltrieve-parts-wheels-tyres.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": [
+        "birch_19"
+      ]
+    },
+    {
+      "article": "VP-15779",
+      "key": "tyre_winter_studless",
+      "name": "Winter tyre, studless",
+      "document": "voltrieve-parts-wheels-tyres.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": [
+        "fern_20"
+      ]
+    },
+    {
+      "article": "VP-15792",
+      "key": "tyre_winter_studless",
+      "name": "Winter tyre, studless",
+      "document": "voltrieve-parts-wheels-tyres.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": [
+        "monolith_21"
+      ]
+    },
+    {
+      "article": "VP-15805",
+      "key": "tyre_winter_studless",
+      "name": "Winter tyre, studless",
+      "document": "voltrieve-parts-wheels-tyres.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": [
+        "monolith_22"
+      ]
+    },
+    {
+      "article": "VP-15818",
+      "key": "tyre_winter_studded",
+      "name": "Winter tyre, studded",
+      "document": "voltrieve-parts-wheels-tyres.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": [
+        "pebble_white",
+        "pebble_graphite"
+      ]
+    },
+    {
+      "article": "VP-15831",
+      "key": "tyre_winter_studded",
+      "name": "Winter tyre, studded",
+      "document": "voltrieve-parts-wheels-tyres.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": [
+        "arc_18"
+      ]
+    },
+    {
+      "article": "VP-15844",
+      "key": "tyre_winter_studded",
+      "name": "Winter tyre, studded",
+      "document": "voltrieve-parts-wheels-tyres.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": [
+        "turbine_19"
+      ]
+    },
+    {
+      "article": "VP-15857",
+      "key": "tyre_winter_studded",
+      "name": "Winter tyre, studded",
+      "document": "voltrieve-parts-wheels-tyres.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": [
+        "trail_19"
+      ]
+    },
+    {
+      "article": "VP-15870",
+      "key": "tyre_winter_studded",
+      "name": "Winter tyre, studded",
+      "document": "voltrieve-parts-wheels-tyres.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": [
+        "trail_20"
+      ]
+    },
+    {
+      "article": "VP-15883",
+      "key": "tyre_winter_studded",
+      "name": "Winter tyre, studded",
+      "document": "voltrieve-parts-wheels-tyres.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": [
+        "birch_19"
+      ]
+    },
+    {
+      "article": "VP-15896",
+      "key": "tyre_winter_studded",
+      "name": "Winter tyre, studded",
+      "document": "voltrieve-parts-wheels-tyres.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": [
+        "fern_20"
+      ]
+    },
+    {
+      "article": "VP-15909",
+      "key": "tyre_winter_studded",
+      "name": "Winter tyre, studded",
+      "document": "voltrieve-parts-wheels-tyres.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": [
+        "monolith_21"
+      ]
+    },
+    {
+      "article": "VP-15922",
+      "key": "tyre_winter_studded",
+      "name": "Winter tyre, studded",
+      "document": "voltrieve-parts-wheels-tyres.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": [
+        "monolith_22"
+      ]
+    },
+    {
+      "article": "VP-15935",
+      "key": "indicator_front_left",
+      "name": "Front indicator, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-15948",
+      "key": "indicator_front_left",
+      "name": "Front indicator, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-15961",
+      "key": "indicator_front_left",
+      "name": "Front indicator, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-15974",
+      "key": "indicator_front_left",
+      "name": "Front indicator, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-15987",
+      "key": "indicator_front_left",
+      "name": "Front indicator, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16000",
+      "key": "indicator_front_right",
+      "name": "Front indicator, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16013",
+      "key": "indicator_front_right",
+      "name": "Front indicator, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16026",
+      "key": "indicator_front_right",
+      "name": "Front indicator, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16039",
+      "key": "indicator_front_right",
+      "name": "Front indicator, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16052",
+      "key": "indicator_front_right",
+      "name": "Front indicator, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16065",
+      "key": "side_repeater_left",
+      "name": "Side repeater, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16078",
+      "key": "side_repeater_left",
+      "name": "Side repeater, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16091",
+      "key": "side_repeater_right",
+      "name": "Side repeater, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16104",
+      "key": "side_repeater_right",
+      "name": "Side repeater, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16117",
+      "key": "reversing_lamp",
+      "name": "Reversing lamp",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16130",
+      "key": "reversing_lamp",
+      "name": "Reversing lamp",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16143",
+      "key": "reversing_lamp",
+      "name": "Reversing lamp",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16156",
+      "key": "reversing_lamp",
+      "name": "Reversing lamp",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16169",
+      "key": "reversing_lamp",
+      "name": "Reversing lamp",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16182",
+      "key": "rear_fog_lamp",
+      "name": "Rear fog lamp",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16195",
+      "key": "rear_fog_lamp",
+      "name": "Rear fog lamp",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16208",
+      "key": "rear_fog_lamp",
+      "name": "Rear fog lamp",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16221",
+      "key": "rear_fog_lamp",
+      "name": "Rear fog lamp",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16234",
+      "key": "rear_fog_lamp",
+      "name": "Rear fog lamp",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16247",
+      "key": "door_window_front_left",
+      "name": "Door window, front left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16260",
+      "key": "door_window_front_left",
+      "name": "Door window, front left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16273",
+      "key": "door_window_front_left",
+      "name": "Door window, front left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16286",
+      "key": "door_window_front_left",
+      "name": "Door window, front left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16299",
+      "key": "door_window_front_left",
+      "name": "Door window, front left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16312",
+      "key": "door_window_front_right",
+      "name": "Door window, front right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16325",
+      "key": "door_window_front_right",
+      "name": "Door window, front right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16338",
+      "key": "door_window_front_right",
+      "name": "Door window, front right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16351",
+      "key": "door_window_front_right",
+      "name": "Door window, front right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16364",
+      "key": "door_window_front_right",
+      "name": "Door window, front right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16377",
+      "key": "door_window_rear_left",
+      "name": "Door window, rear left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16390",
+      "key": "door_window_rear_left",
+      "name": "Door window, rear left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16403",
+      "key": "door_window_rear_left",
+      "name": "Door window, rear left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16416",
+      "key": "door_window_rear_left",
+      "name": "Door window, rear left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16429",
+      "key": "door_window_rear_left",
+      "name": "Door window, rear left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16442",
+      "key": "door_window_rear_right",
+      "name": "Door window, rear right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16455",
+      "key": "door_window_rear_right",
+      "name": "Door window, rear right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16468",
+      "key": "door_window_rear_right",
+      "name": "Door window, rear right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16481",
+      "key": "door_window_rear_right",
+      "name": "Door window, rear right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16494",
+      "key": "door_window_rear_right",
+      "name": "Door window, rear right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16507",
+      "key": "rear_quarter_glass_left",
+      "name": "Rear quarter glass, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16520",
+      "key": "rear_quarter_glass_left",
+      "name": "Rear quarter glass, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16533",
+      "key": "rear_quarter_glass_left",
+      "name": "Rear quarter glass, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16546",
+      "key": "rear_quarter_glass_right",
+      "name": "Rear quarter glass, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16559",
+      "key": "rear_quarter_glass_right",
+      "name": "Rear quarter glass, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16572",
+      "key": "rear_quarter_glass_right",
+      "name": "Rear quarter glass, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16585",
+      "key": "panoramic_roof_glass",
+      "name": "Panoramic roof glass",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16598",
+      "key": "panoramic_roof_glass",
+      "name": "Panoramic roof glass",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16611",
+      "key": "panoramic_roof_glass",
+      "name": "Panoramic roof glass",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16624",
+      "key": "mirror_cap_left",
+      "name": "Door mirror cap, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16637",
+      "key": "mirror_cap_left",
+      "name": "Door mirror cap, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16650",
+      "key": "mirror_cap_left",
+      "name": "Door mirror cap, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16663",
+      "key": "mirror_cap_left",
+      "name": "Door mirror cap, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16676",
+      "key": "mirror_cap_left",
+      "name": "Door mirror cap, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16689",
+      "key": "mirror_cap_right",
+      "name": "Door mirror cap, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16702",
+      "key": "mirror_cap_right",
+      "name": "Door mirror cap, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16715",
+      "key": "mirror_cap_right",
+      "name": "Door mirror cap, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16728",
+      "key": "mirror_cap_right",
+      "name": "Door mirror cap, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16741",
+      "key": "mirror_cap_right",
+      "name": "Door mirror cap, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16754",
+      "key": "wiper_motor_front",
+      "name": "Front wiper motor",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16767",
+      "key": "wiper_motor_front",
+      "name": "Front wiper motor",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16780",
+      "key": "wiper_motor_rear",
+      "name": "Rear wiper motor",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16793",
+      "key": "wiper_motor_rear",
+      "name": "Rear wiper motor",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16806",
+      "key": "washer_pump",
+      "name": "Washer pump",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16819",
+      "key": "washer_pump",
+      "name": "Washer pump",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16832",
+      "key": "washer_nozzle_left",
+      "name": "Washer nozzle, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16845",
+      "key": "washer_nozzle_left",
+      "name": "Washer nozzle, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16858",
+      "key": "washer_nozzle_right",
+      "name": "Washer nozzle, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16871",
+      "key": "washer_nozzle_right",
+      "name": "Washer nozzle, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16884",
+      "key": "window_regulator_front_left",
+      "name": "Window regulator, front left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16897",
+      "key": "window_regulator_front_left",
+      "name": "Window regulator, front left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16910",
+      "key": "window_regulator_front_left",
+      "name": "Window regulator, front left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16923",
+      "key": "window_regulator_front_left",
+      "name": "Window regulator, front left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16936",
+      "key": "window_regulator_front_left",
+      "name": "Window regulator, front left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16949",
+      "key": "window_regulator_front_right",
+      "name": "Window regulator, front right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16962",
+      "key": "window_regulator_front_right",
+      "name": "Window regulator, front right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16975",
+      "key": "window_regulator_front_right",
+      "name": "Window regulator, front right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-16988",
+      "key": "window_regulator_front_right",
+      "name": "Window regulator, front right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17001",
+      "key": "window_regulator_front_right",
+      "name": "Window regulator, front right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17014",
+      "key": "window_regulator_rear_left",
+      "name": "Window regulator, rear left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17027",
+      "key": "window_regulator_rear_left",
+      "name": "Window regulator, rear left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17040",
+      "key": "window_regulator_rear_left",
+      "name": "Window regulator, rear left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17053",
+      "key": "window_regulator_rear_left",
+      "name": "Window regulator, rear left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17066",
+      "key": "window_regulator_rear_left",
+      "name": "Window regulator, rear left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17079",
+      "key": "window_regulator_rear_right",
+      "name": "Window regulator, rear right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17092",
+      "key": "window_regulator_rear_right",
+      "name": "Window regulator, rear right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17105",
+      "key": "window_regulator_rear_right",
+      "name": "Window regulator, rear right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17118",
+      "key": "window_regulator_rear_right",
+      "name": "Window regulator, rear right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17131",
+      "key": "window_regulator_rear_right",
+      "name": "Window regulator, rear right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17144",
+      "key": "door_lock_actuator_front_left",
+      "name": "Door lock actuator, front left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17157",
+      "key": "door_lock_actuator_front_left",
+      "name": "Door lock actuator, front left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17170",
+      "key": "door_lock_actuator_front_right",
+      "name": "Door lock actuator, front right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17183",
+      "key": "door_lock_actuator_front_right",
+      "name": "Door lock actuator, front right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17196",
+      "key": "door_lock_actuator_rear_left",
+      "name": "Door lock actuator, rear left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17209",
+      "key": "door_lock_actuator_rear_left",
+      "name": "Door lock actuator, rear left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17222",
+      "key": "door_lock_actuator_rear_right",
+      "name": "Door lock actuator, rear right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17235",
+      "key": "door_lock_actuator_rear_right",
+      "name": "Door lock actuator, rear right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17248",
+      "key": "door_seal_front_left",
+      "name": "Door seal, front left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17261",
+      "key": "door_seal_front_left",
+      "name": "Door seal, front left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17274",
+      "key": "door_seal_front_right",
+      "name": "Door seal, front right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17287",
+      "key": "door_seal_front_right",
+      "name": "Door seal, front right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17300",
+      "key": "door_seal_rear_left",
+      "name": "Door seal, rear left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17313",
+      "key": "door_seal_rear_left",
+      "name": "Door seal, rear left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17326",
+      "key": "door_seal_rear_right",
+      "name": "Door seal, rear right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17339",
+      "key": "door_seal_rear_right",
+      "name": "Door seal, rear right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17352",
+      "key": "wheel_arch_liner_rear_left",
+      "name": "Wheel arch liner, rear left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17365",
+      "key": "wheel_arch_liner_rear_left",
+      "name": "Wheel arch liner, rear left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17378",
+      "key": "wheel_arch_liner_rear_left",
+      "name": "Wheel arch liner, rear left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17391",
+      "key": "wheel_arch_liner_rear_left",
+      "name": "Wheel arch liner, rear left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17404",
+      "key": "wheel_arch_liner_rear_left",
+      "name": "Wheel arch liner, rear left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17417",
+      "key": "wheel_arch_liner_rear_right",
+      "name": "Wheel arch liner, rear right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17430",
+      "key": "wheel_arch_liner_rear_right",
+      "name": "Wheel arch liner, rear right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17443",
+      "key": "wheel_arch_liner_rear_right",
+      "name": "Wheel arch liner, rear right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17456",
+      "key": "wheel_arch_liner_rear_right",
+      "name": "Wheel arch liner, rear right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17469",
+      "key": "wheel_arch_liner_rear_right",
+      "name": "Wheel arch liner, rear right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17482",
+      "key": "mud_flaps_front",
+      "name": "Mud flap set, front",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17495",
+      "key": "mud_flaps_front",
+      "name": "Mud flap set, front",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17508",
+      "key": "mud_flaps_front",
+      "name": "Mud flap set, front",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17521",
+      "key": "mud_flaps_front",
+      "name": "Mud flap set, front",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17534",
+      "key": "mud_flaps_front",
+      "name": "Mud flap set, front",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17547",
+      "key": "mud_flaps_rear",
+      "name": "Mud flap set, rear",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17560",
+      "key": "mud_flaps_rear",
+      "name": "Mud flap set, rear",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17573",
+      "key": "mud_flaps_rear",
+      "name": "Mud flap set, rear",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17586",
+      "key": "mud_flaps_rear",
+      "name": "Mud flap set, rear",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17599",
+      "key": "mud_flaps_rear",
+      "name": "Mud flap set, rear",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17612",
+      "key": "side_skirt_left",
+      "name": "Side skirt, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17625",
+      "key": "side_skirt_left",
+      "name": "Side skirt, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17638",
+      "key": "side_skirt_left",
+      "name": "Side skirt, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17651",
+      "key": "side_skirt_left",
+      "name": "Side skirt, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17664",
+      "key": "side_skirt_left",
+      "name": "Side skirt, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17677",
+      "key": "side_skirt_right",
+      "name": "Side skirt, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17690",
+      "key": "side_skirt_right",
+      "name": "Side skirt, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17703",
+      "key": "side_skirt_right",
+      "name": "Side skirt, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17716",
+      "key": "side_skirt_right",
+      "name": "Side skirt, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17729",
+      "key": "side_skirt_right",
+      "name": "Side skirt, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17742",
+      "key": "roof_rail_left",
+      "name": "Roof rail, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17755",
+      "key": "roof_rail_left",
+      "name": "Roof rail, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17768",
+      "key": "roof_rail_left",
+      "name": "Roof rail, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17781",
+      "key": "roof_rail_left",
+      "name": "Roof rail, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17794",
+      "key": "roof_rail_left",
+      "name": "Roof rail, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17807",
+      "key": "roof_rail_right",
+      "name": "Roof rail, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17820",
+      "key": "roof_rail_right",
+      "name": "Roof rail, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17833",
+      "key": "roof_rail_right",
+      "name": "Roof rail, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17846",
+      "key": "roof_rail_right",
+      "name": "Roof rail, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17859",
+      "key": "roof_rail_right",
+      "name": "Roof rail, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17872",
+      "key": "tailgate_strut_left",
+      "name": "Tailgate strut, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17885",
+      "key": "tailgate_strut_left",
+      "name": "Tailgate strut, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17898",
+      "key": "tailgate_strut_left",
+      "name": "Tailgate strut, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17911",
+      "key": "tailgate_strut_left",
+      "name": "Tailgate strut, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17924",
+      "key": "tailgate_strut_left",
+      "name": "Tailgate strut, left",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17937",
+      "key": "tailgate_strut_right",
+      "name": "Tailgate strut, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17950",
+      "key": "tailgate_strut_right",
+      "name": "Tailgate strut, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17963",
+      "key": "tailgate_strut_right",
+      "name": "Tailgate strut, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17976",
+      "key": "tailgate_strut_right",
+      "name": "Tailgate strut, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-17989",
+      "key": "tailgate_strut_right",
+      "name": "Tailgate strut, right",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18002",
+      "key": "horn",
+      "name": "Horn",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18015",
+      "key": "horn",
+      "name": "Horn",
+      "document": "voltrieve-parts-body-glass-lighting.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18028",
+      "key": "drive_selector",
+      "name": "Drive selector",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18041",
+      "key": "drive_selector",
+      "name": "Drive selector",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18054",
+      "key": "drive_selector",
+      "name": "Drive selector",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18067",
+      "key": "drive_selector",
+      "name": "Drive selector",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18080",
+      "key": "drive_selector",
+      "name": "Drive selector",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18093",
+      "key": "indicator_stalk",
+      "name": "Indicator stalk",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18106",
+      "key": "indicator_stalk",
+      "name": "Indicator stalk",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18119",
+      "key": "wiper_stalk",
+      "name": "Wiper stalk",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18132",
+      "key": "wiper_stalk",
+      "name": "Wiper stalk",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18145",
+      "key": "window_switch_pack_driver",
+      "name": "Window switch pack, driver",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18158",
+      "key": "window_switch_pack_driver",
+      "name": "Window switch pack, driver",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18171",
+      "key": "window_switch_pack_driver",
+      "name": "Window switch pack, driver",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18184",
+      "key": "window_switch_pack_driver",
+      "name": "Window switch pack, driver",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18197",
+      "key": "window_switch_pack_driver",
+      "name": "Window switch pack, driver",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18210",
+      "key": "window_switch_front_right",
+      "name": "Window switch, front right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18223",
+      "key": "window_switch_front_right",
+      "name": "Window switch, front right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18236",
+      "key": "window_switch_rear_left",
+      "name": "Window switch, rear left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18249",
+      "key": "window_switch_rear_left",
+      "name": "Window switch, rear left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18262",
+      "key": "window_switch_rear_right",
+      "name": "Window switch, rear right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18275",
+      "key": "window_switch_rear_right",
+      "name": "Window switch, rear right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18288",
+      "key": "hazard_switch",
+      "name": "Hazard warning switch",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18301",
+      "key": "hazard_switch",
+      "name": "Hazard warning switch",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18314",
+      "key": "steering_buttons_left",
+      "name": "Steering wheel buttons, left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18327",
+      "key": "steering_buttons_left",
+      "name": "Steering wheel buttons, left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18340",
+      "key": "steering_buttons_right",
+      "name": "Steering wheel buttons, right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18353",
+      "key": "steering_buttons_right",
+      "name": "Steering wheel buttons, right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18366",
+      "key": "seat_switch_left",
+      "name": "Seat adjustment switch, left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18379",
+      "key": "seat_switch_left",
+      "name": "Seat adjustment switch, left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18392",
+      "key": "seat_switch_left",
+      "name": "Seat adjustment switch, left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18405",
+      "key": "seat_switch_left",
+      "name": "Seat adjustment switch, left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18418",
+      "key": "seat_switch_left",
+      "name": "Seat adjustment switch, left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18431",
+      "key": "seat_switch_right",
+      "name": "Seat adjustment switch, right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18444",
+      "key": "seat_switch_right",
+      "name": "Seat adjustment switch, right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18457",
+      "key": "seat_switch_right",
+      "name": "Seat adjustment switch, right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18470",
+      "key": "seat_switch_right",
+      "name": "Seat adjustment switch, right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18483",
+      "key": "seat_switch_right",
+      "name": "Seat adjustment switch, right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18496",
+      "key": "seat_belt_front_left",
+      "name": "Front seat belt, left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18509",
+      "key": "seat_belt_front_left",
+      "name": "Front seat belt, left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18522",
+      "key": "seat_belt_front_right",
+      "name": "Front seat belt, right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18535",
+      "key": "seat_belt_front_right",
+      "name": "Front seat belt, right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18548",
+      "key": "seat_belt_rear_left",
+      "name": "Rear seat belt, left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18561",
+      "key": "seat_belt_rear_left",
+      "name": "Rear seat belt, left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18574",
+      "key": "seat_belt_rear_centre",
+      "name": "Rear seat belt, centre",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18587",
+      "key": "seat_belt_rear_centre",
+      "name": "Rear seat belt, centre",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18600",
+      "key": "seat_belt_rear_right",
+      "name": "Rear seat belt, right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18613",
+      "key": "seat_belt_rear_right",
+      "name": "Rear seat belt, right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18626",
+      "key": "headrest_front_left",
+      "name": "Front headrest, left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18639",
+      "key": "headrest_front_left",
+      "name": "Front headrest, left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18652",
+      "key": "headrest_front_left",
+      "name": "Front headrest, left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18665",
+      "key": "headrest_front_left",
+      "name": "Front headrest, left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18678",
+      "key": "headrest_front_left",
+      "name": "Front headrest, left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18691",
+      "key": "headrest_front_right",
+      "name": "Front headrest, right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18704",
+      "key": "headrest_front_right",
+      "name": "Front headrest, right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18717",
+      "key": "headrest_front_right",
+      "name": "Front headrest, right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18730",
+      "key": "headrest_front_right",
+      "name": "Front headrest, right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18743",
+      "key": "headrest_front_right",
+      "name": "Front headrest, right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18756",
+      "key": "headrest_rear",
+      "name": "Rear headrest set",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18769",
+      "key": "headrest_rear",
+      "name": "Rear headrest set",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18782",
+      "key": "headrest_rear",
+      "name": "Rear headrest set",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18795",
+      "key": "headrest_rear",
+      "name": "Rear headrest set",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18808",
+      "key": "headrest_rear",
+      "name": "Rear headrest set",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18821",
+      "key": "door_trim_panel_front_left",
+      "name": "Door trim panel, front left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18834",
+      "key": "door_trim_panel_front_left",
+      "name": "Door trim panel, front left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18847",
+      "key": "door_trim_panel_front_left",
+      "name": "Door trim panel, front left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18860",
+      "key": "door_trim_panel_front_left",
+      "name": "Door trim panel, front left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18873",
+      "key": "door_trim_panel_front_left",
+      "name": "Door trim panel, front left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18886",
+      "key": "door_trim_panel_front_right",
+      "name": "Door trim panel, front right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18899",
+      "key": "door_trim_panel_front_right",
+      "name": "Door trim panel, front right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18912",
+      "key": "door_trim_panel_front_right",
+      "name": "Door trim panel, front right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18925",
+      "key": "door_trim_panel_front_right",
+      "name": "Door trim panel, front right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18938",
+      "key": "door_trim_panel_front_right",
+      "name": "Door trim panel, front right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18951",
+      "key": "door_trim_panel_rear_left",
+      "name": "Door trim panel, rear left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18964",
+      "key": "door_trim_panel_rear_left",
+      "name": "Door trim panel, rear left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18977",
+      "key": "door_trim_panel_rear_left",
+      "name": "Door trim panel, rear left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-18990",
+      "key": "door_trim_panel_rear_left",
+      "name": "Door trim panel, rear left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19003",
+      "key": "door_trim_panel_rear_left",
+      "name": "Door trim panel, rear left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19016",
+      "key": "door_trim_panel_rear_right",
+      "name": "Door trim panel, rear right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19029",
+      "key": "door_trim_panel_rear_right",
+      "name": "Door trim panel, rear right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19042",
+      "key": "door_trim_panel_rear_right",
+      "name": "Door trim panel, rear right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19055",
+      "key": "door_trim_panel_rear_right",
+      "name": "Door trim panel, rear right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19068",
+      "key": "door_trim_panel_rear_right",
+      "name": "Door trim panel, rear right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19081",
+      "key": "sun_visor_left",
+      "name": "Sun visor, left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19094",
+      "key": "sun_visor_left",
+      "name": "Sun visor, left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19107",
+      "key": "sun_visor_left",
+      "name": "Sun visor, left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19120",
+      "key": "sun_visor_left",
+      "name": "Sun visor, left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19133",
+      "key": "sun_visor_left",
+      "name": "Sun visor, left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19146",
+      "key": "sun_visor_right",
+      "name": "Sun visor, right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19159",
+      "key": "sun_visor_right",
+      "name": "Sun visor, right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19172",
+      "key": "sun_visor_right",
+      "name": "Sun visor, right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19185",
+      "key": "sun_visor_right",
+      "name": "Sun visor, right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19198",
+      "key": "sun_visor_right",
+      "name": "Sun visor, right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19211",
+      "key": "interior_mirror",
+      "name": "Interior mirror",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19224",
+      "key": "interior_mirror",
+      "name": "Interior mirror",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19237",
+      "key": "interior_lamp",
+      "name": "Interior lamp",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19250",
+      "key": "interior_lamp",
+      "name": "Interior lamp",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19263",
+      "key": "glovebox_lid",
+      "name": "Glovebox lid",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19276",
+      "key": "glovebox_lid",
+      "name": "Glovebox lid",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19289",
+      "key": "glovebox_lid",
+      "name": "Glovebox lid",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19302",
+      "key": "glovebox_lid",
+      "name": "Glovebox lid",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19315",
+      "key": "glovebox_lid",
+      "name": "Glovebox lid",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19328",
+      "key": "centre_armrest",
+      "name": "Centre armrest",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19341",
+      "key": "centre_armrest",
+      "name": "Centre armrest",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19354",
+      "key": "centre_armrest",
+      "name": "Centre armrest",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19367",
+      "key": "centre_armrest",
+      "name": "Centre armrest",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19380",
+      "key": "centre_armrest",
+      "name": "Centre armrest",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19393",
+      "key": "load_cover",
+      "name": "Load cover",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19406",
+      "key": "load_cover",
+      "name": "Load cover",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19419",
+      "key": "load_cover",
+      "name": "Load cover",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19432",
+      "key": "load_cover",
+      "name": "Load cover",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19445",
+      "key": "load_cover",
+      "name": "Load cover",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19458",
+      "key": "cargo_net",
+      "name": "Cargo net",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19471",
+      "key": "cargo_net",
+      "name": "Cargo net",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19484",
+      "key": "cargo_net",
+      "name": "Cargo net",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19497",
+      "key": "cargo_net",
+      "name": "Cargo net",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19510",
+      "key": "cargo_net",
+      "name": "Cargo net",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19523",
+      "key": "usb_c_socket",
+      "name": "USB-C socket",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19536",
+      "key": "usb_c_socket",
+      "name": "USB-C socket",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19549",
+      "key": "socket_12v",
+      "name": "12 V socket",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19562",
+      "key": "socket_12v",
+      "name": "12 V socket",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19575",
+      "key": "climate_panel",
+      "name": "Climate control panel",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19588",
+      "key": "climate_panel",
+      "name": "Climate control panel",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19601",
+      "key": "climate_panel",
+      "name": "Climate control panel",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19614",
+      "key": "climate_panel",
+      "name": "Climate control panel",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19627",
+      "key": "climate_panel",
+      "name": "Climate control panel",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19640",
+      "key": "touchscreen",
+      "name": "Central touchscreen",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19653",
+      "key": "touchscreen",
+      "name": "Central touchscreen",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19666",
+      "key": "touchscreen",
+      "name": "Central touchscreen",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19679",
+      "key": "touchscreen",
+      "name": "Central touchscreen",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19692",
+      "key": "touchscreen",
+      "name": "Central touchscreen",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19705",
+      "key": "driver_display",
+      "name": "Driver display",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19718",
+      "key": "driver_display",
+      "name": "Driver display",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19731",
+      "key": "driver_display",
+      "name": "Driver display",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19744",
+      "key": "driver_display",
+      "name": "Driver display",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Fjord"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19757",
+      "key": "driver_display",
+      "name": "Driver display",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19770",
+      "key": "door_speaker_front_left",
+      "name": "Door speaker, front left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19783",
+      "key": "door_speaker_front_left",
+      "name": "Door speaker, front left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19796",
+      "key": "door_speaker_front_right",
+      "name": "Door speaker, front right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19809",
+      "key": "door_speaker_front_right",
+      "name": "Door speaker, front right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19822",
+      "key": "door_speaker_rear_left",
+      "name": "Door speaker, rear left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19835",
+      "key": "door_speaker_rear_left",
+      "name": "Door speaker, rear left",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19848",
+      "key": "door_speaker_rear_right",
+      "name": "Door speaker, rear right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Spark",
+        "Voltrieve Lumen"
+      ],
+      "wheels": []
+    },
+    {
+      "article": "VP-19861",
+      "key": "door_speaker_rear_right",
+      "name": "Door speaker, rear right",
+      "document": "voltrieve-parts-interior.md",
+      "fits": [
+        "Voltrieve Ragn",
+        "Voltrieve Fjord",
+        "Voltrieve Atlas"
+      ],
+      "wheels": []
     }
   ]
 }
