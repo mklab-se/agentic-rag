@@ -6,8 +6,6 @@ requires-python = ">=3.12"
 dependencies = [
     "pydantic>=2",
     "pyyaml",
-    "python-docx",
-    "fpdf2",
     "pillow",
     "jinja2",
     "markdown-it-py",

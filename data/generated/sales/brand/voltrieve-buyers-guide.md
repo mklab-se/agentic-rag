@@ -14,6 +14,8 @@ Electric cars that retrieve the joy of driving
 
 ## Prices
 
+Prices are for the Pure trim, the entry trim of every model. Plus and Prime cost more and come with more equipment; each model's price list has every trim.
+
 ### SE (SEK)
 
 | Model | Base price | Price with AWD |
@@ -45,6 +47,8 @@ Where AWD is an option next to RWD, the price with AWD includes a surcharge of 4
 | Tow | electrically deployable tow bar and trailer stability control | 14 000 SEK | 1 300 EUR |
 | Sound | 14 speaker Voltrieve Stage audio system | 12 000 SEK | 1 100 EUR |
 
+---
+
 ## Which Voltrieve is for you
 
 ### Voltrieve Spark
@@ -66,3 +70,4 @@ Room for the whole weekend. Segment: estate. Platform: V2. Drive: RWD or AWD. Ba
 ### Voltrieve Atlas
 
 Seven seats, zero compromise. Segment: large SUV. Platform: V2. Drive: AWD. Battery: 112 kWh, with up to 610 km of WLTP range. Peak charging is 320 kW. It tows up to 2 500 kg.
+

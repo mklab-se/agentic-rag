@@ -100,9 +100,17 @@ def _title(md: str) -> str:
     return html.escape(first[2:].strip())
 
 
-def write_pdf(md: str, out: Path, accent: str, images_dir: Path, landscape: bool) -> Path:
-    from playwright.sync_api import sync_playwright
+def write_pdf(md: str, out: Path, accent: str, images_dir: Path, landscape: bool, browser=None) -> Path:
+    """Print one document. Pass a Playwright browser to reuse it across many documents."""
+    if browser is None:
+        from playwright.sync_api import sync_playwright
 
+        with sync_playwright() as p:
+            own = p.chromium.launch()
+            try:
+                return write_pdf(md, out, accent, images_dir, landscape, own)
+            finally:
+                own.close()
     out.parent.mkdir(parents=True, exist_ok=True)
     page_html = markdown_to_html(md, accent, images_dir, landscape)
     footer = (
@@ -111,9 +119,8 @@ def write_pdf(md: str, out: Path, accent: str, images_dir: Path, landscape: bool
         f"<span>Voltrieve | {_title(md)}</span>"
         '<span><span class="pageNumber"></span> / <span class="totalPages"></span></span></div>'
     )
-    with sync_playwright() as p:
-        browser = p.chromium.launch()
-        page = browser.new_page()
+    page = browser.new_page()
+    try:
         page.set_content(page_html, wait_until="load")
         if landscape:
             page.pdf(path=str(out), format="A4", landscape=True, print_background=True,
@@ -123,5 +130,6 @@ def write_pdf(md: str, out: Path, accent: str, images_dir: Path, landscape: bool
                      display_header_footer=True, header_template="<span></span>",
                      footer_template=footer,
                      margin={"top": "14mm", "bottom": "16mm", "left": "14mm", "right": "14mm"})
-        browser.close()
+    finally:
+        page.close()
     return out

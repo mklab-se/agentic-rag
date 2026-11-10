@@ -94,7 +94,7 @@ models:
     brakes: { front_disc_mm: { RWD: 280 }, rear_disc_mm: 265, front_caliper: single piston floating, rear_caliper: single piston floating }
     trims:
       - name: Pure
-        adds: [round LED ring headlamps, 10.25 inch touchscreen with navigation, Voltrieve Pilot 2 with adaptive cruise control, heated front seats, rear parking sensors, wireless phone charging]
+        adds: [round LED ring headlamps, 10.25 inch touchscreen with navigation, Voltrieve Pilot 2 with adaptive cruise control, heated front seats, automatic headlights, wireless phone charging]
         wheel: pebble_white
         interior: grey_textile
       - name: Plus

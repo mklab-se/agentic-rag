@@ -1,68 +1,140 @@
 [
   {
-    "file": "voltrieve-spark-brochure.docx",
+    "file": "sales/spark/voltrieve-spark-brochure.pdf",
     "model_slug": "spark",
     "doc_type": "brochure",
     "collection": "docs"
   },
   {
-    "file": "voltrieve-spark-specifications.pdf",
+    "file": "sales/spark/voltrieve-spark-price-list.pdf",
     "model_slug": "spark",
-    "doc_type": "spec",
+    "doc_type": "price_list",
     "collection": "docs"
   },
   {
-    "file": "voltrieve-lumen-brochure.docx",
+    "file": "sales/spark/voltrieve-spark-specifications.pdf",
+    "model_slug": "spark",
+    "doc_type": "specifications",
+    "collection": "docs"
+  },
+  {
+    "file": "sales/spark/voltrieve-spark-accessories.pdf",
+    "model_slug": "spark",
+    "doc_type": "accessories",
+    "collection": "docs"
+  },
+  {
+    "file": "sales/lumen/voltrieve-lumen-brochure.pdf",
     "model_slug": "lumen",
     "doc_type": "brochure",
     "collection": "docs"
   },
   {
-    "file": "voltrieve-lumen-specifications.pdf",
+    "file": "sales/lumen/voltrieve-lumen-price-list.pdf",
     "model_slug": "lumen",
-    "doc_type": "spec",
+    "doc_type": "price_list",
     "collection": "docs"
   },
   {
-    "file": "voltrieve-ragn-brochure.docx",
+    "file": "sales/lumen/voltrieve-lumen-specifications.pdf",
+    "model_slug": "lumen",
+    "doc_type": "specifications",
+    "collection": "docs"
+  },
+  {
+    "file": "sales/lumen/voltrieve-lumen-accessories.pdf",
+    "model_slug": "lumen",
+    "doc_type": "accessories",
+    "collection": "docs"
+  },
+  {
+    "file": "sales/ragn/voltrieve-ragn-brochure.pdf",
     "model_slug": "ragn",
     "doc_type": "brochure",
     "collection": "docs"
   },
   {
-    "file": "voltrieve-ragn-specifications.pdf",
+    "file": "sales/ragn/voltrieve-ragn-price-list.pdf",
     "model_slug": "ragn",
-    "doc_type": "spec",
+    "doc_type": "price_list",
     "collection": "docs"
   },
   {
-    "file": "voltrieve-fjord-brochure.docx",
+    "file": "sales/ragn/voltrieve-ragn-specifications.pdf",
+    "model_slug": "ragn",
+    "doc_type": "specifications",
+    "collection": "docs"
+  },
+  {
+    "file": "sales/ragn/voltrieve-ragn-accessories.pdf",
+    "model_slug": "ragn",
+    "doc_type": "accessories",
+    "collection": "docs"
+  },
+  {
+    "file": "sales/fjord/voltrieve-fjord-brochure.pdf",
     "model_slug": "fjord",
     "doc_type": "brochure",
     "collection": "docs"
   },
   {
-    "file": "voltrieve-fjord-specifications.pdf",
+    "file": "sales/fjord/voltrieve-fjord-price-list.pdf",
     "model_slug": "fjord",
-    "doc_type": "spec",
+    "doc_type": "price_list",
     "collection": "docs"
   },
   {
-    "file": "voltrieve-atlas-brochure.docx",
+    "file": "sales/fjord/voltrieve-fjord-specifications.pdf",
+    "model_slug": "fjord",
+    "doc_type": "specifications",
+    "collection": "docs"
+  },
+  {
+    "file": "sales/fjord/voltrieve-fjord-accessories.pdf",
+    "model_slug": "fjord",
+    "doc_type": "accessories",
+    "collection": "docs"
+  },
+  {
+    "file": "sales/atlas/voltrieve-atlas-brochure.pdf",
     "model_slug": "atlas",
     "doc_type": "brochure",
     "collection": "docs"
   },
   {
-    "file": "voltrieve-atlas-specifications.pdf",
+    "file": "sales/atlas/voltrieve-atlas-price-list.pdf",
     "model_slug": "atlas",
-    "doc_type": "spec",
+    "doc_type": "price_list",
     "collection": "docs"
   },
   {
-    "file": "voltrieve-buyers-guide.md",
+    "file": "sales/atlas/voltrieve-atlas-specifications.pdf",
+    "model_slug": "atlas",
+    "doc_type": "specifications",
+    "collection": "docs"
+  },
+  {
+    "file": "sales/atlas/voltrieve-atlas-accessories.pdf",
+    "model_slug": "atlas",
+    "doc_type": "accessories",
+    "collection": "docs"
+  },
+  {
+    "file": "sales/brand/voltrieve-warranty.pdf",
     "model_slug": null,
-    "doc_type": "guide",
+    "doc_type": "warranty",
+    "collection": "docs"
+  },
+  {
+    "file": "sales/brand/voltrieve-charging-guide.pdf",
+    "model_slug": null,
+    "doc_type": "charging_guide",
+    "collection": "docs"
+  },
+  {
+    "file": "sales/brand/voltrieve-buyers-guide.pdf",
+    "model_slug": null,
+    "doc_type": "buyers_guide",
     "collection": "docs"
   },
   {
