@@ -113,8 +113,8 @@ models:
       - { key: fjall_mint, name: Fjäll Mint, finish: metallic, hex: "#B8D8C4", description: "pale green with a gloss white roof" }
       - { key: graphite, name: Graphite, finish: solid, hex: "#4A4D50", description: "dark grey with a gloss white roof" }
     wheels:
-      - { key: pebble_white, name: Pebble, inches: 17, description: "flat aero wheel covers in white and light grey with five small holes" }
-      - { key: pebble_graphite, name: Pebble, inches: 17, description: "flat aero wheel covers in graphite with five small holes" }
+      - { key: pebble_white, name: Pebble, inches: 17, description: "flat aero wheel covers in white and light grey with five small holes", tyre_size: "205/55 R17" }
+      - { key: pebble_graphite, name: Pebble, inches: 17, description: "flat aero wheel covers in graphite with five small holes", tyre_size: "205/55 R17" }
     interiors:
       - { key: grey_textile, name: Light grey textile, description: "light grey recycled textile seats and a pale wood strip across the dashboard" }
       - { key: grey_microsuede, name: Light grey textile and microsuede, description: "recycled textile seats with microsuede bolsters and a pale wood strip across the dashboard" }
@@ -180,8 +180,8 @@ models:
       - { key: midnight, name: Midnight, finish: metallic, hex: "#1C2538", description: "near-black blue" }
       - { key: silver_birch, name: Silver Birch, finish: metallic, hex: "#C9CCCF", description: "light silver" }
     wheels:
-      - { key: arc_18, name: Arc, inches: 18, description: "five double spokes in silver" }
-      - { key: turbine_19, name: Turbine, inches: 19, description: "ten thin twisted spokes, diamond-cut silver and gloss black" }
+      - { key: arc_18, name: Arc, inches: 18, description: "five double spokes in silver", tyre_size: "225/45 R18" }
+      - { key: turbine_19, name: Turbine, inches: 19, description: "ten thin twisted spokes, diamond-cut silver and gloss black", tyre_size: "235/40 R19" }
     interiors:
       - { key: black_coral, name: Black with coral stitching, description: "black textile seats with coral stitching and a thin coral light line across the dashboard" }
       - { key: coral_sport, name: Sport seats, description: "black sport seats in microsuede with coral stitching and extended side support" }
@@ -249,8 +249,8 @@ models:
       - { key: sand, name: Sand, finish: solid, hex: "#C9B48F", description: "warm beige" }
       - { key: night, name: Night, finish: metallic, hex: "#18191B", description: "black" }
     wheels:
-      - { key: trail_19, name: Trail, inches: 19, description: "five thick spokes in gunmetal grey, on all-terrain tyres" }
-      - { key: trail_20, name: Trail, inches: 20, description: "five thick spokes in matte black, on all-terrain tyres" }
+      - { key: trail_19, name: Trail, inches: 19, description: "five thick spokes in gunmetal grey, on all-terrain tyres", tyre_size: "235/55 R19" }
+      - { key: trail_20, name: Trail, inches: 20, description: "five thick spokes in matte black, on all-terrain tyres", tyre_size: "255/50 R20" }
     interiors:
       - { key: washable_grey, name: Washable dark grey textile, description: "washable dark grey textile seats, rubber floor mats and orange pull loops" }
       - { key: grey_microsuede, name: Dark grey microsuede, description: "ventilated dark grey microsuede front seats with orange pull loops" }
@@ -316,8 +316,8 @@ models:
       - { key: slate, name: Slate, finish: metallic, hex: "#474C52", description: "dark grey" }
       - { key: heath, name: Heath, finish: metallic, hex: "#5E1F2D", description: "deep burgundy" }
     wheels:
-      - { key: birch_19, name: Birch, inches: 19, description: "ten spokes in silver" }
-      - { key: fern_20, name: Fern, inches: 20, description: "fifteen thin straight spokes in diamond-cut silver" }
+      - { key: birch_19, name: Birch, inches: 19, description: "ten spokes in silver", tyre_size: "235/50 R19" }
+      - { key: fern_20, name: Fern, inches: 20, description: "fifteen thin straight spokes in diamond-cut silver", tyre_size: "245/45 R20" }
     interiors:
       - { key: wool_blend, name: Light wool blend, description: "light wool blend seats and pale ash wood trim" }
       - { key: nappa, name: Nappa leather, description: "light Nappa leather seats with ventilation and massage, and pale ash wood trim" }
@@ -384,8 +384,8 @@ models:
       - { key: forest, name: Forest, finish: metallic, hex: "#24382C", description: "dark green with copper accents" }
       - { key: obsidian, name: Obsidian, finish: metallic, hex: "#111214", description: "black with black accents" }
     wheels:
-      - { key: monolith_21, name: Monolith, inches: 21, description: "six wide aero spokes in silver" }
-      - { key: monolith_22, name: Monolith, inches: 22, description: "six wide aero spokes, gloss black with machined silver faces" }
+      - { key: monolith_21, name: Monolith, inches: 21, description: "six wide aero spokes in silver", tyre_size: "265/45 R21" }
+      - { key: monolith_22, name: Monolith, inches: 22, description: "six wide aero spokes, gloss black with machined silver faces", tyre_size: "285/40 R22" }
     interiors:
       - { key: charcoal, name: Charcoal textile and microsuede, description: "charcoal recycled textile and microsuede seats in three rows, wood and aluminium dashboard" }
       - { key: cognac, name: Cognac Nappa leather, description: "cognac Nappa leather seats in three rows, wood and aluminium dashboard" }

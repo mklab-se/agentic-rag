@@ -7,6 +7,7 @@ numbers it becomes:
   model     one per model
   platform  one per platform, shared by the models on it
   all       one for the whole range
+  wheel     one per model and tyre size, for tyres (wheels with the same size share one)
 
 Numbers are assigned in template order, so the output is the same on every run. Article numbers
 never change once published: every document has its original templates and its added ones, and
@@ -18,9 +19,9 @@ from collections.abc import Callable
 from dataclasses import dataclass
 from typing import Literal
 
-from voltrieve_data.model import CarModel, Catalog
+from voltrieve_data.model import CarModel, Catalog, Wheel
 
-Scope = Literal["drive", "model", "platform", "all"]
+Scope = Literal["drive", "model", "platform", "all", "wheel"]
 FIRST_ARTICLE = 10007
 ARTICLE_STEP = 13
 SIDES = ("left", "right")
@@ -44,9 +45,11 @@ class Part:
     spec: str
     quantity: int
     fits: tuple[Fit, ...]
+    wheels: tuple[str, ...] = ()  # the wheel keys a tyre is for; empty for every other part
 
 
-Spec = str | Callable[[CarModel, str | None], str]
+# A spec is text, or made from the model and the drive (or, for wheel scope, the wheels).
+Spec = str | Callable[[CarModel, str | None], str] | Callable[[CarModel, list[Wheel]], str]
 
 
 @dataclass(frozen=True)
@@ -325,6 +328,28 @@ SERVICE_TEMPLATES = [
              position="Rear", when=_v2),
 ]
 
+TYRES = "Tyres"
+
+
+def _tyre(kind: str) -> Callable[[CarModel, list[Wheel]], str]:
+    def spec(model: CarModel, wheels: list[Wheel]) -> str:
+        short = model.name.removeprefix("Voltrieve ")
+        names = " and ".join(dict.fromkeys(w.name for w in wheels))
+        trims = [t.name for t in model.trims if t.wheel in {w.key for w in wheels}]
+        listed = trims[0] if len(trims) == 1 else ", ".join(trims[:-1]) + " and " + trims[-1]
+        return (f"{kind} {wheels[0].tyre_size}, for the {wheels[0].inches} inch {names} wheels "
+                f"({short} {listed}). Sold one at a time")
+    return spec
+
+
+TYRE_TEMPLATES = [
+    Template("tyre_summer", "Summer tyre", TYRES, "wheel", _tyre("Summer tyre"), position="Any wheel"),
+    Template("tyre_winter_studless", "Winter tyre, studless", TYRES, "wheel",
+             _tyre("Nordic studless winter tyre"), position="Any wheel"),
+    Template("tyre_winter_studded", "Winter tyre, studded", TYRES, "wheel",
+             _tyre("Nordic studded winter tyre"), position="Any wheel"),
+]
+
 # File name: (title, original templates, templates added after the first edition).
 DOCUMENTS: dict[str, tuple[str, list[Template], list[Template]]] = {
     "voltrieve-parts-brakes.md": ("Brake system", BRAKE_TEMPLATES, []),
@@ -332,12 +357,27 @@ DOCUMENTS: dict[str, tuple[str, list[Template], list[Template]]] = {
     "voltrieve-parts-body-glass-lighting.md": ("Body, glass and lighting", BODY_TEMPLATES, []),
     "voltrieve-parts-electrical-charging.md": ("Electrical and charging", ELECTRICAL_TEMPLATES, []),
     "voltrieve-parts-service-items.md": ("Service items and accessories", SERVICE_TEMPLATES, []),
+    "voltrieve-parts-wheels-tyres.md": ("Wheels and tyres", [], TYRE_TEMPLATES),
 }
 
 
-def _groups(template: Template, models: list[CarModel]) -> list[tuple[list[CarModel], str | None]]:
-    """The models and drive each article number of a template covers."""
+def _tyre_groups(fitting: list[CarModel]) -> list[tuple[list[CarModel], None, list[Wheel]]]:
+    groups = []
+    for m in fitting:
+        sizes = dict.fromkeys(w.tyre_size for w in m.wheels)
+        groups += [([m], None, [w for w in m.wheels if w.tyre_size == size]) for size in sizes]
+    return groups
+
+
+def _groups(template: Template, models: list[CarModel]) -> list[tuple[list[CarModel], str | None, list[Wheel]]]:
+    """The models, drive and wheels each article number of a template covers."""
     fitting = [m for m in models if template.when(m)]
+    if template.scope == "wheel":
+        return _tyre_groups(fitting)
+    return [(group, drive, []) for group, drive in _plain_groups(template, fitting)]
+
+
+def _plain_groups(template: Template, fitting: list[CarModel]) -> list[tuple[list[CarModel], str | None]]:
     if template.scope == "drive":
         return [
             ([m], d) for m in fitting for d in m.drive if template.only_drive in (None, d)
@@ -362,16 +402,17 @@ def build_parts(catalog: Catalog) -> list[Part]:
     originals = [(doc, t) for doc, (_, templates, _) in DOCUMENTS.items() for t in templates]
     added = [(doc, t) for doc, (_, _, templates) in DOCUMENTS.items() for t in templates]
     for document, template in originals + added:
-        for models, drive in _groups(template, catalog.models):
+        for models, drive, wheels in _groups(template, catalog.models):
             spec = template.spec
             if callable(spec):
-                spec = spec(models[0], drive)
+                spec = spec(models[0], wheels if template.scope == "wheel" else drive)
             article = f"VP-{FIRST_ARTICLE + ARTICLE_STEP * len(parts)}"
             parts.append(
                 Part(
                     article, template.key, document, template.system, template.name,
                     template.position, spec, template.quantity,
                     tuple(_fit(m, drive) for m in models),
+                    tuple(w.key for w in wheels),
                 )
             )
     return parts

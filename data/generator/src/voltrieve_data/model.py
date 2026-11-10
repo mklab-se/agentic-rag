@@ -41,6 +41,7 @@ class Wheel(BaseModel):
     name: str
     inches: int
     description: str
+    tyre_size: str  # such as 245/45 R20; tyres are sold per size
 
 
 class Interior(BaseModel):

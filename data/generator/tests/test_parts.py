@@ -117,3 +117,48 @@ def test_existing_article_numbers_never_change(parts):
         part = now.get(old["article"])
         assert part is not None, old["article"]
         assert (part.key, [f.name for f in part.fits]) == (old["key"], old["fits"]), old["article"]
+
+
+TYRES = ("tyre_summer", "tyre_winter_studless", "tyre_winter_studded")
+
+
+def test_every_wheel_has_a_tyre_size(catalog):
+    for model in catalog.models:
+        for wheel in model.wheels:
+            assert re.fullmatch(r"\d{3}/\d{2} R(\d{2})", wheel.tyre_size), (model.slug, wheel.key)
+            assert wheel.tyre_size.endswith(f"R{wheel.inches}"), (model.slug, wheel.key)
+
+
+def test_each_wheel_gets_three_tyres(catalog, parts):
+    for model in catalog.models:
+        for wheel in model.wheels:
+            for key in TYRES:
+                matches = [p for p in parts if p.key == key and wheel.key in p.wheels
+                           and any(f.slug == model.slug for f in p.fits)]
+                assert len(matches) == 1, (model.slug, wheel.key, key)
+
+
+def test_tyre_spec_names_size_and_trims(catalog, parts):
+    for model in catalog.models:
+        for part in (p for p in parts if p.key in TYRES and p.fits[0].slug == model.slug):
+            wheels = [w for w in model.wheels if w.key in part.wheels]
+            assert wheels[0].tyre_size in part.spec
+            for trim in model.trims:
+                if trim.wheel in part.wheels:
+                    assert trim.name in part.spec, (part.article, trim.name)
+
+
+def test_winter_wheel_sets_match_a_catalog_wheel(catalog):
+    for model in catalog.models:
+        sets = [catalog.accessories[k] for k in model.accessories if k.startswith("winter_wheels")]
+        for accessory in sets:
+            assert any(f"{w.inches} inch {w.name}" in accessory.description for w in model.wheels), model.slug
+
+
+def test_index_records_the_wheels_of_each_tyre(tmp_path):
+    from voltrieve_data.parts_catalog import write_parts_index
+
+    index = json.loads(write_parts_index(load_catalog(CATALOG_PATH), tmp_path).read_text())
+    tyres = [p for p in index["parts"] if p["key"] in TYRES]
+    assert tyres and all(p["wheels"] for p in tyres)
+    assert all(p["wheels"] == [] for p in index["parts"] if p["key"] not in TYRES)

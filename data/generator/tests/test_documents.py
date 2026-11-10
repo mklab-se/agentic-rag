@@ -31,11 +31,13 @@ def sales(out, slug, doc):
 
 def test_generates_all_documents_and_manifest(out):
     manifest = json.loads((out / "manifest.json").read_text())
-    assert len(manifest) == 23 + 1 + 5
+    from voltrieve_data.parts import DOCUMENTS
+
+    assert len(manifest) == 23 + 1 + len(DOCUMENTS)  # sales folders, service guide, parts catalogs
     assert {d["doc_type"] for d in manifest} == {
         "brochure", "price_list", "specifications", "accessories", "warranty", "charging_guide",
         "buyers_guide", "service", "parts"}
-    assert sum(d["collection"] == "parts" for d in manifest) == 5
+    assert sum(d["collection"] == "parts" for d in manifest) == len(DOCUMENTS)
     for entry in manifest:
         assert (out / entry["file"]).exists(), entry["file"]
     sales_entries = [d for d in manifest if d["file"].startswith("sales/")]

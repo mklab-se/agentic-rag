@@ -80,7 +80,7 @@ def write_parts_index(catalog: Catalog, out_dir: Path) -> Path:
         "jobs": jobs,
         "parts": [
             {"article": p.article, "key": p.key, "name": p.name, "document": p.document,
-             "fits": [f.name for f in p.fits]}
+             "fits": [f.name for f in p.fits], "wheels": list(p.wheels)}
             for p in parts
         ],
     }

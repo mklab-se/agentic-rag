@@ -172,5 +172,11 @@
     "model_slug": null,
     "doc_type": "parts",
     "collection": "parts"
+  },
+  {
+    "file": "voltrieve-parts-wheels-tyres.md",
+    "model_slug": null,
+    "doc_type": "parts",
+    "collection": "parts"
   }
 ]
