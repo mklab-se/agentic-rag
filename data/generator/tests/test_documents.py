@@ -96,3 +96,8 @@ def test_pilot_features_follow_pilot_version(out):
     for slug in SLUGS:
         for doc in ("brochure", "specifications"):
             assert "parking" not in pdf_text(sales(out, slug, doc)).lower()
+
+
+def test_service_guide_says_there_is_no_engine_oil(out):
+    text = (out / "voltrieve-service-guide.md").read_text(encoding="utf-8").lower()
+    assert "no engine oil" in text and "reduction gear oil" in text

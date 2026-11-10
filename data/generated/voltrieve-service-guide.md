@@ -2,6 +2,10 @@
 
 This guide describes what each workshop job consists of on every Voltrieve model. It names the components a job needs. Article numbers are not listed here: they are in the spare parts catalog.
 
+## Fluids and oil
+
+Voltrieve cars are electric and have no engine, so they need no engine oil and no oil change. The only oil is the reduction gear oil in the drive unit, checked at the scheduled service. The other fluids are brake fluid, battery coolant and washer fluid.
+
 ## Before any work under the car
 
 Put the car in service mode from the centre screen. This releases the electric parking brake, stops regenerative braking and keeps the high voltage system asleep. Never open orange high voltage cables. Left and right are seen from the driver's seat.

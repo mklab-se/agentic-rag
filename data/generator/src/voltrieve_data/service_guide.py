@@ -39,6 +39,12 @@ def write_service_guide(catalog: Catalog, out_dir: Path) -> Path:
         "names the components a job needs. Article numbers are not listed here: they are in "
         "the spare parts catalog.",
         "",
+        "## Fluids and oil",
+        "",
+        "Voltrieve cars are electric and have no engine, so they need no engine oil and no oil "
+        "change. The only oil is the reduction gear oil in the drive unit, checked at the "
+        "scheduled service. The other fluids are brake fluid, battery coolant and washer fluid.",
+        "",
         "## Before any work under the car",
         "",
         "Put the car in service mode from the centre screen. This releases the electric parking "

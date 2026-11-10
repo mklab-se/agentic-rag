@@ -40,7 +40,7 @@ questions:
   - { id: mirror-no-side, group: parts, ask: "The mirror on my Voltrieve Spark is broken. Which part do I need?", expect: [parts] }
   - { id: window-switch, group: parts, ask: "I need a new window switch for the rear left door of my Voltrieve Lumen. What is the article number?", expect: [parts], article: { key: window_switch_rear_left, fits: Voltrieve Lumen } }
   - { id: indicator, group: parts, ask: "The front right blinker on my Voltrieve Atlas is broken. Which part do I need?", expect: [parts], article: { key: indicator_front_right, fits: Voltrieve Atlas } }
-  - { id: engine-oil, group: parts, ask: "Which engine oil should I use in my Voltrieve Ragn?", expect: [parts] }
+  - { id: engine-oil, group: docs, ask: "Which engine oil should I use in my Voltrieve Ragn?", expect: [docs] }
 
   - { id: part-stock, group: stock, ask: "I've broken my right side mirror on my Voltrieve Spark. Do you have one in stock in Stockholm?", expect: [parts], tools: [check_part_stock], article: { key: door_mirror_right, fits: Voltrieve Spark } }
   - { id: part-stock-none, group: stock, ask: "Is article {article} in stock at any dealer?", expect: [], tools: [check_part_stock], pick: out_everywhere }
