@@ -18,6 +18,7 @@ from pydantic import BaseModel
 DEFAULT_CARS = Path(__file__).parents[3] / "design" / "cars.yaml"
 REAR_SHOTS = frozenset({"master_rear", "rear_outdoor", "practical"})
 _LOG_LOCK = threading.Lock()
+JPEG_QUALITY = 90  # the stored original; the model returns PNG, which is about five times larger
 RATE_LIMIT_WAITS = (30, 60, 90, 120, 180)  # seconds; a refused (HTTP 429) call is not billed
 
 
@@ -93,9 +94,9 @@ def _refs(slug: str, shot: str, out_dir: Path) -> list[Path]:
     """Masters: the front is made from text; everything else is edited from the masters."""
     if shot == "master_front":
         return []
-    refs = [out_dir / slug / "master_front.png"]
+    refs = [out_dir / slug / "master_front.jpg"]
     if shot in REAR_SHOTS and shot != "master_rear":
-        refs.append(out_dir / slug / "master_rear.png")
+        refs.append(out_dir / slug / "master_rear.jpg")
     return refs
 
 
@@ -103,11 +104,12 @@ def _generate_car(car: CarIdentity, shots: list[str] | None, out_dir: Path, run,
     created = []
     (out_dir / car.slug).mkdir(parents=True, exist_ok=True)
     for shot in shots or list(car.shots):
-        target = out_dir / car.slug / f"{shot}.png"
+        target = out_dir / car.slug / f"{shot}.jpg"
         if target.exists():
             continue
+        png = target.with_suffix(".png")  # what ailloy writes; converted to the JPEG target
         refs = _refs(car.slug, shot, out_dir)
-        cmd = ["ailloy", "image", build_prompt(car, shot), "-o", str(target)]
+        cmd = ["ailloy", "image", build_prompt(car, shot), "-o", str(png)]
         cmd += ["--size", "1536x1024", "--quality", "high", "--raw"]
         for ref in refs:
             cmd += ["--ref", str(ref)]
@@ -117,11 +119,21 @@ def _generate_car(car: CarIdentity, shots: list[str] | None, out_dir: Path, run,
                 break
             wait(delay)
             result = run(cmd, capture_output=True, text=True)
-        ok = result.returncode == 0 and target.exists()
+        ok = result.returncode == 0 and png.exists()
+        if ok:
+            _to_jpeg(png, target)
+        png.unlink(missing_ok=True)  # never leave a partial file a rerun would trust
         _log(out_dir, car.slug, shot, refs, ok, "" if ok else (result.stderr or "").strip()[:300])
         if ok:
             created.append(target)
     return created
+
+
+def _to_jpeg(png: Path, target: Path) -> None:
+    from PIL import Image
+
+    with Image.open(png) as image:
+        image.convert("RGB").save(target, "JPEG", quality=JPEG_QUALITY, optimize=True, progressive=True)
 
 
 def _log(out_dir: Path, slug: str, shot: str, refs: list[Path], ok: bool, error: str) -> None:
@@ -159,7 +171,7 @@ def contact_sheet(slug: str, out_dir: Path) -> Path:
     """A labelled grid of one car's images, for review."""
     from PIL import Image, ImageDraw
 
-    files = sorted((out_dir / slug).glob("*.png"))
+    files = sorted((out_dir / slug).glob("*.jpg"))
     thumb_w, thumb_h, label_h = 768, 512, 36
     cols = 2
     rows = max(1, -(-len(files) // cols))

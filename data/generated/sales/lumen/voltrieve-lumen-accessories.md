@@ -2,7 +2,7 @@
 
 Genuine Voltrieve accessories for the Voltrieve Lumen, made to fit and covered by the Voltrieve warranty. Your dealer orders and fits them. Prices are recommended retail prices including VAT, valid from 1 November 2026. Fitting is not included unless the description says so.
 
-![The Voltrieve Lumen ready for the weekend](lumen/practical.png)
+![The Voltrieve Lumen ready for the weekend](lumen/practical.jpg)
 
 ## Lumen accessories: charging
 

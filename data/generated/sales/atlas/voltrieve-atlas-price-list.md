@@ -2,7 +2,7 @@
 
 Prices valid from 1 November 2026. Recommended retail prices including VAT, in Sweden (SEK) and in the EU (EUR).
 
-![The Voltrieve Atlas](atlas/hero.png)
+![The Voltrieve Atlas](atlas/hero.jpg)
 
 ## Atlas prices per trim and drive
 
@@ -93,11 +93,11 @@ Items marked "Not available" are not sold separately. Option packs can be added 
 | Atlas in Forest: dark green with copper accents | metallic | 9 900 SEK | 900 EUR |
 | Atlas in Obsidian: black with black accents | metallic | 9 900 SEK | 900 EUR |
 
-![The Voltrieve Atlas in Basalt](atlas/color_basalt.png)
+![The Voltrieve Atlas in Basalt](atlas/color_basalt.jpg)
 
-![The Voltrieve Atlas in Forest](atlas/color_forest.png)
+![The Voltrieve Atlas in Forest](atlas/color_forest.jpg)
 
-![The Voltrieve Atlas in Obsidian](atlas/color_obsidian.png)
+![The Voltrieve Atlas in Obsidian](atlas/color_obsidian.jpg)
 
 ## Atlas wheels and interiors
 
@@ -106,9 +106,9 @@ Items marked "Not available" are not sold separately. Option packs can be added 
 | 21 inch Monolith | six wide aero spokes in silver | Atlas Pure |
 | 22 inch Monolith | six wide aero spokes, gloss black with machined silver faces | Atlas Plus and Prime |
 
-![The 21 inch Monolith wheel](atlas/wheel_monolith_21.png)
+![The 21 inch Monolith wheel](atlas/wheel_monolith_21.jpg)
 
-![The 22 inch Monolith wheel](atlas/wheel_monolith_22.png)
+![The 22 inch Monolith wheel](atlas/wheel_monolith_22.jpg)
 
 | Interior | Description | Standard on |
 |---|---|---|

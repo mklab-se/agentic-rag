@@ -2,7 +2,7 @@
 
 Seven seats, zero compromise
 
-![The Voltrieve Atlas in Glacier White](atlas/hero.png)
+![The Voltrieve Atlas in Glacier White](atlas/hero.jpg)
 
 | Range (WLTP) | DC charging 10 to 80 % | Power | 0 to 100 km/h |
 |---|---|---|---|
@@ -16,7 +16,7 @@ The Atlas is a seven-seat SUV for big families and big plans. It carries seven p
 
 The Voltrieve Atlas is a large SUV with all wheel drive, built on the Voltrieve V2 platform with an 800 V system. Seven seats, zero compromise: that is the idea behind every detail.
 
-![The Voltrieve Atlas from the front](atlas/front_outdoor.png)
+![The Voltrieve Atlas from the front](atlas/front_outdoor.jpg)
 
 ---
 
@@ -24,9 +24,9 @@ The Voltrieve Atlas is a large SUV with all wheel drive, built on the Voltrieve 
 
 Tall bracket-shaped light columns frame each corner, front and rear. A long flat hood, a floating roof and brushed copper accents give the Atlas presence without shouting.
 
-![The light signature of the Voltrieve Atlas](atlas/light_detail.png)
+![The light signature of the Voltrieve Atlas](atlas/light_detail.jpg)
 
-![The Voltrieve Atlas from the rear](atlas/rear_outdoor.png)
+![The Voltrieve Atlas from the rear](atlas/rear_outdoor.jpg)
 
 ---
 
@@ -37,7 +37,7 @@ Three rows of seats, a wide wood and aluminium dashboard and a large driver disp
 - **Charcoal textile and microsuede:** charcoal recycled textile and microsuede seats in three rows, wood and aluminium dashboard. On Pure and Plus.
 - **Cognac Nappa leather:** cognac Nappa leather seats in three rows, wood and aluminium dashboard. On Prime.
 
-![Inside the Voltrieve Atlas](atlas/interior.png)
+![Inside the Voltrieve Atlas](atlas/interior.jpg)
 
 ---
 
@@ -61,7 +61,7 @@ With a 112 kWh battery the Voltrieve Atlas goes up to 610 km on a charge (WLTP).
 |---|---|---|---|---|
 | 112 kWh | 610 km | 320 kW | 20 min | 22 kW |
 
-![The Voltrieve Atlas charging](atlas/charging.png)
+![The Voltrieve Atlas charging](atlas/charging.jpg)
 
 ---
 
@@ -73,7 +73,7 @@ Rear wheel steering makes the Atlas surprisingly easy to park, and air suspensio
 |---|---|---|---|---|
 | Atlas AWD | 420 kW | 780 Nm | 4.9 s | 210 km/h |
 
-![The Voltrieve Atlas from the side](atlas/side_studio.png)
+![The Voltrieve Atlas from the side](atlas/side_studio.jpg)
 
 ---
 
@@ -85,7 +85,7 @@ A third row that folds into the floor, a power outlet that runs tools or a coffe
 |---|---|---|---|---|
 | 720 litres | 2 050 litres | 90 litres | 2 500 kg braked | 100 kg |
 
-![The Voltrieve Atlas loaded for the weekend](atlas/practical.png)
+![The Voltrieve Atlas loaded for the weekend](atlas/practical.jpg)
 
 ---
 
@@ -140,13 +140,13 @@ Wheels: 22 inch Monolith. Interior: Cognac Nappa leather.
 - **21 inch Monolith:** six wide aero spokes in silver. On Pure.
 - **22 inch Monolith:** six wide aero spokes, gloss black with machined silver faces. On Plus and Prime.
 
-![The Voltrieve Atlas in Glacier White](atlas/master_front.png)
+![The Voltrieve Atlas in Glacier White](atlas/master_front.jpg)
 
-![The Voltrieve Atlas in Basalt](atlas/color_basalt.png)
+![The Voltrieve Atlas in Basalt](atlas/color_basalt.jpg)
 
-![The Voltrieve Atlas in Forest](atlas/color_forest.png)
+![The Voltrieve Atlas in Forest](atlas/color_forest.jpg)
 
-![The Voltrieve Atlas in Obsidian](atlas/color_obsidian.png)
+![The Voltrieve Atlas in Obsidian](atlas/color_obsidian.jpg)
 
 ---
 
@@ -173,4 +173,4 @@ Voltrieve Pilot version 3: adaptive cruise, lane keeping, traffic jam assist and
 
 Book a test drive at your Voltrieve dealer and take the Atlas on the roads you drive every day. The price list, the technical specifications and the accessories catalog for the Voltrieve Atlas are part of this sales folder.
 
-![The Voltrieve Atlas in the studio](atlas/master_front.png)
+![The Voltrieve Atlas in the studio](atlas/master_front.jpg)

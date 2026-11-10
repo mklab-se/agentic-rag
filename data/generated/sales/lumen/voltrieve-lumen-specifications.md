@@ -1,6 +1,6 @@
 # Voltrieve Lumen technical specifications
 
-![The Voltrieve Lumen from the side](lumen/side_studio.png)
+![The Voltrieve Lumen from the side](lumen/side_studio.jpg)
 
 ## Lumen dimensions and weights
 

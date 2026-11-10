@@ -24,7 +24,7 @@ def full_image_set(tmp_path):
     images = tmp_path / "images"
     (images / "fjord").mkdir(parents=True)
     for shot in SHOTS:
-        shutil.copy(IMAGES / "fjord" / "master_front.png", images / "fjord" / f"{shot}.png")
+        shutil.copy(IMAGES / "fjord" / "master_front.jpg", images / "fjord" / f"{shot}.jpg")
     return images
 
 
@@ -64,14 +64,14 @@ def test_missing_image_uses_placeholder(tmp_path):
     assert out.exists()
 
 
-def test_images_are_cached_as_jpeg_next_to_the_master(tmp_path):
+def test_jpeg_originals_are_embedded_as_they_are(tmp_path):
+    import base64
+
     images = full_image_set(tmp_path)
-    markdown_to_html(render_markdown("brochure", cat, fjord), fjord.accent, images)
-    cached = images / "fjord" / "hero.jpg"
-    assert cached.exists()
-    from PIL import Image
-    with Image.open(cached) as image:
-        assert image.width == 1600
+    html = markdown_to_html(render_markdown("brochure", cat, fjord), fjord.accent, images)
+    data = base64.b64encode((images / "fjord" / "hero.jpg").read_bytes()).decode()
+    assert f"data:image/jpeg;base64,{data}" in html
+    assert sorted(p.suffix for p in (images / "fjord").iterdir()) == [".jpg"] * len(SHOTS)
 
 
 def test_html_carries_accent_and_embedded_font():
@@ -87,7 +87,7 @@ def test_text_is_extractable_with_swedish_letters(tmp_path):
 
 def test_portrait_figures_stay_where_they_are_written(tmp_path):
     images = full_image_set(tmp_path)
-    md = "# Title\n\nIntro\n\n## Wheels\n\n![a](fjord/hero.png)\n\n![b](fjord/interior.png)\n\nAfter\n"
+    md = "# Title\n\nIntro\n\n## Wheels\n\n![a](fjord/hero.jpg)\n\n![b](fjord/interior.jpg)\n\nAfter\n"
     html = markdown_to_html(md, fjord.accent, images)
     assert html.index("<h2>Wheels</h2>") < html.index('class="gallery"') < html.index("After")
     assert html.count("<figure>") == 2
@@ -95,5 +95,5 @@ def test_portrait_figures_stay_where_they_are_written(tmp_path):
 
 def test_portrait_figure_without_a_title_is_kept(tmp_path):
     images = full_image_set(tmp_path)
-    md = "# Title\n\nIntro" + "\n---\n" + "## Next page\n\n![a](fjord/hero.png)\n"
+    md = "# Title\n\nIntro" + "\n---\n" + "## Next page\n\n![a](fjord/hero.jpg)\n"
     assert markdown_to_html(md, fjord.accent, images).count("<figure>") == 1

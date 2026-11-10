@@ -1,6 +1,6 @@
 # Voltrieve Ragn technical specifications
 
-![The Voltrieve Ragn from the side](ragn/side_studio.png)
+![The Voltrieve Ragn from the side](ragn/side_studio.jpg)
 
 ## Ragn dimensions and weights
 

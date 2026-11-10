@@ -1,6 +1,6 @@
 # Voltrieve Atlas technical specifications
 
-![The Voltrieve Atlas from the side](atlas/side_studio.png)
+![The Voltrieve Atlas from the side](atlas/side_studio.jpg)
 
 ## Atlas dimensions and weights
 

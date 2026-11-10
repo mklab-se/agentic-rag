@@ -219,7 +219,10 @@ Car images live in `data/design/images/` and are made with ailloy from `data/des
 Existing images are never generated again, so a rerun costs nothing unless you delete a file:
 
 ```bash
-uv run --project data/generator voltrieve-data images --shots master_front,master_rear
+uv run --project data/generator voltrieve-data images --shots all
 ```
 
-The PDFs embed each image as a 1600 px JPEG, cached next to its PNG master (not committed).
+`--shots all` makes every shot a car is missing, its color and wheel variants included; name
+shots to make only those (masters first, since every other shot is edited from them). The model
+returns PNG, which is stored as a 1536 x 1024 JPEG at quality 90 and committed; the PDFs embed
+those JPEGs as they are.

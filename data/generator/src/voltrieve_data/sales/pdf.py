@@ -1,8 +1,8 @@
 """Markdown to PDF: HTML with the shared stylesheet, printed by headless Chromium.
 
 Fonts and images are embedded in the page as data URIs, so the page needs no file access.
-Images are embedded as 1600 px JPEG, cached next to the PNG master: Chromium keeps JPEG data as
-it is, but stores any other format losslessly, which would make a brochure far too large.
+The car images are stored as JPEG, and Chromium puts JPEG data into the PDF as it is (any other
+format it stores losslessly, which would make a brochure far too large).
 """
 
 import base64
@@ -16,7 +16,6 @@ from voltrieve_data.sales.render import PAGE_BREAK
 
 HERE = Path(__file__).parent
 INK = "#16181d"  # Voltrieve ink black, the accent of the brand documents
-IMAGE_WIDTH = 1600
 FONT_WEIGHTS = {"Light": (300, "normal"), "Regular": (400, "normal"), "Medium": (500, "normal"),
                 "Italic": (400, "italic")}
 EMBLEM = (
@@ -42,26 +41,12 @@ def _fonts_css() -> str:
     return "\n".join(faces)
 
 
-def _cached_jpeg(png: Path) -> Path:
-    jpg = png.with_suffix(".jpg")
-    if not jpg.exists() or jpg.stat().st_mtime < png.stat().st_mtime:
-        from PIL import Image
-
-        with Image.open(png) as image:
-            rgb = image.convert("RGB")
-            height = round(rgb.height * IMAGE_WIDTH / rgb.width)
-            rgb.resize((IMAGE_WIDTH, height), Image.LANCZOS).save(
-                jpg, "JPEG", quality=84, optimize=True, progressive=True
-            )
-    return jpg
-
-
 def _figure(ref: str, alt: str, images_dir: Path) -> str:
-    png = images_dir / ref
-    if not png.exists():
-        label = html.escape(ref.removesuffix(".png"))
+    image = images_dir / ref
+    if not image.exists():
+        label = html.escape(ref.removesuffix(".jpg"))
         return f'<figure class="placeholder"><span>Image: {label}</span></figure>'
-    data = base64.b64encode(_cached_jpeg(png).read_bytes()).decode()
+    data = base64.b64encode(image.read_bytes()).decode()
     return f'<figure><img src="data:image/jpeg;base64,{data}" alt="{alt}"></figure>'
 
 

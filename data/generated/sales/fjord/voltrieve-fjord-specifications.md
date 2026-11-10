@@ -1,6 +1,6 @@
 # Voltrieve Fjord technical specifications
 
-![The Voltrieve Fjord from the side](fjord/side_studio.png)
+![The Voltrieve Fjord from the side](fjord/side_studio.jpg)
 
 ## Fjord dimensions and weights
 

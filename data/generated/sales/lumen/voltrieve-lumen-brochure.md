@@ -2,7 +2,7 @@
 
 Light on its feet
 
-![The Voltrieve Lumen in Coral](lumen/hero.png)
+![The Voltrieve Lumen in Coral](lumen/hero.jpg)
 
 | Range (WLTP) | DC charging 10 to 80 % | Power | 0 to 100 km/h |
 |---|---|---|---|
@@ -16,7 +16,7 @@ The Lumen is a compact hatchback with the reflexes of a sports car and the manne
 
 The Voltrieve Lumen is a hatchback with rear wheel drive or all wheel drive, built on the Voltrieve V1 platform with a 400 V system. Light on its feet: that is the idea behind every detail.
 
-![The Voltrieve Lumen from the front](lumen/front_outdoor.png)
+![The Voltrieve Lumen from the front](lumen/front_outdoor.jpg)
 
 ---
 
@@ -24,9 +24,9 @@ The Voltrieve Lumen is a hatchback with rear wheel drive or all wheel drive, bui
 
 Two thin light lines run across the full width of the car, front and rear, with no separate lamps at all. A sloping roof, frameless door glass and a sculpted hood finish the shape.
 
-![The light signature of the Voltrieve Lumen](lumen/light_detail.png)
+![The light signature of the Voltrieve Lumen](lumen/light_detail.jpg)
 
-![The Voltrieve Lumen from the rear](lumen/rear_outdoor.png)
+![The Voltrieve Lumen from the rear](lumen/rear_outdoor.jpg)
 
 ---
 
@@ -37,7 +37,7 @@ Black seats with coral stitching, a slim wide driver display and a floating touc
 - **Black with coral stitching:** black textile seats with coral stitching and a thin coral light line across the dashboard. On Pure and Plus.
 - **Sport seats:** black sport seats in microsuede with coral stitching and extended side support. On Prime.
 
-![Inside the Voltrieve Lumen](lumen/interior.png)
+![Inside the Voltrieve Lumen](lumen/interior.jpg)
 
 ---
 
@@ -61,7 +61,7 @@ With a 61 kWh battery the Voltrieve Lumen goes up to 455 km on a charge (WLTP). 
 |---|---|---|---|---|
 | 61 kWh | 455 km | 135 kW | 26 min | 11 kW |
 
-![The Voltrieve Lumen charging](lumen/charging.png)
+![The Voltrieve Lumen charging](lumen/charging.jpg)
 
 ---
 
@@ -74,7 +74,7 @@ A low centre of gravity and quick steering make the Lumen feel light on its feet
 | Lumen RWD | 170 kW | 330 Nm | 6.9 s | 180 km/h |
 | Lumen AWD | 250 kW | 480 Nm | 4.9 s | 180 km/h |
 
-![The Voltrieve Lumen from the side](lumen/side_studio.png)
+![The Voltrieve Lumen from the side](lumen/side_studio.jpg)
 
 ---
 
@@ -86,7 +86,7 @@ A hatchback tailgate, a flat folding rear seat and a frunk under the hood for th
 |---|---|---|---|---|
 | 380 litres | 1 260 litres | 45 litres | 750 kg braked | 75 kg |
 
-![The Voltrieve Lumen loaded for the weekend](lumen/practical.png)
+![The Voltrieve Lumen loaded for the weekend](lumen/practical.jpg)
 
 ---
 
@@ -142,13 +142,13 @@ Wheels: 19 inch Turbine. Interior: Sport seats.
 - **18 inch Arc:** five double spokes in silver. On Pure.
 - **19 inch Turbine:** ten thin twisted spokes, diamond-cut silver and gloss black. On Plus and Prime.
 
-![The Voltrieve Lumen in Coral](lumen/master_front.png)
+![The Voltrieve Lumen in Coral](lumen/master_front.jpg)
 
-![The Voltrieve Lumen in Pearl](lumen/color_pearl.png)
+![The Voltrieve Lumen in Pearl](lumen/color_pearl.jpg)
 
-![The Voltrieve Lumen in Midnight](lumen/color_midnight.png)
+![The Voltrieve Lumen in Midnight](lumen/color_midnight.jpg)
 
-![The Voltrieve Lumen in Silver Birch](lumen/color_silver_birch.png)
+![The Voltrieve Lumen in Silver Birch](lumen/color_silver_birch.jpg)
 
 ---
 
@@ -175,4 +175,4 @@ Voltrieve Pilot version 2: adaptive cruise and lane keeping.
 
 Book a test drive at your Voltrieve dealer and take the Lumen on the roads you drive every day. The price list, the technical specifications and the accessories catalog for the Voltrieve Lumen are part of this sales folder.
 
-![The Voltrieve Lumen in the studio](lumen/master_front.png)
+![The Voltrieve Lumen in the studio](lumen/master_front.jpg)

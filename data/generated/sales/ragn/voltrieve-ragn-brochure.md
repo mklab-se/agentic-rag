@@ -2,7 +2,7 @@
 
 Built for the long way round
 
-![The Voltrieve Ragn in Moss](ragn/hero.png)
+![The Voltrieve Ragn in Moss](ragn/hero.jpg)
 
 | Range (WLTP) | DC charging 10 to 80 % | Power | 0 to 100 km/h |
 |---|---|---|---|
@@ -16,7 +16,7 @@ The Ragn is a crossover for people whose weekends start where the asphalt ends. 
 
 The Voltrieve Ragn is a crossover with all wheel drive, built on the Voltrieve V2 platform with an 800 V system. Built for the long way round: that is the idea behind every detail.
 
-![The Voltrieve Ragn from the front](ragn/front_outdoor.png)
+![The Voltrieve Ragn from the front](ragn/front_outdoor.jpg)
 
 ---
 
@@ -24,9 +24,9 @@ The Voltrieve Ragn is a crossover with all wheel drive, built on the Voltrieve V
 
 A boxy body with squared wheel arches, wide textured cladding and four square pixel lamps in a flat black band. Bright orange recovery hooks tell you it means it.
 
-![The light signature of the Voltrieve Ragn](ragn/light_detail.png)
+![The light signature of the Voltrieve Ragn](ragn/light_detail.jpg)
 
-![The Voltrieve Ragn from the rear](ragn/rear_outdoor.png)
+![The Voltrieve Ragn from the rear](ragn/rear_outdoor.jpg)
 
 ---
 
@@ -37,7 +37,7 @@ Washable textile seats, rubber floor mats and chunky physical knobs you can use 
 - **Washable dark grey textile:** washable dark grey textile seats, rubber floor mats and orange pull loops. On Pure and Plus.
 - **Dark grey microsuede:** ventilated dark grey microsuede front seats with orange pull loops. On Prime.
 
-![Inside the Voltrieve Ragn](ragn/interior.png)
+![Inside the Voltrieve Ragn](ragn/interior.jpg)
 
 ---
 
@@ -61,7 +61,7 @@ With a 84 kWh battery the Voltrieve Ragn goes up to 530 km on a charge (WLTP). A
 |---|---|---|---|---|
 | 84 kWh | 530 km | 240 kW | 21 min | 22 kW |
 
-![The Voltrieve Ragn charging](ragn/charging.png)
+![The Voltrieve Ragn charging](ragn/charging.jpg)
 
 ---
 
@@ -73,7 +73,7 @@ All wheel drive, an off road mode and high ground clearance give the Ragn grip o
 |---|---|---|---|---|
 | Ragn AWD | 300 kW | 560 Nm | 5.4 s | 190 km/h |
 
-![The Voltrieve Ragn from the side](ragn/side_studio.png)
+![The Voltrieve Ragn from the side](ragn/side_studio.jpg)
 
 ---
 
@@ -85,7 +85,7 @@ Roof rails, a wide boot opening and a tow rating for a small caravan or a traile
 |---|---|---|---|---|
 | 520 litres | 1 580 litres | 60 litres | 1 800 kg braked | 100 kg |
 
-![The Voltrieve Ragn loaded for the weekend](ragn/practical.png)
+![The Voltrieve Ragn loaded for the weekend](ragn/practical.jpg)
 
 ---
 
@@ -141,13 +141,13 @@ Wheels: 20 inch Trail. Interior: Dark grey microsuede.
 - **19 inch Trail:** five thick spokes in gunmetal grey, on all-terrain tyres. On Pure and Plus.
 - **20 inch Trail:** five thick spokes in matte black, on all-terrain tyres. On Prime.
 
-![The Voltrieve Ragn in Moss](ragn/master_front.png)
+![The Voltrieve Ragn in Moss](ragn/master_front.jpg)
 
-![The Voltrieve Ragn in Granite](ragn/color_granite.png)
+![The Voltrieve Ragn in Granite](ragn/color_granite.jpg)
 
-![The Voltrieve Ragn in Sand](ragn/color_sand.png)
+![The Voltrieve Ragn in Sand](ragn/color_sand.jpg)
 
-![The Voltrieve Ragn in Night](ragn/color_night.png)
+![The Voltrieve Ragn in Night](ragn/color_night.jpg)
 
 ---
 
@@ -174,4 +174,4 @@ Voltrieve Pilot version 3: adaptive cruise, lane keeping, traffic jam assist and
 
 Book a test drive at your Voltrieve dealer and take the Ragn on the roads you drive every day. The price list, the technical specifications and the accessories catalog for the Voltrieve Ragn are part of this sales folder.
 
-![The Voltrieve Ragn in the studio](ragn/master_front.png)
+![The Voltrieve Ragn in the studio](ragn/master_front.jpg)

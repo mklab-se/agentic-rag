@@ -2,7 +2,7 @@
 
 Genuine Voltrieve accessories for the Voltrieve Spark, made to fit and covered by the Voltrieve warranty. Your dealer orders and fits them. Prices are recommended retail prices including VAT, valid from 1 November 2026. Fitting is not included unless the description says so.
 
-![The Voltrieve Spark ready for the weekend](spark/practical.png)
+![The Voltrieve Spark ready for the weekend](spark/practical.jpg)
 
 ## Spark accessories: charging
 

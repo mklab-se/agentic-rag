@@ -1,6 +1,6 @@
 # Voltrieve Spark technical specifications
 
-![The Voltrieve Spark from the side](spark/side_studio.png)
+![The Voltrieve Spark from the side](spark/side_studio.jpg)
 
 ## Spark dimensions and weights
 

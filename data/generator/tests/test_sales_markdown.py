@@ -145,7 +145,7 @@ def test_charge_time_is_plausible():
 
 
 def test_image_ref_is_relative():
-    assert image_ref("fjord", "hero") == "fjord/hero.png"
+    assert image_ref("fjord", "hero") == "fjord/hero.jpg"
 
 
 def test_price_list_shows_wheels_and_optional_colors():

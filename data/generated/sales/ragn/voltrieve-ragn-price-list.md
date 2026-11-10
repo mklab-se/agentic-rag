@@ -2,7 +2,7 @@
 
 Prices valid from 1 November 2026. Recommended retail prices including VAT, in Sweden (SEK) and in the EU (EUR).
 
-![The Voltrieve Ragn](ragn/hero.png)
+![The Voltrieve Ragn](ragn/hero.jpg)
 
 ## Ragn prices per trim and drive
 
@@ -95,11 +95,11 @@ Items marked "Not available" are not sold separately. Option packs can be added 
 | Ragn in Sand: warm beige | solid | Included | Included |
 | Ragn in Night: black | metallic | 9 900 SEK | 900 EUR |
 
-![The Voltrieve Ragn in Granite](ragn/color_granite.png)
+![The Voltrieve Ragn in Granite](ragn/color_granite.jpg)
 
-![The Voltrieve Ragn in Sand](ragn/color_sand.png)
+![The Voltrieve Ragn in Sand](ragn/color_sand.jpg)
 
-![The Voltrieve Ragn in Night](ragn/color_night.png)
+![The Voltrieve Ragn in Night](ragn/color_night.jpg)
 
 ## Ragn wheels and interiors
 
@@ -108,9 +108,9 @@ Items marked "Not available" are not sold separately. Option packs can be added 
 | 19 inch Trail | five thick spokes in gunmetal grey, on all-terrain tyres | Ragn Pure and Plus |
 | 20 inch Trail | five thick spokes in matte black, on all-terrain tyres | Ragn Prime |
 
-![The 19 inch Trail wheel](ragn/wheel_trail_19.png)
+![The 19 inch Trail wheel](ragn/wheel_trail_19.jpg)
 
-![The 20 inch Trail wheel](ragn/wheel_trail_20.png)
+![The 20 inch Trail wheel](ragn/wheel_trail_20.jpg)
 
 | Interior | Description | Standard on |
 |---|---|---|

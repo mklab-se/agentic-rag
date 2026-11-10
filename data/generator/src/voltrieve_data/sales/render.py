@@ -38,7 +38,7 @@ _ENV.tests["contains"] = lambda seq, item: item in seq
 
 def image_ref(slug: str, shot: str) -> str:
     """Path of an image relative to data/design/images; the PDF step resolves it."""
-    return f"{slug}/{shot}.png"
+    return f"{slug}/{shot}.jpg"
 
 
 def short_name(model: CarModel) -> str:

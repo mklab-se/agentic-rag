@@ -2,7 +2,7 @@
 
 Room for the whole weekend
 
-![The Voltrieve Fjord in Glacier Blue](fjord/hero.png)
+![The Voltrieve Fjord in Glacier Blue](fjord/hero.jpg)
 
 | Range (WLTP) | DC charging 10 to 80 % | Power | 0 to 100 km/h |
 |---|---|---|---|
@@ -16,7 +16,7 @@ The Fjord is a long, low estate for families who would rather drive than fly. It
 
 The Voltrieve Fjord is an estate with rear wheel drive or all wheel drive, built on the Voltrieve V2 platform with an 800 V system. Room for the whole weekend: that is the idea behind every detail.
 
-![The Voltrieve Fjord from the front](fjord/front_outdoor.png)
+![The Voltrieve Fjord from the front](fjord/front_outdoor.jpg)
 
 ---
 
@@ -24,9 +24,9 @@ The Voltrieve Fjord is an estate with rear wheel drive or all wheel drive, built
 
 A single thin light line crosses the front and dips into a shallow V around the emblem, like the outline of a fjord valley. The same line returns at the rear, ending in light blades that wrap around the corners.
 
-![The light signature of the Voltrieve Fjord](fjord/light_detail.png)
+![The light signature of the Voltrieve Fjord](fjord/light_detail.jpg)
 
-![The Voltrieve Fjord from the rear](fjord/rear_outdoor.png)
+![The Voltrieve Fjord from the rear](fjord/rear_outdoor.jpg)
 
 ---
 
@@ -37,7 +37,7 @@ Light wool blend seats, pale ash wood and a wide, calm dashboard with a portrait
 - **Light wool blend:** light wool blend seats and pale ash wood trim. On Pure and Plus.
 - **Nappa leather:** light Nappa leather seats with ventilation and massage, and pale ash wood trim. On Prime.
 
-![Inside the Voltrieve Fjord](fjord/interior.png)
+![Inside the Voltrieve Fjord](fjord/interior.jpg)
 
 ---
 
@@ -61,7 +61,7 @@ With a 84 kWh battery the Voltrieve Fjord goes up to 575 km on a charge (WLTP). 
 |---|---|---|---|---|
 | 84 kWh | 575 km | 240 kW | 20 min | 22 kW |
 
-![The Voltrieve Fjord charging](fjord/charging.png)
+![The Voltrieve Fjord charging](fjord/charging.jpg)
 
 ---
 
@@ -74,7 +74,7 @@ Air suspension, a long wheelbase and an 800 V system make the Fjord a relaxed lo
 | Fjord RWD | 250 kW | 450 Nm | 6.1 s | 200 km/h |
 | Fjord AWD | 360 kW | 680 Nm | 4.6 s | 200 km/h |
 
-![The Voltrieve Fjord from the side](fjord/side_studio.png)
+![The Voltrieve Fjord from the side](fjord/side_studio.jpg)
 
 ---
 
@@ -86,7 +86,7 @@ A long flat load floor, a low loading edge and a strong tow rating for the boat,
 |---|---|---|---|---|
 | 640 litres | 1 720 litres | 50 litres | 2 100 kg braked | 100 kg |
 
-![The Voltrieve Fjord loaded for the weekend](fjord/practical.png)
+![The Voltrieve Fjord loaded for the weekend](fjord/practical.jpg)
 
 ---
 
@@ -142,13 +142,13 @@ Wheels: 20 inch Fern. Interior: Nappa leather.
 - **19 inch Birch:** ten spokes in silver. On Pure.
 - **20 inch Fern:** fifteen thin straight spokes in diamond-cut silver. On Plus and Prime.
 
-![The Voltrieve Fjord in Glacier Blue](fjord/master_front.png)
+![The Voltrieve Fjord in Glacier Blue](fjord/master_front.jpg)
 
-![The Voltrieve Fjord in Frost](fjord/color_frost.png)
+![The Voltrieve Fjord in Frost](fjord/color_frost.jpg)
 
-![The Voltrieve Fjord in Slate](fjord/color_slate.png)
+![The Voltrieve Fjord in Slate](fjord/color_slate.jpg)
 
-![The Voltrieve Fjord in Heath](fjord/color_heath.png)
+![The Voltrieve Fjord in Heath](fjord/color_heath.jpg)
 
 ---
 
@@ -175,4 +175,4 @@ Voltrieve Pilot version 3: adaptive cruise, lane keeping, traffic jam assist and
 
 Book a test drive at your Voltrieve dealer and take the Fjord on the roads you drive every day. The price list, the technical specifications and the accessories catalog for the Voltrieve Fjord are part of this sales folder.
 
-![The Voltrieve Fjord in the studio](fjord/master_front.png)
+![The Voltrieve Fjord in the studio](fjord/master_front.jpg)

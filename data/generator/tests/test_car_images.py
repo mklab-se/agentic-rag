@@ -47,8 +47,10 @@ def fake(calls):
     """A stand-in for subprocess.run that records the ailloy command and writes the output file."""
 
     def run(cmd, **kwargs):
+        from PIL import Image
+
         calls.append(cmd)
-        Path(cmd[cmd.index("-o") + 1]).write_bytes(b"png")
+        Image.new("RGB", (48, 32), "white").save(cmd[cmd.index("-o") + 1], "PNG")
 
         class Done:
             returncode = 0
@@ -61,7 +63,7 @@ def fake(calls):
 
 def test_skips_existing_files(tmp_path):
     (tmp_path / "fjord").mkdir()
-    (tmp_path / "fjord" / "master_front.png").write_bytes(b"x")
+    (tmp_path / "fjord" / "master_front.jpg").write_bytes(b"x")
     calls = []
     generate_images({"fjord": FJORD}, ["master_front"], tmp_path, run=fake(calls))
     assert calls == []
@@ -77,7 +79,7 @@ def test_rear_master_edits_from_front(tmp_path):
     calls = []
     generate_images({"fjord": FJORD}, ["master_front", "master_rear"], tmp_path, run=fake(calls))
     rear = calls[1]
-    assert rear[rear.index("--ref") + 1].endswith("fjord/master_front.png")
+    assert rear[rear.index("--ref") + 1].endswith("fjord/master_front.jpg")
     assert "--fidelity" not in rear
 
 
@@ -121,7 +123,7 @@ def test_variant_shots_follow_the_catalog():
 def test_variants_edit_from_the_front_master(tmp_path):
     calls = []
     generate_images({"fjord": WITH_VARIANTS["fjord"]}, ["color_heath"], tmp_path, run=fake(calls))
-    assert calls[0][calls[0].index("--ref") + 1].endswith("fjord/master_front.png")
+    assert calls[0][calls[0].index("--ref") + 1].endswith("fjord/master_front.jpg")
 
 
 def test_without_a_catalog_there_are_no_variants():
@@ -132,7 +134,7 @@ def test_no_shot_list_means_every_shot_of_each_car(tmp_path):
     calls = []
     fjord = WITH_VARIANTS["fjord"]
     generate_images({"fjord": fjord}, None, tmp_path, run=fake(calls))
-    made = [Path(cmd[cmd.index("-o") + 1]).stem for cmd in calls]
+    made = [Path(cmd[cmd.index("-o") + 1]).name.split(".")[0] for cmd in calls]
     assert made == list(fjord.shots) and made[:2] == ["master_front", "master_rear"]
 
 
@@ -174,3 +176,13 @@ def test_an_unknown_wheel_key_fails_loading(tmp_path):
     bad.write_text(text, encoding="utf-8")
     with pytest.raises(ValueError, match="fern_99"):
         load_identities(bad, CATALOG)
+
+
+def test_images_are_stored_as_jpeg_only(tmp_path):
+    from PIL import Image
+
+    created = generate_images({"fjord": FJORD}, ["master_front"], tmp_path, run=fake([]))
+    assert [p.name for p in created] == ["master_front.jpg"]
+    assert sorted(p.name for p in (tmp_path / "fjord").iterdir()) == ["master_front.jpg"]
+    with Image.open(created[0]) as image:
+        assert image.format == "JPEG"

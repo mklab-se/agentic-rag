@@ -2,7 +2,7 @@
 
 Prices valid from 1 November 2026. Recommended retail prices including VAT, in Sweden (SEK) and in the EU (EUR).
 
-![The Voltrieve Lumen](lumen/hero.png)
+![The Voltrieve Lumen](lumen/hero.jpg)
 
 ## Lumen prices per trim and drive
 
@@ -96,11 +96,11 @@ Items marked "Not available" are not sold separately. Option packs can be added 
 | Lumen in Midnight: near-black blue | metallic | 9 900 SEK | 900 EUR |
 | Lumen in Silver Birch: light silver | metallic | 9 900 SEK | 900 EUR |
 
-![The Voltrieve Lumen in Pearl](lumen/color_pearl.png)
+![The Voltrieve Lumen in Pearl](lumen/color_pearl.jpg)
 
-![The Voltrieve Lumen in Midnight](lumen/color_midnight.png)
+![The Voltrieve Lumen in Midnight](lumen/color_midnight.jpg)
 
-![The Voltrieve Lumen in Silver Birch](lumen/color_silver_birch.png)
+![The Voltrieve Lumen in Silver Birch](lumen/color_silver_birch.jpg)
 
 ## Lumen wheels and interiors
 
@@ -109,9 +109,9 @@ Items marked "Not available" are not sold separately. Option packs can be added 
 | 18 inch Arc | five double spokes in silver | Lumen Pure |
 | 19 inch Turbine | ten thin twisted spokes, diamond-cut silver and gloss black | Lumen Plus and Prime |
 
-![The 18 inch Arc wheel](lumen/wheel_arc_18.png)
+![The 18 inch Arc wheel](lumen/wheel_arc_18.jpg)
 
-![The 19 inch Turbine wheel](lumen/wheel_turbine_19.png)
+![The 19 inch Turbine wheel](lumen/wheel_turbine_19.jpg)
 
 | Interior | Description | Standard on |
 |---|---|---|

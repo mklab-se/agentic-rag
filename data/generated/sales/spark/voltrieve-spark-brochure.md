@@ -2,7 +2,7 @@
 
 Small outside, generous inside
 
-![The Voltrieve Spark in Saffron](spark/hero.png)
+![The Voltrieve Spark in Saffron](spark/hero.jpg)
 
 | Range (WLTP) | DC charging 10 to 80 % | Power | 0 to 100 km/h |
 |---|---|---|---|
@@ -16,7 +16,7 @@ The Spark is the small car that makes the city feel bigger. It slips into gaps o
 
 The Voltrieve Spark is a city car with rear wheel drive, built on the Voltrieve V1 platform with a 400 V system. Small outside, generous inside: that is the idea behind every detail.
 
-![The Voltrieve Spark from the front](spark/front_outdoor.png)
+![The Voltrieve Spark from the front](spark/front_outdoor.jpg)
 
 ---
 
@@ -24,9 +24,9 @@ The Voltrieve Spark is a city car with rear wheel drive, built on the Voltrieve 
 
 A rounded box with its wheels pushed out to the corners, two round ring lamps that look straight at you, and a contrasting roof. Simple shapes, made to be recognised from across the square.
 
-![The light signature of the Voltrieve Spark](spark/light_detail.png)
+![The light signature of the Voltrieve Spark](spark/light_detail.jpg)
 
-![The Voltrieve Spark from the rear](spark/rear_outdoor.png)
+![The Voltrieve Spark from the rear](spark/rear_outdoor.jpg)
 
 ---
 
@@ -37,7 +37,7 @@ Light grey recycled textile, a pale wood strip across the dashboard and a small 
 - **Light grey textile:** light grey recycled textile seats and a pale wood strip across the dashboard. On Pure and Plus.
 - **Light grey textile and microsuede:** recycled textile seats with microsuede bolsters and a pale wood strip across the dashboard. On Prime.
 
-![Inside the Voltrieve Spark](spark/interior.png)
+![Inside the Voltrieve Spark](spark/interior.jpg)
 
 ---
 
@@ -60,7 +60,7 @@ With a 42 kWh battery the Voltrieve Spark goes up to 310 km on a charge (WLTP). 
 |---|---|---|---|---|
 | 42 kWh | 310 km | 95 kW | 25 min | 11 kW |
 
-![The Voltrieve Spark charging](spark/charging.png)
+![The Voltrieve Spark charging](spark/charging.jpg)
 
 ---
 
@@ -72,7 +72,7 @@ Rear wheel drive and a tight turning circle make the Spark quick and easy in tow
 |---|---|---|---|---|
 | Spark RWD | 100 kW | 220 Nm | 9.2 s | 150 km/h |
 
-![The Voltrieve Spark from the side](spark/side_studio.png)
+![The Voltrieve Spark from the side](spark/side_studio.jpg)
 
 ---
 
@@ -86,7 +86,7 @@ A near-vertical tailgate gives a square, useful boot, and the rear seats fold fl
 
 The Voltrieve Spark is not rated for towing.
 
-![The Voltrieve Spark loaded for the weekend](spark/practical.png)
+![The Voltrieve Spark loaded for the weekend](spark/practical.jpg)
 
 ---
 
@@ -140,13 +140,13 @@ Wheels: 17 inch Pebble. Interior: Light grey textile and microsuede.
 - **17 inch Pebble:** flat aero wheel covers in white and light grey with five small holes. On Pure and Plus.
 - **17 inch Pebble:** flat aero wheel covers in graphite with five small holes. On Prime.
 
-![The Voltrieve Spark in Saffron](spark/master_front.png)
+![The Voltrieve Spark in Saffron](spark/master_front.jpg)
 
-![The Voltrieve Spark in Snow](spark/color_snow.png)
+![The Voltrieve Spark in Snow](spark/color_snow.jpg)
 
-![The Voltrieve Spark in Fjäll Mint](spark/color_fjall_mint.png)
+![The Voltrieve Spark in Fjäll Mint](spark/color_fjall_mint.jpg)
 
-![The Voltrieve Spark in Graphite](spark/color_graphite.png)
+![The Voltrieve Spark in Graphite](spark/color_graphite.jpg)
 
 ---
 
@@ -173,4 +173,4 @@ Voltrieve Pilot version 2: adaptive cruise and lane keeping.
 
 Book a test drive at your Voltrieve dealer and take the Spark on the roads you drive every day. The price list, the technical specifications and the accessories catalog for the Voltrieve Spark are part of this sales folder.
 
-![The Voltrieve Spark in the studio](spark/master_front.png)
+![The Voltrieve Spark in the studio](spark/master_front.jpg)

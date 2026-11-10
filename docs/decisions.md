@@ -114,6 +114,10 @@ The agent accepts only the API's managed identity, read from `x-ms-original-subj
 
 When the stream to the hosted agent breaks, the conversation stays blocked for 120 seconds and is then repaired. This avoids racing a detached turn. The user can wait up to two minutes after a dropped connection.
 
+### Car images: JPEG originals in git
+
+The 75 car images are stored as 1536 x 1024 JPEG at quality 90 (26 MB in all), not as the PNGs the image model returns (176 MB), and not in Git LFS. The PDFs embed these JPEGs as they are, so no second copy is needed; the spec's WebP copy is dropped, because Chromium would re-encode WebP losslessly into the PDF. Plain git keeps the repository working for anyone who clones it without `git-lfs`, and a public repository's clones would otherwise use the owner's monthly LFS bandwidth.
+
 ### Sales folder PDFs: default parsing
 
 The sales folder PDFs are indexed with the default PDF text extraction, not the Document Layout skill. Measured on 2026-11-10: in all four test questions (a trim price plus a color price, which trims include a pack, the financing example, the boot with the seats folded) each table row came back with its model, its columns and its values on one line, and the chunk named the right document. Evidence: `docs/evidence/sales-table-test.txt`. Document Layout would add per-page cost and indexing time for no measured gain. Revisit if a later document puts tables across pages or in several columns.

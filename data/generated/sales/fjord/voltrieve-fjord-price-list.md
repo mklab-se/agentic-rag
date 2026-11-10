@@ -2,7 +2,7 @@
 
 Prices valid from 1 November 2026. Recommended retail prices including VAT, in Sweden (SEK) and in the EU (EUR).
 
-![The Voltrieve Fjord](fjord/hero.png)
+![The Voltrieve Fjord](fjord/hero.jpg)
 
 ## Fjord prices per trim and drive
 
@@ -98,11 +98,11 @@ Items marked "Not available" are not sold separately. Option packs can be added 
 | Fjord in Slate: dark grey | metallic | 9 900 SEK | 900 EUR |
 | Fjord in Heath: deep burgundy | metallic | 9 900 SEK | 900 EUR |
 
-![The Voltrieve Fjord in Frost](fjord/color_frost.png)
+![The Voltrieve Fjord in Frost](fjord/color_frost.jpg)
 
-![The Voltrieve Fjord in Slate](fjord/color_slate.png)
+![The Voltrieve Fjord in Slate](fjord/color_slate.jpg)
 
-![The Voltrieve Fjord in Heath](fjord/color_heath.png)
+![The Voltrieve Fjord in Heath](fjord/color_heath.jpg)
 
 ## Fjord wheels and interiors
 
@@ -111,9 +111,9 @@ Items marked "Not available" are not sold separately. Option packs can be added 
 | 19 inch Birch | ten spokes in silver | Fjord Pure |
 | 20 inch Fern | fifteen thin straight spokes in diamond-cut silver | Fjord Plus and Prime |
 
-![The 19 inch Birch wheel](fjord/wheel_birch_19.png)
+![The 19 inch Birch wheel](fjord/wheel_birch_19.jpg)
 
-![The 20 inch Fern wheel](fjord/wheel_fern_20.png)
+![The 20 inch Fern wheel](fjord/wheel_fern_20.jpg)
 
 | Interior | Description | Standard on |
 |---|---|---|
