@@ -105,3 +105,15 @@ def test_index_records_the_expected_articles_of_each_job(tmp_path):
     job = index["jobs"]["fjord/AWD/front/left"]
     assert len(job) == 9
     assert len(index["parts"]) == index["count"]
+
+
+FROZEN_INDEX = Path(__file__).parent / "fixtures" / "parts-index-2026-11-10.json"
+
+
+def test_existing_article_numbers_never_change(parts):
+    """Article numbers are in indexed catalogs, sales folders and people's notes: never renumber."""
+    now = {p.article: p for p in parts}
+    for old in json.loads(FROZEN_INDEX.read_text(encoding="utf-8"))["parts"]:
+        part = now.get(old["article"])
+        assert part is not None, old["article"]
+        assert (part.key, [f.name for f in part.fits]) == (old["key"], old["fits"]), old["article"]

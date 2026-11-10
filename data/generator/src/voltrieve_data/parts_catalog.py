@@ -32,7 +32,7 @@ def _fits(part: Part, model: CarModel) -> bool:
 def write_parts_documents(catalog: Catalog, out_dir: Path) -> list[Path]:
     parts = build_parts(catalog)
     paths = []
-    for file_name, (title, _) in DOCUMENTS.items():
+    for file_name, (title, _, _) in DOCUMENTS.items():
         in_document = [p for p in parts if p.document == file_name]
         lines = [
             f"# Voltrieve spare parts catalog: {title.lower()}",

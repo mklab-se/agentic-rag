@@ -8,7 +8,10 @@ numbers it becomes:
   platform  one per platform, shared by the models on it
   all       one for the whole range
 
-Numbers are assigned in template order, so the output is the same on every run.
+Numbers are assigned in template order, so the output is the same on every run. Article numbers
+never change once published: every document has its original templates and its added ones, and
+all original templates are numbered before any added template. New templates go at the end of
+an added list, never among the original ones.
 """
 
 from collections.abc import Callable
@@ -322,12 +325,13 @@ SERVICE_TEMPLATES = [
              position="Rear", when=_v2),
 ]
 
-DOCUMENTS: dict[str, tuple[str, list[Template]]] = {
-    "voltrieve-parts-brakes.md": ("Brake system", BRAKE_TEMPLATES),
-    "voltrieve-parts-suspension-steering.md": ("Suspension and steering", SUSPENSION_TEMPLATES),
-    "voltrieve-parts-body-glass-lighting.md": ("Body, glass and lighting", BODY_TEMPLATES),
-    "voltrieve-parts-electrical-charging.md": ("Electrical and charging", ELECTRICAL_TEMPLATES),
-    "voltrieve-parts-service-items.md": ("Service items and accessories", SERVICE_TEMPLATES),
+# File name: (title, original templates, templates added after the first edition).
+DOCUMENTS: dict[str, tuple[str, list[Template], list[Template]]] = {
+    "voltrieve-parts-brakes.md": ("Brake system", BRAKE_TEMPLATES, []),
+    "voltrieve-parts-suspension-steering.md": ("Suspension and steering", SUSPENSION_TEMPLATES, []),
+    "voltrieve-parts-body-glass-lighting.md": ("Body, glass and lighting", BODY_TEMPLATES, []),
+    "voltrieve-parts-electrical-charging.md": ("Electrical and charging", ELECTRICAL_TEMPLATES, []),
+    "voltrieve-parts-service-items.md": ("Service items and accessories", SERVICE_TEMPLATES, []),
 }
 
 
@@ -355,20 +359,21 @@ def _fit(model: CarModel, drive: str | None) -> Fit:
 
 def build_parts(catalog: Catalog) -> list[Part]:
     parts: list[Part] = []
-    for document, (_, templates) in DOCUMENTS.items():
-        for template in templates:
-            for models, drive in _groups(template, catalog.models):
-                spec = template.spec
-                if callable(spec):
-                    spec = spec(models[0], drive)
-                article = f"VP-{FIRST_ARTICLE + ARTICLE_STEP * len(parts)}"
-                parts.append(
-                    Part(
-                        article, template.key, document, template.system, template.name,
-                        template.position, spec, template.quantity,
-                        tuple(_fit(m, drive) for m in models),
-                    )
+    originals = [(doc, t) for doc, (_, templates, _) in DOCUMENTS.items() for t in templates]
+    added = [(doc, t) for doc, (_, _, templates) in DOCUMENTS.items() for t in templates]
+    for document, template in originals + added:
+        for models, drive in _groups(template, catalog.models):
+            spec = template.spec
+            if callable(spec):
+                spec = spec(models[0], drive)
+            article = f"VP-{FIRST_ARTICLE + ARTICLE_STEP * len(parts)}"
+            parts.append(
+                Part(
+                    article, template.key, document, template.system, template.name,
+                    template.position, spec, template.quantity,
+                    tuple(_fit(m, drive) for m in models),
                 )
+            )
     return parts
 
 
