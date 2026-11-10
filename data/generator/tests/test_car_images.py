@@ -134,3 +134,24 @@ def test_no_shot_list_means_every_shot_of_each_car(tmp_path):
     generate_images({"fjord": fjord}, None, tmp_path, run=fake(calls))
     made = [Path(cmd[cmd.index("-o") + 1]).stem for cmd in calls]
     assert made == list(fjord.shots) and made[:2] == ["master_front", "master_rear"]
+
+
+def test_rate_limited_calls_wait_and_retry(tmp_path):
+    calls, waits = [], []
+    ok = fake(calls)
+
+    def limited(cmd, **kwargs):
+        if len(calls) < 2:
+            calls.append(cmd)
+
+            class Limited:
+                returncode = 1
+                stderr = "Error: Microsoft Foundry API error (HTTP 429): rate limit"
+
+            return Limited()
+        return ok(cmd, **kwargs)
+
+    created = generate_images({"fjord": FJORD}, ["master_front"], tmp_path, run=limited, wait=waits.append)
+    assert len(created) == 1 and len(calls) == 3 and len(waits) == 2
+    log = (tmp_path / "generation-log.jsonl").read_text().splitlines()
+    assert len(log) == 1  # one image, one log line

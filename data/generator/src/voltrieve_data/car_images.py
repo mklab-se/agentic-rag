@@ -7,6 +7,7 @@ so an image made months later still shows the same car as its studio master.
 import json
 import subprocess
 import threading
+import time
 from concurrent.futures import ThreadPoolExecutor
 from datetime import UTC, datetime
 from pathlib import Path
@@ -17,6 +18,7 @@ from pydantic import BaseModel
 DEFAULT_CARS = Path(__file__).parents[3] / "design" / "cars.yaml"
 REAR_SHOTS = frozenset({"master_rear", "rear_outdoor", "practical"})
 _LOG_LOCK = threading.Lock()
+RATE_LIMIT_WAITS = (30, 60, 90, 120, 180)  # seconds; a refused (HTTP 429) call is not billed
 
 
 class CarIdentity(BaseModel):
@@ -90,7 +92,7 @@ def _refs(slug: str, shot: str, out_dir: Path) -> list[Path]:
     return refs
 
 
-def _generate_car(car: CarIdentity, shots: list[str] | None, out_dir: Path, run) -> list[Path]:
+def _generate_car(car: CarIdentity, shots: list[str] | None, out_dir: Path, run, wait) -> list[Path]:
     created = []
     (out_dir / car.slug).mkdir(parents=True, exist_ok=True)
     for shot in shots or list(car.shots):
@@ -103,6 +105,11 @@ def _generate_car(car: CarIdentity, shots: list[str] | None, out_dir: Path, run)
         for ref in refs:
             cmd += ["--ref", str(ref)]
         result = run(cmd, capture_output=True, text=True)
+        for delay in RATE_LIMIT_WAITS:
+            if result.returncode == 0 or "HTTP 429" not in (result.stderr or ""):
+                break
+            wait(delay)
+            result = run(cmd, capture_output=True, text=True)
         ok = result.returncode == 0 and target.exists()
         _log(out_dir, car.slug, shot, refs, ok, "" if ok else (result.stderr or "").strip()[:300])
         if ok:
@@ -125,17 +132,19 @@ def _log(out_dir: Path, slug: str, shot: str, refs: list[Path], ok: bool, error:
 
 
 def generate_images(
-    cars: dict[str, CarIdentity], shots: list[str] | None, out_dir: Path, run=subprocess.run
+    cars: dict[str, CarIdentity], shots: list[str] | None, out_dir: Path, run=subprocess.run,
+    wait=time.sleep,
 ) -> list[Path]:
     """Generate missing images, one car per thread (shots in order, so masters come first).
 
     With no shot list, each car gets every shot it has, its variant shots included.
+    A rate-limited call waits and is retried (RATE_LIMIT_WAITS).
 
     Existing files are skipped, so a rerun never pays for an image twice.
     """
     out_dir.mkdir(parents=True, exist_ok=True)
     with ThreadPoolExecutor(max_workers=len(cars) or 1) as pool:
-        results = pool.map(lambda car: _generate_car(car, shots, out_dir, run), cars.values())
+        results = pool.map(lambda car: _generate_car(car, shots, out_dir, run, wait), cars.values())
     return [path for created in results for path in created]
 
 
