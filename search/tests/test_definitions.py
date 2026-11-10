@@ -100,3 +100,15 @@ def test_documents_descriptions_name_the_sales_folders():
         description = json.loads((folder / name).read_text(encoding="utf-8"))["description"]
         for kind in ("price list", "accessories", "warranty", "charging guide", "service guide"):
             assert kind in description, (name, kind)
+
+
+def test_parts_descriptions_name_the_new_catalogs():
+    import json
+    from pathlib import Path
+
+    folder = Path(__file__).resolve().parents[1] / "definitions"
+    for name in ("07-parts-datasource.json", "08-parts-index.json", "11-parts-knowledge-source.json",
+                 "12-parts-knowledge-base.json"):
+        description = json.loads((folder / name).read_text(encoding="utf-8"))["description"]
+        for kind in ("tyres", "interior"):
+            assert kind in description, (name, kind)

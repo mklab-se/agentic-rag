@@ -23,6 +23,10 @@ class DealerClient:
         params = {k: v for k, v in {"model": model, "city": city}.items() if v}
         return await self._call("GET", "/stock", params=params)
 
+    async def part_stock(self, article: str, city: str | None = None) -> str:
+        params = {k: v for k, v in {"article": article, "city": city}.items() if v}
+        return await self._call("GET", "/parts/stock", params=params)
+
     async def prices(self, market: str = "SE") -> str:
         return await self._call("GET", "/prices", params={"market": market})
 

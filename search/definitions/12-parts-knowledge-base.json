@@ -1,6 +1,6 @@
 {
   "name": "voltrieve-parts-kb",
-  "description": "Voltrieve spare parts catalogs: article numbers, part descriptions, positions on the car and the vehicles each part fits.",
+  "description": "Voltrieve spare parts catalogs (brakes, suspension and steering, body, glass and lighting, electrical and charging, service items, wheels and tyres, interior and controls): article numbers, part descriptions, positions on the car and the vehicles each part fits.",
   "knowledgeSources": [
     {
       "name": "voltrieve-parts-ks"

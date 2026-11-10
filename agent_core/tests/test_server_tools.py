@@ -278,3 +278,42 @@ def test_docs_description_names_every_sales_document():
     for kind in ("brochure", "price list", "technical specifications", "accessories catalog",
                  "buyer's guide", "charging guide", "warranty", "service guide", "financing"):
         assert kind in docs, kind
+
+
+def test_part_stock_tool_schema_and_description():
+    from voltrieve_agent.server_tools import CITIES
+
+    tool = next(t for t in build_server_tools(None, None) if t.name == "check_part_stock")
+    params = tool.parameters
+    assert params["required"] == ["article"]
+    assert params["properties"]["article"]["pattern"] == "^VP-\\d{5}$"
+    assert params["properties"]["city"]["enum"] == CITIES
+    assert "search_spare_parts" in tool.description
+
+
+@respx.mock
+async def test_part_stock_tool_calls_the_dealer(tools, booker, events):
+    route = respx.get(f"{BASE}/parts/stock").respond(200, json={"article": "VP-10007", "rows": []})
+    out = await tools[0].execute("check_part_stock", json.dumps({"article": "VP-10007", "city": "Stockholm"}),
+                                 booker, events)
+    assert json.loads(out)["article"] == "VP-10007"
+    assert dict(route.calls.last.request.url.params) == {"article": "VP-10007", "city": "Stockholm"}
+
+
+@respx.mock
+async def test_part_stock_tool_rejects_a_city_or_article_the_dealer_does_not_know(tools, booker, events):
+    route = respx.get(f"{BASE}/parts/stock").respond(
+        404, json={"detail": "Unknown article: VP-00001, not a Voltrieve article number"})
+    bad_city = await tools[0].execute("check_part_stock", json.dumps({"article": "VP-10007", "city": "Gothenburg"}),
+                                      booker, events)
+    bad_form = await tools[0].execute("check_part_stock", json.dumps({"article": "10007"}), booker, events)
+    assert bad_city.startswith("Error: invalid arguments") and bad_form.startswith("Error: invalid arguments")
+    assert not route.called
+    unknown = await tools[0].execute("check_part_stock", json.dumps({"article": "VP-00001"}), booker, events)
+    assert "not a Voltrieve article number" in unknown
+
+
+def test_parts_description_names_the_new_catalogs():
+    parts = next(t for t in build_server_tools(None, None) if t.name == "search_spare_parts").description
+    for kind in ("tyres", "interior", "body", "lighting"):
+        assert kind in parts, kind

@@ -29,9 +29,11 @@ DOCS_DESCRIPTION = (
     "numbers are not here."
 )
 PARTS_DESCRIPTION = (
-    "The Voltrieve spare parts catalogs: article numbers, part descriptions, positions on the "
-    "car and the vehicles each part fits. Use to find a part or an article number. It does not "
-    "say which parts a job needs or how to do the work."
+    "The Voltrieve spare parts catalogs: brakes, suspension and steering, body, glass and "
+    "lighting, electrical and charging, service items, wheels and tyres, and interior and "
+    "controls. Article numbers, part descriptions, positions on the car and the vehicles each "
+    "part fits. Use to find a part or an article number. It does not say which parts a job needs "
+    "or how to do the work, and it has no stock: check_part_stock has that."
 )
 SEARCHING_DOCUMENTS = ("searching_documents", "Searching the documents")
 SEARCHING_PARTS = ("searching_parts", "Searching the parts catalog")
@@ -58,6 +60,9 @@ def build_server_tools(
 
     async def check_stock(args: dict, user: UserContext) -> str:
         return await dealer.stock(args.get("model"), args.get("city"))
+
+    async def check_part_stock(args: dict, user: UserContext) -> str:
+        return await dealer.part_stock(args["article"], args.get("city"))
 
     async def get_prices(args: dict, user: UserContext) -> str:
         return await dealer.prices(args.get("market", "SE"))
@@ -118,6 +123,22 @@ def build_server_tools(
             schema({"model": MODEL_PROPERTY, "city": CITY_PROPERTY}),
             check_stock,
             status=("checking_stock", "Checking stock"),
+        ),
+        ServerTool(
+            "check_part_stock",
+            "Check how many of a spare part each Voltrieve dealer has in stock. Find the article "
+            "number with search_spare_parts first. With the city the user named, that city comes "
+            "first and the other dealers follow, closest first, with their distance from it.",
+            schema(
+                {
+                    "article": {"type": "string", "pattern": "^VP-\\d{5}$",
+                                "description": "Spare part article number, such as VP-10007"},
+                    "city": CITY_PROPERTY,
+                },
+                ["article"],
+            ),
+            check_part_stock,
+            status=("checking_part_stock", "Checking parts stock"),
         ),
         ServerTool(
             "get_prices",

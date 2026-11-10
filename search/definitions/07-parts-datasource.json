@@ -1,6 +1,6 @@
 {
   "name": "voltrieve-parts-ds",
-  "description": "Voltrieve spare parts catalogs in blob storage.",
+  "description": "Voltrieve spare parts catalogs in blob storage: brakes, suspension and steering, body, glass and lighting, electrical and charging, service items, wheels and tyres, and interior and controls.",
   "type": "azureblob",
   "credentials": {
     "connectionString": "ResourceId={{STORAGE_RESOURCE_ID}};"

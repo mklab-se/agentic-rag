@@ -16,3 +16,11 @@ def test_only_the_agents_that_can_run_searches_together_are_told_to():
     assert "same step, never one after" not in PROMPT_AGENT_INSTRUCTIONS
     assert "Call no other tool before you search" in PROMPT_AGENT_INSTRUCTIONS
     assert "{ORDER_OF_SOURCES}" not in AGENT_INSTRUCTIONS + PROMPT_AGENT_INSTRUCTIONS
+
+
+def test_instructions_explain_parts_stock_answers():
+    from voltrieve_agent.instructions import AGENT_INSTRUCTIONS, PROMPT_AGENT_INSTRUCTIONS
+
+    for text in (AGENT_INSTRUCTIONS, PROMPT_AGENT_INSTRUCTIONS):
+        assert "check_part_stock" in text and "closest" in text
+        assert "never help with a repair or a part" not in text
