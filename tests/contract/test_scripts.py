@@ -251,3 +251,10 @@ def test_sales_checks_accept_the_usual_wording():
                              "and the Winter pack")[0]
     pack = {"type": "pack_trims", "model": "fjord", "pack": "Sound"}
     assert facts.check(pack, "The Sound pack is included on Fjord Prime. It's optional on Fjord Pure and Plus.")[0]
+
+
+def test_pack_check_fails_an_answer_that_includes_the_wrong_trim():
+    facts, _ = _facts()
+    pack = {"type": "pack_trims", "model": "fjord", "pack": "Sound"}
+    assert not facts.check(pack, "The Sound pack is included on the Fjord Plus and Prime, and is not on the Pure.")[0]
+    assert facts.check(pack, "It is standard on the Fjord Prime, and not available as standard on Pure or Plus.")[0]

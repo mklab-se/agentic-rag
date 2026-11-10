@@ -155,3 +155,22 @@ def test_rate_limited_calls_wait_and_retry(tmp_path):
     assert len(created) == 1 and len(calls) == 3 and len(waits) == 2
     log = (tmp_path / "generation-log.jsonl").read_text().splitlines()
     assert len(log) == 1  # one image, one log line
+
+
+def test_each_car_names_its_catalog_hero_color_and_wheel():
+    for slug, car in WITH_VARIANTS.items():
+        model = CATALOG.by_slug(slug)
+        assert car.color == next(c.key for c in model.colors if c.hero)
+        assert car.wheel in {w.key for w in model.wheels}
+        wheel = next(w for w in model.wheels if w.key == car.wheel)
+        assert car.wheels.startswith(f"{wheel.inches} inch")
+
+
+def test_an_unknown_wheel_key_fails_loading(tmp_path):
+    import pytest
+
+    text = CARS.read_text(encoding="utf-8").replace("wheel: fern_20", "wheel: fern_99")
+    bad = tmp_path / "cars.yaml"
+    bad.write_text(text, encoding="utf-8")
+    with pytest.raises(ValueError, match="fern_99"):
+        load_identities(bad, CATALOG)

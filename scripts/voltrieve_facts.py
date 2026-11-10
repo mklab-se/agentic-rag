@@ -166,9 +166,17 @@ def _check_sales(expect: dict, answer: str, cat) -> tuple[bool, str]:
     if kind == "pack_trims":
         included = [t.name for t in model.trims if expect["pack"] in t.includes_packs]
         others = [t.name for t in model.trims if t.name not in included]
-        # A trim that does not include the pack may be named only as not having it.
-        ok = all(t.lower() in lowered for t in included) and (
-            declines(answer) or "option" in lowered or not any(t.lower() in lowered for t in others))
+        # A trim that does not include the pack may be named only in a clause that says it does
+        # not have it, or that it is an option.
+        def named(trim: str, text: str) -> bool:
+            return re.search(rf"\b{trim.lower()}\b", text) is not None
+
+        clauses = re.split(r"[.;,:\n]", lowered.replace("’", "'"))
+        wrong = any(
+            named(t, clause) and not re.search(r"\bnot\b|n't\b|\bno\b|\bwithout\b|option", clause)
+            for clause in clauses for t in others
+        )
+        ok = all(named(t, lowered) for t in included) and not wrong
         return ok, f"{expect['pack']} pack included on {', '.join(included)}"
     if kind == "financing":
         trim, drive = cat.financing_car(model)

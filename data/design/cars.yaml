@@ -26,6 +26,8 @@ cars:
     paint: >-
       Warm saffron yellow solid paint, with a contrasting gloss white roof and white mirror caps.
     cladding: Thick matte black protective cladding along the lower doors and wheel arches.
+    color: saffron  # the catalog key of the hero color the paint text describes
+    wheel: pebble_white  # the catalog key of the wheel the wheels text describes
     wheels: >-
       17 inch flat aero wheel covers in white and light grey with five small round holes near the
       rim and a small V in the center, on narrow tires.
@@ -52,6 +54,8 @@ cars:
       Coral red-orange metallic paint with visible metallic flake, a gloss black glass roof and
       black mirror caps.
     cladding: Slim gloss black side sills.
+    color: coral  # the catalog key of the hero color the paint text describes
+    wheel: turbine_19  # the catalog key of the wheel the wheels text describes
     wheels: >-
       19 inch alloy wheels with ten thin twisted turbine spokes, two-tone diamond-cut silver and
       gloss black.
@@ -75,6 +79,8 @@ cars:
       band across the tailgate, and one bright orange tow eye in the lower bumper.
     paint: Deep olive moss green paint with a satin finish.
     cladding: Wide matte black textured cladding on all wheel arches and sills.
+    color: moss  # the catalog key of the hero color the paint text describes
+    wheel: trail_19  # the catalog key of the wheel the wheels text describes
     wheels: >-
       19 inch dark gunmetal grey alloy wheels with five thick spokes and large openings, on chunky
       all-terrain tires with plain black sidewalls.
@@ -100,6 +106,8 @@ cars:
       wrap around the rear corners. All rear lights are horizontal.
     paint: Deep glacier blue metallic paint.
     cladding: Body-colored lower bumpers with a thin satin aluminium sill strip.
+    color: glacier_blue  # the catalog key of the hero color the paint text describes
+    wheel: fern_20  # the catalog key of the wheel the wheels text describes
     wheels: >-
       20 inch alloy wheels with fifteen thin straight spokes in bright diamond-cut silver, like a
       fern pattern.
@@ -126,6 +134,8 @@ cars:
       Glacier white pearl paint with a gloss black roof and subtle brushed copper accents on the
       lower front bumper and side sills.
     cladding: Gloss black lower trim with brushed copper accent strips.
+    color: glacier_white  # the catalog key of the hero color the paint text describes
+    wheel: monolith_22  # the catalog key of the wheel the wheels text describes
     wheels: >-
       22 inch two-tone alloy wheels with six wide flat aerodynamic spokes, gloss black with
       machined silver spoke faces.

@@ -32,6 +32,8 @@ class CarIdentity(BaseModel):
     interior: str
     landscape: str
     plate: str
+    color: str  # catalog key of the hero color that `paint` describes
+    wheel: str  # catalog key of the wheel that `wheels` describes
     common: str
     shots: dict[str, str]
     paint_for: dict[str, str] = {}  # variant shot -> paint text that replaces the car's own
@@ -47,6 +49,11 @@ def load_identities(path: Path = DEFAULT_CARS, catalog=None) -> dict[str, CarIde
         shots, paint_for, wheels_for = dict(data["shots"]), {}, {}
         if catalog is not None:
             model = catalog.by_slug(slug)
+            hero = next(c.key for c in model.colors if c.hero)
+            if car["color"] != hero:
+                raise ValueError(f"{slug}: color {car['color']!r} is not the catalog hero color {hero!r}")
+            if car["wheel"] not in {w.key for w in model.wheels}:
+                raise ValueError(f"{slug}: wheel {car['wheel']!r} is not a {model.name} wheel in the catalog")
             for color in model.colors:
                 if not color.hero:
                     shot = f"color_{color.key}"
