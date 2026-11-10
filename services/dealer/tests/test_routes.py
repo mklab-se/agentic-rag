@@ -111,3 +111,62 @@ def test_today_is_the_dealers_date_not_the_hosts():
     from app.data import DEALER_TIMEZONE
 
     assert today() == dt.datetime.now(DEALER_TIMEZONE).date()
+
+
+def _parts_stock():
+    import json
+    from pathlib import Path
+
+    return json.loads((Path(__file__).parents[1] / "app" / "parts-stock.json").read_text(encoding="utf-8"))
+
+
+def _article_out_in(city: str) -> str:
+    """An article that is out of stock in the city and in stock somewhere else."""
+    stock = _parts_stock()["stock"]
+    return next(a for a, by in stock.items() if by[city] == 0 and any(by.values()))
+
+
+async def test_part_stock_with_city_orders_by_distance(settings, validator, auth_header):
+    data = _parts_stock()
+    article = _article_out_in("Stockholm")
+    async with client(settings, validator) as c:
+        r = await c.get("/parts/stock", params={"article": article, "city": "Stockholm"}, headers=auth_header)
+    assert r.status_code == 200
+    body = r.json()
+    assert body["article"] == article
+    cities = [row["city"] for row in body["rows"]]
+    assert cities == ["Stockholm", "Uppsala", "Göteborg", "Malmö"]
+    assert body["rows"][0] == {"city": "Stockholm", "in_stock": 0, "distance_km": None}
+    for row in body["rows"][1:]:
+        assert row["distance_km"] == data["distances_km"]["Stockholm"][row["city"]]
+        assert row["in_stock"] == data["stock"][article][row["city"]]
+
+
+async def test_part_stock_without_city_has_no_distances(settings, validator, auth_header):
+    article = _article_out_in("Malmö")
+    async with client(settings, validator) as c:
+        r = await c.get("/parts/stock", params={"article": article}, headers=auth_header)
+    rows = r.json()["rows"]
+    assert all(row["distance_km"] is None for row in rows)
+    counts = [row["in_stock"] for row in rows]
+    assert counts == sorted(counts, reverse=True)
+
+
+async def test_part_stock_unknown_article_is_404(settings, validator, auth_header):
+    async with client(settings, validator) as c:
+        r = await c.get("/parts/stock", params={"article": "VP-00001"}, headers=auth_header)
+    assert r.status_code == 404
+    assert "not a Voltrieve article number" in r.json()["detail"]
+
+
+async def test_part_stock_unknown_city_is_422_and_names_cities(settings, validator, auth_header):
+    article = _article_out_in("Stockholm")
+    async with client(settings, validator) as c:
+        r = await c.get("/parts/stock", params={"article": article, "city": "Gothenburg"}, headers=auth_header)
+    assert r.status_code == 422
+    assert all(city in r.json()["detail"] for city in ("Stockholm", "Göteborg", "Malmö", "Uppsala"))
+
+
+async def test_part_stock_needs_auth(settings, validator):
+    async with client(settings, validator) as c:
+        assert (await c.get("/parts/stock", params={"article": "VP-10007"})).status_code == 401

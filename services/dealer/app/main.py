@@ -8,7 +8,7 @@ from fastapi import FastAPI, Request
 from app.auth import TokenValidator
 from app.data import DealerData
 from app.logging_setup import configure_logging, correlation_id
-from app.routes import DATA_PATH, build_router
+from app.routes import DATA_PATH, PARTS_STOCK_PATH, build_router
 from app.settings import Settings
 from app.telemetry import annotate_span, configure_telemetry
 
@@ -50,7 +50,7 @@ def create_app(settings: Settings, validator: TokenValidator | None = None) -> F
             )
             correlation_id.reset(token)
 
-    app.include_router(build_router(DealerData.load(DATA_PATH)))
+    app.include_router(build_router(DealerData.load(DATA_PATH, PARTS_STOCK_PATH)))
     return app
 
 

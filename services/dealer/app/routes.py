@@ -6,9 +6,10 @@ from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel, field_validator
 
 from app.auth import AuthError, Claims
-from app.data import DealerData, today
+from app.data import DealerData, UnknownArticle, UnknownCity, today
 
 DATA_PATH = Path(__file__).parent / "data.json"
+PARTS_STOCK_PATH = Path(__file__).parent / "parts-stock.json"  # written by the generator
 
 
 async def current_claims(request: Request) -> Claims:
@@ -54,6 +55,16 @@ def build_router(data: DealerData) -> APIRouter:
         except ValueError as exc:
             raise HTTPException(422, f"Unknown value: {exc}") from exc
         return {"rows": [r.__dict__ for r in rows]}
+
+    @protected.get("/parts/stock")
+    def part_stock(article: str, city: str | None = None) -> dict:
+        try:
+            rows = data.part_stock(article, city)
+        except UnknownArticle as exc:
+            raise HTTPException(404, f"Unknown article: {exc}, not a Voltrieve article number") from exc
+        except UnknownCity as exc:
+            raise HTTPException(422, f"Unknown city: {exc}. The dealers are in {', '.join(data.cities)}") from exc
+        return {"article": article, "rows": [r.__dict__ for r in rows]}
 
     @protected.get("/prices")
     def prices(market: Literal["SE", "EU"] = "SE") -> dict:
