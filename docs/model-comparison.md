@@ -80,6 +80,8 @@ On 2026-11-10 the five Word brochures and spec PDFs were replaced by 23 sales fo
 - **Document searches cost more tokens.** PDF chunks carry whole table rows and the page footer, so a document turn reads about a third more on the own loop and the hosted agent, and nearly twice as much on the prompt agent. Why the prompt agent grew more was not measured. At Terra's input price that is about USD 2 per 1,000 document turns on the own loop and USD 7.5 on the prompt agent.
 - **Latency moved little.** First text came about 0.5 s later on the prompt agent and the own loop, including on questions that do not search, so most of it is the day and the network. The new questions answer in a median 4.4 s on the own loop.
 
+Later the same day the documents descriptions the agents read were updated to name the price lists, accessories catalogs, warranty and charging guide, and all agents were redeployed. One more routing run (1 repeat, `descriptions-gpt-6.1-terra.json`) was right on every docs, parts and both question on every backend, with 39 of 39 article numbers. In the grounding check, the own loop once read "the Fjord Plus AWD in Heath" as a place called Heath, gave the price without the color and asked which Heath was meant; the same question passed 3 of 3 times when asked again.
+
 ## How the cost is estimated
 
 Cost is the tokens each turn reported, at list price: Global Standard, Sweden Central, short context, read on 2026-11-05. It covers agent tokens, cached tokens, planning tokens and Search reasoning tokens at USD 0.022 per million.
