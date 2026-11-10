@@ -169,3 +169,19 @@ shots:
   practical: >-
     Rear view with the tailgate open, the boot neatly loaded with weekend bags and outdoor gear,
     the car parked in {landscape}, 35mm lens.
+
+# Variant scenes. The shot names (color_<key>, wheel_<key>) and the paint or wheel text come
+# from the colors and wheels in data/voltrieve.yaml; everything else is the car's own identity.
+variants:
+  color: >-
+    The same car in the same pose, framing, studio and light as the reference image, front
+    three-quarter view from the front left, eye level, 50mm lens, the whole car in frame, in a
+    clean light grey studio cyclorama with soft large overhead lights and a subtle floor
+    reflection. Only the body paint is different; the lights, wheels, trim, glass and plate are
+    unchanged.
+  wheel: >-
+    Close-up of the front left wheel and tire of the same car as in the reference image, the wheel
+    filling most of the frame with the lower body, the wheel arch and the edge of the door around
+    it, camera low at wheel-hub height, 85mm lens, clean light grey studio with soft overhead
+    light. Only the wheel design is different from the reference; the paint and trim are
+    unchanged.

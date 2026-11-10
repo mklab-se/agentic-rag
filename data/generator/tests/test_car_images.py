@@ -84,3 +84,53 @@ def test_rear_master_edits_from_front(tmp_path):
 def test_every_call_is_logged(tmp_path):
     generate_images({"fjord": FJORD}, ["master_front"], tmp_path, run=fake([]))
     assert len((tmp_path / "generation-log.jsonl").read_text().splitlines()) == 1
+
+
+from voltrieve_data.load import load_catalog  # noqa: E402
+
+CATALOG = load_catalog(Path(__file__).parents[2] / "voltrieve.yaml")
+WITH_VARIANTS = load_identities(CARS, CATALOG)
+
+
+def test_color_variant_names_catalog_color():
+    fjord = WITH_VARIANTS["fjord"]
+    heath = next(c for c in CATALOG.by_slug("fjord").colors if c.key == "heath")
+    prompt = build_prompt(fjord, "color_heath")
+    assert f"{heath.description} {heath.finish} paint" in prompt
+    assert fjord.paint not in prompt
+    assert fjord.plate in prompt and fjord.wheels in prompt
+
+
+def test_wheel_variant_names_catalog_wheel():
+    fjord = WITH_VARIANTS["fjord"]
+    birch = next(w for w in CATALOG.by_slug("fjord").wheels if w.key == "birch_19")
+    prompt = build_prompt(fjord, "wheel_birch_19")
+    assert f"{birch.inches} inch alloy wheels with {birch.description}" in prompt
+    assert fjord.wheels not in prompt
+    assert fjord.paint in prompt
+
+
+def test_variant_shots_follow_the_catalog():
+    for slug, car in WITH_VARIANTS.items():
+        model = CATALOG.by_slug(slug)
+        expected = {f"color_{c.key}" for c in model.colors if not c.hero} | {f"wheel_{w.key}" for w in model.wheels}
+        variants = {shot for shot in car.shots if shot.startswith(("color_", "wheel_"))}
+        assert variants == expected
+
+
+def test_variants_edit_from_the_front_master(tmp_path):
+    calls = []
+    generate_images({"fjord": WITH_VARIANTS["fjord"]}, ["color_heath"], tmp_path, run=fake(calls))
+    assert calls[0][calls[0].index("--ref") + 1].endswith("fjord/master_front.png")
+
+
+def test_without_a_catalog_there_are_no_variants():
+    assert not any(shot.startswith(("color_", "wheel_")) for shot in load_identities(CARS)["fjord"].shots)
+
+
+def test_no_shot_list_means_every_shot_of_each_car(tmp_path):
+    calls = []
+    fjord = WITH_VARIANTS["fjord"]
+    generate_images({"fjord": fjord}, None, tmp_path, run=fake(calls))
+    made = [Path(cmd[cmd.index("-o") + 1]).stem for cmd in calls]
+    assert made == list(fjord.shots) and made[:2] == ["master_front", "master_rear"]

@@ -27,6 +27,7 @@ EMBLEM = (
 
 _MD = MarkdownIt("commonmark", {"html": False}).enable("table")
 _IMG = re.compile(r'<p>\s*<img src="([^"]+)" alt="([^"]*)"\s*/?>\s*</p>')
+_GALLERY = re.compile(r"(?:<figure[^>]*>.*?</figure>\s*){2,}", re.DOTALL)
 
 
 def _fonts_css() -> str:
@@ -66,11 +67,13 @@ def _figure(ref: str, alt: str, images_dir: Path) -> str:
 
 def _section(md: str, images_dir: Path, index: int, brochure: bool) -> str:
     body = _MD.render(md)
+    if not brochure:
+        # Portrait pages keep each image where it is written; images in a row form a gallery.
+        text = _IMG.sub(lambda m: _figure(m[1], m[2], images_dir), body)
+        text = _GALLERY.sub(lambda m: f'<div class="gallery">{m[0]}</div>', text)
+        return f'<section class="flow">{text}</section>'
     figures = [_figure(ref, alt, images_dir) for ref, alt in _IMG.findall(body)]
     text = _IMG.sub("", body)
-    if not brochure:
-        return f'<section class="flow">{text.replace("</h1>", "</h1>" + "".join(figures[:1]), 1)}' \
-               f'{"".join(figures[1:])}</section>'
     if index == 0:
         return f'<section class="page cover">{"".join(figures[:1])}<div class="cover-text">{text}</div></section>'
     kind = ("text-only", "one-image", "two-images")[len(figures)] if len(figures) < 3 else "many-images"

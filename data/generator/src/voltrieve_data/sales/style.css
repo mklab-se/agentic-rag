@@ -47,6 +47,11 @@ figure img { display: block; width: 100%; height: 100%; object-fit: cover; }
 }
 .document h1 + p { color: #50555d; margin-bottom: 6mm; }
 .document .flow figure { height: 70mm; margin: 2mm 0 6mm; }
+.document .flow .gallery {
+  display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 3mm; margin: 1mm 0 5mm;
+  break-inside: avoid;
+}
+.document .flow .gallery figure { height: 40mm; margin: 0; }
 .document h2 { break-after: avoid; }
 .document h3 { break-after: avoid; }
 .document table { break-inside: avoid; }

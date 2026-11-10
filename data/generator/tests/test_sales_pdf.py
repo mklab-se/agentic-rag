@@ -83,3 +83,17 @@ def test_html_carries_accent_and_embedded_font():
 def test_text_is_extractable_with_swedish_letters(tmp_path):
     out = write_pdf(render_markdown("price_list", cat, fjord), tmp_path / "p.pdf", fjord.accent, IMAGES, False)
     assert "förmånsvärde" in pdf_text(out)
+
+
+def test_portrait_figures_stay_where_they_are_written(tmp_path):
+    images = full_image_set(tmp_path)
+    md = "# Title\n\nIntro\n\n## Wheels\n\n![a](fjord/hero.png)\n\n![b](fjord/interior.png)\n\nAfter\n"
+    html = markdown_to_html(md, fjord.accent, images)
+    assert html.index("<h2>Wheels</h2>") < html.index('class="gallery"') < html.index("After")
+    assert html.count("<figure>") == 2
+
+
+def test_portrait_figure_without_a_title_is_kept(tmp_path):
+    images = full_image_set(tmp_path)
+    md = "# Title\n\nIntro" + "\n---\n" + "## Next page\n\n![a](fjord/hero.png)\n"
+    assert markdown_to_html(md, fjord.accent, images).count("<figure>") == 1

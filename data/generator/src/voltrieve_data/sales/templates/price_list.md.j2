@@ -67,12 +67,22 @@ Items marked "Not available" are not sold separately. Option packs can be added 
 | {{ short }} in {{ c.name }}{{ " (signature color)" if c.hero else "" }}: {{ c.description }} | {{ c.finish }} | {{ "Included" if se == 0 else (se | n) ~ " SEK" }} | {{ "Included" if eu == 0 else (eu | n) ~ " EUR" }} |
 {% endfor %}
 
+{% for c in m.colors if not c.hero %}
+![The {{ m.name }} in {{ c.name }}]({{ img("color_" ~ c.key) }})
+
+{% endfor %}
+
 ## {{ short }} wheels and interiors
 
 | Wheel | Description | Standard on |
 |---|---|---|
 {% for w in m.wheels %}
 | {{ w.inches }} inch {{ w.name }} | {{ w.description }} | {{ short }} {{ m.trims | selectattr("wheel", "equalto", w.key) | map(attribute="name") | join(" and ") }} |
+{% endfor %}
+
+{% for w in m.wheels %}
+![The {{ w.inches }} inch {{ w.name }} wheel]({{ img("wheel_" ~ w.key) }})
+
 {% endfor %}
 
 | Interior | Description | Standard on |

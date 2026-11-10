@@ -32,14 +32,31 @@ class CarIdentity(BaseModel):
     plate: str
     common: str
     shots: dict[str, str]
+    paint_for: dict[str, str] = {}  # variant shot -> paint text that replaces the car's own
+    wheels_for: dict[str, str] = {}  # variant shot -> wheel text that replaces the car's own
 
 
-def load_identities(path: Path = DEFAULT_CARS) -> dict[str, CarIdentity]:
+def load_identities(path: Path = DEFAULT_CARS, catalog=None) -> dict[str, CarIdentity]:
+    """The cars from cars.yaml. With the catalog, each car also gets its variant shots:
+    color_<key> for every optional color and wheel_<key> for every wheel, named from voltrieve.yaml."""
     data = yaml.safe_load(path.read_text(encoding="utf-8"))
-    return {
-        slug: CarIdentity(slug=slug, common=data["common"], shots=data["shots"], **car)
-        for slug, car in data["cars"].items()
-    }
+    cars = {}
+    for slug, car in data["cars"].items():
+        shots, paint_for, wheels_for = dict(data["shots"]), {}, {}
+        if catalog is not None:
+            model = catalog.by_slug(slug)
+            for color in model.colors:
+                if not color.hero:
+                    shot = f"color_{color.key}"
+                    shots[shot] = data["variants"]["color"]
+                    paint_for[shot] = f"{color.description} {color.finish} paint."
+            for wheel in model.wheels:
+                shot = f"wheel_{wheel.key}"
+                shots[shot] = data["variants"]["wheel"]
+                wheels_for[shot] = f"{wheel.inches} inch alloy wheels with {wheel.description}."
+        cars[slug] = CarIdentity(slug=slug, common=data["common"], shots=shots,
+                                 paint_for=paint_for, wheels_for=wheels_for, **car)
+    return cars
 
 
 SHOTS: dict[str, str] = yaml.safe_load(DEFAULT_CARS.read_text(encoding="utf-8"))["shots"]
@@ -54,9 +71,9 @@ def build_prompt(car: CarIdentity, shot: str) -> str:
             car.common,
             f"The car: {car.shape}",
             f"Signature lights: {signature}",
-            f"Paint: {car.paint}",
+            f"Paint: {car.paint_for.get(shot, car.paint)}",
             car.cladding,
-            f"Wheels: {car.wheels}",
+            f"Wheels: {car.wheels_for.get(shot, car.wheels)}",
             f"License plate text: {car.plate}.",
             scene,
         ]
@@ -73,10 +90,10 @@ def _refs(slug: str, shot: str, out_dir: Path) -> list[Path]:
     return refs
 
 
-def _generate_car(car: CarIdentity, shots: list[str], out_dir: Path, run) -> list[Path]:
+def _generate_car(car: CarIdentity, shots: list[str] | None, out_dir: Path, run) -> list[Path]:
     created = []
     (out_dir / car.slug).mkdir(parents=True, exist_ok=True)
-    for shot in shots:
+    for shot in shots or list(car.shots):
         target = out_dir / car.slug / f"{shot}.png"
         if target.exists():
             continue
@@ -108,9 +125,11 @@ def _log(out_dir: Path, slug: str, shot: str, refs: list[Path], ok: bool, error:
 
 
 def generate_images(
-    cars: dict[str, CarIdentity], shots: list[str], out_dir: Path, run=subprocess.run
+    cars: dict[str, CarIdentity], shots: list[str] | None, out_dir: Path, run=subprocess.run
 ) -> list[Path]:
     """Generate missing images, one car per thread (shots in order, so masters come first).
+
+    With no shot list, each car gets every shot it has, its variant shots included.
 
     Existing files are skipped, so a rerun never pays for an image twice.
     """

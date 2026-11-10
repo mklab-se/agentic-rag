@@ -146,3 +146,14 @@ def test_charge_time_is_plausible():
 
 def test_image_ref_is_relative():
     assert image_ref("fjord", "hero") == "fjord/hero.png"
+
+
+def test_price_list_shows_wheels_and_optional_colors():
+    from voltrieve_data.sales.render import image_ref
+
+    m = cat.by_slug("fjord")
+    md = render_markdown("price_list", cat, m)
+    for w in m.wheels:
+        assert image_ref("fjord", f"wheel_{w.key}") in md
+    for c in m.colors:
+        assert (image_ref("fjord", f"color_{c.key}") in md) is (not c.hero)
