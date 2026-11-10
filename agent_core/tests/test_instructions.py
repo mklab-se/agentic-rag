@@ -24,3 +24,10 @@ def test_instructions_explain_parts_stock_answers():
     for text in (AGENT_INSTRUCTIONS, PROMPT_AGENT_INSTRUCTIONS):
         assert "check_part_stock" in text and "closest" in text
         assert "never help with a repair or a part" not in text
+
+
+def test_an_article_number_needs_no_model():
+    from voltrieve_agent.instructions import AGENT_INSTRUCTIONS, PROMPT_AGENT_INSTRUCTIONS
+
+    for text in (AGENT_INSTRUCTIONS, PROMPT_AGENT_INSTRUCTIONS):
+        assert "article number already names the part" in text

@@ -332,3 +332,20 @@ def test_no_engine_oil_check():
     expect = {"type": "no_engine_oil", "model": "ragn"}
     assert facts.check(expect, f"The Ragn does not use engine oil. Its only oil is reduction gear oil, {oil}.")[0]
     assert not facts.check(expect, "Use engine oil VP-12345.")[0]
+
+
+def _jwt(seconds_left: int) -> str:
+    import base64
+    import time
+
+    body = base64.urlsafe_b64encode(json.dumps({"exp": int(time.time()) + seconds_left}).encode()).decode().rstrip("=")
+    return f"e30.{body}.sig"
+
+
+def test_cached_token_is_refetched_before_it_expires():
+    tokens = iter([_jwt(120), _jwt(3600), _jwt(3600)])
+    get = voltrieve_client.cached_token(lambda: next(tokens))
+    first = get()
+    assert get() != first  # two minutes left is too little for a long run
+    second = get()
+    assert get() == second  # an hour left is kept

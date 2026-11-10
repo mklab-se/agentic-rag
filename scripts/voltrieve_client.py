@@ -5,6 +5,7 @@ Standard library plus httpx. Talks to the deployed API with an Entra token from 
 
 from __future__ import annotations
 
+import base64
 import datetime as dt
 import json
 import os
@@ -187,11 +188,24 @@ class Api:
         raise ApiError(0, "too many client tool rounds")
 
 
-def cached_token(fetch: Callable[[], str], ttl: float = 1200.0) -> Callable[[], str]:
+def _seconds_left(token: str) -> float:
+    """Seconds until a JWT expires; infinity when it carries no readable expiry."""
+    try:
+        body = token.split(".")[1]
+        claims = json.loads(base64.urlsafe_b64decode(body + "=" * (-len(body) % 4)))
+        return claims["exp"] - time.time()
+    except (IndexError, ValueError, KeyError):
+        return float("inf")
+
+
+def cached_token(fetch: Callable[[], str], ttl: float = 1200.0, margin: float = 600.0) -> Callable[[], str]:
+    """Refetch after ttl seconds, or sooner when the token has less than margin seconds left:
+    the az CLI hands back its own cached token, which may be close to expiring."""
     state: dict = {"value": None, "at": 0.0}
 
     def get() -> str:
-        if state["value"] is None or time.monotonic() - state["at"] > ttl:
+        stale = state["value"] is None or time.monotonic() - state["at"] > ttl
+        if stale or _seconds_left(state["value"]) < margin:
             state["value"], state["at"] = fetch(), time.monotonic()
         return state["value"]
 
