@@ -2,9 +2,67 @@ company:
   name: Voltrieve
   tagline: Electric cars that retrieve the joy of driving
 markets:
-  - { code: SE, currency: SEK }
-  - { code: EU, currency: EUR }
+  - { code: SE, currency: SEK, price_rounding: 1000 }
+  - { code: EU, currency: EUR, price_rounding: 100 }
 awd_surcharge: { SE: 40000, EU: 3600 }
+# Plus and Prime are priced as a share above Pure, rounded per market. Pure is the list price.
+trim_steps: { Pure: 0.0, Plus: 0.08, Prime: 0.16 }
+# Price of a color by finish. The hero color of each model is always included.
+color_prices:
+  solid: { SE: 0, EU: 0 }
+  metallic: { SE: 9900, EU: 900 }
+  pearl: { SE: 9900, EU: 900 }
+  satin: { SE: 14900, EU: 1350 }
+# Fictional terms from Voltrieve Financial Services, used for the worked example in the price lists.
+financing:
+  SE: { nominal_rate: 0.0495, deposit_share: 0.20, residual_share: 0.50, months: 36, setup_fee: 695, monthly_admin_fee: 59 }
+  EU: { nominal_rate: 0.0445, deposit_share: 0.20, residual_share: 0.50, months: 36, setup_fee: 75, monthly_admin_fee: 6 }
+warranty:
+  vehicle_years: 3
+  vehicle_km: 100000
+  battery_years: 8
+  battery_km: 160000
+  battery_min_capacity_percent: 70
+  paint_years: 3
+  corrosion_years: 12
+  roadside_years: 3
+  service_interval_months: 24
+  service_interval_km: 30000
+  notes:
+    - The new car warranty covers defects in materials and workmanship for the whole car.
+    - The battery warranty covers the high voltage battery, its modules and its control units. A battery that falls below 70 % of its original usable capacity within the period is repaired or replaced at no cost.
+    - Roadside assistance is renewed for one year at each scheduled service at an authorised Voltrieve workshop, for as long as the car is serviced there.
+    - Wear items such as tyres, brake pads, brake discs and wiper blades are not covered, and neither is damage from accidents, misuse or missing maintenance.
+    - The warranty follows the car when it changes owner.
+service_plans:
+  - name: Voltrieve Care
+    years: 3
+    km: 60000
+    includes: [scheduled services, brake fluid change, cabin air filter, wiper blades, software updates at the workshop]
+    price_per_month: { SE: 249, EU: 24 }
+  - name: Voltrieve Care Plus
+    years: 5
+    km: 100000
+    includes: [everything in Voltrieve Care, brake pads and discs, 12 V battery, seasonal tyre change and storage, a courtesy car at each service]
+    price_per_month: { SE: 549, EU: 52 }
+# Sold by dealers. "part" points at a spare part (the article number comes from the parts data);
+# accessories that are not spare parts carry their own article number.
+accessories:
+  floor_mats: { name: All weather floor mats, description: "Set of 4 tailored rubber mats with raised edges", part: floor_mats, price: { SE: 1490, EU: 135 } }
+  tow_bar: { name: Electric tow bar, description: "Electrically deployable tow bar with trailer stability control, retrofitted at the dealer, fitting included", part: tow_bar, price: { SE: 16900, EU: 1550 } }
+  bike_carrier: { name: Bike carrier for the tow bar, description: "Tilting carrier for 2 bikes or e-bikes, up to 60 kg", article: VA-9031, price: { SE: 6490, EU: 595 } }
+  home_charger: { name: Voltrieve Home Charger, description: "22 kW wall box with type 2 cable and app control, installation not included", article: VA-9001, price: { SE: 11900, EU: 1090 } }
+  charge_cable_mode3: { name: Mode 3 charging cable, description: "5 m type 2 cable, 32 A, for public AC chargers", part: charge_cable_mode3, price: { SE: 2490, EU: 229 } }
+  charge_cable_mode2: { name: Portable charger, description: "Mode 2 portable charger with Schuko plug, for occasional charging from a household socket", part: charge_cable_mode2, price: { SE: 4990, EU: 459 } }
+  roof_bars: { name: Roof bars, description: "Pair of aluminium roof bars, 75 kg load", article: VA-9011, price: { SE: 3990, EU: 365 } }
+  roof_box: { name: Roof box, description: "420 litre roof box with dual side opening, fits on the roof bars", article: VA-9021, price: { SE: 7990, EU: 729 } }
+  locking_bolt_set: { name: Locking wheel bolts, description: "Set of 4 locking bolts with adapter", part: locking_bolt_set, price: { SE: 990, EU: 89 } }
+  tyre_repair_kit: { name: Tyre repair kit, description: "Sealant and 12 V compressor", part: tyre_repair_kit, price: { SE: 790, EU: 72 } }
+  winter_wheels_spark: { name: Winter wheels for Spark, description: "Four complete 17 inch Pebble winter wheels with studless Nordic tyres and pressure sensors", article: VA-9101, price: { SE: 12900, EU: 1190 } }
+  winter_wheels_lumen: { name: Winter wheels for Lumen, description: "Four complete 18 inch Arc winter wheels with studless Nordic tyres and pressure sensors", article: VA-9102, price: { SE: 17900, EU: 1650 } }
+  winter_wheels_ragn: { name: Winter wheels for Ragn, description: "Four complete 19 inch Trail winter wheels with studded tyres and pressure sensors", article: VA-9103, price: { SE: 22900, EU: 2100 } }
+  winter_wheels_fjord: { name: Winter wheels for Fjord, description: "Four complete 19 inch Birch winter wheels with studless Nordic tyres and pressure sensors", article: VA-9104, price: { SE: 21900, EU: 2000 } }
+  winter_wheels_atlas: { name: Winter wheels for Atlas, description: "Four complete 21 inch Monolith winter wheels with studless Nordic tyres and pressure sensors", article: VA-9105, price: { SE: 29900, EU: 2750 } }
 option_packs:
   Winter: { description: "heat pump, heated steering wheel and rear seats, battery preconditioning", price: { SE: 18000, EU: 1600 } }
   Pilot Plus: { description: "Voltrieve Pilot lane change assist and highway autopilot upgrade", price: { SE: 24000, EU: 2200 } }
@@ -29,6 +87,35 @@ models:
     tagline: Small outside, generous inside
     highlights: [turning circle of 9.8 m, 2 ISOFIX seats, one pedal driving]
     brakes: { front_disc_mm: { RWD: 280 }, rear_disc_mm: 265, front_caliper: single piston floating, rear_caliper: single piston floating }
+    trims:
+      - name: Pure
+        adds: [round LED ring headlamps, 10.25 inch touchscreen with navigation, Voltrieve Pilot 2 with adaptive cruise control, heated front seats, rear parking sensors, wireless phone charging]
+        wheel: pebble_white
+        interior: grey_textile
+      - name: Plus
+        adds: [heat pump, heated steering wheel and rear seats, battery preconditioning, rear camera, keyless entry, privacy glass]
+        includes_packs: [Winter]
+        wheel: pebble_white
+        interior: grey_textile
+      - name: Prime
+        adds: [14 speaker Voltrieve Stage audio, panoramic glass roof, heated windscreen, 17 inch Pebble wheel covers in graphite, textile seats with microsuede bolsters]
+        includes_packs: [Winter, Sound]
+        wheel: pebble_graphite
+        interior: grey_microsuede
+    colors:
+      - { key: saffron, name: Saffron, finish: solid, hero: true, description: "warm yellow with a gloss white roof and white mirror caps" }
+      - { key: snow, name: Snow, finish: solid, description: "white with a gloss black roof" }
+      - { key: fjall_mint, name: Fjäll Mint, finish: metallic, description: "pale green metallic with a gloss white roof" }
+      - { key: graphite, name: Graphite, finish: solid, description: "dark grey with a gloss white roof" }
+    wheels:
+      - { key: pebble_white, name: Pebble, inches: 17, description: "flat aero wheel covers in white and light grey with five small holes" }
+      - { key: pebble_graphite, name: Pebble, inches: 17, description: "flat aero wheel covers in graphite with five small holes" }
+    interiors:
+      - { key: grey_textile, name: Light grey textile, description: "light grey recycled textile seats and a pale wood strip across the dashboard" }
+      - { key: grey_microsuede, name: Light grey textile and microsuede, description: "recycled textile seats with microsuede bolsters and a pale wood strip across the dashboard" }
+    dimensions: { length_mm: 3700, width_mm: 1780, height_mm: 1590, wheelbase_mm: 2560, kerb_weight_kg: 1390, boot_l: 310, boot_folded_l: 1050, frunk_l: null, ground_clearance_mm: 160 }
+    accessories: [floor_mats, home_charger, charge_cable_mode3, charge_cable_mode2, roof_bars, winter_wheels_spark, locking_bolt_set, tyre_repair_kit]
+    company_car_benefit_sek: { Pure: 2150, Plus: 2350, Prime: 2550 }
   - name: Voltrieve Lumen
     slug: lumen
     segment: hatchback
@@ -47,6 +134,35 @@ models:
     tagline: Light on its feet
     highlights: [frunk of 45 litres, 11 kW onboard charger, 360 camera]
     brakes: { front_disc_mm: { RWD: 300, AWD: 320 }, rear_disc_mm: 290, front_caliper: twin piston floating, rear_caliper: single piston floating }
+    trims:
+      - name: Pure
+        adds: [heat pump, double LED light lines front and rear, 360 camera, 11 kW onboard charger, 12.3 inch driver display and floating touchscreen, Voltrieve Pilot 2 with adaptive cruise control, frunk of 45 litres]
+        wheel: arc_18
+        interior: black_coral
+      - name: Plus
+        adds: [heated steering wheel and rear seats, battery preconditioning, power tailgate, keyless entry, head-up display, 19 inch Turbine wheels]
+        includes_packs: [Winter]
+        wheel: turbine_19
+        interior: black_coral
+      - name: Prime
+        adds: [14 speaker Voltrieve Stage audio, Voltrieve Pilot Plus lane change assist and highway autopilot, sport seats with coral stitching, adaptive high beam]
+        includes_packs: [Winter, Pilot Plus, Sound]
+        wheel: turbine_19
+        interior: coral_sport
+    colors:
+      - { key: coral, name: Coral, finish: metallic, hero: true, description: "red-orange metallic with a gloss black glass roof and black mirror caps" }
+      - { key: pearl, name: Pearl, finish: pearl, description: "white pearl with a gloss black glass roof" }
+      - { key: midnight, name: Midnight, finish: metallic, description: "near-black blue metallic" }
+      - { key: silver_birch, name: Silver Birch, finish: metallic, description: "light silver metallic" }
+    wheels:
+      - { key: arc_18, name: Arc, inches: 18, description: "five double spokes in silver" }
+      - { key: turbine_19, name: Turbine, inches: 19, description: "ten thin twisted spokes, diamond-cut silver and gloss black" }
+    interiors:
+      - { key: black_coral, name: Black with coral stitching, description: "black textile seats with coral stitching and a thin coral light line across the dashboard" }
+      - { key: coral_sport, name: Sport seats, description: "black sport seats in microsuede with coral stitching and extended side support" }
+    dimensions: { length_mm: 4300, width_mm: 1840, height_mm: 1480, wheelbase_mm: 2770, kerb_weight_kg: 1780, boot_l: 380, boot_folded_l: 1260, frunk_l: 45, ground_clearance_mm: 145 }
+    accessories: [floor_mats, home_charger, charge_cable_mode3, charge_cable_mode2, roof_bars, roof_box, winter_wheels_lumen, locking_bolt_set, tyre_repair_kit]
+    company_car_benefit_sek: { Pure: 2700, Plus: 2950, Prime: 3200 }
   - name: Voltrieve Ragn
     slug: ragn
     segment: crossover
@@ -65,6 +181,35 @@ models:
     tagline: Built for the long way round
     highlights: [ground clearance of 205 mm, off road mode, 22 kW onboard charger]
     brakes: { front_disc_mm: { AWD: 350 }, rear_disc_mm: 330, front_caliper: twin piston floating, rear_caliper: single piston floating }
+    trims:
+      - name: Pure
+        adds: [heat pump, off road mode, 22 kW onboard charger, Voltrieve Pilot 3, square pixel LED lights, orange recovery hooks, black roof rails, washable textile seats]
+        wheel: trail_19
+        interior: washable_grey
+      - name: Plus
+        adds: [heated steering wheel and rear seats, battery preconditioning, power tailgate, keyless entry, 360 camera with underbody view]
+        includes_packs: [Winter]
+        wheel: trail_19
+        interior: washable_grey
+      - name: Prime
+        adds: [14 speaker Voltrieve Stage audio, Voltrieve Pilot Plus lane change assist and highway autopilot, 20 inch Trail wheels in matte black, heated windscreen, ventilated front seats in microsuede]
+        includes_packs: [Winter, Pilot Plus, Sound]
+        wheel: trail_20
+        interior: grey_microsuede
+    colors:
+      - { key: moss, name: Moss, finish: satin, hero: true, description: "deep olive green with a satin finish" }
+      - { key: granite, name: Granite, finish: satin, description: "mid grey with a satin finish" }
+      - { key: sand, name: Sand, finish: solid, description: "warm beige" }
+      - { key: night, name: Night, finish: metallic, description: "black metallic" }
+    wheels:
+      - { key: trail_19, name: Trail, inches: 19, description: "five thick spokes in gunmetal grey, on all-terrain tyres" }
+      - { key: trail_20, name: Trail, inches: 20, description: "five thick spokes in matte black, on all-terrain tyres" }
+    interiors:
+      - { key: washable_grey, name: Washable dark grey textile, description: "washable dark grey textile seats, rubber floor mats and orange pull loops" }
+      - { key: grey_microsuede, name: Dark grey microsuede, description: "ventilated dark grey microsuede front seats with orange pull loops" }
+    dimensions: { length_mm: 4600, width_mm: 1920, height_mm: 1720, wheelbase_mm: 2820, kerb_weight_kg: 2150, boot_l: 520, boot_folded_l: 1580, frunk_l: 60, ground_clearance_mm: 205 }
+    accessories: [floor_mats, tow_bar, bike_carrier, home_charger, charge_cable_mode3, charge_cable_mode2, roof_bars, roof_box, winter_wheels_ragn, locking_bolt_set, tyre_repair_kit]
+    company_car_benefit_sek: { Pure: 3700, Plus: 4000, Prime: 4300 }
   - name: Voltrieve Fjord
     slug: fjord
     segment: estate
@@ -83,6 +228,35 @@ models:
     tagline: Room for the whole weekend
     highlights: [boot of 640 litres, roof load of 100 kg, air suspension]
     brakes: { front_disc_mm: { RWD: 345, AWD: 370 }, rear_disc_mm: 330, front_caliper: twin piston floating, rear_caliper: single piston floating }
+    trims:
+      - name: Pure
+        adds: [heat pump, air suspension, LED light line with the fjord V, Voltrieve Pilot 3, 22 kW onboard charger, satin aluminium roof rails, portrait central touchscreen]
+        wheel: birch_19
+        interior: wool_blend
+      - name: Plus
+        adds: [heated steering wheel and rear seats, battery preconditioning, power tailgate with hands-free opening, keyless entry, 360 camera, 20 inch Fern wheels]
+        includes_packs: [Winter]
+        wheel: fern_20
+        interior: wool_blend
+      - name: Prime
+        adds: [14 speaker Voltrieve Stage audio, Voltrieve Pilot Plus lane change assist and highway autopilot, Nappa leather seats with ventilation and massage, head-up display, panoramic glass roof]
+        includes_packs: [Winter, Pilot Plus, Sound]
+        wheel: fern_20
+        interior: nappa
+    colors:
+      - { key: glacier_blue, name: Glacier Blue, finish: metallic, hero: true, description: "deep blue metallic" }
+      - { key: frost, name: Frost, finish: metallic, description: "white metallic" }
+      - { key: slate, name: Slate, finish: metallic, description: "dark grey metallic" }
+      - { key: heath, name: Heath, finish: metallic, description: "deep burgundy metallic" }
+    wheels:
+      - { key: birch_19, name: Birch, inches: 19, description: "ten spokes in silver" }
+      - { key: fern_20, name: Fern, inches: 20, description: "fifteen thin straight spokes in diamond-cut silver" }
+    interiors:
+      - { key: wool_blend, name: Light wool blend, description: "light wool blend seats and pale ash wood trim" }
+      - { key: nappa, name: Nappa leather, description: "light Nappa leather seats with ventilation and massage, and pale ash wood trim" }
+    dimensions: { length_mm: 4900, width_mm: 1900, height_mm: 1500, wheelbase_mm: 2980, kerb_weight_kg: 2180, boot_l: 640, boot_folded_l: 1720, frunk_l: 50, ground_clearance_mm: 150 }
+    accessories: [floor_mats, tow_bar, bike_carrier, home_charger, charge_cable_mode3, charge_cable_mode2, roof_bars, roof_box, winter_wheels_fjord, locking_bolt_set, tyre_repair_kit]
+    company_car_benefit_sek: { Pure: 3600, Plus: 3900, Prime: 4200 }
   - name: Voltrieve Atlas
     slug: atlas
     segment: large SUV
@@ -101,9 +275,37 @@ models:
     tagline: Seven seats, zero compromise
     highlights: [seven seats, 3.5 kW vehicle to load outlet, rear wheel steering]
     brakes: { front_disc_mm: { AWD: 400 }, rear_disc_mm: 360, front_caliper: six piston fixed, rear_caliper: twin piston floating }
+    trims:
+      - name: Pure
+        adds: [heat pump, seven seats in three rows, rear wheel steering, air suspension, 3.5 kW vehicle to load outlet, Voltrieve Pilot 3, bracket LED lights front and rear]
+        wheel: monolith_21
+        interior: charcoal
+      - name: Plus
+        adds: [heated steering wheel and rear seats, battery preconditioning, power tailgate with hands-free opening, three-zone climate, head-up display, 22 inch two-tone Monolith wheels]
+        includes_packs: [Winter]
+        wheel: monolith_22
+        interior: charcoal
+      - name: Prime
+        adds: [14 speaker Voltrieve Stage audio, Voltrieve Pilot Plus lane change assist and highway autopilot, cognac Nappa leather with ventilation and massage, panoramic glass roof, heated second row]
+        includes_packs: [Winter, Pilot Plus, Sound]
+        wheel: monolith_22
+        interior: cognac
+    colors:
+      - { key: glacier_white, name: Glacier White, finish: pearl, hero: true, description: "white pearl with a gloss black roof and brushed copper accents" }
+      - { key: basalt, name: Basalt, finish: metallic, description: "dark graphite metallic with copper accents" }
+      - { key: forest, name: Forest, finish: metallic, description: "dark green metallic with copper accents" }
+      - { key: obsidian, name: Obsidian, finish: metallic, description: "black metallic with black accents" }
+    wheels:
+      - { key: monolith_21, name: Monolith, inches: 21, description: "six wide aero spokes in silver" }
+      - { key: monolith_22, name: Monolith, inches: 22, description: "six wide aero spokes, gloss black with machined silver faces" }
+    interiors:
+      - { key: charcoal, name: Charcoal textile and microsuede, description: "charcoal recycled textile and microsuede seats in three rows, wood and aluminium dashboard" }
+      - { key: cognac, name: Cognac Nappa leather, description: "cognac Nappa leather seats in three rows, wood and aluminium dashboard" }
+    dimensions: { length_mm: 5100, width_mm: 1990, height_mm: 1780, wheelbase_mm: 3100, kerb_weight_kg: 2650, boot_l: 720, boot_folded_l: 2050, frunk_l: 90, ground_clearance_mm: 190 }
+    accessories: [floor_mats, tow_bar, bike_carrier, home_charger, charge_cable_mode3, charge_cable_mode2, roof_bars, roof_box, winter_wheels_atlas, locking_bolt_set, tyre_repair_kit]
+    company_car_benefit_sek: { Pure: 5100, Plus: 5500, Prime: 5900 }
 not_documented:
   - Euro NCAP
   - crash test
-  - warranty
   - factory
   - production
