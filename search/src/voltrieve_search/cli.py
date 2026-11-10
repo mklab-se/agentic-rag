@@ -18,11 +18,12 @@ from voltrieve_search.retrieve import (
     retrieve,
 )
 from voltrieve_search.smoke import SmokeQuestion, run_smoke
-from voltrieve_search.upload import upload_documents
+from voltrieve_search.upload import delete_index_entries, upload_documents
 
 DEFINITIONS_DIR = Path(__file__).parents[2] / "definitions"
 SMOKE_QUESTIONS = Path(__file__).parents[2] / "smoke-questions.json"
 INDEXER_NAMES = ["voltrieve-docs-indexer", "voltrieve-parts-indexer"]
+INDEX_NAMES = {"docs": "voltrieve-docs-index", "parts": "voltrieve-parts-index"}
 KNOWLEDGE_BASE_NAME = "voltrieve-kb"
 VALUE_KEYS = [
     "STORAGE_RESOURCE_ID",
@@ -66,8 +67,24 @@ def cmd_apply(args: argparse.Namespace) -> int:
 def cmd_upload(args: argparse.Namespace) -> int:
     account_url = f"https://{require_env('STORAGE_ACCOUNT_NAME')}.blob.core.windows.net"
     containers = {"docs": require_env("DOCS_CONTAINER"), "parts": require_env("PARTS_CONTAINER")}
-    count = upload_documents(account_url, containers, Path(args.generated), DefaultAzureCredential())
-    print(f"uploaded {count} documents")
+    result = upload_documents(
+        account_url, containers, Path(args.generated), DefaultAzureCredential(),
+        prune=args.prune, dry_run=args.dry_run,
+    )
+    print(f"uploaded {result.uploaded} documents, {len(result.stale)} stale, {len(result.deleted)} deleted")
+    if result.deleted:
+        client = make_client()
+        collection_of = {container: collection for collection, container in containers.items()}
+        for collection, index_name in INDEX_NAMES.items():
+            values = []
+            for item in result.deleted:
+                container, name = item.split("/", 1)
+                if collection_of[container] == collection:
+                    values += [f"{account_url}/{container}/{name}", name.rsplit("/", 1)[-1]]
+            removed = delete_index_entries(client, index_name, values)
+            print(f"{index_name}: deleted {removed} chunks of deleted documents")
+    elif result.stale and not args.prune:
+        print("run again with --prune to delete the stale blobs (try --dry-run first)")
     return 0
 
 
@@ -134,6 +151,10 @@ def main(argv: list[str] | None = None) -> int:
         command = sub.add_parser(name, help=help_text)
         if name == "upload":
             command.add_argument("--generated", default="data/generated")
+            command.add_argument("--prune", action="store_true",
+                                 help="delete blobs that are not in the manifest, and their index entries")
+            command.add_argument("--dry-run", action="store_true",
+                                 help="upload nothing, delete nothing, only list the stale blobs")
         if name == "retrieve":
             command.add_argument("question")
             command.add_argument("--parts", action="store_true", help="use the spare parts base")
