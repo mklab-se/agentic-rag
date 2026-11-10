@@ -1,6 +1,6 @@
 # /// script
 # requires-python = ">=3.12"
-# dependencies = ["httpx", "pyyaml"]
+# dependencies = ["httpx", "pyyaml", "pydantic>=2"]
 # ///
 """Grounding check: ask each backend the factual questions through the deployed API and compare
 the answers with data/voltrieve.yaml. Not-documented questions pass when the answer does not

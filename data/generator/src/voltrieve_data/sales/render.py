@@ -10,13 +10,12 @@ from pathlib import Path
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
 from voltrieve_data.formatting import fmt_int
-from voltrieve_data.model import CarModel, Catalog
+from voltrieve_data.model import FINANCING_TRIM, CarModel, Catalog  # noqa: F401 (re-exported)
 from voltrieve_data.parts import build_parts
 from voltrieve_data.pilot import pilot_features
 
 DOC_TYPES_PER_MODEL = ("brochure", "price_list", "specifications", "accessories")
 BRAND_DOC_TYPES = ("warranty", "charging_guide", "buyers_guide")
-FINANCING_TRIM = "Plus"  # the trim the worked financing example uses
 PAGE_BREAK = "\n---\n"  # a thematic break; the PDF stylesheet starts a new page there
 CATEGORIES = ("Charging", "Carrying and towing", "Wheels and tyres", "Protection and safety")
 MARKET_NAMES = {"SE": "Sweden", "EU": "the EU"}
@@ -132,14 +131,14 @@ def _accessories(catalog: Catalog, model: CarModel) -> list[dict]:
 
 
 def _financing(catalog: Catalog, model: CarModel) -> list[dict]:
-    drive = "RWD" if "RWD" in model.drive else "AWD"
+    trim, drive = catalog.financing_car(model)
     examples = []
     for market in catalog.markets:
-        price = catalog.trim_price(model, FINANCING_TRIM, drive, market.code)
+        price = catalog.trim_price(model, trim, drive, market.code)
         examples.append({
             "market": MARKET_NAMES[market.code],
             "currency": market.currency,
-            "trim": f"{short_name(model)} {FINANCING_TRIM} {drive}",
+            "trim": f"{short_name(model)} {trim} {drive}",
             "terms": catalog.financing[market.code],
             "x": catalog.financing_example(price, market.code),
         })

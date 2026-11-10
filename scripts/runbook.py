@@ -1,6 +1,6 @@
 # /// script
 # requires-python = ">=3.12"
-# dependencies = ["httpx", "pyyaml"]
+# dependencies = ["httpx", "pyyaml", "pydantic>=2"]
 # ///
 """Run the demo runbook (spec section 13) against the deployed API, once per backend.
 

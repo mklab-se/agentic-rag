@@ -5,6 +5,9 @@ from pydantic import BaseModel, model_validator
 TRIM_NAMES = ("Pure", "Plus", "Prime")
 
 
+FINANCING_TRIM = "Plus"  # the trim the worked financing example uses
+
+
 class Company(BaseModel):
     name: str
     tagline: str
@@ -241,6 +244,10 @@ class Catalog(BaseModel):
 
     def color_price(self, color: Color, market: str) -> int:
         return 0 if color.hero else self.color_prices[color.finish][market]
+
+    def financing_car(self, model: CarModel) -> tuple[str, str]:
+        """The trim and drive of the worked financing example: Plus, RWD where it is offered."""
+        return FINANCING_TRIM, "RWD" if "RWD" in model.drive else "AWD"
 
     def financing_example(self, price: int, market: str) -> FinancingExample:
         """A loan with a deposit and a balloon (residual) payment at the end."""

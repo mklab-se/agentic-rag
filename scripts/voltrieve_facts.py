@@ -17,6 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = ROOT / "data" / "voltrieve.yaml"
 DEALER_FILE = ROOT / "services" / "dealer" / "app" / "data.json"
 QUESTIONS_FILE = ROOT / "tests" / "grounding" / "questions.yaml"
+GENERATOR_SRC = ROOT / "data" / "generator" / "src"
 
 # Phrases of an answer that declines to give a figure.
 NEGATIVE = (
@@ -33,6 +34,18 @@ def load_dealer() -> dict:
     return json.loads(DEALER_FILE.read_text())
 
 
+def load_catalog():
+    """The generator's typed catalog: trim, color and financing prices are computed there, so the
+    checks use the same rules as the documents instead of a second copy of them."""
+    import sys
+
+    if str(GENERATOR_SRC) not in sys.path:
+        sys.path.insert(0, str(GENERATOR_SRC))
+    from voltrieve_data.load import load_catalog as load
+
+    return load(DATA_FILE)
+
+
 def load_questions() -> list[dict]:
     return yaml.safe_load(QUESTIONS_FILE.read_text())["questions"]
 
@@ -45,6 +58,18 @@ def _normal(text: str) -> str:
 
 def has_number(text: str, number: int) -> bool:
     return re.search(rf"(?<![\d.]){number}(?![\d])", _normal(text)) is not None
+
+
+def has_decimal(text: str, value: float) -> bool:
+    """4.95 matches "4.95" and "4,95"."""
+    wanted = f"{value:.2f}"
+    return re.search(rf"(?<![\d.,]){re.escape(wanted).replace('\\.', '[.,]')}(?!\d)", text) is not None
+
+
+def _path(obj, path: str):
+    for part in path.split("."):
+        obj = obj[part] if isinstance(obj, dict) else getattr(obj, part)
+    return obj
 
 
 def declines(text: str) -> bool:
@@ -115,4 +140,49 @@ def check(expect: dict, answer: str, data: dict | None = None, dealer: dict | No
         lowered = _normal(answer)
         ok = has_number(answer, count) or re.search(rf"\b{words.get(count, '#')}\b", lowered) is not None
         return ok, f"{expect['model']} in {expect['city']}: {count}"
+    if kind in ("trim_price", "trim_adds", "pack_trims", "financing", "fields", "wheels"):
+        return _check_sales(expect, answer, load_catalog())
+    raise ValueError(f"unknown expectation type {kind!r}")
+
+
+def _check_sales(expect: dict, answer: str, cat) -> tuple[bool, str]:
+    """Checks for the sales folder content, with values from the typed catalog."""
+    kind = expect["type"]
+    lowered = answer.lower()
+    model = cat.by_slug(expect["model"]) if "model" in expect else None
+    if kind == "trim_price":
+        color = next(c for c in model.colors if c.key == expect["color"])
+        base = cat.trim_price(model, expect["trim"], expect["drive"], expect["market"])
+        extra = cat.color_price(color, expect["market"])
+        ok = has_number(answer, base + extra) or (has_number(answer, base) and has_number(answer, extra))
+        return ok, f"{model.name} {expect['trim']} {expect['drive']} in {color.name}: {base} + {extra} = {base + extra}"
+    if kind == "trim_adds":
+        trim = next(t for t in model.trims if t.name == expect["trim"])
+        # Each added item by its first two words ("keyless entry", "360 camera"), each pack by name.
+        terms = [" ".join(item.lower().split()[:2]) for item in trim.adds] + [p.lower() for p in trim.includes_packs]
+        words = set(re.findall(r"[a-z0-9]+", lowered))
+        ok = all(set(term.split()) <= words for term in terms)
+        return ok, f"{model.name} {trim.name} adds: {', '.join(terms)}"
+    if kind == "pack_trims":
+        included = [t.name for t in model.trims if expect["pack"] in t.includes_packs]
+        others = [t.name for t in model.trims if t.name not in included]
+        # A trim that does not include the pack may be named only as not having it.
+        ok = all(t.lower() in lowered for t in included) and (
+            declines(answer) or "option" in lowered or not any(t.lower() in lowered for t in others))
+        return ok, f"{expect['pack']} pack included on {', '.join(included)}"
+    if kind == "financing":
+        trim, drive = cat.financing_car(model)
+        x = cat.financing_example(cat.trim_price(model, trim, drive, expect["market"]), expect["market"])
+        ok = has_number(answer, x.monthly) and has_decimal(answer, x.nominal_rate * 100)
+        return ok, f"{x.monthly} per month at a nominal rate of {x.nominal_rate * 100:.2f} %"
+    if kind == "fields":
+        targets = [cat.by_slug(slug) for slug in expect.get("models", [])] or [model or cat]
+        wanted = [(t, f, _path(t, f)) for t in targets for f in expect["fields"]]
+        ok = all(has_number(answer, value) for _, _, value in wanted)
+        if expect.get("models"):
+            ok = ok and all(t.name.removeprefix("Voltrieve ").lower() in lowered for t in targets)
+        return ok, ", ".join(f"{getattr(t, 'name', 'Voltrieve')} {f} = {v}" for t, f, v in wanted)
+    if kind == "wheels":
+        ok = all(has_number(answer, w.inches) and w.name.lower() in lowered for w in model.wheels)
+        return ok, ", ".join(f"{w.inches} inch {w.name}" for w in model.wheels)
     raise ValueError(f"unknown expectation type {kind!r}")

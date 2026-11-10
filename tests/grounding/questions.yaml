@@ -37,10 +37,40 @@ questions:
     ask: "Is the Atlas in stock in Göteborg?"
     expect: { type: stock, model: atlas, city: Göteborg }
 
-  # Grounding only: not in the documents at all, the answer must not invent a value.
+  # The sales folders: price lists, specifications, brochures and the warranty document.
   - id: ragn-warranty
     ask: "How long is the battery warranty on the Ragn?"
-    expect: { type: not_documented, topic: warranty, terms: [warranty] }
+    expect: { type: fields, fields: [warranty.battery_years, warranty.battery_km] }
+
+  - id: fjord-plus-awd-heath
+    ask: "What does the Fjord Plus AWD cost in Heath?"
+    expect: { type: trim_price, model: fjord, trim: Plus, drive: AWD, color: heath, market: SE }
+
+  - id: fjord-plus-adds
+    ask: "What does the Fjord Plus have that the Fjord Pure does not?"
+    expect: { type: trim_adds, model: fjord, trim: Plus }
+
+  - id: fjord-sound-pack
+    ask: "Which Fjord trims have the Sound pack included?"
+    expect: { type: pack_trims, model: fjord, pack: Sound }
+
+  - id: fjord-wheels
+    ask: "Which wheels does the Fjord come with on each trim?"
+    expect: { type: wheels, model: fjord }
+
+  - id: fjord-boot
+    ask: "How big is the Fjord boot, with the seats up and folded, and is there a frunk?"
+    expect: { type: fields, model: fjord, fields: [dimensions.boot_l, dimensions.boot_folded_l, dimensions.frunk_l] }
+
+  - id: fjord-financing
+    ask: "What is the monthly cost in the Fjord financing example, and at what interest rate?"
+    expect: { type: financing, model: fjord, market: SE }
+
+  - id: lumen-vs-ragn
+    ask: "Compare the Lumen and the Ragn on range, starting price in Sweden and boot size."
+    expect: { type: fields, models: [lumen, ragn], fields: [range_km, price.SE, dimensions.boot_l] }
+
+  # Grounding only: not in the documents at all, the answer must not invent a value.
 
   - id: fjord-crash-test
     ask: "How did the Fjord do in crash tests?"

@@ -1,0 +1,55 @@
+
+== backend: loop
+PASS towing-fjord: What is the towing capacity of the Fjord?
+     expected: Voltrieve Fjord towing_kg = 2100
+     answer:   The Voltrieve Fjord can tow up to **2,100 kg with a braked trailer**. (Source: *Voltrieve Fjord technical specifications*)
+PASS towing-84kwh: Which of the 84 kWh models tows more?
+     expected: Voltrieve Fjord with towing_kg = 2100
+     answer:   The **Voltrieve Fjord** tows more: - **Fjord:** 2,100 kg, braked (*Voltrieve Fjord technical specifications*) - **Ragn:** 1,800 kg, braked (*Voltrieve Ragn technical specifications*) That’s 300 kg more for the Fjord. Both have an 84 kWh battery.
+PASS fastest-charging: Which Voltrieve charges fastest?
+     expected: Voltrieve Atlas with peak_charge_kw = 320
+     answer:   The **Voltrieve Atlas** has the highest peak DC charging power at **320 kW**. It charges from 10% to 80% in about **20 minutes**. The Fjord matches that approximate charging time, though its peak is 240 kW. (*voltrieve-charging-guide.pdf*)
+PASS spark-towing: Can the Spark tow a trailer?
+     expected: Voltrieve Spark has no towing_kg: decline, no kg figure
+     answer:   No. The Voltrieve Spark is **not rated for towing** a trailer. (Source: Voltrieve Spark technical specifications)
+PASS lumen-ncap: What is the Lumen's Euro NCAP rating?
+     expected: not documented (Euro NCAP): decline, no invented value
+     answer:   I can’t find a Euro NCAP rating for the Voltrieve Lumen in the documentation.
+PASS cheapest-awd-se: What is the cheapest AWD Voltrieve in Sweden?
+     expected: Voltrieve Lumen AWD at 419000 (SE)
+     answer:   The cheapest is the **Voltrieve Lumen Pure AWD**, at **419,000 SEK** including VAT in Sweden. The listed price is valid from 1 November 2026. (Sources: *Voltrieve buyer’s guide*; *Voltrieve Lumen price list*)
+PASS atlas-stock: Is the Atlas in stock in Göteborg?
+     expected: atlas in Göteborg: 3
+     answer:   Yes, there are 3 Voltrieve Atlas cars in stock in Göteborg.
+PASS ragn-warranty: How long is the battery warranty on the Ragn?
+     expected: Voltrieve warranty.battery_years = 8, Voltrieve warranty.battery_km = 160000
+     answer:   The Ragn’s battery warranty lasts **8 years or 160,000 km**, whichever comes first. It covers the battery if its usable capacity falls below 70% of its original capacity during that period. (Source: *Voltrieve warranty and service plans*)
+PASS fjord-plus-awd-heath: What does the Fjord Plus AWD cost in Heath?
+     expected: Voltrieve Fjord Plus AWD in Heath: 611000 + 9900 = 620900
+     answer:   The **Fjord Plus AWD in Heath** costs: - **Sweden:** 620,900 SEK (611,000 SEK + 9,900 SEK for Heath) - **EU:** €56,200 (€55,300 + €900 for Heath) These recommended retail prices include VAT and are valid from 1 November 2026. (Source: *Voltrieve Fjord price list*)
+PASS fjord-plus-adds: What does the Fjord Plus have that the Fjord Pure does not?
+     expected: Voltrieve Fjord Plus adds: power tailgate, keyless entry, 360 camera, winter
+     answer:   The Fjord Plus includes everything in the Pure, plus: - A power tailgate with hands-free opening - Keyless entry - A 360° camera - **20-inch Fern wheels**, instead of Pure’s 19-inch Birch wheels - The **Winter pack** as standard: heated steering wheel, heated rear seats and battery preconditioning. The heat pump is already standard on Pure. The Winter pack is optional on Pure; the tailgate, keyles
+PASS fjord-sound-pack: Which Fjord trims have the Sound pack included?
+     expected: Sound pack included on Prime
+     answer:   The Sound pack is included with **Fjord Prime**. It’s optional on Fjord Pure and Plus. (Source: *Voltrieve Fjord price list*)
+PASS fjord-wheels: Which wheels does the Fjord come with on each trim?
+     expected: 19 inch Birch, 20 inch Fern
+     answer:   The Fjord’s standard wheels vary by trim: - **Pure:** 19-inch Birch, with ten silver spokes. - **Plus:** 20-inch Fern, with fifteen thin, straight spokes in diamond-cut silver. - **Prime:** 20-inch Fern, the same as Plus. Source: *Voltrieve Fjord technical specifications*, p. 3.
+PASS fjord-boot: How big is the Fjord boot, with the seats up and folded, and is there a frunk?
+     expected: Voltrieve Fjord dimensions.boot_l = 640, Voltrieve Fjord dimensions.boot_folded_l = 1720, Voltrieve Fjord dimensions.frunk_l = 50
+     answer:   The Fjord has **640 litres** of boot space with the rear seats up, and **1,720 litres** with them folded. It also has a **50-litre frunk**. Source: *voltrieve-fjord-specifications.pdf*
+PASS fjord-financing: What is the monthly cost in the Fjord financing example, and at what interest rate?
+     expected: 6367 per month at a nominal rate of 4.95 %
+     answer:   The financing example is for a **Fjord Plus RWD** over 36 months: - **Sweden:** 6,367 SEK per month at 4.95% nominal interest (5.33% effective). - **EU:** €563 per month at 4.45% nominal interest (4.85% effective). Both examples require a 20% deposit and a 50% residual payment at the end. Rates are variable. Source: *voltrieve-fjord-price-list.pdf*.
+PASS lumen-vs-ragn: Compare the Lumen and the Ragn on range, starting price in Sweden and boot size.
+     expected: Voltrieve Lumen range_km = 455, Voltrieve Lumen price.SE = 379000, Voltrieve Lumen dimensions.boot_l = 380, Voltrieve Ragn range_km = 530, Voltrieve Ragn price.SE = 549000, Voltrieve Ragn dimensions.boot_l = 520
+     answer:   | | Lumen | Ragn | |---|---:|---:| | **Range (WLTP)** | Up to 455 km | Up to 530 km | | **Starting price in Sweden** | 379,000 SEK | 549,000 SEK | | **Boot size** | 380 litres | 520 litres | The Ragn offers **75 km more stated range** and **140 litres more boot space**, but starts at **170,000 SEK more**. Actual range depends on conditions and driving style. Sources: *Voltrieve Lumen technical spe
+PASS fjord-crash-test: How did the Fjord do in crash tests?
+     expected: not documented (crash test): decline, no invented value
+     answer:   I can’t find any crash-test results or ratings for the Voltrieve Fjord in the documentation.
+PASS production-location: In which factory are Voltrieve cars produced?
+     expected: not documented (factory): decline, no invented value
+     answer:   I can’t find which factory produces Voltrieve cars in the documentation.
+
+0 miss(es)

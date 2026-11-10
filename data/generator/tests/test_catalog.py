@@ -211,3 +211,9 @@ def test_accessory_parts_fit_the_models_that_list_them():
             if part:
                 assert any(p.key == part and any(f.slug == m.slug for f in p.fits) for p in parts), (
                     m.slug, key)
+
+
+def test_financing_car_is_the_plus_trim_with_the_cheapest_drive():
+    cat = load_catalog(CATALOG)
+    assert cat.financing_car(cat.by_slug("fjord")) == ("Plus", "RWD")
+    assert cat.financing_car(cat.by_slug("atlas")) == ("Plus", "AWD")

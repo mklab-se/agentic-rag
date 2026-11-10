@@ -177,3 +177,77 @@ def test_routing_questions_resolve_against_the_parts_index():
         routing.message(question, index)
         if question["group"] == "both":
             assert routing.expected_articles(question, index)
+
+
+def _facts():
+    pytest.importorskip("yaml")
+    pytest.importorskip("pydantic")
+    import voltrieve_facts
+
+    return voltrieve_facts, voltrieve_facts.load_catalog()
+
+
+def _sek(n: int) -> str:
+    return f"{n:,}".replace(",", " ")
+
+
+def test_trim_price_check_wants_the_total_or_both_parts():
+    facts, cat = _facts()
+    fjord = cat.by_slug("fjord")
+    heath = next(c for c in fjord.colors if c.key == "heath")
+    base, color = cat.trim_price(fjord, "Plus", "AWD", "SE"), cat.color_price(heath, "SE")
+    expect = {"type": "trim_price", "model": "fjord", "trim": "Plus", "drive": "AWD", "color": "heath", "market": "SE"}
+    assert facts.check(expect, f"The Fjord Plus AWD in Heath costs {_sek(base + color)} SEK.")[0]
+    assert facts.check(expect, f"{_sek(base)} SEK, plus {_sek(color)} SEK for the Heath paint.")[0]
+    assert not facts.check(expect, f"It costs {_sek(base)} SEK.")[0]
+
+
+def test_pack_check_names_exactly_the_trims_that_include_it():
+    facts, cat = _facts()
+    expect = {"type": "pack_trims", "model": "fjord", "pack": "Sound"}
+    assert facts.check(expect, "The Sound pack is included on the Fjord Prime only.")[0]
+    assert not facts.check(expect, "The Sound pack is included on the Fjord Plus.")[0]
+
+
+def test_financing_check_wants_the_monthly_payment_and_the_rate():
+    facts, cat = _facts()
+    fjord = cat.by_slug("fjord")
+    x = cat.financing_example(cat.trim_price(fjord, "Plus", "RWD", "SE"), "SE")
+    expect = {"type": "financing", "model": "fjord", "market": "SE"}
+    rate = f"{x.nominal_rate * 100:.2f}"
+    assert facts.check(expect, f"{_sek(x.monthly)} SEK per month at a nominal rate of {rate} %.")[0]
+    assert not facts.check(expect, f"{_sek(x.monthly)} SEK per month at 3.9 %.")[0]
+
+
+def test_field_check_wants_every_named_value():
+    facts, cat = _facts()
+    d = cat.by_slug("fjord").dimensions
+    expect = {"type": "fields", "model": "fjord", "fields": ["dimensions.boot_l", "dimensions.boot_folded_l"]}
+    assert facts.check(expect, f"{d.boot_l} litres, {_sek(d.boot_folded_l)} litres folded")[0]
+    assert not facts.check(expect, f"{d.boot_l} litres")[0]
+
+
+def test_wheel_check_wants_each_wheel_size_and_name():
+    facts, cat = _facts()
+    wheels = cat.by_slug("fjord").wheels
+    expect = {"type": "wheels", "model": "fjord"}
+    assert facts.check(expect, " and ".join(f"{w.inches} inch {w.name}" for w in wheels))[0]
+    assert not facts.check(expect, f"{wheels[0].inches} inch {wheels[0].name}")[0]
+
+
+def test_trim_adds_check_wants_each_added_item_and_pack():
+    facts, cat = _facts()
+    plus = next(t for t in cat.by_slug("fjord").trims if t.name == "Plus")
+    expect = {"type": "trim_adds", "model": "fjord", "trim": "Plus"}
+    full = "Fjord Plus adds " + ", ".join(plus.adds + [f"the {p} pack" for p in plus.includes_packs])
+    assert facts.check(expect, full)[0]
+    assert not facts.check(expect, "Fjord Plus adds " + plus.adds[0])[0]
+
+
+def test_sales_checks_accept_the_usual_wording():
+    facts, _ = _facts()
+    adds = {"type": "trim_adds", "model": "fjord", "trim": "Plus"}
+    assert facts.check(adds, "Power tailgate with hands-free opening, keyless entry, a 360-degree camera "
+                             "and the Winter pack")[0]
+    pack = {"type": "pack_trims", "model": "fjord", "pack": "Sound"}
+    assert facts.check(pack, "The Sound pack is included on Fjord Prime. It's optional on Fjord Pure and Plus.")[0]
