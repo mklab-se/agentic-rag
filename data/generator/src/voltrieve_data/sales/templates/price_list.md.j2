@@ -1,0 +1,117 @@
+# {{ m.name }} price list
+
+Prices valid from {{ cat.price_list_valid_from }}. Recommended retail prices including VAT, in Sweden (SEK) and in the EU (EUR).
+
+![The {{ m.name }}]({{ img("hero") }})
+
+## {{ short }} prices per trim and drive
+
+| Model | Drive | Price in Sweden | Price in the EU |
+|---|---|---|---|
+{% for r in price_rows %}
+| {{ r.label }} | {{ r.drive }} | {{ r.se | n }} SEK | {{ r.eu | n }} EUR |
+{% endfor %}
+
+{% if m.drive | length > 1 %}
+All wheel drive (AWD) adds {{ cat.awd_surcharge.SE | n }} SEK or {{ cat.awd_surcharge.EU | n }} EUR to the price of each trim.
+{% else %}
+The {{ m.name }} has {{ m.drive[0] }} as standard on every trim.
+{% endif %}
+
+## What each {{ short }} trim adds
+
+{% for t in m.trims %}
+### {{ short }} {{ t.name }}
+
+{% if not loop.first %}
+Everything in {{ short }} {{ loop.previtem.name }}, plus:
+
+{% endif %}
+{% for item in t.adds %}
+- {{ item[0] | upper }}{{ item[1:] }}
+{% endfor %}
+- {{ wheel[t.wheel].inches }} inch {{ wheel[t.wheel].name }} wheels, {{ interior[t.interior].name }} interior
+{% for pack in t.includes_packs %}
+- {{ pack }} pack included: {{ cat.option_packs[pack].description }}
+{% endfor %}
+
+{% endfor %}
+{{ PAGE_BREAK }}
+
+## {{ short }} equipment
+
+| {{ short }} equipment | {{ short }} Pure | {{ short }} Plus | {{ short }} Prime |
+|---|---|---|---|
+{% for row in equipment %}
+| {{ row.item[0] | upper }}{{ row.item[1:] }} | {{ row.cells | join(" | ") }} |
+{% endfor %}
+
+Items marked "Not available" are not sold separately. Option packs can be added to any trim that does not include them.
+
+## {{ short }} option packs
+
+| Pack | Contents | Price in Sweden | Price in the EU | Included on |
+|---|---|---|---|---|
+{% for name in m.option_packs %}
+{% set included = m.trims | selectattr("includes_packs", "contains", name) | map(attribute="name") | list %}
+| {{ short }} {{ name }} pack | {{ cat.option_packs[name].description }} | {{ cat.option_packs[name].price.SE | n }} SEK | {{ cat.option_packs[name].price.EU | n }} EUR | {{ (short ~ " " ~ (included | join(" and "))) if included else "option on every trim" }} |
+{% endfor %}
+
+## {{ short }} colors
+
+| Color | Finish | Price in Sweden | Price in the EU |
+|---|---|---|---|
+{% for c in m.colors %}
+{% set se = cat.color_price(c, "SE") %}
+{% set eu = cat.color_price(c, "EU") %}
+| {{ short }} in {{ c.name }}{{ " (signature color)" if c.hero else "" }}: {{ c.description }} | {{ c.finish }} | {{ "Included" if se == 0 else (se | n) ~ " SEK" }} | {{ "Included" if eu == 0 else (eu | n) ~ " EUR" }} |
+{% endfor %}
+
+## {{ short }} wheels and interiors
+
+| Wheel | Description | Standard on |
+|---|---|---|
+{% for w in m.wheels %}
+| {{ w.inches }} inch {{ w.name }} | {{ w.description }} | {{ short }} {{ m.trims | selectattr("wheel", "equalto", w.key) | map(attribute="name") | join(" and ") }} |
+{% endfor %}
+
+| Interior | Description | Standard on |
+|---|---|---|
+{% for i in m.interiors %}
+| {{ i.name }} | {{ i.description }} | {{ short }} {{ m.trims | selectattr("interior", "equalto", i.key) | map(attribute="name") | join(" and ") }} |
+{% endfor %}
+
+{{ PAGE_BREAK }}
+
+## {{ short }} company car benefit value in Sweden
+
+| Trim | Company car benefit value, Sweden |
+|---|---|
+{% for t in m.trims %}
+| {{ short }} {{ t.name }} | {{ m.company_car_benefit_sek[t.name] | n }} SEK per month |
+{% endfor %}
+
+The company car benefit value (förmånsvärde) is an example for a company car in Sweden, before tax, with the reduction for electric cars. The actual value depends on the options chosen and on the rules for the year. There is no corresponding figure for the EU price list.
+
+## {{ short }} financing example
+
+{% for f in financing %}
+### Financing in {{ f.market }}
+
+A {{ f.trim }} at {{ f.x.price | n }} {{ f.currency }} costs **{{ f.x.monthly | n }} {{ f.currency }} per month** over {{ f.x.months }} months with Voltrieve Financial Services.
+
+| {{ f.trim }} financing in {{ f.market }} | Amount |
+|---|---|
+| Cash price | {{ f.x.price | n }} {{ f.currency }} |
+| Deposit ({{ (f.terms.deposit_share * 100) | round | int }} %) | {{ f.x.deposit | n }} {{ f.currency }} |
+| Loan amount | {{ f.x.loan | n }} {{ f.currency }} |
+| Monthly payment for {{ f.x.months }} months | {{ f.x.monthly | n }} {{ f.currency }} per month |
+| Residual payment at the end ({{ (f.terms.residual_share * 100) | round | int }} %) | {{ f.x.residual | n }} {{ f.currency }} |
+| Nominal rate | {{ "%.2f" | format(f.x.nominal_rate * 100) }} % |
+| Effective rate | {{ "%.2f" | format(f.x.effective_rate * 100) }} % |
+| Setup fee | {{ f.x.setup_fee | n }} {{ f.currency }} |
+| Total amount payable | {{ f.x.total_cost | n }} {{ f.currency }} |
+
+Example in {{ f.market }}: cash price {{ f.x.price | n }} {{ f.currency }}, deposit {{ f.x.deposit | n }} {{ f.currency }}, loan {{ f.x.loan | n }} {{ f.currency }} over {{ f.x.months }} months at a nominal rate of {{ "%.2f" | format(f.x.nominal_rate * 100) }} % (effective rate {{ "%.2f" | format(f.x.effective_rate * 100) }} %). The monthly payment includes an administration fee of {{ f.x.monthly_admin_fee | n }} {{ f.currency }}. A setup fee of {{ f.x.setup_fee | n }} {{ f.currency }} is charged at the start, and a residual payment of {{ f.x.residual | n }} {{ f.currency }} is due at the end of the term, when you can pay it, refinance it or return the car. Total amount payable {{ f.x.total_cost | n }} {{ f.currency }}. Credit is subject to approval. The rate is variable and the example is for illustration only.
+
+{% endfor %}

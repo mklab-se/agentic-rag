@@ -29,6 +29,7 @@ class Color(BaseModel):
     name: str
     finish: Literal["solid", "metallic", "pearl", "satin"]
     description: str
+    hex: str  # swatch color in the price list
     hero: bool = False
 
 
@@ -55,12 +56,37 @@ class Dimensions(BaseModel):
     boot_folded_l: int
     frunk_l: int | None
     ground_clearance_mm: int
+    roof_load_kg: int
+
+
+class Performance(BaseModel):
+    power_kw: int
+    torque_nm: int
+    zero_to_100_s: float
+    top_speed_kmh: int
+
+
+class Copy(BaseModel):
+    """Brochure text per model. Words only: every number comes from the fields."""
+
+    intro: str
+    design: str
+    interior: str
+    drive: str
+    practical: str
+
+
+class Electricity(BaseModel):
+    home_per_kwh: float
+    public_ac_per_kwh: float
+    public_dc_per_kwh: float
 
 
 class Accessory(BaseModel):
     """Sold by the dealer. Points at a spare part, or carries its own article number."""
 
     name: str
+    category: Literal["Charging", "Carrying and towing", "Wheels and tyres", "Protection and safety"]
     description: str
     price: dict[str, int]
     part: str | None = None
@@ -151,6 +177,9 @@ class CarModel(BaseModel):
     dimensions: Dimensions
     accessories: list[str]
     company_car_benefit_sek: dict[str, int]  # fictional monthly example, Sweden only
+    performance: dict[str, Performance]  # per drive
+    accent: str  # document accent color, readable on white
+    copy_text: Copy
 
     @model_validator(mode="after")
     def _references_exist(self) -> "CarModel":
@@ -168,6 +197,8 @@ class CarModel(BaseModel):
                 raise ValueError(f"{self.slug} {trim.name}: packs not offered {sorted(unknown)}")
         if sum(c.hero for c in self.colors) != 1:
             raise ValueError(f"{self.slug}: exactly one hero color")
+        if set(self.performance) != set(self.drive):
+            raise ValueError(f"{self.slug}: performance must cover every drive")
         return self
 
 
@@ -183,6 +214,8 @@ class Catalog(BaseModel):
     warranty: Warranty
     service_plans: list[ServicePlan]
     financing: dict[str, FinancingTerms]
+    electricity: dict[str, Electricity]  # example prices per market for the charging guide
+    price_list_valid_from: str
     not_documented: list[str]
 
     @model_validator(mode="after")

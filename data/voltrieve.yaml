@@ -17,6 +17,11 @@ color_prices:
 financing:
   SE: { nominal_rate: 0.0495, deposit_share: 0.20, residual_share: 0.50, months: 36, setup_fee: 695, monthly_admin_fee: 59 }
   EU: { nominal_rate: 0.0445, deposit_share: 0.20, residual_share: 0.50, months: 36, setup_fee: 75, monthly_admin_fee: 6 }
+# Example electricity prices for the charging guide, per kWh, fictional.
+electricity:
+  SE: { home_per_kwh: 1.8, public_ac_per_kwh: 4.5, public_dc_per_kwh: 6.9 }
+  EU: { home_per_kwh: 0.30, public_ac_per_kwh: 0.49, public_dc_per_kwh: 0.69 }
+price_list_valid_from: 1 November 2026
 warranty:
   vehicle_years: 3
   vehicle_km: 100000
@@ -48,21 +53,21 @@ service_plans:
 # Sold by dealers. "part" points at a spare part (the article number comes from the parts data);
 # accessories that are not spare parts carry their own article number.
 accessories:
-  floor_mats: { name: All weather floor mats, description: "Set of 4 tailored rubber mats with raised edges", part: floor_mats, price: { SE: 1490, EU: 135 } }
-  tow_bar: { name: Electric tow bar, description: "Electrically deployable tow bar with trailer stability control, retrofitted at the dealer, fitting included", part: tow_bar, price: { SE: 16900, EU: 1550 } }
-  bike_carrier: { name: Bike carrier for the tow bar, description: "Tilting carrier for 2 bikes or e-bikes, up to 60 kg", article: VA-9031, price: { SE: 6490, EU: 595 } }
-  home_charger: { name: Voltrieve Home Charger, description: "22 kW wall box with type 2 cable and app control, installation not included", article: VA-9001, price: { SE: 11900, EU: 1090 } }
-  charge_cable_mode3: { name: Mode 3 charging cable, description: "5 m type 2 cable, 32 A, for public AC chargers", part: charge_cable_mode3, price: { SE: 2490, EU: 229 } }
-  charge_cable_mode2: { name: Portable charger, description: "Mode 2 portable charger with Schuko plug, for occasional charging from a household socket", part: charge_cable_mode2, price: { SE: 4990, EU: 459 } }
-  roof_bars: { name: Roof bars, description: "Pair of aluminium roof bars, 75 kg load", article: VA-9011, price: { SE: 3990, EU: 365 } }
-  roof_box: { name: Roof box, description: "420 litre roof box with dual side opening, fits on the roof bars", article: VA-9021, price: { SE: 7990, EU: 729 } }
-  locking_bolt_set: { name: Locking wheel bolts, description: "Set of 4 locking bolts with adapter", part: locking_bolt_set, price: { SE: 990, EU: 89 } }
-  tyre_repair_kit: { name: Tyre repair kit, description: "Sealant and 12 V compressor", part: tyre_repair_kit, price: { SE: 790, EU: 72 } }
-  winter_wheels_spark: { name: Winter wheels for Spark, description: "Four complete 17 inch Pebble winter wheels with studless Nordic tyres and pressure sensors", article: VA-9101, price: { SE: 12900, EU: 1190 } }
-  winter_wheels_lumen: { name: Winter wheels for Lumen, description: "Four complete 18 inch Arc winter wheels with studless Nordic tyres and pressure sensors", article: VA-9102, price: { SE: 17900, EU: 1650 } }
-  winter_wheels_ragn: { name: Winter wheels for Ragn, description: "Four complete 19 inch Trail winter wheels with studded tyres and pressure sensors", article: VA-9103, price: { SE: 22900, EU: 2100 } }
-  winter_wheels_fjord: { name: Winter wheels for Fjord, description: "Four complete 19 inch Birch winter wheels with studless Nordic tyres and pressure sensors", article: VA-9104, price: { SE: 21900, EU: 2000 } }
-  winter_wheels_atlas: { name: Winter wheels for Atlas, description: "Four complete 21 inch Monolith winter wheels with studless Nordic tyres and pressure sensors", article: VA-9105, price: { SE: 29900, EU: 2750 } }
+  floor_mats: { name: All weather floor mats, category: Protection and safety, description: "Set of 4 tailored rubber mats with raised edges", part: floor_mats, price: { SE: 1490, EU: 135 } }
+  tow_bar: { name: Electric tow bar, category: Carrying and towing, description: "Electrically deployable tow bar with trailer stability control, retrofitted at the dealer, fitting included", part: tow_bar, price: { SE: 16900, EU: 1550 } }
+  bike_carrier: { name: Tow bar bike carrier, category: Carrying and towing, description: "Tilting carrier for 2 bikes or e-bikes, up to 60 kg", article: VA-9031, price: { SE: 6490, EU: 595 } }
+  home_charger: { name: Voltrieve Home Charger, category: Charging, description: "22 kW wall box with type 2 cable and app control, installation not included", article: VA-9001, price: { SE: 11900, EU: 1090 } }
+  charge_cable_mode3: { name: Mode 3 charging cable, category: Charging, description: "5 m type 2 cable, 32 A, for public AC chargers", part: charge_cable_mode3, price: { SE: 2490, EU: 229 } }
+  charge_cable_mode2: { name: Portable charger, category: Charging, description: "Mode 2 portable charger with Schuko plug, for occasional charging from a household socket", part: charge_cable_mode2, price: { SE: 4990, EU: 459 } }
+  roof_bars: { name: Roof bars, category: Carrying and towing, description: "Pair of aluminium roof bars, rated for the maximum roof load of the car", article: VA-9011, price: { SE: 3990, EU: 365 } }
+  roof_box: { name: Roof box, category: Carrying and towing, description: "420 litre roof box with dual side opening, fits on the roof bars", article: VA-9021, price: { SE: 7990, EU: 729 } }
+  locking_bolt_set: { name: Locking wheel bolts, category: Protection and safety, description: "Set of 4 locking bolts with adapter", part: locking_bolt_set, price: { SE: 990, EU: 89 } }
+  tyre_repair_kit: { name: Tyre repair kit, category: Protection and safety, description: "Sealant and 12 V compressor", part: tyre_repair_kit, price: { SE: 790, EU: 72 } }
+  winter_wheels_spark: { name: Winter wheel set, category: Wheels and tyres, description: "Four complete 17 inch Pebble winter wheels with studless Nordic tyres and pressure sensors", article: VA-9101, price: { SE: 12900, EU: 1190 } }
+  winter_wheels_lumen: { name: Winter wheel set, category: Wheels and tyres, description: "Four complete 18 inch Arc winter wheels with studless Nordic tyres and pressure sensors", article: VA-9102, price: { SE: 17900, EU: 1650 } }
+  winter_wheels_ragn: { name: Winter wheel set, category: Wheels and tyres, description: "Four complete 19 inch Trail winter wheels with studded tyres and pressure sensors", article: VA-9103, price: { SE: 22900, EU: 2100 } }
+  winter_wheels_fjord: { name: Winter wheel set, category: Wheels and tyres, description: "Four complete 19 inch Birch winter wheels with studless Nordic tyres and pressure sensors", article: VA-9104, price: { SE: 21900, EU: 2000 } }
+  winter_wheels_atlas: { name: Winter wheel set, category: Wheels and tyres, description: "Four complete 21 inch Monolith winter wheels with studless Nordic tyres and pressure sensors", article: VA-9105, price: { SE: 29900, EU: 2750 } }
 option_packs:
   Winter: { description: "heat pump, heated steering wheel and rear seats, battery preconditioning", price: { SE: 18000, EU: 1600 } }
   Pilot Plus: { description: "Voltrieve Pilot lane change assist and highway autopilot upgrade", price: { SE: 24000, EU: 2200 } }
@@ -93,29 +98,49 @@ models:
         wheel: pebble_white
         interior: grey_textile
       - name: Plus
-        adds: [heat pump, heated steering wheel and rear seats, battery preconditioning, rear camera, keyless entry, privacy glass]
+        adds: [rear camera, keyless entry, privacy glass, automatic climate control]
         includes_packs: [Winter]
         wheel: pebble_white
         interior: grey_textile
       - name: Prime
-        adds: [14 speaker Voltrieve Stage audio, panoramic glass roof, heated windscreen, 17 inch Pebble wheel covers in graphite, textile seats with microsuede bolsters]
+        adds: [panoramic glass roof, heated windscreen]
         includes_packs: [Winter, Sound]
         wheel: pebble_graphite
         interior: grey_microsuede
     colors:
-      - { key: saffron, name: Saffron, finish: solid, hero: true, description: "warm yellow with a gloss white roof and white mirror caps" }
-      - { key: snow, name: Snow, finish: solid, description: "white with a gloss black roof" }
-      - { key: fjall_mint, name: Fjäll Mint, finish: metallic, description: "pale green metallic with a gloss white roof" }
-      - { key: graphite, name: Graphite, finish: solid, description: "dark grey with a gloss white roof" }
+      - { key: saffron, name: Saffron, finish: solid, hex: "#E8A317", hero: true, description: "warm yellow with a gloss white roof and white mirror caps" }
+      - { key: snow, name: Snow, finish: solid, hex: "#F2F2EF", description: "white with a gloss black roof" }
+      - { key: fjall_mint, name: Fjäll Mint, finish: metallic, hex: "#B8D8C4", description: "pale green with a gloss white roof" }
+      - { key: graphite, name: Graphite, finish: solid, hex: "#4A4D50", description: "dark grey with a gloss white roof" }
     wheels:
       - { key: pebble_white, name: Pebble, inches: 17, description: "flat aero wheel covers in white and light grey with five small holes" }
       - { key: pebble_graphite, name: Pebble, inches: 17, description: "flat aero wheel covers in graphite with five small holes" }
     interiors:
       - { key: grey_textile, name: Light grey textile, description: "light grey recycled textile seats and a pale wood strip across the dashboard" }
       - { key: grey_microsuede, name: Light grey textile and microsuede, description: "recycled textile seats with microsuede bolsters and a pale wood strip across the dashboard" }
-    dimensions: { length_mm: 3700, width_mm: 1780, height_mm: 1590, wheelbase_mm: 2560, kerb_weight_kg: 1390, boot_l: 310, boot_folded_l: 1050, frunk_l: null, ground_clearance_mm: 160 }
+    dimensions: { length_mm: 3700, width_mm: 1780, height_mm: 1590, wheelbase_mm: 2560, kerb_weight_kg: 1390, boot_l: 310, boot_folded_l: 1050, frunk_l: null, ground_clearance_mm: 160, roof_load_kg: 50 }
     accessories: [floor_mats, home_charger, charge_cable_mode3, charge_cable_mode2, roof_bars, winter_wheels_spark, locking_bolt_set, tyre_repair_kit]
     company_car_benefit_sek: { Pure: 2150, Plus: 2350, Prime: 2550 }
+    performance:
+      RWD: { power_kw: 100, torque_nm: 220, zero_to_100_s: 9.2, top_speed_kmh: 150 }
+    accent: "#A8740A"
+    copy_text:
+      intro: >-
+        The Spark is the small car that makes the city feel bigger. It slips into gaps other cars
+        drive past, turns on the spot and still seats four adults and their shopping.
+      design: >-
+        A rounded box with its wheels pushed out to the corners, two round ring lamps that look
+        straight at you, and a contrasting roof. Simple shapes, made to be recognised from across
+        the square.
+      interior: >-
+        Light grey recycled textile, a pale wood strip across the dashboard and a small round
+        driver display. Calm, bright and easy to keep clean.
+      drive: >-
+        Rear wheel drive and a tight turning circle make the Spark quick and easy in town. One
+        pedal driving lets you slow down and stop without touching the brake.
+      practical: >-
+        A near-vertical tailgate gives a square, useful boot, and the rear seats fold flat for the
+        odd trip to the furniture store.
   - name: Voltrieve Lumen
     slug: lumen
     segment: hatchback
@@ -140,29 +165,51 @@ models:
         wheel: arc_18
         interior: black_coral
       - name: Plus
-        adds: [heated steering wheel and rear seats, battery preconditioning, power tailgate, keyless entry, head-up display, 19 inch Turbine wheels]
+        adds: [power tailgate, keyless entry, head-up display]
         includes_packs: [Winter]
         wheel: turbine_19
         interior: black_coral
       - name: Prime
-        adds: [14 speaker Voltrieve Stage audio, Voltrieve Pilot Plus lane change assist and highway autopilot, sport seats with coral stitching, adaptive high beam]
+        adds: [adaptive high beam, heated windscreen, ambient lighting in 12 colors]
         includes_packs: [Winter, Pilot Plus, Sound]
         wheel: turbine_19
         interior: coral_sport
     colors:
-      - { key: coral, name: Coral, finish: metallic, hero: true, description: "red-orange metallic with a gloss black glass roof and black mirror caps" }
-      - { key: pearl, name: Pearl, finish: pearl, description: "white pearl with a gloss black glass roof" }
-      - { key: midnight, name: Midnight, finish: metallic, description: "near-black blue metallic" }
-      - { key: silver_birch, name: Silver Birch, finish: metallic, description: "light silver metallic" }
+      - { key: coral, name: Coral, finish: metallic, hex: "#E8582C", hero: true, description: "red-orange with a gloss black glass roof and black mirror caps" }
+      - { key: pearl, name: Pearl, finish: pearl, hex: "#F4F1EA", description: "white with a gloss black glass roof" }
+      - { key: midnight, name: Midnight, finish: metallic, hex: "#1C2538", description: "near-black blue" }
+      - { key: silver_birch, name: Silver Birch, finish: metallic, hex: "#C9CCCF", description: "light silver" }
     wheels:
       - { key: arc_18, name: Arc, inches: 18, description: "five double spokes in silver" }
       - { key: turbine_19, name: Turbine, inches: 19, description: "ten thin twisted spokes, diamond-cut silver and gloss black" }
     interiors:
       - { key: black_coral, name: Black with coral stitching, description: "black textile seats with coral stitching and a thin coral light line across the dashboard" }
       - { key: coral_sport, name: Sport seats, description: "black sport seats in microsuede with coral stitching and extended side support" }
-    dimensions: { length_mm: 4300, width_mm: 1840, height_mm: 1480, wheelbase_mm: 2770, kerb_weight_kg: 1780, boot_l: 380, boot_folded_l: 1260, frunk_l: 45, ground_clearance_mm: 145 }
+    dimensions: { length_mm: 4300, width_mm: 1840, height_mm: 1480, wheelbase_mm: 2770, kerb_weight_kg: 1780, boot_l: 380, boot_folded_l: 1260, frunk_l: 45, ground_clearance_mm: 145, roof_load_kg: 75 }
     accessories: [floor_mats, home_charger, charge_cable_mode3, charge_cable_mode2, roof_bars, roof_box, winter_wheels_lumen, locking_bolt_set, tyre_repair_kit]
     company_car_benefit_sek: { Pure: 2700, Plus: 2950, Prime: 3200 }
+    performance:
+      RWD: { power_kw: 170, torque_nm: 330, zero_to_100_s: 6.9, top_speed_kmh: 180 }
+      AWD: { power_kw: 250, torque_nm: 480, zero_to_100_s: 4.9, top_speed_kmh: 180 }
+    accent: "#C9481F"
+    copy_text:
+      intro: >-
+        The Lumen is a compact hatchback with the reflexes of a sports car and the manners of a
+        daily driver. Low, light and eager, it makes an ordinary commute feel like the long way
+        home.
+      design: >-
+        Two thin light lines run across the full width of the car, front and rear, with no
+        separate lamps at all. A sloping roof, frameless door glass and a sculpted hood finish
+        the shape.
+      interior: >-
+        Black seats with coral stitching, a slim wide driver display and a floating touchscreen.
+        A thin coral light line runs across the dashboard at night.
+      drive: >-
+        A low centre of gravity and quick steering make the Lumen feel light on its feet. Choose
+        rear wheel drive for efficiency or all wheel drive for grip and pace.
+      practical: >-
+        A hatchback tailgate, a flat folding rear seat and a frunk under the hood for the charging
+        cable keep everyday life tidy.
   - name: Voltrieve Ragn
     slug: ragn
     segment: crossover
@@ -187,29 +234,49 @@ models:
         wheel: trail_19
         interior: washable_grey
       - name: Plus
-        adds: [heated steering wheel and rear seats, battery preconditioning, power tailgate, keyless entry, 360 camera with underbody view]
+        adds: [power tailgate, keyless entry, 360 camera with underbody view]
         includes_packs: [Winter]
         wheel: trail_19
         interior: washable_grey
       - name: Prime
-        adds: [14 speaker Voltrieve Stage audio, Voltrieve Pilot Plus lane change assist and highway autopilot, 20 inch Trail wheels in matte black, heated windscreen, ventilated front seats in microsuede]
+        adds: [heated windscreen, adaptive high beam]
         includes_packs: [Winter, Pilot Plus, Sound]
         wheel: trail_20
         interior: grey_microsuede
     colors:
-      - { key: moss, name: Moss, finish: satin, hero: true, description: "deep olive green with a satin finish" }
-      - { key: granite, name: Granite, finish: satin, description: "mid grey with a satin finish" }
-      - { key: sand, name: Sand, finish: solid, description: "warm beige" }
-      - { key: night, name: Night, finish: metallic, description: "black metallic" }
+      - { key: moss, name: Moss, finish: satin, hex: "#5B6B3A", hero: true, description: "deep olive green" }
+      - { key: granite, name: Granite, finish: satin, hex: "#7A7D7E", description: "mid grey" }
+      - { key: sand, name: Sand, finish: solid, hex: "#C9B48F", description: "warm beige" }
+      - { key: night, name: Night, finish: metallic, hex: "#18191B", description: "black" }
     wheels:
       - { key: trail_19, name: Trail, inches: 19, description: "five thick spokes in gunmetal grey, on all-terrain tyres" }
       - { key: trail_20, name: Trail, inches: 20, description: "five thick spokes in matte black, on all-terrain tyres" }
     interiors:
       - { key: washable_grey, name: Washable dark grey textile, description: "washable dark grey textile seats, rubber floor mats and orange pull loops" }
       - { key: grey_microsuede, name: Dark grey microsuede, description: "ventilated dark grey microsuede front seats with orange pull loops" }
-    dimensions: { length_mm: 4600, width_mm: 1920, height_mm: 1720, wheelbase_mm: 2820, kerb_weight_kg: 2150, boot_l: 520, boot_folded_l: 1580, frunk_l: 60, ground_clearance_mm: 205 }
+    dimensions: { length_mm: 4600, width_mm: 1920, height_mm: 1720, wheelbase_mm: 2820, kerb_weight_kg: 2150, boot_l: 520, boot_folded_l: 1580, frunk_l: 60, ground_clearance_mm: 205, roof_load_kg: 100 }
     accessories: [floor_mats, tow_bar, bike_carrier, home_charger, charge_cable_mode3, charge_cable_mode2, roof_bars, roof_box, winter_wheels_ragn, locking_bolt_set, tyre_repair_kit]
     company_car_benefit_sek: { Pure: 3700, Plus: 4000, Prime: 4300 }
+    performance:
+      AWD: { power_kw: 300, torque_nm: 560, zero_to_100_s: 5.4, top_speed_kmh: 190 }
+    accent: "#4F5E31"
+    copy_text:
+      intro: >-
+        The Ragn is a crossover for people whose weekends start where the asphalt ends. Tall,
+        tough and all wheel drive as standard, it takes the forest road as calmly as the
+        motorway.
+      design: >-
+        A boxy body with squared wheel arches, wide textured cladding and four square pixel lamps
+        in a flat black band. Bright orange recovery hooks tell you it means it.
+      interior: >-
+        Washable textile seats, rubber floor mats and chunky physical knobs you can use with
+        gloves on. Orange pull loops on the doors and seats make it easy to climb in.
+      drive: >-
+        All wheel drive, an off road mode and high ground clearance give the Ragn grip on gravel,
+        snow and mud, while the 800 V system charges quickly on the way home.
+      practical: >-
+        Roof rails, a wide boot opening and a tow rating for a small caravan or a trailer full of
+        firewood.
   - name: Voltrieve Fjord
     slug: fjord
     segment: estate
@@ -234,29 +301,50 @@ models:
         wheel: birch_19
         interior: wool_blend
       - name: Plus
-        adds: [heated steering wheel and rear seats, battery preconditioning, power tailgate with hands-free opening, keyless entry, 360 camera, 20 inch Fern wheels]
+        adds: [power tailgate with hands-free opening, keyless entry, 360 camera]
         includes_packs: [Winter]
         wheel: fern_20
         interior: wool_blend
       - name: Prime
-        adds: [14 speaker Voltrieve Stage audio, Voltrieve Pilot Plus lane change assist and highway autopilot, Nappa leather seats with ventilation and massage, head-up display, panoramic glass roof]
+        adds: [head-up display, panoramic glass roof, adaptive high beam]
         includes_packs: [Winter, Pilot Plus, Sound]
         wheel: fern_20
         interior: nappa
     colors:
-      - { key: glacier_blue, name: Glacier Blue, finish: metallic, hero: true, description: "deep blue metallic" }
-      - { key: frost, name: Frost, finish: metallic, description: "white metallic" }
-      - { key: slate, name: Slate, finish: metallic, description: "dark grey metallic" }
-      - { key: heath, name: Heath, finish: metallic, description: "deep burgundy metallic" }
+      - { key: glacier_blue, name: Glacier Blue, finish: metallic, hex: "#1F3A5F", hero: true, description: "deep blue" }
+      - { key: frost, name: Frost, finish: metallic, hex: "#EDEFF0", description: "white" }
+      - { key: slate, name: Slate, finish: metallic, hex: "#474C52", description: "dark grey" }
+      - { key: heath, name: Heath, finish: metallic, hex: "#5E1F2D", description: "deep burgundy" }
     wheels:
       - { key: birch_19, name: Birch, inches: 19, description: "ten spokes in silver" }
       - { key: fern_20, name: Fern, inches: 20, description: "fifteen thin straight spokes in diamond-cut silver" }
     interiors:
       - { key: wool_blend, name: Light wool blend, description: "light wool blend seats and pale ash wood trim" }
       - { key: nappa, name: Nappa leather, description: "light Nappa leather seats with ventilation and massage, and pale ash wood trim" }
-    dimensions: { length_mm: 4900, width_mm: 1900, height_mm: 1500, wheelbase_mm: 2980, kerb_weight_kg: 2180, boot_l: 640, boot_folded_l: 1720, frunk_l: 50, ground_clearance_mm: 150 }
+    dimensions: { length_mm: 4900, width_mm: 1900, height_mm: 1500, wheelbase_mm: 2980, kerb_weight_kg: 2180, boot_l: 640, boot_folded_l: 1720, frunk_l: 50, ground_clearance_mm: 150, roof_load_kg: 100 }
     accessories: [floor_mats, tow_bar, bike_carrier, home_charger, charge_cable_mode3, charge_cable_mode2, roof_bars, roof_box, winter_wheels_fjord, locking_bolt_set, tyre_repair_kit]
     company_car_benefit_sek: { Pure: 3600, Plus: 3900, Prime: 4200 }
+    performance:
+      RWD: { power_kw: 250, torque_nm: 450, zero_to_100_s: 6.1, top_speed_kmh: 200 }
+      AWD: { power_kw: 360, torque_nm: 680, zero_to_100_s: 4.6, top_speed_kmh: 200 }
+    accent: "#1F3A5F"
+    copy_text:
+      intro: >-
+        The Fjord is a long, low estate for families who would rather drive than fly. It covers
+        great distances in quiet comfort and swallows everything the weekend needs.
+      design: >-
+        A single thin light line crosses the front and dips into a shallow V around the emblem,
+        like the outline of a fjord valley. The same line returns at the rear, ending in light
+        blades that wrap around the corners.
+      interior: >-
+        Light wool blend seats, pale ash wood and a wide, calm dashboard with a portrait
+        touchscreen. Nappa leather with ventilation and massage on Prime.
+      drive: >-
+        Air suspension, a long wheelbase and an 800 V system make the Fjord a relaxed long
+        distance car that charges quickly when you stop for coffee.
+      practical: >-
+        A long flat load floor, a low loading edge and a strong tow rating for the boat, the
+        caravan or the horse trailer.
   - name: Voltrieve Atlas
     slug: atlas
     segment: large SUV
@@ -281,29 +369,48 @@ models:
         wheel: monolith_21
         interior: charcoal
       - name: Plus
-        adds: [heated steering wheel and rear seats, battery preconditioning, power tailgate with hands-free opening, three-zone climate, head-up display, 22 inch two-tone Monolith wheels]
+        adds: [power tailgate with hands-free opening, three-zone climate, head-up display]
         includes_packs: [Winter]
         wheel: monolith_22
         interior: charcoal
       - name: Prime
-        adds: [14 speaker Voltrieve Stage audio, Voltrieve Pilot Plus lane change assist and highway autopilot, cognac Nappa leather with ventilation and massage, panoramic glass roof, heated second row]
+        adds: [panoramic glass roof, heated second row]
         includes_packs: [Winter, Pilot Plus, Sound]
         wheel: monolith_22
         interior: cognac
     colors:
-      - { key: glacier_white, name: Glacier White, finish: pearl, hero: true, description: "white pearl with a gloss black roof and brushed copper accents" }
-      - { key: basalt, name: Basalt, finish: metallic, description: "dark graphite metallic with copper accents" }
-      - { key: forest, name: Forest, finish: metallic, description: "dark green metallic with copper accents" }
-      - { key: obsidian, name: Obsidian, finish: metallic, description: "black metallic with black accents" }
+      - { key: glacier_white, name: Glacier White, finish: pearl, hex: "#EEF0F0", hero: true, description: "white with a gloss black roof and brushed copper accents" }
+      - { key: basalt, name: Basalt, finish: metallic, hex: "#3B3D40", description: "dark graphite with copper accents" }
+      - { key: forest, name: Forest, finish: metallic, hex: "#24382C", description: "dark green with copper accents" }
+      - { key: obsidian, name: Obsidian, finish: metallic, hex: "#111214", description: "black with black accents" }
     wheels:
       - { key: monolith_21, name: Monolith, inches: 21, description: "six wide aero spokes in silver" }
       - { key: monolith_22, name: Monolith, inches: 22, description: "six wide aero spokes, gloss black with machined silver faces" }
     interiors:
       - { key: charcoal, name: Charcoal textile and microsuede, description: "charcoal recycled textile and microsuede seats in three rows, wood and aluminium dashboard" }
       - { key: cognac, name: Cognac Nappa leather, description: "cognac Nappa leather seats in three rows, wood and aluminium dashboard" }
-    dimensions: { length_mm: 5100, width_mm: 1990, height_mm: 1780, wheelbase_mm: 3100, kerb_weight_kg: 2650, boot_l: 720, boot_folded_l: 2050, frunk_l: 90, ground_clearance_mm: 190 }
+    dimensions: { length_mm: 5100, width_mm: 1990, height_mm: 1780, wheelbase_mm: 3100, kerb_weight_kg: 2650, boot_l: 720, boot_folded_l: 2050, frunk_l: 90, ground_clearance_mm: 190, roof_load_kg: 100 }
     accessories: [floor_mats, tow_bar, bike_carrier, home_charger, charge_cable_mode3, charge_cable_mode2, roof_bars, roof_box, winter_wheels_atlas, locking_bolt_set, tyre_repair_kit]
     company_car_benefit_sek: { Pure: 5100, Plus: 5500, Prime: 5900 }
+    performance:
+      AWD: { power_kw: 420, torque_nm: 780, zero_to_100_s: 4.9, top_speed_kmh: 210 }
+    accent: "#9A5B32"
+    copy_text:
+      intro: >-
+        The Atlas is a seven-seat SUV for big families and big plans. It carries seven people in
+        three rows, tows a large caravan and still charges faster than any other Voltrieve.
+      design: >-
+        Tall bracket-shaped light columns frame each corner, front and rear. A long flat hood, a
+        floating roof and brushed copper accents give the Atlas presence without shouting.
+      interior: >-
+        Three rows of seats, a wide wood and aluminium dashboard and a large driver display.
+        Cognac Nappa leather on Prime.
+      drive: >-
+        Rear wheel steering makes the Atlas surprisingly easy to park, and air suspension keeps it
+        calm on rough roads. All wheel drive is standard.
+      practical: >-
+        A third row that folds into the floor, a power outlet that runs tools or a coffee machine,
+        and a frunk for the charging cables.
 not_documented:
   - Euro NCAP
   - crash test

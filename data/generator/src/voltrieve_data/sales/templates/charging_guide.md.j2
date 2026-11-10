@@ -1,0 +1,57 @@
+{% set charger = cat.accessories.home_charger %}
+# Voltrieve charging guide
+
+How to charge a Voltrieve at home and on the road, what it costs, and how to get the most out of the battery in winter.
+
+## Charging a Voltrieve at home
+
+Most charging happens at home, overnight. The Voltrieve Home Charger (article number {{ charger.article }}) is a 22 kW wall box with a type 2 cable and app control. It costs {{ charger.price.SE | n }} SEK or {{ charger.price.EU | n }} EUR; installation by an electrician is extra. The car charges at the lower of the wall box rating and its own onboard charger.
+
+| Model | Battery | Onboard AC charger | Empty to full on a home charger |
+|---|---|---|---|
+{% for m in cat.models %}
+| {{ m.name }} | {{ m.battery_kwh }} kWh | {{ onboard_kw(m) }} kW | about {{ ac_hours(m) }} hours |
+{% endfor %}
+
+The portable charger with a household plug is for occasional use, such as a night at a summer cottage. It charges much more slowly and should not be used every day.
+
+## Charging a Voltrieve on the road
+
+At a public AC charger, use the mode 3 type 2 cable. At a fast DC charger the cable is fixed to the charger. Every Voltrieve has a CCS2 charge port.
+
+| Model | Peak DC charging | 10 to 80 % at a fast charger |
+|---|---|---|
+{% for m in cat.models %}
+| {{ m.name }} | {{ m.peak_charge_kw }} kW | about {{ c1080(m) }} minutes |
+{% endfor %}
+
+Charging slows down above 80 %, so on a long trip it is usually quicker to stop twice for 20 minutes than once for an hour. The route planner in the car picks the chargers and preconditions the battery on the way.
+
+{{ PAGE_BREAK }}
+
+## What charging a Voltrieve costs
+
+The examples use these electricity prices. Your own prices depend on your contract, the time of day and the charging network.
+
+| Electricity price | Sweden | EU |
+|---|---|---|
+| At home, per kWh | {{ "%.2f" | format(cat.electricity.SE.home_per_kwh) }} SEK | {{ "%.2f" | format(cat.electricity.EU.home_per_kwh) }} EUR |
+| Public AC, per kWh | {{ "%.2f" | format(cat.electricity.SE.public_ac_per_kwh) }} SEK | {{ "%.2f" | format(cat.electricity.EU.public_ac_per_kwh) }} EUR |
+| Public DC fast charging, per kWh | {{ "%.2f" | format(cat.electricity.SE.public_dc_per_kwh) }} SEK | {{ "%.2f" | format(cat.electricity.EU.public_dc_per_kwh) }} EUR |
+
+| Model | Energy use (WLTP) | 100 km charged at home, Sweden | 100 km fast charged, Sweden | 100 km charged at home, EU | 100 km fast charged, EU |
+|---|---|---|---|---|---|
+{% for m in cat.models %}
+{% set e = kwh_100(m) %}
+| {{ m.name }} | {{ e }} kWh per 100 km | {{ money(e * cat.electricity.SE.home_per_kwh, "SEK") }} | {{ money(e * cat.electricity.SE.public_dc_per_kwh, "SEK") }} | {{ money(e * cat.electricity.EU.home_per_kwh, "EUR") }} | {{ money(e * cat.electricity.EU.public_dc_per_kwh, "EUR") }} |
+{% endfor %}
+
+## Charging a Voltrieve in winter
+
+- **Precondition before you leave.** Set a departure time in the app and the car warms the cabin and the battery while it is still plugged in, so the energy comes from the grid and not from the battery.
+- **Precondition before a fast charge.** Choose the charger in the route planner and the car warms the battery on the way. A cold battery charges much more slowly.
+- **Use the heat pump.** {{ cat.models | selectattr("heat_pump_standard") | map(attribute="name") | list | and_join }} have a heat pump as standard. {% for m in cat.models if not m.heat_pump_standard %}The {{ m.name }} gets one with the Winter pack, standard on {{ short_name(m) }} Plus and Prime.{% endfor %}
+
+- **Expect less range.** In real winter conditions the range is often 20 to 30 % below the WLTP figure. Seat and steering wheel heating use less energy than heating the whole cabin.
+- **Park inside when you can.** A battery that stays above freezing keeps more of its range and charges faster.
+- **Charge to 80 % every day** and to 100 % only before a long trip.

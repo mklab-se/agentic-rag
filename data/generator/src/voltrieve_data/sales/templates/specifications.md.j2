@@ -1,0 +1,95 @@
+# {{ m.name }} technical specifications
+
+![The {{ m.name }} from the side]({{ img("side_studio") }})
+
+## {{ short }} dimensions and weights
+
+| {{ short }} dimension | Value |
+|---|---|
+| Length | {{ m.dimensions.length_mm | n }} mm |
+| Width, without mirrors | {{ m.dimensions.width_mm | n }} mm |
+| Height | {{ m.dimensions.height_mm | n }} mm |
+| Wheelbase | {{ m.dimensions.wheelbase_mm | n }} mm |
+| Ground clearance | {{ m.dimensions.ground_clearance_mm }} mm |
+| Kerb weight | {{ m.dimensions.kerb_weight_kg | n }} kg |
+| Towing capacity | {{ (m.towing_kg | n) ~ " kg (braked)" if m.towing_kg else "not rated for towing" }} |
+| Roof load | {{ m.dimensions.roof_load_kg }} kg |
+
+{% if not m.towing_kg %}
+The {{ m.name }} is not rated for towing.
+{% endif %}
+
+## {{ short }} volumes
+
+| {{ short }} volume | Value |
+|---|---|
+| Boot | {{ m.dimensions.boot_l | n }} litres |
+| Boot with the rear seats folded | {{ m.dimensions.boot_folded_l | n }} litres |
+| Frunk | {{ (m.dimensions.frunk_l | string) ~ " litres" if m.dimensions.frunk_l else "no frunk" }} |
+{% if m.slug == "atlas" %}
+| Seats | 7, in three rows |
+{% else %}
+| Seats | 5 |
+{% endif %}
+
+## {{ short }} battery and range
+
+| {{ short }} battery | Value |
+|---|---|
+| Battery capacity (usable) | {{ m.battery_kwh }} kWh |
+| Range (WLTP) | {{ m.range_km }} km |
+| Energy use (WLTP, combined) | {{ kwh_100(m) }} kWh per 100 km |
+| Platform | {{ m.platform }} |
+| System voltage | {{ m.voltage }} V |
+
+{{ PAGE_BREAK }}
+
+## {{ short }} charging
+
+| {{ short }} charging | Value |
+|---|---|
+| Peak DC charging power | {{ m.peak_charge_kw }} kW |
+| DC charging from 10 to 80 % | about {{ c1080(m) }} minutes |
+| Onboard AC charger | {{ onboard_kw(m) }} kW |
+| AC charging, empty to full | about {{ ac_hours(m) }} hours |
+| Charge port | CCS2 |
+
+The {{ short }} DC charging curve: the charge power the car accepts at each state of charge, at a charger that delivers at least {{ m.peak_charge_kw }} kW and with the battery at its working temperature.
+
+| State of charge | Charge power |
+|---|---|
+{% for soc, kw in m.charging_curve %}
+| {{ soc }} % | {{ kw }} kW |
+{% endfor %}
+
+## {{ short }} performance per drive
+
+| Drive | Power | Torque | 0 to 100 km/h | Top speed |
+|---|---|---|---|---|
+{% for drive, p in m.performance.items() %}
+| {{ short }} {{ drive }} | {{ p.power_kw }} kW | {{ p.torque_nm }} Nm | {{ p.zero_to_100_s }} s | {{ p.top_speed_kmh }} km/h |
+{% endfor %}
+
+## {{ short }} chassis, climate and software
+
+| {{ short }} item | Value |
+|---|---|
+| Drive | {{ m.drive | join(", ") }} |
+| Front brake discs | {% for drive, mm in m.brakes.front_disc_mm.items() %}{{ mm }} mm{{ " (" ~ drive ~ ")" if m.brakes.front_disc_mm | length > 1 else "" }}{{ ", " if not loop.last else "" }}{% endfor %} |
+| Rear brake discs | {{ m.brakes.rear_disc_mm }} mm |
+| Heat pump | {{ "standard" if m.heat_pump_standard else "with the Winter pack (standard on Plus and Prime)" }} |
+| Voltrieve Pilot | version {{ m.pilot_version }}: {{ pilot_features(m.pilot_version) | join(", ") }} |
+| Option packs available | {{ m.option_packs | join(", ") }} |
+{% for h in m.highlights %}
+| Feature | {{ h }} |
+{% endfor %}
+
+## {{ short }} wheels and tyres per trim
+
+| Trim | Wheels |
+|---|---|
+{% for t in m.trims %}
+| {{ short }} {{ t.name }} | {{ wheel[t.wheel].inches }} inch {{ wheel[t.wheel].name }}: {{ wheel[t.wheel].description }} |
+{% endfor %}
+
+Range, energy use and charging times are measured to WLTP or under test conditions. Real figures depend on speed, temperature, load, tyres and driving style.

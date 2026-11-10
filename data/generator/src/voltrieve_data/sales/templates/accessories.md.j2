@@ -1,0 +1,17 @@
+# {{ m.name }} accessories
+
+Genuine Voltrieve accessories for the {{ m.name }}, made to fit and covered by the Voltrieve warranty. Your dealer orders and fits them. Prices are recommended retail prices including VAT, valid from {{ cat.price_list_valid_from }}. Fitting is not included unless the description says so.
+
+![The {{ m.name }} ready for the weekend]({{ img("practical") }})
+
+{% for g in accessory_groups %}
+## {{ short }} accessories: {{ g.name | lower }}
+
+| Article number | Accessory | Description | Price in Sweden | Price in the EU |
+|---|---|---|---|---|
+{% for r in g.rows %}
+| {{ r.article }} | {{ r.a.name }} for {{ m.name }} | {{ r.a.description }} | {{ r.a.price.SE | n }} SEK | {{ r.a.price.EU | n }} EUR |
+{% endfor %}
+
+{% endfor %}
+Ask your Voltrieve dealer for the accessories that are not listed here. Spare parts are in the Voltrieve spare parts catalogs.

@@ -9,6 +9,7 @@ dependencies = [
     "python-docx",
     "fpdf2",
     "pillow",
+    "jinja2",
 ]
 
 [dependency-groups]

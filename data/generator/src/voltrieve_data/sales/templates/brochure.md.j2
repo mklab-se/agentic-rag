@@ -1,0 +1,172 @@
+# {{ m.name }}
+
+{{ m.tagline }}
+
+![The {{ m.name }} in {{ hero.name }}]({{ img("hero") }})
+
+| Range (WLTP) | DC charging 10 to 80 % | Power | 0 to 100 km/h |
+|---|---|---|---|
+| up to {{ m.range_km }} km | {{ c1080(m) }} min | up to {{ best.power_kw }} kW | from {{ best.zero_to_100_s }} s |
+
+{{ PAGE_BREAK }}
+
+## Meet the {{ short }}
+
+{{ m.copy_text.intro }}
+
+The {{ m.name }} is {{ m.segment | a }} with {{ drive_words(m.drive) }}, built on the Voltrieve {{ m.platform }} platform with {{ (m.voltage ~ ' V') | a }} system. {{ m.tagline }}: that is the idea behind every detail.
+
+![The {{ m.name }} from the front]({{ img("front_outdoor") }})
+
+{{ PAGE_BREAK }}
+
+## Design
+
+{{ m.copy_text.design }}
+
+![The light signature of the {{ m.name }}]({{ img("light_detail") }})
+
+![The {{ m.name }} from the rear]({{ img("rear_outdoor") }})
+
+{{ PAGE_BREAK }}
+
+## Interior
+
+{{ m.copy_text.interior }}
+
+{% for i in m.interiors %}
+- **{{ i.name }}:** {{ i.description }}. On {{ m.trims | selectattr("interior", "equalto", i.key) | map(attribute="name") | join(" and ") }}.
+{% endfor %}
+
+![Inside the {{ m.name }}]({{ img("interior") }})
+
+{{ PAGE_BREAK }}
+
+## Technology and Voltrieve Pilot
+
+The {{ m.name }} comes with Voltrieve Pilot version {{ m.pilot_version }}, our driver assistance suite. It brings {{ pilot_features(m.pilot_version) | and_join }}.
+{% if "Pilot Plus" in m.option_packs %}
+Voltrieve Pilot Plus adds lane change assist and the highway autopilot. It is included on {{ short }} Prime and available as an option pack on the other trims.
+{% endif %}
+
+{% for h in m.highlights %}
+- {{ h[0] | upper }}{{ h[1:] }}
+{% endfor %}
+{% if m.heat_pump_standard %}
+- A heat pump as standard, so the range holds up in winter
+{% else %}
+- A heat pump with the Winter pack, standard on {{ short }} Plus and Prime
+{% endif %}
+
+{{ PAGE_BREAK }}
+
+## Range and charging
+
+With a {{ m.battery_kwh }} kWh battery the {{ m.name }} goes up to {{ m.range_km }} km on a charge (WLTP). At a fast charger it takes up to {{ m.peak_charge_kw }} kW and goes from 10 to 80 % in about {{ c1080(m) }} minutes. At home, the {{ onboard_kw(m) }} kW onboard charger fills the battery overnight.
+
+| Battery | Range (WLTP) | Peak DC charging | 10 to 80 % | Onboard AC charger |
+|---|---|---|---|---|
+| {{ m.battery_kwh }} kWh | {{ m.range_km }} km | {{ m.peak_charge_kw }} kW | {{ c1080(m) }} min | {{ onboard_kw(m) }} kW |
+
+![The {{ m.name }} charging]({{ img("charging") }})
+
+{{ PAGE_BREAK }}
+
+## On the road
+
+{{ m.copy_text.drive }}
+
+| Drive | Power | Torque | 0 to 100 km/h | Top speed |
+|---|---|---|---|---|
+{% for drive, p in m.performance.items() %}
+| {{ short }} {{ drive }} | {{ p.power_kw }} kW | {{ p.torque_nm }} Nm | {{ p.zero_to_100_s }} s | {{ p.top_speed_kmh }} km/h |
+{% endfor %}
+
+![The {{ m.name }} from the side]({{ img("side_studio") }})
+
+{{ PAGE_BREAK }}
+
+## Room for everyday life
+
+{{ m.copy_text.practical }}
+
+| Boot | Boot, rear seats folded | Frunk | Towing | Roof load |
+|---|---|---|---|---|
+| {{ m.dimensions.boot_l | n }} litres | {{ m.dimensions.boot_folded_l | n }} litres | {{ (m.dimensions.frunk_l | string) + " litres" if m.dimensions.frunk_l else "no frunk" }} | {{ (m.towing_kg | n) + " kg braked" if m.towing_kg else "not rated for towing" }} | {{ m.dimensions.roof_load_kg }} kg |
+{% if not m.towing_kg %}
+
+The {{ m.name }} is not rated for towing.
+{% endif %}
+
+![The {{ m.name }} loaded for the weekend]({{ img("practical") }})
+
+{{ PAGE_BREAK }}
+
+## Three trims
+
+Every {{ short }} is well equipped from the start. Each trim builds on the one before it.
+
+{% for t in m.trims %}
+### {{ short }} {{ t.name }}
+
+{% if not loop.first %}
+Everything in {{ short }} {{ loop.previtem.name }}, plus:
+
+{% endif %}
+{% for item in t.adds %}
+- {{ item[0] | upper }}{{ item[1:] }}
+{% endfor %}
+{% for pack in t.includes_packs %}
+- {{ pack }} pack included: {{ cat.option_packs[pack].description }}
+{% endfor %}
+
+Wheels: {{ wheel[t.wheel].inches }} inch {{ wheel[t.wheel].name }}. Interior: {{ interior[t.interior].name }}.
+
+{% endfor %}
+{{ PAGE_BREAK }}
+
+## Colors and wheels
+
+{% for c in m.colors %}
+- **{{ c.name }}**{{ " (signature color)" if c.hero else "" }}: {{ c.description }}, {{ c.finish }} finish.
+{% endfor %}
+
+{% for w in m.wheels %}
+- **{{ w.inches }} inch {{ w.name }}:** {{ w.description }}. On {{ m.trims | selectattr("wheel", "equalto", w.key) | map(attribute="name") | join(" and ") }}.
+{% endfor %}
+
+{{ PAGE_BREAK }}
+
+## Questions and answers
+
+**How far can the {{ short }} go on a charge?**
+Up to {{ m.range_km }} km (WLTP) with the {{ m.battery_kwh }} kWh battery. Cold weather, high speeds and a full load shorten that.
+
+**How fast does it charge?**
+From 10 to 80 % in about {{ c1080(m) }} minutes at a fast charger that delivers {{ m.peak_charge_kw }} kW or more. On AC it charges at up to {{ onboard_kw(m) }} kW, empty to full in about {{ ac_hours(m) }} hours.
+
+**Can it tow?**
+{% if m.towing_kg %}
+Yes, up to {{ m.towing_kg | n }} kg braked.{% if "Tow" in m.option_packs %} The Tow pack adds an electrically deployable tow bar and trailer stability control.{% endif %}
+
+{% else %}
+No. The {{ m.name }} is not rated for towing.
+{% endif %}
+
+**Does it have a heat pump?**
+{% if m.heat_pump_standard %}
+Yes, on every trim.
+{% else %}
+On {{ short }} Plus and Prime, through the Winter pack. On {{ short }} Pure the Winter pack is an option.
+{% endif %}
+
+**Which driver assistance does it have?**
+Voltrieve Pilot version {{ m.pilot_version }}: {{ pilot_features(m.pilot_version) | and_join }}.
+
+{{ PAGE_BREAK }}
+
+## Your next step
+
+Book a test drive at your Voltrieve dealer and take the {{ short }} on the roads you drive every day. The price list, the technical specifications and the accessories catalog for the {{ m.name }} are part of this sales folder.
+
+![The {{ m.name }} in the studio]({{ img("master_front") }})

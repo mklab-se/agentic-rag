@@ -1,0 +1,50 @@
+{% set w = cat.warranty %}
+# Voltrieve warranty and service plans
+
+Every new Voltrieve comes with the same warranty, whichever model you choose: the {{ cat.models | map(attribute="name") | list | and_join }}.
+
+## Voltrieve warranty at a glance
+
+| Voltrieve warranty | Cover |
+|---|---|
+| New car warranty | {{ w.vehicle_years }} years or {{ w.vehicle_km | n }} km, whichever comes first |
+| Battery warranty | {{ w.battery_years }} years or {{ w.battery_km | n }} km, whichever comes first, with at least {{ w.battery_min_capacity_percent }} % of the original usable capacity |
+| Paint warranty | {{ w.paint_years }} years |
+| Rust perforation warranty | {{ w.corrosion_years }} years |
+| Roadside assistance | {{ w.roadside_years }} years, renewed at each scheduled service |
+
+## Battery warranty per model
+
+| Model | Battery | Battery warranty |
+|---|---|---|
+{% for m in cat.models %}
+| {{ m.name }} | {{ m.battery_kwh }} kWh | {{ w.battery_years }} years or {{ w.battery_km | n }} km, at least {{ w.battery_min_capacity_percent }} % capacity |
+{% endfor %}
+
+## What the Voltrieve warranty covers
+
+{% for note in w.notes %}
+- {{ note }}
+{% endfor %}
+
+{{ PAGE_BREAK }}
+
+## Voltrieve service intervals
+
+Every Voltrieve is serviced every {{ w.service_interval_months }} months or {{ w.service_interval_km | n }} km, whichever comes first. The car tells you when a service is due and books it with your workshop if you want it to. Software updates arrive over the air between services.
+
+## Voltrieve service plans
+
+A service plan spreads the cost of servicing into a fixed monthly amount.
+
+| Service plan | Period | What it includes | Price in Sweden | Price in the EU |
+|---|---|---|---|---|
+{% for p in cat.service_plans %}
+| {{ p.name }} | {{ p.years }} years or {{ p.km | n }} km | {{ p.includes | join(", ") }} | {{ p.price_per_month.SE | n }} SEK per month | {{ p.price_per_month.EU | n }} EUR per month |
+{% endfor %}
+
+Service plans can be added when you buy the car or at any time during the first year. They apply to every Voltrieve model.
+
+## Voltrieve roadside assistance
+
+If your Voltrieve stops on the road, for any reason including a flat battery or a flat tyre, call Voltrieve Assistance any time of day. We send help, tow the car to the nearest authorised Voltrieve workshop and arrange onward travel if the repair takes longer than the same day. Roadside assistance is included for {{ w.roadside_years }} years and renewed for one year at each scheduled service.
