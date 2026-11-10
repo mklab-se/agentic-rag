@@ -98,12 +98,22 @@ Items marked "Not available" are not sold separately. Option packs can be added 
 | Fjord in Slate: dark grey | metallic | 9 900 SEK | 900 EUR |
 | Fjord in Heath: deep burgundy | metallic | 9 900 SEK | 900 EUR |
 
+![The Voltrieve Fjord in Frost](fjord/color_frost.png)
+
+![The Voltrieve Fjord in Slate](fjord/color_slate.png)
+
+![The Voltrieve Fjord in Heath](fjord/color_heath.png)
+
 ## Fjord wheels and interiors
 
 | Wheel | Description | Standard on |
 |---|---|---|
 | 19 inch Birch | ten spokes in silver | Fjord Pure |
 | 20 inch Fern | fifteen thin straight spokes in diamond-cut silver | Fjord Plus and Prime |
+
+![The 19 inch Birch wheel](fjord/wheel_birch_19.png)
+
+![The 20 inch Fern wheel](fjord/wheel_fern_20.png)
 
 | Interior | Description | Standard on |
 |---|---|---|

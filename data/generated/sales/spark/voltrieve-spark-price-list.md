@@ -88,12 +88,22 @@ Items marked "Not available" are not sold separately. Option packs can be added 
 | Spark in Fjäll Mint: pale green with a gloss white roof | metallic | 9 900 SEK | 900 EUR |
 | Spark in Graphite: dark grey with a gloss white roof | solid | Included | Included |
 
+![The Voltrieve Spark in Snow](spark/color_snow.png)
+
+![The Voltrieve Spark in Fjäll Mint](spark/color_fjall_mint.png)
+
+![The Voltrieve Spark in Graphite](spark/color_graphite.png)
+
 ## Spark wheels and interiors
 
 | Wheel | Description | Standard on |
 |---|---|---|
 | 17 inch Pebble | flat aero wheel covers in white and light grey with five small holes | Spark Pure and Plus |
 | 17 inch Pebble | flat aero wheel covers in graphite with five small holes | Spark Prime |
+
+![The 17 inch Pebble wheel](spark/wheel_pebble_white.png)
+
+![The 17 inch Pebble wheel](spark/wheel_pebble_graphite.png)
 
 | Interior | Description | Standard on |
 |---|---|---|

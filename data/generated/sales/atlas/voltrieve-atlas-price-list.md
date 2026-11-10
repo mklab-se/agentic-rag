@@ -93,12 +93,22 @@ Items marked "Not available" are not sold separately. Option packs can be added 
 | Atlas in Forest: dark green with copper accents | metallic | 9 900 SEK | 900 EUR |
 | Atlas in Obsidian: black with black accents | metallic | 9 900 SEK | 900 EUR |
 
+![The Voltrieve Atlas in Basalt](atlas/color_basalt.png)
+
+![The Voltrieve Atlas in Forest](atlas/color_forest.png)
+
+![The Voltrieve Atlas in Obsidian](atlas/color_obsidian.png)
+
 ## Atlas wheels and interiors
 
 | Wheel | Description | Standard on |
 |---|---|---|
 | 21 inch Monolith | six wide aero spokes in silver | Atlas Pure |
 | 22 inch Monolith | six wide aero spokes, gloss black with machined silver faces | Atlas Plus and Prime |
+
+![The 21 inch Monolith wheel](atlas/wheel_monolith_21.png)
+
+![The 22 inch Monolith wheel](atlas/wheel_monolith_22.png)
 
 | Interior | Description | Standard on |
 |---|---|---|

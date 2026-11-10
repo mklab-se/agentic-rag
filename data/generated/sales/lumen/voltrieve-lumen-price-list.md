@@ -96,12 +96,22 @@ Items marked "Not available" are not sold separately. Option packs can be added 
 | Lumen in Midnight: near-black blue | metallic | 9 900 SEK | 900 EUR |
 | Lumen in Silver Birch: light silver | metallic | 9 900 SEK | 900 EUR |
 
+![The Voltrieve Lumen in Pearl](lumen/color_pearl.png)
+
+![The Voltrieve Lumen in Midnight](lumen/color_midnight.png)
+
+![The Voltrieve Lumen in Silver Birch](lumen/color_silver_birch.png)
+
 ## Lumen wheels and interiors
 
 | Wheel | Description | Standard on |
 |---|---|---|
 | 18 inch Arc | five double spokes in silver | Lumen Pure |
 | 19 inch Turbine | ten thin twisted spokes, diamond-cut silver and gloss black | Lumen Plus and Prime |
+
+![The 18 inch Arc wheel](lumen/wheel_arc_18.png)
+
+![The 19 inch Turbine wheel](lumen/wheel_turbine_19.png)
 
 | Interior | Description | Standard on |
 |---|---|---|
