@@ -1,0 +1,242 @@
+
+== backend: prompt
+PASS towing-fjord: What is the towing capacity of the Fjord?
+     expected: Voltrieve Fjord towing_kg = 2100
+     answer:   The Voltrieve Fjord can tow up to **2,100 kg with a braked trailer**. (Voltrieve Fjord technical specifications)
+PASS towing-84kwh: Which of the 84 kWh models tows more?
+     expected: Voltrieve Fjord with towing_kg = 2100
+     answer:   The **Voltrieve Fjord** tows more: up to **2,100 kg braked**, compared with the Ragn’s **1,800 kg braked**. That’s a 300 kg difference. Both have 84 kWh batteries. (Voltrieve Fjord technical specifications) (Voltrieve Ragn technical specifications)
+PASS fastest-charging: Which Voltrieve charges fastest?
+     expected: Voltrieve Atlas with peak_charge_kw = 320
+     answer:   The **Voltrieve Atlas** has the highest peak DC charging power, at **320 kW**. It charges from 10% to 80% in about **20 minutes**. The Fjord matches that approximate time, though its peak is 240 kW. (voltrieve-charging-guide.pdf)
+PASS spark-towing: Can the Spark tow a trailer?
+     expected: Voltrieve Spark has no towing_kg: decline, no kg figure
+     answer:   No. The Voltrieve Spark is not rated for towing. (voltrieve-spark-brochure.pdf)
+PASS lumen-ncap: What is the Lumen's Euro NCAP rating?
+     expected: not documented (Euro NCAP): decline, no invented value
+     answer:   I can’t find a Euro NCAP rating for the Lumen in the Voltrieve documentation. (voltrieve-lumen-brochure.pdf) (voltrieve-lumen-specifications.pdf)
+PASS cheapest-awd-se: What is the cheapest AWD Voltrieve in Sweden?
+     expected: Voltrieve Lumen AWD at 419000 (SE)
+     answer:   The cheapest AWD Voltrieve in Sweden is the **Lumen Pure AWD**, at **419,000 SEK** including VAT. The listed price is valid from 1 November 2026. (Voltrieve buyer’s guide) (Voltrieve Lumen price list)
+PASS atlas-stock: Is the Atlas in stock in Göteborg?
+     expected: atlas in Göteborg: 3
+     answer:   Yes, there are **3 Voltrieve Atlas cars** in stock in Göteborg.
+PASS ragn-warranty: How long is the battery warranty on the Ragn?
+     expected: Voltrieve warranty.battery_years = 8, Voltrieve warranty.battery_km = 160000
+     answer:   The Ragn’s battery warranty lasts **8 years or 160,000 km, whichever comes first**. If the battery falls below 70% of its original usable capacity during that period, it will be repaired or replaced at no cost. (voltrieve-warranty.pdf)
+PASS fjord-plus-awd-heath: What does the Fjord Plus AWD cost in Heath?
+     expected: Voltrieve Fjord Plus AWD in Heath: 611000 + 9900 = 620900
+     answer:   The **Fjord Plus AWD in Heath** costs: - **Sweden: 620,900 SEK** - 611,000 SEK for the car plus 9,900 SEK for Heath paint. - **EU: €56,200** - €55,300 for the car plus €900 for Heath paint. These are recommended retail prices including VAT, valid from 1 November 2026. (Voltrieve Fjord price list) (Voltrieve Fjord price list)
+PASS fjord-plus-adds: What does the Fjord Plus have that the Fjord Pure does not?
+     expected: Voltrieve Fjord Plus adds: power tailgate, keyless entry, 360 camera, winter
+     answer:   The **Fjord Plus** includes everything in the Pure, with these differences: - Power tailgate with hands-free opening - Keyless entry - 360-degree camera - 20-inch Fern wheels instead of 19-inch Birch wheels - Winter pack as standard: heated steering wheel and rear seats, plus battery preconditioning. The heat pump is standard on both trims. (voltrieve-fjord-brochure.pdf) (voltrieve-fjord-price-lis
+PASS fjord-sound-pack: Which Fjord trims have the Sound pack included?
+     expected: Sound pack included on Prime
+     answer:   The Sound pack is included on **Fjord Prime**. It’s optional on Fjord Pure and Plus. (Voltrieve Fjord price list)
+PASS fjord-wheels: Which wheels does the Fjord come with on each trim?
+     expected: 19 inch Birch, 20 inch Fern
+     answer:   The Fjord comes with these wheels as standard: - **Pure:** 19-inch Birch, with ten silver spokes. - **Plus:** 20-inch Fern, with fifteen thin, straight spokes in diamond-cut silver. - **Prime:** 20-inch Fern, the same as Plus. Source: *Voltrieve Fjord price list*.
+PASS fjord-boot: How big is the Fjord boot, with the seats up and folded, and is there a frunk?
+     expected: Voltrieve Fjord dimensions.boot_l = 640, Voltrieve Fjord dimensions.boot_folded_l = 1720, Voltrieve Fjord dimensions.frunk_l = 50
+     answer:   The Fjord has: - **640 litres** of boot space with the rear seats up. - **1,720 litres** with the rear seats folded. - A **50-litre frunk**. (Voltrieve Fjord technical specifications)
+PASS fjord-financing: What is the monthly cost in the Fjord financing example, and at what interest rate?
+     expected: 6367 per month at a nominal rate of 4.95 %
+     answer:   The **Voltrieve Fjord price list** gives two financing examples for a Fjord Plus RWD over 36 months: - **Sweden:** 6,367 SEK per month at 4.95% nominal interest (5.33% effective). - **EU:** €563 per month at 4.45% nominal interest (4.85% effective). (voltrieve-fjord-price-list.pdf) Both examples require a 20% deposit and a residual payment at the end; rates are variable. (voltrieve-fjord-price-lis
+PASS lumen-vs-ragn: Compare the Lumen and the Ragn on range, starting price in Sweden and boot size.
+     expected: Voltrieve Lumen range_km = 455, Voltrieve Lumen price.SE = 379000, Voltrieve Lumen dimensions.boot_l = 380, Voltrieve Ragn range_km = 530, Voltrieve Ragn price.SE = 549000, Voltrieve Ragn dimensions.boot_l = 520
+     answer:   | | Lumen | Ragn | |---|---:|---:| | **Range (WLTP)** | Up to 455 km (Voltrieve Lumen brochure) | Up to 530 km (Voltrieve Ragn brochure) | | **Starting price in Sweden** | 379,000 SEK, Pure RWD (Voltrieve Lumen price list) | 549,000 SEK, Pure AWD (Voltrieve Ragn price list) | | **Boot** | 380 litres | 520 litres | | **Boot, rear seats folded** | 1,260 litres (Voltrieve Lumen technical specificatio
+PASS spark-mirror-stockholm: I've broken my right side mirror on my Voltrieve Spark. Do you have one in stock in Stockholm?
+     expected: VP-14258: none in Stockholm; closest Uppsala, 2 in stock, 70 km from Stockholm
+     answer:   The **right-side door mirror for your Spark** (VP-14258) is not in stock in Stockholm. The closest dealer with one is **Uppsala**, with 2 in stock, 70 km from the Stockholm dealer. Göteborg also has 1, 470 km from Stockholm. If only the glass is broken, the right-side replacement glass (VP-14349) is available in Stockholm: **6 in stock**. (voltrieve-parts-body-glass-lighting.md)
+PASS part-out-everywhere: Is article VP-10163 in stock in Malmö?
+     expected: VP-10163: no dealer has it, say so
+     answer:   No. **VP-10163 is out of stock in Malmö**, and no other Voltrieve dealer currently has it in stock. It’s a front-right brake disc for the Voltrieve Fjord AWD. (voltrieve-parts-brakes.md)
+PASS spark-mirror-no-side: The mirror on my Voltrieve Spark is broken. Which part do I need?
+     expected: door_mirror for spark: left ['VP-14193'], right ['VP-14258']
+     answer:   It depends on which mirror is damaged and whether you need the whole unit or just the glass or cover. For a **door mirror**, the Spark parts catalog lists: (voltrieve-parts-body-glass-lighting.md) (voltrieve-parts-body-glass-lighting.md) | Part | Left | Right | |---|---|---| | Door mirror | VP-14193 | VP-14258 | | Mirror glass | VP-14323 | VP-14349 | | Mirror cap | VP-16624 | VP-16689 | The **inte
+PASS fjord-wipers: My windshield wipers on my Voltrieve Fjord need replacing. What is the article number?
+     expected: wiper_blade_front for fjord: VP-15285
+     answer:   The Voltrieve Fjord’s front windshield wiper blade set is **VP-15285**. It includes a pair of blades. (Voltrieve spare parts catalog: service items and accessories)
+PASS fjord-plus-winter-tyres: Which winter tyres fit my Voltrieve Fjord Plus?
+     expected: Voltrieve Fjord Plus: 245/45 R20, one of ['VP-15779', 'VP-15896']
+     answer:   For the Fjord Plus’s **20-inch Fern wheels**, the catalog lists these **245/45 R20** Nordic winter tyres: - **Studless:** VP-15779 - **Studded:** VP-15896 Both fit any wheel and are sold individually. (voltrieve-parts-wheels-tyres.md)
+PASS fjord-winter-tyres: Which winter tyres do you have for the Voltrieve Fjord?
+     expected: Voltrieve Fjord: every size, 235/50 R19, 245/45 R20
+     answer:   The Fjord has Nordic studless and studded winter tyres in two sizes: | Wheels | Tyre size | Studless | Studded | |---|---|---|---| | 19-inch Birch (Fjord Pure) | 235/50 R19 | VP-15766 | VP-15883 | | 20-inch Fern (Fjord Plus and Prime) | 245/45 R20 | VP-15779 | VP-15896 | Tyres are sold individually. Source: *Voltrieve spare parts catalog: wheels and tyres*. (voltrieve-parts-wheels-tyres.md)
+PASS lumen-window-switch: I need a new window switch for the rear left door of my Voltrieve Lumen. What is the article number?
+     expected: window_switch_rear_left for lumen: VP-18236
+     answer:   The rear-left window switch for your Voltrieve Lumen is **VP-18236**. (Voltrieve spare parts catalog: interior and controls)
+PASS atlas-indicator: The front right blinker on my Voltrieve Atlas is broken. Which part do I need?
+     expected: indicator_front_right for atlas: VP-16052
+     answer:   For the Voltrieve Atlas’s front right blinker, the listed part is the **right LED front indicator, article VP-16052**. (voltrieve-parts-body-glass-lighting.md)
+PASS ragn-engine-oil: Which engine oil should I use in my Voltrieve Ragn?
+     expected: no engine oil; only the reduction gear oil ['VP-15233'] may be named
+     answer:   Your Voltrieve Ragn **does not need engine oil or oil changes**: it’s electric and has no engine. Its drive unit does contain reduction gear oil, which is checked during scheduled service. (Voltrieve service guide)
+PASS fjord-crash-test: How did the Fjord do in crash tests?
+     expected: not documented (crash test): decline, no invented value
+     answer:   I couldn’t find crash-test results or a safety rating for the Fjord in the documentation I checked, including the **Voltrieve Fjord brochure** and **technical specifications**. (voltrieve-fjord-brochure.pdf) (voltrieve-fjord-specifications.pdf)
+PASS production-location: In which factory are Voltrieve cars produced?
+     expected: not documented (factory): decline, no invented value
+     answer:   I couldn’t find which factory produces Voltrieve cars in the documentation I checked, including the *Voltrieve warranty and service plans*. (voltrieve-warranty.pdf)
+
+== backend: loop
+PASS towing-fjord: What is the towing capacity of the Fjord?
+     expected: Voltrieve Fjord towing_kg = 2100
+     answer:   The Voltrieve Fjord can tow up to **2,100 kg with a braked trailer**. (Source: *Voltrieve Fjord technical specifications*)
+PASS towing-84kwh: Which of the 84 kWh models tows more?
+     expected: Voltrieve Fjord with towing_kg = 2100
+     answer:   The **Voltrieve Fjord** tows more: up to **2,100 kg braked**, compared with **1,800 kg braked** for the Ragn. That’s 300 kg more. Both have 84 kWh batteries. (Sources: Voltrieve Fjord technical specifications; Voltrieve Ragn technical specifications.)
+PASS fastest-charging: Which Voltrieve charges fastest?
+     expected: Voltrieve Atlas with peak_charge_kw = 320
+     answer:   The **Voltrieve Atlas** has the highest peak DC charging power at **320 kW**. It charges from 10% to 80% in about **20 minutes**. The **Fjord** matches that 10–80% time, though its peak is lower at **240 kW**. (Source: *Voltrieve charging guide*)
+PASS spark-towing: Can the Spark tow a trailer?
+     expected: Voltrieve Spark has no towing_kg: decline, no kg figure
+     answer:   No. The Voltrieve Spark is not rated for towing. (Source: *Voltrieve Spark technical specifications*)
+PASS lumen-ncap: What is the Lumen's Euro NCAP rating?
+     expected: not documented (Euro NCAP): decline, no invented value
+     answer:   I can’t find a Euro NCAP rating for the Lumen in the Voltrieve documentation.
+PASS cheapest-awd-se: What is the cheapest AWD Voltrieve in Sweden?
+     expected: Voltrieve Lumen AWD at 419000 (SE)
+     answer:   The cheapest AWD Voltrieve in Sweden is the **Lumen Pure AWD**, at **419,000 SEK including VAT**. That’s 40,000 SEK more than the rear-wheel-drive Lumen Pure. (Sources: *Voltrieve buyer’s guide*; *Voltrieve Lumen price list*)
+PASS atlas-stock: Is the Atlas in stock in Göteborg?
+     expected: atlas in Göteborg: 3
+     answer:   Yes, there are 3 Voltrieve Atlas cars in stock in Göteborg.
+PASS ragn-warranty: How long is the battery warranty on the Ragn?
+     expected: Voltrieve warranty.battery_years = 8, Voltrieve warranty.battery_km = 160000
+     answer:   The Ragn’s battery warranty lasts **8 years or 160,000 km**, whichever comes first. If the battery falls below 70% of its original usable capacity during that period, it will be repaired or replaced at no cost. Source: *Voltrieve warranty and service plans* (voltrieve-warranty.pdf).
+PASS fjord-plus-awd-heath: What does the Fjord Plus AWD cost in Heath?
+     expected: Voltrieve Fjord Plus AWD in Heath: 611000 + 9900 = 620900
+     answer:   The **Fjord Plus AWD in Heath** costs: - **Sweden:** 620,900 SEK (611,000 SEK + 9,900 SEK for Heath) - **EU:** €56,200 (€55,300 + €900 for Heath) These are recommended retail prices including VAT, valid from 1 November 2026. Source: *Voltrieve Fjord price list*.
+PASS fjord-plus-adds: What does the Fjord Plus have that the Fjord Pure does not?
+     expected: Voltrieve Fjord Plus adds: power tailgate, keyless entry, 360 camera, winter
+     answer:   The **Fjord Plus** includes everything in the Pure, plus: - A power tailgate with hands-free opening - Keyless entry - A 360-degree camera - 20-inch Fern wheels instead of 19-inch Birch wheels - The Winter pack: a heated steering wheel, heated rear seats and battery preconditioning The Winter pack is optional on Pure; both trims have a heat pump as standard. The tailgate, keyless entry and 360-deg
+PASS fjord-sound-pack: Which Fjord trims have the Sound pack included?
+     expected: Sound pack included on Prime
+     answer:   The Sound pack is included on **Fjord Prime**. It’s optional on Fjord Pure and Plus. The pack includes the 14-speaker Voltrieve Stage audio system. Source: *Voltrieve Fjord price list*
+PASS fjord-wheels: Which wheels does the Fjord come with on each trim?
+     expected: 19 inch Birch, 20 inch Fern
+     answer:   The Fjord’s standard wheels depend on the trim: - **Pure:** 19-inch Birch, with ten silver spokes. - **Plus:** 20-inch Fern, with fifteen thin, straight spokes in diamond-cut silver. - **Prime:** 20-inch Fern, with the same design as Plus. Source: *Voltrieve Fjord price list*.
+PASS fjord-boot: How big is the Fjord boot, with the seats up and folded, and is there a frunk?
+     expected: Voltrieve Fjord dimensions.boot_l = 640, Voltrieve Fjord dimensions.boot_folded_l = 1720, Voltrieve Fjord dimensions.frunk_l = 50
+     answer:   The Fjord has: - **640 litres** of boot space with the rear seats up. - **1,720 litres** with the rear seats folded. - A **50-litre frunk**. Source: *Voltrieve Fjord technical specifications*.
+PASS fjord-financing: What is the monthly cost in the Fjord financing example, and at what interest rate?
+     expected: 6367 per month at a nominal rate of 4.95 %
+     answer:   The **Fjord Plus RWD** financing examples run for 36 months: - **Sweden:** 6,367 SEK/month at 4.95% nominal interest (5.33% effective). - **EU:** €563/month at 4.45% nominal interest (4.85% effective). Both examples require a 20% deposit and a 50% residual payment at the end. Rates are variable and credit is subject to approval. Source: *Voltrieve Fjord price list*, pp. 4–5.
+PASS lumen-vs-ragn: Compare the Lumen and the Ragn on range, starting price in Sweden and boot size.
+     expected: Voltrieve Lumen range_km = 455, Voltrieve Lumen price.SE = 379000, Voltrieve Lumen dimensions.boot_l = 380, Voltrieve Ragn range_km = 530, Voltrieve Ragn price.SE = 549000, Voltrieve Ragn dimensions.boot_l = 520
+     answer:   | | Lumen | Ragn | |---|---:|---:| | **WLTP range** | 455 km | 530 km | | **Starting price in Sweden** | 379,000 SEK | 549,000 SEK | | **Boot size** | 380 litres | 520 litres | | **Boot with rear seats folded** | 1,260 litres | 1,580 litres | The Ragn offers **75 km more range and 140 litres more boot space**, but costs 170,000 SEK more to start. The starting prices are for the Pure trim: the Lume
+PASS spark-mirror-stockholm: I've broken my right side mirror on my Voltrieve Spark. Do you have one in stock in Stockholm?
+     expected: VP-14258: none in Stockholm; closest Uppsala, 2 in stock, 70 km from Stockholm
+     answer:   The right door mirror for the Spark is **VP-14258**. It’s heated, folding and has a camera. (Source: *Voltrieve spare parts catalog: body, glass and lighting*) It’s not currently in stock in Stockholm. The nearest dealer with stock is **Uppsala**, with 2 available, 70 km from the Stockholm dealer. Göteborg also has 1, 470 km from Stockholm.
+PASS part-out-everywhere: Is article VP-10163 in stock in Malmö?
+     expected: VP-10163: no dealer has it, say so
+     answer:   No. **VP-10163 is not in stock in Malmö or at any other Voltrieve dealer.** It is a front-right brake disc for the Fjord AWD. (Source: voltrieve-parts-brakes.md)
+PASS spark-mirror-no-side: The mirror on my Voltrieve Spark is broken. Which part do I need?
+     expected: door_mirror for spark: left ['VP-14193'], right ['VP-14258']
+     answer:   It depends on **which mirror and what is broken**. For the Spark, the catalog lists: | Part | Left | Right | |---|---|---| | Door mirror | VP-14193 | VP-14258 | | Replacement mirror glass | VP-14323 | VP-14349 | | Mirror cap, primed for paint | VP-16624 | VP-16689 | Left and right are as seen from the driver’s seat. Source: *Voltrieve spare parts catalog: body, glass and lighting*. The interior re
+PASS fjord-wipers: My windshield wipers on my Voltrieve Fjord need replacing. What is the article number?
+     expected: wiper_blade_front for fjord: VP-15285
+     answer:   The Voltrieve Fjord’s **front windshield wiper blade set** is article **VP-15285**. It contains a pair of blades. Source: *Voltrieve spare parts catalog: service items and accessories*
+PASS fjord-plus-winter-tyres: Which winter tyres fit my Voltrieve Fjord Plus?
+     expected: Voltrieve Fjord Plus: 245/45 R20, one of ['VP-15779', 'VP-15896']
+     answer:   For the Fjord Plus’s **20-inch Fern wheels**, the catalogue lists two Nordic winter tyres in size **245/45 R20**: - **Studless:** VP-15779 - **Studded:** VP-15896 Both fit any wheel and are sold individually. Source: *voltrieve-parts-wheels-tyres.md*.
+PASS fjord-winter-tyres: Which winter tyres do you have for the Voltrieve Fjord?
+     expected: Voltrieve Fjord: every size, 235/50 R19, 245/45 R20
+     answer:   The Fjord has four Nordic winter tyre options, depending on the wheels: | Wheels | Size | Type | Article number | |---|---|---|---| | 19-inch Birch (Fjord Pure) | 235/50 R19 | Studless | VP-15766 | | 19-inch Birch (Fjord Pure) | 235/50 R19 | Studded | VP-15883 | | 20-inch Fern (Fjord Plus and Prime) | 245/45 R20 | Studless | VP-15779 | | 20-inch Fern (Fjord Plus and Prime) | 245/45 R20 | Studded |
+PASS lumen-window-switch: I need a new window switch for the rear left door of my Voltrieve Lumen. What is the article number?
+     expected: window_switch_rear_left for lumen: VP-18236
+     answer:   The rear-left window switch for your Voltrieve Lumen is **VP-18236**. (Source: Voltrieve spare parts catalog: interior and controls)
+PASS atlas-indicator: The front right blinker on my Voltrieve Atlas is broken. Which part do I need?
+     expected: indicator_front_right for atlas: VP-16052
+     answer:   For the front right blinker on your Voltrieve Atlas, the listed part is the **right LED front indicator, VP-16052**. (Source: *voltrieve-parts-body-glass-lighting.md*)
+PASS ragn-engine-oil: Which engine oil should I use in my Voltrieve Ragn?
+     expected: no engine oil; only the reduction gear oil ['VP-15233'] may be named
+     answer:   Your Voltrieve Ragn doesn’t need engine oil or oil changes: it’s an electric car. Its drive unit does contain reduction gear oil, which is checked during scheduled service. (Source: **Voltrieve service guide**)
+PASS fjord-crash-test: How did the Fjord do in crash tests?
+     expected: not documented (crash test): decline, no invented value
+     answer:   I can’t find crash-test results or a safety rating for the Fjord in the available documentation.
+PASS production-location: In which factory are Voltrieve cars produced?
+     expected: not documented (factory): decline, no invented value
+     answer:   I can’t find the factory location in the available Voltrieve documentation.
+
+== backend: hosted
+PASS towing-fjord: What is the towing capacity of the Fjord?
+     expected: Voltrieve Fjord towing_kg = 2100
+     answer:   The Voltrieve Fjord can tow up to **2,100 kg with a braked trailer**. (Source: *Voltrieve Fjord technical specifications*)
+PASS towing-84kwh: Which of the 84 kWh models tows more?
+     expected: Voltrieve Fjord with towing_kg = 2100
+     answer:   The **Voltrieve Fjord** tows more: up to **2,100 kg braked**, compared with the Ragn’s **1,800 kg braked**. That’s a 300 kg difference. Sources: *Voltrieve Fjord technical specifications* and *Voltrieve Ragn technical specifications*.
+PASS fastest-charging: Which Voltrieve charges fastest?
+     expected: Voltrieve Atlas with peak_charge_kw = 320
+     answer:   The **Voltrieve Atlas** has the highest peak DC charging power at **320 kW**. It charges from 10% to 80% in about **20 minutes** - tied with the Fjord, which peaks at 240 kW. Source: *voltrieve-charging-guide.pdf*
+PASS spark-towing: Can the Spark tow a trailer?
+     expected: Voltrieve Spark has no towing_kg: decline, no kg figure
+     answer:   No. The Voltrieve Spark is not rated for towing. (Source: *Voltrieve Spark technical specifications*)
+PASS lumen-ncap: What is the Lumen's Euro NCAP rating?
+     expected: not documented (Euro NCAP): decline, no invented value
+     answer:   I can’t find a Euro NCAP rating for the Lumen in the available Voltrieve documentation.
+PASS cheapest-awd-se: What is the cheapest AWD Voltrieve in Sweden?
+     expected: Voltrieve Lumen AWD at 419000 (SE)
+     answer:   The cheapest AWD Voltrieve is the **Lumen Pure AWD**, at **419,000 SEK** in Sweden, including VAT. The listed price is valid from 1 November 2026. (Source: *Voltrieve Lumen price list*)
+PASS atlas-stock: Is the Atlas in stock in Göteborg?
+     expected: atlas in Göteborg: 3
+     answer:   Yes, there are **3 Voltrieve Atlas cars** in stock in Göteborg.
+PASS ragn-warranty: How long is the battery warranty on the Ragn?
+     expected: Voltrieve warranty.battery_years = 8, Voltrieve warranty.battery_km = 160000
+     answer:   The Ragn’s battery warranty lasts **8 years or 160,000 km, whichever comes first**. If its usable capacity falls below 70% of the original capacity during that period, the battery is repaired or replaced at no cost. Source: *Voltrieve warranty and service plans* (voltrieve-warranty.pdf).
+PASS fjord-plus-awd-heath: What does the Fjord Plus AWD cost in Heath?
+     expected: Voltrieve Fjord Plus AWD in Heath: 611000 + 9900 = 620900
+     answer:   The Fjord Plus AWD in Heath costs **620,900 SEK in Sweden** or **€56,200 in the EU**, including VAT. That includes the Heath paint surcharge of 9,900 SEK or €900. Source: *Voltrieve Fjord price list* (prices valid from 1 November 2026).
+PASS fjord-plus-adds: What does the Fjord Plus have that the Fjord Pure does not?
+     expected: Voltrieve Fjord Plus adds: power tailgate, keyless entry, 360 camera, winter
+     answer:   The **Fjord Plus** includes everything in the Pure, plus these standard features: - Power tailgate with hands-free opening - Keyless entry - 360° camera - Winter pack: heated steering wheel and rear seats, and battery preconditioning - 20-inch Fern wheels instead of the Pure’s 19-inch Birch wheels The heat pump is standard on both trims. The Winter pack is also available as an option on the Pure. 
+PASS fjord-sound-pack: Which Fjord trims have the Sound pack included?
+     expected: Sound pack included on Prime
+     answer:   The Sound pack is included on **Fjord Prime**. It’s optional on Fjord Pure and Plus. The pack includes the 14-speaker Voltrieve Stage audio system. (*Voltrieve Fjord price list*)
+PASS fjord-wheels: Which wheels does the Fjord come with on each trim?
+     expected: 19 inch Birch, 20 inch Fern
+     answer:   The Fjord’s standard wheels vary by trim: - **Pure:** 19-inch Birch, with ten silver spokes. - **Plus:** 20-inch Fern, with fifteen thin, straight spokes in diamond-cut silver. - **Prime:** 20-inch Fern, the same as Plus. Source: *Voltrieve Fjord price list*.
+PASS fjord-boot: How big is the Fjord boot, with the seats up and folded, and is there a frunk?
+     expected: Voltrieve Fjord dimensions.boot_l = 640, Voltrieve Fjord dimensions.boot_folded_l = 1720, Voltrieve Fjord dimensions.frunk_l = 50
+     answer:   The Fjord has: - **640 litres** of boot space with the rear seats up. - **1,720 litres** with the rear seats folded. - A **50-litre frunk**. Source: *Voltrieve Fjord technical specifications*.
+PASS fjord-financing: What is the monthly cost in the Fjord financing example, and at what interest rate?
+     expected: 6367 per month at a nominal rate of 4.95 %
+     answer:   The **Fjord Plus RWD** financing examples run for 36 months: - **Sweden:** 6,367 SEK/month at 4.95% nominal interest (5.33% effective). - **EU:** €563/month at 4.45% nominal interest (4.85% effective). Both examples require a 20% deposit and a 50% residual payment at the end. Rates are variable, and credit is subject to approval. (Source: *Voltrieve Fjord price list*)
+PASS lumen-vs-ragn: Compare the Lumen and the Ragn on range, starting price in Sweden and boot size.
+     expected: Voltrieve Lumen range_km = 455, Voltrieve Lumen price.SE = 379000, Voltrieve Lumen dimensions.boot_l = 380, Voltrieve Ragn range_km = 530, Voltrieve Ragn price.SE = 549000, Voltrieve Ragn dimensions.boot_l = 520
+     answer:   | | Lumen | Ragn | |---|---:|---:| | **Range (WLTP)** | 455 km | 530 km | | **Starting price in Sweden** | 379,000 SEK | 549,000 SEK | | **Boot** | 380 litres | 520 litres | The Ragn offers **75 km more WLTP range** and **140 litres more boot space**, but starts at **170,000 SEK more**. The Lumen starting price is for Pure RWD; the Ragn starting price is for Pure AWD. Prices include VAT and are va
+PASS spark-mirror-stockholm: I've broken my right side mirror on my Voltrieve Spark. Do you have one in stock in Stockholm?
+     expected: VP-14258: none in Stockholm; closest Uppsala, 2 in stock, 70 km from Stockholm
+     answer:   The right-side mirror for your Spark (**VP-14258**) is not in stock in Stockholm. It’s available at: - **Uppsala:** 2 in stock, 70 km from the Stockholm dealer - **Göteborg:** 1 in stock, 470 km from the Stockholm dealer The mirror is heated, folding and has a camera. (Source: *voltrieve-parts-body-glass-lighting.md*)
+PASS part-out-everywhere: Is article VP-10163 in stock in Malmö?
+     expected: VP-10163: no dealer has it, say so
+     answer:   No. Article VP-10163 is out of stock in Malmö and at all other Voltrieve dealers.
+PASS spark-mirror-no-side: The mirror on my Voltrieve Spark is broken. Which part do I need?
+     expected: door_mirror for spark: left ['VP-14193'], right ['VP-14258']
+     answer:   The part depends on which mirror and what is broken: | Door mirror part | Left | Right | |---|---|---| | Mirror glass | VP-14323 | VP-14349 | | Door mirror | VP-14193 | VP-14258 | | Mirror cap | VP-16624 | VP-16689 | Left and right are viewed from the driver’s seat. The caps are primed and ready for paint. (Sources: *voltrieve-parts-body-glass-lighting.md*; *voltrieve-parts-interior.md*) For the i
+PASS fjord-wipers: My windshield wipers on my Voltrieve Fjord need replacing. What is the article number?
+     expected: wiper_blade_front for fjord: VP-15285
+     answer:   The Voltrieve Fjord’s **front windshield wiper blade set** is article **VP-15285**. It contains a pair of blades. Source: *Voltrieve spare parts catalog: service items and accessories*
+PASS fjord-plus-winter-tyres: Which winter tyres fit my Voltrieve Fjord Plus?
+     expected: Voltrieve Fjord Plus: 245/45 R20, one of ['VP-15779', 'VP-15896']
+     answer:   For the Fjord Plus with **20-inch Fern wheels**, the catalog lists two winter tyres in size **245/45 R20**: - Nordic studless winter tyre - **VP-15779** - Nordic studded winter tyre - **VP-15896** Both are sold individually. Source: *voltrieve-parts-wheels-tyres.md*.
+PASS fjord-winter-tyres: Which winter tyres do you have for the Voltrieve Fjord?
+     expected: Voltrieve Fjord: every size, 235/50 R19, 245/45 R20
+     answer:   The Fjord has Nordic winter tyres in studless and studded versions. The right size depends on your wheels: | Wheels | Tyre size | Studless | Studded | |---|---|---|---| | 19-inch Birch (Fjord Pure) | 235/50 R19 | VP-15766 | VP-15883 | | 20-inch Fern (Fjord Plus and Prime) | 245/45 R20 | VP-15779 | VP-15896 | Tyres are sold individually. Source: *Voltrieve spare parts catalog: wheels and tyres*.
+PASS lumen-window-switch: I need a new window switch for the rear left door of my Voltrieve Lumen. What is the article number?
+     expected: window_switch_rear_left for lumen: VP-18236
+     answer:   The rear-left window switch for the Voltrieve Lumen is **VP-18236**. (Source: *voltrieve-parts-interior.md*)
+PASS atlas-indicator: The front right blinker on my Voltrieve Atlas is broken. Which part do I need?
+     expected: indicator_front_right for atlas: VP-16052
+     answer:   For the front right blinker on your Voltrieve Atlas, the catalog lists the **right LED front indicator, article VP-16052**. If you mean the blinker in the right door mirror, that is the **right side repeater, article VP-16104**. Source: *voltrieve-parts-body-glass-lighting.md*
+PASS ragn-engine-oil: Which engine oil should I use in my Voltrieve Ragn?
+     expected: no engine oil; only the reduction gear oil ['VP-15233'] may be named
+     answer:   Your Ragn **doesn’t need engine oil or oil changes** because it’s electric. Its drive unit does contain reduction gear oil, which is checked at scheduled service. (Source: *Voltrieve service guide*)
+PASS fjord-crash-test: How did the Fjord do in crash tests?
+     expected: not documented (crash test): decline, no invented value
+     answer:   I couldn’t find crash-test results or a safety rating for the Fjord in the Voltrieve documentation.
+PASS production-location: In which factory are Voltrieve cars produced?
+     expected: not documented (factory): decline, no invented value
+     answer:   I can’t find which factory produces Voltrieve cars in the available documentation.
+
+0 miss(es)

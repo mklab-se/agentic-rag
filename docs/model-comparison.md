@@ -82,6 +82,20 @@ On 2026-11-10 the five Word brochures and spec PDFs were replaced by 23 sales fo
 
 Later the same day the documents descriptions the agents read were updated to name the price lists, accessories catalogs, warranty and charging guide, and all agents were redeployed. One more routing run (1 repeat, `descriptions-gpt-6.1-terra.json`) was right on every docs, parts and both question on every backend, with 39 of 39 article numbers. In the grounding check, the own loop once read "the Fjord Plus AWD in Heath" as a place called Heath, gave the price without the color and asked which Heath was meant; the same question passed 3 of 3 times when asked again.
 
+## After the parts expansion
+
+On 2026-11-10 the parts catalog grew from 429 to 759 parts in 7 catalogs (tyres for every wheel, an interior and controls catalog, more lighting, glass, wipers and body parts), every existing article number unchanged. The dealer service got parts stock per city, and all backends got the `check_part_stock` tool. The routing suite ran with 2 repeats on all three backends (`parts-expansion-gpt-6.1-terra.json`), against the 1-repeat run after the documents descriptions update (`descriptions-gpt-6.1-terra.json`).
+
+| On the 33 earlier questions | Prompt agent | Own loop | Hosted agent |
+|---|---|---|---|
+| First text, median, before and after | 3.6 s and 3.3 s | 3.7 s and 3.2 s | 8.2 s and 7.5 s |
+| Turns over 10 s | 4 of 33 and 3 of 66 | 1 of 33 and 4 of 66 | 11 of 33 and 16 of 66 |
+| Input tokens, parts questions, median | 15,578 and 15,918 | 7,620 and 8,314 | 7,686 and 8,240 |
+
+- **Correctness held.** Grounding passed 26 of 26 on every backend, and 86 of 86 expected article numbers were found, none invented. Every docs, parts and both question was right on the own loop and the hosted agent; the prompt agent also searched the documents for the Fjord wipers, in both runs.
+- **Stock.** The stock tool was called in all 12 stock runs. For "Is article ... in stock at any dealer?" every backend first searched the catalog to say what the part is, then checked stock; the routing question now expects that search. Before the fix to the instructions, all three backends asked which model an article number was for.
+- **Bigger catalogs cost little.** Parts turns read 2 to 9 % more input tokens. First text did not get slower.
+
 ## How the cost is estimated
 
 Cost is the tokens each turn reported, at list price: Global Standard, Sweden Central, short context, read on 2026-11-05. It covers agent tokens, cached tokens, planning tokens and Search reasoning tokens at USD 0.022 per million.

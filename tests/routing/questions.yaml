@@ -43,7 +43,7 @@ questions:
   - { id: engine-oil, group: docs, ask: "Which engine oil should I use in my Voltrieve Ragn?", expect: [docs] }
 
   - { id: part-stock, group: stock, ask: "I've broken my right side mirror on my Voltrieve Spark. Do you have one in stock in Stockholm?", expect: [parts], tools: [check_part_stock], article: { key: door_mirror_right, fits: Voltrieve Spark } }
-  - { id: part-stock-none, group: stock, ask: "Is article {article} in stock at any dealer?", expect: [], tools: [check_part_stock], pick: out_everywhere }
+  - { id: part-stock-none, group: stock, ask: "Is article {article} in stock at any dealer?", expect: [parts], tools: [check_part_stock], pick: out_everywhere }
 
   - { id: reverse-lookup, group: parts, ask: "What is article {article} and which cars does it fit?", expect: [parts], reverse: { key: charge_port, fits: Voltrieve Ragn } }
 
