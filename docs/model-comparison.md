@@ -65,6 +65,21 @@ Azure AI Search calls a model of its own to plan each search, so this is a separ
 
 GPT-6 models are refused with `HTTP 400: Unsupported model type`, which matches Microsoft's list of supported models. The planning model made little difference, and the gaps here come from 8 runs, so they could be noise. So the agent and Search planning need separate deployments if the agent runs on GPT-6. That also stops them sharing a token limit.
 
+## After the sales folders
+
+On 2026-11-10 the five Word brochures and spec PDFs were replaced by 23 sales folder PDFs (brochure, price list, specifications and accessories per model; buyer's guide, charging guide and warranty for the brand). The routing suite then ran again on `gpt-6.1-terra`, 2 repeats on all three backends, with 9 new questions about trims, colors, wheels, boot space, financing, warranty and comparing two models. Raw runs: `docs/evidence/models/sales-folders-gpt-6.1-terra.json`, against `final-gpt-6.1-terra.json`.
+
+| On the 24 earlier questions | Prompt agent | Own loop | Hosted agent |
+|---|---|---|---|
+| Right sources, before and after | 100 % and 98 % | 100 % and 100 % | 100 % and 100 % |
+| First text, median | 2.1 s and 2.7 s | 1.9 s and 2.4 s | 7.5 s and 7.0 s |
+| Turns over 10 s (of 48) | 7 and 6 | 1 and 1 | 14 and 11 |
+| Input tokens, document questions, median | 8,330 and 15,803 | 5,676 and 7,551 | 5,670 and 7,582 |
+
+- **Correctness held.** The one miss is a prompt agent reverse lookup that answered without searching, once in two runs. All 78 expected article numbers were found on every backend, none invented. The 9 new questions were right on every backend in every run.
+- **Document searches cost more tokens.** PDF chunks carry whole table rows and the page footer, so a document turn reads about a third more on the own loop and the hosted agent, and nearly twice as much on the prompt agent. Why the prompt agent grew more was not measured. At Terra's input price that is about USD 2 per 1,000 document turns on the own loop and USD 7.5 on the prompt agent.
+- **Latency moved little.** First text came about 0.5 s later on the prompt agent and the own loop, including on questions that do not search, so most of it is the day and the network. The new questions answer in a median 4.4 s on the own loop.
+
 ## How the cost is estimated
 
 Cost is the tokens each turn reported, at list price: Global Standard, Sweden Central, short context, read on 2026-11-05. It covers agent tokens, cached tokens, planning tokens and Search reasoning tokens at USD 0.022 per million.

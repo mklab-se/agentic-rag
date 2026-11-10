@@ -157,3 +157,16 @@ def test_price_list_shows_wheels_and_optional_colors():
         assert image_ref("fjord", f"wheel_{w.key}") in md
     for c in m.colors:
         assert (image_ref("fjord", f"color_{c.key}") in md) is (not c.hero)
+
+
+def test_dealer_prices_agree_with_the_price_lists():
+    """get_prices answers from the dealer's data.json; it must say what the price lists say."""
+    import json
+
+    dealer = json.loads((Path(__file__).parents[3] / "services" / "dealer" / "app" / "data.json").read_text())
+    for m in cat.models:
+        md = render_markdown("price_list", cat, m)
+        for market in ("SE", "EU"):
+            pure = cat.trim_price(m, "Pure", "RWD" if "RWD" in m.drive else "AWD", market)
+            assert dealer["prices"][market][m.slug] == pure, (m.slug, market)
+            assert fmt_int(pure) in md
