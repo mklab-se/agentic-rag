@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from voltrieve_data.car_images import SHOTS, build_prompt, load_identities
+from voltrieve_data.car_images import SHOTS, build_prompt, generate_images, load_identities
 
 CARS = Path(__file__).parents[2] / "design" / "cars.yaml"
 EM_DASH = chr(0x2014)
@@ -38,3 +38,49 @@ def test_lumen_is_a_compact_hatchback():
 def test_no_em_dash_in_prompts():
     cars = load_identities(CARS).values()
     assert all(EM_DASH not in build_prompt(car, shot) for car in cars for shot in SHOTS)
+
+
+FJORD = load_identities(CARS)["fjord"]
+
+
+def fake(calls):
+    """A stand-in for subprocess.run that records the ailloy command and writes the output file."""
+
+    def run(cmd, **kwargs):
+        calls.append(cmd)
+        Path(cmd[cmd.index("-o") + 1]).write_bytes(b"png")
+
+        class Done:
+            returncode = 0
+            stderr = ""
+
+        return Done()
+
+    return run
+
+
+def test_skips_existing_files(tmp_path):
+    (tmp_path / "fjord").mkdir()
+    (tmp_path / "fjord" / "master_front.png").write_bytes(b"x")
+    calls = []
+    generate_images({"fjord": FJORD}, ["master_front"], tmp_path, run=fake(calls))
+    assert calls == []
+
+
+def test_master_front_is_text_only(tmp_path):
+    calls = []
+    generate_images({"fjord": FJORD}, ["master_front"], tmp_path, run=fake(calls))
+    assert "--ref" not in calls[0] and calls[0][:2] == ["ailloy", "image"]
+
+
+def test_rear_master_edits_from_front(tmp_path):
+    calls = []
+    generate_images({"fjord": FJORD}, ["master_front", "master_rear"], tmp_path, run=fake(calls))
+    rear = calls[1]
+    assert rear[rear.index("--ref") + 1].endswith("fjord/master_front.png")
+    assert "--fidelity" not in rear
+
+
+def test_every_call_is_logged(tmp_path):
+    generate_images({"fjord": FJORD}, ["master_front"], tmp_path, run=fake([]))
+    assert len((tmp_path / "generation-log.jsonl").read_text().splitlines()) == 1

@@ -8,6 +8,7 @@ dependencies = [
     "pyyaml",
     "python-docx",
     "fpdf2",
+    "pillow",
 ]
 
 [dependency-groups]

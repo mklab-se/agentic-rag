@@ -550,6 +550,7 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "fpdf2" },
+    { name = "pillow" },
     { name = "pydantic" },
     { name = "python-docx" },
     { name = "pyyaml" },
@@ -564,6 +565,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "fpdf2" },
+    { name = "pillow" },
     { name = "pydantic", specifier = ">=2" },
     { name = "python-docx" },
     { name = "pyyaml" },
