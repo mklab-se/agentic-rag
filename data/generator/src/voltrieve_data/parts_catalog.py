@@ -15,6 +15,17 @@ RULE = "|---|---|---|---|---|---|"
 # Listed again where a job needs them. A search for brake parts reaches the brake catalog, and
 # the model left out brake fluid when it lived only among the service items.
 CROSS_REFERENCES = {"voltrieve-parts-brakes.md": ("Consumables for brake work", ("brake_fluid",))}
+# Said once at the top of a catalog, because people ask for parts an electric car does not have.
+NOTES = {
+    "voltrieve-parts-service-items.md": (
+        "Voltrieve cars are electric and have no engine, so they use no engine oil and need no oil "
+        "change. The reduction gear oil is the only oil in the car."
+    ),
+    "voltrieve-parts-interior.md": (
+        "Voltrieve cars have no gear shift knob or gear lever. The drive selector replaces the gear "
+        "lever: a stalk or a rotary dial, depending on the model."
+    ),
+}
 
 
 def _row(part: Part) -> str:
@@ -32,7 +43,7 @@ def _fits(part: Part, model: CarModel) -> bool:
 def write_parts_documents(catalog: Catalog, out_dir: Path) -> list[Path]:
     parts = build_parts(catalog)
     paths = []
-    for file_name, (title, _, _) in DOCUMENTS.items():
+    for file_name, (title, _) in DOCUMENTS.items():
         in_document = [p for p in parts if p.document == file_name]
         lines = [
             f"# Voltrieve spare parts catalog: {title.lower()}",
@@ -43,6 +54,8 @@ def write_parts_documents(catalog: Catalog, out_dir: Path) -> list[Path]:
             "drive. A part shared between models has the same article number in every section.",
             "",
         ]
+        if file_name in NOTES:
+            lines += [NOTES[file_name], ""]
         for model in catalog.models:
             rows = [p for p in in_document if _fits(p, model)]
             if not rows:

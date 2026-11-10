@@ -184,6 +184,8 @@ class CarModel(BaseModel):
     performance: dict[str, Performance]  # per drive
     accent: str  # document accent color, readable on white
     copy_text: Copy
+    drive_selector: Literal["stalk", "rotary"]  # how the driver picks drive, reverse and park
+    rear_quarter_glass: bool  # a fixed side window behind the rear doors
 
     @model_validator(mode="after")
     def _references_exist(self) -> "CarModel":

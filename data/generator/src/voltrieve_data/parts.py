@@ -10,9 +10,8 @@ numbers it becomes:
   wheel     one per model and tyre size, for tyres (wheels with the same size share one)
 
 Numbers are assigned in template order, so the output is the same on every run. Article numbers
-never change once published: every document has its original templates and its added ones, and
-all original templates are numbered before any added template. New templates go at the end of
-an added list, never among the original ones.
+never change once published: the first-edition templates are numbered first, then the templates
+in ADDED, in the order they were added. New templates go at the end of ADDED, nowhere else.
 """
 
 from collections.abc import Callable
@@ -258,7 +257,7 @@ BODY_TEMPLATES = [
               spec="Flush handle with presentation motor"),
     *_sided("wheel_arch_liner", "Wheel arch liner", "front", system=EXTERIOR, scope="model",
             spec="Moulded liner with clips"),
-    Template("windscreen", "Windscreen", GLASS, "model", "Laminated, with camera bracket",
+    Template("windscreen", "Windscreen", GLASS, "model", "Laminated windscreen (windshield), with camera bracket",
              position="Front"),
     Template("rear_window", "Rear window", GLASS, "model", "Heated", position="Rear"),
     *_sided("door_mirror", "Door mirror", None, system=GLASS, scope="model",
@@ -314,10 +313,10 @@ SERVICE_TEMPLATES = [
     Template("cabin_filter", "Cabin air filter", CONSUMABLES, "platform", "Activated carbon filter",
              position="Passenger footwell"),
     Template("reduction_oil", "Reduction gear oil", CONSUMABLES, "all", "1 litre bottle"),
-    Template("wiper_blade_front", "Wiper blade set, front", WEAR, "model", "Pair of flat blades",
+    Template("wiper_blade_front", "Wiper blade set, front", WEAR, "model", "Pair of flat blades (windscreen or windshield wipers)",
              position="Front"),
     Template("wiper_blade_rear", "Wiper blade, rear", WEAR, "model", "Single blade", position="Rear"),
-    Template("wheel_bolt_set", "Wheel bolt set", WEAR, "platform", "Set of 20 bolts"),
+    Template("wheel_bolt_set", "Wheel bolt set", WEAR, "platform", "Set of 20 wheel bolts (Voltrieve uses bolts, not wheel nuts)"),
     Template("locking_bolt_set", "Locking wheel bolt set", WEAR, "platform", "Set of 4 with adapter"),
     Template("tyre_valve_set", "Tyre pressure sensor set", WEAR, "platform", "Set of 4 sensors"),
     Template("tyre_repair_kit", "Tyre repair kit", WEAR, "all", "Sealant and 12 V compressor"),
@@ -326,6 +325,124 @@ SERVICE_TEMPLATES = [
              position="Rear", when=lambda model: model.towing_kg is not None and "Tow" in model.option_packs),
     Template("tow_harness", "Tow bar harness", TOWING, "platform", "13 pin harness with control unit",
              position="Rear", when=_v2),
+]
+
+WIPERS = "Wipers and washers"
+CONTROLS = "Controls and switches"
+SEATS = "Seats and belts"
+CABIN = "Cabin trim and equipment"
+DISPLAYS = "Displays and audio"
+
+
+def _panoramic(model: CarModel) -> bool:
+    return any("panoramic glass roof" in item for t in model.trims for item in t.adds)
+
+
+def _quarter(model: CarModel) -> bool:
+    return model.rear_quarter_glass
+
+
+def _drive_selector(model: CarModel, drive: str | None) -> str:
+    where = ("Stalk on the right of the steering column" if model.drive_selector == "stalk"
+             else "Rotary dial on the centre console")
+    return (f"{where}, for drive, neutral, reverse and park. It replaces the gear lever: there is "
+            "no gear shift knob")
+
+
+BODY_ADDED_TEMPLATES = [
+    *_sided("indicator_front", "Front indicator", None, system=LIGHTS, scope="model",
+            spec="LED front indicator (blinker, direction light)"),
+    *_sided("side_repeater", "Side repeater", None, system=LIGHTS, scope="platform",
+            spec="LED side indicator (blinker, direction light) in the door mirror"),
+    Template("reversing_lamp", "Reversing lamp", LIGHTS, "model", "LED reversing lamp", position="Rear"),
+    Template("rear_fog_lamp", "Rear fog lamp", LIGHTS, "model", "LED rear fog lamp", position="Rear left"),
+    *_corners("door_window", "Door window", system=GLASS, scope="model", spec="Tinted side glass"),
+    *_sided("rear_quarter_glass", "Rear quarter glass", None, system=GLASS, scope="model",
+            spec="Fixed side window behind the rear door", when=_quarter),
+    Template("panoramic_roof_glass", "Panoramic roof glass", GLASS, "model",
+             "Laminated, tinted roof glass for the trims with the panoramic glass roof",
+             position="Roof", when=_panoramic),
+    *_sided("mirror_cap", "Door mirror cap", None, system=GLASS, scope="model",
+            spec="Primed mirror cover, ready for paint"),
+    Template("wiper_motor_front", "Front wiper motor", WIPERS, "platform", "Motor with linkage",
+             position="Front"),
+    Template("wiper_motor_rear", "Rear wiper motor", WIPERS, "platform", "Motor for the rear wiper",
+             position="Rear"),
+    Template("washer_pump", "Washer pump", WIPERS, "platform", "12 V pump in the washer reservoir",
+             position="Front compartment"),
+    *_sided("washer_nozzle", "Washer nozzle", None, system=WIPERS, scope="platform",
+            spec="Heated spray nozzle for the windscreen"),
+    *_corners("window_regulator", "Window regulator", system=EXTERIOR, scope="model",
+              spec="Electric regulator with motor"),
+    *_corners("door_lock_actuator", "Door lock actuator", system=EXTERIOR, scope="platform",
+              spec="Lock motor with latch"),
+    *_corners("door_seal", "Door seal", system=EXTERIOR, scope="platform", spec="Rubber weatherstrip"),
+    *_sided("wheel_arch_liner", "Wheel arch liner", "rear", system=EXTERIOR, scope="model",
+            spec="Moulded liner with clips"),
+    Template("mud_flaps_front", "Mud flap set, front", EXTERIOR, "model", "Pair of mud flaps",
+             position="Front"),
+    Template("mud_flaps_rear", "Mud flap set, rear", EXTERIOR, "model", "Pair of mud flaps",
+             position="Rear"),
+    *_sided("side_skirt", "Side skirt", None, system=EXTERIOR, scope="model", spec="Primed sill cover"),
+    *_sided("roof_rail", "Roof rail", None, system=EXTERIOR, scope="model", spec="Satin roof rail with covers"),
+    *_sided("tailgate_strut", "Tailgate strut", None, system=EXTERIOR, scope="model",
+            spec="Gas strut for the tailgate"),
+    Template("horn", "Horn", SENSORS, "platform", "Dual tone horn", position="Front"),
+]
+
+INTERIOR_TEMPLATES = [
+    Template("drive_selector", "Drive selector", CONTROLS, "model", _drive_selector, position="Cockpit"),
+    Template("indicator_stalk", "Indicator stalk", CONTROLS, "platform",
+             "Left column stalk for the indicators (blinkers) and headlamp flash", position="Steering column"),
+    Template("wiper_stalk", "Wiper stalk", CONTROLS, "platform",
+             "Right column stalk for the wipers and washers", position="Steering column"),
+    Template("window_switch_pack_driver", "Window switch pack, driver", CONTROLS, "model",
+             "Driver's door switches for every window and the door mirrors", position="Front left"),
+    Template("window_switch_front_right", "Window switch, front right", CONTROLS, "platform",
+             "Single window switch", position="Front right"),
+    Template("window_switch_rear_left", "Window switch, rear left", CONTROLS, "platform",
+             "Single window switch", position="Rear left"),
+    Template("window_switch_rear_right", "Window switch, rear right", CONTROLS, "platform",
+             "Single window switch", position="Rear right"),
+    Template("hazard_switch", "Hazard warning switch", CONTROLS, "platform",
+             "Hazard light button", position="Dashboard"),
+    *_sided("steering_buttons", "Steering wheel buttons", None, system=CONTROLS, scope="platform",
+            spec="Button pack on the steering wheel spoke"),
+    *_sided("seat_switch", "Seat adjustment switch", None, system=CONTROLS, scope="model",
+            spec="Electric seat adjustment switch, front seat"),
+    *_sided("seat_belt_front", "Front seat belt", None, system=SEATS, scope="platform",
+            spec="Belt with pretensioner"),
+    Template("seat_belt_rear_left", "Rear seat belt, left", SEATS, "platform", "Three point belt",
+             position="Rear left"),
+    Template("seat_belt_rear_centre", "Rear seat belt, centre", SEATS, "platform", "Three point belt",
+             position="Rear centre"),
+    Template("seat_belt_rear_right", "Rear seat belt, right", SEATS, "platform", "Three point belt",
+             position="Rear right"),
+    *_sided("headrest_front", "Front headrest", None, system=SEATS, scope="model",
+            spec="Headrest in the seat colour of the trim"),
+    Template("headrest_rear", "Rear headrest set", SEATS, "model", "Set of rear headrests",
+             position="Rear"),
+    *_corners("door_trim_panel", "Door trim panel", system=CABIN, scope="model",
+              spec="Inner door panel without switches"),
+    *_sided("sun_visor", "Sun visor", None, system=CABIN, scope="model", spec="Visor with lit mirror"),
+    Template("interior_mirror", "Interior mirror", CABIN, "platform", "Auto dimming rear view mirror",
+             position="Windscreen"),
+    Template("interior_lamp", "Interior lamp", CABIN, "platform", "LED reading and roof lamp",
+             position="Roof"),
+    Template("glovebox_lid", "Glovebox lid", CABIN, "model", "Lid with damper", position="Dashboard"),
+    Template("centre_armrest", "Centre armrest", CABIN, "model", "Armrest with storage", position="Cabin"),
+    Template("load_cover", "Load cover", CABIN, "model", "Retractable boot cover", position="Boot"),
+    Template("cargo_net", "Cargo net", CABIN, "model", "Boot floor net", position="Boot"),
+    Template("usb_c_socket", "USB-C socket", CABIN, "platform", "Double 65 W USB-C socket",
+             position="Centre console"),
+    Template("socket_12v", "12 V socket", CABIN, "platform", "Socket in the boot", position="Boot"),
+    Template("climate_panel", "Climate control panel", DISPLAYS, "model", "Buttons under the touchscreen",
+             position="Dashboard"),
+    Template("touchscreen", "Central touchscreen", DISPLAYS, "model", "Touchscreen unit",
+             position="Dashboard"),
+    Template("driver_display", "Driver display", DISPLAYS, "model", "Display behind the steering wheel",
+             position="Dashboard"),
+    *_corners("door_speaker", "Door speaker", system=DISPLAYS, scope="platform", spec="Mid bass speaker"),
 ]
 
 TYRES = "Tyres"
@@ -350,15 +467,24 @@ TYRE_TEMPLATES = [
              _tyre("Nordic studded winter tyre"), position="Any wheel"),
 ]
 
-# File name: (title, original templates, templates added after the first edition).
-DOCUMENTS: dict[str, tuple[str, list[Template], list[Template]]] = {
-    "voltrieve-parts-brakes.md": ("Brake system", BRAKE_TEMPLATES, []),
-    "voltrieve-parts-suspension-steering.md": ("Suspension and steering", SUSPENSION_TEMPLATES, []),
-    "voltrieve-parts-body-glass-lighting.md": ("Body, glass and lighting", BODY_TEMPLATES, []),
-    "voltrieve-parts-electrical-charging.md": ("Electrical and charging", ELECTRICAL_TEMPLATES, []),
-    "voltrieve-parts-service-items.md": ("Service items and accessories", SERVICE_TEMPLATES, []),
-    "voltrieve-parts-wheels-tyres.md": ("Wheels and tyres", [], TYRE_TEMPLATES),
+# File name: (title, the templates of the first edition).
+DOCUMENTS: dict[str, tuple[str, list[Template]]] = {
+    "voltrieve-parts-brakes.md": ("Brake system", BRAKE_TEMPLATES),
+    "voltrieve-parts-suspension-steering.md": ("Suspension and steering", SUSPENSION_TEMPLATES),
+    "voltrieve-parts-body-glass-lighting.md": ("Body, glass and lighting", BODY_TEMPLATES),
+    "voltrieve-parts-electrical-charging.md": ("Electrical and charging", ELECTRICAL_TEMPLATES),
+    "voltrieve-parts-service-items.md": ("Service items and accessories", SERVICE_TEMPLATES),
+    "voltrieve-parts-wheels-tyres.md": ("Wheels and tyres", []),
+    "voltrieve-parts-interior.md": ("Interior and controls", []),
 }
+
+# Templates added after the first edition, in the order they were added. They are numbered after
+# every first-edition part, so a new template goes at the end of this list and nowhere else.
+ADDED: list[tuple[str, list[Template]]] = [
+    ("voltrieve-parts-wheels-tyres.md", TYRE_TEMPLATES),
+    ("voltrieve-parts-body-glass-lighting.md", BODY_ADDED_TEMPLATES),
+    ("voltrieve-parts-interior.md", INTERIOR_TEMPLATES),
+]
 
 
 def _tyre_groups(fitting: list[CarModel]) -> list[tuple[list[CarModel], None, list[Wheel]]]:
@@ -399,8 +525,8 @@ def _fit(model: CarModel, drive: str | None) -> Fit:
 
 def build_parts(catalog: Catalog) -> list[Part]:
     parts: list[Part] = []
-    originals = [(doc, t) for doc, (_, templates, _) in DOCUMENTS.items() for t in templates]
-    added = [(doc, t) for doc, (_, _, templates) in DOCUMENTS.items() for t in templates]
+    originals = [(doc, t) for doc, (_, templates) in DOCUMENTS.items() for t in templates]
+    added = [(doc, t) for doc, templates in ADDED for t in templates]
     for document, template in originals + added:
         for models, drive, wheels in _groups(template, catalog.models):
             spec = template.spec

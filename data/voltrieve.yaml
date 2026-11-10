@@ -76,6 +76,8 @@ option_packs:
 models:
   - name: Voltrieve Spark
     slug: spark
+    drive_selector: stalk
+    rear_quarter_glass: false
     segment: city car
     platform: V1
     voltage: 400
@@ -143,6 +145,8 @@ models:
         odd trip to the furniture store.
   - name: Voltrieve Lumen
     slug: lumen
+    drive_selector: rotary
+    rear_quarter_glass: false
     segment: hatchback
     platform: V1
     voltage: 400
@@ -212,6 +216,8 @@ models:
         cable keep everyday life tidy.
   - name: Voltrieve Ragn
     slug: ragn
+    drive_selector: rotary
+    rear_quarter_glass: true
     segment: crossover
     platform: V2
     voltage: 800
@@ -279,6 +285,8 @@ models:
         firewood.
   - name: Voltrieve Fjord
     slug: fjord
+    drive_selector: stalk
+    rear_quarter_glass: true
     segment: estate
     platform: V2
     voltage: 800
@@ -347,6 +355,8 @@ models:
         caravan or the horse trailer.
   - name: Voltrieve Atlas
     slug: atlas
+    drive_selector: stalk
+    rear_quarter_glass: true
     segment: large SUV
     platform: V2
     voltage: 800

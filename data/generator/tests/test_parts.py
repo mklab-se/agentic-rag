@@ -162,3 +162,63 @@ def test_index_records_the_wheels_of_each_tyre(tmp_path):
     tyres = [p for p in index["parts"] if p["key"] in TYRES]
     assert tyres and all(p["wheels"] for p in tyres)
     assert all(p["wheels"] == [] for p in index["parts"] if p["key"] not in TYRES)
+
+
+NEW_KINDS = ("drive_selector", "indicator_stalk", "wiper_stalk", "window_switch_pack_driver",
+             "hazard_switch", "steering_buttons_left", "steering_buttons_right", "seat_switch_left",
+             "seat_switch_right", "indicator_front_left", "indicator_front_right", "side_repeater_left",
+             "side_repeater_right", "door_window_front_left", "door_window_rear_right",
+             "wiper_motor_front", "washer_pump")
+
+
+def _catalog_text(tmp_path):
+    from voltrieve_data.parts_catalog import write_parts_documents
+
+    paths = write_parts_documents(load_catalog(CATALOG_PATH), tmp_path)
+    return {p.name: p.read_text(encoding="utf-8") for p in paths}
+
+
+def test_catalog_has_between_750_and_830_parts(parts):
+    assert 750 <= len(parts) <= 830
+
+
+def test_new_kinds_exist_for_every_model(catalog, parts):
+    for model in catalog.models:
+        for key in NEW_KINDS:
+            assert any(p.key == key and any(f.slug == model.slug for f in p.fits) for p in parts), (model.slug, key)
+
+
+def test_panoramic_roof_glass_only_where_a_trim_has_it(catalog, parts):
+    for model in catalog.models:
+        has_roof = any("panoramic glass roof" in a for t in model.trims for a in t.adds)
+        found = any(p.key == "panoramic_roof_glass" and p.fits[0].slug == model.slug for p in parts)
+        assert found == has_roof, model.slug
+
+
+def test_quarter_glass_follows_the_flag(catalog, parts):
+    for model in catalog.models:
+        found = any(p.key == "rear_quarter_glass_left" and p.fits[0].slug == model.slug for p in parts)
+        assert found == model.rear_quarter_glass, model.slug
+
+
+def test_drive_selector_follows_the_catalog(catalog, parts):
+    for model in catalog.models:
+        part = next(p for p in parts if p.key == "drive_selector" and p.fits[0].slug == model.slug)
+        assert ("stalk" if model.drive_selector == "stalk" else "dial") in part.spec.lower()
+
+
+def test_everyday_words_are_searchable(tmp_path):
+    text = " ".join(_catalog_text(tmp_path).values()).lower()
+    for words in ("wheel nut", "windshield", "blinker", "direction light", "gear shift knob"):
+        assert words in text, words
+
+
+def test_catalogs_say_there_is_no_engine_oil_and_no_gear_lever(tmp_path):
+    texts = _catalog_text(tmp_path)
+    service = texts["voltrieve-parts-service-items.md"].lower()
+    assert "no engine oil" in service and "reduction gear oil is the only oil" in service
+    assert "replaces the gear lever" in texts["voltrieve-parts-interior.md"].lower()
+
+
+def test_no_engine_oil_part(parts):
+    assert not any("engine oil" in p.name.lower() for p in parts)

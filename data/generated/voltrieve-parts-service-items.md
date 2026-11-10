@@ -2,6 +2,8 @@
 
 Each row gives the article number, the part, where it sits on the car, a short description, the quantity supplied and the vehicles it fits. Left and right are seen from the driver's seat. A row that names a drive, such as AWD, fits only that drive. A part shared between models has the same article number in every section.
 
+Voltrieve cars are electric and have no engine, so they use no engine oil and need no oil change. The reduction gear oil is the only oil in the car.
+
 ## Service items and accessories: Voltrieve Spark
 
 ### Voltrieve Spark: fluids and filters
@@ -18,9 +20,9 @@ Each row gives the article number, the part, where it sits on the car, a short d
 
 | Article number | Part | Position | Description | Qty | Fits |
 |---|---|---|---|---|---|
-| VP-15246 | Wiper blade set, front | Front | Pair of flat blades | 1 | Voltrieve Spark |
+| VP-15246 | Wiper blade set, front | Front | Pair of flat blades (windscreen or windshield wipers) | 1 | Voltrieve Spark |
 | VP-15311 | Wiper blade, rear | Rear | Single blade | 1 | Voltrieve Spark |
-| VP-15376 | Wheel bolt set | Not applicable | Set of 20 bolts | 1 | Voltrieve Spark, Voltrieve Lumen |
+| VP-15376 | Wheel bolt set | Not applicable | Set of 20 wheel bolts (Voltrieve uses bolts, not wheel nuts) | 1 | Voltrieve Spark, Voltrieve Lumen |
 | VP-15402 | Locking wheel bolt set | Not applicable | Set of 4 with adapter | 1 | Voltrieve Spark, Voltrieve Lumen |
 | VP-15428 | Tyre pressure sensor set | Not applicable | Set of 4 sensors | 1 | Voltrieve Spark, Voltrieve Lumen |
 | VP-15454 | Tyre repair kit | Not applicable | Sealant and 12 V compressor | 1 | Voltrieve Spark, Voltrieve Lumen, Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
@@ -42,9 +44,9 @@ Each row gives the article number, the part, where it sits on the car, a short d
 
 | Article number | Part | Position | Description | Qty | Fits |
 |---|---|---|---|---|---|
-| VP-15259 | Wiper blade set, front | Front | Pair of flat blades | 1 | Voltrieve Lumen |
+| VP-15259 | Wiper blade set, front | Front | Pair of flat blades (windscreen or windshield wipers) | 1 | Voltrieve Lumen |
 | VP-15324 | Wiper blade, rear | Rear | Single blade | 1 | Voltrieve Lumen |
-| VP-15376 | Wheel bolt set | Not applicable | Set of 20 bolts | 1 | Voltrieve Spark, Voltrieve Lumen |
+| VP-15376 | Wheel bolt set | Not applicable | Set of 20 wheel bolts (Voltrieve uses bolts, not wheel nuts) | 1 | Voltrieve Spark, Voltrieve Lumen |
 | VP-15402 | Locking wheel bolt set | Not applicable | Set of 4 with adapter | 1 | Voltrieve Spark, Voltrieve Lumen |
 | VP-15428 | Tyre pressure sensor set | Not applicable | Set of 4 sensors | 1 | Voltrieve Spark, Voltrieve Lumen |
 | VP-15454 | Tyre repair kit | Not applicable | Sealant and 12 V compressor | 1 | Voltrieve Spark, Voltrieve Lumen, Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
@@ -66,9 +68,9 @@ Each row gives the article number, the part, where it sits on the car, a short d
 
 | Article number | Part | Position | Description | Qty | Fits |
 |---|---|---|---|---|---|
-| VP-15272 | Wiper blade set, front | Front | Pair of flat blades | 1 | Voltrieve Ragn |
+| VP-15272 | Wiper blade set, front | Front | Pair of flat blades (windscreen or windshield wipers) | 1 | Voltrieve Ragn |
 | VP-15337 | Wiper blade, rear | Rear | Single blade | 1 | Voltrieve Ragn |
-| VP-15389 | Wheel bolt set | Not applicable | Set of 20 bolts | 1 | Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
+| VP-15389 | Wheel bolt set | Not applicable | Set of 20 wheel bolts (Voltrieve uses bolts, not wheel nuts) | 1 | Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
 | VP-15415 | Locking wheel bolt set | Not applicable | Set of 4 with adapter | 1 | Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
 | VP-15441 | Tyre pressure sensor set | Not applicable | Set of 4 sensors | 1 | Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
 | VP-15454 | Tyre repair kit | Not applicable | Sealant and 12 V compressor | 1 | Voltrieve Spark, Voltrieve Lumen, Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
@@ -97,9 +99,9 @@ Each row gives the article number, the part, where it sits on the car, a short d
 
 | Article number | Part | Position | Description | Qty | Fits |
 |---|---|---|---|---|---|
-| VP-15285 | Wiper blade set, front | Front | Pair of flat blades | 1 | Voltrieve Fjord |
+| VP-15285 | Wiper blade set, front | Front | Pair of flat blades (windscreen or windshield wipers) | 1 | Voltrieve Fjord |
 | VP-15350 | Wiper blade, rear | Rear | Single blade | 1 | Voltrieve Fjord |
-| VP-15389 | Wheel bolt set | Not applicable | Set of 20 bolts | 1 | Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
+| VP-15389 | Wheel bolt set | Not applicable | Set of 20 wheel bolts (Voltrieve uses bolts, not wheel nuts) | 1 | Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
 | VP-15415 | Locking wheel bolt set | Not applicable | Set of 4 with adapter | 1 | Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
 | VP-15441 | Tyre pressure sensor set | Not applicable | Set of 4 sensors | 1 | Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
 | VP-15454 | Tyre repair kit | Not applicable | Sealant and 12 V compressor | 1 | Voltrieve Spark, Voltrieve Lumen, Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
@@ -128,9 +130,9 @@ Each row gives the article number, the part, where it sits on the car, a short d
 
 | Article number | Part | Position | Description | Qty | Fits |
 |---|---|---|---|---|---|
-| VP-15298 | Wiper blade set, front | Front | Pair of flat blades | 1 | Voltrieve Atlas |
+| VP-15298 | Wiper blade set, front | Front | Pair of flat blades (windscreen or windshield wipers) | 1 | Voltrieve Atlas |
 | VP-15363 | Wiper blade, rear | Rear | Single blade | 1 | Voltrieve Atlas |
-| VP-15389 | Wheel bolt set | Not applicable | Set of 20 bolts | 1 | Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
+| VP-15389 | Wheel bolt set | Not applicable | Set of 20 wheel bolts (Voltrieve uses bolts, not wheel nuts) | 1 | Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
 | VP-15415 | Locking wheel bolt set | Not applicable | Set of 4 with adapter | 1 | Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
 | VP-15441 | Tyre pressure sensor set | Not applicable | Set of 4 sensors | 1 | Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
 | VP-15454 | Tyre repair kit | Not applicable | Sealant and 12 V compressor | 1 | Voltrieve Spark, Voltrieve Lumen, Voltrieve Ragn, Voltrieve Fjord, Voltrieve Atlas |
