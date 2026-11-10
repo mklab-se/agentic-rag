@@ -41,3 +41,18 @@ def test_smoke_prints_activity_errors_when_partial(monkeypatch, capsys):
     )
     run_smoke(None, [SmokeQuestion("q", "x", "spec")])
     assert "timeout" in capsys.readouterr().out
+
+
+def test_smoke_questions_name_document_types_that_exist():
+    import json
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parents[2]
+    questions = json.loads((root / "search" / "smoke-questions.json").read_text(encoding="utf-8"))
+    manifest = json.loads((root / "data" / "generated" / "manifest.json").read_text(encoding="utf-8"))
+    docs = manifest["documents"] if isinstance(manifest, dict) else manifest
+    types = {d["doc_type"] for d in docs}
+    files = " ".join(Path(d["file"]).name for d in docs)
+    for q in questions:
+        assert q["expect_doc_type"] in types, q["question"]
+        assert q["expect_title_contains"] in files, q["question"]
