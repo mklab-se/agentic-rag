@@ -26,6 +26,7 @@ EMBLEM = (
 
 _MD = MarkdownIt("commonmark", {"html": False}).enable("table")
 _IMG = re.compile(r'<p>\s*<img src="([^"]+)" alt="([^"]*)"\s*/?>\s*</p>')
+_PDF_DATE = re.compile(rb"\(D:\d{14}[^)]*\)")  # CreationDate and ModDate, set to the print time
 _GALLERY = re.compile(r"(?:<figure[^>]*>.*?</figure>\s*){2,}", re.DOTALL)
 
 
@@ -111,13 +112,18 @@ def write_pdf(md: str, out: Path, accent: str, images_dir: Path, landscape: bool
     try:
         page.set_content(page_html, wait_until="load")
         if landscape:
-            page.pdf(path=str(out), format="A4", landscape=True, print_background=True,
-                     margin={"top": "0", "bottom": "0", "left": "0", "right": "0"})
+            data = page.pdf(format="A4", landscape=True, print_background=True,
+                            margin={"top": "0", "bottom": "0", "left": "0", "right": "0"})
         else:
-            page.pdf(path=str(out), format="A4", print_background=True,
-                     display_header_footer=True, header_template="<span></span>",
-                     footer_template=footer,
-                     margin={"top": "14mm", "bottom": "16mm", "left": "14mm", "right": "14mm"})
+            data = page.pdf(format="A4", print_background=True,
+                            display_header_footer=True, header_template="<span></span>",
+                            footer_template=footer,
+                            margin={"top": "14mm", "bottom": "16mm", "left": "14mm", "right": "14mm"})
     finally:
         page.close()
+    # Chromium stamps the print time into the PDF. Keep the old file when nothing else changed,
+    # so a rebuild of unchanged documents changes nothing in git.
+    if out.exists() and _PDF_DATE.sub(b"", out.read_bytes()) == _PDF_DATE.sub(b"", data):
+        return out
+    out.write_bytes(data)
     return out

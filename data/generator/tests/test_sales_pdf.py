@@ -97,3 +97,16 @@ def test_portrait_figure_without_a_title_is_kept(tmp_path):
     images = full_image_set(tmp_path)
     md = "# Title\n\nIntro" + "\n---\n" + "## Next page\n\n![a](fjord/hero.jpg)\n"
     assert markdown_to_html(md, fjord.accent, images).count("<figure>") == 1
+
+
+def test_rewriting_an_unchanged_document_keeps_the_file(tmp_path):
+    """Chromium stamps the time into every PDF; an unchanged document must not change in git."""
+    import time
+
+    md = render_markdown("warranty", cat, None)
+    out = write_pdf(md, tmp_path / "w.pdf", INK, IMAGES, False)
+    first = out.read_bytes()
+    time.sleep(1.1)
+    assert write_pdf(md, out, INK, IMAGES, False).read_bytes() == first
+    write_pdf(md + "\nOne more line.\n", out, INK, IMAGES, False)
+    assert out.read_bytes() != first
