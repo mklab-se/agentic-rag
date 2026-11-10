@@ -114,6 +114,10 @@ The agent accepts only the API's managed identity, read from `x-ms-original-subj
 
 When the stream to the hosted agent breaks, the conversation stays blocked for 120 seconds and is then repaired. This avoids racing a detached turn. The user can wait up to two minutes after a dropped connection.
 
+### Sales folder PDFs: default parsing
+
+The sales folder PDFs are indexed with the default PDF text extraction, not the Document Layout skill. Measured on 2026-11-10: in all four test questions (a trim price plus a color price, which trims include a pack, the financing example, the boot with the seats folded) each table row came back with its model, its columns and its values on one line, and the chunk named the right document. Evidence: `docs/evidence/sales-table-test.txt`. Document Layout would add per-page cost and indexing time for no measured gain. Revisit if a later document puts tables across pages or in several columns.
+
 ## Clients and observability
 
 ### Backends are indistinguishable to clients

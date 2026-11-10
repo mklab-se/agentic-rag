@@ -1,0 +1,1393 @@
+Sales folder table test, 2026-11-10. Default parsing, docs index. Command: voltrieve-search retrieve "<question>"
+
+==================================================================
+Q: What does the Fjord Plus AWD cost in Heath?
+==================================================================
+{
+  "partial": false,
+  "chunks": [
+    {
+      "ref_id": "0",
+      "title": "voltrieve-fjord-price-list.pdf",
+      "content": "V O L T R I E V E\n\nVoltrieve Fjord price list\n\nImage: fjord/hero\n\nPrices valid from 1 November 2026. Recommended retail prices including VAT, in Sweden (SEK) and in the EU (EUR).\n\nFjord prices per trim and drive\n\nModel Drive Price in Sweden Price in the EU\n\nFjord Pure RWD 529 000 SEK 47 900 EUR\n\nFjord Pure AWD 569 000 SEK 51 500 EUR\n\nFjord Plus RWD 571 000 SEK 51 700 EUR\n\nFjord Plus AWD 611 000 SEK 55 300 EUR\n\nFjord Prime RWD 614 000 SEK 55 600 EUR\n\nFjord Prime AWD 654 000 SEK 59 200 EUR\n\nAll wheel drive (AWD) adds 40 000 SEK or 3 600 EUR to the price of each trim.\n\nWhat each Fjord trim adds\n\nFjord Pure\n\nHeat pump\n\nAir suspension\n\nLED light line with the fjord V\n\nVoltrieve Pilot 3\n\n22 kW onboard charger\nSatin aluminium roof rails\n\nPortrait central touchscreen\n\n19 inch Birch wheels, Light wool blend interior\n\nFjord Plus\n\nEverything in Fjord Pure, plus:\n\nVoltrieve | Voltrieve Fjord price list 1 / 4\n\n\n\nPower tailgate with hands-free opening\n\nKeyless entry\n\n360 camera\n\n20 inch Fern wheels, Light wool blend interior\n\nWinter pack included: heat pump, heated steering wheel and rear seats, battery preconditioning\n\nFjord Prime\n\nEverything in Fjord Plus, plus:\n\nHead-up display\n\nPanoramic glass roof\n\nAdaptive high beam\n\n20 inch Fern wheels, Nappa leather interior\n\nWinter pack included: heat pump, heated steering wheel and rear seats, battery preconditioning\nPilot Plus pack included: Voltrieve Pilot lane change assist and highway autopilot upgrade\n\nSound pack included: 14 speaker Voltrieve Stage audio system\n\nFjord equipment\n\nFjord equipment Fjord Pure Fjord Plus Fjord Prime\n\nWheels 19 inch Birch 20 inch Fern 20 inch Fern\n\nInterior Light wool blend Light wool blend Nappa leather\n\nHeat pump Standard Standard Standard\n\nAir suspension Standard Standard Standard\n\nLED light line with the fjord V Standard Standard Standard\n\nVoltrieve Pilot 3 Standard Standard Standard\n\n22 kW onboard charger Standard Standard Standard\n\nSatin aluminium roof rails Standard Standard Standard"
+    },
+    {
+      "ref_id": "1",
+      "title": "voltrieve-fjord-price-list.pdf",
+      "content": "/\n1 100 EUR\n\nIncluded\n\nItems marked \"Not available\" are not sold separately. Option packs can be added to any trim that does not include them.\n\nVoltrieve | Voltrieve Fjord price list 2 / 4\n\n\n\nFjord option packs\n\nPack Contents\nPrice in\nSweden\n\nPrice in the\nEU\n\nIncluded on\n\nFjord Winter pack heat pump, heated steering wheel and rear seats, battery\npreconditioning\n\n18 000 SEK 1 600 EUR Fjord Plus and\nPrime\n\nFjord Pilot Plus\npack\n\nVoltrieve Pilot lane change assist and highway autopilot\nupgrade\n\n24 000 SEK 2 200 EUR Fjord Prime\n\nFjord Tow pack electrically deployable tow bar and trailer stability control 14 000 SEK 1 300 EUR option on every\ntrim\n\nFjord Sound pack 14 speaker Voltrieve Stage audio system 12 000 SEK 1 100 EUR Fjord Prime\n\nFjord colors\n\nColor Finish Price in Sweden Price in the EU\n\nFjord in Glacier Blue (signature color): deep blue metallic Included Included\n\nFjord in Frost: white metallic 9 900 SEK 900 EUR\n\nFjord in Slate: dark grey metallic 9 900 SEK 900 EUR\n\nFjord in Heath: deep burgundy metallic 9 900 SEK 900 EUR\n\nFjord wheels and interiors\n\nWheel Description Standard on\n\n19 inch Birch ten spokes in silver Fjord Pure\n\n20 inch Fern fifteen thin straight spokes in diamond-cut silver Fjord Plus and Prime\n\nInterior Description Standard on\n\nLight wool blend light wool blend seats and pale ash wood trim Fjord Pure and Plus\n\nNappa leather light Nappa leather seats with ventilation and massage, and pale ash wood trim Fjord Prime\n\nFjord company car benefit value in Sweden\n\nTrim Company car benefit value, Sweden\n\nFjord Pure 3 600 SEK per month\n\nFjord Plus 3 900 SEK per month\n\nFjord Prime 4 200 SEK per month\n\nThe company car benefit value (f\u00f6rm\u00e5nsv\u00e4rde) is an example for a company car in Sweden, before tax, with the reduction\nfor electric cars. The actual value depends on the options chosen and on the rules for the year. There is no corresponding\nfigure for the EU price list.\n\nVoltrieve | Voltrieve Fjord price list 3 / 4\n\n\n\nFjord financing example"
+    },
+    {
+      "ref_id": "2",
+      "title": "voltrieve-fjord-brochure.pdf",
+      "content": "change assist and the highway autopilot. It is\nincluded on Fjord Prime and available as an option pack on the other trims.\n\nBoot of 640 litres\n\nRoof load of 100 kg\n\nAir suspension\n\nA heat pump as standard, so the range holds up in winter\n\n\n\nRange and charging\nWith a 84 kWh battery the Voltrieve Fjord goes up to\n575 km on a charge (WLTP). At a fast charger it takes\nup to 240 kW and goes from 10 to 80 % in about 20\nminutes. At home, the 22 kW onboard charger fills the\nbattery overnight.\n\nBattery\nRange\n(WLTP)\n\nPeak DC\ncharging\n\n10 to 80 %\nOnboard AC\ncharger\n\n84 kWh 575 km 240 kW 20 min 22 kW\n\nImage: fjord/charging\n\n\n\nOn the road\nAir suspension, a long wheelbase and an 800 V system\nmake the Fjord a relaxed long distance car that\ncharges quickly when you stop for coffee.\n\nDrive Power Torque\n0 to 100\nkm/h\n\nTop speed\n\nFjord RWD 250 kW 450 Nm 6.1 s 200 km/h\n\nFjord AWD 360 kW 680 Nm 4.6 s 200 km/h\n\nImage: fjord/side_studio\n\n\n\nRoom for everyday life\nA long flat load floor, a low loading edge and a strong\ntow rating for the boat, the caravan or the horse\ntrailer.\n\nBoot\nBoot, rear\nseats folded\n\nFrunk Towing Roof load\n\n640 litres 1 720 litres 50 litres 2 100 kg\nbraked\n\n100 kg\n\nImage: fjord/practical\n\n\n\nThree trims\nEvery Fjord is well equipped from the start. Each trim builds on the one before it.\n\nFjord Pure\n\nHeat pump\n\nAir suspension\n\nLED light line with the fjord V\n\nVoltrieve Pilot 3\n\n22 kW onboard charger\n\nSatin aluminium roof rails\nPortrait central touchscreen\n\nWheels: 19 inch Birch. Interior: Light wool blend.\n\nFjord Plus\n\nEverything in Fjord Pure, plus:\n\nPower tailgate with hands-free opening\n\nKeyless entry\n360 camera\n\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning\n\nWheels: 20 inch Fern. Interior: Light wool blend.\n\nFjord Prime\n\nEverything in Fjord Plus, plus:\n\nHead-up display\n\nPanoramic glass roof\nAdaptive high beam\n\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning"
+    },
+    {
+      "ref_id": "3",
+      "title": "voltrieve-fjord-price-list.pdf",
+      "content": "Voltrieve Stage audio system\n\nFjord equipment\n\nFjord equipment Fjord Pure Fjord Plus Fjord Prime\n\nWheels 19 inch Birch 20 inch Fern 20 inch Fern\n\nInterior Light wool blend Light wool blend Nappa leather\n\nHeat pump Standard Standard Standard\n\nAir suspension Standard Standard Standard\n\nLED light line with the fjord V Standard Standard Standard\n\nVoltrieve Pilot 3 Standard Standard Standard\n\n22 kW onboard charger Standard Standard Standard\n\nSatin aluminium roof rails Standard Standard Standard\n\nPortrait central touchscreen Standard Standard Standard\n\nPower tailgate with hands-free opening Not available Standard Standard\n\nKeyless entry Not available Standard Standard\n\n360 camera Not available Standard Standard\n\nHead-up display Not available Not available Standard\n\nPanoramic glass roof Not available Not available Standard\n\nAdaptive high beam Not available Not available Standard\n\nWinter pack: heat pump, heated steering wheel and rear\nseats, battery preconditioning\n\nOptional, 18 000 SEK /\n1 600 EUR\n\nIncluded Included\n\nPilot Plus pack: Voltrieve Pilot lane change assist and\nhighway autopilot upgrade\n\nOptional, 24 000 SEK /\n2 200 EUR\n\nOptional, 24 000 SEK /\n2 200 EUR\n\nIncluded\n\nTow pack: electrically deployable tow bar and trailer\nstability control\n\nOptional, 14 000 SEK /\n1 300 EUR\n\nOptional, 14 000 SEK /\n1 300 EUR\n\nOptional, 14 000 SEK /\n1 300 EUR\n\nSound pack: 14 speaker Voltrieve Stage audio system Optional, 12 000 SEK /\n1 100 EUR\n\nOptional, 12 000 SEK /\n1 100 EUR\n\nIncluded\n\nItems marked \"Not available\" are not sold separately. Option packs can be added to any trim that does not include them.\n\nVoltrieve | Voltrieve Fjord price list 2 / 4\n\n\n\nFjord option packs\n\nPack Contents\nPrice in\nSweden\n\nPrice in the\nEU\n\nIncluded on\n\nFjord Winter pack heat pump, heated steering wheel and rear seats, battery\npreconditioning\n\n18 000 SEK 1 600 EUR Fjord Plus and\nPrime\n\nFjord Pilot Plus\npack\n\nVoltrieve Pilot lane change assist and highway autopilot\nupgrade"
+    },
+    {
+      "ref_id": "4",
+      "title": "voltrieve-fjord-brochure.pdf",
+      "content": "inch Birch. Interior: Light wool blend.\n\nFjord Plus\n\nEverything in Fjord Pure, plus:\n\nPower tailgate with hands-free opening\n\nKeyless entry\n360 camera\n\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning\n\nWheels: 20 inch Fern. Interior: Light wool blend.\n\nFjord Prime\n\nEverything in Fjord Plus, plus:\n\nHead-up display\n\nPanoramic glass roof\nAdaptive high beam\n\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning\nPilot Plus pack included: Voltrieve Pilot lane change\nassist and highway autopilot upgrade\n\nSound pack included: 14 speaker Voltrieve Stage\naudio system\n\nWheels: 20 inch Fern. Interior: Nappa leather.\n\n\n\nColors and wheels\nGlacier Blue (signature color): deep blue, metallic\nfinish.\n\nFrost: white, metallic finish.\n\nSlate: dark grey, metallic finish.\n\nHeath: deep burgundy, metallic finish.\n\n19 inch Birch: ten spokes in silver. On Pure.\n\n20 inch Fern: fifteen thin straight spokes in diamond-\ncut silver. On Plus and Prime.\n\nImage: fjord/color_frost\n\nImage: fjord/color_slate Image: fjord/color_heath\n\n\n\nQuestions and answers\nHow far can the Fjord go on a charge? Up to 575 km (WLTP) with the 84 kWh battery. Cold weather, high speeds and a full load\nshorten that.\n\nHow fast does it charge? From 10 to 80 % in about 20\nminutes at a fast charger that delivers 240 kW or more. On\nAC it charges at up to 22 kW, empty to full in about 3.8\nhours.\n\nCan it tow? Yes, up to 2 100 kg braked. The Tow pack adds\nan electrically deployable tow bar and trailer stability\ncontrol.\n\nDoes it have a heat pump? Yes, on every trim.\n\nWhich driver assistance does it have? Voltrieve Pilot version\n3: adaptive cruise, lane keeping, traffic jam assist and\nautomatic lane change (with Pilot Plus).\n\n\n\nYour next step\nBook a test drive at your Voltrieve dealer and take the\nFjord on the roads you drive every day. The price list,\nthe technical specifications and the accessories"
+    },
+    {
+      "ref_id": "5",
+      "title": "voltrieve-buyers-guide.pdf",
+      "content": "V O L T R I E V E\n\nVoltrieve buyer's guide\nElectric cars that retrieve the joy of driving\n\nModel comparison\n\nModel Battery Range Peak charge Towing Drive\n\nVoltrieve Spark 42 kWh 310 km 95 kW not rated RWD\n\nVoltrieve Lumen 61 kWh 455 km 135 kW 750 kg RWD, AWD\n\nVoltrieve Ragn 84 kWh 530 km 240 kW 1 800 kg AWD\n\nVoltrieve Fjord 84 kWh 575 km 240 kW 2 100 kg RWD, AWD\n\nVoltrieve Atlas 112 kWh 610 km 320 kW 2 500 kg AWD\n\nPrices\nPrices are for the Pure trim, the entry trim of every model. Plus and Prime cost more and come with more equipment; each\nmodel's price list has every trim.\n\nSE (SEK)\n\nModel Base price Price with AWD\n\nVoltrieve Spark 289 000 SEK not available\n\nVoltrieve Lumen 379 000 SEK 419 000 SEK\n\nVoltrieve Ragn 549 000 SEK 549 000 SEK\n\nVoltrieve Fjord 529 000 SEK 569 000 SEK\n\nVoltrieve Atlas 749 000 SEK 749 000 SEK\n\nEU (EUR)\n\nModel Base price Price with AWD\n\nVoltrieve Spark 26 500 EUR not available\n\nVoltrieve Lumen 34 500 EUR 38 100 EUR\n\nVoltrieve Ragn 49 900 EUR 49 900 EUR\n\nVoltrieve Fjord 47 900 EUR 51 500 EUR\n\nVoltrieve Atlas 67 900 EUR 67 900 EUR\n\nWhere AWD is an option next to RWD, the price with AWD includes a surcharge of 40 000 SEK or 3 600 EUR.\n\nVoltrieve | Voltrieve buyer's guide 1 / 2\n\n\n\nOption packs\n\nPack Contents SE EU\n\nWinter heat pump, heated steering wheel and rear seats, battery preconditioning 18 000 SEK 1 600 EUR\n\nPilot Plus Voltrieve Pilot lane change assist and highway autopilot upgrade 24 000 SEK 2 200 EUR\n\nTow electrically deployable tow bar and trailer stability control 14 000 SEK 1 300 EUR\n\nSound 14 speaker Voltrieve Stage audio system 12 000 SEK 1 100 EUR\n\nWhich Voltrieve is for you\n\nVoltrieve Spark\n\nSmall outside, generous inside. Segment: city car. Platform: V1. Drive: RWD. Battery: 42 kWh, with up to 310 km of WLTP\nrange. Peak charging is 95 kW. It is not rated for towing, so it suits drivers who travel light.\n\nVoltrieve Lumen\n\nLight on its feet. Segment: hatchback. Platform: V1. Drive: RWD or AWD."
+    },
+    {
+      "ref_id": "6",
+      "title": "voltrieve-fjord-specifications.pdf",
+      "content": "345 mm (RWD), 370 mm (AWD)\n\nRear brake discs 330 mm\n\nHeat pump standard\n\nVoltrieve Pilot version 3: adaptive cruise, lane keeping, traffic jam assist, automatic lane change (with Pilot Plus)\n\nOption packs available Winter, Pilot Plus, Tow, Sound\n\nFeature boot of 640 litres\n\nFeature roof load of 100 kg\n\nFeature air suspension\n\nFjord wheels and tyres per trim\n\nTrim Wheels\n\nFjord Pure 19 inch Birch: ten spokes in silver\n\nFjord Plus 20 inch Fern: fifteen thin straight spokes in diamond-cut silver\n\nFjord Prime 20 inch Fern: fifteen thin straight spokes in diamond-cut silver\n\nRange, energy use and charging times are measured to WLTP or under test conditions. Real figures depend on speed,\ntemperature, load, tyres and driving style.\n\nVoltrieve | Voltrieve Fjord technical specifications 3 / 3"
+    },
+    {
+      "ref_id": "7",
+      "title": "voltrieve-fjord-price-list.pdf",
+      "content": "The rate is variable and the example is\nfor illustration only.\n\nFinancing in the EU\n\nA Fjord Plus RWD at 51 700 EUR costs 563 EUR per month over 36 months with Voltrieve Financial Services.\n\nFjord Plus RWD financing in the EU Amount\n\nCash price 51 700 EUR\n\nDeposit (20 %) 10 340 EUR\n\nLoan amount 41 360 EUR\n\nMonthly payment for 36 months 563 EUR per month\n\nResidual payment at the end (50 %) 25 850 EUR\n\nNominal rate 4.45 %\n\nEffective rate 4.85 %\n\nSetup fee 75 EUR\n\nTotal amount payable 56 533 EUR\n\nExample in the EU: cash price 51 700 EUR, deposit 10 340 EUR, loan 41 360 EUR over 36 months at a nominal rate of 4.45\n% (effective rate 4.85 %). The monthly payment includes an administration fee of 6 EUR. A setup fee of 75 EUR is charged at\nthe start, and a residual payment of 25 850 EUR is due at the end of the term, when you can pay it, refinance it or return the\ncar. Total amount payable 56 533 EUR. Credit is subject to approval. The rate is variable and the example is for illustration\nonly.\n\nVoltrieve | Voltrieve Fjord price list 4 / 4"
+    },
+    {
+      "ref_id": "8",
+      "title": "voltrieve-fjord-specifications.pdf",
+      "content": "V O L T R I E V E\n\nVoltrieve Fjord technical specifications\n\nImage: fjord/side_studio\n\nFjord dimensions and weights\n\nFjord dimension Value\n\nLength 4 900 mm\n\nWidth, without mirrors 1 900 mm\n\nHeight 1 500 mm\n\nWheelbase 2 980 mm\n\nGround clearance 150 mm\n\nKerb weight 2 180 kg\n\nTowing capacity 2 100 kg (braked)\n\nRoof load 100 kg\n\nFjord volumes\n\nFjord volume Value\n\nBoot 640 litres\n\nBoot with the rear seats folded 1 720 litres\n\nFrunk 50 litres\n\nSeats 5\n\nVoltrieve | Voltrieve Fjord technical specifications 1 / 3\n\n\n\nFjord battery and range\n\nFjord battery Value\n\nBattery capacity (usable) 84 kWh\n\nRange (WLTP) 575 km\n\nEnergy use (WLTP, combined) 14.6 kWh per 100 km\n\nPlatform V2\n\nSystem voltage 800 V\n\nFjord charging\n\nFjord charging Value\n\nPeak DC charging power 240 kW\n\nDC charging from 10 to 80 % about 20 minutes\n\nOnboard AC charger 22 kW\n\nAC charging, empty to full about 3.8 hours\n\nCharge port CCS2\n\nThe Fjord DC charging curve: the charge power the car accepts at each state of charge, at a charger that delivers at least\n240 kW and with the battery at its working temperature.\n\nState of charge Charge power\n\n10 % 240 kW\n\n50 % 200 kW\n\n80 % 95 kW\n\nFjord performance per drive\n\nDrive Power Torque 0 to 100 km/h Top speed\n\nFjord RWD 250 kW 450 Nm 6.1 s 200 km/h\n\nFjord AWD 360 kW 680 Nm 4.6 s 200 km/h\n\nVoltrieve | Voltrieve Fjord technical specifications 2 / 3\n\n\n\nFjord chassis, climate and software\n\nFjord item Value\n\nDrive RWD, AWD\n\nFront brake discs 345 mm (RWD), 370 mm (AWD)\n\nRear brake discs 330 mm\n\nHeat pump standard\n\nVoltrieve Pilot version 3: adaptive cruise, lane keeping, traffic jam assist, automatic lane change (with Pilot Plus)\n\nOption packs available Winter, Pilot Plus, Tow, Sound\n\nFeature boot of 640 litres\n\nFeature roof load of 100 kg\n\nFeature air suspension\n\nFjord wheels and tyres per trim\n\nTrim Wheels\n\nFjord Pure 19 inch Birch: ten spokes in silver\n\nFjord Plus 20 inch Fern: fifteen thin straight spokes in diamond-cut silver"
+    },
+    {
+      "ref_id": "9",
+      "title": "voltrieve-fjord-brochure.pdf",
+      "content": "Yes, up to 2 100 kg braked. The Tow pack adds\nan electrically deployable tow bar and trailer stability\ncontrol.\n\nDoes it have a heat pump? Yes, on every trim.\n\nWhich driver assistance does it have? Voltrieve Pilot version\n3: adaptive cruise, lane keeping, traffic jam assist and\nautomatic lane change (with Pilot Plus).\n\n\n\nYour next step\nBook a test drive at your Voltrieve dealer and take the\nFjord on the roads you drive every day. The price list,\nthe technical specifications and the accessories\ncatalog for the Voltrieve Fjord are part of this sales\nfolder."
+    }
+  ],
+  "references": [
+    {
+      "id": "0",
+      "doc_key": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1wcmljZS1saXN0LnBkZg2_pages_0",
+      "reranker_score": 2.7039757,
+      "source_data": {
+        "chunk_id": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1wcmljZS1saXN0LnBkZg2_pages_0",
+        "title": "voltrieve-fjord-price-list.pdf",
+        "chunk": "V O L T R I E V E\n\nVoltrieve Fjord price list\n\nImage: fjord/hero\n\nPrices valid from 1 November 2026. Recommended retail prices including VAT, in Sweden (SEK) and in the EU (EUR).\n\nFjord prices per trim and drive\n\nModel Drive Price in Sweden Price in the EU\n\nFjord Pure RWD 529 000 SEK 47 900 EUR\n\nFjord Pure AWD 569 000 SEK 51 500 EUR\n\nFjord Plus RWD 571 000 SEK 51 700 EUR\n\nFjord Plus AWD 611 000 SEK 55 300 EUR\n\nFjord Prime RWD 614 000 SEK 55 600 EUR\n\nFjord Prime AWD 654 000 SEK 59 200 EUR\n\nAll wheel drive (AWD) adds 40 000 SEK or 3 600 EUR to the price of each trim.\n\nWhat each Fjord trim adds\n\nFjord Pure\n\nHeat pump\n\nAir suspension\n\nLED light line with the fjord V\n\nVoltrieve Pilot 3\n\n22 kW onboard charger\nSatin aluminium roof rails\n\nPortrait central touchscreen\n\n19 inch Birch wheels, Light wool blend interior\n\nFjord Plus\n\nEverything in Fjord Pure, plus:\n\nVoltrieve | Voltrieve Fjord price list 1 / 4\n\n\n\nPower tailgate with hands-free opening\n\nKeyless entry\n\n360 camera\n\n20 inch Fern wheels, Light wool blend interior\n\nWinter pack included: heat pump, heated steering wheel and rear seats, battery preconditioning\n\nFjord Prime\n\nEverything in Fjord Plus, plus:\n\nHead-up display\n\nPanoramic glass roof\n\nAdaptive high beam\n\n20 inch Fern wheels, Nappa leather interior\n\nWinter pack included: heat pump, heated steering wheel and rear seats, battery preconditioning\nPilot Plus pack included: Voltrieve Pilot lane change assist and highway autopilot upgrade\n\nSound pack included: 14 speaker Voltrieve Stage audio system\n\nFjord equipment\n\nFjord equipment Fjord Pure Fjord Plus Fjord Prime\n\nWheels 19 inch Birch 20 inch Fern 20 inch Fern\n\nInterior Light wool blend Light wool blend Nappa leather\n\nHeat pump Standard Standard Standard\n\nAir suspension Standard Standard Standard\n\nLED light line with the fjord V Standard Standard Standard\n\nVoltrieve Pilot 3 Standard Standard Standard\n\n22 kW onboard charger Standard Standard Standard\n\nSatin aluminium roof rails Standard Standard Standard",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/fjord/voltrieve-fjord-price-list.pdf",
+        "model_slug": "fjord",
+        "doc_type": "price_list"
+      }
+    },
+    {
+      "id": "2",
+      "doc_key": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1icm9jaHVyZS5wZGY1_pages_1",
+      "reranker_score": 2.6018887,
+      "source_data": {
+        "chunk_id": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1icm9jaHVyZS5wZGY1_pages_1",
+        "title": "voltrieve-fjord-brochure.pdf",
+        "chunk": "change assist and the highway autopilot. It is\nincluded on Fjord Prime and available as an option pack on the other trims.\n\nBoot of 640 litres\n\nRoof load of 100 kg\n\nAir suspension\n\nA heat pump as standard, so the range holds up in winter\n\n\n\nRange and charging\nWith a 84 kWh battery the Voltrieve Fjord goes up to\n575 km on a charge (WLTP). At a fast charger it takes\nup to 240 kW and goes from 10 to 80 % in about 20\nminutes. At home, the 22 kW onboard charger fills the\nbattery overnight.\n\nBattery\nRange\n(WLTP)\n\nPeak DC\ncharging\n\n10 to 80 %\nOnboard AC\ncharger\n\n84 kWh 575 km 240 kW 20 min 22 kW\n\nImage: fjord/charging\n\n\n\nOn the road\nAir suspension, a long wheelbase and an 800 V system\nmake the Fjord a relaxed long distance car that\ncharges quickly when you stop for coffee.\n\nDrive Power Torque\n0 to 100\nkm/h\n\nTop speed\n\nFjord RWD 250 kW 450 Nm 6.1 s 200 km/h\n\nFjord AWD 360 kW 680 Nm 4.6 s 200 km/h\n\nImage: fjord/side_studio\n\n\n\nRoom for everyday life\nA long flat load floor, a low loading edge and a strong\ntow rating for the boat, the caravan or the horse\ntrailer.\n\nBoot\nBoot, rear\nseats folded\n\nFrunk Towing Roof load\n\n640 litres 1 720 litres 50 litres 2 100 kg\nbraked\n\n100 kg\n\nImage: fjord/practical\n\n\n\nThree trims\nEvery Fjord is well equipped from the start. Each trim builds on the one before it.\n\nFjord Pure\n\nHeat pump\n\nAir suspension\n\nLED light line with the fjord V\n\nVoltrieve Pilot 3\n\n22 kW onboard charger\n\nSatin aluminium roof rails\nPortrait central touchscreen\n\nWheels: 19 inch Birch. Interior: Light wool blend.\n\nFjord Plus\n\nEverything in Fjord Pure, plus:\n\nPower tailgate with hands-free opening\n\nKeyless entry\n360 camera\n\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning\n\nWheels: 20 inch Fern. Interior: Light wool blend.\n\nFjord Prime\n\nEverything in Fjord Plus, plus:\n\nHead-up display\n\nPanoramic glass roof\nAdaptive high beam\n\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/fjord/voltrieve-fjord-brochure.pdf",
+        "model_slug": "fjord",
+        "doc_type": "brochure"
+      }
+    },
+    {
+      "id": "1",
+      "doc_key": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1wcmljZS1saXN0LnBkZg2_pages_2",
+      "reranker_score": 2.5834563,
+      "source_data": {
+        "chunk_id": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1wcmljZS1saXN0LnBkZg2_pages_2",
+        "title": "voltrieve-fjord-price-list.pdf",
+        "chunk": "/\n1 100 EUR\n\nIncluded\n\nItems marked \"Not available\" are not sold separately. Option packs can be added to any trim that does not include them.\n\nVoltrieve | Voltrieve Fjord price list 2 / 4\n\n\n\nFjord option packs\n\nPack Contents\nPrice in\nSweden\n\nPrice in the\nEU\n\nIncluded on\n\nFjord Winter pack heat pump, heated steering wheel and rear seats, battery\npreconditioning\n\n18 000 SEK 1 600 EUR Fjord Plus and\nPrime\n\nFjord Pilot Plus\npack\n\nVoltrieve Pilot lane change assist and highway autopilot\nupgrade\n\n24 000 SEK 2 200 EUR Fjord Prime\n\nFjord Tow pack electrically deployable tow bar and trailer stability control 14 000 SEK 1 300 EUR option on every\ntrim\n\nFjord Sound pack 14 speaker Voltrieve Stage audio system 12 000 SEK 1 100 EUR Fjord Prime\n\nFjord colors\n\nColor Finish Price in Sweden Price in the EU\n\nFjord in Glacier Blue (signature color): deep blue metallic Included Included\n\nFjord in Frost: white metallic 9 900 SEK 900 EUR\n\nFjord in Slate: dark grey metallic 9 900 SEK 900 EUR\n\nFjord in Heath: deep burgundy metallic 9 900 SEK 900 EUR\n\nFjord wheels and interiors\n\nWheel Description Standard on\n\n19 inch Birch ten spokes in silver Fjord Pure\n\n20 inch Fern fifteen thin straight spokes in diamond-cut silver Fjord Plus and Prime\n\nInterior Description Standard on\n\nLight wool blend light wool blend seats and pale ash wood trim Fjord Pure and Plus\n\nNappa leather light Nappa leather seats with ventilation and massage, and pale ash wood trim Fjord Prime\n\nFjord company car benefit value in Sweden\n\nTrim Company car benefit value, Sweden\n\nFjord Pure 3 600 SEK per month\n\nFjord Plus 3 900 SEK per month\n\nFjord Prime 4 200 SEK per month\n\nThe company car benefit value (f\u00f6rm\u00e5nsv\u00e4rde) is an example for a company car in Sweden, before tax, with the reduction\nfor electric cars. The actual value depends on the options chosen and on the rules for the year. There is no corresponding\nfigure for the EU price list.\n\nVoltrieve | Voltrieve Fjord price list 3 / 4\n\n\n\nFjord financing example",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/fjord/voltrieve-fjord-price-list.pdf",
+        "model_slug": "fjord",
+        "doc_type": "price_list"
+      }
+    },
+    {
+      "id": "4",
+      "doc_key": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1icm9jaHVyZS5wZGY1_pages_2",
+      "reranker_score": 2.5706954,
+      "source_data": {
+        "chunk_id": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1icm9jaHVyZS5wZGY1_pages_2",
+        "title": "voltrieve-fjord-brochure.pdf",
+        "chunk": "inch Birch. Interior: Light wool blend.\n\nFjord Plus\n\nEverything in Fjord Pure, plus:\n\nPower tailgate with hands-free opening\n\nKeyless entry\n360 camera\n\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning\n\nWheels: 20 inch Fern. Interior: Light wool blend.\n\nFjord Prime\n\nEverything in Fjord Plus, plus:\n\nHead-up display\n\nPanoramic glass roof\nAdaptive high beam\n\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning\nPilot Plus pack included: Voltrieve Pilot lane change\nassist and highway autopilot upgrade\n\nSound pack included: 14 speaker Voltrieve Stage\naudio system\n\nWheels: 20 inch Fern. Interior: Nappa leather.\n\n\n\nColors and wheels\nGlacier Blue (signature color): deep blue, metallic\nfinish.\n\nFrost: white, metallic finish.\n\nSlate: dark grey, metallic finish.\n\nHeath: deep burgundy, metallic finish.\n\n19 inch Birch: ten spokes in silver. On Pure.\n\n20 inch Fern: fifteen thin straight spokes in diamond-\ncut silver. On Plus and Prime.\n\nImage: fjord/color_frost\n\nImage: fjord/color_slate Image: fjord/color_heath\n\n\n\nQuestions and answers\nHow far can the Fjord go on a charge? Up to 575 km (WLTP) with the 84 kWh battery. Cold weather, high speeds and a full load\nshorten that.\n\nHow fast does it charge? From 10 to 80 % in about 20\nminutes at a fast charger that delivers 240 kW or more. On\nAC it charges at up to 22 kW, empty to full in about 3.8\nhours.\n\nCan it tow? Yes, up to 2 100 kg braked. The Tow pack adds\nan electrically deployable tow bar and trailer stability\ncontrol.\n\nDoes it have a heat pump? Yes, on every trim.\n\nWhich driver assistance does it have? Voltrieve Pilot version\n3: adaptive cruise, lane keeping, traffic jam assist and\nautomatic lane change (with Pilot Plus).\n\n\n\nYour next step\nBook a test drive at your Voltrieve dealer and take the\nFjord on the roads you drive every day. The price list,\nthe technical specifications and the accessories",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/fjord/voltrieve-fjord-brochure.pdf",
+        "model_slug": "fjord",
+        "doc_type": "brochure"
+      }
+    },
+    {
+      "id": "3",
+      "doc_key": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1wcmljZS1saXN0LnBkZg2_pages_1",
+      "reranker_score": 2.498738,
+      "source_data": {
+        "chunk_id": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1wcmljZS1saXN0LnBkZg2_pages_1",
+        "title": "voltrieve-fjord-price-list.pdf",
+        "chunk": "Voltrieve Stage audio system\n\nFjord equipment\n\nFjord equipment Fjord Pure Fjord Plus Fjord Prime\n\nWheels 19 inch Birch 20 inch Fern 20 inch Fern\n\nInterior Light wool blend Light wool blend Nappa leather\n\nHeat pump Standard Standard Standard\n\nAir suspension Standard Standard Standard\n\nLED light line with the fjord V Standard Standard Standard\n\nVoltrieve Pilot 3 Standard Standard Standard\n\n22 kW onboard charger Standard Standard Standard\n\nSatin aluminium roof rails Standard Standard Standard\n\nPortrait central touchscreen Standard Standard Standard\n\nPower tailgate with hands-free opening Not available Standard Standard\n\nKeyless entry Not available Standard Standard\n\n360 camera Not available Standard Standard\n\nHead-up display Not available Not available Standard\n\nPanoramic glass roof Not available Not available Standard\n\nAdaptive high beam Not available Not available Standard\n\nWinter pack: heat pump, heated steering wheel and rear\nseats, battery preconditioning\n\nOptional, 18 000 SEK /\n1 600 EUR\n\nIncluded Included\n\nPilot Plus pack: Voltrieve Pilot lane change assist and\nhighway autopilot upgrade\n\nOptional, 24 000 SEK /\n2 200 EUR\n\nOptional, 24 000 SEK /\n2 200 EUR\n\nIncluded\n\nTow pack: electrically deployable tow bar and trailer\nstability control\n\nOptional, 14 000 SEK /\n1 300 EUR\n\nOptional, 14 000 SEK /\n1 300 EUR\n\nOptional, 14 000 SEK /\n1 300 EUR\n\nSound pack: 14 speaker Voltrieve Stage audio system Optional, 12 000 SEK /\n1 100 EUR\n\nOptional, 12 000 SEK /\n1 100 EUR\n\nIncluded\n\nItems marked \"Not available\" are not sold separately. Option packs can be added to any trim that does not include them.\n\nVoltrieve | Voltrieve Fjord price list 2 / 4\n\n\n\nFjord option packs\n\nPack Contents\nPrice in\nSweden\n\nPrice in the\nEU\n\nIncluded on\n\nFjord Winter pack heat pump, heated steering wheel and rear seats, battery\npreconditioning\n\n18 000 SEK 1 600 EUR Fjord Plus and\nPrime\n\nFjord Pilot Plus\npack\n\nVoltrieve Pilot lane change assist and highway autopilot\nupgrade",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/fjord/voltrieve-fjord-price-list.pdf",
+        "model_slug": "fjord",
+        "doc_type": "price_list"
+      }
+    },
+    {
+      "id": "6",
+      "doc_key": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1zcGVjaWZpY2F0aW9ucy5wZGY1_pages_1",
+      "reranker_score": 2.441846,
+      "source_data": {
+        "chunk_id": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1zcGVjaWZpY2F0aW9ucy5wZGY1_pages_1",
+        "title": "voltrieve-fjord-specifications.pdf",
+        "chunk": "345 mm (RWD), 370 mm (AWD)\n\nRear brake discs 330 mm\n\nHeat pump standard\n\nVoltrieve Pilot version 3: adaptive cruise, lane keeping, traffic jam assist, automatic lane change (with Pilot Plus)\n\nOption packs available Winter, Pilot Plus, Tow, Sound\n\nFeature boot of 640 litres\n\nFeature roof load of 100 kg\n\nFeature air suspension\n\nFjord wheels and tyres per trim\n\nTrim Wheels\n\nFjord Pure 19 inch Birch: ten spokes in silver\n\nFjord Plus 20 inch Fern: fifteen thin straight spokes in diamond-cut silver\n\nFjord Prime 20 inch Fern: fifteen thin straight spokes in diamond-cut silver\n\nRange, energy use and charging times are measured to WLTP or under test conditions. Real figures depend on speed,\ntemperature, load, tyres and driving style.\n\nVoltrieve | Voltrieve Fjord technical specifications 3 / 3",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/fjord/voltrieve-fjord-specifications.pdf",
+        "model_slug": "fjord",
+        "doc_type": "specifications"
+      }
+    },
+    {
+      "id": "8",
+      "doc_key": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1zcGVjaWZpY2F0aW9ucy5wZGY1_pages_0",
+      "reranker_score": 2.3383408,
+      "source_data": {
+        "chunk_id": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1zcGVjaWZpY2F0aW9ucy5wZGY1_pages_0",
+        "title": "voltrieve-fjord-specifications.pdf",
+        "chunk": "V O L T R I E V E\n\nVoltrieve Fjord technical specifications\n\nImage: fjord/side_studio\n\nFjord dimensions and weights\n\nFjord dimension Value\n\nLength 4 900 mm\n\nWidth, without mirrors 1 900 mm\n\nHeight 1 500 mm\n\nWheelbase 2 980 mm\n\nGround clearance 150 mm\n\nKerb weight 2 180 kg\n\nTowing capacity 2 100 kg (braked)\n\nRoof load 100 kg\n\nFjord volumes\n\nFjord volume Value\n\nBoot 640 litres\n\nBoot with the rear seats folded 1 720 litres\n\nFrunk 50 litres\n\nSeats 5\n\nVoltrieve | Voltrieve Fjord technical specifications 1 / 3\n\n\n\nFjord battery and range\n\nFjord battery Value\n\nBattery capacity (usable) 84 kWh\n\nRange (WLTP) 575 km\n\nEnergy use (WLTP, combined) 14.6 kWh per 100 km\n\nPlatform V2\n\nSystem voltage 800 V\n\nFjord charging\n\nFjord charging Value\n\nPeak DC charging power 240 kW\n\nDC charging from 10 to 80 % about 20 minutes\n\nOnboard AC charger 22 kW\n\nAC charging, empty to full about 3.8 hours\n\nCharge port CCS2\n\nThe Fjord DC charging curve: the charge power the car accepts at each state of charge, at a charger that delivers at least\n240 kW and with the battery at its working temperature.\n\nState of charge Charge power\n\n10 % 240 kW\n\n50 % 200 kW\n\n80 % 95 kW\n\nFjord performance per drive\n\nDrive Power Torque 0 to 100 km/h Top speed\n\nFjord RWD 250 kW 450 Nm 6.1 s 200 km/h\n\nFjord AWD 360 kW 680 Nm 4.6 s 200 km/h\n\nVoltrieve | Voltrieve Fjord technical specifications 2 / 3\n\n\n\nFjord chassis, climate and software\n\nFjord item Value\n\nDrive RWD, AWD\n\nFront brake discs 345 mm (RWD), 370 mm (AWD)\n\nRear brake discs 330 mm\n\nHeat pump standard\n\nVoltrieve Pilot version 3: adaptive cruise, lane keeping, traffic jam assist, automatic lane change (with Pilot Plus)\n\nOption packs available Winter, Pilot Plus, Tow, Sound\n\nFeature boot of 640 litres\n\nFeature roof load of 100 kg\n\nFeature air suspension\n\nFjord wheels and tyres per trim\n\nTrim Wheels\n\nFjord Pure 19 inch Birch: ten spokes in silver\n\nFjord Plus 20 inch Fern: fifteen thin straight spokes in diamond-cut silver",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/fjord/voltrieve-fjord-specifications.pdf",
+        "model_slug": "fjord",
+        "doc_type": "specifications"
+      }
+    },
+    {
+      "id": "5",
+      "doc_key": "684e0f14e805_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2JyYW5kL3ZvbHRyaWV2ZS1idXllcnMtZ3VpZGUucGRm0_pages_0",
+      "reranker_score": 2.2040634,
+      "source_data": {
+        "chunk_id": "684e0f14e805_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2JyYW5kL3ZvbHRyaWV2ZS1idXllcnMtZ3VpZGUucGRm0_pages_0",
+        "title": "voltrieve-buyers-guide.pdf",
+        "chunk": "V O L T R I E V E\n\nVoltrieve buyer's guide\nElectric cars that retrieve the joy of driving\n\nModel comparison\n\nModel Battery Range Peak charge Towing Drive\n\nVoltrieve Spark 42 kWh 310 km 95 kW not rated RWD\n\nVoltrieve Lumen 61 kWh 455 km 135 kW 750 kg RWD, AWD\n\nVoltrieve Ragn 84 kWh 530 km 240 kW 1 800 kg AWD\n\nVoltrieve Fjord 84 kWh 575 km 240 kW 2 100 kg RWD, AWD\n\nVoltrieve Atlas 112 kWh 610 km 320 kW 2 500 kg AWD\n\nPrices\nPrices are for the Pure trim, the entry trim of every model. Plus and Prime cost more and come with more equipment; each\nmodel's price list has every trim.\n\nSE (SEK)\n\nModel Base price Price with AWD\n\nVoltrieve Spark 289 000 SEK not available\n\nVoltrieve Lumen 379 000 SEK 419 000 SEK\n\nVoltrieve Ragn 549 000 SEK 549 000 SEK\n\nVoltrieve Fjord 529 000 SEK 569 000 SEK\n\nVoltrieve Atlas 749 000 SEK 749 000 SEK\n\nEU (EUR)\n\nModel Base price Price with AWD\n\nVoltrieve Spark 26 500 EUR not available\n\nVoltrieve Lumen 34 500 EUR 38 100 EUR\n\nVoltrieve Ragn 49 900 EUR 49 900 EUR\n\nVoltrieve Fjord 47 900 EUR 51 500 EUR\n\nVoltrieve Atlas 67 900 EUR 67 900 EUR\n\nWhere AWD is an option next to RWD, the price with AWD includes a surcharge of 40 000 SEK or 3 600 EUR.\n\nVoltrieve | Voltrieve buyer's guide 1 / 2\n\n\n\nOption packs\n\nPack Contents SE EU\n\nWinter heat pump, heated steering wheel and rear seats, battery preconditioning 18 000 SEK 1 600 EUR\n\nPilot Plus Voltrieve Pilot lane change assist and highway autopilot upgrade 24 000 SEK 2 200 EUR\n\nTow electrically deployable tow bar and trailer stability control 14 000 SEK 1 300 EUR\n\nSound 14 speaker Voltrieve Stage audio system 12 000 SEK 1 100 EUR\n\nWhich Voltrieve is for you\n\nVoltrieve Spark\n\nSmall outside, generous inside. Segment: city car. Platform: V1. Drive: RWD. Battery: 42 kWh, with up to 310 km of WLTP\nrange. Peak charging is 95 kW. It is not rated for towing, so it suits drivers who travel light.\n\nVoltrieve Lumen\n\nLight on its feet. Segment: hatchback. Platform: V1. Drive: RWD or AWD.",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/brand/voltrieve-buyers-guide.pdf",
+        "model_slug": "all",
+        "doc_type": "buyers_guide"
+      }
+    },
+    {
+      "id": "7",
+      "doc_key": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1wcmljZS1saXN0LnBkZg2_pages_4",
+      "reranker_score": 2.092605,
+      "source_data": {
+        "chunk_id": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1wcmljZS1saXN0LnBkZg2_pages_4",
+        "title": "voltrieve-fjord-price-list.pdf",
+        "chunk": "The rate is variable and the example is\nfor illustration only.\n\nFinancing in the EU\n\nA Fjord Plus RWD at 51 700 EUR costs 563 EUR per month over 36 months with Voltrieve Financial Services.\n\nFjord Plus RWD financing in the EU Amount\n\nCash price 51 700 EUR\n\nDeposit (20 %) 10 340 EUR\n\nLoan amount 41 360 EUR\n\nMonthly payment for 36 months 563 EUR per month\n\nResidual payment at the end (50 %) 25 850 EUR\n\nNominal rate 4.45 %\n\nEffective rate 4.85 %\n\nSetup fee 75 EUR\n\nTotal amount payable 56 533 EUR\n\nExample in the EU: cash price 51 700 EUR, deposit 10 340 EUR, loan 41 360 EUR over 36 months at a nominal rate of 4.45\n% (effective rate 4.85 %). The monthly payment includes an administration fee of 6 EUR. A setup fee of 75 EUR is charged at\nthe start, and a residual payment of 25 850 EUR is due at the end of the term, when you can pay it, refinance it or return the\ncar. Total amount payable 56 533 EUR. Credit is subject to approval. The rate is variable and the example is for illustration\nonly.\n\nVoltrieve | Voltrieve Fjord price list 4 / 4",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/fjord/voltrieve-fjord-price-list.pdf",
+        "model_slug": "fjord",
+        "doc_type": "price_list"
+      }
+    },
+    {
+      "id": "9",
+      "doc_key": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1icm9jaHVyZS5wZGY1_pages_3",
+      "reranker_score": 1.993974,
+      "source_data": {
+        "chunk_id": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1icm9jaHVyZS5wZGY1_pages_3",
+        "title": "voltrieve-fjord-brochure.pdf",
+        "chunk": "Yes, up to 2 100 kg braked. The Tow pack adds\nan electrically deployable tow bar and trailer stability\ncontrol.\n\nDoes it have a heat pump? Yes, on every trim.\n\nWhich driver assistance does it have? Voltrieve Pilot version\n3: adaptive cruise, lane keeping, traffic jam assist and\nautomatic lane change (with Pilot Plus).\n\n\n\nYour next step\nBook a test drive at your Voltrieve dealer and take the\nFjord on the roads you drive every day. The price list,\nthe technical specifications and the accessories\ncatalog for the Voltrieve Fjord are part of this sales\nfolder.",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/fjord/voltrieve-fjord-brochure.pdf",
+        "model_slug": "fjord",
+        "doc_type": "brochure"
+      }
+    }
+  ],
+  "activity": [
+    {
+      "type": "modelQueryPlanning",
+      "id": 0,
+      "startedAt": "2026-11-10T12:32:44.7771015Z",
+      "completedAt": "2026-11-10T12:32:46.1226489Z",
+      "inputTokens": 944,
+      "outputTokens": 43,
+      "elapsedMs": 1345,
+      "model": {
+        "modelName": "gpt-5.4-mini",
+        "deploymentId": "gpt-5.4-mini"
+      }
+    },
+    {
+      "type": "searchIndex",
+      "id": 1,
+      "startedAt": "2026-11-10T12:32:46.1229455Z",
+      "completedAt": "2026-11-10T12:32:46.4450607Z",
+      "knowledgeSourceName": "voltrieve-docs-ks",
+      "queryTime": "2026-11-10T12:32:46.3056602Z",
+      "count": 11,
+      "elapsedMs": 182,
+      "searchIndexArguments": {
+        "search": "Fjord Plus AWD price Heath buyer's guide",
+        "filter": null,
+        "semanticConfigurationName": "semantic-config",
+        "sourceDataFields": [
+          {
+            "name": "title"
+          },
+          {
+            "name": "chunk"
+          },
+          {
+            "name": "chunk_id"
+          },
+          {
+            "name": "source_path"
+          },
+          {
+            "name": "model_slug"
+          },
+          {
+            "name": "doc_type"
+          }
+        ],
+        "searchFields": [
+          {
+            "name": "chunk"
+          },
+          {
+            "name": "title"
+          }
+        ]
+      }
+    },
+    {
+      "type": "searchIndex",
+      "id": 2,
+      "startedAt": "2026-11-10T12:32:46.3061464Z",
+      "completedAt": "2026-11-10T12:32:46.4450691Z",
+      "knowledgeSourceName": "voltrieve-docs-ks",
+      "queryTime": "2026-11-10T12:32:46.403637Z",
+      "count": 18,
+      "elapsedMs": 97,
+      "searchIndexArguments": {
+        "search": "Fjord Plus AWD Heath",
+        "filter": null,
+        "semanticConfigurationName": "semantic-config",
+        "sourceDataFields": [
+          {
+            "name": "title"
+          },
+          {
+            "name": "chunk"
+          },
+          {
+            "name": "chunk_id"
+          },
+          {
+            "name": "source_path"
+          },
+          {
+            "name": "model_slug"
+          },
+          {
+            "name": "doc_type"
+          }
+        ],
+        "searchFields": [
+          {
+            "name": "chunk"
+          },
+          {
+            "name": "title"
+          }
+        ]
+      }
+    },
+    {
+      "type": "searchIndex",
+      "id": 3,
+      "startedAt": "2026-11-10T12:32:46.4041334Z",
+      "completedAt": "2026-11-10T12:32:46.44507Z",
+      "knowledgeSourceName": "voltrieve-docs-ks",
+      "queryTime": "2026-11-10T12:32:46.4445378Z",
+      "count": 1,
+      "elapsedMs": 40,
+      "searchIndexArguments": {
+        "search": "Heath pricing buyer's guide",
+        "filter": null,
+        "semanticConfigurationName": "semantic-config",
+        "sourceDataFields": [
+          {
+            "name": "title"
+          },
+          {
+            "name": "chunk"
+          },
+          {
+            "name": "chunk_id"
+          },
+          {
+            "name": "source_path"
+          },
+          {
+            "name": "model_slug"
+          },
+          {
+            "name": "doc_type"
+          }
+        ],
+        "searchFields": [
+          {
+            "name": "chunk"
+          },
+          {
+            "name": "title"
+          }
+        ]
+      }
+    },
+    {
+      "type": "agenticReasoning",
+      "id": 4,
+      "startedAt": "2026-11-10T12:32:46.45068Z",
+      "completedAt": "2026-11-10T12:32:46.45068Z",
+      "reasoningTokens": 49681,
+      "retrievalReasoningEffort": {
+        "kind": "low"
+      },
+      "logicalReasoningEffort": {
+        "kind": "low"
+      }
+    }
+  ]
+}
+
+==================================================================
+Q: Which Fjord trims have the Sound pack included?
+==================================================================
+{
+  "partial": false,
+  "chunks": [
+    {
+      "ref_id": "0",
+      "title": "voltrieve-fjord-price-list.pdf",
+      "content": "/\n1 100 EUR\n\nIncluded\n\nItems marked \"Not available\" are not sold separately. Option packs can be added to any trim that does not include them.\n\nVoltrieve | Voltrieve Fjord price list 2 / 4\n\n\n\nFjord option packs\n\nPack Contents\nPrice in\nSweden\n\nPrice in the\nEU\n\nIncluded on\n\nFjord Winter pack heat pump, heated steering wheel and rear seats, battery\npreconditioning\n\n18 000 SEK 1 600 EUR Fjord Plus and\nPrime\n\nFjord Pilot Plus\npack\n\nVoltrieve Pilot lane change assist and highway autopilot\nupgrade\n\n24 000 SEK 2 200 EUR Fjord Prime\n\nFjord Tow pack electrically deployable tow bar and trailer stability control 14 000 SEK 1 300 EUR option on every\ntrim\n\nFjord Sound pack 14 speaker Voltrieve Stage audio system 12 000 SEK 1 100 EUR Fjord Prime\n\nFjord colors\n\nColor Finish Price in Sweden Price in the EU\n\nFjord in Glacier Blue (signature color): deep blue metallic Included Included\n\nFjord in Frost: white metallic 9 900 SEK 900 EUR\n\nFjord in Slate: dark grey metallic 9 900 SEK 900 EUR\n\nFjord in Heath: deep burgundy metallic 9 900 SEK 900 EUR\n\nFjord wheels and interiors\n\nWheel Description Standard on\n\n19 inch Birch ten spokes in silver Fjord Pure\n\n20 inch Fern fifteen thin straight spokes in diamond-cut silver Fjord Plus and Prime\n\nInterior Description Standard on\n\nLight wool blend light wool blend seats and pale ash wood trim Fjord Pure and Plus\n\nNappa leather light Nappa leather seats with ventilation and massage, and pale ash wood trim Fjord Prime\n\nFjord company car benefit value in Sweden\n\nTrim Company car benefit value, Sweden\n\nFjord Pure 3 600 SEK per month\n\nFjord Plus 3 900 SEK per month\n\nFjord Prime 4 200 SEK per month\n\nThe company car benefit value (f\u00f6rm\u00e5nsv\u00e4rde) is an example for a company car in Sweden, before tax, with the reduction\nfor electric cars. The actual value depends on the options chosen and on the rules for the year. There is no corresponding\nfigure for the EU price list.\n\nVoltrieve | Voltrieve Fjord price list 3 / 4\n\n\n\nFjord financing example"
+    },
+    {
+      "ref_id": "1",
+      "title": "voltrieve-fjord-specifications.pdf",
+      "content": "345 mm (RWD), 370 mm (AWD)\n\nRear brake discs 330 mm\n\nHeat pump standard\n\nVoltrieve Pilot version 3: adaptive cruise, lane keeping, traffic jam assist, automatic lane change (with Pilot Plus)\n\nOption packs available Winter, Pilot Plus, Tow, Sound\n\nFeature boot of 640 litres\n\nFeature roof load of 100 kg\n\nFeature air suspension\n\nFjord wheels and tyres per trim\n\nTrim Wheels\n\nFjord Pure 19 inch Birch: ten spokes in silver\n\nFjord Plus 20 inch Fern: fifteen thin straight spokes in diamond-cut silver\n\nFjord Prime 20 inch Fern: fifteen thin straight spokes in diamond-cut silver\n\nRange, energy use and charging times are measured to WLTP or under test conditions. Real figures depend on speed,\ntemperature, load, tyres and driving style.\n\nVoltrieve | Voltrieve Fjord technical specifications 3 / 3"
+    },
+    {
+      "ref_id": "2",
+      "title": "voltrieve-fjord-price-list.pdf",
+      "content": "V O L T R I E V E\n\nVoltrieve Fjord price list\n\nImage: fjord/hero\n\nPrices valid from 1 November 2026. Recommended retail prices including VAT, in Sweden (SEK) and in the EU (EUR).\n\nFjord prices per trim and drive\n\nModel Drive Price in Sweden Price in the EU\n\nFjord Pure RWD 529 000 SEK 47 900 EUR\n\nFjord Pure AWD 569 000 SEK 51 500 EUR\n\nFjord Plus RWD 571 000 SEK 51 700 EUR\n\nFjord Plus AWD 611 000 SEK 55 300 EUR\n\nFjord Prime RWD 614 000 SEK 55 600 EUR\n\nFjord Prime AWD 654 000 SEK 59 200 EUR\n\nAll wheel drive (AWD) adds 40 000 SEK or 3 600 EUR to the price of each trim.\n\nWhat each Fjord trim adds\n\nFjord Pure\n\nHeat pump\n\nAir suspension\n\nLED light line with the fjord V\n\nVoltrieve Pilot 3\n\n22 kW onboard charger\nSatin aluminium roof rails\n\nPortrait central touchscreen\n\n19 inch Birch wheels, Light wool blend interior\n\nFjord Plus\n\nEverything in Fjord Pure, plus:\n\nVoltrieve | Voltrieve Fjord price list 1 / 4\n\n\n\nPower tailgate with hands-free opening\n\nKeyless entry\n\n360 camera\n\n20 inch Fern wheels, Light wool blend interior\n\nWinter pack included: heat pump, heated steering wheel and rear seats, battery preconditioning\n\nFjord Prime\n\nEverything in Fjord Plus, plus:\n\nHead-up display\n\nPanoramic glass roof\n\nAdaptive high beam\n\n20 inch Fern wheels, Nappa leather interior\n\nWinter pack included: heat pump, heated steering wheel and rear seats, battery preconditioning\nPilot Plus pack included: Voltrieve Pilot lane change assist and highway autopilot upgrade\n\nSound pack included: 14 speaker Voltrieve Stage audio system\n\nFjord equipment\n\nFjord equipment Fjord Pure Fjord Plus Fjord Prime\n\nWheels 19 inch Birch 20 inch Fern 20 inch Fern\n\nInterior Light wool blend Light wool blend Nappa leather\n\nHeat pump Standard Standard Standard\n\nAir suspension Standard Standard Standard\n\nLED light line with the fjord V Standard Standard Standard\n\nVoltrieve Pilot 3 Standard Standard Standard\n\n22 kW onboard charger Standard Standard Standard\n\nSatin aluminium roof rails Standard Standard Standard"
+    },
+    {
+      "ref_id": "3",
+      "title": "voltrieve-buyers-guide.pdf",
+      "content": "deployable tow bar and trailer stability control 14 000 SEK 1 300 EUR\n\nSound 14 speaker Voltrieve Stage audio system 12 000 SEK 1 100 EUR\n\nWhich Voltrieve is for you\n\nVoltrieve Spark\n\nSmall outside, generous inside. Segment: city car. Platform: V1. Drive: RWD. Battery: 42 kWh, with up to 310 km of WLTP\nrange. Peak charging is 95 kW. It is not rated for towing, so it suits drivers who travel light.\n\nVoltrieve Lumen\n\nLight on its feet. Segment: hatchback. Platform: V1. Drive: RWD or AWD. Battery: 61 kWh, with up to 455 km of WLTP range.\nPeak charging is 135 kW. It tows up to 750 kg.\n\nVoltrieve Ragn\n\nBuilt for the long way round. Segment: crossover. Platform: V2. Drive: AWD. Battery: 84 kWh, with up to 530 km of WLTP\nrange. Peak charging is 240 kW. It tows up to 1 800 kg.\n\nVoltrieve Fjord\n\nRoom for the whole weekend. Segment: estate. Platform: V2. Drive: RWD or AWD. Battery: 84 kWh, with up to 575 km of\nWLTP range. Peak charging is 240 kW. It tows up to 2 100 kg.\n\nVoltrieve Atlas\n\nSeven seats, zero compromise. Segment: large SUV. Platform: V2. Drive: AWD. Battery: 112 kWh, with up to 610 km of WLTP\nrange. Peak charging is 320 kW. It tows up to 2 500 kg.\n\nVoltrieve | Voltrieve buyer's guide 2 / 2"
+    },
+    {
+      "ref_id": "4",
+      "title": "voltrieve-fjord-price-list.pdf",
+      "content": "Voltrieve Stage audio system\n\nFjord equipment\n\nFjord equipment Fjord Pure Fjord Plus Fjord Prime\n\nWheels 19 inch Birch 20 inch Fern 20 inch Fern\n\nInterior Light wool blend Light wool blend Nappa leather\n\nHeat pump Standard Standard Standard\n\nAir suspension Standard Standard Standard\n\nLED light line with the fjord V Standard Standard Standard\n\nVoltrieve Pilot 3 Standard Standard Standard\n\n22 kW onboard charger Standard Standard Standard\n\nSatin aluminium roof rails Standard Standard Standard\n\nPortrait central touchscreen Standard Standard Standard\n\nPower tailgate with hands-free opening Not available Standard Standard\n\nKeyless entry Not available Standard Standard\n\n360 camera Not available Standard Standard\n\nHead-up display Not available Not available Standard\n\nPanoramic glass roof Not available Not available Standard\n\nAdaptive high beam Not available Not available Standard\n\nWinter pack: heat pump, heated steering wheel and rear\nseats, battery preconditioning\n\nOptional, 18 000 SEK /\n1 600 EUR\n\nIncluded Included\n\nPilot Plus pack: Voltrieve Pilot lane change assist and\nhighway autopilot upgrade\n\nOptional, 24 000 SEK /\n2 200 EUR\n\nOptional, 24 000 SEK /\n2 200 EUR\n\nIncluded\n\nTow pack: electrically deployable tow bar and trailer\nstability control\n\nOptional, 14 000 SEK /\n1 300 EUR\n\nOptional, 14 000 SEK /\n1 300 EUR\n\nOptional, 14 000 SEK /\n1 300 EUR\n\nSound pack: 14 speaker Voltrieve Stage audio system Optional, 12 000 SEK /\n1 100 EUR\n\nOptional, 12 000 SEK /\n1 100 EUR\n\nIncluded\n\nItems marked \"Not available\" are not sold separately. Option packs can be added to any trim that does not include them.\n\nVoltrieve | Voltrieve Fjord price list 2 / 4\n\n\n\nFjord option packs\n\nPack Contents\nPrice in\nSweden\n\nPrice in the\nEU\n\nIncluded on\n\nFjord Winter pack heat pump, heated steering wheel and rear seats, battery\npreconditioning\n\n18 000 SEK 1 600 EUR Fjord Plus and\nPrime\n\nFjord Pilot Plus\npack\n\nVoltrieve Pilot lane change assist and highway autopilot\nupgrade"
+    },
+    {
+      "ref_id": "5",
+      "title": "voltrieve-lumen-price-list.pdf",
+      "content": "change assist and highway autopilot upgrade\n\nSound pack included: 14 speaker Voltrieve Stage audio system\n\nLumen equipment\n\nLumen equipment Lumen Pure Lumen Plus Lumen Prime\n\nWheels 18 inch Arc 19 inch Turbine 19 inch\nTurbine\n\nInterior Black with coral stitching Black with coral stitching Sport seats\n\nHeat pump Standard Standard Standard\n\nDouble LED light lines front and rear Standard Standard Standard\n\n360 camera Standard Standard Standard\n\n11 kW onboard charger Standard Standard Standard\n\n12.3 inch driver display and floating touchscreen Standard Standard Standard\n\nVoltrieve Pilot 2 with adaptive cruise control Standard Standard Standard\n\nFrunk of 45 litres Standard Standard Standard\n\nPower tailgate Not available Standard Standard\n\nKeyless entry Not available Standard Standard\n\nHead-up display Not available Standard Standard\n\nAdaptive high beam Not available Not available Standard\n\nHeated windscreen Not available Not available Standard\n\nAmbient lighting in 12 colors Not available Not available Standard\n\nWinter pack: heat pump, heated steering wheel and rear seats,\nbattery preconditioning\n\nOptional, 18 000 SEK / 1\n600 EUR\n\nIncluded Included\n\nPilot Plus pack: Voltrieve Pilot lane change assist and highway\nautopilot upgrade\n\nOptional, 24 000 SEK / 2\n200 EUR\n\nOptional, 24 000 SEK / 2\n200 EUR\n\nIncluded\n\nSound pack: 14 speaker Voltrieve Stage audio system Optional, 12 000 SEK / 1\n100 EUR\n\nOptional, 12 000 SEK / 1\n100 EUR\n\nIncluded\n\nItems marked \"Not available\" are not sold separately. Option packs can be added to any trim that does not include them.\n\nVoltrieve | Voltrieve Lumen price list 2 / 4\n\n\n\nLumen option packs\n\nPack Contents\nPrice in\nSweden\n\nPrice in the\nEU\n\nIncluded on\n\nLumen Winter\npack\n\nheat pump, heated steering wheel and rear seats, battery\npreconditioning\n\n18 000 SEK 1 600 EUR Lumen Plus and\nPrime\n\nLumen Pilot Plus\npack\n\nVoltrieve Pilot lane change assist and highway autopilot\nupgrade\n\n24 000 SEK 2 200 EUR Lumen Prime\n\nLumen Sound\npack"
+    },
+    {
+      "ref_id": "6",
+      "title": "voltrieve-fjord-brochure.pdf",
+      "content": "inch Birch. Interior: Light wool blend.\n\nFjord Plus\n\nEverything in Fjord Pure, plus:\n\nPower tailgate with hands-free opening\n\nKeyless entry\n360 camera\n\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning\n\nWheels: 20 inch Fern. Interior: Light wool blend.\n\nFjord Prime\n\nEverything in Fjord Plus, plus:\n\nHead-up display\n\nPanoramic glass roof\nAdaptive high beam\n\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning\nPilot Plus pack included: Voltrieve Pilot lane change\nassist and highway autopilot upgrade\n\nSound pack included: 14 speaker Voltrieve Stage\naudio system\n\nWheels: 20 inch Fern. Interior: Nappa leather.\n\n\n\nColors and wheels\nGlacier Blue (signature color): deep blue, metallic\nfinish.\n\nFrost: white, metallic finish.\n\nSlate: dark grey, metallic finish.\n\nHeath: deep burgundy, metallic finish.\n\n19 inch Birch: ten spokes in silver. On Pure.\n\n20 inch Fern: fifteen thin straight spokes in diamond-\ncut silver. On Plus and Prime.\n\nImage: fjord/color_frost\n\nImage: fjord/color_slate Image: fjord/color_heath\n\n\n\nQuestions and answers\nHow far can the Fjord go on a charge? Up to 575 km (WLTP) with the 84 kWh battery. Cold weather, high speeds and a full load\nshorten that.\n\nHow fast does it charge? From 10 to 80 % in about 20\nminutes at a fast charger that delivers 240 kW or more. On\nAC it charges at up to 22 kW, empty to full in about 3.8\nhours.\n\nCan it tow? Yes, up to 2 100 kg braked. The Tow pack adds\nan electrically deployable tow bar and trailer stability\ncontrol.\n\nDoes it have a heat pump? Yes, on every trim.\n\nWhich driver assistance does it have? Voltrieve Pilot version\n3: adaptive cruise, lane keeping, traffic jam assist and\nautomatic lane change (with Pilot Plus).\n\n\n\nYour next step\nBook a test drive at your Voltrieve dealer and take the\nFjord on the roads you drive every day. The price list,\nthe technical specifications and the accessories"
+    },
+    {
+      "ref_id": "7",
+      "title": "voltrieve-spark-brochure.pdf",
+      "content": "plus:\n\nRear camera\n\nKeyless entry\nPrivacy glass\n\nAutomatic climate control\n\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning\n\nWheels: 17 inch Pebble. Interior: Light grey textile.\n\nSpark Prime\n\nEverything in Spark Plus, plus:\n\nPanoramic glass roof\n\nHeated windscreen\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning\n\nSound pack included: 14 speaker Voltrieve Stage\naudio system\n\nWheels: 17 inch Pebble. Interior: Light grey textile and\nmicrosuede.\n\n\n\nColors and wheels\nSaffron (signature color): warm yellow with a gloss\nwhite roof and white mirror caps, solid finish.\n\nSnow: white with a gloss black roof, solid finish.\n\nFj\u00e4ll Mint: pale green with a gloss white roof,\nmetallic finish.\n\nGraphite: dark grey with a gloss white roof, solid\nfinish.\n\n17 inch Pebble: flat aero wheel covers in white and\nlight grey with five small holes. On Pure and Plus.\n\n17 inch Pebble: flat aero wheel covers in graphite\nwith five small holes. On Prime.\n\nImage: spark/color_snow\n\nImage: spark/color_fjall_mint Image: spark/color_graphite\n\n\n\nQuestions and answers\nHow far can the Spark go on a charge? Up to 310 km (WLTP) with the 42 kWh battery. Cold weather, high speeds and a full load\nshorten that.\n\nHow fast does it charge? From 10 to 80 % in about 25\nminutes at a fast charger that delivers 95 kW or more. On AC\nit charges at up to 11 kW, empty to full in about 3.8 hours.\n\nCan it tow? No. The Voltrieve Spark is not rated for towing.\n\nDoes it have a heat pump? On Spark Plus and Prime,\nthrough the Winter pack. On Spark Pure the Winter pack is\nan option.\n\nWhich driver assistance does it have? Voltrieve Pilot version\n2: adaptive cruise and lane keeping.\n\n\n\nYour next step\nBook a test drive at your Voltrieve dealer and take the\nSpark on the roads you drive every day. The price list,\nthe technical specifications and the accessories\ncatalog for the Voltrieve Spark are part of this sales\nfolder."
+    },
+    {
+      "ref_id": "8",
+      "title": "voltrieve-fjord-specifications.pdf",
+      "content": "V O L T R I E V E\n\nVoltrieve Fjord technical specifications\n\nImage: fjord/side_studio\n\nFjord dimensions and weights\n\nFjord dimension Value\n\nLength 4 900 mm\n\nWidth, without mirrors 1 900 mm\n\nHeight 1 500 mm\n\nWheelbase 2 980 mm\n\nGround clearance 150 mm\n\nKerb weight 2 180 kg\n\nTowing capacity 2 100 kg (braked)\n\nRoof load 100 kg\n\nFjord volumes\n\nFjord volume Value\n\nBoot 640 litres\n\nBoot with the rear seats folded 1 720 litres\n\nFrunk 50 litres\n\nSeats 5\n\nVoltrieve | Voltrieve Fjord technical specifications 1 / 3\n\n\n\nFjord battery and range\n\nFjord battery Value\n\nBattery capacity (usable) 84 kWh\n\nRange (WLTP) 575 km\n\nEnergy use (WLTP, combined) 14.6 kWh per 100 km\n\nPlatform V2\n\nSystem voltage 800 V\n\nFjord charging\n\nFjord charging Value\n\nPeak DC charging power 240 kW\n\nDC charging from 10 to 80 % about 20 minutes\n\nOnboard AC charger 22 kW\n\nAC charging, empty to full about 3.8 hours\n\nCharge port CCS2\n\nThe Fjord DC charging curve: the charge power the car accepts at each state of charge, at a charger that delivers at least\n240 kW and with the battery at its working temperature.\n\nState of charge Charge power\n\n10 % 240 kW\n\n50 % 200 kW\n\n80 % 95 kW\n\nFjord performance per drive\n\nDrive Power Torque 0 to 100 km/h Top speed\n\nFjord RWD 250 kW 450 Nm 6.1 s 200 km/h\n\nFjord AWD 360 kW 680 Nm 4.6 s 200 km/h\n\nVoltrieve | Voltrieve Fjord technical specifications 2 / 3\n\n\n\nFjord chassis, climate and software\n\nFjord item Value\n\nDrive RWD, AWD\n\nFront brake discs 345 mm (RWD), 370 mm (AWD)\n\nRear brake discs 330 mm\n\nHeat pump standard\n\nVoltrieve Pilot version 3: adaptive cruise, lane keeping, traffic jam assist, automatic lane change (with Pilot Plus)\n\nOption packs available Winter, Pilot Plus, Tow, Sound\n\nFeature boot of 640 litres\n\nFeature roof load of 100 kg\n\nFeature air suspension\n\nFjord wheels and tyres per trim\n\nTrim Wheels\n\nFjord Pure 19 inch Birch: ten spokes in silver\n\nFjord Plus 20 inch Fern: fifteen thin straight spokes in diamond-cut silver"
+    },
+    {
+      "ref_id": "9",
+      "title": "voltrieve-spark-specifications.pdf",
+      "content": "discs 265 mm\n\nHeat pump with the Winter pack (standard on Plus and Prime)\n\nVoltrieve Pilot version 2: adaptive cruise, lane keeping\n\nOption packs available Winter, Sound\n\nFeature turning circle of 9.8 m\n\nFeature 2 ISOFIX seats\n\nFeature one pedal driving\n\nSpark wheels and tyres per trim\n\nTrim Wheels\n\nSpark Pure 17 inch Pebble: flat aero wheel covers in white and light grey with five small holes\n\nSpark Plus 17 inch Pebble: flat aero wheel covers in white and light grey with five small holes\n\nSpark Prime 17 inch Pebble: flat aero wheel covers in graphite with five small holes\n\nRange, energy use and charging times are measured to WLTP or under test conditions. Real figures depend on speed,\ntemperature, load, tyres and driving style.\n\nVoltrieve | Voltrieve Spark technical specifications 3 / 3"
+    },
+    {
+      "ref_id": "10",
+      "title": "voltrieve-atlas-specifications.pdf",
+      "content": "discs 360 mm\n\nHeat pump standard\n\nVoltrieve Pilot version 3: adaptive cruise, lane keeping, traffic jam assist, automatic lane change (with Pilot Plus)\n\nOption packs available Winter, Pilot Plus, Tow, Sound\n\nFeature seven seats\n\nFeature 3.5 kW vehicle to load outlet\n\nFeature rear wheel steering\n\nAtlas wheels and tyres per trim\n\nTrim Wheels\n\nAtlas Pure 21 inch Monolith: six wide aero spokes in silver\n\nAtlas Plus 22 inch Monolith: six wide aero spokes, gloss black with machined silver faces\n\nAtlas Prime 22 inch Monolith: six wide aero spokes, gloss black with machined silver faces\n\nRange, energy use and charging times are measured to WLTP or under test conditions. Real figures depend on speed,\ntemperature, load, tyres and driving style.\n\nVoltrieve | Voltrieve Atlas technical specifications 3 / 3"
+    }
+  ],
+  "references": [
+    {
+      "id": "0",
+      "doc_key": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1wcmljZS1saXN0LnBkZg2_pages_2",
+      "reranker_score": 2.9967673,
+      "source_data": {
+        "chunk_id": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1wcmljZS1saXN0LnBkZg2_pages_2",
+        "title": "voltrieve-fjord-price-list.pdf",
+        "chunk": "/\n1 100 EUR\n\nIncluded\n\nItems marked \"Not available\" are not sold separately. Option packs can be added to any trim that does not include them.\n\nVoltrieve | Voltrieve Fjord price list 2 / 4\n\n\n\nFjord option packs\n\nPack Contents\nPrice in\nSweden\n\nPrice in the\nEU\n\nIncluded on\n\nFjord Winter pack heat pump, heated steering wheel and rear seats, battery\npreconditioning\n\n18 000 SEK 1 600 EUR Fjord Plus and\nPrime\n\nFjord Pilot Plus\npack\n\nVoltrieve Pilot lane change assist and highway autopilot\nupgrade\n\n24 000 SEK 2 200 EUR Fjord Prime\n\nFjord Tow pack electrically deployable tow bar and trailer stability control 14 000 SEK 1 300 EUR option on every\ntrim\n\nFjord Sound pack 14 speaker Voltrieve Stage audio system 12 000 SEK 1 100 EUR Fjord Prime\n\nFjord colors\n\nColor Finish Price in Sweden Price in the EU\n\nFjord in Glacier Blue (signature color): deep blue metallic Included Included\n\nFjord in Frost: white metallic 9 900 SEK 900 EUR\n\nFjord in Slate: dark grey metallic 9 900 SEK 900 EUR\n\nFjord in Heath: deep burgundy metallic 9 900 SEK 900 EUR\n\nFjord wheels and interiors\n\nWheel Description Standard on\n\n19 inch Birch ten spokes in silver Fjord Pure\n\n20 inch Fern fifteen thin straight spokes in diamond-cut silver Fjord Plus and Prime\n\nInterior Description Standard on\n\nLight wool blend light wool blend seats and pale ash wood trim Fjord Pure and Plus\n\nNappa leather light Nappa leather seats with ventilation and massage, and pale ash wood trim Fjord Prime\n\nFjord company car benefit value in Sweden\n\nTrim Company car benefit value, Sweden\n\nFjord Pure 3 600 SEK per month\n\nFjord Plus 3 900 SEK per month\n\nFjord Prime 4 200 SEK per month\n\nThe company car benefit value (f\u00f6rm\u00e5nsv\u00e4rde) is an example for a company car in Sweden, before tax, with the reduction\nfor electric cars. The actual value depends on the options chosen and on the rules for the year. There is no corresponding\nfigure for the EU price list.\n\nVoltrieve | Voltrieve Fjord price list 3 / 4\n\n\n\nFjord financing example",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/fjord/voltrieve-fjord-price-list.pdf",
+        "model_slug": "fjord",
+        "doc_type": "price_list"
+      }
+    },
+    {
+      "id": "2",
+      "doc_key": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1wcmljZS1saXN0LnBkZg2_pages_0",
+      "reranker_score": 2.9684098,
+      "source_data": {
+        "chunk_id": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1wcmljZS1saXN0LnBkZg2_pages_0",
+        "title": "voltrieve-fjord-price-list.pdf",
+        "chunk": "V O L T R I E V E\n\nVoltrieve Fjord price list\n\nImage: fjord/hero\n\nPrices valid from 1 November 2026. Recommended retail prices including VAT, in Sweden (SEK) and in the EU (EUR).\n\nFjord prices per trim and drive\n\nModel Drive Price in Sweden Price in the EU\n\nFjord Pure RWD 529 000 SEK 47 900 EUR\n\nFjord Pure AWD 569 000 SEK 51 500 EUR\n\nFjord Plus RWD 571 000 SEK 51 700 EUR\n\nFjord Plus AWD 611 000 SEK 55 300 EUR\n\nFjord Prime RWD 614 000 SEK 55 600 EUR\n\nFjord Prime AWD 654 000 SEK 59 200 EUR\n\nAll wheel drive (AWD) adds 40 000 SEK or 3 600 EUR to the price of each trim.\n\nWhat each Fjord trim adds\n\nFjord Pure\n\nHeat pump\n\nAir suspension\n\nLED light line with the fjord V\n\nVoltrieve Pilot 3\n\n22 kW onboard charger\nSatin aluminium roof rails\n\nPortrait central touchscreen\n\n19 inch Birch wheels, Light wool blend interior\n\nFjord Plus\n\nEverything in Fjord Pure, plus:\n\nVoltrieve | Voltrieve Fjord price list 1 / 4\n\n\n\nPower tailgate with hands-free opening\n\nKeyless entry\n\n360 camera\n\n20 inch Fern wheels, Light wool blend interior\n\nWinter pack included: heat pump, heated steering wheel and rear seats, battery preconditioning\n\nFjord Prime\n\nEverything in Fjord Plus, plus:\n\nHead-up display\n\nPanoramic glass roof\n\nAdaptive high beam\n\n20 inch Fern wheels, Nappa leather interior\n\nWinter pack included: heat pump, heated steering wheel and rear seats, battery preconditioning\nPilot Plus pack included: Voltrieve Pilot lane change assist and highway autopilot upgrade\n\nSound pack included: 14 speaker Voltrieve Stage audio system\n\nFjord equipment\n\nFjord equipment Fjord Pure Fjord Plus Fjord Prime\n\nWheels 19 inch Birch 20 inch Fern 20 inch Fern\n\nInterior Light wool blend Light wool blend Nappa leather\n\nHeat pump Standard Standard Standard\n\nAir suspension Standard Standard Standard\n\nLED light line with the fjord V Standard Standard Standard\n\nVoltrieve Pilot 3 Standard Standard Standard\n\n22 kW onboard charger Standard Standard Standard\n\nSatin aluminium roof rails Standard Standard Standard",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/fjord/voltrieve-fjord-price-list.pdf",
+        "model_slug": "fjord",
+        "doc_type": "price_list"
+      }
+    },
+    {
+      "id": "4",
+      "doc_key": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1wcmljZS1saXN0LnBkZg2_pages_1",
+      "reranker_score": 2.8294578,
+      "source_data": {
+        "chunk_id": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1wcmljZS1saXN0LnBkZg2_pages_1",
+        "title": "voltrieve-fjord-price-list.pdf",
+        "chunk": "Voltrieve Stage audio system\n\nFjord equipment\n\nFjord equipment Fjord Pure Fjord Plus Fjord Prime\n\nWheels 19 inch Birch 20 inch Fern 20 inch Fern\n\nInterior Light wool blend Light wool blend Nappa leather\n\nHeat pump Standard Standard Standard\n\nAir suspension Standard Standard Standard\n\nLED light line with the fjord V Standard Standard Standard\n\nVoltrieve Pilot 3 Standard Standard Standard\n\n22 kW onboard charger Standard Standard Standard\n\nSatin aluminium roof rails Standard Standard Standard\n\nPortrait central touchscreen Standard Standard Standard\n\nPower tailgate with hands-free opening Not available Standard Standard\n\nKeyless entry Not available Standard Standard\n\n360 camera Not available Standard Standard\n\nHead-up display Not available Not available Standard\n\nPanoramic glass roof Not available Not available Standard\n\nAdaptive high beam Not available Not available Standard\n\nWinter pack: heat pump, heated steering wheel and rear\nseats, battery preconditioning\n\nOptional, 18 000 SEK /\n1 600 EUR\n\nIncluded Included\n\nPilot Plus pack: Voltrieve Pilot lane change assist and\nhighway autopilot upgrade\n\nOptional, 24 000 SEK /\n2 200 EUR\n\nOptional, 24 000 SEK /\n2 200 EUR\n\nIncluded\n\nTow pack: electrically deployable tow bar and trailer\nstability control\n\nOptional, 14 000 SEK /\n1 300 EUR\n\nOptional, 14 000 SEK /\n1 300 EUR\n\nOptional, 14 000 SEK /\n1 300 EUR\n\nSound pack: 14 speaker Voltrieve Stage audio system Optional, 12 000 SEK /\n1 100 EUR\n\nOptional, 12 000 SEK /\n1 100 EUR\n\nIncluded\n\nItems marked \"Not available\" are not sold separately. Option packs can be added to any trim that does not include them.\n\nVoltrieve | Voltrieve Fjord price list 2 / 4\n\n\n\nFjord option packs\n\nPack Contents\nPrice in\nSweden\n\nPrice in the\nEU\n\nIncluded on\n\nFjord Winter pack heat pump, heated steering wheel and rear seats, battery\npreconditioning\n\n18 000 SEK 1 600 EUR Fjord Plus and\nPrime\n\nFjord Pilot Plus\npack\n\nVoltrieve Pilot lane change assist and highway autopilot\nupgrade",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/fjord/voltrieve-fjord-price-list.pdf",
+        "model_slug": "fjord",
+        "doc_type": "price_list"
+      }
+    },
+    {
+      "id": "6",
+      "doc_key": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1icm9jaHVyZS5wZGY1_pages_2",
+      "reranker_score": 2.7784142,
+      "source_data": {
+        "chunk_id": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1icm9jaHVyZS5wZGY1_pages_2",
+        "title": "voltrieve-fjord-brochure.pdf",
+        "chunk": "inch Birch. Interior: Light wool blend.\n\nFjord Plus\n\nEverything in Fjord Pure, plus:\n\nPower tailgate with hands-free opening\n\nKeyless entry\n360 camera\n\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning\n\nWheels: 20 inch Fern. Interior: Light wool blend.\n\nFjord Prime\n\nEverything in Fjord Plus, plus:\n\nHead-up display\n\nPanoramic glass roof\nAdaptive high beam\n\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning\nPilot Plus pack included: Voltrieve Pilot lane change\nassist and highway autopilot upgrade\n\nSound pack included: 14 speaker Voltrieve Stage\naudio system\n\nWheels: 20 inch Fern. Interior: Nappa leather.\n\n\n\nColors and wheels\nGlacier Blue (signature color): deep blue, metallic\nfinish.\n\nFrost: white, metallic finish.\n\nSlate: dark grey, metallic finish.\n\nHeath: deep burgundy, metallic finish.\n\n19 inch Birch: ten spokes in silver. On Pure.\n\n20 inch Fern: fifteen thin straight spokes in diamond-\ncut silver. On Plus and Prime.\n\nImage: fjord/color_frost\n\nImage: fjord/color_slate Image: fjord/color_heath\n\n\n\nQuestions and answers\nHow far can the Fjord go on a charge? Up to 575 km (WLTP) with the 84 kWh battery. Cold weather, high speeds and a full load\nshorten that.\n\nHow fast does it charge? From 10 to 80 % in about 20\nminutes at a fast charger that delivers 240 kW or more. On\nAC it charges at up to 22 kW, empty to full in about 3.8\nhours.\n\nCan it tow? Yes, up to 2 100 kg braked. The Tow pack adds\nan electrically deployable tow bar and trailer stability\ncontrol.\n\nDoes it have a heat pump? Yes, on every trim.\n\nWhich driver assistance does it have? Voltrieve Pilot version\n3: adaptive cruise, lane keeping, traffic jam assist and\nautomatic lane change (with Pilot Plus).\n\n\n\nYour next step\nBook a test drive at your Voltrieve dealer and take the\nFjord on the roads you drive every day. The price list,\nthe technical specifications and the accessories",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/fjord/voltrieve-fjord-brochure.pdf",
+        "model_slug": "fjord",
+        "doc_type": "brochure"
+      }
+    },
+    {
+      "id": "8",
+      "doc_key": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1zcGVjaWZpY2F0aW9ucy5wZGY1_pages_0",
+      "reranker_score": 2.563606,
+      "source_data": {
+        "chunk_id": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1zcGVjaWZpY2F0aW9ucy5wZGY1_pages_0",
+        "title": "voltrieve-fjord-specifications.pdf",
+        "chunk": "V O L T R I E V E\n\nVoltrieve Fjord technical specifications\n\nImage: fjord/side_studio\n\nFjord dimensions and weights\n\nFjord dimension Value\n\nLength 4 900 mm\n\nWidth, without mirrors 1 900 mm\n\nHeight 1 500 mm\n\nWheelbase 2 980 mm\n\nGround clearance 150 mm\n\nKerb weight 2 180 kg\n\nTowing capacity 2 100 kg (braked)\n\nRoof load 100 kg\n\nFjord volumes\n\nFjord volume Value\n\nBoot 640 litres\n\nBoot with the rear seats folded 1 720 litres\n\nFrunk 50 litres\n\nSeats 5\n\nVoltrieve | Voltrieve Fjord technical specifications 1 / 3\n\n\n\nFjord battery and range\n\nFjord battery Value\n\nBattery capacity (usable) 84 kWh\n\nRange (WLTP) 575 km\n\nEnergy use (WLTP, combined) 14.6 kWh per 100 km\n\nPlatform V2\n\nSystem voltage 800 V\n\nFjord charging\n\nFjord charging Value\n\nPeak DC charging power 240 kW\n\nDC charging from 10 to 80 % about 20 minutes\n\nOnboard AC charger 22 kW\n\nAC charging, empty to full about 3.8 hours\n\nCharge port CCS2\n\nThe Fjord DC charging curve: the charge power the car accepts at each state of charge, at a charger that delivers at least\n240 kW and with the battery at its working temperature.\n\nState of charge Charge power\n\n10 % 240 kW\n\n50 % 200 kW\n\n80 % 95 kW\n\nFjord performance per drive\n\nDrive Power Torque 0 to 100 km/h Top speed\n\nFjord RWD 250 kW 450 Nm 6.1 s 200 km/h\n\nFjord AWD 360 kW 680 Nm 4.6 s 200 km/h\n\nVoltrieve | Voltrieve Fjord technical specifications 2 / 3\n\n\n\nFjord chassis, climate and software\n\nFjord item Value\n\nDrive RWD, AWD\n\nFront brake discs 345 mm (RWD), 370 mm (AWD)\n\nRear brake discs 330 mm\n\nHeat pump standard\n\nVoltrieve Pilot version 3: adaptive cruise, lane keeping, traffic jam assist, automatic lane change (with Pilot Plus)\n\nOption packs available Winter, Pilot Plus, Tow, Sound\n\nFeature boot of 640 litres\n\nFeature roof load of 100 kg\n\nFeature air suspension\n\nFjord wheels and tyres per trim\n\nTrim Wheels\n\nFjord Pure 19 inch Birch: ten spokes in silver\n\nFjord Plus 20 inch Fern: fifteen thin straight spokes in diamond-cut silver",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/fjord/voltrieve-fjord-specifications.pdf",
+        "model_slug": "fjord",
+        "doc_type": "specifications"
+      }
+    },
+    {
+      "id": "1",
+      "doc_key": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1zcGVjaWZpY2F0aW9ucy5wZGY1_pages_1",
+      "reranker_score": 2.4966114,
+      "source_data": {
+        "chunk_id": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1zcGVjaWZpY2F0aW9ucy5wZGY1_pages_1",
+        "title": "voltrieve-fjord-specifications.pdf",
+        "chunk": "345 mm (RWD), 370 mm (AWD)\n\nRear brake discs 330 mm\n\nHeat pump standard\n\nVoltrieve Pilot version 3: adaptive cruise, lane keeping, traffic jam assist, automatic lane change (with Pilot Plus)\n\nOption packs available Winter, Pilot Plus, Tow, Sound\n\nFeature boot of 640 litres\n\nFeature roof load of 100 kg\n\nFeature air suspension\n\nFjord wheels and tyres per trim\n\nTrim Wheels\n\nFjord Pure 19 inch Birch: ten spokes in silver\n\nFjord Plus 20 inch Fern: fifteen thin straight spokes in diamond-cut silver\n\nFjord Prime 20 inch Fern: fifteen thin straight spokes in diamond-cut silver\n\nRange, energy use and charging times are measured to WLTP or under test conditions. Real figures depend on speed,\ntemperature, load, tyres and driving style.\n\nVoltrieve | Voltrieve Fjord technical specifications 3 / 3",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/fjord/voltrieve-fjord-specifications.pdf",
+        "model_slug": "fjord",
+        "doc_type": "specifications"
+      }
+    },
+    {
+      "id": "3",
+      "doc_key": "684e0f14e805_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2JyYW5kL3ZvbHRyaWV2ZS1idXllcnMtZ3VpZGUucGRm0_pages_1",
+      "reranker_score": 2.0997388,
+      "source_data": {
+        "chunk_id": "684e0f14e805_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2JyYW5kL3ZvbHRyaWV2ZS1idXllcnMtZ3VpZGUucGRm0_pages_1",
+        "title": "voltrieve-buyers-guide.pdf",
+        "chunk": "deployable tow bar and trailer stability control 14 000 SEK 1 300 EUR\n\nSound 14 speaker Voltrieve Stage audio system 12 000 SEK 1 100 EUR\n\nWhich Voltrieve is for you\n\nVoltrieve Spark\n\nSmall outside, generous inside. Segment: city car. Platform: V1. Drive: RWD. Battery: 42 kWh, with up to 310 km of WLTP\nrange. Peak charging is 95 kW. It is not rated for towing, so it suits drivers who travel light.\n\nVoltrieve Lumen\n\nLight on its feet. Segment: hatchback. Platform: V1. Drive: RWD or AWD. Battery: 61 kWh, with up to 455 km of WLTP range.\nPeak charging is 135 kW. It tows up to 750 kg.\n\nVoltrieve Ragn\n\nBuilt for the long way round. Segment: crossover. Platform: V2. Drive: AWD. Battery: 84 kWh, with up to 530 km of WLTP\nrange. Peak charging is 240 kW. It tows up to 1 800 kg.\n\nVoltrieve Fjord\n\nRoom for the whole weekend. Segment: estate. Platform: V2. Drive: RWD or AWD. Battery: 84 kWh, with up to 575 km of\nWLTP range. Peak charging is 240 kW. It tows up to 2 100 kg.\n\nVoltrieve Atlas\n\nSeven seats, zero compromise. Segment: large SUV. Platform: V2. Drive: AWD. Battery: 112 kWh, with up to 610 km of WLTP\nrange. Peak charging is 320 kW. It tows up to 2 500 kg.\n\nVoltrieve | Voltrieve buyer's guide 2 / 2",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/brand/voltrieve-buyers-guide.pdf",
+        "model_slug": "all",
+        "doc_type": "buyers_guide"
+      }
+    },
+    {
+      "id": "5",
+      "doc_key": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2x1bWVuL3ZvbHRyaWV2ZS1sdW1lbi1wcmljZS1saXN0LnBkZg2_pages_1",
+      "reranker_score": 2.0036333,
+      "source_data": {
+        "chunk_id": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2x1bWVuL3ZvbHRyaWV2ZS1sdW1lbi1wcmljZS1saXN0LnBkZg2_pages_1",
+        "title": "voltrieve-lumen-price-list.pdf",
+        "chunk": "change assist and highway autopilot upgrade\n\nSound pack included: 14 speaker Voltrieve Stage audio system\n\nLumen equipment\n\nLumen equipment Lumen Pure Lumen Plus Lumen Prime\n\nWheels 18 inch Arc 19 inch Turbine 19 inch\nTurbine\n\nInterior Black with coral stitching Black with coral stitching Sport seats\n\nHeat pump Standard Standard Standard\n\nDouble LED light lines front and rear Standard Standard Standard\n\n360 camera Standard Standard Standard\n\n11 kW onboard charger Standard Standard Standard\n\n12.3 inch driver display and floating touchscreen Standard Standard Standard\n\nVoltrieve Pilot 2 with adaptive cruise control Standard Standard Standard\n\nFrunk of 45 litres Standard Standard Standard\n\nPower tailgate Not available Standard Standard\n\nKeyless entry Not available Standard Standard\n\nHead-up display Not available Standard Standard\n\nAdaptive high beam Not available Not available Standard\n\nHeated windscreen Not available Not available Standard\n\nAmbient lighting in 12 colors Not available Not available Standard\n\nWinter pack: heat pump, heated steering wheel and rear seats,\nbattery preconditioning\n\nOptional, 18 000 SEK / 1\n600 EUR\n\nIncluded Included\n\nPilot Plus pack: Voltrieve Pilot lane change assist and highway\nautopilot upgrade\n\nOptional, 24 000 SEK / 2\n200 EUR\n\nOptional, 24 000 SEK / 2\n200 EUR\n\nIncluded\n\nSound pack: 14 speaker Voltrieve Stage audio system Optional, 12 000 SEK / 1\n100 EUR\n\nOptional, 12 000 SEK / 1\n100 EUR\n\nIncluded\n\nItems marked \"Not available\" are not sold separately. Option packs can be added to any trim that does not include them.\n\nVoltrieve | Voltrieve Lumen price list 2 / 4\n\n\n\nLumen option packs\n\nPack Contents\nPrice in\nSweden\n\nPrice in the\nEU\n\nIncluded on\n\nLumen Winter\npack\n\nheat pump, heated steering wheel and rear seats, battery\npreconditioning\n\n18 000 SEK 1 600 EUR Lumen Plus and\nPrime\n\nLumen Pilot Plus\npack\n\nVoltrieve Pilot lane change assist and highway autopilot\nupgrade\n\n24 000 SEK 2 200 EUR Lumen Prime\n\nLumen Sound\npack",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/lumen/voltrieve-lumen-price-list.pdf",
+        "model_slug": "lumen",
+        "doc_type": "price_list"
+      }
+    },
+    {
+      "id": "7",
+      "doc_key": "f7063fb19446_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL3NwYXJrL3ZvbHRyaWV2ZS1zcGFyay1icm9jaHVyZS5wZGY1_pages_2",
+      "reranker_score": 1.9551597,
+      "source_data": {
+        "chunk_id": "f7063fb19446_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL3NwYXJrL3ZvbHRyaWV2ZS1zcGFyay1icm9jaHVyZS5wZGY1_pages_2",
+        "title": "voltrieve-spark-brochure.pdf",
+        "chunk": "plus:\n\nRear camera\n\nKeyless entry\nPrivacy glass\n\nAutomatic climate control\n\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning\n\nWheels: 17 inch Pebble. Interior: Light grey textile.\n\nSpark Prime\n\nEverything in Spark Plus, plus:\n\nPanoramic glass roof\n\nHeated windscreen\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning\n\nSound pack included: 14 speaker Voltrieve Stage\naudio system\n\nWheels: 17 inch Pebble. Interior: Light grey textile and\nmicrosuede.\n\n\n\nColors and wheels\nSaffron (signature color): warm yellow with a gloss\nwhite roof and white mirror caps, solid finish.\n\nSnow: white with a gloss black roof, solid finish.\n\nFj\u00e4ll Mint: pale green with a gloss white roof,\nmetallic finish.\n\nGraphite: dark grey with a gloss white roof, solid\nfinish.\n\n17 inch Pebble: flat aero wheel covers in white and\nlight grey with five small holes. On Pure and Plus.\n\n17 inch Pebble: flat aero wheel covers in graphite\nwith five small holes. On Prime.\n\nImage: spark/color_snow\n\nImage: spark/color_fjall_mint Image: spark/color_graphite\n\n\n\nQuestions and answers\nHow far can the Spark go on a charge? Up to 310 km (WLTP) with the 42 kWh battery. Cold weather, high speeds and a full load\nshorten that.\n\nHow fast does it charge? From 10 to 80 % in about 25\nminutes at a fast charger that delivers 95 kW or more. On AC\nit charges at up to 11 kW, empty to full in about 3.8 hours.\n\nCan it tow? No. The Voltrieve Spark is not rated for towing.\n\nDoes it have a heat pump? On Spark Plus and Prime,\nthrough the Winter pack. On Spark Pure the Winter pack is\nan option.\n\nWhich driver assistance does it have? Voltrieve Pilot version\n2: adaptive cruise and lane keeping.\n\n\n\nYour next step\nBook a test drive at your Voltrieve dealer and take the\nSpark on the roads you drive every day. The price list,\nthe technical specifications and the accessories\ncatalog for the Voltrieve Spark are part of this sales\nfolder.",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/spark/voltrieve-spark-brochure.pdf",
+        "model_slug": "spark",
+        "doc_type": "brochure"
+      }
+    },
+    {
+      "id": "9",
+      "doc_key": "f7063fb19446_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL3NwYXJrL3ZvbHRyaWV2ZS1zcGFyay1zcGVjaWZpY2F0aW9ucy5wZGY1_pages_1",
+      "reranker_score": 1.930524,
+      "source_data": {
+        "chunk_id": "f7063fb19446_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL3NwYXJrL3ZvbHRyaWV2ZS1zcGFyay1zcGVjaWZpY2F0aW9ucy5wZGY1_pages_1",
+        "title": "voltrieve-spark-specifications.pdf",
+        "chunk": "discs 265 mm\n\nHeat pump with the Winter pack (standard on Plus and Prime)\n\nVoltrieve Pilot version 2: adaptive cruise, lane keeping\n\nOption packs available Winter, Sound\n\nFeature turning circle of 9.8 m\n\nFeature 2 ISOFIX seats\n\nFeature one pedal driving\n\nSpark wheels and tyres per trim\n\nTrim Wheels\n\nSpark Pure 17 inch Pebble: flat aero wheel covers in white and light grey with five small holes\n\nSpark Plus 17 inch Pebble: flat aero wheel covers in white and light grey with five small holes\n\nSpark Prime 17 inch Pebble: flat aero wheel covers in graphite with five small holes\n\nRange, energy use and charging times are measured to WLTP or under test conditions. Real figures depend on speed,\ntemperature, load, tyres and driving style.\n\nVoltrieve | Voltrieve Spark technical specifications 3 / 3",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/spark/voltrieve-spark-specifications.pdf",
+        "model_slug": "spark",
+        "doc_type": "specifications"
+      }
+    },
+    {
+      "id": "10",
+      "doc_key": "684e0f14e805_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2F0bGFzL3ZvbHRyaWV2ZS1hdGxhcy1zcGVjaWZpY2F0aW9ucy5wZGY1_pages_1",
+      "reranker_score": 1.9266249,
+      "source_data": {
+        "chunk_id": "684e0f14e805_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2F0bGFzL3ZvbHRyaWV2ZS1hdGxhcy1zcGVjaWZpY2F0aW9ucy5wZGY1_pages_1",
+        "title": "voltrieve-atlas-specifications.pdf",
+        "chunk": "discs 360 mm\n\nHeat pump standard\n\nVoltrieve Pilot version 3: adaptive cruise, lane keeping, traffic jam assist, automatic lane change (with Pilot Plus)\n\nOption packs available Winter, Pilot Plus, Tow, Sound\n\nFeature seven seats\n\nFeature 3.5 kW vehicle to load outlet\n\nFeature rear wheel steering\n\nAtlas wheels and tyres per trim\n\nTrim Wheels\n\nAtlas Pure 21 inch Monolith: six wide aero spokes in silver\n\nAtlas Plus 22 inch Monolith: six wide aero spokes, gloss black with machined silver faces\n\nAtlas Prime 22 inch Monolith: six wide aero spokes, gloss black with machined silver faces\n\nRange, energy use and charging times are measured to WLTP or under test conditions. Real figures depend on speed,\ntemperature, load, tyres and driving style.\n\nVoltrieve | Voltrieve Atlas technical specifications 3 / 3",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/atlas/voltrieve-atlas-specifications.pdf",
+        "model_slug": "atlas",
+        "doc_type": "specifications"
+      }
+    }
+  ],
+  "activity": [
+    {
+      "type": "modelQueryPlanning",
+      "id": 0,
+      "startedAt": "2026-11-10T12:32:48.1620777Z",
+      "completedAt": "2026-11-10T12:32:49.4640124Z",
+      "inputTokens": 943,
+      "outputTokens": 44,
+      "elapsedMs": 1301,
+      "model": {
+        "modelName": "gpt-5.4-mini",
+        "deploymentId": "gpt-5.4-mini"
+      }
+    },
+    {
+      "type": "searchIndex",
+      "id": 1,
+      "startedAt": "2026-11-10T12:32:49.464186Z",
+      "completedAt": "2026-11-10T12:32:49.7798657Z",
+      "knowledgeSourceName": "voltrieve-docs-ks",
+      "queryTime": "2026-11-10T12:32:49.5486504Z",
+      "count": 29,
+      "elapsedMs": 84,
+      "searchIndexArguments": {
+        "search": "Fjord trims Sound pack included",
+        "filter": null,
+        "semanticConfigurationName": "semantic-config",
+        "sourceDataFields": [
+          {
+            "name": "title"
+          },
+          {
+            "name": "chunk"
+          },
+          {
+            "name": "chunk_id"
+          },
+          {
+            "name": "source_path"
+          },
+          {
+            "name": "model_slug"
+          },
+          {
+            "name": "doc_type"
+          }
+        ],
+        "searchFields": [
+          {
+            "name": "chunk"
+          },
+          {
+            "name": "title"
+          }
+        ]
+      }
+    },
+    {
+      "type": "searchIndex",
+      "id": 2,
+      "startedAt": "2026-11-10T12:32:49.5491519Z",
+      "completedAt": "2026-11-10T12:32:49.7798725Z",
+      "knowledgeSourceName": "voltrieve-docs-ks",
+      "queryTime": "2026-11-10T12:32:49.6736248Z",
+      "count": 26,
+      "elapsedMs": 124,
+      "searchIndexArguments": {
+        "search": "Fjord Sound pack included trims",
+        "filter": null,
+        "semanticConfigurationName": "semantic-config",
+        "sourceDataFields": [
+          {
+            "name": "title"
+          },
+          {
+            "name": "chunk"
+          },
+          {
+            "name": "chunk_id"
+          },
+          {
+            "name": "source_path"
+          },
+          {
+            "name": "model_slug"
+          },
+          {
+            "name": "doc_type"
+          }
+        ],
+        "searchFields": [
+          {
+            "name": "chunk"
+          },
+          {
+            "name": "title"
+          }
+        ]
+      }
+    },
+    {
+      "type": "searchIndex",
+      "id": 3,
+      "startedAt": "2026-11-10T12:32:49.6740889Z",
+      "completedAt": "2026-11-10T12:32:49.7798733Z",
+      "knowledgeSourceName": "voltrieve-docs-ks",
+      "queryTime": "2026-11-10T12:32:49.7791468Z",
+      "count": 19,
+      "elapsedMs": 105,
+      "searchIndexArguments": {
+        "search": "Fjord buyer's guide Sound pack",
+        "filter": null,
+        "semanticConfigurationName": "semantic-config",
+        "sourceDataFields": [
+          {
+            "name": "title"
+          },
+          {
+            "name": "chunk"
+          },
+          {
+            "name": "chunk_id"
+          },
+          {
+            "name": "source_path"
+          },
+          {
+            "name": "model_slug"
+          },
+          {
+            "name": "doc_type"
+          }
+        ],
+        "searchFields": [
+          {
+            "name": "chunk"
+          },
+          {
+            "name": "title"
+          }
+        ]
+      }
+    },
+    {
+      "type": "agenticReasoning",
+      "id": 4,
+      "startedAt": "2026-11-10T12:32:49.7863149Z",
+      "completedAt": "2026-11-10T12:32:49.7863149Z",
+      "reasoningTokens": 69070,
+      "retrievalReasoningEffort": {
+        "kind": "low"
+      },
+      "logicalReasoningEffort": {
+        "kind": "low"
+      }
+    }
+  ]
+}
+
+==================================================================
+Q: What is the monthly cost in the Fjord financing example?
+==================================================================
+{
+  "partial": false,
+  "chunks": [
+    {
+      "ref_id": "0",
+      "title": "voltrieve-fjord-price-list.pdf",
+      "content": "value in Sweden\n\nTrim Company car benefit value, Sweden\n\nFjord Pure 3 600 SEK per month\n\nFjord Plus 3 900 SEK per month\n\nFjord Prime 4 200 SEK per month\n\nThe company car benefit value (f\u00f6rm\u00e5nsv\u00e4rde) is an example for a company car in Sweden, before tax, with the reduction\nfor electric cars. The actual value depends on the options chosen and on the rules for the year. There is no corresponding\nfigure for the EU price list.\n\nVoltrieve | Voltrieve Fjord price list 3 / 4\n\n\n\nFjord financing example\n\nFinancing in Sweden\n\nA Fjord Plus RWD at 571 000 SEK costs 6 367 SEK per month over 36 months with Voltrieve Financial Services.\n\nFjord Plus RWD financing in Sweden Amount\n\nCash price 571 000 SEK\n\nDeposit (20 %) 114 200 SEK\n\nLoan amount 456 800 SEK\n\nMonthly payment for 36 months 6 367 SEK per month\n\nResidual payment at the end (50 %) 285 500 SEK\n\nNominal rate 4.95 %\n\nEffective rate 5.33 %\n\nSetup fee 695 SEK\n\nTotal amount payable 629 607 SEK\n\nExample in Sweden: cash price 571 000 SEK, deposit 114 200 SEK, loan 456 800 SEK over 36 months at a nominal rate of\n4.95 % (effective rate 5.33 %). The monthly payment includes an administration fee of 59 SEK. A setup fee of 695 SEK is\ncharged at the start, and a residual payment of 285 500 SEK is due at the end of the term, when you can pay it, refinance it\nor return the car. Total amount payable 629 607 SEK. Credit is subject to approval. The rate is variable and the example is\nfor illustration only.\n\nFinancing in the EU\n\nA Fjord Plus RWD at 51 700 EUR costs 563 EUR per month over 36 months with Voltrieve Financial Services.\n\nFjord Plus RWD financing in the EU Amount\n\nCash price 51 700 EUR\n\nDeposit (20 %) 10 340 EUR\n\nLoan amount 41 360 EUR\n\nMonthly payment for 36 months 563 EUR per month\n\nResidual payment at the end (50 %) 25 850 EUR\n\nNominal rate 4.45 %\n\nEffective rate 4.85 %\n\nSetup fee 75 EUR\n\nTotal amount payable 56 533 EUR"
+    },
+    {
+      "ref_id": "1",
+      "title": "voltrieve-fjord-price-list.pdf",
+      "content": "/\n1 100 EUR\n\nIncluded\n\nItems marked \"Not available\" are not sold separately. Option packs can be added to any trim that does not include them.\n\nVoltrieve | Voltrieve Fjord price list 2 / 4\n\n\n\nFjord option packs\n\nPack Contents\nPrice in\nSweden\n\nPrice in the\nEU\n\nIncluded on\n\nFjord Winter pack heat pump, heated steering wheel and rear seats, battery\npreconditioning\n\n18 000 SEK 1 600 EUR Fjord Plus and\nPrime\n\nFjord Pilot Plus\npack\n\nVoltrieve Pilot lane change assist and highway autopilot\nupgrade\n\n24 000 SEK 2 200 EUR Fjord Prime\n\nFjord Tow pack electrically deployable tow bar and trailer stability control 14 000 SEK 1 300 EUR option on every\ntrim\n\nFjord Sound pack 14 speaker Voltrieve Stage audio system 12 000 SEK 1 100 EUR Fjord Prime\n\nFjord colors\n\nColor Finish Price in Sweden Price in the EU\n\nFjord in Glacier Blue (signature color): deep blue metallic Included Included\n\nFjord in Frost: white metallic 9 900 SEK 900 EUR\n\nFjord in Slate: dark grey metallic 9 900 SEK 900 EUR\n\nFjord in Heath: deep burgundy metallic 9 900 SEK 900 EUR\n\nFjord wheels and interiors\n\nWheel Description Standard on\n\n19 inch Birch ten spokes in silver Fjord Pure\n\n20 inch Fern fifteen thin straight spokes in diamond-cut silver Fjord Plus and Prime\n\nInterior Description Standard on\n\nLight wool blend light wool blend seats and pale ash wood trim Fjord Pure and Plus\n\nNappa leather light Nappa leather seats with ventilation and massage, and pale ash wood trim Fjord Prime\n\nFjord company car benefit value in Sweden\n\nTrim Company car benefit value, Sweden\n\nFjord Pure 3 600 SEK per month\n\nFjord Plus 3 900 SEK per month\n\nFjord Prime 4 200 SEK per month\n\nThe company car benefit value (f\u00f6rm\u00e5nsv\u00e4rde) is an example for a company car in Sweden, before tax, with the reduction\nfor electric cars. The actual value depends on the options chosen and on the rules for the year. There is no corresponding\nfigure for the EU price list.\n\nVoltrieve | Voltrieve Fjord price list 3 / 4\n\n\n\nFjord financing example"
+    },
+    {
+      "ref_id": "2",
+      "title": "voltrieve-buyers-guide.pdf",
+      "content": "V O L T R I E V E\n\nVoltrieve buyer's guide\nElectric cars that retrieve the joy of driving\n\nModel comparison\n\nModel Battery Range Peak charge Towing Drive\n\nVoltrieve Spark 42 kWh 310 km 95 kW not rated RWD\n\nVoltrieve Lumen 61 kWh 455 km 135 kW 750 kg RWD, AWD\n\nVoltrieve Ragn 84 kWh 530 km 240 kW 1 800 kg AWD\n\nVoltrieve Fjord 84 kWh 575 km 240 kW 2 100 kg RWD, AWD\n\nVoltrieve Atlas 112 kWh 610 km 320 kW 2 500 kg AWD\n\nPrices\nPrices are for the Pure trim, the entry trim of every model. Plus and Prime cost more and come with more equipment; each\nmodel's price list has every trim.\n\nSE (SEK)\n\nModel Base price Price with AWD\n\nVoltrieve Spark 289 000 SEK not available\n\nVoltrieve Lumen 379 000 SEK 419 000 SEK\n\nVoltrieve Ragn 549 000 SEK 549 000 SEK\n\nVoltrieve Fjord 529 000 SEK 569 000 SEK\n\nVoltrieve Atlas 749 000 SEK 749 000 SEK\n\nEU (EUR)\n\nModel Base price Price with AWD\n\nVoltrieve Spark 26 500 EUR not available\n\nVoltrieve Lumen 34 500 EUR 38 100 EUR\n\nVoltrieve Ragn 49 900 EUR 49 900 EUR\n\nVoltrieve Fjord 47 900 EUR 51 500 EUR\n\nVoltrieve Atlas 67 900 EUR 67 900 EUR\n\nWhere AWD is an option next to RWD, the price with AWD includes a surcharge of 40 000 SEK or 3 600 EUR.\n\nVoltrieve | Voltrieve buyer's guide 1 / 2\n\n\n\nOption packs\n\nPack Contents SE EU\n\nWinter heat pump, heated steering wheel and rear seats, battery preconditioning 18 000 SEK 1 600 EUR\n\nPilot Plus Voltrieve Pilot lane change assist and highway autopilot upgrade 24 000 SEK 2 200 EUR\n\nTow electrically deployable tow bar and trailer stability control 14 000 SEK 1 300 EUR\n\nSound 14 speaker Voltrieve Stage audio system 12 000 SEK 1 100 EUR\n\nWhich Voltrieve is for you\n\nVoltrieve Spark\n\nSmall outside, generous inside. Segment: city car. Platform: V1. Drive: RWD. Battery: 42 kWh, with up to 310 km of WLTP\nrange. Peak charging is 95 kW. It is not rated for towing, so it suits drivers who travel light.\n\nVoltrieve Lumen\n\nLight on its feet. Segment: hatchback. Platform: V1. Drive: RWD or AWD."
+    },
+    {
+      "ref_id": "3",
+      "title": "voltrieve-fjord-price-list.pdf",
+      "content": "The rate is variable and the example is\nfor illustration only.\n\nFinancing in the EU\n\nA Fjord Plus RWD at 51 700 EUR costs 563 EUR per month over 36 months with Voltrieve Financial Services.\n\nFjord Plus RWD financing in the EU Amount\n\nCash price 51 700 EUR\n\nDeposit (20 %) 10 340 EUR\n\nLoan amount 41 360 EUR\n\nMonthly payment for 36 months 563 EUR per month\n\nResidual payment at the end (50 %) 25 850 EUR\n\nNominal rate 4.45 %\n\nEffective rate 4.85 %\n\nSetup fee 75 EUR\n\nTotal amount payable 56 533 EUR\n\nExample in the EU: cash price 51 700 EUR, deposit 10 340 EUR, loan 41 360 EUR over 36 months at a nominal rate of 4.45\n% (effective rate 4.85 %). The monthly payment includes an administration fee of 6 EUR. A setup fee of 75 EUR is charged at\nthe start, and a residual payment of 25 850 EUR is due at the end of the term, when you can pay it, refinance it or return the\ncar. Total amount payable 56 533 EUR. Credit is subject to approval. The rate is variable and the example is for illustration\nonly.\n\nVoltrieve | Voltrieve Fjord price list 4 / 4"
+    },
+    {
+      "ref_id": "4",
+      "title": "voltrieve-spark-price-list.pdf",
+      "content": "SEK 1 100 EUR Spark Prime\n\nSpark colors\n\nColor Finish Price in Sweden Price in the EU\n\nSpark in Saffron (signature color): warm yellow with a gloss white roof and white mirror caps solid Included Included\n\nSpark in Snow: white with a gloss black roof solid Included Included\n\nSpark in Fj\u00e4ll Mint: pale green with a gloss white roof metallic 9 900 SEK 900 EUR\n\nSpark in Graphite: dark grey with a gloss white roof solid Included Included\n\nSpark wheels and interiors\n\nWheel Description Standard on\n\n17 inch Pebble flat aero wheel covers in white and light grey with five small holes Spark Pure and Plus\n\n17 inch Pebble flat aero wheel covers in graphite with five small holes Spark Prime\n\nInterior Description Standard on\n\nLight grey textile light grey recycled textile seats and a pale wood strip across the dashboard Spark Pure and\nPlus\n\nLight grey textile and\nmicrosuede\n\nrecycled textile seats with microsuede bolsters and a pale wood strip across the\ndashboard\n\nSpark Prime\n\nSpark company car benefit value in Sweden\n\nTrim Company car benefit value, Sweden\n\nSpark Pure 2 150 SEK per month\n\nSpark Plus 2 350 SEK per month\n\nSpark Prime 2 550 SEK per month\n\nThe company car benefit value (f\u00f6rm\u00e5nsv\u00e4rde) is an example for a company car in Sweden, before tax, with the reduction\nfor electric cars. The actual value depends on the options chosen and on the rules for the year. There is no corresponding\nfigure for the EU price list.\n\nSpark financing example\n\nFinancing in Sweden\n\nA Spark Plus RWD at 312 000 SEK costs 3 506 SEK per month over 36 months with Voltrieve Financial Services.\n\nVoltrieve | Voltrieve Spark price list 3 / 4\n\n\n\nSpark Plus RWD financing in Sweden Amount\n\nCash price 312 000 SEK\n\nDeposit (20 %) 62 400 SEK\n\nLoan amount 249 600 SEK\n\nMonthly payment for 36 months 3 506 SEK per month\n\nResidual payment at the end (50 %) 156 000 SEK\n\nNominal rate 4.95 %\n\nEffective rate 5.55 %\n\nSetup fee 695 SEK\n\nTotal amount payable 345 311 SEK"
+    },
+    {
+      "ref_id": "5",
+      "title": "voltrieve-atlas-price-list.pdf",
+      "content": "seats in three rows, wood and aluminium\ndashboard\n\nAtlas Pure and\nPlus\n\nCognac Nappa leather cognac Nappa leather seats in three rows, wood and aluminium dashboard Atlas Prime\n\nAtlas company car benefit value in Sweden\n\nTrim Company car benefit value, Sweden\n\nAtlas Pure 5 100 SEK per month\n\nAtlas Plus 5 500 SEK per month\n\nAtlas Prime 5 900 SEK per month\n\nThe company car benefit value (f\u00f6rm\u00e5nsv\u00e4rde) is an example for a company car in Sweden, before tax, with the reduction\nfor electric cars. The actual value depends on the options chosen and on the rules for the year. There is no corresponding\nfigure for the EU price list.\n\nVoltrieve | Voltrieve Atlas price list 3 / 4\n\n\n\nAtlas financing example\n\nFinancing in Sweden\n\nA Atlas Plus AWD at 809 000 SEK costs 8 996 SEK per month over 36 months with Voltrieve Financial Services.\n\nAtlas Plus AWD financing in Sweden Amount\n\nCash price 809 000 SEK\n\nDeposit (20 %) 161 800 SEK\n\nLoan amount 647 200 SEK\n\nMonthly payment for 36 months 8 996 SEK per month\n\nResidual payment at the end (50 %) 404 500 SEK\n\nNominal rate 4.95 %\n\nEffective rate 5.25 %\n\nSetup fee 695 SEK\n\nTotal amount payable 890 851 SEK\n\nExample in Sweden: cash price 809 000 SEK, deposit 161 800 SEK, loan 647 200 SEK over 36 months at a nominal rate of\n4.95 % (effective rate 5.25 %). The monthly payment includes an administration fee of 59 SEK. A setup fee of 695 SEK is\ncharged at the start, and a residual payment of 404 500 SEK is due at the end of the term, when you can pay it, refinance it\nor return the car. Total amount payable 890 851 SEK. Credit is subject to approval. The rate is variable and the example is\nfor illustration only.\n\nFinancing in the EU\n\nA Atlas Plus AWD at 73 300 EUR costs 796 EUR per month over 36 months with Voltrieve Financial Services.\n\nAtlas Plus AWD financing in the EU Amount\n\nCash price 73 300 EUR\n\nDeposit (20 %) 14 660 EUR\n\nLoan amount 58 640 EUR\n\nMonthly payment for 36 months 796 EUR per month\n\nResidual payment at the end (50 %)"
+    },
+    {
+      "ref_id": "6",
+      "title": "voltrieve-lumen-price-list.pdf",
+      "content": "408 EUR per month over 36 months with Voltrieve Financial Services.\n\nLumen Plus RWD financing in the EU Amount\n\nCash price 37 300 EUR\n\nDeposit (20 %) 7 460 EUR\n\nLoan amount 29 840 EUR\n\nMonthly payment for 36 months 408 EUR per month\n\nResidual payment at the end (50 %) 18 650 EUR\n\nNominal rate 4.45 %\n\nEffective rate 4.97 %\n\nSetup fee 75 EUR\n\nTotal amount payable 40 873 EUR\n\nExample in the EU: cash price 37 300 EUR, deposit 7 460 EUR, loan 29 840 EUR over 36 months at a nominal rate of 4.45 %\n(effective rate 4.97 %). The monthly payment includes an administration fee of 6 EUR. A setup fee of 75 EUR is charged at the\nstart, and a residual payment of 18 650 EUR is due at the end of the term, when you can pay it, refinance it or return the car.\nTotal amount payable 40 873 EUR. Credit is subject to approval. The rate is variable and the example is for illustration only.\n\nVoltrieve | Voltrieve Lumen price list 4 / 4"
+    },
+    {
+      "ref_id": "7",
+      "title": "voltrieve-lumen-price-list.pdf",
+      "content": "are not sold separately. Option packs can be added to any trim that does not include them.\n\nVoltrieve | Voltrieve Lumen price list 2 / 4\n\n\n\nLumen option packs\n\nPack Contents\nPrice in\nSweden\n\nPrice in the\nEU\n\nIncluded on\n\nLumen Winter\npack\n\nheat pump, heated steering wheel and rear seats, battery\npreconditioning\n\n18 000 SEK 1 600 EUR Lumen Plus and\nPrime\n\nLumen Pilot Plus\npack\n\nVoltrieve Pilot lane change assist and highway autopilot\nupgrade\n\n24 000 SEK 2 200 EUR Lumen Prime\n\nLumen Sound\npack\n\n14 speaker Voltrieve Stage audio system 12 000 SEK 1 100 EUR Lumen Prime\n\nLumen colors\n\nColor Finish\nPrice in\nSweden\n\nPrice in the\nEU\n\nLumen in Coral (signature color): red-orange with a gloss black glass roof and black mirror\ncaps\n\nmetallic Included Included\n\nLumen in Pearl: white with a gloss black glass roof pearl 9 900 SEK 900 EUR\n\nLumen in Midnight: near-black blue metallic 9 900 SEK 900 EUR\n\nLumen in Silver Birch: light silver metallic 9 900 SEK 900 EUR\n\nLumen wheels and interiors\n\nWheel Description Standard on\n\n18 inch Arc five double spokes in silver Lumen Pure\n\n19 inch Turbine ten thin twisted spokes, diamond-cut silver and gloss black Lumen Plus and Prime\n\nInterior Description Standard on\n\nBlack with coral stitching black textile seats with coral stitching and a thin coral light line across the dashboard Lumen Pure and Plus\n\nSport seats black sport seats in microsuede with coral stitching and extended side support Lumen Prime\n\nLumen company car benefit value in Sweden\n\nTrim Company car benefit value, Sweden\n\nLumen Pure 2 700 SEK per month\n\nLumen Plus 2 950 SEK per month\n\nLumen Prime 3 200 SEK per month\n\nThe company car benefit value (f\u00f6rm\u00e5nsv\u00e4rde) is an example for a company car in Sweden, before tax, with the reduction\nfor electric cars. The actual value depends on the options chosen and on the rules for the year. There is no corresponding\nfigure for the EU price list.\n\nVoltrieve | Voltrieve Lumen price list 3 / 4\n\n\n\nLumen financing example\n\nFinancing in Sweden"
+    },
+    {
+      "ref_id": "8",
+      "title": "voltrieve-ragn-price-list.pdf",
+      "content": "587 EUR per month over 36 months with Voltrieve Financial Services.\n\nRagn Plus AWD financing in the EU Amount\n\nCash price 53 900 EUR\n\nDeposit (20 %) 10 780 EUR\n\nLoan amount 43 120 EUR\n\nMonthly payment for 36 months 587 EUR per month\n\nResidual payment at the end (50 %) 26 950 EUR\n\nNominal rate 4.45 %\n\nEffective rate 4.85 %\n\nSetup fee 75 EUR\n\nTotal amount payable 58 937 EUR\n\nExample in the EU: cash price 53 900 EUR, deposit 10 780 EUR, loan 43 120 EUR over 36 months at a nominal rate of 4.45\n% (effective rate 4.85 %). The monthly payment includes an administration fee of 6 EUR. A setup fee of 75 EUR is charged at\nthe start, and a residual payment of 26 950 EUR is due at the end of the term, when you can pay it, refinance it or return the\ncar. Total amount payable 58 937 EUR. Credit is subject to approval. The rate is variable and the example is for illustration\nonly.\n\nVoltrieve | Voltrieve Ragn price list 4 / 4"
+    },
+    {
+      "ref_id": "9",
+      "title": "voltrieve-ragn-price-list.pdf",
+      "content": "Voltrieve | Voltrieve Ragn price list 2 / 4\n\n\n\nRagn option packs\n\nPack Contents\nPrice in\nSweden\n\nPrice in the\nEU\n\nIncluded on\n\nRagn Winter pack heat pump, heated steering wheel and rear seats, battery\npreconditioning\n\n18 000 SEK 1 600 EUR Ragn Plus and\nPrime\n\nRagn Pilot Plus\npack\n\nVoltrieve Pilot lane change assist and highway autopilot upgrade 24 000 SEK 2 200 EUR Ragn Prime\n\nRagn Tow pack electrically deployable tow bar and trailer stability control 14 000 SEK 1 300 EUR option on every\ntrim\n\nRagn Sound pack 14 speaker Voltrieve Stage audio system 12 000 SEK 1 100 EUR Ragn Prime\n\nRagn colors\n\nColor Finish Price in Sweden Price in the EU\n\nRagn in Moss (signature color): deep olive green satin Included Included\n\nRagn in Granite: mid grey satin 14 900 SEK 1 350 EUR\n\nRagn in Sand: warm beige solid Included Included\n\nRagn in Night: black metallic 9 900 SEK 900 EUR\n\nRagn wheels and interiors\n\nWheel Description Standard on\n\n19 inch Trail five thick spokes in gunmetal grey, on all-terrain tyres Ragn Pure and Plus\n\n20 inch Trail five thick spokes in matte black, on all-terrain tyres Ragn Prime\n\nInterior Description Standard on\n\nWashable dark grey textile washable dark grey textile seats, rubber floor mats and orange pull loops Ragn Pure and Plus\n\nDark grey microsuede ventilated dark grey microsuede front seats with orange pull loops Ragn Prime\n\nRagn company car benefit value in Sweden\n\nTrim Company car benefit value, Sweden\n\nRagn Pure 3 700 SEK per month\n\nRagn Plus 4 000 SEK per month\n\nRagn Prime 4 300 SEK per month\n\nThe company car benefit value (f\u00f6rm\u00e5nsv\u00e4rde) is an example for a company car in Sweden, before tax, with the reduction\nfor electric cars. The actual value depends on the options chosen and on the rules for the year. There is no corresponding\nfigure for the EU price list.\n\nVoltrieve | Voltrieve Ragn price list 3 / 4\n\n\n\nRagn financing example\n\nFinancing in Sweden"
+    }
+  ],
+  "references": [
+    {
+      "id": "0",
+      "doc_key": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1wcmljZS1saXN0LnBkZg2_pages_3",
+      "reranker_score": 3.1392639,
+      "source_data": {
+        "chunk_id": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1wcmljZS1saXN0LnBkZg2_pages_3",
+        "title": "voltrieve-fjord-price-list.pdf",
+        "chunk": "value in Sweden\n\nTrim Company car benefit value, Sweden\n\nFjord Pure 3 600 SEK per month\n\nFjord Plus 3 900 SEK per month\n\nFjord Prime 4 200 SEK per month\n\nThe company car benefit value (f\u00f6rm\u00e5nsv\u00e4rde) is an example for a company car in Sweden, before tax, with the reduction\nfor electric cars. The actual value depends on the options chosen and on the rules for the year. There is no corresponding\nfigure for the EU price list.\n\nVoltrieve | Voltrieve Fjord price list 3 / 4\n\n\n\nFjord financing example\n\nFinancing in Sweden\n\nA Fjord Plus RWD at 571 000 SEK costs 6 367 SEK per month over 36 months with Voltrieve Financial Services.\n\nFjord Plus RWD financing in Sweden Amount\n\nCash price 571 000 SEK\n\nDeposit (20 %) 114 200 SEK\n\nLoan amount 456 800 SEK\n\nMonthly payment for 36 months 6 367 SEK per month\n\nResidual payment at the end (50 %) 285 500 SEK\n\nNominal rate 4.95 %\n\nEffective rate 5.33 %\n\nSetup fee 695 SEK\n\nTotal amount payable 629 607 SEK\n\nExample in Sweden: cash price 571 000 SEK, deposit 114 200 SEK, loan 456 800 SEK over 36 months at a nominal rate of\n4.95 % (effective rate 5.33 %). The monthly payment includes an administration fee of 59 SEK. A setup fee of 695 SEK is\ncharged at the start, and a residual payment of 285 500 SEK is due at the end of the term, when you can pay it, refinance it\nor return the car. Total amount payable 629 607 SEK. Credit is subject to approval. The rate is variable and the example is\nfor illustration only.\n\nFinancing in the EU\n\nA Fjord Plus RWD at 51 700 EUR costs 563 EUR per month over 36 months with Voltrieve Financial Services.\n\nFjord Plus RWD financing in the EU Amount\n\nCash price 51 700 EUR\n\nDeposit (20 %) 10 340 EUR\n\nLoan amount 41 360 EUR\n\nMonthly payment for 36 months 563 EUR per month\n\nResidual payment at the end (50 %) 25 850 EUR\n\nNominal rate 4.45 %\n\nEffective rate 4.85 %\n\nSetup fee 75 EUR\n\nTotal amount payable 56 533 EUR",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/fjord/voltrieve-fjord-price-list.pdf",
+        "model_slug": "fjord",
+        "doc_type": "price_list"
+      }
+    },
+    {
+      "id": "3",
+      "doc_key": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1wcmljZS1saXN0LnBkZg2_pages_4",
+      "reranker_score": 3.069788,
+      "source_data": {
+        "chunk_id": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1wcmljZS1saXN0LnBkZg2_pages_4",
+        "title": "voltrieve-fjord-price-list.pdf",
+        "chunk": "The rate is variable and the example is\nfor illustration only.\n\nFinancing in the EU\n\nA Fjord Plus RWD at 51 700 EUR costs 563 EUR per month over 36 months with Voltrieve Financial Services.\n\nFjord Plus RWD financing in the EU Amount\n\nCash price 51 700 EUR\n\nDeposit (20 %) 10 340 EUR\n\nLoan amount 41 360 EUR\n\nMonthly payment for 36 months 563 EUR per month\n\nResidual payment at the end (50 %) 25 850 EUR\n\nNominal rate 4.45 %\n\nEffective rate 4.85 %\n\nSetup fee 75 EUR\n\nTotal amount payable 56 533 EUR\n\nExample in the EU: cash price 51 700 EUR, deposit 10 340 EUR, loan 41 360 EUR over 36 months at a nominal rate of 4.45\n% (effective rate 4.85 %). The monthly payment includes an administration fee of 6 EUR. A setup fee of 75 EUR is charged at\nthe start, and a residual payment of 25 850 EUR is due at the end of the term, when you can pay it, refinance it or return the\ncar. Total amount payable 56 533 EUR. Credit is subject to approval. The rate is variable and the example is for illustration\nonly.\n\nVoltrieve | Voltrieve Fjord price list 4 / 4",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/fjord/voltrieve-fjord-price-list.pdf",
+        "model_slug": "fjord",
+        "doc_type": "price_list"
+      }
+    },
+    {
+      "id": "1",
+      "doc_key": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1wcmljZS1saXN0LnBkZg2_pages_2",
+      "reranker_score": 2.6515143,
+      "source_data": {
+        "chunk_id": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1wcmljZS1saXN0LnBkZg2_pages_2",
+        "title": "voltrieve-fjord-price-list.pdf",
+        "chunk": "/\n1 100 EUR\n\nIncluded\n\nItems marked \"Not available\" are not sold separately. Option packs can be added to any trim that does not include them.\n\nVoltrieve | Voltrieve Fjord price list 2 / 4\n\n\n\nFjord option packs\n\nPack Contents\nPrice in\nSweden\n\nPrice in the\nEU\n\nIncluded on\n\nFjord Winter pack heat pump, heated steering wheel and rear seats, battery\npreconditioning\n\n18 000 SEK 1 600 EUR Fjord Plus and\nPrime\n\nFjord Pilot Plus\npack\n\nVoltrieve Pilot lane change assist and highway autopilot\nupgrade\n\n24 000 SEK 2 200 EUR Fjord Prime\n\nFjord Tow pack electrically deployable tow bar and trailer stability control 14 000 SEK 1 300 EUR option on every\ntrim\n\nFjord Sound pack 14 speaker Voltrieve Stage audio system 12 000 SEK 1 100 EUR Fjord Prime\n\nFjord colors\n\nColor Finish Price in Sweden Price in the EU\n\nFjord in Glacier Blue (signature color): deep blue metallic Included Included\n\nFjord in Frost: white metallic 9 900 SEK 900 EUR\n\nFjord in Slate: dark grey metallic 9 900 SEK 900 EUR\n\nFjord in Heath: deep burgundy metallic 9 900 SEK 900 EUR\n\nFjord wheels and interiors\n\nWheel Description Standard on\n\n19 inch Birch ten spokes in silver Fjord Pure\n\n20 inch Fern fifteen thin straight spokes in diamond-cut silver Fjord Plus and Prime\n\nInterior Description Standard on\n\nLight wool blend light wool blend seats and pale ash wood trim Fjord Pure and Plus\n\nNappa leather light Nappa leather seats with ventilation and massage, and pale ash wood trim Fjord Prime\n\nFjord company car benefit value in Sweden\n\nTrim Company car benefit value, Sweden\n\nFjord Pure 3 600 SEK per month\n\nFjord Plus 3 900 SEK per month\n\nFjord Prime 4 200 SEK per month\n\nThe company car benefit value (f\u00f6rm\u00e5nsv\u00e4rde) is an example for a company car in Sweden, before tax, with the reduction\nfor electric cars. The actual value depends on the options chosen and on the rules for the year. There is no corresponding\nfigure for the EU price list.\n\nVoltrieve | Voltrieve Fjord price list 3 / 4\n\n\n\nFjord financing example",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/fjord/voltrieve-fjord-price-list.pdf",
+        "model_slug": "fjord",
+        "doc_type": "price_list"
+      }
+    },
+    {
+      "id": "4",
+      "doc_key": "f7063fb19446_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL3NwYXJrL3ZvbHRyaWV2ZS1zcGFyay1wcmljZS1saXN0LnBkZg2_pages_2",
+      "reranker_score": 2.1855202,
+      "source_data": {
+        "chunk_id": "f7063fb19446_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL3NwYXJrL3ZvbHRyaWV2ZS1zcGFyay1wcmljZS1saXN0LnBkZg2_pages_2",
+        "title": "voltrieve-spark-price-list.pdf",
+        "chunk": "SEK 1 100 EUR Spark Prime\n\nSpark colors\n\nColor Finish Price in Sweden Price in the EU\n\nSpark in Saffron (signature color): warm yellow with a gloss white roof and white mirror caps solid Included Included\n\nSpark in Snow: white with a gloss black roof solid Included Included\n\nSpark in Fj\u00e4ll Mint: pale green with a gloss white roof metallic 9 900 SEK 900 EUR\n\nSpark in Graphite: dark grey with a gloss white roof solid Included Included\n\nSpark wheels and interiors\n\nWheel Description Standard on\n\n17 inch Pebble flat aero wheel covers in white and light grey with five small holes Spark Pure and Plus\n\n17 inch Pebble flat aero wheel covers in graphite with five small holes Spark Prime\n\nInterior Description Standard on\n\nLight grey textile light grey recycled textile seats and a pale wood strip across the dashboard Spark Pure and\nPlus\n\nLight grey textile and\nmicrosuede\n\nrecycled textile seats with microsuede bolsters and a pale wood strip across the\ndashboard\n\nSpark Prime\n\nSpark company car benefit value in Sweden\n\nTrim Company car benefit value, Sweden\n\nSpark Pure 2 150 SEK per month\n\nSpark Plus 2 350 SEK per month\n\nSpark Prime 2 550 SEK per month\n\nThe company car benefit value (f\u00f6rm\u00e5nsv\u00e4rde) is an example for a company car in Sweden, before tax, with the reduction\nfor electric cars. The actual value depends on the options chosen and on the rules for the year. There is no corresponding\nfigure for the EU price list.\n\nSpark financing example\n\nFinancing in Sweden\n\nA Spark Plus RWD at 312 000 SEK costs 3 506 SEK per month over 36 months with Voltrieve Financial Services.\n\nVoltrieve | Voltrieve Spark price list 3 / 4\n\n\n\nSpark Plus RWD financing in Sweden Amount\n\nCash price 312 000 SEK\n\nDeposit (20 %) 62 400 SEK\n\nLoan amount 249 600 SEK\n\nMonthly payment for 36 months 3 506 SEK per month\n\nResidual payment at the end (50 %) 156 000 SEK\n\nNominal rate 4.95 %\n\nEffective rate 5.55 %\n\nSetup fee 695 SEK\n\nTotal amount payable 345 311 SEK",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/spark/voltrieve-spark-price-list.pdf",
+        "model_slug": "spark",
+        "doc_type": "price_list"
+      }
+    },
+    {
+      "id": "5",
+      "doc_key": "684e0f14e805_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2F0bGFzL3ZvbHRyaWV2ZS1hdGxhcy1wcmljZS1saXN0LnBkZg2_pages_3",
+      "reranker_score": 2.0708938,
+      "source_data": {
+        "chunk_id": "684e0f14e805_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2F0bGFzL3ZvbHRyaWV2ZS1hdGxhcy1wcmljZS1saXN0LnBkZg2_pages_3",
+        "title": "voltrieve-atlas-price-list.pdf",
+        "chunk": "seats in three rows, wood and aluminium\ndashboard\n\nAtlas Pure and\nPlus\n\nCognac Nappa leather cognac Nappa leather seats in three rows, wood and aluminium dashboard Atlas Prime\n\nAtlas company car benefit value in Sweden\n\nTrim Company car benefit value, Sweden\n\nAtlas Pure 5 100 SEK per month\n\nAtlas Plus 5 500 SEK per month\n\nAtlas Prime 5 900 SEK per month\n\nThe company car benefit value (f\u00f6rm\u00e5nsv\u00e4rde) is an example for a company car in Sweden, before tax, with the reduction\nfor electric cars. The actual value depends on the options chosen and on the rules for the year. There is no corresponding\nfigure for the EU price list.\n\nVoltrieve | Voltrieve Atlas price list 3 / 4\n\n\n\nAtlas financing example\n\nFinancing in Sweden\n\nA Atlas Plus AWD at 809 000 SEK costs 8 996 SEK per month over 36 months with Voltrieve Financial Services.\n\nAtlas Plus AWD financing in Sweden Amount\n\nCash price 809 000 SEK\n\nDeposit (20 %) 161 800 SEK\n\nLoan amount 647 200 SEK\n\nMonthly payment for 36 months 8 996 SEK per month\n\nResidual payment at the end (50 %) 404 500 SEK\n\nNominal rate 4.95 %\n\nEffective rate 5.25 %\n\nSetup fee 695 SEK\n\nTotal amount payable 890 851 SEK\n\nExample in Sweden: cash price 809 000 SEK, deposit 161 800 SEK, loan 647 200 SEK over 36 months at a nominal rate of\n4.95 % (effective rate 5.25 %). The monthly payment includes an administration fee of 59 SEK. A setup fee of 695 SEK is\ncharged at the start, and a residual payment of 404 500 SEK is due at the end of the term, when you can pay it, refinance it\nor return the car. Total amount payable 890 851 SEK. Credit is subject to approval. The rate is variable and the example is\nfor illustration only.\n\nFinancing in the EU\n\nA Atlas Plus AWD at 73 300 EUR costs 796 EUR per month over 36 months with Voltrieve Financial Services.\n\nAtlas Plus AWD financing in the EU Amount\n\nCash price 73 300 EUR\n\nDeposit (20 %) 14 660 EUR\n\nLoan amount 58 640 EUR\n\nMonthly payment for 36 months 796 EUR per month\n\nResidual payment at the end (50 %)",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/atlas/voltrieve-atlas-price-list.pdf",
+        "model_slug": "atlas",
+        "doc_type": "price_list"
+      }
+    },
+    {
+      "id": "7",
+      "doc_key": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2x1bWVuL3ZvbHRyaWV2ZS1sdW1lbi1wcmljZS1saXN0LnBkZg2_pages_2",
+      "reranker_score": 2.0628297,
+      "source_data": {
+        "chunk_id": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2x1bWVuL3ZvbHRyaWV2ZS1sdW1lbi1wcmljZS1saXN0LnBkZg2_pages_2",
+        "title": "voltrieve-lumen-price-list.pdf",
+        "chunk": "are not sold separately. Option packs can be added to any trim that does not include them.\n\nVoltrieve | Voltrieve Lumen price list 2 / 4\n\n\n\nLumen option packs\n\nPack Contents\nPrice in\nSweden\n\nPrice in the\nEU\n\nIncluded on\n\nLumen Winter\npack\n\nheat pump, heated steering wheel and rear seats, battery\npreconditioning\n\n18 000 SEK 1 600 EUR Lumen Plus and\nPrime\n\nLumen Pilot Plus\npack\n\nVoltrieve Pilot lane change assist and highway autopilot\nupgrade\n\n24 000 SEK 2 200 EUR Lumen Prime\n\nLumen Sound\npack\n\n14 speaker Voltrieve Stage audio system 12 000 SEK 1 100 EUR Lumen Prime\n\nLumen colors\n\nColor Finish\nPrice in\nSweden\n\nPrice in the\nEU\n\nLumen in Coral (signature color): red-orange with a gloss black glass roof and black mirror\ncaps\n\nmetallic Included Included\n\nLumen in Pearl: white with a gloss black glass roof pearl 9 900 SEK 900 EUR\n\nLumen in Midnight: near-black blue metallic 9 900 SEK 900 EUR\n\nLumen in Silver Birch: light silver metallic 9 900 SEK 900 EUR\n\nLumen wheels and interiors\n\nWheel Description Standard on\n\n18 inch Arc five double spokes in silver Lumen Pure\n\n19 inch Turbine ten thin twisted spokes, diamond-cut silver and gloss black Lumen Plus and Prime\n\nInterior Description Standard on\n\nBlack with coral stitching black textile seats with coral stitching and a thin coral light line across the dashboard Lumen Pure and Plus\n\nSport seats black sport seats in microsuede with coral stitching and extended side support Lumen Prime\n\nLumen company car benefit value in Sweden\n\nTrim Company car benefit value, Sweden\n\nLumen Pure 2 700 SEK per month\n\nLumen Plus 2 950 SEK per month\n\nLumen Prime 3 200 SEK per month\n\nThe company car benefit value (f\u00f6rm\u00e5nsv\u00e4rde) is an example for a company car in Sweden, before tax, with the reduction\nfor electric cars. The actual value depends on the options chosen and on the rules for the year. There is no corresponding\nfigure for the EU price list.\n\nVoltrieve | Voltrieve Lumen price list 3 / 4\n\n\n\nLumen financing example\n\nFinancing in Sweden",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/lumen/voltrieve-lumen-price-list.pdf",
+        "model_slug": "lumen",
+        "doc_type": "price_list"
+      }
+    },
+    {
+      "id": "9",
+      "doc_key": "f7063fb19446_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL3JhZ24vdm9sdHJpZXZlLXJhZ24tcHJpY2UtbGlzdC5wZGY1_pages_2",
+      "reranker_score": 2.0519297,
+      "source_data": {
+        "chunk_id": "f7063fb19446_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL3JhZ24vdm9sdHJpZXZlLXJhZ24tcHJpY2UtbGlzdC5wZGY1_pages_2",
+        "title": "voltrieve-ragn-price-list.pdf",
+        "chunk": "Voltrieve | Voltrieve Ragn price list 2 / 4\n\n\n\nRagn option packs\n\nPack Contents\nPrice in\nSweden\n\nPrice in the\nEU\n\nIncluded on\n\nRagn Winter pack heat pump, heated steering wheel and rear seats, battery\npreconditioning\n\n18 000 SEK 1 600 EUR Ragn Plus and\nPrime\n\nRagn Pilot Plus\npack\n\nVoltrieve Pilot lane change assist and highway autopilot upgrade 24 000 SEK 2 200 EUR Ragn Prime\n\nRagn Tow pack electrically deployable tow bar and trailer stability control 14 000 SEK 1 300 EUR option on every\ntrim\n\nRagn Sound pack 14 speaker Voltrieve Stage audio system 12 000 SEK 1 100 EUR Ragn Prime\n\nRagn colors\n\nColor Finish Price in Sweden Price in the EU\n\nRagn in Moss (signature color): deep olive green satin Included Included\n\nRagn in Granite: mid grey satin 14 900 SEK 1 350 EUR\n\nRagn in Sand: warm beige solid Included Included\n\nRagn in Night: black metallic 9 900 SEK 900 EUR\n\nRagn wheels and interiors\n\nWheel Description Standard on\n\n19 inch Trail five thick spokes in gunmetal grey, on all-terrain tyres Ragn Pure and Plus\n\n20 inch Trail five thick spokes in matte black, on all-terrain tyres Ragn Prime\n\nInterior Description Standard on\n\nWashable dark grey textile washable dark grey textile seats, rubber floor mats and orange pull loops Ragn Pure and Plus\n\nDark grey microsuede ventilated dark grey microsuede front seats with orange pull loops Ragn Prime\n\nRagn company car benefit value in Sweden\n\nTrim Company car benefit value, Sweden\n\nRagn Pure 3 700 SEK per month\n\nRagn Plus 4 000 SEK per month\n\nRagn Prime 4 300 SEK per month\n\nThe company car benefit value (f\u00f6rm\u00e5nsv\u00e4rde) is an example for a company car in Sweden, before tax, with the reduction\nfor electric cars. The actual value depends on the options chosen and on the rules for the year. There is no corresponding\nfigure for the EU price list.\n\nVoltrieve | Voltrieve Ragn price list 3 / 4\n\n\n\nRagn financing example\n\nFinancing in Sweden",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/ragn/voltrieve-ragn-price-list.pdf",
+        "model_slug": "ragn",
+        "doc_type": "price_list"
+      }
+    },
+    {
+      "id": "2",
+      "doc_key": "684e0f14e805_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2JyYW5kL3ZvbHRyaWV2ZS1idXllcnMtZ3VpZGUucGRm0_pages_0",
+      "reranker_score": 2.043068,
+      "source_data": {
+        "chunk_id": "684e0f14e805_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2JyYW5kL3ZvbHRyaWV2ZS1idXllcnMtZ3VpZGUucGRm0_pages_0",
+        "title": "voltrieve-buyers-guide.pdf",
+        "chunk": "V O L T R I E V E\n\nVoltrieve buyer's guide\nElectric cars that retrieve the joy of driving\n\nModel comparison\n\nModel Battery Range Peak charge Towing Drive\n\nVoltrieve Spark 42 kWh 310 km 95 kW not rated RWD\n\nVoltrieve Lumen 61 kWh 455 km 135 kW 750 kg RWD, AWD\n\nVoltrieve Ragn 84 kWh 530 km 240 kW 1 800 kg AWD\n\nVoltrieve Fjord 84 kWh 575 km 240 kW 2 100 kg RWD, AWD\n\nVoltrieve Atlas 112 kWh 610 km 320 kW 2 500 kg AWD\n\nPrices\nPrices are for the Pure trim, the entry trim of every model. Plus and Prime cost more and come with more equipment; each\nmodel's price list has every trim.\n\nSE (SEK)\n\nModel Base price Price with AWD\n\nVoltrieve Spark 289 000 SEK not available\n\nVoltrieve Lumen 379 000 SEK 419 000 SEK\n\nVoltrieve Ragn 549 000 SEK 549 000 SEK\n\nVoltrieve Fjord 529 000 SEK 569 000 SEK\n\nVoltrieve Atlas 749 000 SEK 749 000 SEK\n\nEU (EUR)\n\nModel Base price Price with AWD\n\nVoltrieve Spark 26 500 EUR not available\n\nVoltrieve Lumen 34 500 EUR 38 100 EUR\n\nVoltrieve Ragn 49 900 EUR 49 900 EUR\n\nVoltrieve Fjord 47 900 EUR 51 500 EUR\n\nVoltrieve Atlas 67 900 EUR 67 900 EUR\n\nWhere AWD is an option next to RWD, the price with AWD includes a surcharge of 40 000 SEK or 3 600 EUR.\n\nVoltrieve | Voltrieve buyer's guide 1 / 2\n\n\n\nOption packs\n\nPack Contents SE EU\n\nWinter heat pump, heated steering wheel and rear seats, battery preconditioning 18 000 SEK 1 600 EUR\n\nPilot Plus Voltrieve Pilot lane change assist and highway autopilot upgrade 24 000 SEK 2 200 EUR\n\nTow electrically deployable tow bar and trailer stability control 14 000 SEK 1 300 EUR\n\nSound 14 speaker Voltrieve Stage audio system 12 000 SEK 1 100 EUR\n\nWhich Voltrieve is for you\n\nVoltrieve Spark\n\nSmall outside, generous inside. Segment: city car. Platform: V1. Drive: RWD. Battery: 42 kWh, with up to 310 km of WLTP\nrange. Peak charging is 95 kW. It is not rated for towing, so it suits drivers who travel light.\n\nVoltrieve Lumen\n\nLight on its feet. Segment: hatchback. Platform: V1. Drive: RWD or AWD.",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/brand/voltrieve-buyers-guide.pdf",
+        "model_slug": "all",
+        "doc_type": "buyers_guide"
+      }
+    },
+    {
+      "id": "6",
+      "doc_key": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2x1bWVuL3ZvbHRyaWV2ZS1sdW1lbi1wcmljZS1saXN0LnBkZg2_pages_4",
+      "reranker_score": 1.9946829,
+      "source_data": {
+        "chunk_id": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2x1bWVuL3ZvbHRyaWV2ZS1sdW1lbi1wcmljZS1saXN0LnBkZg2_pages_4",
+        "title": "voltrieve-lumen-price-list.pdf",
+        "chunk": "408 EUR per month over 36 months with Voltrieve Financial Services.\n\nLumen Plus RWD financing in the EU Amount\n\nCash price 37 300 EUR\n\nDeposit (20 %) 7 460 EUR\n\nLoan amount 29 840 EUR\n\nMonthly payment for 36 months 408 EUR per month\n\nResidual payment at the end (50 %) 18 650 EUR\n\nNominal rate 4.45 %\n\nEffective rate 4.97 %\n\nSetup fee 75 EUR\n\nTotal amount payable 40 873 EUR\n\nExample in the EU: cash price 37 300 EUR, deposit 7 460 EUR, loan 29 840 EUR over 36 months at a nominal rate of 4.45 %\n(effective rate 4.97 %). The monthly payment includes an administration fee of 6 EUR. A setup fee of 75 EUR is charged at the\nstart, and a residual payment of 18 650 EUR is due at the end of the term, when you can pay it, refinance it or return the car.\nTotal amount payable 40 873 EUR. Credit is subject to approval. The rate is variable and the example is for illustration only.\n\nVoltrieve | Voltrieve Lumen price list 4 / 4",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/lumen/voltrieve-lumen-price-list.pdf",
+        "model_slug": "lumen",
+        "doc_type": "price_list"
+      }
+    },
+    {
+      "id": "8",
+      "doc_key": "f7063fb19446_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL3JhZ24vdm9sdHJpZXZlLXJhZ24tcHJpY2UtbGlzdC5wZGY1_pages_4",
+      "reranker_score": 1.9704019,
+      "source_data": {
+        "chunk_id": "f7063fb19446_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL3JhZ24vdm9sdHJpZXZlLXJhZ24tcHJpY2UtbGlzdC5wZGY1_pages_4",
+        "title": "voltrieve-ragn-price-list.pdf",
+        "chunk": "587 EUR per month over 36 months with Voltrieve Financial Services.\n\nRagn Plus AWD financing in the EU Amount\n\nCash price 53 900 EUR\n\nDeposit (20 %) 10 780 EUR\n\nLoan amount 43 120 EUR\n\nMonthly payment for 36 months 587 EUR per month\n\nResidual payment at the end (50 %) 26 950 EUR\n\nNominal rate 4.45 %\n\nEffective rate 4.85 %\n\nSetup fee 75 EUR\n\nTotal amount payable 58 937 EUR\n\nExample in the EU: cash price 53 900 EUR, deposit 10 780 EUR, loan 43 120 EUR over 36 months at a nominal rate of 4.45\n% (effective rate 4.85 %). The monthly payment includes an administration fee of 6 EUR. A setup fee of 75 EUR is charged at\nthe start, and a residual payment of 26 950 EUR is due at the end of the term, when you can pay it, refinance it or return the\ncar. Total amount payable 58 937 EUR. Credit is subject to approval. The rate is variable and the example is for illustration\nonly.\n\nVoltrieve | Voltrieve Ragn price list 4 / 4",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/ragn/voltrieve-ragn-price-list.pdf",
+        "model_slug": "ragn",
+        "doc_type": "price_list"
+      }
+    }
+  ],
+  "activity": [
+    {
+      "type": "modelQueryPlanning",
+      "id": 0,
+      "startedAt": "2026-11-10T12:32:51.5094276Z",
+      "completedAt": "2026-11-10T12:32:52.3198921Z",
+      "inputTokens": 945,
+      "outputTokens": 47,
+      "elapsedMs": 810,
+      "model": {
+        "modelName": "gpt-5.4-mini",
+        "deploymentId": "gpt-5.4-mini"
+      }
+    },
+    {
+      "type": "searchIndex",
+      "id": 1,
+      "startedAt": "2026-11-10T12:32:52.320281Z",
+      "completedAt": "2026-11-10T12:32:52.5470638Z",
+      "knowledgeSourceName": "voltrieve-docs-ks",
+      "queryTime": "2026-11-10T12:32:52.4193228Z",
+      "count": 5,
+      "elapsedMs": 99,
+      "searchIndexArguments": {
+        "search": "Fjord financing example monthly cost buyer's guide",
+        "filter": null,
+        "semanticConfigurationName": "semantic-config",
+        "sourceDataFields": [
+          {
+            "name": "title"
+          },
+          {
+            "name": "chunk"
+          },
+          {
+            "name": "chunk_id"
+          },
+          {
+            "name": "source_path"
+          },
+          {
+            "name": "model_slug"
+          },
+          {
+            "name": "doc_type"
+          }
+        ],
+        "searchFields": [
+          {
+            "name": "chunk"
+          },
+          {
+            "name": "title"
+          }
+        ]
+      }
+    },
+    {
+      "type": "searchIndex",
+      "id": 2,
+      "startedAt": "2026-11-10T12:32:52.4198056Z",
+      "completedAt": "2026-11-10T12:32:52.5470708Z",
+      "knowledgeSourceName": "voltrieve-docs-ks",
+      "queryTime": "2026-11-10T12:32:52.4906911Z",
+      "count": 10,
+      "elapsedMs": 70,
+      "searchIndexArguments": {
+        "search": "Fjord financing example monthly payment",
+        "filter": null,
+        "semanticConfigurationName": "semantic-config",
+        "sourceDataFields": [
+          {
+            "name": "title"
+          },
+          {
+            "name": "chunk"
+          },
+          {
+            "name": "chunk_id"
+          },
+          {
+            "name": "source_path"
+          },
+          {
+            "name": "model_slug"
+          },
+          {
+            "name": "doc_type"
+          }
+        ],
+        "searchFields": [
+          {
+            "name": "chunk"
+          },
+          {
+            "name": "title"
+          }
+        ]
+      }
+    },
+    {
+      "type": "searchIndex",
+      "id": 3,
+      "startedAt": "2026-11-10T12:32:52.4912187Z",
+      "completedAt": "2026-11-10T12:32:52.5470717Z",
+      "knowledgeSourceName": "voltrieve-docs-ks",
+      "queryTime": "2026-11-10T12:32:52.5465407Z",
+      "count": 13,
+      "elapsedMs": 55,
+      "searchIndexArguments": {
+        "search": "Fjord buyer's guide financing example monthly cost",
+        "filter": null,
+        "semanticConfigurationName": "semantic-config",
+        "sourceDataFields": [
+          {
+            "name": "title"
+          },
+          {
+            "name": "chunk"
+          },
+          {
+            "name": "chunk_id"
+          },
+          {
+            "name": "source_path"
+          },
+          {
+            "name": "model_slug"
+          },
+          {
+            "name": "doc_type"
+          }
+        ],
+        "searchFields": [
+          {
+            "name": "chunk"
+          },
+          {
+            "name": "title"
+          }
+        ]
+      }
+    },
+    {
+      "type": "agenticReasoning",
+      "id": 4,
+      "startedAt": "2026-11-10T12:32:52.5497567Z",
+      "completedAt": "2026-11-10T12:32:52.5497567Z",
+      "reasoningTokens": 47073,
+      "retrievalReasoningEffort": {
+        "kind": "low"
+      },
+      "logicalReasoningEffort": {
+        "kind": "low"
+      }
+    }
+  ]
+}
+
+==================================================================
+Q: How big is the Fjord boot with the seats folded?
+==================================================================
+{
+  "partial": false,
+  "chunks": [
+    {
+      "ref_id": "0",
+      "title": "voltrieve-fjord-specifications.pdf",
+      "content": "V O L T R I E V E\n\nVoltrieve Fjord technical specifications\n\nImage: fjord/side_studio\n\nFjord dimensions and weights\n\nFjord dimension Value\n\nLength 4 900 mm\n\nWidth, without mirrors 1 900 mm\n\nHeight 1 500 mm\n\nWheelbase 2 980 mm\n\nGround clearance 150 mm\n\nKerb weight 2 180 kg\n\nTowing capacity 2 100 kg (braked)\n\nRoof load 100 kg\n\nFjord volumes\n\nFjord volume Value\n\nBoot 640 litres\n\nBoot with the rear seats folded 1 720 litres\n\nFrunk 50 litres\n\nSeats 5\n\nVoltrieve | Voltrieve Fjord technical specifications 1 / 3\n\n\n\nFjord battery and range\n\nFjord battery Value\n\nBattery capacity (usable) 84 kWh\n\nRange (WLTP) 575 km\n\nEnergy use (WLTP, combined) 14.6 kWh per 100 km\n\nPlatform V2\n\nSystem voltage 800 V\n\nFjord charging\n\nFjord charging Value\n\nPeak DC charging power 240 kW\n\nDC charging from 10 to 80 % about 20 minutes\n\nOnboard AC charger 22 kW\n\nAC charging, empty to full about 3.8 hours\n\nCharge port CCS2\n\nThe Fjord DC charging curve: the charge power the car accepts at each state of charge, at a charger that delivers at least\n240 kW and with the battery at its working temperature.\n\nState of charge Charge power\n\n10 % 240 kW\n\n50 % 200 kW\n\n80 % 95 kW\n\nFjord performance per drive\n\nDrive Power Torque 0 to 100 km/h Top speed\n\nFjord RWD 250 kW 450 Nm 6.1 s 200 km/h\n\nFjord AWD 360 kW 680 Nm 4.6 s 200 km/h\n\nVoltrieve | Voltrieve Fjord technical specifications 2 / 3\n\n\n\nFjord chassis, climate and software\n\nFjord item Value\n\nDrive RWD, AWD\n\nFront brake discs 345 mm (RWD), 370 mm (AWD)\n\nRear brake discs 330 mm\n\nHeat pump standard\n\nVoltrieve Pilot version 3: adaptive cruise, lane keeping, traffic jam assist, automatic lane change (with Pilot Plus)\n\nOption packs available Winter, Pilot Plus, Tow, Sound\n\nFeature boot of 640 litres\n\nFeature roof load of 100 kg\n\nFeature air suspension\n\nFjord wheels and tyres per trim\n\nTrim Wheels\n\nFjord Pure 19 inch Birch: ten spokes in silver\n\nFjord Plus 20 inch Fern: fifteen thin straight spokes in diamond-cut silver"
+    },
+    {
+      "ref_id": "1",
+      "title": "voltrieve-fjord-brochure.pdf",
+      "content": "change assist and the highway autopilot. It is\nincluded on Fjord Prime and available as an option pack on the other trims.\n\nBoot of 640 litres\n\nRoof load of 100 kg\n\nAir suspension\n\nA heat pump as standard, so the range holds up in winter\n\n\n\nRange and charging\nWith a 84 kWh battery the Voltrieve Fjord goes up to\n575 km on a charge (WLTP). At a fast charger it takes\nup to 240 kW and goes from 10 to 80 % in about 20\nminutes. At home, the 22 kW onboard charger fills the\nbattery overnight.\n\nBattery\nRange\n(WLTP)\n\nPeak DC\ncharging\n\n10 to 80 %\nOnboard AC\ncharger\n\n84 kWh 575 km 240 kW 20 min 22 kW\n\nImage: fjord/charging\n\n\n\nOn the road\nAir suspension, a long wheelbase and an 800 V system\nmake the Fjord a relaxed long distance car that\ncharges quickly when you stop for coffee.\n\nDrive Power Torque\n0 to 100\nkm/h\n\nTop speed\n\nFjord RWD 250 kW 450 Nm 6.1 s 200 km/h\n\nFjord AWD 360 kW 680 Nm 4.6 s 200 km/h\n\nImage: fjord/side_studio\n\n\n\nRoom for everyday life\nA long flat load floor, a low loading edge and a strong\ntow rating for the boat, the caravan or the horse\ntrailer.\n\nBoot\nBoot, rear\nseats folded\n\nFrunk Towing Roof load\n\n640 litres 1 720 litres 50 litres 2 100 kg\nbraked\n\n100 kg\n\nImage: fjord/practical\n\n\n\nThree trims\nEvery Fjord is well equipped from the start. Each trim builds on the one before it.\n\nFjord Pure\n\nHeat pump\n\nAir suspension\n\nLED light line with the fjord V\n\nVoltrieve Pilot 3\n\n22 kW onboard charger\n\nSatin aluminium roof rails\nPortrait central touchscreen\n\nWheels: 19 inch Birch. Interior: Light wool blend.\n\nFjord Plus\n\nEverything in Fjord Pure, plus:\n\nPower tailgate with hands-free opening\n\nKeyless entry\n360 camera\n\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning\n\nWheels: 20 inch Fern. Interior: Light wool blend.\n\nFjord Prime\n\nEverything in Fjord Plus, plus:\n\nHead-up display\n\nPanoramic glass roof\nAdaptive high beam\n\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning"
+    },
+    {
+      "ref_id": "2",
+      "title": "voltrieve-ragn-brochure.pdf",
+      "content": "assist and the highway autopilot. It is\nincluded on Ragn Prime and available as an option pack on the other trims.\n\nGround clearance of 205 mm\n\nOff road mode\n\n22 kW onboard charger\n\nA heat pump as standard, so the range holds up in winter\n\n\n\nRange and charging\nWith a 84 kWh battery the Voltrieve Ragn goes up to\n530 km on a charge (WLTP). At a fast charger it takes\nup to 240 kW and goes from 10 to 80 % in about 21\nminutes. At home, the 22 kW onboard charger fills the\nbattery overnight.\n\nBattery\nRange\n(WLTP)\n\nPeak DC\ncharging\n\n10 to 80 %\nOnboard AC\ncharger\n\n84 kWh 530 km 240 kW 21 min 22 kW\n\nImage: ragn/charging\n\n\n\nOn the road\nAll wheel drive, an off road mode and high ground\nclearance give the Ragn grip on gravel, snow and mud,\nwhile the 800 V system charges quickly on the way\nhome.\n\nDrive Power Torque\n0 to 100\nkm/h\n\nTop speed\n\nRagn AWD 300 kW 560 Nm 5.4 s 190 km/h\n\nImage: ragn/side_studio\n\n\n\nRoom for everyday life\nRoof rails, a wide boot opening and a tow rating for a\nsmall caravan or a trailer full of firewood.\n\nBoot\nBoot, rear\nseats folded\n\nFrunk Towing Roof load\n\n520 litres 1 580 litres 60 litres 1 800 kg\nbraked\n\n100 kg\n\nImage: ragn/practical\n\n\n\nThree trims\nEvery Ragn is well equipped from the start. Each trim builds on the one before it.\n\nRagn Pure\n\nHeat pump\n\nOff road mode\n\n22 kW onboard charger\n\nVoltrieve Pilot 3\n\nSquare pixel LED lights\n\nOrange recovery hooks\nBlack roof rails\n\nWashable textile seats\n\nWheels: 19 inch Trail. Interior: Washable dark grey\ntextile.\n\nRagn Plus\n\nEverything in Ragn Pure, plus:\n\nPower tailgate\n\nKeyless entry\n360 camera with underbody view\n\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning\n\nWheels: 19 inch Trail. Interior: Washable dark grey\ntextile.\n\nRagn Prime\n\nEverything in Ragn Plus, plus:\n\nHeated windscreen\n\nAdaptive high beam\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning\n\nPilot Plus pack included: Voltrieve Pilot lane change"
+    },
+    {
+      "ref_id": "3",
+      "title": "voltrieve-fjord-brochure.pdf",
+      "content": "Image: fjord/hero\n\nVoltrieve Fjord\nRoom for the whole weekend\n\nRange (WLTP) DC charging 10 to 80 % Power 0 to 100 km/h\n\nup to 575 km 20 min up to 360 kW from 4.6 s\n\nV O L T R I E V E\n\n\n\nMeet the Fjord\nThe Fjord is a long, low estate for families who would\nrather drive than fly. It covers great distances in quiet\ncomfort and swallows everything the weekend needs.\n\nThe Voltrieve Fjord is an estate with rear wheel drive\nor all wheel drive, built on the Voltrieve V2 platform\nwith an 800 V system. Room for the whole weekend:\nthat is the idea behind every detail.\n\nImage: fjord/front_outdoor\n\n\n\nDesign\nA single thin light line crosses the front and dips into a\nshallow V around the emblem, like the outline of a\nfjord valley. The same line returns at the rear, ending\nin light blades that wrap around the corners.\n\nImage: fjord/light_detail\n\nImage: fjord/rear_outdoor\n\n\n\nInterior\nLight wool blend seats, pale ash wood and a wide,\ncalm dashboard with a portrait touchscreen. Nappa\nleather with ventilation and massage on Prime.\n\nLight wool blend: light wool blend seats and pale\nash wood trim. On Pure and Plus.\n\nNappa leather: light Nappa leather seats with\nventilation and massage, and pale ash wood trim.\nOn Prime.\n\nImage: fjord/interior\n\n\n\nTechnology and Voltrieve Pilot\nThe Voltrieve Fjord comes with Voltrieve Pilot version 3, our driver assistance suite. It brings adaptive cruise, lane keeping, traffic\njam assist and automatic lane change (with Pilot Plus). Voltrieve Pilot Plus adds lane change assist and the highway autopilot. It is\nincluded on Fjord Prime and available as an option pack on the other trims.\n\nBoot of 640 litres\n\nRoof load of 100 kg\n\nAir suspension\n\nA heat pump as standard, so the range holds up in winter\n\n\n\nRange and charging\nWith a 84 kWh battery the Voltrieve Fjord goes up to\n575 km on a charge (WLTP). At a fast charger it takes\nup to 240 kW and goes from 10 to 80 % in about 20\nminutes. At home, the 22 kW onboard charger fills the\nbattery overnight.\n\nBattery"
+    },
+    {
+      "ref_id": "4",
+      "title": "voltrieve-atlas-brochure.pdf",
+      "content": "and the highway autopilot. It is\nincluded on Atlas Prime and available as an option pack on the other trims.\n\nSeven seats\n\n3.5 kW vehicle to load outlet\n\nRear wheel steering\n\nA heat pump as standard, so the range holds up in winter\n\n\n\nRange and charging\nWith a 112 kWh battery the Voltrieve Atlas goes up to\n610 km on a charge (WLTP). At a fast charger it takes\nup to 320 kW and goes from 10 to 80 % in about 20\nminutes. At home, the 22 kW onboard charger fills the\nbattery overnight.\n\nBattery\nRange\n(WLTP)\n\nPeak DC\ncharging\n\n10 to 80 %\nOnboard AC\ncharger\n\n112 kWh 610 km 320 kW 20 min 22 kW\n\nImage: atlas/charging\n\n\n\nOn the road\nRear wheel steering makes the Atlas surprisingly easy\nto park, and air suspension keeps it calm on rough\nroads. All wheel drive is standard.\n\nDrive Power Torque\n0 to 100\nkm/h\n\nTop speed\n\nAtlas AWD 420 kW 780 Nm 4.9 s 210 km/h\n\nImage: atlas/side_studio\n\n\n\nRoom for everyday life\nA third row that folds into the floor, a power outlet that\nruns tools or a coffee machine, and a frunk for the\ncharging cables.\n\nBoot\nBoot, rear\nseats folded\n\nFrunk Towing Roof load\n\n720 litres 2 050 litres 90 litres 2 500 kg\nbraked\n\n100 kg\n\nImage: atlas/practical\n\n\n\nThree trims\nEvery Atlas is well equipped from the start. Each trim builds on the one before it.\n\nAtlas Pure\n\nHeat pump\n\nSeven seats in three rows\n\nRear wheel steering\n\nAir suspension\n\n3.5 kW vehicle to load outlet\n\nVoltrieve Pilot 3\nBracket LED lights front and rear\n\nWheels: 21 inch Monolith. Interior: Charcoal textile and\nmicrosuede.\n\nAtlas Plus\n\nEverything in Atlas Pure, plus:\n\nPower tailgate with hands-free opening\n\nThree-zone climate\nHead-up display\n\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning\n\nWheels: 22 inch Monolith. Interior: Charcoal textile and\nmicrosuede.\n\nAtlas Prime\n\nEverything in Atlas Plus, plus:\n\nPanoramic glass roof\n\nHeated second row\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning"
+    },
+    {
+      "ref_id": "5",
+      "title": "voltrieve-fjord-specifications.pdf",
+      "content": "345 mm (RWD), 370 mm (AWD)\n\nRear brake discs 330 mm\n\nHeat pump standard\n\nVoltrieve Pilot version 3: adaptive cruise, lane keeping, traffic jam assist, automatic lane change (with Pilot Plus)\n\nOption packs available Winter, Pilot Plus, Tow, Sound\n\nFeature boot of 640 litres\n\nFeature roof load of 100 kg\n\nFeature air suspension\n\nFjord wheels and tyres per trim\n\nTrim Wheels\n\nFjord Pure 19 inch Birch: ten spokes in silver\n\nFjord Plus 20 inch Fern: fifteen thin straight spokes in diamond-cut silver\n\nFjord Prime 20 inch Fern: fifteen thin straight spokes in diamond-cut silver\n\nRange, energy use and charging times are measured to WLTP or under test conditions. Real figures depend on speed,\ntemperature, load, tyres and driving style.\n\nVoltrieve | Voltrieve Fjord technical specifications 3 / 3"
+    },
+    {
+      "ref_id": "6",
+      "title": "voltrieve-spark-brochure.pdf",
+      "content": "m\n\n2 ISOFIX seats\n\nOne pedal driving\n\nA heat pump with the Winter pack, standard on Spark Plus\nand Prime\n\n\n\nRange and charging\nWith a 42 kWh battery the Voltrieve Spark goes up to\n310 km on a charge (WLTP). At a fast charger it takes\nup to 95 kW and goes from 10 to 80 % in about 25\nminutes. At home, the 11 kW onboard charger fills the\nbattery overnight.\n\nBattery\nRange\n(WLTP)\n\nPeak DC\ncharging\n\n10 to 80 %\nOnboard AC\ncharger\n\n42 kWh 310 km 95 kW 25 min 11 kW\n\nImage: spark/charging\n\n\n\nOn the road\nRear wheel drive and a tight turning circle make the\nSpark quick and easy in town. One pedal driving lets\nyou slow down and stop without touching the brake.\n\nDrive Power Torque\n0 to 100\nkm/h\n\nTop speed\n\nSpark RWD 100 kW 220 Nm 9.2 s 150 km/h\n\nImage: spark/side_studio\n\n\n\nRoom for everyday life\nA near-vertical tailgate gives a square, useful boot, and\nthe rear seats fold flat for the odd trip to the furniture\nstore.\n\nBoot\nBoot, rear\nseats folded\n\nFrunk Towing Roof load\n\n310 litres 1 050 litres no frunk not rated for\ntowing\n\n50 kg\n\nThe Voltrieve Spark is not rated for towing.\n\nImage: spark/practical\n\n\n\nThree trims\nEvery Spark is well equipped from the start. Each trim builds on the one before it.\n\nSpark Pure\n\nRound LED ring headlamps\n\n10.25 inch touchscreen with navigation\n\nVoltrieve Pilot 2 with adaptive cruise control\n\nHeated front seats\n\nAutomatic headlights\n\nWireless phone charging\n\nWheels: 17 inch Pebble. Interior: Light grey textile.\n\nSpark Plus\n\nEverything in Spark Pure, plus:\n\nRear camera\n\nKeyless entry\nPrivacy glass\n\nAutomatic climate control\n\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning\n\nWheels: 17 inch Pebble. Interior: Light grey textile.\n\nSpark Prime\n\nEverything in Spark Plus, plus:\n\nPanoramic glass roof\n\nHeated windscreen\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning\n\nSound pack included: 14 speaker Voltrieve Stage\naudio system\n\nWheels: 17 inch Pebble."
+    },
+    {
+      "ref_id": "7",
+      "title": "voltrieve-fjord-price-list.pdf",
+      "content": "V O L T R I E V E\n\nVoltrieve Fjord price list\n\nImage: fjord/hero\n\nPrices valid from 1 November 2026. Recommended retail prices including VAT, in Sweden (SEK) and in the EU (EUR).\n\nFjord prices per trim and drive\n\nModel Drive Price in Sweden Price in the EU\n\nFjord Pure RWD 529 000 SEK 47 900 EUR\n\nFjord Pure AWD 569 000 SEK 51 500 EUR\n\nFjord Plus RWD 571 000 SEK 51 700 EUR\n\nFjord Plus AWD 611 000 SEK 55 300 EUR\n\nFjord Prime RWD 614 000 SEK 55 600 EUR\n\nFjord Prime AWD 654 000 SEK 59 200 EUR\n\nAll wheel drive (AWD) adds 40 000 SEK or 3 600 EUR to the price of each trim.\n\nWhat each Fjord trim adds\n\nFjord Pure\n\nHeat pump\n\nAir suspension\n\nLED light line with the fjord V\n\nVoltrieve Pilot 3\n\n22 kW onboard charger\nSatin aluminium roof rails\n\nPortrait central touchscreen\n\n19 inch Birch wheels, Light wool blend interior\n\nFjord Plus\n\nEverything in Fjord Pure, plus:\n\nVoltrieve | Voltrieve Fjord price list 1 / 4\n\n\n\nPower tailgate with hands-free opening\n\nKeyless entry\n\n360 camera\n\n20 inch Fern wheels, Light wool blend interior\n\nWinter pack included: heat pump, heated steering wheel and rear seats, battery preconditioning\n\nFjord Prime\n\nEverything in Fjord Plus, plus:\n\nHead-up display\n\nPanoramic glass roof\n\nAdaptive high beam\n\n20 inch Fern wheels, Nappa leather interior\n\nWinter pack included: heat pump, heated steering wheel and rear seats, battery preconditioning\nPilot Plus pack included: Voltrieve Pilot lane change assist and highway autopilot upgrade\n\nSound pack included: 14 speaker Voltrieve Stage audio system\n\nFjord equipment\n\nFjord equipment Fjord Pure Fjord Plus Fjord Prime\n\nWheels 19 inch Birch 20 inch Fern 20 inch Fern\n\nInterior Light wool blend Light wool blend Nappa leather\n\nHeat pump Standard Standard Standard\n\nAir suspension Standard Standard Standard\n\nLED light line with the fjord V Standard Standard Standard\n\nVoltrieve Pilot 3 Standard Standard Standard\n\n22 kW onboard charger Standard Standard Standard\n\nSatin aluminium roof rails Standard Standard Standard"
+    },
+    {
+      "ref_id": "8",
+      "title": "voltrieve-fjord-price-list.pdf",
+      "content": "Voltrieve Stage audio system\n\nFjord equipment\n\nFjord equipment Fjord Pure Fjord Plus Fjord Prime\n\nWheels 19 inch Birch 20 inch Fern 20 inch Fern\n\nInterior Light wool blend Light wool blend Nappa leather\n\nHeat pump Standard Standard Standard\n\nAir suspension Standard Standard Standard\n\nLED light line with the fjord V Standard Standard Standard\n\nVoltrieve Pilot 3 Standard Standard Standard\n\n22 kW onboard charger Standard Standard Standard\n\nSatin aluminium roof rails Standard Standard Standard\n\nPortrait central touchscreen Standard Standard Standard\n\nPower tailgate with hands-free opening Not available Standard Standard\n\nKeyless entry Not available Standard Standard\n\n360 camera Not available Standard Standard\n\nHead-up display Not available Not available Standard\n\nPanoramic glass roof Not available Not available Standard\n\nAdaptive high beam Not available Not available Standard\n\nWinter pack: heat pump, heated steering wheel and rear\nseats, battery preconditioning\n\nOptional, 18 000 SEK /\n1 600 EUR\n\nIncluded Included\n\nPilot Plus pack: Voltrieve Pilot lane change assist and\nhighway autopilot upgrade\n\nOptional, 24 000 SEK /\n2 200 EUR\n\nOptional, 24 000 SEK /\n2 200 EUR\n\nIncluded\n\nTow pack: electrically deployable tow bar and trailer\nstability control\n\nOptional, 14 000 SEK /\n1 300 EUR\n\nOptional, 14 000 SEK /\n1 300 EUR\n\nOptional, 14 000 SEK /\n1 300 EUR\n\nSound pack: 14 speaker Voltrieve Stage audio system Optional, 12 000 SEK /\n1 100 EUR\n\nOptional, 12 000 SEK /\n1 100 EUR\n\nIncluded\n\nItems marked \"Not available\" are not sold separately. Option packs can be added to any trim that does not include them.\n\nVoltrieve | Voltrieve Fjord price list 2 / 4\n\n\n\nFjord option packs\n\nPack Contents\nPrice in\nSweden\n\nPrice in the\nEU\n\nIncluded on\n\nFjord Winter pack heat pump, heated steering wheel and rear seats, battery\npreconditioning\n\n18 000 SEK 1 600 EUR Fjord Plus and\nPrime\n\nFjord Pilot Plus\npack\n\nVoltrieve Pilot lane change assist and highway autopilot\nupgrade"
+    }
+  ],
+  "references": [
+    {
+      "id": "0",
+      "doc_key": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1zcGVjaWZpY2F0aW9ucy5wZGY1_pages_0",
+      "reranker_score": 3.0832577,
+      "source_data": {
+        "chunk_id": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1zcGVjaWZpY2F0aW9ucy5wZGY1_pages_0",
+        "title": "voltrieve-fjord-specifications.pdf",
+        "chunk": "V O L T R I E V E\n\nVoltrieve Fjord technical specifications\n\nImage: fjord/side_studio\n\nFjord dimensions and weights\n\nFjord dimension Value\n\nLength 4 900 mm\n\nWidth, without mirrors 1 900 mm\n\nHeight 1 500 mm\n\nWheelbase 2 980 mm\n\nGround clearance 150 mm\n\nKerb weight 2 180 kg\n\nTowing capacity 2 100 kg (braked)\n\nRoof load 100 kg\n\nFjord volumes\n\nFjord volume Value\n\nBoot 640 litres\n\nBoot with the rear seats folded 1 720 litres\n\nFrunk 50 litres\n\nSeats 5\n\nVoltrieve | Voltrieve Fjord technical specifications 1 / 3\n\n\n\nFjord battery and range\n\nFjord battery Value\n\nBattery capacity (usable) 84 kWh\n\nRange (WLTP) 575 km\n\nEnergy use (WLTP, combined) 14.6 kWh per 100 km\n\nPlatform V2\n\nSystem voltage 800 V\n\nFjord charging\n\nFjord charging Value\n\nPeak DC charging power 240 kW\n\nDC charging from 10 to 80 % about 20 minutes\n\nOnboard AC charger 22 kW\n\nAC charging, empty to full about 3.8 hours\n\nCharge port CCS2\n\nThe Fjord DC charging curve: the charge power the car accepts at each state of charge, at a charger that delivers at least\n240 kW and with the battery at its working temperature.\n\nState of charge Charge power\n\n10 % 240 kW\n\n50 % 200 kW\n\n80 % 95 kW\n\nFjord performance per drive\n\nDrive Power Torque 0 to 100 km/h Top speed\n\nFjord RWD 250 kW 450 Nm 6.1 s 200 km/h\n\nFjord AWD 360 kW 680 Nm 4.6 s 200 km/h\n\nVoltrieve | Voltrieve Fjord technical specifications 2 / 3\n\n\n\nFjord chassis, climate and software\n\nFjord item Value\n\nDrive RWD, AWD\n\nFront brake discs 345 mm (RWD), 370 mm (AWD)\n\nRear brake discs 330 mm\n\nHeat pump standard\n\nVoltrieve Pilot version 3: adaptive cruise, lane keeping, traffic jam assist, automatic lane change (with Pilot Plus)\n\nOption packs available Winter, Pilot Plus, Tow, Sound\n\nFeature boot of 640 litres\n\nFeature roof load of 100 kg\n\nFeature air suspension\n\nFjord wheels and tyres per trim\n\nTrim Wheels\n\nFjord Pure 19 inch Birch: ten spokes in silver\n\nFjord Plus 20 inch Fern: fifteen thin straight spokes in diamond-cut silver",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/fjord/voltrieve-fjord-specifications.pdf",
+        "model_slug": "fjord",
+        "doc_type": "specifications"
+      }
+    },
+    {
+      "id": "1",
+      "doc_key": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1icm9jaHVyZS5wZGY1_pages_1",
+      "reranker_score": 2.7734516,
+      "source_data": {
+        "chunk_id": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1icm9jaHVyZS5wZGY1_pages_1",
+        "title": "voltrieve-fjord-brochure.pdf",
+        "chunk": "change assist and the highway autopilot. It is\nincluded on Fjord Prime and available as an option pack on the other trims.\n\nBoot of 640 litres\n\nRoof load of 100 kg\n\nAir suspension\n\nA heat pump as standard, so the range holds up in winter\n\n\n\nRange and charging\nWith a 84 kWh battery the Voltrieve Fjord goes up to\n575 km on a charge (WLTP). At a fast charger it takes\nup to 240 kW and goes from 10 to 80 % in about 20\nminutes. At home, the 22 kW onboard charger fills the\nbattery overnight.\n\nBattery\nRange\n(WLTP)\n\nPeak DC\ncharging\n\n10 to 80 %\nOnboard AC\ncharger\n\n84 kWh 575 km 240 kW 20 min 22 kW\n\nImage: fjord/charging\n\n\n\nOn the road\nAir suspension, a long wheelbase and an 800 V system\nmake the Fjord a relaxed long distance car that\ncharges quickly when you stop for coffee.\n\nDrive Power Torque\n0 to 100\nkm/h\n\nTop speed\n\nFjord RWD 250 kW 450 Nm 6.1 s 200 km/h\n\nFjord AWD 360 kW 680 Nm 4.6 s 200 km/h\n\nImage: fjord/side_studio\n\n\n\nRoom for everyday life\nA long flat load floor, a low loading edge and a strong\ntow rating for the boat, the caravan or the horse\ntrailer.\n\nBoot\nBoot, rear\nseats folded\n\nFrunk Towing Roof load\n\n640 litres 1 720 litres 50 litres 2 100 kg\nbraked\n\n100 kg\n\nImage: fjord/practical\n\n\n\nThree trims\nEvery Fjord is well equipped from the start. Each trim builds on the one before it.\n\nFjord Pure\n\nHeat pump\n\nAir suspension\n\nLED light line with the fjord V\n\nVoltrieve Pilot 3\n\n22 kW onboard charger\n\nSatin aluminium roof rails\nPortrait central touchscreen\n\nWheels: 19 inch Birch. Interior: Light wool blend.\n\nFjord Plus\n\nEverything in Fjord Pure, plus:\n\nPower tailgate with hands-free opening\n\nKeyless entry\n360 camera\n\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning\n\nWheels: 20 inch Fern. Interior: Light wool blend.\n\nFjord Prime\n\nEverything in Fjord Plus, plus:\n\nHead-up display\n\nPanoramic glass roof\nAdaptive high beam\n\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/fjord/voltrieve-fjord-brochure.pdf",
+        "model_slug": "fjord",
+        "doc_type": "brochure"
+      }
+    },
+    {
+      "id": "2",
+      "doc_key": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL3JhZ24vdm9sdHJpZXZlLXJhZ24tYnJvY2h1cmUucGRm0_pages_1",
+      "reranker_score": 2.292437,
+      "source_data": {
+        "chunk_id": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL3JhZ24vdm9sdHJpZXZlLXJhZ24tYnJvY2h1cmUucGRm0_pages_1",
+        "title": "voltrieve-ragn-brochure.pdf",
+        "chunk": "assist and the highway autopilot. It is\nincluded on Ragn Prime and available as an option pack on the other trims.\n\nGround clearance of 205 mm\n\nOff road mode\n\n22 kW onboard charger\n\nA heat pump as standard, so the range holds up in winter\n\n\n\nRange and charging\nWith a 84 kWh battery the Voltrieve Ragn goes up to\n530 km on a charge (WLTP). At a fast charger it takes\nup to 240 kW and goes from 10 to 80 % in about 21\nminutes. At home, the 22 kW onboard charger fills the\nbattery overnight.\n\nBattery\nRange\n(WLTP)\n\nPeak DC\ncharging\n\n10 to 80 %\nOnboard AC\ncharger\n\n84 kWh 530 km 240 kW 21 min 22 kW\n\nImage: ragn/charging\n\n\n\nOn the road\nAll wheel drive, an off road mode and high ground\nclearance give the Ragn grip on gravel, snow and mud,\nwhile the 800 V system charges quickly on the way\nhome.\n\nDrive Power Torque\n0 to 100\nkm/h\n\nTop speed\n\nRagn AWD 300 kW 560 Nm 5.4 s 190 km/h\n\nImage: ragn/side_studio\n\n\n\nRoom for everyday life\nRoof rails, a wide boot opening and a tow rating for a\nsmall caravan or a trailer full of firewood.\n\nBoot\nBoot, rear\nseats folded\n\nFrunk Towing Roof load\n\n520 litres 1 580 litres 60 litres 1 800 kg\nbraked\n\n100 kg\n\nImage: ragn/practical\n\n\n\nThree trims\nEvery Ragn is well equipped from the start. Each trim builds on the one before it.\n\nRagn Pure\n\nHeat pump\n\nOff road mode\n\n22 kW onboard charger\n\nVoltrieve Pilot 3\n\nSquare pixel LED lights\n\nOrange recovery hooks\nBlack roof rails\n\nWashable textile seats\n\nWheels: 19 inch Trail. Interior: Washable dark grey\ntextile.\n\nRagn Plus\n\nEverything in Ragn Pure, plus:\n\nPower tailgate\n\nKeyless entry\n360 camera with underbody view\n\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning\n\nWheels: 19 inch Trail. Interior: Washable dark grey\ntextile.\n\nRagn Prime\n\nEverything in Ragn Plus, plus:\n\nHeated windscreen\n\nAdaptive high beam\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning\n\nPilot Plus pack included: Voltrieve Pilot lane change",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/ragn/voltrieve-ragn-brochure.pdf",
+        "model_slug": "ragn",
+        "doc_type": "brochure"
+      }
+    },
+    {
+      "id": "4",
+      "doc_key": "684e0f14e805_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2F0bGFzL3ZvbHRyaWV2ZS1hdGxhcy1icm9jaHVyZS5wZGY1_pages_1",
+      "reranker_score": 2.2707257,
+      "source_data": {
+        "chunk_id": "684e0f14e805_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2F0bGFzL3ZvbHRyaWV2ZS1hdGxhcy1icm9jaHVyZS5wZGY1_pages_1",
+        "title": "voltrieve-atlas-brochure.pdf",
+        "chunk": "and the highway autopilot. It is\nincluded on Atlas Prime and available as an option pack on the other trims.\n\nSeven seats\n\n3.5 kW vehicle to load outlet\n\nRear wheel steering\n\nA heat pump as standard, so the range holds up in winter\n\n\n\nRange and charging\nWith a 112 kWh battery the Voltrieve Atlas goes up to\n610 km on a charge (WLTP). At a fast charger it takes\nup to 320 kW and goes from 10 to 80 % in about 20\nminutes. At home, the 22 kW onboard charger fills the\nbattery overnight.\n\nBattery\nRange\n(WLTP)\n\nPeak DC\ncharging\n\n10 to 80 %\nOnboard AC\ncharger\n\n112 kWh 610 km 320 kW 20 min 22 kW\n\nImage: atlas/charging\n\n\n\nOn the road\nRear wheel steering makes the Atlas surprisingly easy\nto park, and air suspension keeps it calm on rough\nroads. All wheel drive is standard.\n\nDrive Power Torque\n0 to 100\nkm/h\n\nTop speed\n\nAtlas AWD 420 kW 780 Nm 4.9 s 210 km/h\n\nImage: atlas/side_studio\n\n\n\nRoom for everyday life\nA third row that folds into the floor, a power outlet that\nruns tools or a coffee machine, and a frunk for the\ncharging cables.\n\nBoot\nBoot, rear\nseats folded\n\nFrunk Towing Roof load\n\n720 litres 2 050 litres 90 litres 2 500 kg\nbraked\n\n100 kg\n\nImage: atlas/practical\n\n\n\nThree trims\nEvery Atlas is well equipped from the start. Each trim builds on the one before it.\n\nAtlas Pure\n\nHeat pump\n\nSeven seats in three rows\n\nRear wheel steering\n\nAir suspension\n\n3.5 kW vehicle to load outlet\n\nVoltrieve Pilot 3\nBracket LED lights front and rear\n\nWheels: 21 inch Monolith. Interior: Charcoal textile and\nmicrosuede.\n\nAtlas Plus\n\nEverything in Atlas Pure, plus:\n\nPower tailgate with hands-free opening\n\nThree-zone climate\nHead-up display\n\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning\n\nWheels: 22 inch Monolith. Interior: Charcoal textile and\nmicrosuede.\n\nAtlas Prime\n\nEverything in Atlas Plus, plus:\n\nPanoramic glass roof\n\nHeated second row\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/atlas/voltrieve-atlas-brochure.pdf",
+        "model_slug": "atlas",
+        "doc_type": "brochure"
+      }
+    },
+    {
+      "id": "6",
+      "doc_key": "f7063fb19446_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL3NwYXJrL3ZvbHRyaWV2ZS1zcGFyay1icm9jaHVyZS5wZGY1_pages_1",
+      "reranker_score": 2.2560153,
+      "source_data": {
+        "chunk_id": "f7063fb19446_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL3NwYXJrL3ZvbHRyaWV2ZS1zcGFyay1icm9jaHVyZS5wZGY1_pages_1",
+        "title": "voltrieve-spark-brochure.pdf",
+        "chunk": "m\n\n2 ISOFIX seats\n\nOne pedal driving\n\nA heat pump with the Winter pack, standard on Spark Plus\nand Prime\n\n\n\nRange and charging\nWith a 42 kWh battery the Voltrieve Spark goes up to\n310 km on a charge (WLTP). At a fast charger it takes\nup to 95 kW and goes from 10 to 80 % in about 25\nminutes. At home, the 11 kW onboard charger fills the\nbattery overnight.\n\nBattery\nRange\n(WLTP)\n\nPeak DC\ncharging\n\n10 to 80 %\nOnboard AC\ncharger\n\n42 kWh 310 km 95 kW 25 min 11 kW\n\nImage: spark/charging\n\n\n\nOn the road\nRear wheel drive and a tight turning circle make the\nSpark quick and easy in town. One pedal driving lets\nyou slow down and stop without touching the brake.\n\nDrive Power Torque\n0 to 100\nkm/h\n\nTop speed\n\nSpark RWD 100 kW 220 Nm 9.2 s 150 km/h\n\nImage: spark/side_studio\n\n\n\nRoom for everyday life\nA near-vertical tailgate gives a square, useful boot, and\nthe rear seats fold flat for the odd trip to the furniture\nstore.\n\nBoot\nBoot, rear\nseats folded\n\nFrunk Towing Roof load\n\n310 litres 1 050 litres no frunk not rated for\ntowing\n\n50 kg\n\nThe Voltrieve Spark is not rated for towing.\n\nImage: spark/practical\n\n\n\nThree trims\nEvery Spark is well equipped from the start. Each trim builds on the one before it.\n\nSpark Pure\n\nRound LED ring headlamps\n\n10.25 inch touchscreen with navigation\n\nVoltrieve Pilot 2 with adaptive cruise control\n\nHeated front seats\n\nAutomatic headlights\n\nWireless phone charging\n\nWheels: 17 inch Pebble. Interior: Light grey textile.\n\nSpark Plus\n\nEverything in Spark Pure, plus:\n\nRear camera\n\nKeyless entry\nPrivacy glass\n\nAutomatic climate control\n\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning\n\nWheels: 17 inch Pebble. Interior: Light grey textile.\n\nSpark Prime\n\nEverything in Spark Plus, plus:\n\nPanoramic glass roof\n\nHeated windscreen\nWinter pack included: heat pump, heated steering\nwheel and rear seats, battery preconditioning\n\nSound pack included: 14 speaker Voltrieve Stage\naudio system\n\nWheels: 17 inch Pebble.",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/spark/voltrieve-spark-brochure.pdf",
+        "model_slug": "spark",
+        "doc_type": "brochure"
+      }
+    },
+    {
+      "id": "3",
+      "doc_key": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1icm9jaHVyZS5wZGY1_pages_0",
+      "reranker_score": 2.216337,
+      "source_data": {
+        "chunk_id": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1icm9jaHVyZS5wZGY1_pages_0",
+        "title": "voltrieve-fjord-brochure.pdf",
+        "chunk": "Image: fjord/hero\n\nVoltrieve Fjord\nRoom for the whole weekend\n\nRange (WLTP) DC charging 10 to 80 % Power 0 to 100 km/h\n\nup to 575 km 20 min up to 360 kW from 4.6 s\n\nV O L T R I E V E\n\n\n\nMeet the Fjord\nThe Fjord is a long, low estate for families who would\nrather drive than fly. It covers great distances in quiet\ncomfort and swallows everything the weekend needs.\n\nThe Voltrieve Fjord is an estate with rear wheel drive\nor all wheel drive, built on the Voltrieve V2 platform\nwith an 800 V system. Room for the whole weekend:\nthat is the idea behind every detail.\n\nImage: fjord/front_outdoor\n\n\n\nDesign\nA single thin light line crosses the front and dips into a\nshallow V around the emblem, like the outline of a\nfjord valley. The same line returns at the rear, ending\nin light blades that wrap around the corners.\n\nImage: fjord/light_detail\n\nImage: fjord/rear_outdoor\n\n\n\nInterior\nLight wool blend seats, pale ash wood and a wide,\ncalm dashboard with a portrait touchscreen. Nappa\nleather with ventilation and massage on Prime.\n\nLight wool blend: light wool blend seats and pale\nash wood trim. On Pure and Plus.\n\nNappa leather: light Nappa leather seats with\nventilation and massage, and pale ash wood trim.\nOn Prime.\n\nImage: fjord/interior\n\n\n\nTechnology and Voltrieve Pilot\nThe Voltrieve Fjord comes with Voltrieve Pilot version 3, our driver assistance suite. It brings adaptive cruise, lane keeping, traffic\njam assist and automatic lane change (with Pilot Plus). Voltrieve Pilot Plus adds lane change assist and the highway autopilot. It is\nincluded on Fjord Prime and available as an option pack on the other trims.\n\nBoot of 640 litres\n\nRoof load of 100 kg\n\nAir suspension\n\nA heat pump as standard, so the range holds up in winter\n\n\n\nRange and charging\nWith a 84 kWh battery the Voltrieve Fjord goes up to\n575 km on a charge (WLTP). At a fast charger it takes\nup to 240 kW and goes from 10 to 80 % in about 20\nminutes. At home, the 22 kW onboard charger fills the\nbattery overnight.\n\nBattery",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/fjord/voltrieve-fjord-brochure.pdf",
+        "model_slug": "fjord",
+        "doc_type": "brochure"
+      }
+    },
+    {
+      "id": "5",
+      "doc_key": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1zcGVjaWZpY2F0aW9ucy5wZGY1_pages_1",
+      "reranker_score": 2.1893861,
+      "source_data": {
+        "chunk_id": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1zcGVjaWZpY2F0aW9ucy5wZGY1_pages_1",
+        "title": "voltrieve-fjord-specifications.pdf",
+        "chunk": "345 mm (RWD), 370 mm (AWD)\n\nRear brake discs 330 mm\n\nHeat pump standard\n\nVoltrieve Pilot version 3: adaptive cruise, lane keeping, traffic jam assist, automatic lane change (with Pilot Plus)\n\nOption packs available Winter, Pilot Plus, Tow, Sound\n\nFeature boot of 640 litres\n\nFeature roof load of 100 kg\n\nFeature air suspension\n\nFjord wheels and tyres per trim\n\nTrim Wheels\n\nFjord Pure 19 inch Birch: ten spokes in silver\n\nFjord Plus 20 inch Fern: fifteen thin straight spokes in diamond-cut silver\n\nFjord Prime 20 inch Fern: fifteen thin straight spokes in diamond-cut silver\n\nRange, energy use and charging times are measured to WLTP or under test conditions. Real figures depend on speed,\ntemperature, load, tyres and driving style.\n\nVoltrieve | Voltrieve Fjord technical specifications 3 / 3",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/fjord/voltrieve-fjord-specifications.pdf",
+        "model_slug": "fjord",
+        "doc_type": "specifications"
+      }
+    },
+    {
+      "id": "7",
+      "doc_key": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1wcmljZS1saXN0LnBkZg2_pages_0",
+      "reranker_score": 2.0991628,
+      "source_data": {
+        "chunk_id": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1wcmljZS1saXN0LnBkZg2_pages_0",
+        "title": "voltrieve-fjord-price-list.pdf",
+        "chunk": "V O L T R I E V E\n\nVoltrieve Fjord price list\n\nImage: fjord/hero\n\nPrices valid from 1 November 2026. Recommended retail prices including VAT, in Sweden (SEK) and in the EU (EUR).\n\nFjord prices per trim and drive\n\nModel Drive Price in Sweden Price in the EU\n\nFjord Pure RWD 529 000 SEK 47 900 EUR\n\nFjord Pure AWD 569 000 SEK 51 500 EUR\n\nFjord Plus RWD 571 000 SEK 51 700 EUR\n\nFjord Plus AWD 611 000 SEK 55 300 EUR\n\nFjord Prime RWD 614 000 SEK 55 600 EUR\n\nFjord Prime AWD 654 000 SEK 59 200 EUR\n\nAll wheel drive (AWD) adds 40 000 SEK or 3 600 EUR to the price of each trim.\n\nWhat each Fjord trim adds\n\nFjord Pure\n\nHeat pump\n\nAir suspension\n\nLED light line with the fjord V\n\nVoltrieve Pilot 3\n\n22 kW onboard charger\nSatin aluminium roof rails\n\nPortrait central touchscreen\n\n19 inch Birch wheels, Light wool blend interior\n\nFjord Plus\n\nEverything in Fjord Pure, plus:\n\nVoltrieve | Voltrieve Fjord price list 1 / 4\n\n\n\nPower tailgate with hands-free opening\n\nKeyless entry\n\n360 camera\n\n20 inch Fern wheels, Light wool blend interior\n\nWinter pack included: heat pump, heated steering wheel and rear seats, battery preconditioning\n\nFjord Prime\n\nEverything in Fjord Plus, plus:\n\nHead-up display\n\nPanoramic glass roof\n\nAdaptive high beam\n\n20 inch Fern wheels, Nappa leather interior\n\nWinter pack included: heat pump, heated steering wheel and rear seats, battery preconditioning\nPilot Plus pack included: Voltrieve Pilot lane change assist and highway autopilot upgrade\n\nSound pack included: 14 speaker Voltrieve Stage audio system\n\nFjord equipment\n\nFjord equipment Fjord Pure Fjord Plus Fjord Prime\n\nWheels 19 inch Birch 20 inch Fern 20 inch Fern\n\nInterior Light wool blend Light wool blend Nappa leather\n\nHeat pump Standard Standard Standard\n\nAir suspension Standard Standard Standard\n\nLED light line with the fjord V Standard Standard Standard\n\nVoltrieve Pilot 3 Standard Standard Standard\n\n22 kW onboard charger Standard Standard Standard\n\nSatin aluminium roof rails Standard Standard Standard",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/fjord/voltrieve-fjord-price-list.pdf",
+        "model_slug": "fjord",
+        "doc_type": "price_list"
+      }
+    },
+    {
+      "id": "8",
+      "doc_key": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1wcmljZS1saXN0LnBkZg2_pages_1",
+      "reranker_score": 2.0459037,
+      "source_data": {
+        "chunk_id": "c12c3f137b1b_aHR0cHM6Ly9zdHZvbHRyaWV2ZWVsYTVyb3pqbjVjYW8uYmxvYi5jb3JlLndpbmRvd3MubmV0L3ZvbHRyaWV2ZS1kb2NzL3NhbGVzL2Zqb3JkL3ZvbHRyaWV2ZS1mam9yZC1wcmljZS1saXN0LnBkZg2_pages_1",
+        "title": "voltrieve-fjord-price-list.pdf",
+        "chunk": "Voltrieve Stage audio system\n\nFjord equipment\n\nFjord equipment Fjord Pure Fjord Plus Fjord Prime\n\nWheels 19 inch Birch 20 inch Fern 20 inch Fern\n\nInterior Light wool blend Light wool blend Nappa leather\n\nHeat pump Standard Standard Standard\n\nAir suspension Standard Standard Standard\n\nLED light line with the fjord V Standard Standard Standard\n\nVoltrieve Pilot 3 Standard Standard Standard\n\n22 kW onboard charger Standard Standard Standard\n\nSatin aluminium roof rails Standard Standard Standard\n\nPortrait central touchscreen Standard Standard Standard\n\nPower tailgate with hands-free opening Not available Standard Standard\n\nKeyless entry Not available Standard Standard\n\n360 camera Not available Standard Standard\n\nHead-up display Not available Not available Standard\n\nPanoramic glass roof Not available Not available Standard\n\nAdaptive high beam Not available Not available Standard\n\nWinter pack: heat pump, heated steering wheel and rear\nseats, battery preconditioning\n\nOptional, 18 000 SEK /\n1 600 EUR\n\nIncluded Included\n\nPilot Plus pack: Voltrieve Pilot lane change assist and\nhighway autopilot upgrade\n\nOptional, 24 000 SEK /\n2 200 EUR\n\nOptional, 24 000 SEK /\n2 200 EUR\n\nIncluded\n\nTow pack: electrically deployable tow bar and trailer\nstability control\n\nOptional, 14 000 SEK /\n1 300 EUR\n\nOptional, 14 000 SEK /\n1 300 EUR\n\nOptional, 14 000 SEK /\n1 300 EUR\n\nSound pack: 14 speaker Voltrieve Stage audio system Optional, 12 000 SEK /\n1 100 EUR\n\nOptional, 12 000 SEK /\n1 100 EUR\n\nIncluded\n\nItems marked \"Not available\" are not sold separately. Option packs can be added to any trim that does not include them.\n\nVoltrieve | Voltrieve Fjord price list 2 / 4\n\n\n\nFjord option packs\n\nPack Contents\nPrice in\nSweden\n\nPrice in the\nEU\n\nIncluded on\n\nFjord Winter pack heat pump, heated steering wheel and rear seats, battery\npreconditioning\n\n18 000 SEK 1 600 EUR Fjord Plus and\nPrime\n\nFjord Pilot Plus\npack\n\nVoltrieve Pilot lane change assist and highway autopilot\nupgrade",
+        "source_path": "https://stvoltrieveela5rozjn5cao.blob.core.windows.net/voltrieve-docs/sales/fjord/voltrieve-fjord-price-list.pdf",
+        "model_slug": "fjord",
+        "doc_type": "price_list"
+      }
+    }
+  ],
+  "activity": [
+    {
+      "type": "modelQueryPlanning",
+      "id": 0,
+      "startedAt": "2026-11-10T12:32:53.3342729Z",
+      "completedAt": "2026-11-10T12:32:54.7704454Z",
+      "inputTokens": 945,
+      "outputTokens": 44,
+      "elapsedMs": 1435,
+      "model": {
+        "modelName": "gpt-5.4-mini",
+        "deploymentId": "gpt-5.4-mini"
+      }
+    },
+    {
+      "type": "searchIndex",
+      "id": 1,
+      "startedAt": "2026-11-10T12:32:54.7707197Z",
+      "completedAt": "2026-11-10T12:32:54.9904502Z",
+      "knowledgeSourceName": "voltrieve-docs-ks",
+      "queryTime": "2026-11-10T12:32:54.8428537Z",
+      "count": 15,
+      "elapsedMs": 72,
+      "searchIndexArguments": {
+        "search": "Fjord boot seats folded",
+        "filter": null,
+        "semanticConfigurationName": "semantic-config",
+        "sourceDataFields": [
+          {
+            "name": "title"
+          },
+          {
+            "name": "chunk"
+          },
+          {
+            "name": "chunk_id"
+          },
+          {
+            "name": "source_path"
+          },
+          {
+            "name": "model_slug"
+          },
+          {
+            "name": "doc_type"
+          }
+        ],
+        "searchFields": [
+          {
+            "name": "chunk"
+          },
+          {
+            "name": "title"
+          }
+        ]
+      }
+    },
+    {
+      "type": "searchIndex",
+      "id": 2,
+      "startedAt": "2026-11-10T12:32:54.8432985Z",
+      "completedAt": "2026-11-10T12:32:54.9904567Z",
+      "knowledgeSourceName": "voltrieve-docs-ks",
+      "queryTime": "2026-11-10T12:32:54.9174872Z",
+      "count": 18,
+      "elapsedMs": 74,
+      "searchIndexArguments": {
+        "search": "Fjord luggage capacity seats folded",
+        "filter": null,
+        "semanticConfigurationName": "semantic-config",
+        "sourceDataFields": [
+          {
+            "name": "title"
+          },
+          {
+            "name": "chunk"
+          },
+          {
+            "name": "chunk_id"
+          },
+          {
+            "name": "source_path"
+          },
+          {
+            "name": "model_slug"
+          },
+          {
+            "name": "doc_type"
+          }
+        ],
+        "searchFields": [
+          {
+            "name": "chunk"
+          },
+          {
+            "name": "title"
+          }
+        ]
+      }
+    },
+    {
+      "type": "searchIndex",
+      "id": 3,
+      "startedAt": "2026-11-10T12:32:54.9179214Z",
+      "completedAt": "2026-11-10T12:32:54.9904576Z",
+      "knowledgeSourceName": "voltrieve-docs-ks",
+      "queryTime": "2026-11-10T12:32:54.989806Z",
+      "count": 12,
+      "elapsedMs": 71,
+      "searchIndexArguments": {
+        "search": "Fjord buyer's guide boot folded seats",
+        "filter": null,
+        "semanticConfigurationName": "semantic-config",
+        "sourceDataFields": [
+          {
+            "name": "title"
+          },
+          {
+            "name": "chunk"
+          },
+          {
+            "name": "chunk_id"
+          },
+          {
+            "name": "source_path"
+          },
+          {
+            "name": "model_slug"
+          },
+          {
+            "name": "doc_type"
+          }
+        ],
+        "searchFields": [
+          {
+            "name": "chunk"
+          },
+          {
+            "name": "title"
+          }
+        ]
+      }
+    },
+    {
+      "type": "agenticReasoning",
+      "id": 4,
+      "startedAt": "2026-11-10T12:32:54.995133Z",
+      "completedAt": "2026-11-10T12:32:54.995133Z",
+      "reasoningTokens": 70187,
+      "retrievalReasoningEffort": {
+        "kind": "low"
+      },
+      "logicalReasoningEffort": {
+        "kind": "low"
+      }
+    }
+  ]
+}
